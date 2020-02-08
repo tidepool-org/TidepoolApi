@@ -1,0 +1,22 @@
+allOf:
+  - $ref: ./statusresponse.v1.yaml
+  - type: object
+    properties:
+      code:
+        type: integer
+        enum:
+          - 500
+      reason:
+        type: string
+        enum:
+          - Error finding user
+          - Error generating the token
+          - Error updating user
+          - Error updating token
+    required:
+      - code
+      - reason
+x-tags:
+  - auth
+title: 500 Response
+description: ''

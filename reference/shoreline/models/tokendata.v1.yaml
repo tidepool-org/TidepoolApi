@@ -1,0 +1,13 @@
+title: TokenData
+type: object
+x-tags:
+  - auth
+properties:
+  userid:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  isserver:
+    type: boolean
+    description: True if the token is a `server` (server-to-server) token.
+required:
+  - userid
+  - isserver

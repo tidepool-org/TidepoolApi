@@ -1,0 +1,22 @@
+allOf:
+  - $ref: ./statusresponse.v1.yaml
+  - type: object
+    properties:
+      code:
+        type: integer
+        enum:
+          - 400
+      reason:
+        type: string
+        enum:
+          - The role specified is invalid
+          - Not all required details were given
+          - Invalid user details were given
+          - Missing id and/or password
+    required:
+      - code
+      - reason
+x-tags:
+  - auth
+title: 400 Response
+description: ''

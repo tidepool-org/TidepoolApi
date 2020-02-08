@@ -1,0 +1,31 @@
+type: object
+title: New User
+description: Details of a new user to create
+x-tags:
+  - auth
+x-examples: {}
+properties:
+  roles:
+    type: array
+    enum:
+      - clinic
+    uniqueItems: true
+    items:
+      format: email
+      type: string
+  password:
+    type: string
+    format: password
+  emails:
+    type: array
+    uniqueItems: true
+    items:
+      type: string
+      format: email
+  username:
+    type: string
+    format: email
+required:
+  - password
+  - emails
+  - username

@@ -1,0 +1,19 @@
+allOf:
+  - $ref: ./statusresponse.v1.yaml
+  - type: object
+    properties:
+      code:
+        type: integer
+        enum:
+          - 409
+      reason:
+        type: string
+        enum:
+          - User already exists
+    required:
+      - code
+      - reason
+x-tags:
+  - auth
+title: 409 Response
+description: ''

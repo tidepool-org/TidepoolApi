@@ -1,0 +1,23 @@
+allOf:
+  - $ref: ./statusresponse.v1.yaml
+  - type: object
+    properties:
+      code:
+        type: integer
+        enum:
+          - 401
+      reason:
+        type: string
+        enum:
+          - No user matched the given details
+          - A server token is required
+          - Not authorized for requested operation
+          - Wrong password
+          - No x-tidepool-session-token was found
+    required:
+      - code
+      - reason
+x-tags:
+  - auth
+title: 401 Response
+description: ''

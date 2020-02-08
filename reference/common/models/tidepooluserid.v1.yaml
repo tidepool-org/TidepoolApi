@@ -1,0 +1,6 @@
+type: string
+title: Tidepool User ID
+minLength: 10
+maxLength: 10
+pattern: '^[a-f0-9]{10}'
+description: String representation of a Tidepool User ID

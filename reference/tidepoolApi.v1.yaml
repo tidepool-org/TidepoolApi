@@ -1,0 +1,121 @@
+openapi: 3.0.0
+info:
+  title: Tidepool API
+  version: '1.0'
+  description: API for Tidepool
+  contact:
+    name: API Support
+    url: 'https://support.tidepool.org/'
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: 'https://github.com/tidepool-org/platform/blob/master/LICENSE'
+servers:
+  - url: 'http://localhost:3000'
+    description: localhost
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://integration.external.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+paths:
+  /auth/login:
+    get:
+      summary: Refresh session
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-tidepool-session-token:
+              $ref: '#/components/headers/x-tidepool-session-token'
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/tokendata.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: RefreshSession
+      security:
+        - sessionToken: []
+      description: Refresh the Tidepool Token when in an existing session
+      parameters: []
+    post:
+      summary: Login
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/user.v1.yaml
+          headers:
+            x-tidepool-session-token:
+              $ref: '#/components/headers/x-tidepool-session-token'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/400response.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/403response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: Login
+      security:
+        - basicAuth: []
+      description: Get a Tidepool Session Token with a username and password
+components:
+  schemas: {}
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    serverSecret:
+      name: x-tidepool-server-secret
+      type: apiKey
+      in: header
+    sessionToken:
+      name: x-tidepool-session-token
+      type: apiKey
+      in: header
+      description: ''
+  headers:
+    x-tidepool-session-token:
+      schema:
+        $ref: ./common/models/tidepoolsessiontoken.v1.yaml
+      description: A Tidepool session token
+tags:
+  - name: auth
+    description: Tidepool Authentication

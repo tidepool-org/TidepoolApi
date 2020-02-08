@@ -1,0 +1,19 @@
+allOf:
+  - $ref: ./statusresponse.v1.yaml
+  - type: object
+    properties:
+      code:
+        type: integer
+        enum:
+          - 403
+      reason:
+        type: string
+        enum:
+          - The user hasn't verified this account yet
+    required:
+      - code
+      - reason
+x-tags:
+  - auth
+title: 403 Response
+description: ''

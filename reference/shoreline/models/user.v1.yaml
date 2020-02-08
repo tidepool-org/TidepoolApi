@@ -1,0 +1,45 @@
+type: object
+x-tags:
+  - auth
+title: User
+description: User account details
+properties:
+  deletedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  deletedTime:
+    type: string
+    format: date-time
+  modifiedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  modifiedTime:
+    type: string
+    format: date-time
+  createdUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+  roles:
+    type: array
+    enum:
+      - clinic
+    uniqueItems: true
+    items:
+      type: string
+  username:
+    type: string
+    format: email
+  userid:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  termsAccepted:
+    type: string
+    format: date-time
+  emails:
+    type: array
+    uniqueItems: true
+    items:
+      type: string
+      format: email
+  emailVerified:
+    type: boolean
+    description: Whether the `User` has been verified by e-mail
