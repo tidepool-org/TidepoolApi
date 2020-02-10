@@ -979,6 +979,95 @@ paths:
             default: mmol/L
           in: query
           name: bgUnits
+  '/users/{userId}/device_authorization':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+  '/v1/users/{userId}/device_authorizations':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+        description: ''
+    get:
+      summary: Retrieve all device authorizations
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+      operationId: get-v1-users-userId-device_authorizations
+      description: Retrieve all device authorizations for the given user
+    post:
+      summary: Create a new device authorization
+      operationId: post-v1-users-userId-device_authorizations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+          headers:
+            x-tidepool-bearer-token:
+              schema:
+                type: string
+              description: A bearer token that must be passed to partner SDKs in order to complete device authorization.
+      requestBody:  
+        content:
+          application/json:
+            schema:
+              $ref: ./platform/models/deviceauthorizationrequest.v1.yaml
+      description: Allows Loop users to crate a new device authorization.
+  '/v1/users/{userId}/device_authorizations/{deviceAuthorizationId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: deviceAuthorizationId
+        in: path
+        required: true
+    get:
+      summary: Retrieve device authorization
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+      operationId: get-v1-users-userId-device_authorizations-deviceAuthorizationId
+      security:
+        - sessionToken: []
+      description: Retrieve single device authorization.
+    put:
+      summary: Deliver device authorization code to Loop
+      operationId: put-v1-users-userId-device_authorizations-deviceAuthorizationId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+      security:
+        - bearerToken: []
+      description: Allows device partners to securely deliver an authorization code to Loop.
 components:
   schemas: {}
   securitySchemes:
@@ -998,6 +1087,9 @@ components:
       name: restricted_token
       type: apiKey
       in: query
+    bearerToken:
+      type: http
+      scheme: bearer
   headers:
     x-tidepool-session-token:
       schema:

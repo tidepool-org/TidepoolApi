@@ -1,0 +1,8 @@
+title: Device Authorization Request
+type: object
+properties:
+  device_identifier:
+    type: string
+    description: Mobile device identifier
+required:
+  - device_identifier

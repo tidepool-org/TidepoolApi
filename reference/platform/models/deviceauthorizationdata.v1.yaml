@@ -1,0 +1,5 @@
+title: deviceauthorizationdata.v1.yaml
+type: object
+properties:
+  authorization_code:
+    type: string

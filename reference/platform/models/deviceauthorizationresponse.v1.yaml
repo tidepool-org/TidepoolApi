@@ -1,0 +1,20 @@
+title: deviceauthorizationresponse
+allOf:
+  - type: object
+    properties:
+      id:
+        type: string
+      status:
+        type: string
+        enum:
+          - pending
+          - expired
+          - successful
+      user_id:
+        type: string
+    required:
+      - id
+      - status
+      - user_id
+  - $ref: ./deviceauthorizationrequest.v1.yaml
+  - $ref: ./deviceauthorizationdata.v1.yaml
