@@ -1,0 +1,17 @@
+title: Insulin Concentration
+type: object
+properties:
+  value:
+    type: number
+    format: double
+    minimum: 0
+    maximum: 10000
+  units:
+    type: string
+    enum:
+      - Units/mL
+required:
+  - units
+  - value
+x-tags:
+  - data

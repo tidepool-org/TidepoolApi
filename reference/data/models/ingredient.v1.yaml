@@ -1,0 +1,24 @@
+title: Ingredient
+type: object
+properties:
+  nutrition:
+    $ref: ../../common/models/nutrition.v1.yaml
+  name:
+    type: string
+    minLength: 1
+    maxLength: 100
+  ingredients:
+    $ref: ./ingredientarray.v1.yaml
+  code:
+    type: string
+    minLength: 1
+    maxLength: 100
+  brand:
+    type: string
+    minLength: 1
+    maxLength: 100
+  amount:
+    $ref: ./amount.v1.yaml
+x-tags:
+  - data
+description: A nutritional ingredient

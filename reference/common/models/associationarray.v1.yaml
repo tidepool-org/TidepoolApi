@@ -1,0 +1,5 @@
+title: AssociationArray
+type: array
+items:
+  $ref: ./association.v1.yaml
+description: An array of `Association`s for the resource.

@@ -1,0 +1,37 @@
+title: Basal Temporary
+description: A temporary basal delivery event
+allOf:
+  - $ref: ./basal.v1.yaml
+  - type: object
+    properties:
+      duration:
+        type: integer
+        minimum: 0
+        maximum: 604800000
+        description: An integer value representing a duration of time in milliseconds.
+      expectedDuration:
+        type: integer
+        minimum: 0
+        maximum: 604800000
+        description: |-
+          An integer value representing an original programmed duration of time in milliseconds, copied from the duration field on ingestion when a following event has resulted in truncation of the original programmed duration.
+
+          `expectedDuration` cannot be less than the value of `duration`
+      insulinFormulation:
+        $ref: ./insulinformulation.v1.yaml
+      percent:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 10
+        description: 'Floating point value representing a percentage, where 1.0 represents 100%.'
+      rate:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 100
+        description: 'A floating point number >= 0 representing the amount of insulin delivered in units per hour.'
+      suppressed:
+        $ref: ./basalsuppressed.v1.yaml
+x-tags:
+  - data

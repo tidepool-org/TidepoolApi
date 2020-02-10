@@ -1,0 +1,16 @@
+title: Water Amount Gallons
+allOf:
+  - $ref: ./amount.v1.yaml
+  - type: object
+    properties:
+      units:
+        type: string
+        enum:
+          - gallons
+      value:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 10
+x-tags:
+  - data

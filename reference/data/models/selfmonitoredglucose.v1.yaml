@@ -1,0 +1,37 @@
+title: Self Monitored Glucose
+description: A self-monitored glucose measurement
+oneOf:
+  - allOf:
+      - $ref: ./bloodglucosemgdl.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - smbg
+          subType:
+            type: string
+            enum:
+              - linked
+              - manual
+        required:
+          - type
+    description: A self-monitored glucose measurement in mg/dL
+  - allOf:
+      - $ref: ./bloodglucosemmol.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - smbg
+          subType:
+            type: string
+            enum:
+              - linked
+              - manual
+        required:
+          - type
+    description: A self-monitored glucose measurement in mmol/L
+x-tags:
+  - data

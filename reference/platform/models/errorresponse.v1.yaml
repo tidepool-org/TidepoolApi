@@ -1,0 +1,9 @@
+title: ErrorResponse
+type: object
+properties:
+  code:
+    type: integer
+    description: Error reason code
+  reason:
+    type: string
+    description: Error reason text

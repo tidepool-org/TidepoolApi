@@ -1,0 +1,49 @@
+title: GPS
+type: object
+description: GPS co-ordinates and related information.
+properties:
+  verticalAccuracy:
+    $ref: ./accuracy.v1.yaml
+  origin:
+    $ref: ./origin.v1.yaml
+  longitude:
+    type: object
+    required:
+      - units
+      - value
+    properties:
+      units:
+        type: string
+        enum:
+          - degrees
+      value:
+        type: number
+        format: double
+        minimum: -180
+        maximum: 180
+  latitude:
+    type: object
+    required:
+      - units
+      - value
+    properties:
+      units:
+        type: string
+        enum:
+          - degrees
+      value:
+        type: number
+        format: double
+        minimum: -90
+        maximum: 90
+  horizontalAccuracy:
+    $ref: ./accuracy.v1.yaml
+  floor:
+    type: integer
+    minimum: -1000
+    maximum: 1000
+  elevation:
+    $ref: ./elevation.v1.yaml
+required:
+  - longitude
+  - latitude

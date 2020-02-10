@@ -1,0 +1,12 @@
+title: Time Change Info
+type: object
+properties:
+  timeZoneName:
+    type: string
+    description: 'A string timezone name from the [IANA timezone database](https://www.iana.org/time-zones)'
+  time:
+    type: string
+    format: date-time
+    description: An ISO 8601 formatted timestamp _without_ any timezone offset information
+x-tags:
+  - data

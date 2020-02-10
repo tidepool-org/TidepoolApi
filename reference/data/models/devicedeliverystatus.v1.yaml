@@ -1,0 +1,39 @@
+title: Device Delivery Status
+description: "An insulin pump's insulin delivery status"
+allOf:
+  - $ref: ./deviceevent.v1.yaml
+  - type: object
+    properties:
+      duration:
+        type: integer
+        minimum: 0
+      expectedDuration:
+        type: integer
+        minimum: 0
+      reason:
+        type: object
+        properties:
+          suspended:
+            type: string
+            enum:
+              - automatic
+              - manual
+          resumed:
+            type: string
+            enum:
+              - automatic
+              - manual
+      status:
+        type: string
+        enum:
+          - resumed
+          - suspended
+      subType:
+        type: string
+        enum:
+          - status
+    required:
+      - status
+      - subType
+x-tags:
+  - data

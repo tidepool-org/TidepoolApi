@@ -1,0 +1,61 @@
+title: Pump Status
+description: Insulin pump status
+allOf:
+  - $ref: ./base.v1.yaml
+  - type: object
+    properties:
+      reservoirRemaining:
+        type: object
+        properties:
+          startDate:
+            type: string
+            format: date
+          amount:
+            type: number
+            minimum: 0
+            maximum: 1000
+        required:
+          - startDate
+          - amount
+      battery:
+        type: object
+        properties:
+          unit:
+            type: string
+          value:
+            type: number
+        required:
+          - unit
+          - value
+      basalDeliveryState:
+        type: string
+      bolusState:
+        type: string
+      signalStrength:
+        type: object
+        properties:
+          unit:
+            type: string
+          value:
+            type: number
+        required:
+          - unit
+          - value
+      device:
+        type: object
+        properties:
+          deviceId:
+            type: string
+            minLength: 1
+          manufacturer:
+            type: string
+            minLength: 1
+          model:
+            type: string
+            minLength: 1
+        required:
+          - deviceId
+          - manufacturer
+          - model
+x-tags:
+  - data

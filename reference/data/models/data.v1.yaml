@@ -1,0 +1,36 @@
+title: Tidepool Data
+description: Tidepool diabetes data object
+oneOf:
+  - $ref: ./basalautomated.v1.yaml
+  - $ref: ./basalscheduled.v1.yaml
+  - $ref: ./basalsuspend.v1.yaml
+  - $ref: ./basaltemporary.v1.yaml
+  - $ref: ./bloodketone.v1.yaml
+  - $ref: ./boluscombination.v1.yaml
+  - $ref: ./bolusextended.v1.yaml
+  - $ref: ./bolusnormal.v1.yaml
+  - $ref: ./boluscalculator.v1.yaml
+  - $ref: ./cgmsettings.v1.yaml
+  - $ref: ./continuousglucose.v1.yaml
+  - $ref: ./devicealarm.v1.yaml
+  - $ref: ./devicecalibration.v1.yaml
+  - $ref: ./devicedeliverystatus.v1.yaml
+  - $ref: ./deviceprimeevent.v1.yaml
+  - $ref: ./devicereservoirchange.v1.yaml
+  - $ref: ./devicesensorevent.v1.yaml
+  - $ref: ./devicesettingschange.v1.yaml
+  - $ref: ./devicetransmitterevent.v1.yaml
+  - $ref: ./dosingdecision.v1.yaml
+  - $ref: ./devicetimechange.v1.yaml
+  - $ref: ./food.v1.yaml
+  - $ref: ./insulin.v1.yaml
+  - $ref: ./physicalactivity.v1.yaml
+  - $ref: ./pumpsettings.v1.yaml
+  - $ref: ./pumpstatus.v1.yaml
+  - $ref: ./reportedstate.v1.yaml
+  - $ref: ./selfmonitoredglucose.v1.yaml
+  - $ref: ./settings.v1.yaml
+  - $ref: ./upload.v1.yaml
+  - $ref: ./water.v1.yaml
+x-tags:
+  - data

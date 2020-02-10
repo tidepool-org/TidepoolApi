@@ -1,0 +1,96 @@
+title: Base (Abstract)
+type: object
+properties:
+  id:
+    type: string
+  uploadId:
+    type: string
+  type:
+    type: string
+    enum:
+      - basal
+      - bloodKetone
+      - bolus
+      - cbg
+      - cgmSettings
+      - deviceEvent
+      - deviceStatus
+      - food
+      - insulin
+      - physicalActivity
+      - pumpSettings
+      - reportedState
+      - smbg
+      - upload
+      - water
+      - wizard
+  timezoneOffset:
+    type: number
+  timezone:
+    type: string
+  time:
+    type: string
+    format: date-time
+    description: An ISO-8601 string timestamp. Added to each event during data processing in the Tidepool uploader Chrome application.
+  tags:
+    $ref: ../../common/models/tagarray.v1.yaml
+  source:
+    type: string
+  payload:
+    $ref: ../../common/models/payload.v1.yaml
+  origin:
+    $ref: ../../common/models/origin.v1.yaml
+  notes:
+    type: array
+    items:
+      type: object
+  modifiedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  modifiedTime:
+    type: string
+    format: date-time
+  location:
+    $ref: ../../common/models/location.v1.yaml
+  history:
+    $ref: './eventhistory.v1.yaml'
+  guid:
+    type: string
+    description: A string ID. Added to each event during data processing in the Tidepool uploader Chrome application or upon ingestion by the platform data ingestion service.
+  deviceTime:
+    type: string
+    format: date-time
+    description: An ISO-8601 string timestamp without timezone offset information. Added to each event during data processing in the Tidepool uploader Chrome application.
+  deviceId:
+    type: string
+    description: A string ID. An ISO-8601 string timestamp without timezone offset information. Added to each event during data processing in the Tidepool uploader Chrome application.
+  deletedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  deletedTime:
+    type: string
+    format: date-time
+  deduplicator:
+    $ref: './deduplicatordescriptor.v1.yaml'
+  createdUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+  conversionOffset:
+    type: integer
+  clockDriftOffset:
+    type: integer
+    description: '(OPTIONAL) An integer value representing milliseconds. '
+  associations:
+    $ref: ../../common/models/associationarray.v1.yaml
+  archivedTime:
+    type: string
+    format: date-time
+  archivedDatasetId:
+    type: string
+  annotations:
+    $ref: ../../common/models/annotationarray.v1.yaml
+required:
+  - type
+description: ''
+x-tags:
+  - data

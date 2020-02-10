@@ -1,0 +1,71 @@
+title: Nutrition
+type: object
+properties:
+  absorptionDuration:
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 86400
+    description: 'The duration it takes to fully digest/absorb the nutrients, in `seconds`'
+  carbohydrate:
+    type: object
+    properties:
+      dietaryFiber:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 1000
+      net:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 1000
+      sugars:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 1000
+      total:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 1000
+      units:
+        type: string
+        enum:
+          - grams
+    required:
+      - net
+      - units
+  energy:
+    $ref: ./energy.v1.yaml
+  fat:
+    type: object
+    properties:
+      total:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 1000
+      units:
+        type: string
+        enum:
+          - grams
+    required:
+      - total
+      - units
+  protein:
+    type: object
+    properties:
+      total:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 1000
+      units:
+        type: string
+        enum:
+          - grams
+    required:
+      - total
+      - units

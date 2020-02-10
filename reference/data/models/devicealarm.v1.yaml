@@ -1,0 +1,31 @@
+title: Device Alarm
+description: An alert from a diabetes device
+allOf:
+  - $ref: ./deviceevent.v1.yaml
+  - type: object
+    properties:
+      alarmType:
+        type: string
+        enum:
+          - auto_off
+          - low_insulin
+          - low_power
+          - no_delivery
+          - no_insulin
+          - no_power
+          - occlusion
+          - other
+          - over_limit
+        description: 'String value encoding the type of alarm, with `other` as the catch-all/default category.'
+      status:
+        type: string
+        description: The `id` of the status event logically connected with this event.
+      subType:
+        type: string
+        enum:
+          - alarm
+    required:
+      - alarmType
+      - subType
+x-tags:
+  - data

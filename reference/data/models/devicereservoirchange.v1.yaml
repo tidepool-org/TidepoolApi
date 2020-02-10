@@ -1,0 +1,17 @@
+title: Device Reservoir Change
+description: An insulin pump reservoir change
+allOf:
+  - $ref: ./deviceevent.v1.yaml
+  - type: object
+    properties:
+      subType:
+        type: string
+        enum:
+          - reservoirChange
+      status:
+        type: string
+        description: The `id` of the `status` event logically connected with this event.
+    required:
+      - subType
+x-tags:
+  - data

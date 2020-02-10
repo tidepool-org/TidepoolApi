@@ -1,5 +1,5 @@
 type: object
-title: New User
+title: New User Request Body
 description: Details of a new user to create
 x-tags:
   - auth

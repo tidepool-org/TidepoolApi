@@ -1,0 +1,9 @@
+type: object
+properties:
+  Units:
+    type: string
+  Value:
+    type: number
+title: Rate
+x-tags:
+  - data

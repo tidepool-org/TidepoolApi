@@ -1,0 +1,30 @@
+title: Basal Suppressed Temporary
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - basal
+  suppressed:
+    $ref: './basalsuppressed.v1.yaml'
+  rate:
+    type: number
+    format: double
+    minimum: 0
+    maximum: 100
+    description: 'A floating point number >= 0 representing the amount of insulin delivered in units per hour.'
+  percent:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 10
+  insulinFormulation:
+    $ref: './insulinformulation.v1.yaml'
+  deliveryType:
+    type: string
+    enum:
+      - temporary
+  annotations:
+    $ref: './metadataarray.v1.yaml'
+x-tags:
+  - data

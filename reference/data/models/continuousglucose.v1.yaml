@@ -1,0 +1,29 @@
+title: Continuous Glucose
+description: A continuous glucose measurement
+oneOf:
+  - allOf:
+      - $ref: ./bloodglucosemgdl.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - cbg
+        required:
+          - type
+      - type: object
+      - type: object
+    description: A continuous glucose measurement in mg/dL
+  - allOf:
+      - $ref: ./bloodglucosemmol.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - cbg
+        required:
+          - type
+    description: A continuous glucose measurement in mmol/L
+x-tags:
+  - data

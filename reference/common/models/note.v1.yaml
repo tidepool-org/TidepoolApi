@@ -1,0 +1,5 @@
+title: Note
+type: string
+description: A note associated with the resource.
+minLength: 1
+maxLength: 1000

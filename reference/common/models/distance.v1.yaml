@@ -1,0 +1,68 @@
+title: Distance
+oneOf:
+  - properties:
+      units:
+        type: string
+        enum:
+          - feet
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 528000
+    required:
+      - units
+      - value
+  - properties:
+      units:
+        type: string
+        enum:
+          - kilometers
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 160.9344
+    required:
+      - units
+      - value
+  - properties:
+      units:
+        type: string
+        enum:
+          - meters
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 160934.4
+    required:
+      - units
+      - value
+  - properties:
+      units:
+        type: string
+        enum:
+          - miles
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 100
+    required:
+      - units
+      - value
+  - properties:
+      units:
+        type: string
+        enum:
+          - yards
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 176000
+    required:
+      - units
+      - value
+type: object

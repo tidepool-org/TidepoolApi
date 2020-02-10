@@ -1,0 +1,5 @@
+title: Tag
+type: string
+description: A tag associated with the resource.
+minLength: 1
+maxLength: 100

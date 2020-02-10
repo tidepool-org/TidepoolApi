@@ -1,0 +1,15 @@
+title: Status and Data Response
+type: object
+properties:
+  data:
+    type: object
+  meta:
+    type: object
+    properties:
+      trace:
+        type: object
+        properties:
+          request:
+            type: string
+          session:
+            type: string

@@ -1,0 +1,126 @@
+title: CGM Settings
+description: Continuous Glucose Monitor settings
+allOf:
+  - $ref: ./base.v1.yaml
+  - type: object
+    properties:
+      highAlerts:
+        type: object
+        required:
+          - enabled
+          - level
+          - snooze
+        properties:
+          enabled:
+            type: boolean
+          level:
+            $ref: ./bloodglucosevalue.v1.yaml
+          snooze:
+            type: integer
+            minimum: 0
+            maximum: 86400000
+            description: Integer value representing milliseconds
+      lowAlerts:
+        type: object
+        required:
+          - enabled
+          - level
+          - snooze
+        properties:
+          enabled:
+            type: boolean
+          level:
+            $ref: ./bloodglucosevalue.v1.yaml
+          snooze:
+            type: integer
+            minimum: 0
+            maximum: 86400000
+            description: Integer value representing milliseconds
+      manufacturers:
+        type: array
+        items:
+          type: object
+      model:
+        type: string
+      outOfRangeAlerts:
+        type: object
+        required:
+          - enabled
+          - snooze
+        properties:
+          enabled:
+            type: boolean
+          snooze:
+            type: number
+            description: Integer value representing milliseconds
+            format: double
+            minimum: 0
+            maximum: 86400000
+      rateOfChangeAlert:
+        type: object
+        required:
+          - fallRate
+          - riseRate
+        properties:
+          fallRate:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+              rate:
+                oneOf:
+                  - description: Integer value representing a `mg/dL` value.
+                    format: double
+                    minimum: -10
+                    maximum: 0
+                    exclusiveMaximum: true
+                    multipleOf: 1
+                  - description: Floating point value representing a `mmol/L` value.
+                    format: double
+                    minimum: -0.55
+                    exclusiveMinimum: false
+                    maximum: 0
+                    exclusiveMaximum: true
+                type: number
+          riseRate:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+              rate:
+                oneOf:
+                  - description: Integer value representing a `mg/dL` value.
+                    format: double
+                    minimum: 0
+                    exclusiveMinimum: true
+                    maximum: 10
+                    multipleOf: 1
+                  - description: Floating point value representing a `mmol/L` value.
+                    format: double
+                    minimum: 0
+                    exclusiveMinimum: true
+                    maximum: 0.55
+                type: number
+      serialNumber:
+        type: string
+      transmitterId:
+        type: string
+      type:
+        type: string
+        enum:
+          - cgmSettings
+      units:
+        type: string
+        enum:
+          - mg/dL
+          - mmol/L
+    required:
+      - highAlerts
+      - lowAlerts
+      - outOfRangeAlerts
+      - rateOfChangeAlert
+      - transmitterId
+      - type
+      - units
+x-tags:
+  - data

@@ -1,0 +1,3 @@
+# Fetching Device Data
+
+The beginning of an awesome article...

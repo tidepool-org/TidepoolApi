@@ -1,0 +1,42 @@
+title: Food
+allOf:
+  - $ref: ./base.v1.yaml
+  - type: object
+    properties:
+      amount:
+        $ref: ./amount.v1.yaml
+      brand:
+        type: string
+        minLength: 1
+        maxLength: 100
+      code:
+        type: string
+        minLength: 1
+        maxLength: 100
+      ingredients:
+        $ref: ./ingredientarray.v1.yaml
+      meal:
+        type: string
+        enum:
+          - breakfast
+          - lunch
+          - dinner
+          - snack
+          - other
+      mealOther:
+        type: string
+        minLength: 1
+        maxLength: 100
+      name:
+        type: string
+      nutrition:
+        $ref: ../../common/models/nutrition.v1.yaml
+      type:
+        type: string
+        enum:
+          - food
+    required:
+      - type
+x-tags:
+  - data
+description: Food consumption

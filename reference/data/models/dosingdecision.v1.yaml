@@ -1,0 +1,84 @@
+title: Dosing Decision
+allOf:
+  - $ref: ./base.v1.yaml
+  - type: object
+    properties:
+      insulinOnBoard:
+        type: object
+        properties:
+          startDate:
+            type: string
+            format: date
+          value:
+            type: number
+            minimum: 0
+            maximum: 1000
+        required:
+          - startDate
+          - value
+      carbsOnBoard:
+        type: object
+        properties:
+          startDate:
+            type: string
+            format: date
+          endDate:
+            type: string
+            format: date
+          quantity:
+            type: number
+            minimum: 0
+            maximum: 1000
+        required:
+          - startDate
+          - endDate
+          - quantity
+      forecast:
+        type: array
+        items:
+          $ref: ./forecast.v1.yaml
+      recommendedBasal:
+        type: object
+        properties:
+          unitsPerHour:
+            type: number
+            minimum: 0
+          duration:
+            type: number
+            minimum: 0
+            maximum: 1000
+        required:
+          - unitsPerHour
+          - duration
+      recommendedBolus:
+        type: number
+        minimum: 0
+        maximum: 1000
+      glucoseTargetRangeSchedule:
+        $ref: ./bloodglucosetarget.v1.yaml
+      alerts:
+        type: array
+        items:
+          type: string
+      units:
+        type: object
+        minProperties: 1
+        properties:
+          bg:
+            type: string
+            enum:
+              - mmol/L
+              - mmol/l
+              - mg/dL
+              - mg/dl
+          carbs:
+            type: string
+            enum:
+              - exchanges
+              - grams
+        required:
+          - bg
+          - carbs
+x-tags:
+  - data
+description: A dosing decision

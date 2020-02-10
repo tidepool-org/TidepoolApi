@@ -1,0 +1,55 @@
+title: Energy
+oneOf:
+  - properties:
+      units:
+        type: string
+        enum:
+          - calories
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 10000000
+    required:
+      - units
+      - value
+  - properties:
+      units:
+        type: string
+        enum:
+          - joules
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 41858000
+    required:
+      - units
+      - value
+  - properties:
+      units:
+        type: string
+        enum:
+          - kilocalories
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 10000
+    required:
+      - units
+      - value
+  - properties:
+      units:
+        type: string
+        enum:
+          - kilojoules
+      value:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 41858
+    required:
+      - units
+      - value
+type: object

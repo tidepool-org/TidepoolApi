@@ -1,0 +1,101 @@
+title: Tidepool Data Set
+type: object
+properties:
+  id:
+    type: string
+  version:
+    type: string
+  uploadId:
+    type: string
+  type:
+    type: string
+    enum:
+      - upload
+  timezoneOffset:
+    type: string
+  timezone:
+    type: string
+  timeProcessing:
+    type: string
+    enum:
+      - across-the-board-timezone
+      - none
+      - utc-bootstrapping
+  time:
+    type: string
+    format: date-time
+  source:
+    type: string
+  payload:
+    $ref: ../../common/models/payload.v1.yaml
+  modifiedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  modifiedTime:
+    type: string
+    format: date-time
+  guid:
+    type: string
+  deviceTime:
+    type: string
+    format: date-time
+  deviceTags:
+    type: array
+    items:
+      anyOf:
+        - enum:
+            - bgm
+            - cgm
+            - insulin-pump
+      type: string
+  deviceSerialNumber:
+    type: string
+  deviceModel:
+    type: string
+  deviceManufacturers:
+    type: array
+    items:
+      type: string
+  deviceId:
+    type: string
+  deletedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  deletedTime:
+    type: string
+    format: date-time
+  deduplicator:
+    $ref: ./deduplicatordescriptor.v1.yaml
+  dataSetType:
+    type: string
+    enum:
+      - continuous
+      - normal
+  createdUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+  conversionOffset:
+    type: integer
+  computerTime:
+    type: string
+    format: date-time
+  clockDriftOffset:
+    type: integer
+  client:
+    type: object
+    properties:
+      name:
+        type: string
+      version:
+        type: string
+      private:
+        $ref: ./metadata.v1.yaml
+  byUser:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  annotations:
+    type: array
+    items:
+      type: object
+description: ''
+x-tags:
+  - data

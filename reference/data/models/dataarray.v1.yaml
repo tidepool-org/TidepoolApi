@@ -1,0 +1,7 @@
+title: Tidepool Data Array
+type: array
+items:
+  $ref: ./data.v1.yaml
+x-tags:
+  - data
+description: Diabetes Data Array

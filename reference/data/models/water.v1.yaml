@@ -1,0 +1,53 @@
+title: Water
+oneOf:
+  - allOf:
+      - $ref: ./base.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - water
+        required:
+          - type
+      - $ref: ./wateramountgallons.v1.yaml
+    description: Water amount in gallons
+  - allOf:
+      - $ref: ./base.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - water
+        required:
+          - type
+      - $ref: ./wateramountounces.v1.yaml
+    description: Water amount in ounces
+  - allOf:
+      - $ref: ./base.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - water
+        required:
+          - type
+      - $ref: ./wateramountliters.v1.yaml
+    description: Water amount in liters
+  - allOf:
+      - $ref: ./base.v1.yaml
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - water
+        required:
+          - type
+      - $ref: ./wateramountmilliliters.v1.yaml
+    description: Water amount in milliliters
+x-tags:
+  - data
+description: Water consumption

@@ -1,0 +1,6 @@
+name: userId
+description: Tidepool User ID Parameter
+in: path
+required: true
+schema:
+  $ref: ../models/tidepooluserid.v1.yaml

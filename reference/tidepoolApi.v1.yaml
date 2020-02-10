@@ -2,14 +2,61 @@ openapi: 3.0.0
 info:
   title: Tidepool API
   version: '1.0'
-  description: API for Tidepool
+  description: |-
+    The Tidepool API is an HTTP REST API served by Tidepool. It is the API that Tidepool clients use to communicate
+    with the Tidepool Platform.
+
+    # Authentication
+    Most Tidepool API requests require authentication using the `X-Tidepool-Session-Token` header received from the
+    Login API endpoint.
+
+    # Tracing
+    All Tidepool API requests may include two HTTP headers to trace requests and "sessions" of requests throughout the Tidepool ecosystem.
+
+    The `X-Tidepool-Trace-Request` HTTP header allows for a 1-64 character string value to be associated with all server logging during the request. Typically, a client would generate a unique value and add it to each request. If not specified with the request, then one is generated and returned in the response. The client should capture this header value with any failure for future analysis.
+
+    The `X-Tidepool-Trace-Session` HTTP header allows for a 1-64 character string value to be associated with all server logging during a "session" of requests. Typically, a client would generate a unique value when a session starts and add it to each request during the session. If not specified by the client on the request, no header is returned in the response.
+    The client should capture this header value with any failure for future analysis.
+
+    For brevity, these headers are *not* documented for each specific endpoint below.
+
+    For example, a request with both headers specified:
+
+    ```
+    GET  /v1/users/a43d25a01f/images HTTP/1.1
+    Host: int-api.tidepool.org
+    X-Tidepool-Trace-Request: c836ab48d92c4789abb38d759a021b3e
+    X-Tidepool-Trace-Session: a4928790fbc02cabd749dbc920eb9c73
+    ```
+
+    # Errors
+    The Tidepool API uses standard HTTP status codes to indicate success or failure of any API call. In the case of failure, the body of the response will be UTF-8 JSON in the following format:
+
+    ```
+    {
+      "code": "length-out-of-range",
+      "title": "length is out of range",
+      "detail": "length 101 is not less than or equal to 100",
+      "source": "/name",
+      "metadata": {
+        "type": "image"
+      }
+    }
+    ```
+
+    The `code`, `title`, and `detail` fields are required. The `source` and `metadata` fields are optional and are dependent upon the type and location of the error.
+
+    The most common failure HTTP status codes are `400`, `401`, `403`, and `404`, but `413`, `429`, and `500` may be used under certain circumstances.
+
+    For brevity, these errors are *not* documented for each specific endpoint below.
   contact:
     name: API Support
     url: 'https://support.tidepool.org/'
     email: support@tidepool.org
   license:
-    name: BSD-2-Clause
+    name: 'BSD 2-Clause "Simplified" License'
     url: 'https://github.com/tidepool-org/platform/blob/master/LICENSE'
+  termsOfService: 'https://developer.tidepool.org/terms-of-use/'
 servers:
   - url: 'http://localhost:3000'
     description: localhost
@@ -24,7 +71,7 @@ servers:
 paths:
   /auth/login:
     get:
-      summary: Refresh session
+      summary: Refresh current session
       tags:
         - auth
       responses:
@@ -55,7 +102,7 @@ paths:
       description: Refresh the Tidepool Token when in an existing session
       parameters: []
     post:
-      summary: Login
+      summary: Login to Tidepool API
       tags:
         - auth
       responses:
@@ -96,6 +143,842 @@ paths:
       security:
         - basicAuth: []
       description: Get a Tidepool Session Token with a username and password
+  '/auth/login/{longtermkey}':
+    parameters:
+      - schema:
+          type: string
+        name: longtermkey
+        in: path
+        required: true
+    post:
+      summary: Login with a long term key
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+      operationId: LongTermLogin
+      description: '*** DEPRECATED?'
+  /auth/logout:
+    post:
+      summary: Logout of Tidepool API
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+      operationId: Logout
+      security:
+        - sessionToken: []
+      description: Logout of current session
+  /auth/private:
+    get:
+      summary: Anonymous ID hash pair
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+      operationId: AnonymousIDHashPair
+      description: |-
+        Generate Anonymous ID has pair.
+        *** DEPRECATED?
+  /auth/serverlogin:
+    post:
+      summary: Server-to-server login
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-tidepool-session-token:
+              $ref: '#/components/headers/x-tidepool-session-token'
+      operationId: ServerLogin
+      security:
+        - serverSecret: []
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-tidepool-server-name
+          description: The name by which the requesting service will be identified.
+      description: Server-to-server login. Requires knowledge of the `serverSecret`.
+  /auth/status:
+    get:
+      summary: Service status
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+      operationId: AuthServiceStatus
+      description: Return the status of the `shoreline` service.
+  '/auth/token/{token}':
+    parameters:
+      - schema:
+          type: string
+        name: token
+        in: path
+        required: true
+    get:
+      summary: Check token
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/tokendata.v1.yaml
+      operationId: CheckToken
+      security:
+        - sessionToken: []
+      description: Check the validity of a Tidepool Session Token.
+  /auth/user:
+    get:
+      summary: Get information for logged in user
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/user.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+      operationId: CurrentUserInfo
+      security:
+        - sessionToken: []
+      description: Show the account details of the currently active session.
+    post:
+      summary: Create a new account
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          headers:
+            x-tidepool-session-token:
+              $ref: '#/components/headers/x-tidepool-session-token'
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/user.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/400response.v1.yaml
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/409response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: CreateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./shoreline/models/newuser.v1.yaml
+      description: Create a new Tidepool account.
+    put:
+      summary: Update details of the logged in user
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/user.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/400response.v1.yaml
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/409response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: UpdateCurrentUser
+      security:
+        - sessionToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./shoreline/models/user.v1.yaml
+      description: Update the details of the logged in user.
+  '/auth/user/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    delete:
+      summary: Delete user
+      tags:
+        - auth
+      responses:
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/403response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: DeleteUser
+      security:
+        - sessionToken: []
+      description: Delete the specified Tidepool account.
+    get:
+      summary: Get user information
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/user.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+      operationId: UserInfo
+      security:
+        - sessionToken: []
+      description: Show the account details of the specified user.
+    put:
+      summary: Update user
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/user.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/400response.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/409response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: UpdateUser
+      security:
+        - sessionToken: []
+      description: Update the account details for the specified User ID.
+  '/auth/user/{userId}/user':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    post:
+      summary: Create custodial user
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/user.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/409response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: CreateCustodialUser
+      security:
+        - sessionToken: []
+      description: Create a custodial user.
+  /auth/users:
+    get:
+      summary: Get users
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./shoreline/models/user.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/400response.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/401response.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./shoreline/models/500response.v1.yaml
+      operationId: GetUsers
+      security:
+        - sessionToken: []
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - clinic
+          in: query
+          name: role
+        - schema:
+            type: array
+            maxItems: 200
+            minItems: 1
+          in: query
+          name: id
+      description: Get a list of users matching the query parameters
+  '/v1/users/{userId}/datasets':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./data/models/dataset.v1.yaml
+      summary: Get Data Sets for User
+      security:
+        - sessionToken: []
+      operationId: GetDataset
+      tags:
+        - data
+      description: Gets data sets for a user account specified by the userId
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ./data/models/dataset.v1.yaml
+              examples:
+                response:
+                  value:
+                    data:
+                      createdTime: '2017-02-06T02:37:46Z'
+                      createdUserId: null
+                      type: upload
+                      uploadId: null
+                    meta:
+                      trace:
+                        request: ' '
+      summary: Create Data Set for User
+      operationId: CreateDataset
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./data/models/dataset.v1.yaml
+        x-examples:
+          application/json:
+            type: upload
+            client:
+              name: com.devicecorp.tidepooluploader
+              version: 0.100.0
+            dataSetType: normal
+            deduplicator:
+              name: org.tidepool.deduplicator.device.deactivate.hash
+            deviceManufacturers:
+              - DeviceCorp
+            deviceModel: Devicey McDeviceface
+            deviceSerialNumber: B97B6D59
+            deviceTags:
+              - bgm
+              - cgm
+              - insulin-pump
+            timeProcessing: none
+            timezone: Europe/London
+            clockDriftOffset: 0
+            conversionOffset: 0
+            deviceId: DevId0987654321
+            deviceTime: '2016-06-27T18:09:55'
+            time: '2016-06-28T01:09:55.132Z'
+            timezoneOffset: -420
+        description: ''
+      security:
+        - sessionToken: []
+      description: Create data set for user
+  '/data/{userId}':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ./data/models/dataarray.v1.yaml
+      summary: Get data for user
+      security:
+        - sessionToken: []
+      parameters:
+        - $ref: ./common/parameters/tidepooluserid.v1.yaml
+        - in: query
+          name: uploadId
+          schema:
+            type: string
+        - in: query
+          name: deviceId
+          schema:
+            type: string
+        - in: query
+          name: type
+          schema:
+            type: string
+        - in: query
+          name: subType
+          schema:
+            type: string
+        - in: query
+          name: startDate
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: endDate
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: latest
+          schema:
+            type: boolean
+      operationId: GetData
+      tags:
+        - data
+      description: 'Get data for the specified `userId`. Can specify what data type to pull, start date and end date.'
+  '/v1/datasets/{dataSetId}/data':
+    post:
+      tags:
+        - data
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      summary: Upload Data to Data Set
+      operationId: UploadData
+      description: "Import JSON data to a user's data set"
+      security:
+        - sessionToken: []
+    parameters:
+      - name: dataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+  '/v1/datasets/{dataSetId}':
+    delete:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Delete Data Set
+      operationId: DeleteDataset
+      tags:
+        - data
+      security:
+        - sessionToken: []
+      description: Deletes entire dataset described by the dataSetId
+    parameters:
+      - name: dataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Update Data Set
+      operationId: UpdateDataset
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      security:
+        - sessionToken: []
+      description: Update data set
+  /dataservices/v1/time:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ./platform/models/statusanddataresponse.v1.yaml
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          time:
+                            type: string
+                            format: date-time
+      summary: Get server time
+      operationId: ServerTime
+      tags:
+        - data
+      description: Get server time
+  '/v1/users/{userId}/data':
+    delete:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Delete all data for User
+      tags:
+        - data
+      operationId: DeleteUserData
+      security:
+        - sessionToken: []
+      description: Delete all data for user
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+  '/v1/data_sets/{dataSetId}/data':
+    delete:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Delete data from Data Set
+      operationId: DeleteDatasetData
+      tags:
+        - data
+      security:
+        - sessionToken: []
+      description: Delete data from data set
+    parameters:
+      - name: dataSetId
+        in: path
+        required: true
+        schema:
+          type: string
+  /dataservices/status:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ./platform/models/statusanddataresponse.v1.yaml
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          Version:
+                            type: string
+                          Environment:
+                            type: string
+                          DataStore:
+                            type: object
+                            properties:
+                              State:
+                                type: string
+                              BuildInfo:
+                                type: object
+                                properties:
+                                  Version:
+                                    type: string
+                                  VersionArray:
+                                    type: array
+                                    items:
+                                      allOf:
+                                        - description: Major version
+                                        - description: Minor version
+                                        - description: Patch version
+                                        - description: Tag version
+                                      type: integer
+                                  GitVersion:
+                                    type: string
+                                  OpenSSLVersion:
+                                    type: string
+                                  SysInfo:
+                                    type: string
+                                  Bits:
+                                    type: integer
+                                  Debug:
+                                    type: boolean
+                                  MaxObjectSize:
+                                    type: integer
+                              LiveServers:
+                                type: array
+                                items:
+                                  type: string
+                              Mode:
+                                type: integer
+                              Safe:
+                                type: object
+                                properties:
+                                  W:
+                                    type: integer
+                                  WMode:
+                                    type: string
+                                  WTimeout:
+                                    type: integer
+                                  FSync:
+                                    type: boolean
+                                  J:
+                                    type: boolean
+                              Ping:
+                                type: string
+                          Server:
+                            type: object
+                            properties:
+                              Pid:
+                                type: integer
+                              UpTime:
+                                type: string
+                              UpTimeSec:
+                                type: number
+                              Time:
+                                type: string
+                              TimeUnix:
+                                type: integer
+                              StatusCodeCount:
+                                type: object
+                                properties:
+                                  '200':
+                                    type: integer
+                                  '201':
+                                    type: integer
+                                  '400':
+                                    type: integer
+                                  '401':
+                                    type: integer
+                                  '403':
+                                    type: integer
+                                  '404':
+                                    type: integer
+                                  '500':
+                                    type: integer
+                              TotalCount:
+                                type: integer
+                              TotalResponseTime:
+                                type: string
+                              TotalResponseTimeSec:
+                                type: number
+                              AverageResponseTime:
+                                type: string
+                              AverageResponseTimeSec:
+                                type: number
+      summary: Status of the platform dataservice service
+      tags:
+        - data
+      operationId: DataserviceStatus
+      description: Status of the platform dataservice
+  /data/status:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Status of the tide-whisperer service
+      tags:
+        - data
+      operationId: TidewhispererStatus
+      description: 'Get the status of the `tide-whisperer` service. '
+  /export/status:
+    get:
+      summary: Get service status
+      tags:
+        - export
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uptime:
+                    type: number
+                    minimum: 0
+      operationId: ExportStatus
+      description: Check the operational status of the Export service
+  '/export/{userId}':
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+    get:
+      summary: Export data for user
+      tags:
+        - export
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./data/models/metadataarray.v1.yaml
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+                description: An Excel spreadsheet
+      operationId: ExportUserData
+      description: Export data for the specified Tidepool user in XLSX or JSON format
+      security:
+        - sessionToken: []
+        - restrictedToken: []
+      parameters:
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: startDate
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: endDate
+        - schema:
+            type: string
+            enum:
+              - json
+              - xlsx
+            default: xlsx
+          in: query
+          name: format
+        - schema:
+            type: string
+            enum:
+              - mg/dL
+              - mmol/L
+            default: mmol/L
+          in: query
+          name: bgUnits
 components:
   schemas: {}
   securitySchemes:
@@ -111,6 +994,10 @@ components:
       type: apiKey
       in: header
       description: ''
+    restrictedToken:
+      name: restricted_token
+      type: apiKey
+      in: query
   headers:
     x-tidepool-session-token:
       schema:
@@ -119,3 +1006,7 @@ components:
 tags:
   - name: auth
     description: Tidepool Authentication
+  - name: data
+    description: Tidepool Diabetes Data
+  - name: export
+    description: Tidepool Data Export

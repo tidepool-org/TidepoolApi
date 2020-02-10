@@ -1,0 +1,191 @@
+title: Pump Settings
+description: |-
+  Insulin pump settings
+
+  TODO: Find a way for the following to be either/or and add properties of all of the above (for now, set to type: object):
+  - basalSchedule/basalSchedules
+  - bgTarget/bgTargets
+  - carbRatio/carbRatios
+  - insulinSensitivity/insulinSensitivities
+  - add properties of all of the above
+allOf:
+  - $ref: ./base.v1.yaml
+  - type: object
+    properties:
+      activeSchedule:
+        type: string
+        description: "A string value encoding the name of the PWD's active basal schedule."
+      basalSchedule:
+        type: object
+      basalSchedules:
+        type: object
+        description: "A set of key-value pairs encoding the PWD's programmed basal schedules, where each key is a basal schedule name and each value is an array of basal schedule segment objects."
+      bgTarget:
+        $ref: ./bloodglucosetarget.v1.yaml
+      bgTargets:
+        type: object
+      bolus:
+        type: object
+        properties:
+          amountMaximum:
+            type: object
+          calculator:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+              insulin:
+                oneOf:
+                  - description: Duration in `hours`
+                    properties:
+                      duration:
+                        type: number
+                        format: float
+                        minimum: 0
+                        maximum: 10
+                      units:
+                        type: string
+                        enum:
+                          - hours
+                    required:
+                      - duration
+                      - units
+                  - description: Duration in `minutes`
+                    properties:
+                      duration:
+                        type: number
+                        format: float
+                        minimum: 0
+                        maximum: 600
+                      units:
+                        type: string
+                        enum:
+                          - minutes
+                    required:
+                      - duration
+                      - units
+                  - description: Duration in `seconds`
+                    properties:
+                      duration:
+                        type: number
+                        format: float
+                        minimum: 0
+                        maximum: 36000
+                      units:
+                        type: string
+                        enum:
+                          - seconds
+                    required:
+                      - duration
+                      - units
+                type: object
+            required:
+              - enabled
+          extended:
+            type: object
+      carbRatio:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 250
+        description: 'An integer encoding the grams of carbohydrate "covered" by one unit of insulin for the PWD.'
+      carbRatios:
+        type: object
+        description: "A set of key-value pairs encoding the PWD's programmed carb ratio schedules, where each key is a schedule name and each value is an array of carb ratio segment objects."
+      display:
+        type: object
+        properties:
+          bloodGlucose:
+            type: object
+            properties:
+              units:
+                type: string
+                enum:
+                  - mg/dL
+                  - mmol/L
+            required:
+              - units
+      insulinSensitivity:
+        type: object
+      insulinSensitivities:
+        type: object
+      manufacturers:
+        type: array
+        uniqueItems: true
+        minItems: 0
+        maxItems: 10
+        items:
+          type: string
+          minLength: 1
+          maxLength: 100
+      model:
+        type: string
+        minLength: 1
+        maxLength: 100
+      serialNumber:
+        type: string
+        minLength: 1
+        maxLength: 100
+      units:
+        type: object
+        properties:
+          bg:
+            type: string
+            enum:
+              - mmol/L
+              - mmol/l
+              - mg/dL
+              - mg/dl
+            description: A string value encoding the blood glucose units exposed in the user interface on this insulin pump.
+          carb:
+            type: string
+            enum:
+              - exchanges
+              - grams
+            description: A string value encoding the (universal) units for carbohydrate input as grams.
+        required:
+          - bg
+          - carb
+      dosingEnabled:
+        type: boolean
+      bgTargetPreMealTarget:
+        type: object
+        properties:
+          low:
+            type: number
+            minimum: 0
+            maximum: 1000
+          high:
+            type: number
+            minimum: 0
+            maximum: 1000
+        required:
+          - low
+          - high
+      suspendThreshold:
+        type: object
+        properties:
+          value:
+            type: number
+            minimum: 0
+            maximum: 1000
+          unit:
+            type: string
+            enum:
+              - mmol/L
+              - mmo/l
+              - mg/dL
+              - mg/dl
+        required:
+          - value
+          - unit
+      insulinModel:
+        type: string
+        enum:
+          - rapidAdult
+          - rapidChild
+          - fiasp
+    required:
+      - activeSchedule
+x-tags:
+  - data

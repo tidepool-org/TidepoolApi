@@ -1,0 +1,34 @@
+title: Origin
+type: object
+description: External origin information for the source of the resource.
+properties:
+  id:
+    type: string
+    description: Any external identifier uniquely identifying the resource at the origin source.
+    maxLength: 100
+  version:
+    type: string
+    description: The version of the origin source at the time the resources was obtained.
+    minLength: 1
+    maxLength: 100
+  type:
+    type: string
+    enum:
+      - application
+      - device
+      - manual
+      - service
+    description: The type of the origin source.
+  time:
+    type: string
+    description: 'RFC3339/ISO8601 date & time'
+    format: date-time
+  payload:
+    $ref: ./payload.v1.yaml
+  origin:
+    $ref: ./origin.v1.yaml
+  name:
+    type: string
+    description: A human-readable name for the origin source.
+    minLength: 1
+    maxLength: 100

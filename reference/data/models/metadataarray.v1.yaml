@@ -1,0 +1,6 @@
+title: Metadata Array
+type: array
+items:
+  $ref: ./metadata.v1.yaml
+x-tags:
+  - data

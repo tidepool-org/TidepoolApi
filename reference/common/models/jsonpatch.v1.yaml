@@ -1,0 +1,52 @@
+title: JSONPatch
+oneOf:
+- properties:
+    op:
+      type: string
+      description: The operation to perform.
+      enum:
+      - add
+      - replace
+      - test
+    path:
+      type: string
+      description: A JSON Pointer path.
+    value:
+      description: The value to add, replace or test.
+  required:
+  - op
+  - path
+  - value
+- properties:
+    op:
+      type: string
+      description: The operation to perform.
+      enum:
+      - remove
+    path:
+      type: string
+      description: A JSON Pointer path.
+  required:
+  - op
+  - path
+- properties:
+    op:
+      type: string
+      description: The operation to perform.
+      enum:
+      - move
+      - copy
+    from:
+      description: A JSON Pointer path pointing to the location to move/copy from.
+      type: string
+    path:
+      type: string
+      description: A JSON Pointer path.
+  required:
+  - op
+  - from
+  - path
+type: object
+description: Only have this here because Stoplight doesn't seem to like using the
+  JSONSchema directly as a ref from http://json.schemastore.org/json-patch
+

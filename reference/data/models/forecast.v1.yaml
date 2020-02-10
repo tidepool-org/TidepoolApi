@@ -1,0 +1,27 @@
+title: 'Forecast (Abstract)[Proposed]'
+type: object
+x-tags:
+  - data
+properties:
+  values:
+    type: array
+    items:
+      type: number
+      format: double
+  unit:
+    type: string
+  type:
+    type: string
+    enum:
+      - bloodGlucose
+      - carbsOnBoard
+      - insulinOnBoard
+  startDate:
+    type: string
+    format: date-time
+    description: The time at which the first forecasted value occurs.
+required:
+  - values
+  - unit
+  - startDate
+description: ''

@@ -1,0 +1,4 @@
+title: AnnotationArray
+type: array
+items:
+  $ref: ./annotation.v1.yaml
