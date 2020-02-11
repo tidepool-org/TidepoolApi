@@ -988,15 +988,11 @@ paths:
         required: true
   '/v1/users/{userId}/device_authorizations':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
-        description: ''
+      - $ref: '#/components/parameters/userId'
     get:
       summary: Retrieve all device authorizations
-      tags: []
+      tags:
+        - auth
       responses:
         '200':
           description: OK
@@ -1006,11 +1002,31 @@ paths:
                 type: array
                 items:
                   $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
-      operationId: get-v1-users-userId-device_authorizations
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      operationId: GetDeviceAuthorizations
       description: Retrieve all device authorizations for the given user
+      security:
+        - sessionToken: []
     post:
       summary: Create a new device authorization
-      operationId: post-v1-users-userId-device_authorizations
+      operationId: CreateDeviceAuthorization
       responses:
         '200':
           description: OK
@@ -1023,27 +1039,42 @@ paths:
               schema:
                 type: string
               description: A bearer token that must be passed to partner SDKs in order to complete device authorization.
-      requestBody:  
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      requestBody:
         content:
           application/json:
             schema:
-              $ref: ./platform/models/deviceauthorizationrequest.v1.yaml
-      description: Allows Loop users to crate a new device authorization.
+              $ref: ./platform/models/createdeviceauthorizationrequest.v1.yaml
+      description: Allows Loop users to create a new device authorization.
+      security:
+        - sessionToken: []
+      tags:
+        - auth
   '/v1/users/{userId}/device_authorizations/{deviceAuthorizationId}':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: deviceAuthorizationId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/deviceAuthorizationId'
     get:
       summary: Retrieve device authorization
-      tags: []
+      tags:
+        - auth
       responses:
         '200':
           description: OK
@@ -1051,13 +1082,31 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
-      operationId: get-v1-users-userId-device_authorizations-deviceAuthorizationId
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      operationId: RetrieveDeviceAuthorization
       security:
         - sessionToken: []
       description: Retrieve single device authorization.
-    put:
+    patch:
       summary: Deliver device authorization code to Loop
-      operationId: put-v1-users-userId-device_authorizations-deviceAuthorizationId
+      operationId: DeliverDeviceAuthorization
       responses:
         '200':
           description: OK
@@ -1065,9 +1114,28 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
       security:
         - bearerToken: []
       description: Allows device partners to securely deliver an authorization code to Loop.
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./platform/models/updatedeviceauthorizationrequest.v1.yaml
 components:
   schemas: {}
   securitySchemes:
@@ -1095,6 +1163,19 @@ components:
       schema:
         $ref: ./common/models/tidepoolsessiontoken.v1.yaml
       description: A Tidepool session token
+  parameters:
+    userId:
+      name: userId
+      in: path
+      schema:
+        $ref: ./common/models/tidepooluserid.v1.yaml
+      required: true
+    deviceAuthorizationId:
+      name: deviceAuthorizationId
+      schema:
+        $ref: ./platform/models/deviceauthorizationid.v1.yaml
+      required: true
+      in: path
 tags:
   - name: auth
     description: Tidepool Authentication

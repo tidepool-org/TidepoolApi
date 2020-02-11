@@ -1,0 +1,5 @@
+type: string
+title: Device Identifier
+minLength: 6
+pattern: "^(\\w|-){6,}"
+description: For iOS devices this could be a device token used for push notifications or an identifier for vendor.

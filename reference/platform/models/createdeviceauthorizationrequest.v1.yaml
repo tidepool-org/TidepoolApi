@@ -1,0 +1,7 @@
+title: Create Device Authorization Request
+type: object
+properties:
+  deviceIdentifier:
+    $ref: ./deviceidentifier.v1.yaml
+required:
+  - deviceIdentifier
