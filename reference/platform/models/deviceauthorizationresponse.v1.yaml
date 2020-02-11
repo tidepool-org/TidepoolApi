@@ -1,0 +1,19 @@
+title: Device Authorization Response
+allOf:
+  - type: object
+    properties:
+      id:
+        $ref: ./deviceauthorizationid.v1.yaml
+      status:
+        type: string
+        enum:
+          - pending
+          - expired
+          - successful
+      authorizationCode:
+        $ref: ./authorizationcode.v1.yaml
+    required:
+      - id
+      - status
+  - $ref: ./createdeviceauthorizationrequest.v1.yaml
+description: ''
