@@ -979,13 +979,6 @@ paths:
             default: mmol/L
           in: query
           name: bgUnits
-  '/users/{userId}/device_authorization':
-    parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
   '/v1/users/{userId}/device_authorizations':
     parameters:
       - $ref: '#/components/parameters/userId'
