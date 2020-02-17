@@ -1,0 +1,15 @@
+title: Complete Device Authorization Request
+type: object
+properties:
+  verificationCode:
+    $ref: ./verificationcode.v1.yaml
+  deviceCheckToken:
+    type: string
+    description: A token that can be used with Apple’s Device Check API
+  bundleId:
+    type: string
+    description: The bundle of the app that originated the request
+required:
+  - verificationCode
+  - deviceCheckToken
+  - bundleId

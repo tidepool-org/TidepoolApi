@@ -1097,9 +1097,10 @@ paths:
       security:
         - sessionToken: []
       description: Retrieve single device authorization.
-    patch:
-      summary: Deliver device authorization code to Loop
-      operationId: DeliverDeviceAuthorization
+  /v1/device_authorization:
+    post:
+      summary: Complete device authorization
+      operationId: CompleteDeviceAuthorization
       responses:
         '200':
           description: OK
@@ -1107,6 +1108,12 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
         '401':
           description: Unauthorized
           content:
@@ -1121,14 +1128,13 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       security:
         - bearerToken: []
-      description: Allows device partners to securely deliver an authorization code to Loop.
-      tags:
-        - auth
+      description: "Verifies that the request originated from the Loop app and that it isn't running on a jailbroken phone and then securely delivers the verification code to Loop."
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ./platform/models/updatedeviceauthorizationrequest.v1.yaml
+              $ref: ./platform/models/completedeviceauthorizationrequest.v1.yaml
+    parameters: []
 components:
   schemas: {}
   securitySchemes:

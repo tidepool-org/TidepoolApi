@@ -1,0 +1,5 @@
+type: string
+title: Push Notification Device Identifier
+minLength: 6
+pattern: "^(\\w|-){6,}"
+description: "For iOS devices this is a device token that's already registered with Tidepool's Backend"
