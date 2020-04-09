@@ -12,6 +12,26 @@ properties:
       - failed
   verificationCode:
     $ref: ./verificationcode.v1.yaml
+  devicePushToken:
+    $ref: ./devicepushtoken.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+  expirationTime:
+    type: string
+    format: date-time
+  modifiedTime:
+    type: string
+    format: date-time
+  bundleId:
+    type: string
+    enum:
+      - 75U4X84TEG.org.tidepool.Loop
+      - org.tidepool.Loop
+  deviceCheckToken:
+    $ref: ./devicechecktoken.v1.yaml
 required:
   - id
   - status
+  - devicePushToken
+  - createdTime

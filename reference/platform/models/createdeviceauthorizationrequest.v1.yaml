@@ -1,7 +1,7 @@
 title: Create Device Authorization Request
 type: object
 properties:
-  pushNotificationIdentifier:
-    $ref: ./pushnotificationidentifier.v1.yaml
+  devicePushToken:
+    $ref: ./devicepushtoken.v1.yaml
 required:
-  - pushNotificationIdentifier
+  - devicePushToken
