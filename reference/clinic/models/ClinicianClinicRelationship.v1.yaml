@@ -1,0 +1,13 @@
+title: ClinicianClinicRelationship
+type: object
+properties:
+  id:
+    type: string
+  clinicianId:
+    type: string
+  clinicId:
+    type: string
+  permisions:
+    type: array
+    items:
+      type: string
