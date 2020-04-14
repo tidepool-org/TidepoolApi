@@ -1,0 +1,14 @@
+title: Clinician
+type: object
+description: Object describing a doctor
+properties:
+  id:
+    type: string
+  username:
+    type: string
+  email:
+    type: string
+  userid:
+    type: string
+  pwhash:
+    type: string

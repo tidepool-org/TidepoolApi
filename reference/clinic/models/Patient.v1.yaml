@@ -1,0 +1,13 @@
+title: Patient
+type: object
+properties:
+  id:
+    type: string
+  username:
+    type: string
+  email:
+    type: string
+  userid:
+    type: string
+  pwhas:
+    type: string

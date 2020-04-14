@@ -1,0 +1,211 @@
+openapi: 3.0.0
+info:
+  title: clinic
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /clinics:
+    get:
+      summary: getClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/Clinic.v1.yaml
+      operationId: get-clinics
+      description: Retrieve list of clinics.  Requires admin app authorization
+    parameters: []
+  /clinic:
+    get:
+      summary: getClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/Clinic.v1.yaml
+      operationId: get-clinic
+      description: ''
+    post:
+      summary: createClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-clinic
+      description: Creates a Clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/Clinic.v1.yaml
+  '/clinic/{clinicid}':
+    parameters:
+      - schema:
+          type: string
+        name: clinicid
+        in: path
+        required: true
+    get:
+      summary: getClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/Clinic.v1.yaml
+      operationId: get-clinic-clinicid
+    patch:
+      summary: ''
+      operationId: patch-clinic-clinicid
+      responses:
+        '200':
+          description: OK
+      description: Modify clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/Clinic.v1.yaml
+    delete:
+      summary: ''
+      operationId: delete-clinic-clinicid
+      responses:
+        '200':
+          description: OK
+      description: Delete Clinic
+  '/clinics/{clinicid}/clinicians':
+    parameters:
+      - schema:
+          type: string
+        name: clinicid
+        in: path
+        required: true
+    get:
+      summary: getCliniciansForClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/ClinicianClinicRelationship.v1.yaml
+      operationId: get-clinics-clinicid-clinicians
+      description: ''
+  '/clinic/{clinicid}/clinician/{clinicianid}':
+    parameters:
+      - schema:
+          type: string
+        name: clinicid
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: clinicianid
+        in: path
+        required: true
+    delete:
+      summary: DeleteClinicianForClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: delete-clinic-clinicid-clinician-clinicianid
+      description: Remove association with clinic and clinician
+    patch:
+      summary: ''
+      operationId: patch-clinic-clinicid-clinician-clinicianid
+      responses:
+        '200':
+          description: OK
+      description: Associate clinician with clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/ClinicianClinicRelationship.v1.yaml
+  '/clinic/{clinicid}/patients':
+    parameters:
+      - schema:
+          type: string
+        name: clinicid
+        in: path
+        required: true
+    get:
+      summary: getCliniciansForClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
+      operationId: get-clinic-clinicid-patients
+      description: Get list of patients associated with clinic
+  '/clinic/{clinicid}/patient/{patientid}':
+    parameters:
+      - schema:
+          type: string
+        name: clinicid
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: patientid
+        in: path
+        required: true
+    patch:
+      summary: addPatientToClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: patch-clinic-clinicid-patient-patientid
+      description: Modify patient/clinic relationship
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
+    delete:
+      summary: deletePatientFromClinic
+      tags: []
+      operationId: delete-clinic-clinicid-patient-patientid
+      description: delete patient from clinic
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+    post:
+      summary: ''
+      operationId: post-clinic-clinicid-patient-patientid
+      responses:
+        '200':
+          description: OK
+      description: Add patient to clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
+components:
+  schemas: {}
