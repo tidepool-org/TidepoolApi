@@ -46,7 +46,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/Clinic.v1.yaml
+              $ref: ./clinic/models/NewClinic.v1.yaml
   '/clinic/{clinicid}':
     parameters:
       - schema:
@@ -76,7 +76,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/Clinic.v1.yaml
+              $ref: ./clinic/models/NewClinic.v1.yaml
     delete:
       summary: ''
       operationId: delete-clinic-clinicid
