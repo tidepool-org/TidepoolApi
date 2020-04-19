@@ -7,7 +7,7 @@ servers:
 paths:
   /clinics:
     get:
-      summary: getClinic
+      summary: GetClinic
       tags: []
       responses:
         '200':
@@ -20,22 +20,26 @@ paths:
                   $ref: ./clinic/models/Clinic.v1.yaml
       operationId: get-clinics
       description: Retrieve list of clinics.  Requires admin app authorization
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: ''
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+      requestBody:
+        description: ''
     parameters: []
   /clinic:
-    get:
-      summary: getClinic
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./clinic/models/Clinic.v1.yaml
-      operationId: get-clinic
-      description: ''
     post:
-      summary: createClinic
+      summary: CreateClinic
       tags: []
       responses:
         '200':
@@ -55,7 +59,7 @@ paths:
         in: path
         required: true
     get:
-      summary: getClinic
+      summary: GetClinic
       tags: []
       responses:
         '200':
@@ -66,19 +70,24 @@ paths:
                 $ref: ./clinic/models/Clinic.v1.yaml
       operationId: get-clinic-clinicid
     patch:
-      summary: ''
+      summary: ModifyClinic
       operationId: patch-clinic-clinicid
       responses:
         '200':
           description: OK
-      description: Modify clinic
+      description: Modify Clinic
       requestBody:
         content:
           application/json:
             schema:
               $ref: ./clinic/models/NewClinic.v1.yaml
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Modify Clinic object
     delete:
-      summary: ''
+      summary: DeleteClinic
       operationId: delete-clinic-clinicid
       responses:
         '200':
@@ -92,7 +101,7 @@ paths:
         in: path
         required: true
     get:
-      summary: getCliniciansForClinic
+      summary: GetCliniciansForClinic
       tags: []
       responses:
         '200':
@@ -102,9 +111,22 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/ClinicianClinicRelationship.v1.yaml
+                  $ref: ./clinic/models/Clinician.v1.yaml
       operationId: get-clinics-clinicid-clinicians
-      description: ''
+      description: Retrieve a list of clinicians for a clinic
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
   '/clinic/{clinicid}/clinician/{clinicianid}':
     parameters:
       - schema:
@@ -125,18 +147,13 @@ paths:
           description: OK
       operationId: delete-clinic-clinicid-clinician-clinicianid
       description: Remove association with clinic and clinician
-    patch:
-      summary: ''
-      operationId: patch-clinic-clinicid-clinician-clinicianid
+    post:
+      summary: AddClinicianToClinic
+      operationId: post-clinic-clinicid-clinician-clinicianid
       responses:
         '200':
           description: OK
-      description: Associate clinician with clinic
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ./clinic/models/ClinicianClinicRelationship.v1.yaml
+      description: Add a Clinician to a Clinic
   '/clinic/{clinicid}/patients':
     parameters:
       - schema:
@@ -145,7 +162,7 @@ paths:
         in: path
         required: true
     get:
-      summary: getCliniciansForClinic
+      summary: GetCliniciansForClinic
       tags: []
       responses:
         '200':
@@ -155,9 +172,22 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
+                  $ref: ./clinic/models/Patient.v1.yaml
       operationId: get-clinic-clinicid-patients
       description: Get list of patients associated with clinic
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
   '/clinic/{clinicid}/patient/{patientid}':
     parameters:
       - schema:
@@ -170,21 +200,8 @@ paths:
         name: patientid
         in: path
         required: true
-    patch:
-      summary: addPatientToClinic
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: patch-clinic-clinicid-patient-patientid
-      description: Modify patient/clinic relationship
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
     delete:
-      summary: deletePatientFromClinic
+      summary: DeletePatientFromClinic
       tags: []
       operationId: delete-clinic-clinicid-patient-patientid
       description: delete patient from clinic
@@ -196,7 +213,7 @@ paths:
         '500':
           description: Internal Server Error
     post:
-      summary: ''
+      summary: AddPatientToClinic
       operationId: post-clinic-clinicid-patient-patientid
       responses:
         '200':
