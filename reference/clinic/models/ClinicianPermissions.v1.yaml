@@ -3,9 +3,7 @@ type: object
 properties:
   permissions:
     type: array
-    enum:
-      - Prescriber
-      - Admin
-      - Clinician
+    uniqueItems: true
     items:
       type: string
+      pattern: Admin|Prescriber|Clinician
