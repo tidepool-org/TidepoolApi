@@ -1,0 +1,11 @@
+title: ClinicianPermissions
+type: object
+properties:
+  permissions:
+    type: array
+    enum:
+      - Prescriber
+      - Admin
+      - Clinician
+    items:
+      type: string

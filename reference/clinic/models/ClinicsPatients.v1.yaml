@@ -1,13 +1,13 @@
-title: ClinicianClinicRelationship
+title: ClinicsPatients
 type: object
 properties:
   id:
     type: string
-  clinicianId:
+  patientId:
     type: string
   clinicId:
     type: string
-  permisions:
+  permissions:
     type: array
     items:
       type: string

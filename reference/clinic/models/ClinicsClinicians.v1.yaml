@@ -1,0 +1,9 @@
+title: ClinicsClinicians
+allOf:
+  - type: object
+    properties:
+      clinicianId:
+        type: string
+      clinicId:
+        type: string
+  - $ref: ./ClinicianPermissions.v1.yaml
