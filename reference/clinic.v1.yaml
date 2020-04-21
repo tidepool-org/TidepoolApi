@@ -178,6 +178,7 @@ paths:
           application/json:
             schema:
               $ref: ./clinic/models/ClinicsPatients.v1.yaml
+        description: ''
   '/clinics/{clinicid}/patients/{patientid}':
     parameters:
       - schema:
@@ -193,7 +194,7 @@ paths:
     delete:
       summary: DeletePatientFromClinic
       tags: []
-      operationId: delete-clinic-clinicid-patient-patientid
+      operationId: delete-clinic-clinicid-patients-patientid
       description: delete patient from clinic
       responses:
         '200':
@@ -204,10 +205,14 @@ paths:
           description: Internal Server Error
     get:
       summary: GetPatientFromClinic
-      operationId: get-clinics-clinicid-patient-patientid
+      operationId: get-clinics-clinicid-patients-patientid
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/ClinicsPatients.v1.yaml
       description: Get a patient from clinic
     patch:
       summary: ModifyClinicPatient
@@ -216,6 +221,11 @@ paths:
         '200':
           description: OK
       description: Modify a patient from clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/PatientPermissions.v1.yaml
   '/clinics/{clinicid}/clinicians':
     parameters:
       - schema:

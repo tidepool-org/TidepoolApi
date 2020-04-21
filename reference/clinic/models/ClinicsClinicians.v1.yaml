@@ -9,3 +9,4 @@ allOf:
     required:
       - clinicianId
   - $ref: ./ClinicianPermissions.v1.yaml
+description: Relationship between Clinics and Clinicians

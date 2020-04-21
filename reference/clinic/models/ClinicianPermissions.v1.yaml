@@ -6,4 +6,5 @@ properties:
     uniqueItems: true
     items:
       type: string
-      pattern: Admin|Prescriber|Clinician
+      pattern: 'Admin|Prescriber|Clinician'
+description: Permisions for relationship between Clinics and Clinicians
