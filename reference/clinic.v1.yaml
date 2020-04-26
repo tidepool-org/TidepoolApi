@@ -3,7 +3,7 @@ info:
   title: clinic
   version: '1.0'
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:8080'
 paths:
   /clinics:
     get:
@@ -34,6 +34,9 @@ paths:
             type: string
           in: query
           name: sortOrder
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
     parameters: []
     post:
       summary: AddClinic
@@ -47,6 +50,10 @@ paths:
             schema:
               $ref: ./clinic/models/NewClinic.v1.yaml
       description: Add a new clinic
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
   '/clinics/{clinicid}':
     parameters:
       - schema:
@@ -66,6 +73,11 @@ paths:
                 $ref: ./clinic/models/Clinic.v1.yaml
       operationId: get-clinics-clinicid
       description: Get Clinic
+      security:
+        - ClinicAuth:
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+            - TIDEPOOL_ADMIN
     patch:
       summary: ModifyClinic
       operationId: patch-clinics-clinicid
@@ -83,6 +95,10 @@ paths:
               type: object
               properties: {}
         description: Modify Clinic object
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
     delete:
       summary: DeleteClinic
       operationId: delete-clinics-clinicid
@@ -90,6 +106,10 @@ paths:
         '200':
           description: OK
       description: Delete Clinic
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
   '/clinics/{clinicid}/clinicians/{clinicianid}':
     parameters:
       - schema:
@@ -110,6 +130,10 @@ paths:
           description: OK
       operationId: delete-clinics-clinicid-clinicians-clinicianid
       description: Remove association with clinic and clinician
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
     patch:
       summary: ModifyClinicClinician
       operationId: patch-clinics-clinicid-clinicians-clinicianid
@@ -121,6 +145,10 @@ paths:
           application/json:
             schema:
               $ref: ./clinic/models/ClinicianPermissions.v1.yaml
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
     get:
       summary: GetClinician
       operationId: get-clinics-clinicid-clinicians-clinicianid
@@ -132,6 +160,10 @@ paths:
               schema:
                 $ref: ./clinic/models/ClinicsClinicians.v1.yaml
       description: Get a clinician object
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
   '/clinics/{clinicid}/patients':
     parameters:
       - schema:
@@ -166,6 +198,11 @@ paths:
             type: string
           in: query
           name: sortOrder
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
     post:
       summary: AddPatientToClinic
       operationId: post-clinics-clinicid-patients
@@ -179,6 +216,11 @@ paths:
             schema:
               $ref: ./clinic/models/ClinicsPatients.v1.yaml
         description: ''
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
   '/clinics/{clinicid}/patients/{patientid}':
     parameters:
       - schema:
@@ -203,6 +245,11 @@ paths:
           description: Bad Request
         '500':
           description: Internal Server Error
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
     get:
       summary: GetPatientFromClinic
       operationId: get-clinics-clinicid-patients-patientid
@@ -214,6 +261,11 @@ paths:
               schema:
                 $ref: ./clinic/models/ClinicsPatients.v1.yaml
       description: Get a patient from clinic
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
     patch:
       summary: ModifyClinicPatient
       operationId: patch-clinics-clinicid-patients-patientid
@@ -226,6 +278,11 @@ paths:
           application/json:
             schema:
               $ref: ./clinic/models/PatientPermissions.v1.yaml
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
   '/clinics/{clinicid}/clinicians':
     parameters:
       - schema:
@@ -260,6 +317,11 @@ paths:
             type: string
           in: query
           name: sortOrder
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
     post:
       summary: AddClinicianToClinic
       operationId: post-clinics-clinicid-clinicians
@@ -272,5 +334,22 @@ paths:
           application/json:
             schema:
               $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
 components:
   schemas: {}
+  securitySchemes:
+    ClinicAuth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'https://www.tidepool.org/auth'
+          scopes:
+            TIDEPOOL_ADMIN: Tidepool Administrator
+            CLINIC_ADMIN: Clinic Administrator
+            CLINIC_CLINICIAN: Clinician at Clinic
+            CLINIC_PATIENT: Patient of Clinic
+            CLINIC_PRESCRIBER: Clinician at Clinic with Prescriber Role
+          refreshUrl: 'https://www.tidepool.org/refresh'
