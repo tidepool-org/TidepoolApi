@@ -313,7 +313,7 @@ paths:
         required: true
     get:
       summary: GetCliniciansFromClinic
-      x-roles: ["TIDEPOOL_ADMIN", "CLINIC_ADMIN", "CLINIC_CLINICIANS"]
+      x-roles: ["TIDEPOOL_ADMIN", "CLINIC_ADMIN", "CLINIC_CLINICIAN"]
       tags: []
       responses:
         '200':

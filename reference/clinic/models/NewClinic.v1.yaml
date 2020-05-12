@@ -17,8 +17,6 @@ properties:
     minLength: 1
   address:
     type: string
-    enum:
-      - test
   phoneNumbers:
     type: array
     items:
