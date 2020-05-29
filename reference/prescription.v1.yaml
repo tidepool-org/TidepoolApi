@@ -29,6 +29,48 @@ paths:
                   $ref: ./prescription/models/prescription.v1.yaml
       operationId: ListPrescriptions
       description: "Retrieve the list of prescriptions visible to the currently authenticated user. \n\nIf the current user is a patient, they'll be able to see only their claimed prescriptions. \n\nClinicians will see a list of all prescriptions which were created by other clinic members."
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+        - schema:
+            type: string
+          in: query
+          name: patientUserId
+        - schema:
+            type: string
+            format: email
+          in: query
+          name: patientEmail
+        - schema:
+            type: string
+          in: query
+          name: state
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: createdAfter
+          description: inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: createdBefore
+          description: exclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: modifiedAfter
+          description: inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: modifiedBefore
+          description: exclusive
     post:
       summary: Create a Prescription
       operationId: CreatePrescription

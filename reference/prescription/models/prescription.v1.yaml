@@ -8,8 +8,6 @@ properties:
     $ref: ../../common/models/objectid.v1.yaml
   patientUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
-  accessCode:
-    $ref: ./accesscode.v1.yaml
   state:
     $ref: ./state.v1.yaml
   expirationTime:
