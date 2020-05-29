@@ -1,0 +1,5 @@
+type: string
+title: Verification Code
+description: An Insulet generated code that identifies this registration to the SDK
+minLength: 6
+pattern: '^[a-zA-Z0-9]{6,}$'

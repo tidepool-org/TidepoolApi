@@ -995,6 +995,14 @@ paths:
                 type: array
                 items:
                   $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+              examples:
+                Example:
+                  value:
+                    - id: da52814e3e944911
+                      devicePushToken: asdkkmlkmdslfkmsdlfkmsdlkfmsdlkfmlsdkmflskdmflskdmflskdmflsdkfmlsdkfmfgas
+                      status: pending
+                      createdTime: '2020-04-09T13:59:03.458Z'
+                      expirationTime: '2020-04-09T14:59:03.458Z'
         '401':
           description: Unauthorized
           content:
@@ -1027,6 +1035,14 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: da52814e3e944911
+                    devicePushToken: NuWKz82LY5KUBGwYuyaBpSIVIPI9QTJBukgeyee3eD9lfIsJ4cepSR8mRXpriB40
+                    status: pending
+                    createdTime: '2020-04-09T13:59:03.458014893Z'
+                    expirationTime: '2020-04-09T14:59:03.458014893Z'
           headers:
             x-tidepool-bearer-token:
               schema:
@@ -1055,6 +1071,10 @@ paths:
           application/json:
             schema:
               $ref: ./platform/models/createdeviceauthorizationrequest.v1.yaml
+            examples:
+              Example:
+                value:
+                  devicePushToken: NuWKz82LY5KUBGwYuyaBpSIVIPI9QTJBukgeyee3eD9lfIsJ4cepSR8mRXpriB40
       description: Allows Loop users to create a new device authorization.
       security:
         - sessionToken: []
@@ -1075,6 +1095,14 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+              examples:
+                Example:
+                  value:
+                    id: da52814e3e944911
+                    devicePushToken: asdkkmlkmdslfkmsdlfkmsdlkfmsdlkfmlsdkmflskdmflskdmflskdmflsdkfmlsdkfmfgas
+                    status: pending
+                    createdTime: '2020-04-09T13:59:03.458Z'
+                    expirationTime: '2020-04-09T14:59:03.458Z'
         '401':
           description: Unauthorized
           content:
@@ -1097,9 +1125,10 @@ paths:
       security:
         - sessionToken: []
       description: Retrieve single device authorization.
-    patch:
-      summary: Deliver device authorization code to Loop
-      operationId: DeliverDeviceAuthorization
+  /v1/device_authorization:
+    post:
+      summary: Complete device authorization
+      operationId: CompleteDeviceAuthorization
       responses:
         '200':
           description: OK
@@ -1107,6 +1136,34 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/deviceauthorizationresponse.v1.yaml
+              examples:
+                Successful Response:
+                  value:
+                    id: da52814e3e944911
+                    devicePushToken: NuWKz82LY5KUBGwYuyaBpSIVIPI9QTJBukgeyee3eD9lfIsJ4cepSR8mRXpriB40
+                    status: successful
+                    createdTime: '2020-04-09T13:59:03.458Z'
+                    expirationTime: '2020-04-09T14:59:03.458Z'
+                    modifiedTime: '2020-04-09T14:59:53.962Z'
+                    verificationCode: ABC123
+                    deviceCheckToken: vEvuCHxu5k3AMLldUWz7dNTGvwvloKgbVQsI5SDqzDqvRKtFvm9NcVAuKPQ9t1Bx
+                    bundleId: 75U4X84TEG.org.tidepool.Loop
+                Expired Response:
+                  value:
+                    id: da52814e3e944911
+                    devicePushToken: NuWKz82LY5KUBGwYuyaBpSIVIPI9QTJBukgeyee3eD9lfIsJ4cepSR8mRXpriB40
+                    status: expired
+                    bundleId: org.tidepool.Loop
+                    deviceCheckToken: vEvuCHxu5k3AMLldUWz7dNTGvwvloKgbVQsI5SDqzDqvRKtFvm9NcVAuKPQ9t1Bx
+                    createdTime: '2020-04-09T13:59:03.458Z'
+                    expirationTime: '2020-04-09T14:59:03.458Z'
+                    modifiedTime: '2020-04-09T15:47:31.073Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
         '401':
           description: Unauthorized
           content:
@@ -1121,14 +1178,21 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       security:
         - bearerToken: []
-      description: Allows device partners to securely deliver an authorization code to Loop.
-      tags:
-        - auth
+      description: "Verifies that the request originated from the Loop app and that it isn't running on a jailbroken phone and then securely delivers the verification code to Loop."
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ./platform/models/updatedeviceauthorizationrequest.v1.yaml
+              $ref: ./platform/models/completedeviceauthorizationrequest.v1.yaml
+            examples:
+              Example:
+                value:
+                  verificationCode: ABC123
+                  deviceCheckToken: vEvuCHxu5k3AMLldUWz7dNTGvwvloKgbVQsI5SDqzDqvRKtFvm9NcVAuKPQ9t1Bx
+                  bundleId: org.tidepool.Loop
+      tags:
+        - auth
+    parameters: []
 components:
   schemas: {}
   securitySchemes:
@@ -1151,6 +1215,7 @@ components:
     bearerToken:
       type: http
       scheme: bearer
+      description: ''
   headers:
     x-tidepool-session-token:
       schema:

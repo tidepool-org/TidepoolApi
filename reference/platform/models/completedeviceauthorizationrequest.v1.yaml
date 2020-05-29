@@ -1,0 +1,17 @@
+title: Complete Device Authorization Request
+type: object
+properties:
+  verificationCode:
+    $ref: ./verificationcode.v1.yaml
+  deviceCheckToken:
+    $ref: ./devicechecktoken.v1.yaml
+  bundleId:
+    type: string
+    description: The bundle of the app that originated the request
+    enum:
+      - 75U4X84TEG.org.tidepool.Loop
+      - org.tidepool.Loop
+required:
+  - verificationCode
+  - deviceCheckToken
+  - bundleId

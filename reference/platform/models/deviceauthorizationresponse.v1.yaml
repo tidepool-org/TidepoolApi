@@ -1,19 +1,37 @@
 title: Device Authorization Response
-allOf:
-  - type: object
-    properties:
-      id:
-        $ref: ./deviceauthorizationid.v1.yaml
-      status:
-        type: string
-        enum:
-          - pending
-          - expired
-          - successful
-      authorizationCode:
-        $ref: ./authorizationcode.v1.yaml
-    required:
-      - id
-      - status
-  - $ref: ./createdeviceauthorizationrequest.v1.yaml
-description: ''
+type: object
+properties:
+  id:
+    $ref: ./deviceauthorizationid.v1.yaml
+  status:
+    type: string
+    enum:
+      - pending
+      - expired
+      - successful
+      - failed
+  verificationCode:
+    $ref: ./verificationcode.v1.yaml
+  devicePushToken:
+    $ref: ./devicepushtoken.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+  expirationTime:
+    type: string
+    format: date-time
+  modifiedTime:
+    type: string
+    format: date-time
+  bundleId:
+    type: string
+    enum:
+      - 75U4X84TEG.org.tidepool.Loop
+      - org.tidepool.Loop
+  deviceCheckToken:
+    $ref: ./devicechecktoken.v1.yaml
+required:
+  - id
+  - status
+  - devicePushToken
+  - createdTime

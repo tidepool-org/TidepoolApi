@@ -1,0 +1,4 @@
+type: string
+title: Device Check Token
+description: "A device check token that can be used against Apple's DeviceCheck API"
+minLength: 1

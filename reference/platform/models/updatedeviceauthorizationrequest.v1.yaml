@@ -1,7 +1,0 @@
-title: Update Device Authorization Request
-type: object
-properties:
-  authorizationCode:
-    $ref: ./authorizationcode.v1.yaml
-required:
-  - authorizationCode
