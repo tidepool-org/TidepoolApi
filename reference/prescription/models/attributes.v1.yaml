@@ -1,0 +1,10 @@
+allOf:
+  - $ref: ./writableattributes.v1.yaml
+  - type: object
+    properties:
+      createdTime:
+        type: string
+        format: date-time
+      createdUserId:
+        $ref: ../../common/models/tidepooluserid.v1.yaml
+title: Revision Attributes

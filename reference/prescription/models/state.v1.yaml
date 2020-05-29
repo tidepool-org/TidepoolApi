@@ -1,0 +1,10 @@
+type: string
+title: Prescriptions State
+enum:
+  - draft
+  - pending
+  - submitted
+  - reviewed
+  - active
+  - inactive
+  - expired

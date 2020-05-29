@@ -1,0 +1,7 @@
+title: Prescription Revision
+type: object
+properties:
+  revisionId:
+    type: integer
+  attributes:
+    $ref: ./attributes.v1.yaml

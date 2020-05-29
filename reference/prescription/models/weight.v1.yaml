@@ -1,0 +1,12 @@
+title: Weight
+type: object
+properties:
+  value:
+    type: number
+    minimum: 0
+    exclusiveMinimum: true
+  units:
+    type: string
+required:
+  - value
+  - units

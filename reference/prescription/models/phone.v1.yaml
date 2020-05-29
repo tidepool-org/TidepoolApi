@@ -1,0 +1,10 @@
+title: Phone Number
+type: object
+properties:
+  countryCode:
+    type: string
+  number:
+    type: string
+required:
+  - countryCode
+  - number

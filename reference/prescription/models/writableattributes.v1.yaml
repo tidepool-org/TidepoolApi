@@ -1,0 +1,46 @@
+title: Revision Attributes
+type: object
+properties:
+  firstName:
+    type: string
+  lastName:
+    type: string
+  birthday:
+    type: string
+    format: date
+  mrn:
+    type: string
+  email:
+    type: string
+    format: email
+  sex:
+    type: string
+    enum:
+      - male
+      - female
+      - undisclosed
+  weight:
+    $ref: ./weight.v1.yaml
+  yearOfDiagnosis:
+    type: integer
+    minimum: 1900
+  phoneNumber:
+    $ref: ./phone.v1.yaml
+  initialSettings:
+    $ref: ./settings.v1.yaml
+  training:
+    type: string
+    enum:
+      - inPerson
+      - inModule
+  therapySettings:
+    type: string
+    enum:
+      - initial
+      - transferPumpSettings
+  prescriberTermsAccepted:
+    type: boolean
+  state:
+    $ref: ./state.v1.yaml
+required:
+  - state
