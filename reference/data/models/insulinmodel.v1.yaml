@@ -1,0 +1,6 @@
+type: string
+title: Insulin Model
+enum:
+  - rapidChild
+  - rapidAdult
+description: ''

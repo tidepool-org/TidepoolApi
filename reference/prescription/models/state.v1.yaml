@@ -8,3 +8,5 @@ enum:
   - active
   - inactive
   - expired
+x-tags:
+  - prescription

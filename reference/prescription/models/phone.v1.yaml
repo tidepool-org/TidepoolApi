@@ -8,3 +8,5 @@ properties:
 required:
   - countryCode
   - number
+x-tags:
+  - prescription

@@ -9,3 +9,5 @@ properties:
 required:
   - accessCode
   - birthday
+x-tags:
+  - prescription

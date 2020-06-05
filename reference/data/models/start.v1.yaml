@@ -1,0 +1,12 @@
+type: object
+title: Start Time
+x-tags:
+  - data
+description: Start time as millisecond offset from midnight
+properties:
+  start:
+    type: number
+    minimum: 0
+    maximum: 86400000
+required:
+  - start

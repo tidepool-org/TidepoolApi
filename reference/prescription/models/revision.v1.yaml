@@ -5,3 +5,5 @@ properties:
     type: integer
   attributes:
     $ref: ./attributes.v1.yaml
+x-tags:
+  - prescription

@@ -1,0 +1,13 @@
+title: Suspend Threshold
+type: object
+x-tags:
+  - data
+description: ''
+properties:
+  units:
+    $ref: ./bloodglucoseunits.v1.yaml
+  value:
+    $ref: ./bloodglucosevalue.v1.yaml
+required:
+  - units
+  - value

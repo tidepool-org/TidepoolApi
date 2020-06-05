@@ -10,3 +10,5 @@ properties:
 required:
   - value
   - units
+x-tags:
+  - prescription
