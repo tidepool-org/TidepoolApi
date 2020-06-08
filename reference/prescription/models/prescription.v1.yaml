@@ -1,0 +1,42 @@
+title: Tidepool Loop Prescription
+type: object
+description: Object describing a Tidepool Loop Prescription
+x-examples:
+  example-1: {}
+properties:
+  id:
+    $ref: ../../common/models/objectid.v1.yaml
+  patientUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  state:
+    $ref: ./state.v1.yaml
+  expirationTime:
+    type: string
+    format: date-time
+  prescriberUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+  createdUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  deletedTime:
+    type: string
+    format: date-time
+  deletedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  modifiedTime:
+    type: string
+    format: date-time
+  modifiedUserId:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  latestRevision:
+    $ref: ./revision.v1.yaml
+required:
+  - id
+  - state
+  - createdTime
+  - createdUserId
+  - modifiedTime
+  - modifiedUserId
+  - latestRevision

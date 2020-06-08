@@ -1,0 +1,42 @@
+title: Pump Settings
+type: object
+x-tags:
+  - prescription
+properties:
+  bloodGlucoseUnits:
+    $ref: ../../data/models/bloodglucoseunits.v1.yaml
+  basalRateSchedule:
+    $ref: ../../data/models/basalratestartarray.v1.yaml
+  bloodGlucoseTargetSchedule:
+    type: array
+    items:
+      $ref: ../../data/models/bloodglucosetargetstart.v1.yaml
+  carbohydrateRatioSchedule:
+    type: array
+    items:
+      $ref: ../../data/models/carbohydrateratiostart.v1.yaml
+  insulinSensitivitySchedule:
+    type: array
+    items:
+      $ref: ../../data/models/insulinsensitivitystart.v1.yaml
+  basalRateMaximum:
+    $ref: ../../data/models/basalratemaximum.v1.yaml
+  bolusAmountMaximum:
+    $ref: ../../data/models/bolusamountmaximum.v1.yaml
+  suspendThreshold:
+    $ref: ../../data/models/suspendthreshold.v1.yaml
+  insulinModel:
+    $ref: ../../data/models/insulinmodel.v1.yaml
+  pumpId:
+    $ref: ../../common/models/objectid.v1.yaml
+  cgmId:
+    $ref: ../../common/models/objectid.v1.yaml
+required:
+  - bloodGlucoseUnits
+  - basalRateSchedule
+  - bloodGlucoseTargetSchedule
+  - carbohydrateRatioSchedule
+  - insulinSensitivitySchedule
+  - insulinModel
+  - pumpId
+  - cgmId

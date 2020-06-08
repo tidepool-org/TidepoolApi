@@ -1,0 +1,373 @@
+openapi: 3.0.0
+info:
+  title: Tidepool Prescription Service
+  version: '1.0'
+  description: Prescription service for Tidepool Loop
+  contact:
+    url: 'https://support.tidepool.org/'
+    name: API Support
+    email: support@tidepool.org
+  termsOfService: 'https://developer.tidepool.org/terms-of-use/'
+  license:
+    name: 'BSD 2-Clause "Simplified" License'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /v1/prescriptions:
+    get:
+      summary: List Prescriptions
+      tags:
+        - prescription
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./prescription/models/prescription.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      operationId: ListPrescriptions
+      description: "Retrieve the list of prescriptions visible to the currently authenticated user. \n\nIf the current user is a patient, they'll be able to see only their claimed prescriptions. \n\nClinicians will see a list of all prescriptions which were created by other clinic members."
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+        - schema:
+            type: string
+          in: query
+          name: patientUserId
+        - schema:
+            type: string
+            format: email
+          in: query
+          name: patientEmail
+        - schema:
+            type: string
+          in: query
+          name: state
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: createdAfter
+          description: inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: createdBefore
+          description: exclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: modifiedAfter
+          description: inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: modifiedBefore
+          description: exclusive
+    post:
+      summary: Create a Prescription
+      operationId: CreatePrescription
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ./prescription/models/prescription.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      description: Create a new prescription
+      tags:
+        - prescription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./prescription/models/writableattributes.v1.yaml
+  '/v1/prescriptions/{prescriptionId}':
+    parameters:
+      - schema:
+          type: string
+        name: prescriptionId
+        in: path
+        required: true
+        description: ''
+    get:
+      summary: Get Prescription
+      tags:
+        - prescription
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./prescription/models/prescription.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      operationId: GetPrescriptionById
+      description: Retrieve a prescription by id
+    patch:
+      summary: Activate Prescription
+      operationId: ActivatePrescription
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./prescription/models/prescription.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      tags:
+        - prescription
+      description: Patient only endpoint to set prescription status to active
+    delete:
+      summary: Delete Prescription
+      operationId: DeletePrescription
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      description: |
+        Clinician only endpoint to delete a prescription. Works only when the prescription has status `draft`
+      tags:
+        - prescription
+  '/v1/prescriptions/{prescriptionId}/revisions':
+    parameters:
+      - schema:
+          type: string
+        name: prescriptionId
+        in: path
+        required: true
+    post:
+      summary: Create new revision
+      operationId: CreatePrescriptionRevision
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./prescription/models/revision.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      description: Clinitian only endpoint to add a new revision to a prescription which is still a draft.
+      tags:
+        - prescription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./prescription/models/writableattributes.v1.yaml
+        description: ''
+  /v1/prescriptions/claim:
+    post:
+      summary: Claim Prescription
+      operationId: ClaimPrescription
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./prescription/models/prescription.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./platform/models/errorresponse.v1.yaml
+      tags:
+        - prescription
+      description: Patient only endpoint to claim a submitted prescription using an access code and date of birth.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./prescription/models/claim.req.v1.yaml
+components:
+  schemas: {}
+  securitySchemes: {}
+  parameters:
+    prescriptionId:
+      name: prescriptionId
+      in: path
+      schema:
+        $ref: ./common/models/objectid.v1.yaml
+      required: true
+tags:
+  - name: prescription
+    description: Tidepool Prescription

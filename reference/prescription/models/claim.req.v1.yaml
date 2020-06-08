@@ -1,0 +1,13 @@
+title: Claim Prescription Request
+type: object
+properties:
+  accessCode:
+    $ref: ./accesscode.v1.yaml
+  birthday:
+    type: string
+    format: date
+required:
+  - accessCode
+  - birthday
+x-tags:
+  - prescription
