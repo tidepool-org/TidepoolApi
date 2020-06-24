@@ -4,6 +4,18 @@ info:
   version: '1.0'
 servers:
   - url: 'http://localhost:8080'
+  - url: 'https://dev1.dev.tidepool.org'
+    description: ''
+  - url: 'https://qa1.development.tidepool.org'
+    description: ''
+  - url: 'https://qa2.development.tidepool.org'
+    description: ''
+  - url: 'https://external.integration.tidepool.org'
+    description: ''
+  - url: 'https://api.tidepool.org'
+    description: ''
+  - url: 'http://dev1.dev.tidepool.org'
+    description: ''
 paths:
   /clinics:
     get:
@@ -52,11 +64,23 @@ paths:
             type: string
           in: query
           name: sortOrder
+        - schema:
+            type: string
+          in: query
+          name: clinicianId
+        - schema:
+            type: string
+          in: query
+          name: patientId
       security:
         - ClinicAuth:
             - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
       x-roles:
         - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
     parameters: []
     post:
       summary: AddClinic
@@ -80,8 +104,7 @@ paths:
         - ClinicAuth:
             - TIDEPOOL_ADMIN
             - CLINIC_ADMIN
-      x-roles:
-        - TIDEPOOL_ADMIN
+      x-roles: []
       tags: []
   '/clinics/{clinicid}':
     parameters:
