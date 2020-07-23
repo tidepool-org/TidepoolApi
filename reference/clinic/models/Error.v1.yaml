@@ -1,0 +1,9 @@
+title: Error
+type: object
+properties:
+  code:
+    type: integer
+  message:
+    type: string
+required:
+  - code

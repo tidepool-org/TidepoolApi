@@ -3,11 +3,23 @@ info:
   title: clinic
   version: '1.0'
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:8080'
+  - url: 'https://dev1.dev.tidepool.org'
+    description: ''
+  - url: 'https://qa1.development.tidepool.org'
+    description: ''
+  - url: 'https://qa2.development.tidepool.org'
+    description: ''
+  - url: 'https://external.integration.tidepool.org'
+    description: ''
+  - url: 'https://api.tidepool.org'
+    description: ''
+  - url: 'http://dev1.dev.tidepool.org'
+    description: ''
 paths:
   /clinics:
     get:
-      summary: getClinic
+      summary: GetClinics
       tags: []
       responses:
         '200':
@@ -18,36 +30,83 @@ paths:
                 type: array
                 items:
                   $ref: ./clinic/models/Clinic.v1.yaml
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/Error.v1.yaml
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/Error.v1.yaml
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/Error.v1.yaml
       operationId: get-clinics
       description: Retrieve list of clinics.  Requires admin app authorization
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: ''
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+        - schema:
+            type: string
+          in: query
+          name: clinicianId
+        - schema:
+            type: string
+          in: query
+          name: patientId
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
     parameters: []
-  /clinic:
-    get:
-      summary: getClinic
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./clinic/models/Clinic.v1.yaml
-      operationId: get-clinic
-      description: ''
     post:
-      summary: createClinic
-      tags: []
+      summary: AddClinic
+      operationId: post-clinics
       responses:
         '200':
           description: OK
-      operationId: post-clinic
-      description: Creates a Clinic
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/Clinic.v1.yaml
-  '/clinic/{clinicid}':
+              $ref: ./clinic/models/NewClinic.v1.yaml
+      description: Add a new clinic
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+      x-roles: []
+      tags: []
+  '/clinics/{clinicid}':
     parameters:
       - schema:
           type: string
@@ -55,7 +114,7 @@ paths:
         in: path
         required: true
     get:
-      summary: getClinic
+      summary: GetClinic
       tags: []
       responses:
         '200':
@@ -64,48 +123,76 @@ paths:
             application/json:
               schema:
                 $ref: ./clinic/models/Clinic.v1.yaml
-      operationId: get-clinic-clinicid
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-clinics-clinicid
+      description: Get Clinic
+      security:
+        - ClinicAuth:
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+            - TIDEPOOL_ADMIN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
     patch:
-      summary: ''
-      operationId: patch-clinic-clinicid
+      summary: ModifyClinic
+      operationId: patch-clinics-clinicid
       responses:
         '200':
           description: OK
-      description: Modify clinic
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Modify Clinic
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/Clinic.v1.yaml
-    delete:
-      summary: ''
-      operationId: delete-clinic-clinicid
-      responses:
-        '200':
-          description: OK
-      description: Delete Clinic
-  '/clinics/{clinicid}/clinicians':
-    parameters:
-      - schema:
-          type: string
-        name: clinicid
-        in: path
-        required: true
-    get:
-      summary: getCliniciansForClinic
+              $ref: ./clinic/models/NewClinic.v1.yaml
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Modify Clinic object
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
       tags: []
+    delete:
+      summary: DeleteClinic
+      operationId: delete-clinics-clinicid
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./clinic/models/ClinicianClinicRelationship.v1.yaml
-      operationId: get-clinics-clinicid-clinicians
-      description: ''
-  '/clinic/{clinicid}/clinician/{clinicianid}':
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Delete Clinic
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+      tags: []
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+  '/clinics/{clinicid}/clinicians/{clinicianid}':
     parameters:
       - schema:
           type: string
@@ -118,26 +205,79 @@ paths:
         in: path
         required: true
     delete:
-      summary: DeleteClinicianForClinic
+      summary: DeleteClinicianFromClinic
       tags: []
       responses:
         '200':
           description: OK
-      operationId: delete-clinic-clinicid-clinician-clinicianid
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: delete-clinics-clinicid-clinicians-clinicianid
       description: Remove association with clinic and clinician
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
     patch:
-      summary: ''
-      operationId: patch-clinic-clinicid-clinician-clinicianid
+      summary: ModifyClinicClinician
+      description: update clinic clinician relationship
+      operationId: patch-clinics-clinicid-clinicians-clinicianid
       responses:
         '200':
           description: OK
-      description: Associate clinician with clinic
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/ClinicianClinicRelationship.v1.yaml
-  '/clinic/{clinicid}/patients':
+              $ref: ./clinic/models/ClinicianPermissions.v1.yaml
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+      tags: []
+    get:
+      summary: GetClinician
+      operationId: get-clinics-clinicid-clinicians-clinicianid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Get a clinician object
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
+      tags: []
+  '/clinics/{clinicid}/patients':
     parameters:
       - schema:
           type: string
@@ -145,7 +285,7 @@ paths:
         in: path
         required: true
     get:
-      summary: getCliniciansForClinic
+      summary: GetPatientsForClinic
       tags: []
       responses:
         '200':
@@ -155,10 +295,67 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
-      operationId: get-clinic-clinicid-patients
+                  $ref: ./clinic/models/ClinicsPatients.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-clinics-clinicid-patients
       description: Get list of patients associated with clinic
-  '/clinic/{clinicid}/patient/{patientid}':
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
+    post:
+      summary: AddPatientToClinic
+      operationId: post-clinics-clinicid-patients
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Add patient to clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/ClinicsPatients.v1.yaml
+        description: ''
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+      tags: []
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
+  '/clinics/{clinicid}/patients/{patientid}':
     parameters:
       - schema:
           type: string
@@ -170,42 +367,261 @@ paths:
         name: patientid
         in: path
         required: true
-    patch:
-      summary: addPatientToClinic
-      tags: []
-      responses:
-        '200':
-          description: OK
-      operationId: patch-clinic-clinicid-patient-patientid
-      description: Modify patient/clinic relationship
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
     delete:
-      summary: deletePatientFromClinic
+      summary: DeletePatientFromClinic
       tags: []
-      operationId: delete-clinic-clinicid-patient-patientid
+      operationId: delete-clinic-clinicid-patients-patientid
       description: delete patient from clinic
       responses:
         '200':
           description: OK
         '400':
           description: Bad Request
+        '403':
+          description: Forbidden
         '500':
           description: Internal Server Error
-    post:
-      summary: ''
-      operationId: post-clinic-clinicid-patient-patientid
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
+    get:
+      summary: GetPatientFromClinic
+      operationId: get-clinics-clinicid-patients-patientid
       responses:
         '200':
           description: OK
-      description: Add patient to clinic
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/ClinicsPatients.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Get a patient from clinic
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
+      tags: []
+    patch:
+      summary: ModifyClinicPatient
+      operationId: patch-clinics-clinicid-patients-patientid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Modify a patient from clinic
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/PatientClinicRelationship.v1.yaml
+              $ref: ./clinic/models/PatientPermissions.v1.yaml
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
+      tags: []
+  '/clinics/{clinicid}/clinicians':
+    parameters:
+      - schema:
+          type: string
+        name: clinicid
+        in: path
+        required: true
+    get:
+      summary: GetCliniciansFromClinic
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-clinics-clinicid-clinicians
+      description: Retrieve a list of clinicians for a clinic
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+            - CLINIC_CLINICIAN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+        - CLINIC_CLINICIAN
+    post:
+      summary: AddClinicianToClinic
+      operationId: post-clinics-clinicid-clinicians
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Add a clinician to clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+      security:
+        - ClinicAuth:
+            - TIDEPOOL_ADMIN
+            - CLINIC_ADMIN
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+      tags: []
+  '/clinics/patients/{patientid}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/ClinicsPatients.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-clinics-patients-patientid
+      description: Retrieves information on patients in any of the clinics
+      x-roles:
+        - TIDEPOOL_ADMIN
+    delete:
+      summary: ''
+      tags: []
+      description: Delete patient from all clinics
+      operationId: delete-clinics-patients-patientid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      x-roles:
+        - TIDEPOOL_ADMIN
+    parameters:
+      - schema:
+          type: string
+        name: patientid
+        in: path
+        required: true
+  '/clinics/clinicians/{clinicianid}':
+    parameters:
+      - schema:
+          type: string
+        name: clinicianid
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-clinics-clinicians-clinicianid
+      description: Gets Clinicians from all clinics
+      x-roles:
+        - TIDEPOOL_ADMIN
+    delete:
+      summary: ''
+      tags: []
+      operationId: delete-clinics-clinicians-clinicianid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Deletes clinician from all clinics
+      x-roles:
+        - TIDEPOOL_ADMIN
 components:
   schemas: {}
+  securitySchemes:
+    ClinicAuth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'https://www.tidepool.org/auth'
+          scopes:
+            TIDEPOOL_ADMIN: Tidepool Administrator
+            CLINIC_ADMIN: Clinic Administrator
+            CLINIC_CLINICIAN: Clinician at Clinic
+            CLINIC_PATIENT: Patient of Clinic
+            CLINIC_PRESCRIBER: Clinician at Clinic with Prescriber Role
+          refreshUrl: 'https://www.tidepool.org/refresh'

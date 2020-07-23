@@ -1,0 +1,11 @@
+title: ClinicianPermissions
+type: object
+description: Permisions for relationship between Clinics and Clinicians
+properties:
+  permissions:
+    type: array
+    uniqueItems: true
+    items:
+      type: string
+      pattern: CLINIC_ADMIN|CLINIC_CLINICIAN|CLINIC_PRESCRIBER
+    

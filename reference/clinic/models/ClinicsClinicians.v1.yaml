@@ -1,0 +1,12 @@
+title: ClinicsClinicians
+allOf:
+  - type: object
+    properties:
+      clinicianId:
+        type: string
+      clinicId:
+        type: string
+    required:
+      - clinicianId
+  - $ref: ./ClinicianPermissions.v1.yaml
+description: Relationship between Clinics and Clinicians

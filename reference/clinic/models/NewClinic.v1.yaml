@@ -1,0 +1,32 @@
+title: NewClinic
+type: object
+x-examples:
+  example:
+    id: '5445'
+    name: John Muir
+    address: 3000 Main drive
+    phoneNumbers:
+      type: main
+      number: 555-555-5555
+    location: Walnut Creek
+    metadata: {}
+description: Object describing a clinic
+properties:
+  name:
+    type: string
+    minLength: 1
+  address:
+    type: string
+  phoneNumbers:
+    type: array
+    items:
+      type: object
+      properties:
+        type:
+          type: string
+        number:
+          type: string
+  location:
+    type: string
+  metadata:
+    type: object
