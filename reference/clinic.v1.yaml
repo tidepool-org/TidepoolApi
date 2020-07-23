@@ -227,6 +227,7 @@ paths:
         - CLINIC_ADMIN
     patch:
       summary: ModifyClinicClinician
+      description: update clinic clinician relationship
       operationId: patch-clinics-clinicid-clinicians-clinicianid
       responses:
         '200':
@@ -519,6 +520,96 @@ paths:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
       tags: []
+  '/clinics/patients/{patientid}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/ClinicsPatients.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-clinics-patients-patientid
+      description: Retrieves information on patients in any of the clinics
+      x-roles:
+        - TIDEPOOL_ADMIN
+    delete:
+      summary: ''
+      tags: []
+      description: Delete patient from all clinics
+      operationId: delete-clinics-patients-patientid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      x-roles:
+        - TIDEPOOL_ADMIN
+    parameters:
+      - schema:
+          type: string
+        name: patientid
+        in: path
+        required: true
+  '/clinics/clinicians/{clinicianid}':
+    parameters:
+      - schema:
+          type: string
+        name: clinicianid
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-clinics-clinicians-clinicianid
+      description: Gets Clinicians from all clinics
+      x-roles:
+        - TIDEPOOL_ADMIN
+    delete:
+      summary: ''
+      tags: []
+      operationId: delete-clinics-clinicians-clinicianid
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Deletes clinician from all clinics
+      x-roles:
+        - TIDEPOOL_ADMIN
 components:
   schemas: {}
   securitySchemes:
