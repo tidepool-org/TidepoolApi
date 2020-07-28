@@ -11,8 +11,6 @@ oneOf:
               - cbg
         required:
           - type
-      - type: object
-      - type: object
     description: A continuous glucose measurement in mg/dL
   - allOf:
       - $ref: ./bloodglucosemmol.v1.yaml
