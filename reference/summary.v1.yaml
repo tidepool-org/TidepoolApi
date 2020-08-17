@@ -14,19 +14,6 @@ info:
   license:
     name: 'BSD 2-Clause "Simplified" License'
     url: 'https://github.com/tidepool-org/platform/blob/master/LICENSE'
-servers:
-  - url: 'http://localhost:3000'
-    description: localhost
-  - url: 'https://dev1.dev.tidepool.org'
-    description: dev1
-  - url: 'https://qa1.development.tidepool.org'
-    description: qa1
-  - url: 'https://qa2.development.tidepool.org'
-    description: qa2
-  - url: 'https://integration.external.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
 paths:
   '/v1/users/{userid}/summary':
     parameters:
