@@ -78,9 +78,10 @@ components:
       additionalProperties: false
       x-examples:
         example-1:
-          start: '2020-06-28T00:00:00Z'
+          end: '2020-08-12T00:00:00Z'
           length: week
-          updated: '2020-07-05T00:10:00Z'
+          start: '2020-08-05T00:00:00Z'
+          updated: '2020-08-18T00:55:37.5193082Z'
       properties:
         start:
           type: string
@@ -113,8 +114,8 @@ components:
       additionalProperties: false
       x-examples:
         example-1:
-          type: smbg
-          time: '2020-07-06T08:29:02Z'
+          time: '2020-08-18T08:29:02Z'
+          type: upload
       properties:
         type:
           $id: '#/properties/type'
@@ -148,10 +149,10 @@ components:
       additionalProperties: false
       x-examples:
         example:
-          name: veryLow
-          threshold: 54
-          percentage: 0.0992
-          count: 2
+          count: 838
+          name: veryHigh
+          percentage: 2.554878
+          threshold: 250
       properties:
         name:
           type: string
@@ -184,30 +185,31 @@ components:
       x-examples:
         example-1:
           period:
-            start: '2020-06-28T00:00:00Z'
+            end: '2020-08-12T00:00:00Z'
             length: week
-            updated: '2020-07-05T00:10:00Z'
+            start: '2020-08-05T00:00:00Z'
+            updated: '2020-08-18T00:55:37.5193082Z'
           stats:
-            count: 2016
-            mean: 107
-            units: mg/dl
+            count: 328
+            mean: 155.55234
             quantiles:
-              - name: veryLow
-                threshold: 54
-                percentage: 0.0992
-                count: 2
-              - name: low
-                threshold: 80
-                percentage: 10.0198
-                count: 202
-              - name: high
-                threshold: 180
-                percentage: 99.752
-                count: 2011
-              - name: veryHigh
+              - count: 838
+                name: veryHigh
+                percentage: 2.554878
                 threshold: 250
-                percentage: 100
-                count: 2016
+              - count: 564
+                name: high
+                percentage: 1.7195122
+                threshold: 180
+              - count: 177
+                name: low
+                percentage: 0.53963417
+                threshold: 70
+              - count: 104
+                name: veryLow
+                percentage: 0.31707317
+                threshold: 54
+            units: mg/dl
       properties:
         period:
           $ref: '#/components/schemas/SummaryPeriod'
@@ -222,6 +224,21 @@ components:
       default: {}
       additionalProperties: false
       type: object
+      x-examples:
+        example-1:
+          units: mg/dl
+          quantiles:
+            - name: veryHigh
+              threshold: 250
+            - name: high
+              threshold: 180
+            - name: low
+              threshold: 70
+            - name: veryLow
+              threshold: 54
+          period:
+            length: week
+            numPeriods: 2
       properties:
         units:
           $ref: '#/components/schemas/Units'
@@ -250,6 +267,9 @@ components:
             length:
               type: string
               example: week
+              enum:
+                - day
+                - week
             numPeriods:
               type: integer
               minimum: 0
@@ -265,26 +285,26 @@ components:
       additionalProperties: false
       x-examples:
         example-1:
-          count: 2016
-          mean: 107
-          units: mg/dl
+          count: 302
+          mean: 154.7332
           quantiles:
-            - name: veryLow
-              threshold: 54
-              percentage: 0.0992
-              count: 2
-            - name: low
-              threshold: 80
-              percentage: 10.0198
-              count: 202
-            - name: high
-              threshold: 180
-              percentage: 99.752
-              count: 2011
-            - name: veryHigh
+            - count: 838
+              name: veryHigh
+              percentage: 2.7748344
               threshold: 250
-              percentage: 100
-              count: 2016
+            - count: 564
+              name: high
+              percentage: 1.8675497
+              threshold: 180
+            - count: 177
+              name: low
+              percentage: 0.5860927
+              threshold: 70
+            - count: 104
+              name: veryLow
+              percentage: 0.34437087
+              threshold: 54
+          units: mg/dl
       properties:
         mean:
           type: number
@@ -316,68 +336,96 @@ components:
         example-1:
           activity:
             - client:
-                name: Tidepool Uploader
-                version: 1.23.4
-                platform: macOS 10.15.4
+                name: Tidepool Mobile 99.3
+                platform: windows
               device:
                 deviceManufacturers:
-                  - Bayer
-                deviceName: Ascensia Contour Next One
-                deviceSerialNumber: '123456'
+                  - dexcom
+                deviceModel: G6
+                deviceSerialNumber: '0xfeedbeef'
               event:
-                type: smbg
-                time: '2020-07-06T08:29:02Z'
+                time: '2020-08-18T08:29:02Z'
+                type: upload
           glucose:
             - period:
-                start: '2020-07-05T00:00:00Z'
+                end: '2020-08-19T00:00:00Z'
                 length: week
-                updated: '2020-07-011T08:29:02Z'
+                start: '2020-08-12T00:00:00Z'
+                updated: '2020-08-18T00:55:37.5193082Z'
               stats:
-                count: 1860
-                mean: 110
-                units: mg/dl
+                count: 302
+                mean: 154.7332
                 quantiles:
-                  - name: veryLow
-                    threshold: 54
-                    percentage: 0.1075
-                    count: 2
-                  - name: low
-                    threshold: 80
-                    percentage: 2.1505
-                    count: 40
-                  - name: high
-                    threshold: 180
-                    percentage: 90.4266
-                    count: 1823
-                  - name: veryHigh
+                  - count: 838
+                    name: veryHigh
+                    percentage: 2.7748344
                     threshold: 250
-                    percentage: 90.4266
-                    count: 1823
+                  - count: 564
+                    name: high
+                    percentage: 1.8675497
+                    threshold: 180
+                  - count: 177
+                    name: low
+                    percentage: 0.5860927
+                    threshold: 70
+                  - count: 104
+                    name: veryLow
+                    percentage: 0.34437087
+                    threshold: 54
+                units: mg/dl
             - period:
-                start: '2020-06-28T00:00:00Z'
+                end: '2020-08-12T00:00:00Z'
                 length: week
-                updated: '2020-07-05T00:10:00Z'
+                start: '2020-08-05T00:00:00Z'
+                updated: '2020-08-18T00:55:37.5193082Z'
               stats:
-                count: 2016
-                mean: 107
-                units: mg/dl
+                count: 328
+                mean: 155.55234
                 quantiles:
-                  - name: veryLow
-                    threshold: 54
-                    percentage: 0.0992
-                    count: 2
-                  - name: low
-                    threshold: 80
-                    percentage: 10.0198
-                    count: 202
-                  - name: high
-                    threshold: 180
-                    percentage: 99.752
-                    count: 2011
-                  - name: veryHigh
+                  - count: 838
+                    name: veryHigh
+                    percentage: 2.554878
                     threshold: 250
-                    percentage: 100
-                    count: 2016
+                  - count: 564
+                    name: high
+                    percentage: 1.7195122
+                    threshold: 180
+                  - count: 177
+                    name: low
+                    percentage: 0.53963417
+                    threshold: 70
+                  - count: 104
+                    name: veryLow
+                    percentage: 0.31707317
+                    threshold: 54
+                units: mg/dl
+            - period:
+                end: '2020-08-05T00:00:00Z'
+                length: week
+                start: '2020-07-29T00:00:00Z'
+                updated: '2020-08-18T00:55:37.5193082Z'
+              stats:
+                count: 328
+                mean: 154.47261
+                quantiles:
+                  - count: 838
+                    name: veryHigh
+                    percentage: 2.554878
+                    threshold: 250
+                  - count: 564
+                    name: high
+                    percentage: 1.7195122
+                    threshold: 180
+                  - count: 177
+                    name: low
+                    percentage: 0.53963417
+                    threshold: 70
+                  - count: 104
+                    name: veryLow
+                    percentage: 0.31707317
+                    threshold: 54
+                units: mg/dl
+          userid: meme
       properties:
         activity:
           $id: '#/properties/activity'
@@ -412,12 +460,36 @@ components:
           $ref: '#/components/schemas/Device'
         event:
           $ref: '#/components/schemas/UpdateEvent'
+      x-examples:
+        example-1:
+          client:
+            name: Tidepool Mobile 99.3
+            platform: windows
+          device:
+            deviceManufacturers:
+              - dexcom
+            deviceModel: G6
+            deviceSerialNumber: '0xfeedbeef'
+          event:
+            time: '2020-08-18T08:29:02Z'
+            type: upload
     Client:
       $ref: ./data/models/clientsoftware.yaml
+      x-examples:
+        example-1:
+          name: Tidepool Mobile 99.3
+          platform: windows
     Device:
       $ref: ./data/models/uploaddevice.yaml
+      x-examples:
+        example-1:
+          deviceManufacturers:
+            - dexcom
+          deviceModel: G6
+          deviceSerialNumber: '0xfeedbeef'
     UserId:
       $ref: ./common/models/tidepooluserid.v1.yaml
+      description: The internal of a Tidepool user
     Units:
       $ref: ./data/models/bloodglucoseunits.v1.yaml
   securitySchemes:
