@@ -39,6 +39,30 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SummaryRequest'
+  '/v1/users/{userid}/summaries':
+    parameters:
+      - schema:
+          type: string
+        name: userid
+        in: path
+        required: true
+    post:
+      tags: []
+      summary: ''
+      operationId: post-v1-users-userid-summaries
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryResponse'
+      description: Retrieve summary information for user who have given permission to this user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SummaryRequest'
   '/v1/clinics/{clinicid}/summaries':
     parameters:
       - schema:
@@ -475,21 +499,10 @@ components:
             type: upload
     Client:
       $ref: ./data/models/clientsoftware.yaml
-      x-examples:
-        example-1:
-          name: Tidepool Mobile 99.3
-          platform: windows
     Device:
       $ref: ./data/models/uploaddevice.yaml
-      x-examples:
-        example-1:
-          deviceManufacturers:
-            - dexcom
-          deviceModel: G6
-          deviceSerialNumber: '0xfeedbeef'
     UserId:
       $ref: ./common/models/tidepooluserid.v1.yaml
-      description: The internal of a Tidepool user
     Units:
       $ref: ./data/models/bloodglucoseunits.v1.yaml
   securitySchemes:
