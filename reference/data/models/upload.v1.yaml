@@ -2,21 +2,13 @@ title: Upload
 description: Metadata about an upload of diabetes device data to the Tidepool platform.
 allOf:
   - $ref: ./base.v1.yaml
+  - $ref: ./uploaddevice.yaml
   - type: object
     properties:
       byUser:
         $ref: ../../common/models/tidepooluserid.v1.yaml
       client:
-        type: object
-        properties:
-          name:
-            type: string
-            pattern: "^[a-zA-Z0-9](|[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])(\\.[a-zA-Z0-9](|[a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))+$"
-          version:
-            type: string
-            pattern: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\\+[0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*)?$"
-          private:
-            $ref: ./metadata.v1.yaml
+        $ref: ./clientsoftware.yaml
       computerTime:
         type: string
         format: time
@@ -31,43 +23,6 @@ allOf:
         enum:
           - continuous
           - normal
-      deviceManufacturers:
-        type: array
-        description: |-
-          An array of string tags indicating the manufacturer(s) of the device.
-
-          In order to avoid confusion resulting from referring to a single manufacturer with more than one name—for example, using both 'Minimed' and 'Medtronic' interchangeably—we restrict the set of strings used to refer to manufacturers to the set listed above and enforce *exact* string matches (including casing).
-
-          `deviceManufacturers` is an array of one or more string "tags" because there are devices resulting from a collaboration between more than one manufacturer, such as the Tandem G4 insulin pump with CGM integration (a collaboration between `Tandem` and `Dexcom`).
-        items:
-          type: string
-      deviceModel:
-        type: string
-        description: |-
-          A string identifying the model of the device.
-
-          The `deviceModel` is a non-empty string that encodes the model of device. We endeavor to match each manufacturer's standard for how they represent model name in terms of casing, whether parts of the name are represented as one word or two, etc.
-      deviceSerialNumber:
-        type: string
-        description: |-
-          A string encoding the device's serial number.
-
-          The `deviceSerialNumber` is a string that encodes the serial number of the device. Note that even if a manufacturer only uses digits in its serial numbers, the SN should be stored as a string regardless.
-
-          Uniquely of string fields in the Tidepool device data models, `deviceSerialNumber` *may* be an empty string. This is essentially a compromise: having the device serial number is extremely important (especially for e.g., clinical studies) but in 2016 we came across our first case where we *cannot* recover the serial number of the device that generated the data: Dexcom G5 data uploaded to Tidepool through Apple iOS's HealthKit integration.
-      deviceTags:
-        type: array
-        description: |-
-          An array of string tags indicating the function(s) of the device.
-
-          The `deviceTags` array should be fairly self-explanatory as an array of tags indicating the function(s) of a particular device. For example, the Insulet OmniPod insulin delivery system has the tags `bgm` and `insulin-pump` since the PDM is both an insulin pump controller and includes a built-in blood glucose monitor.
-        items:
-          anyOf:
-            - enum:
-                - bgm
-                - cgm
-                - insulin-pump
-          type: string
       timeProcessing:
         type: string
         enum:
