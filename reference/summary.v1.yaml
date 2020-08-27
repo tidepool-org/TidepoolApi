@@ -189,7 +189,7 @@ components:
           maximum: 1000
         percentage:
           type: number
-          description: The percentage of samples below the threshold value.
+          description: 'The percentage of samples below the threshold value. Values are in the range [0.0,100.0].'
           format: float
           minimum: 0
           maximum: 100
