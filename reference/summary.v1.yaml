@@ -189,7 +189,10 @@ components:
           maximum: 1000
         percentage:
           type: number
-          description: 'The percentage of samples below the threshold value. Values are in the range [0.0,100.0].'
+          description: |
+            The percentage of samples below the threshold value. Values are in the range [0,100] and are accurate
+            to within 0.5, i.e. a value of x means that the percentage of values is in the range [x-0.5, x+0.5]. For
+            example, a report of 7% means that the actual percentage is in the range 6.5% - 7.5%.
           format: float
           minimum: 0
           maximum: 100
@@ -460,30 +463,16 @@ components:
           additionalItems: false
           items:
             $ref: '#/components/schemas/UploadActivity'
-        glucose:
-          type: array
-          title: Recent Statisical Summaries
-          description: Summary of recent glucose information.
-          items:
-            $ref: '#/components/schemas/GlucoseSummary'
         userid:
           $ref: '#/components/schemas/UserId'
       required:
         - activity
-        - glucose
         - userid
     UploadActivity:
       type: object
       title: Recent Upload Activity
       description: A report on when a diabetes device was most recently used
       additionalProperties: false
-      properties:
-        client:
-          $ref: '#/components/schemas/Client'
-        device:
-          $ref: '#/components/schemas/Device'
-        event:
-          $ref: '#/components/schemas/UpdateEvent'
       x-examples:
         example-1:
           client:
@@ -497,6 +486,20 @@ components:
           event:
             time: '2020-08-18T08:29:02Z'
             type: upload
+      properties:
+        client:
+          $ref: '#/components/schemas/Client'
+        device:
+          $ref: '#/components/schemas/Device'
+        event:
+          $ref: '#/components/schemas/UpdateEvent'
+        glucose:
+          type: array
+          description: Glucose summary for each device over each period
+          items:
+            $ref: '#/components/schemas/GlucoseSummary'
+      required:
+        - glucose
     Client:
       $ref: ./data/models/clientsoftware.yaml
     Device:
