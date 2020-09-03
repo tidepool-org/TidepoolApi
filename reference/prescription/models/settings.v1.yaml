@@ -23,20 +23,25 @@ properties:
     $ref: ../../data/models/basalratemaximum.v1.yaml
   bolusAmountMaximum:
     $ref: ../../data/models/bolusamountmaximum.v1.yaml
-  suspendThreshold:
+  bloodGlucoseSuspendThreshold:
     $ref: ../../data/models/suspendthreshold.v1.yaml
   insulinModel:
     $ref: ../../data/models/insulinmodel.v1.yaml
   pumpId:
-    $ref: ../../common/models/objectid.v1.yaml
+    type: string
+    format: uuid
   cgmId:
-    $ref: ../../common/models/objectid.v1.yaml
+    type: string
+    format: uuid
 required:
   - bloodGlucoseUnits
   - basalRateSchedule
   - bloodGlucoseTargetSchedule
   - carbohydrateRatioSchedule
   - insulinSensitivitySchedule
+  - basalRateMaximum
+  - bolusAmountMaximum
+  - bloodGlucoseSuspendThreshold
   - insulinModel
   - pumpId
   - cgmId
