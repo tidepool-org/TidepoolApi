@@ -1,0 +1,6 @@
+title: PatientPostId
+type: object
+properties:
+  id:
+    type: string
+description: Id of newly create patient/clinic relationship

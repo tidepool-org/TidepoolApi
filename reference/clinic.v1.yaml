@@ -72,11 +72,7 @@ paths:
             type: string
           in: query
           name: patientId
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -88,6 +84,14 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/PostClinicResponse.v1.yaml
+            application/xml:
+              schema:
+                type: object
+                properties: {}
         '400':
           description: Bad Request
         '403':
@@ -98,14 +102,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/NewClinic.v1.yaml
+              $ref: ./clinic/models/PostClinicBody.v1.yaml
       description: Add a new clinic
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
+      security: []
       x-roles: []
       tags: []
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-TIDEPOOL-USERID
+          description: Userid for endpoint
   '/clinics/{clinicid}':
     parameters:
       - schema:
@@ -131,11 +138,7 @@ paths:
           description: Internal Server Error
       operationId: get-clinics-clinicid
       description: Get Clinic
-      security:
-        - ClinicAuth:
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
-            - TIDEPOOL_ADMIN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -163,10 +166,7 @@ paths:
               type: object
               properties: {}
         description: Modify Clinic object
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -184,10 +184,7 @@ paths:
         '500':
           description: Internal Server Error
       description: Delete Clinic
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
+      security: []
       tags: []
       x-roles:
         - TIDEPOOL_ADMIN
@@ -218,10 +215,7 @@ paths:
           description: Internal Server Error
       operationId: delete-clinics-clinicid-clinicians-clinicianid
       description: Remove association with clinic and clinician
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -243,10 +237,7 @@ paths:
           application/json:
             schema:
               $ref: ./clinic/models/ClinicianPermissions.v1.yaml
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -268,10 +259,7 @@ paths:
         '500':
           description: Internal Server Error
       description: Get a clinician object
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -317,11 +305,7 @@ paths:
             type: string
           in: query
           name: sortOrder
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -332,6 +316,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/PatientPostId.v1.yaml
         '400':
           description: Bad Request
         '403':
@@ -345,11 +333,7 @@ paths:
             schema:
               $ref: ./clinic/models/ClinicsPatients.v1.yaml
         description: ''
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
+      security: []
       tags: []
       x-roles:
         - TIDEPOOL_ADMIN
@@ -381,11 +365,7 @@ paths:
           description: Forbidden
         '500':
           description: Internal Server Error
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -407,11 +387,7 @@ paths:
         '500':
           description: Internal Server Error
       description: Get a patient from clinic
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -435,11 +411,7 @@ paths:
           application/json:
             schema:
               $ref: ./clinic/models/PatientPermissions.v1.yaml
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -485,11 +457,7 @@ paths:
             type: string
           in: query
           name: sortOrder
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
-            - CLINIC_CLINICIAN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -500,6 +468,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/CliniciansPostid.v1.yaml
         '400':
           description: Bad Request
         '403':
@@ -512,10 +484,7 @@ paths:
           application/json:
             schema:
               $ref: ./clinic/models/ClinicsClinicians.v1.yaml
-      security:
-        - ClinicAuth:
-            - TIDEPOOL_ADMIN
-            - CLINIC_ADMIN
+      security: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -612,16 +581,4 @@ paths:
         - TIDEPOOL_ADMIN
 components:
   schemas: {}
-  securitySchemes:
-    ClinicAuth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'https://www.tidepool.org/auth'
-          scopes:
-            TIDEPOOL_ADMIN: Tidepool Administrator
-            CLINIC_ADMIN: Clinic Administrator
-            CLINIC_CLINICIAN: Clinician at Clinic
-            CLINIC_PATIENT: Patient of Clinic
-            CLINIC_PRESCRIBER: Clinician at Clinic with Prescriber Role
-          refreshUrl: 'https://www.tidepool.org/refresh'
+  securitySchemes: {}
