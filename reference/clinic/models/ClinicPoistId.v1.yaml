@@ -1,0 +1,5 @@
+title: ClinicPostId
+type: object
+properties:
+  id:
+    type: string

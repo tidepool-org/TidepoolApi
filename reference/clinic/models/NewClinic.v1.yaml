@@ -30,3 +30,6 @@ properties:
     type: string
   metadata:
     type: object
+    properties:
+      data:
+        type: string
