@@ -17,6 +17,14 @@ properties:
     minLength: 1
   address:
     type: string
+  city:
+    type: string
+  postalCode:
+    type: string
+  state:
+    type: string
+  country:
+    type: string
   phoneNumbers:
     type: array
     items:
@@ -26,10 +34,12 @@ properties:
           type: string
         number:
           type: string
-  location:
-    type: string
   metadata:
     type: object
     properties:
       data:
         type: string
+  clinicType:
+    type: string
+  clinicSize:
+    type: integer
