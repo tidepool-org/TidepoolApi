@@ -33,6 +33,10 @@ properties:
   cgmId:
     type: string
     format: uuid
+  bloodGlucoseTargetPhysicalActivity:
+    $ref: ../../data/models/bloodglucosetarget.v1.yaml
+  bloodGlucoseTargetPreprandial:
+    $ref: ../../data/models/bloodglucosetarget.v1.yaml
 required:
   - bloodGlucoseUnits
   - basalRateSchedule
