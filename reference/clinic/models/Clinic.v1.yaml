@@ -1,9 +1,0 @@
-allOf:
-  - type: object
-    properties:
-      _id:
-        type: string
-    required:
-      - _id
-  - $ref: ./NewClinic.v1.yaml
-title: Clinic

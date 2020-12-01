@@ -1,8 +1,0 @@
-title: PatientPermissions
-type: object
-properties:
-  permissions:
-    type: array
-    items:
-      type: string
-description: Permissions for Clinic Patient Relationship

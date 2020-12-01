@@ -29,25 +29,25 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/Clinic.v1.yaml
+                  $ref: '#/components/schemas/Clinic'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/Error.v1.yaml
+                $ref: '#/components/schemas/Error'
         '403':
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/Error.v1.yaml
+                $ref: '#/components/schemas/Error'
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/Error.v1.yaml
+                $ref: '#/components/schemas/Error'
       operationId: get-clinics
       description: Retrieve list of clinics.  Requires admin app authorization
       parameters:
@@ -87,7 +87,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/PostClinicResponse.v1.yaml
+                $ref: '#/components/schemas/PostClinicResponse'
             application/xml:
               schema:
                 type: object
@@ -102,7 +102,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/PostClinicBody.v1.yaml
+              $ref: '#/components/schemas/PostClinicBody'
       description: Add a new clinic
       security: []
       x-roles: []
@@ -129,7 +129,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/Clinic.v1.yaml
+                $ref: '#/components/schemas/ClinicsPatientClinician'
+          links:
+            get-clinicians:
+              operationId: get-clinics-clinicid-clinicians
+              parameters:
+                clinicid: $request.query.clinicid
         '400':
           description: Bad Request
         '403':
@@ -143,6 +148,23 @@ paths:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
         - CLINIC_CLINICIAN
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: clinicians
+        - schema:
+            type: boolean
+          in: query
+          name: patients
+        - schema:
+            type: boolean
+          in: query
+          name: includeClinicians
+        - schema:
+            type: string
+          in: query
+          name: includePatients
     patch:
       summary: ModifyClinic
       operationId: patch-clinics-clinicid
@@ -160,7 +182,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/NewClinic.v1.yaml
+              $ref: '#/components/schemas/NewClinic'
           application/xml:
             schema:
               type: object
@@ -236,7 +258,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/ClinicianPermissions.v1.yaml
+              $ref: '#/components/schemas/ClinicianPermissions'
       security: []
       x-roles:
         - TIDEPOOL_ADMIN
@@ -251,7 +273,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+                $ref: '#/components/schemas/ClinicsClinicians'
         '400':
           description: Bad Request
         '403':
@@ -283,7 +305,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/ClinicsPatients.v1.yaml
+                  $ref: '#/components/schemas/ClinicsPatients'
         '400':
           description: Bad Request
         '403':
@@ -319,7 +341,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/PatientPostId.v1.yaml
+                $ref: '#/components/schemas/PatientPostid'
         '400':
           description: Bad Request
         '403':
@@ -331,7 +353,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/ClinicsPatients.v1.yaml
+              $ref: '#/components/schemas/ClinicsPatients'
         description: ''
       security: []
       tags: []
@@ -379,7 +401,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/ClinicsPatients.v1.yaml
+                $ref: '#/components/schemas/ClinicsPatients'
         '400':
           description: Bad Request
         '403':
@@ -410,7 +432,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/PatientPermissions.v1.yaml
+              $ref: '#/components/schemas/PatientPermissions'
       security: []
       x-roles:
         - TIDEPOOL_ADMIN
@@ -435,7 +457,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+                  $ref: '#/components/schemas/ClinicsClinicians'
         '400':
           description: Bad Request
         '403':
@@ -471,7 +493,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/CliniciansPostid.v1.yaml
+                $ref: '#/components/schemas/CliniciansPostid'
         '400':
           description: Bad Request
         '403':
@@ -483,7 +505,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+              $ref: '#/components/schemas/ClinicsClinicians'
       security: []
       x-roles:
         - TIDEPOOL_ADMIN
@@ -501,7 +523,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/ClinicsPatients.v1.yaml
+                  $ref: '#/components/schemas/ClinicsPatients'
         '400':
           description: Bad Request
         '403':
@@ -552,7 +574,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/ClinicsClinicians.v1.yaml
+                  $ref: '#/components/schemas/ClinicsClinicians'
         '400':
           description: Bad Request
         '403':
@@ -580,5 +602,181 @@ paths:
       x-roles:
         - TIDEPOOL_ADMIN
 components:
-  schemas: {}
+  schemas:
+    Clinic:
+      title: Clinic
+      description: Clinic Object
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: string
+        - $ref: '#/components/schemas/NewClinic'
+    ClinicianPermissions:
+      title: ClinicianPermissions
+      type: object
+      description: Permisions for relationship between Clinics and Clinicians
+      properties:
+        permissions:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            pattern: 'CLINIC_ADMIN|CLINIC_CLINICIAN|CLINIC_PRESCRIBER'
+    CliniciansPostid:
+      title: CliniciansPostid
+      description: Id of newly created clinician/clinic relationship
+      type: object
+      properties:
+        id:
+          type: string
+    ClinicPostid:
+      title: ClinicPostid
+      type: object
+      properties:
+        id:
+          type: string
+    ClinicsClinicians:
+      title: ClinicsClinicians
+      allOf:
+        - type: object
+          properties:
+            clinicianId:
+              type: string
+            clinicId:
+              type: string
+          required:
+            - clinicianId
+        - $ref: '#/components/schemas/ClinicianPermissions'
+      description: Relationship between Clinics and Clinicians
+    ClinicsPatientClinician:
+      title: ClinicsPatientClinician
+      type: object
+      properties:
+        clinic:
+          $ref: '#/components/schemas/Clinic'
+        patients:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        clinicians:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    ClinicsPatients:
+      title: ClinicsPatients
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: string
+            patientId:
+              type: string
+            clinicId:
+              type: string
+        - $ref: '#/components/schemas/PatientPermissions'
+      description: Clinics Patients Relationship
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      required:
+        - code
+    NewClinic:
+      title: NewClinic
+      type: object
+      x-examples:
+        example:
+          id: '5445'
+          name: John Muir
+          address: 3000 Main drive
+          phoneNumbers:
+            type: main
+            number: 555-555-5555
+          location: Walnut Creek
+          metadata: {}
+      description: Object describing a clinic
+      properties:
+        name:
+          type: string
+          minLength: 1
+        address:
+          type: string
+        city:
+          type: string
+        postalCode:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        phoneNumbers:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              number:
+                type: string
+        metadata:
+          type: object
+          properties:
+            data:
+              type: string
+        clinicType:
+          type: string
+        clinicSize:
+          type: integer
+          PatientPermissions:
+            title: PatientPermissions
+            type: object
+            properties:
+              id:
+                type: string
+    PatientPermissions:
+      title: PatientPermissions
+      type: object
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
+      description: Permissions for Clinic Patient Relationship
+    PatientPostid:
+      title: PatientPostid
+      description: Id of newly create patient/clinic relationship
+      type: object
+      properties:
+        id:
+          type: string
+    PostClinicBody:
+      title: PostClinicBody
+      description: Newly created clinic object
+      type: object
+      properties:
+        id:
+          type: string
+    PostClinicResponse:
+      title: PostClinicResponse
+      type: object
+      description: Response from a call to post clinic endpoint
+      properties:
+        clinicId:
+          type: string
+    User:
+      title: User
+      type: object
+      properties:
+        userid:
+          type: string
+        username:
+          type: string
+      required:
+        - userid
+        - username
   securitySchemes: {}

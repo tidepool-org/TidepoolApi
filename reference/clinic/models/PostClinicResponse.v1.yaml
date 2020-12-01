@@ -1,6 +1,0 @@
-title: PostClinicResponse
-type: object
-description: Response from a call to post clinic endpoint
-properties:
-  clinicId:
-    type: string

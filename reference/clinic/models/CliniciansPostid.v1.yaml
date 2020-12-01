@@ -1,6 +1,0 @@
-title: CliniciansPostId
-type: object
-properties:
-  id:
-    type: string
-description: Id of newly created clinician/clinic relationship
