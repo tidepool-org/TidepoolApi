@@ -4,7 +4,7 @@ enum:
   - draft
   - pending
   - submitted
-  - reviewed
+  - claimed
   - active
   - inactive
   - expired
