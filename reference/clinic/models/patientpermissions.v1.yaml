@@ -1,0 +1,16 @@
+type: object
+title: Patient Permissions
+properties:
+  upload:
+    type: object
+    description: Allow uploading data
+  view:
+    type: object
+    description: Allow viewing data
+  note:
+    type: object
+    description: Allow annotating data
+  root:
+    type: object
+    description: Allow full control of account
+readOnly: true

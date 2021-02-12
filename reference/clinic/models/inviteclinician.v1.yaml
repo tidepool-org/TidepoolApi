@@ -1,0 +1,10 @@
+title: Invite Clinician
+type: object
+properties:
+  email:
+    type: string
+  permissions:
+    $ref: ./clinicianpermissions.v1.yaml
+required:
+  - email
+  - permissions

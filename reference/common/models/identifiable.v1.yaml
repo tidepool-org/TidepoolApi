@@ -1,0 +1,7 @@
+type: object
+title: Identifiable Object
+description: Resource that can be referenced by id
+properties:
+  id:
+    $ref: ./objectid.v1.yaml
+    readOnly: true

@@ -1,0 +1,28 @@
+type: object
+title: Patient
+properties:
+  id:
+    type: string
+    description: The user id of the patient
+    readOnly: true
+  email:
+    type: string
+    description: The email of the patient
+  fullName:
+    type: string
+  birthDate:
+    type: string
+    format: date
+    description: YYYY-MM-DD
+  mrn:
+    type: string
+    description: The medical record of a patient
+  targetDevices:
+    type: array
+    items:
+      type: string
+  permissions:
+    $ref: ./patientpermissions.v1.yaml
+required:
+  - id
+readOnly: true

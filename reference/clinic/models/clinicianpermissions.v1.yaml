@@ -1,0 +1,7 @@
+type: array
+title: Clinician Permissions
+items:
+  type: string
+  enum:
+    - ADMINISTER_CLINIC
+    - SUBMIT_PRESCRIPTIONS

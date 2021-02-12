@@ -1,0 +1,7 @@
+title: Clinic
+allOf:
+  - $ref: ../../common/models/identifiable.v1.yaml
+  - $ref: ./required.v1.yaml
+  - $ref: ./attributes.v1.yaml
+description: An object representing clinic
+x-examples: {}

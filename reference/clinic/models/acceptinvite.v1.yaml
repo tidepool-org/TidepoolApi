@@ -1,0 +1,6 @@
+title: Accept Invite
+type: object
+properties:
+  key:
+    type: string
+    description: Confirmation Key

@@ -1,0 +1,23 @@
+title: Clinician
+type: object
+properties:
+  id:
+    description: The user id of the clinician
+    type: string
+    readOnly: true
+  inviteId:
+    type: string
+    description: The id of the invite if it hasn't been accepted
+  name:
+    type: string
+    minLength: 1
+    description: The name of the clinician
+  email:
+    type: string
+    format: email
+    description: The email of the clinician
+    readOnly: true
+  permissions:
+    $ref: ./clinicianpermissions.v1.yaml
+required:
+  - email

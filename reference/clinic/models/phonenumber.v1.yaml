@@ -1,0 +1,9 @@
+title: Phone Number
+type: object
+properties:
+  type:
+    type: string
+  number:
+    type: string
+required:
+  - number

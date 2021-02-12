@@ -1,0 +1,44 @@
+title: Clinic attributes
+x-examples:
+  example:
+    id: '5445'
+    name: John Muir
+    address: 3000 Main drive
+    phoneNumbers:
+      type: main
+      number: 555-555-5555
+    location: Walnut Creek
+    metadata: {}
+description: ''
+type: object
+properties:
+  address:
+    type: string
+  city:
+    type: string
+  postalCode:
+    type: string
+  state:
+    type: string
+  country:
+    type: string
+  phoneNumbers:
+    type: array
+    items:
+      $ref: ./phonenumber.v1.yaml
+  clinicType:
+    type: string
+  clinicSize:
+    type: integer
+    PatientPermissions:
+      title: PatientPermissions
+      type: object
+      properties:
+        id:
+          type: string
+    readOnly: true
+  name:
+    type: string
+  email:
+    type: string
+    format: email
