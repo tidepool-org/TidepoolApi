@@ -1,5 +1,0 @@
-title: Medical Record
-type: object
-properties:
-  mrn:
-    type: string

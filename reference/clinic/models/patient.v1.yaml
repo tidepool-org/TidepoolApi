@@ -2,12 +2,11 @@ type: object
 title: Patient
 properties:
   id:
-    type: string
-    description: The user id of the patient
-    readOnly: true
+    $ref: ../../common/models/tidepooluserid.v1.yaml
   email:
     type: string
     description: The email of the patient
+    format: email
   fullName:
     type: string
   birthDate:

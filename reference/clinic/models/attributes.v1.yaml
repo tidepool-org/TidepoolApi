@@ -1,14 +1,11 @@
 title: Clinic attributes
 x-examples:
   example:
-    id: '5445'
-    name: John Muir
+    name: ACME Diabetes Clinic
     address: 3000 Main drive
     phoneNumbers:
       type: main
       number: 555-555-5555
-    location: Walnut Creek
-    metadata: {}
 description: ''
 type: object
 properties:
@@ -30,12 +27,6 @@ properties:
     type: string
   clinicSize:
     type: integer
-    PatientPermissions:
-      title: PatientPermissions
-      type: object
-      properties:
-        id:
-          type: string
     readOnly: true
   name:
     type: string
