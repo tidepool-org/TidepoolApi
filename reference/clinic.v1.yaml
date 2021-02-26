@@ -57,12 +57,12 @@ paths:
         - schema:
             type: integer
           in: query
-          name: offset
+          name: limit
           description: ''
         - schema:
             type: integer
           in: query
-          name: limit
+          name: offset
         - schema:
             type: string
           in: query
@@ -145,7 +145,7 @@ paths:
         - CLINIC_ADMIN
         - CLINIC_CLINICIAN
       parameters: []
-    patch:
+    put:
       summary: Update Clinic
       operationId: UpdateClinic
       responses:
@@ -166,7 +166,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/attributes.v1.yaml
+              $ref: '#/components/schemas/Clinic'
           application/xml:
             schema:
               type: object
@@ -211,6 +211,20 @@ paths:
             type: integer
           in: query
           name: offset
+    post:
+      summary: Create Clinician
+      operationId: CreateClinician
+      responses:
+        '200':
+          description: OK
+      description: Internal endpoint to create a new clinician
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Clinician'
+      tags:
+        - clinic
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - schema:
@@ -291,7 +305,7 @@ paths:
                 $ref: '#/components/schemas/Clinician'
       operationId: GetClinician
       description: Retrieve a member of clinic given their user id
-    patch:
+    put:
       summary: Update Clinician
       operationId: UpdateClinician
       responses:
@@ -348,6 +362,24 @@ paths:
       description: Internal endpoint for creating a patient record from an existing user
       tags:
         - clinic
+    put:
+      summary: Update Patient
+      operationId: UpdatePatient
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Update existing patient of a clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      tags:
+        - clinic
   '/v1/clinics/{clinicId}/invites':
     parameters:
       - schema:
@@ -372,7 +404,7 @@ paths:
             schema:
               $ref: ./clinic/models/inviteclinician.v1.yaml
       tags:
-        - clinic
+        - confirmation
   '/v1/clinics/{clinicId}/invites/{inviteId}':
     parameters:
       - schema:
@@ -393,16 +425,16 @@ paths:
           description: OK
       description: Resend invite to clinician's email address
       tags:
-        - clinic
+        - confirmation
     delete:
-      summary: ''
+      summary: Delete Invite
       operationId: DeleteInvite
       responses:
         '200':
           description: OK
-      description: Delete invite
+      description: Deletes unaccepted invite
       tags:
-        - clinic
+        - confirmation
     put:
       summary: Accept Invite
       operationId: AcceptInvite
@@ -420,13 +452,11 @@ paths:
             schema:
               $ref: '#/components/schemas/AcceptInvite'
       tags:
-        - clinic
+        - confirmation
 components:
   schemas:
     Error:
       $ref: ./common/models/error.v1.yaml
-    Identifiable:
-      $ref: ./common/models/identifiable.v1.yaml
     Clinic:
       $ref: ./clinic/models/clinic.v1.yaml
     Clinics:
@@ -445,10 +475,20 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Patient'
-    InvitieClinician:
+    InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     AcceptInvite:
       $ref: ./clinic/models/acceptinvite.v1.yaml
+    UserId:
+      $ref: ./common/models/tidepooluserid.v1.yaml
+    ClinicianPermissions:
+      $ref: ./clinic/models/clinicianpermissions.v1.yaml
+    PhoneNumber:
+      $ref: ./clinic/models/phonenumber.v1.yaml
+    PatientPermissions:
+      $ref: ./clinic/models/patientpermissions.v1.yaml
+    Id:
+      $ref: ./common/models/objectid.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -465,7 +505,7 @@ components:
       name: userId
       in: path
       schema:
-        $ref: ./common/models/tidepooluserid.v1.yaml
+        $ref: '#/components/schemas/UserId'
       required: true
 tags:
   - name: auth
@@ -477,5 +517,6 @@ tags:
   - name: clinic
     description: Tidepool Clinic
   - name: invite
+  - name: confirmation
 security:
   - sessionToken: []

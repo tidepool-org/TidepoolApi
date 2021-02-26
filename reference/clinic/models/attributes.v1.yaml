@@ -9,6 +9,8 @@ x-examples:
 description: ''
 type: object
 properties:
+  id:
+    $ref: ../../common/models/objectid.v1.yaml
   address:
     type: string
   city:
@@ -33,3 +35,7 @@ properties:
   email:
     type: string
     format: email
+required:
+  - name
+  - email
+  - id

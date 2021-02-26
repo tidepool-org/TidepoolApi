@@ -1,5 +1,6 @@
 type: object
 title: Patient
+description: ''
 properties:
   id:
     $ref: ../../common/models/tidepooluserid.v1.yaml
@@ -9,13 +10,14 @@ properties:
     format: email
   fullName:
     type: string
+    description: The full name of the patient
   birthDate:
     type: string
     format: date
     description: YYYY-MM-DD
   mrn:
     type: string
-    description: The medical record of a patient
+    description: The medical record number of the patient
   targetDevices:
     type: array
     items:
@@ -24,4 +26,3 @@ properties:
     $ref: ./patientpermissions.v1.yaml
 required:
   - id
-readOnly: true

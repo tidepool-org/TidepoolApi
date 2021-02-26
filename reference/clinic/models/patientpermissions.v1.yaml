@@ -1,6 +1,12 @@
 type: object
 title: Patient Permissions
 properties:
+  root:
+    type: object
+    description: Allow full control of the account
+  custodian:
+    type: object
+    description: Allow custodial control of an account
   upload:
     type: object
     description: Allow uploading data
@@ -10,7 +16,4 @@ properties:
   note:
     type: object
     description: Allow annotating data
-  root:
-    type: object
-    description: Allow full control of account
 readOnly: true

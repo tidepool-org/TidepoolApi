@@ -4,3 +4,5 @@ properties:
   key:
     type: string
     description: Confirmation Key
+required:
+  - key

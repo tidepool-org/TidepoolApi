@@ -1,7 +1,41 @@
 title: Clinic
-allOf:
-  - $ref: ../../common/models/identifiable.v1.yaml
-  - $ref: ./required.v1.yaml
-  - $ref: ./attributes.v1.yaml
-description: An object representing clinic
-x-examples: {}
+x-examples:
+  example:
+    name: ACME Diabetes Clinic
+    address: 3000 Main drive
+    phoneNumbers:
+      type: main
+      number: 555-555-5555
+description: ''
+type: object
+properties:
+  id:
+    $ref: ../../common/models/objectid.v1.yaml
+  address:
+    type: string
+  city:
+    type: string
+  postalCode:
+    type: string
+  state:
+    type: string
+  country:
+    type: string
+  phoneNumbers:
+    type: array
+    items:
+      $ref: ./phonenumber.v1.yaml
+  clinicType:
+    type: string
+  clinicSize:
+    type: integer
+    readOnly: true
+  name:
+    type: string
+  email:
+    type: string
+    format: email
+required:
+  - name
+  - email
+  - id
