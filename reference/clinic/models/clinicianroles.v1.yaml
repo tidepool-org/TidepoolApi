@@ -1,0 +1,10 @@
+type: array
+title: Clinician Permissions
+minItems: 1
+uniqueItems: true
+items:
+  type: string
+  enum:
+    - CLINIC_ADMINISTRATOR
+    - CLINIC_MEMBER
+    - PRESCRIBER

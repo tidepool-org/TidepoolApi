@@ -24,5 +24,6 @@ properties:
       type: string
   permissions:
     $ref: ./patientpermissions.v1.yaml
+    readOnly: true
 required:
   - id

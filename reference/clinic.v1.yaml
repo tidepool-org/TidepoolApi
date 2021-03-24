@@ -75,6 +75,10 @@ paths:
             type: string
           in: query
           name: patientId
+        - schema:
+            type: string
+          in: query
+          name: email
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -161,7 +165,7 @@ paths:
           description: Forbidden
         '500':
           description: Internal Server Error
-      description: Update a clinic
+      description: Update an existing clinic
       requestBody:
         content:
           application/json:
@@ -203,14 +207,19 @@ paths:
             type: string
           in: query
           name: search
+          description: Full text search query
+        - schema:
+            type: integer
+          in: query
+          name: offset
         - schema:
             type: integer
           in: query
           name: limit
         - schema:
-            type: integer
+            type: string
           in: query
-          name: offset
+          name: email
     post:
       summary: Create Clinician
       operationId: CreateClinician
@@ -359,9 +368,18 @@ paths:
       responses:
         '200':
           description: OK
-      description: Internal endpoint for creating a patient record from an existing user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Internal endpoint for creating a patient from an existing user
       tags:
         - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePatient'
     put:
       summary: Update Patient
       operationId: UpdatePatient
@@ -380,7 +398,7 @@ paths:
               $ref: '#/components/schemas/Patient'
       tags:
         - clinic
-  '/v1/clinics/{clinicId}/invites':
+  '/v1/clinics/{clinicId}/invites/clinicians':
     parameters:
       - schema:
           type: string
@@ -397,15 +415,15 @@ paths:
             application/json:
               schema:
                 $ref: ./clinic/models/clinician.v1.yaml
-      description: Send an invite to join a clinic to clinician's email address.
+      description: Send an invite to clinician's email address to join a clinic.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: ./clinic/models/inviteclinician.v1.yaml
+              $ref: '#/components/schemas/InviteClinician'
       tags:
         - confirmation
-  '/v1/clinics/{clinicId}/invites/{inviteId}':
+  '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}':
     parameters:
       - schema:
           type: string
@@ -423,7 +441,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Resend invite to clinician's email address
+      description: Resend invite to the email address of the clinician.
       tags:
         - confirmation
     delete:
@@ -445,14 +463,173 @@ paths:
             application/json:
               schema:
                 $ref: ./clinic/models/clinician.v1.yaml
-      description: Accept an invite with the confirmation key that was sent to clinician's email address.
+      description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
+      tags:
+        - confirmation
+  '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}/clinician':
+    parameters:
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: inviteId
+        in: path
+        required: true
+    patch:
+      summary: Associate Clinician to User
+      operationId: AssociateClinicianToUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clinician'
+      description: Internal endpoint to associate a clinician to a user.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AcceptInvite'
+              $ref: '#/components/schemas/AssociateClinicianToUser'
+      tags:
+        - clinic
+    delete:
+      summary: Delete Invited Clinician
+      operationId: DeleteInvitedClinician
+      responses:
+        '200':
+          description: OK
+      description: Internal endpoint to delete an invited clinician object
+      tags:
+        - clinic
+    get:
+      summary: Get Invited Clinician
+      operationId: GetInvitedClinician
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clinician'
+      description: Internal endpoint to retrieve invited clinician.
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/invites/patients':
+    parameters:
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
+    get:
+      summary: Get Patient Invites
       tags:
         - confirmation
+      responses:
+        '200':
+          description: OK
+      operationId: GetPatientInvites
+      description: Retrieve the list of all pending invites from users who would like to share their accounts with the clinic and become patients.
+  '/v1/clinics/{clinicId}/invites/patients/{inviteId}':
+    parameters:
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: inviteId
+        in: path
+        required: true
+    put:
+      summary: Accept Patient Invitation
+      operationId: AcceptPatientInvitation
+      responses:
+        '200':
+          description: OK
+      description: Accept a pending invite from a user who would like to share their account with the clinic and become a patient.
+      tags:
+        - confirmation
+  '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
+    parameters:
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: patientId
+        in: path
+        required: true
+    put:
+      summary: Update Patient Permissions
+      operationId: UpdatePatientPermissions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientPermissions'
+      description: Update permissions that a clinic has over a patient account
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientPermissions'
+  '/v1/patients/{patientId}/clinics':
+    parameters:
+      - schema:
+          type: string
+        name: patientId
+        in: path
+        required: true
+    get:
+      summary: Get Patient Clinic Relatipnships
+      tags:
+        - clinic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientClinicRelationships'
+      operationId: GetPatientClinicRelationships
+      description: Get all clinics a patient is a member of
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+  '/v1/clinicians/{userId}/invites':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: List Clinician Invites
+      tags:
+        - confirmation
+      responses:
+        '200':
+          description: OK
+      operationId: ListClinicianInvites
+      description: Retrieve a list of the outstanding invites to join a clinic
 components:
   schemas:
     Error:
@@ -477,18 +654,46 @@ components:
         $ref: '#/components/schemas/Patient'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
-    AcceptInvite:
-      $ref: ./clinic/models/acceptinvite.v1.yaml
     UserId:
       $ref: ./common/models/tidepooluserid.v1.yaml
-    ClinicianPermissions:
-      $ref: ./clinic/models/clinicianpermissions.v1.yaml
+    ClinicianRoles:
+      $ref: ./clinic/models/clinicianroles.v1.yaml
     PhoneNumber:
       $ref: ./clinic/models/phonenumber.v1.yaml
     PatientPermissions:
       $ref: ./clinic/models/patientpermissions.v1.yaml
     Id:
       $ref: ./common/models/objectid.v1.yaml
+    PatientClinicRelationship:
+      title: PatientClinicRelationship
+      type: object
+      properties:
+        patient:
+          $ref: '#/components/schemas/Patient'
+        clinic:
+          $ref: '#/components/schemas/Clinic'
+      required:
+        - patient
+        - clinic
+    PatientClinicRelationships:
+      title: PatientClinicRelationships
+      type: array
+      items:
+        $ref: '#/components/schemas/PatientClinicRelationship'
+    CreatePatient:
+      title: Create Patient
+      type: object
+      properties:
+        permissions:
+          $ref: ./clinic/models/patientpermissions.v1.yaml
+    AssociateClinicianToUser:
+      title: Associate Clinician
+      type: object
+      properties:
+        userId:
+          type: string
+      required:
+        - userId
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
