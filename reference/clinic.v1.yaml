@@ -453,19 +453,6 @@ paths:
       description: Deletes unaccepted invite
       tags:
         - confirmation
-    put:
-      summary: Accept Invite
-      operationId: AcceptInvite
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./clinic/models/clinician.v1.yaml
-      description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
-      tags:
-        - confirmation
   '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}/clinician':
     parameters:
       - schema:
@@ -630,6 +617,40 @@ paths:
           description: OK
       operationId: ListClinicianInvites
       description: Retrieve a list of the outstanding invites to join a clinic
+  '/v1/clinicians/{userId}/invites/{inviteId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: inviteId
+        in: path
+        required: true
+    delete:
+      summary: Dismiss Clinician Invite
+      operationId: DismissClinicianInvite
+      responses:
+        '200':
+          description: OK
+      tags:
+        - confirmation
+      description: Dismisses an invite sent from a clinic to clinician
+    put:
+      summary: Accept Clinician Invite
+      operationId: AcceptClinicianInvite
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clinician'
+      description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
+      tags:
+        - confirmation
 components:
   schemas:
     Error:
