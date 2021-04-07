@@ -564,7 +564,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientPermissions'
-      description: Update permissions that a clinic has over a patient account
+      description: Update permissions that a clinic has over a patient account. Only patients can change the permissions.
       tags:
         - clinic
       requestBody:
@@ -572,15 +572,16 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PatientPermissions'
-  '/v1/patients/{patientId}/clinics':
+      parameters: []
+  '/v1/patients/{userId}/clinics':
     parameters:
       - schema:
           type: string
-        name: patientId
+        name: userId
         in: path
         required: true
     get:
-      summary: Get Patient Clinic Relatipnships
+      summary: List Clinics for Patient
       tags:
         - clinic
       responses:
@@ -590,8 +591,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientClinicRelationships'
-      operationId: GetPatientClinicRelationships
-      description: Get all clinics a patient is a member of
+      operationId: ListClinicsForPatient
+      description: Get all clinics a user is a patient of
       parameters:
         - schema:
             type: integer
@@ -651,6 +652,35 @@ paths:
       description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
       tags:
         - confirmation
+  '/v1/clinicians/{userId}/clinics':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: List Clinics for Clinician
+      tags:
+        - clinic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicianClinicRelationships'
+      operationId: ListClinicsForClinician
+      description: Returns a list of all clinics a clinician is a member of
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
 components:
   schemas:
     Error:
@@ -715,6 +745,22 @@ components:
           type: string
       required:
         - userId
+    ClinicianClinicRelationship:
+      title: ClinicianClinicRelationship
+      type: object
+      properties:
+        clinician:
+          $ref: '#/components/schemas/Clinician'
+        clinic:
+          $ref: '#/components/schemas/Clinic'
+      required:
+        - clinician
+        - clinic
+    ClinicianClinicRelationships:
+      title: ClinicianClinicRelationships
+      type: array
+      items:
+        $ref: '#/components/schemas/ClinicianClinicRelationship'
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
