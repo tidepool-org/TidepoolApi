@@ -13,14 +13,18 @@ properties:
     $ref: ../../common/models/objectid.v1.yaml
   address:
     type: string
+    minLength: 1
   city:
     type: string
+    minLength: 1
   postalCode:
     type: string
+    minLength: 1
   state:
     type: string
   country:
     type: string
+    minLength: 1
   phoneNumbers:
     type: array
     items:
@@ -29,13 +33,16 @@ properties:
     type: string
   clinicSize:
     type: integer
+    minimum: 0
     readOnly: true
   name:
     type: string
+    minLength: 1
   email:
     type: string
     format: email
+    x-go-type: string
 required:
+  - id
   - name
   - email
-  - id

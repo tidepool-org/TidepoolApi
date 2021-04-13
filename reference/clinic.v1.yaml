@@ -54,31 +54,9 @@ paths:
       operationId: ListClinics
       description: Retrieve the list of clinics
       parameters:
-        - schema:
-            type: integer
-          in: query
-          name: limit
-          description: ''
-        - schema:
-            type: integer
-          in: query
-          name: offset
-        - schema:
-            type: string
-          in: query
-          name: sort
-        - schema:
-            type: string
-          in: query
-          name: clinicianId
-        - schema:
-            type: string
-          in: query
-          name: patientId
-        - schema:
-            type: string
-          in: query
-          name: email
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/email'
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -116,11 +94,7 @@ paths:
       parameters: []
   '/v1/clinics/{clinicId}':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
     get:
       summary: Get Clinic
       tags: []
@@ -184,11 +158,7 @@ paths:
       tags: []
   '/v1/clinics/{clinicId}/clinicians':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
     get:
       summary: List Clinicians
       tags:
@@ -203,23 +173,10 @@ paths:
       operationId: ListClinicians
       description: 'Retrieve the list of all clinic members. '
       parameters:
-        - schema:
-            type: string
-          in: query
-          name: search
-          description: Full text search query
-        - schema:
-            type: integer
-          in: query
-          name: offset
-        - schema:
-            type: integer
-          in: query
-          name: limit
-        - schema:
-            type: string
-          in: query
-          name: email
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/email'
     post:
       summary: Create Clinician
       operationId: CreateClinician
@@ -236,11 +193,7 @@ paths:
         - clinic
   '/v1/clinics/{clinicId}/patients':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
     get:
       summary: List Patients
       tags:
@@ -254,22 +207,9 @@ paths:
                 $ref: '#/components/schemas/Patients'
       operationId: ListPatients
       parameters:
-        - schema:
-            type: string
-          in: query
-          name: search
-          description: 'Full text search query that matches patient''s name, email and mrn'
-        - schema:
-            type: integer
-            minimum: 0
-          in: query
-          name: offset
-        - schema:
-            type: integer
-            minimum: 1
-            default: 10
-          in: query
-          name: limit
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -291,16 +231,8 @@ paths:
         - clinic
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: clinicianId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/clinicianId'
     get:
       summary: Get Clinician
       tags:
@@ -339,16 +271,8 @@ paths:
         - clinic
   '/v1/clinics/{clinicId}/patients/{patientId}':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: patientId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
     get:
       summary: Get Patient
       tags:
@@ -400,11 +324,7 @@ paths:
         - clinic
   '/v1/clinics/{clinicId}/invites/clinicians':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
     post:
       summary: Invite Clinician
       operationId: InviteClinician
@@ -425,16 +345,8 @@ paths:
         - confirmation
   '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: inviteId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/inviteId'
     patch:
       summary: ''
       operationId: ResendInvite
@@ -455,16 +367,8 @@ paths:
         - confirmation
   '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}/clinician':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: inviteId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/inviteId'
     patch:
       summary: Associate Clinician to User
       operationId: AssociateClinicianToUser
@@ -507,11 +411,7 @@ paths:
         - clinic
   '/v1/clinics/{clinicId}/invites/patients':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
     get:
       summary: Get Patient Invites
       tags:
@@ -523,16 +423,8 @@ paths:
       description: Retrieve the list of all pending invites from users who would like to share their accounts with the clinic and become patients.
   '/v1/clinics/{clinicId}/invites/patients/{inviteId}':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: inviteId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/inviteId'
     put:
       summary: Accept Patient Invitation
       operationId: AcceptPatientInvitation
@@ -544,16 +436,8 @@ paths:
         - confirmation
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
     parameters:
-      - schema:
-          type: string
-        name: clinicId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: patientId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
     put:
       summary: Update Patient Permissions
       operationId: UpdatePatientPermissions
@@ -575,11 +459,7 @@ paths:
       parameters: []
   '/v1/patients/{userId}/clinics':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
     get:
       summary: List Clinics for Patient
       tags:
@@ -594,21 +474,11 @@ paths:
       operationId: ListClinicsForPatient
       description: Get all clinics a user is a patient of
       parameters:
-        - schema:
-            type: integer
-          in: query
-          name: offset
-        - schema:
-            type: integer
-          in: query
-          name: limit
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
   '/v1/clinicians/{userId}/invites':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
     get:
       summary: List Clinician Invites
       tags:
@@ -620,16 +490,8 @@ paths:
       description: Retrieve a list of the outstanding invites to join a clinic
   '/v1/clinicians/{userId}/invites/{inviteId}':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: inviteId
-        in: path
-        required: true
+      - $ref: ./summary.v1.yaml#/components/parameters/userId
+      - $ref: '#/components/parameters/inviteId'
     delete:
       summary: Dismiss Clinician Invite
       operationId: DismissClinicianInvite
@@ -654,11 +516,7 @@ paths:
         - confirmation
   '/v1/clinicians/{userId}/clinics':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
     get:
       summary: List Clinics for Clinician
       tags:
@@ -673,14 +531,8 @@ paths:
       operationId: ListClinicsForClinician
       description: Returns a list of all clinics a clinician is a member of
       parameters:
-        - schema:
-            type: integer
-          in: query
-          name: offset
-        - schema:
-            type: integer
-          in: query
-          name: limit
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
 components:
   schemas:
     Error:
@@ -705,7 +557,7 @@ components:
         $ref: '#/components/schemas/Patient'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
-    UserId:
+    TidepoolUserId:
       $ref: ./common/models/tidepooluserid.v1.yaml
     ClinicianRoles:
       $ref: ./clinic/models/clinicianroles.v1.yaml
@@ -773,12 +625,67 @@ components:
         $ref: ./common/models/tidepoolsessiontoken.v1.yaml
       description: A Tidepool session token
   parameters:
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
+    clinicId:
+      name: clinicId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-f0-9]{24}$'
+    clinicianId:
+      name: clinicianId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+    patientId:
+      name: patientId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
     userId:
       name: userId
       in: path
-      schema:
-        $ref: '#/components/schemas/UserId'
       required: true
+      schema:
+        $ref: '#/components/schemas/TidepoolUserId'
+    inviteId:
+      name: inviteId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 1
+    email:
+      name: email
+      in: query
+      required: false
+      schema:
+        type: string
+        format: email
+    search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Full text search query
 tags:
   - name: auth
     description: Tidepool Authentication

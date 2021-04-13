@@ -5,5 +5,6 @@ properties:
     type: string
   number:
     type: string
+    minLength: 1
 required:
   - number

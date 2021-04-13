@@ -5,6 +5,6 @@ uniqueItems: true
 items:
   type: string
   enum:
-    - CLINIC_ADMINISTRATOR
+    - CLINIC_ADMIN
     - CLINIC_MEMBER
     - PRESCRIBER

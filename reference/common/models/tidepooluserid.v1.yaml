@@ -1,7 +1,6 @@
 type: string
 title: Tidepool User ID
-minLength: 10
-maxLength: 10
-pattern: '^[a-f0-9]{10}'
+pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
 description: String representation of a Tidepool User ID
 readOnly: true
+x-go-type: string
