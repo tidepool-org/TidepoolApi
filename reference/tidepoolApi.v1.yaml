@@ -542,7 +542,7 @@ paths:
         - data
       description: Gets data sets for a user account specified by the userId
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: '#/components/parameters/userId'
     post:
       responses:
         '200':
@@ -613,7 +613,7 @@ paths:
       security:
         - sessionToken: []
       parameters:
-        - $ref: ./common/parameters/tidepooluserid.v1.yaml
+        - $ref: '#/components/parameters/userId'
         - in: query
           name: uploadId
           schema:
@@ -755,7 +755,7 @@ paths:
         - sessionToken: []
       description: Delete all data for user
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: '#/components/parameters/userId'
   '/v1/data_sets/{dataSetId}/data':
     delete:
       responses:
@@ -930,7 +930,7 @@ paths:
       description: Check the operational status of the Export service
   '/export/{userId}':
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: '#/components/parameters/userId'
     get:
       summary: Export data for user
       tags:
@@ -1194,7 +1194,6 @@ paths:
         - auth
     parameters: []
 components:
-  schemas: {}
   securitySchemes:
     basicAuth:
       type: http

@@ -1,0 +1,32 @@
+type: object
+title: Patient
+description: ''
+properties:
+  id:
+    $ref: ../../common/models/tidepooluserid.v1.yaml
+  email:
+    x-go-type: string
+    type: string
+    description: The email of the patient
+    format: email
+  fullName:
+    type: string
+    description: The full name of the patient
+    minLength: 1
+  birthDate:
+    type: string
+    format: date
+    description: YYYY-MM-DD
+  mrn:
+    type: string
+    description: The medical record number of the patient
+    minLength: 1
+  targetDevices:
+    type: array
+    items:
+      type: string
+  permissions:
+    $ref: ./patientpermissions.v1.yaml
+    readOnly: true
+required:
+  - id

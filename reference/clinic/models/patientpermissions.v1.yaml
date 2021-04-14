@@ -1,0 +1,11 @@
+type: object
+title: Patient Permissions
+properties:
+  custodian:
+    type: object
+  view:
+    type: object
+  note:
+    type: object
+  upload:
+    type: object

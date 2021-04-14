@@ -1,35 +1,38 @@
 openapi: 3.0.0
 info:
-  title: clinic
+  title: Clinic service
   version: '1.0'
+  description: 'Web service that stores information about clinics, clinicians and their patients'
+  contact:
+    name: Tidepool
+    url: 'https://www.tidepool.org'
+    email: support@tidepool.org
 servers:
   - url: 'http://localhost:8080'
+    description: local development
   - url: 'https://dev1.dev.tidepool.org'
-    description: ''
+    description: dev1
   - url: 'https://qa1.development.tidepool.org'
-    description: ''
+    description: qa1
   - url: 'https://qa2.development.tidepool.org'
-    description: ''
+    description: qa2
   - url: 'https://external.integration.tidepool.org'
-    description: ''
+    description: integration
   - url: 'https://api.tidepool.org'
-    description: ''
-  - url: 'http://dev1.dev.tidepool.org'
-    description: ''
+    description: production
 paths:
-  /clinics:
+  /v1/clinics:
     get:
-      summary: GetClinics
-      tags: []
+      summary: List Clinics
+      tags:
+        - clinic
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Clinic'
+                $ref: '#/components/schemas/Clinics'
         '400':
           description: Bad Request
           content:
@@ -48,47 +51,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-      operationId: get-clinics
-      description: Retrieve list of clinics.  Requires admin app authorization
+      operationId: ListClinics
+      description: Retrieve the list of clinics
       parameters:
-        - schema:
-            type: integer
-          in: query
-          name: offset
-          description: ''
-        - schema:
-            type: integer
-          in: query
-          name: limit
-        - schema:
-            type: string
-          in: query
-          name: sortOrder
-        - schema:
-            type: string
-          in: query
-          name: clinicianId
-        - schema:
-            type: string
-          in: query
-          name: patientId
-      security:
-        - TidepoolAuth: []
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/email'
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
         - CLINIC_CLINICIAN
     parameters: []
     post:
-      summary: AddClinic
-      operationId: post-clinics
+      summary: Create Clinic
+      operationId: CreateClinic
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostClinicResponse'
+                $ref: '#/components/schemas/Clinic'
             application/xml:
               schema:
                 type: object
@@ -103,26 +86,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostClinicBody'
-      description: Add a new clinic
-      security: []
+              $ref: '#/components/schemas/Clinic'
+      description: Create a new clinic
       x-roles: []
-      tags: []
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: X-TIDEPOOL-USERID
-          description: Userid for endpoint
-  '/clinics/{clinicid}':
+      tags:
+        - clinic
+      parameters: []
+  '/v1/clinics/{clinicId}':
     parameters:
-      - schema:
-          type: string
-        name: clinicid
-        in: path
-        required: true
+      - $ref: '#/components/parameters/clinicId'
     get:
-      summary: GetClinic
+      summary: Get Clinic
       tags: []
       responses:
         '200':
@@ -130,7 +104,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClinicsPatientClinician'
+                $ref: '#/components/schemas/Clinic'
           links:
             get-clinicians:
               operationId: get-clinics-clinicid-clinicians
@@ -142,667 +116,586 @@ paths:
           description: Forbidden
         '500':
           description: Internal Server Error
-      operationId: get-clinics-clinicid
-      description: Get Clinic
-      security:
-        - TidepoolAuth: []
+      operationId: GetClinic
+      description: Retrieve a clinic by id
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
         - CLINIC_CLINICIAN
-      parameters:
-        - schema:
-            type: boolean
-          in: query
-          name: clinicians
-        - schema:
-            type: boolean
-          in: query
-          name: patients
-        - schema:
-            type: boolean
-          in: query
-          name: includeClinicians
-        - schema:
-            type: string
-          in: query
-          name: includePatients
-    patch:
-      summary: ModifyClinic
-      operationId: patch-clinics-clinicid
+      parameters: []
+    put:
+      summary: Update Clinic
+      operationId: UpdateClinic
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clinic'
         '400':
           description: Bad Request
         '403':
           description: Forbidden
         '500':
           description: Internal Server Error
-      description: Modify Clinic
+      description: Update an existing clinic
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewClinic'
+              $ref: '#/components/schemas/Clinic'
           application/xml:
             schema:
               type: object
               properties: {}
-        description: Modify Clinic object
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-      tags: []
-    delete:
-      summary: DeleteClinic
-      operationId: delete-clinics-clinicid
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      description: Delete Clinic
-      security:
-        - TidepoolAuth: []
-      tags: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-  '/clinics/{clinicid}/clinicians/{clinicianid}':
-    parameters:
-      - schema:
-          type: string
-        name: clinicid
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: clinicianid
-        in: path
-        required: true
-    delete:
-      summary: DeleteClinicianFromClinic
-      tags: []
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: delete-clinics-clinicid-clinicians-clinicianid
-      description: Remove association with clinic and clinician
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-    patch:
-      summary: ModifyClinicClinician
-      description: update clinic clinician relationship
-      operationId: patch-clinics-clinicid-clinicians-clinicianid
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ClinicianPermissions'
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-      tags: []
-    get:
-      summary: GetClinician
-      operationId: get-clinics-clinicid-clinicians-clinicianid
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ClinicsClinicians'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      description: Get a clinician object
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-        - CLINIC_CLINICIAN
-      tags: []
-  '/clinics/{clinicid}/patients':
-    parameters:
-      - schema:
-          type: string
-        name: clinicid
-        in: path
-        required: true
-    get:
-      summary: GetPatientsForClinic
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClinicsPatients'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-clinics-clinicid-patients
-      description: Get list of patients associated with clinic
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: offset
-        - schema:
-            type: integer
-          in: query
-          name: limit
-        - schema:
-            type: string
-          in: query
-          name: sortOrder
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-        - CLINIC_CLINICIAN
-    post:
-      summary: AddPatientToClinic
-      operationId: post-clinics-clinicid-patients
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PatientPostid'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      description: Add patient to clinic
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ClinicsPatients'
         description: ''
       security:
-        - TidepoolAuth: []
-      tags: []
+        - sessionToken: []
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
-        - CLINIC_CLINICIAN
-  '/clinics/{clinicid}/patients/{patientid}':
+      tags: []
+  '/v1/clinics/{clinicId}/clinicians':
     parameters:
-      - schema:
-          type: string
-        name: clinicid
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: patientid
-        in: path
-        required: true
-    delete:
-      summary: DeletePatientFromClinic
-      tags: []
-      operationId: delete-clinic-clinicid-patients-patientid
-      description: delete patient from clinic
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-        - CLINIC_CLINICIAN
+      - $ref: '#/components/parameters/clinicId'
     get:
-      summary: GetPatientFromClinic
-      operationId: get-clinics-clinicid-patients-patientid
+      summary: List Clinicians
+      tags:
+        - clinic
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClinicsPatients'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      description: Get a patient from clinic
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-        - CLINIC_CLINICIAN
-      tags: []
-    patch:
-      summary: ModifyClinicPatient
-      operationId: patch-clinics-clinicid-patients-patientid
+                $ref: '#/components/schemas/Clinicians'
+      operationId: ListClinicians
+      description: 'Retrieve the list of all clinic members. '
+      parameters:
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/email'
+    post:
+      summary: Create Clinician
+      operationId: CreateClinician
       responses:
         '200':
           description: OK
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      description: Modify a patient from clinic
+      description: Internal endpoint to create a new clinician
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Clinician'
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patients':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: List Patients
+      tags:
+        - clinic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patients'
+      operationId: ListPatients
+      parameters:
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      description: Retrieve a list of patients of a clinic
+    post:
+      summary: Create Patient Account
+      operationId: CreatePatientAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Create a custodial account for a patient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/clinicianId'
+    get:
+      summary: Get Clinician
+      tags:
+        - clinic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clinician'
+      operationId: GetClinician
+      description: Retrieve a member of clinic given their user id
+    put:
+      summary: Update Clinician
+      operationId: UpdateClinician
+      responses:
+        '200':
+          description: OK
+      description: Update existing clinician
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/clinician.v1.yaml
+    delete:
+      summary: Delete Clinician
+      operationId: DeleteClinician
+      responses:
+        '200':
+          description: OK
+      description: Removes a clinician from a clinic
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patients/{patientId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    get:
+      summary: Get Patient
+      tags:
+        - clinic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      operationId: GetPatient
+      description: Retrieve a patient of clinic given their user id
+    post:
+      summary: Create Patient from Existing User
+      operationId: CreatePatientFromUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Internal endpoint for creating a patient from an existing user
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePatient'
+    put:
+      summary: Update Patient
+      operationId: UpdatePatient
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Update existing patient of a clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/invites/clinicians':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Invite Clinician
+      operationId: InviteClinician
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/clinician.v1.yaml
+      description: Send an invite to clinician's email address to join a clinic.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteClinician'
+      tags:
+        - confirmation
+  '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/inviteId'
+    patch:
+      summary: ''
+      operationId: ResendInvite
+      responses:
+        '200':
+          description: OK
+      description: Resend invite to the email address of the clinician.
+      tags:
+        - confirmation
+    delete:
+      summary: Delete Invite
+      operationId: DeleteInvite
+      responses:
+        '200':
+          description: OK
+      description: Deletes unaccepted invite
+      tags:
+        - confirmation
+  '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}/clinician':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/inviteId'
+    patch:
+      summary: Associate Clinician to User
+      operationId: AssociateClinicianToUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clinician'
+      description: Internal endpoint to associate a clinician to a user.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssociateClinicianToUser'
+      tags:
+        - clinic
+    delete:
+      summary: Delete Invited Clinician
+      operationId: DeleteInvitedClinician
+      responses:
+        '200':
+          description: OK
+      description: Internal endpoint to delete an invited clinician object
+      tags:
+        - clinic
+    get:
+      summary: Get Invited Clinician
+      operationId: GetInvitedClinician
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clinician'
+      description: Internal endpoint to retrieve invited clinician.
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/invites/patients':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: Get Patient Invites
+      tags:
+        - confirmation
+      responses:
+        '200':
+          description: OK
+      operationId: GetPatientInvites
+      description: Retrieve the list of all pending invites from users who would like to share their accounts with the clinic and become patients.
+  '/v1/clinics/{clinicId}/invites/patients/{inviteId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/inviteId'
+    put:
+      summary: Accept Patient Invitation
+      operationId: AcceptPatientInvitation
+      responses:
+        '200':
+          description: OK
+      description: Accept a pending invite from a user who would like to share their account with the clinic and become a patient.
+      tags:
+        - confirmation
+  '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    put:
+      summary: Update Patient Permissions
+      operationId: UpdatePatientPermissions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientPermissions'
+      description: Update permissions that a clinic has over a patient account. Only patients can change the permissions.
+      tags:
+        - clinic
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatientPermissions'
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-        - CLINIC_CLINICIAN
-      tags: []
-  '/clinics/{clinicid}/clinicians':
+      parameters: []
+  '/v1/patients/{userId}/clinics':
     parameters:
-      - schema:
-          type: string
-        name: clinicid
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
     get:
-      summary: GetCliniciansFromClinic
-      tags: []
+      summary: List Clinics for Patient
+      tags:
+        - clinic
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClinicsClinicians'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-clinics-clinicid-clinicians
-      description: Retrieve a list of clinicians for a clinic
+                $ref: '#/components/schemas/PatientClinicRelationships'
+      operationId: ListClinicsForPatient
+      description: Get all clinics a user is a patient of
       parameters:
-        - schema:
-            type: integer
-          in: query
-          name: offset
-        - schema:
-            type: integer
-          in: query
-          name: limit
-        - schema:
-            type: string
-          in: query
-          name: sortOrder
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-        - CLINIC_CLINICIAN
-    post:
-      summary: AddClinicianToClinic
-      operationId: post-clinics-clinicid-clinicians
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CliniciansPostid'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      description: Add a clinician to clinic
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ClinicsClinicians'
-      security:
-        - TidepoolAuth: []
-      x-roles:
-        - TIDEPOOL_ADMIN
-        - CLINIC_ADMIN
-      tags: []
-  '/clinics/patients/{patientid}':
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClinicsPatients'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-clinics-patients-patientid
-      description: Retrieves information on patients in any of the clinics
-      x-roles:
-        - TIDEPOOL_ADMIN
-      security:
-        - TidepoolAuth: []
-    delete:
-      summary: ''
-      tags: []
-      description: Delete patient from all clinics
-      operationId: delete-clinics-patients-patientid
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      x-roles:
-        - TIDEPOOL_ADMIN
-      security:
-        - TidepoolAuth: []
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+  '/v1/clinicians/{userId}/invites':
     parameters:
-      - schema:
-          type: string
-        name: patientid
-        in: path
-        required: true
-  '/clinics/clinicians/{clinicianid}':
-    parameters:
-      - schema:
-          type: string
-        name: clinicianid
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
     get:
-      summary: Your GET endpoint
-      tags: []
+      summary: List Clinician Invites
+      tags:
+        - confirmation
+      responses:
+        '200':
+          description: OK
+      operationId: ListClinicianInvites
+      description: Retrieve a list of the outstanding invites to join a clinic
+  '/v1/clinicians/{userId}/invites/{inviteId}':
+    parameters:
+      - $ref: ./summary.v1.yaml#/components/parameters/userId
+      - $ref: '#/components/parameters/inviteId'
+    delete:
+      summary: Dismiss Clinician Invite
+      operationId: DismissClinicianInvite
+      responses:
+        '200':
+          description: OK
+      tags:
+        - confirmation
+      description: Dismisses an invite sent from a clinic to clinician
+    put:
+      summary: Accept Clinician Invite
+      operationId: AcceptClinicianInvite
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ClinicsClinicians'
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      operationId: get-clinics-clinicians-clinicianid
-      description: Gets Clinicians from all clinics
-      x-roles:
-        - TIDEPOOL_ADMIN
-      security:
-        - TidepoolAuth: []
-    delete:
-      summary: ''
-      tags: []
-      operationId: delete-clinics-clinicians-clinicianid
+                $ref: '#/components/schemas/Clinician'
+      description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
+      tags:
+        - confirmation
+  '/v1/clinicians/{userId}/clinics':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    get:
+      summary: List Clinics for Clinician
+      tags:
+        - clinic
       responses:
         '200':
           description: OK
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Internal Server Error
-      description: Deletes clinician from all clinics
-      x-roles:
-        - TIDEPOOL_ADMIN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicianClinicRelationships'
+      operationId: ListClinicsForClinician
+      description: Returns a list of all clinics a clinician is a member of
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
 components:
   schemas:
+    Error:
+      $ref: ./common/models/error.v1.yaml
     Clinic:
-      title: Clinic
-      description: Clinic Object
-      allOf:
-        - type: object
-          properties:
-            _id:
-              type: string
-        - $ref: '#/components/schemas/NewClinic'
-    ClinicianPermissions:
-      title: ClinicianPermissions
-      type: object
-      description: Permisions for relationship between Clinics and Clinicians
-      properties:
-        permissions:
-          type: array
-          uniqueItems: true
-          items:
-            type: string
-            pattern: 'CLINIC_ADMIN|CLINIC_CLINICIAN|CLINIC_PRESCRIBER'
-    CliniciansPostid:
-      title: CliniciansPostid
-      description: Id of newly created clinician/clinic relationship
-      type: object
-      properties:
-        id:
-          type: string
-    ClinicPostid:
-      title: ClinicPostid
-      type: object
-      properties:
-        id:
-          type: string
-    ClinicsClinicians:
-      title: ClinicsClinicians
-      allOf:
-        - type: object
-          properties:
-            clinicianId:
-              type: string
-            clinicId:
-              type: string
-          required:
-            - clinicianId
-        - $ref: '#/components/schemas/ClinicianPermissions'
-      description: Relationship between Clinics and Clinicians
-    ClinicsPatientClinician:
-      title: ClinicsPatientClinician
+      $ref: ./clinic/models/clinic.v1.yaml
+    Clinics:
+      type: array
+      items:
+        $ref: '#/components/schemas/Clinic'
+    Clinician:
+      $ref: ./clinic/models/clinician.v1.yaml
+    Clinicians:
+      type: array
+      items:
+        $ref: '#/components/schemas/Clinician'
+    Patient:
+      $ref: ./clinic/models/patient.v1.yaml
+    Patients:
+      type: array
+      items:
+        $ref: '#/components/schemas/Patient'
+    InviteClinician:
+      $ref: ./clinic/models/inviteclinician.v1.yaml
+    TidepoolUserId:
+      $ref: ./common/models/tidepooluserid.v1.yaml
+    ClinicianRoles:
+      $ref: ./clinic/models/clinicianroles.v1.yaml
+    PhoneNumber:
+      $ref: ./clinic/models/phonenumber.v1.yaml
+    PatientPermissions:
+      $ref: ./clinic/models/patientpermissions.v1.yaml
+    Id:
+      $ref: ./common/models/objectid.v1.yaml
+    PatientClinicRelationship:
+      title: PatientClinicRelationship
       type: object
       properties:
+        patient:
+          $ref: '#/components/schemas/Patient'
         clinic:
           $ref: '#/components/schemas/Clinic'
-        patients:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        clinicians:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-    ClinicsPatients:
-      title: ClinicsPatients
-      allOf:
-        - type: object
-          properties:
-            id:
-              type: string
-            patientId:
-              type: string
-            clinicId:
-              type: string
-        - $ref: '#/components/schemas/PatientPermissions'
-      description: Clinics Patients Relationship
-    Error:
-      title: Error
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
       required:
-        - code
-    NewClinic:
-      title: NewClinic
-      type: object
-      x-examples:
-        example:
-          id: '5445'
-          name: John Muir
-          address: 3000 Main drive
-          phoneNumbers:
-            type: main
-            number: 555-555-5555
-          location: Walnut Creek
-          metadata: {}
-      description: Object describing a clinic
-      properties:
-        name:
-          type: string
-          minLength: 1
-        address:
-          type: string
-        city:
-          type: string
-        postalCode:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        phoneNumbers:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              number:
-                type: string
-        metadata:
-          type: object
-          properties:
-            data:
-              type: string
-        clinicType:
-          type: string
-        clinicSize:
-          type: integer
-          PatientPermissions:
-            title: PatientPermissions
-            type: object
-            properties:
-              id:
-                type: string
-    PatientPermissions:
-      title: PatientPermissions
+        - patient
+        - clinic
+    PatientClinicRelationships:
+      title: PatientClinicRelationships
+      type: array
+      items:
+        $ref: '#/components/schemas/PatientClinicRelationship'
+    CreatePatient:
+      title: Create Patient
       type: object
       properties:
         permissions:
-          type: array
-          items:
-            type: string
-      description: Permissions for Clinic Patient Relationship
-    PatientPostid:
-      title: PatientPostid
-      description: Id of newly create patient/clinic relationship
+          $ref: ./clinic/models/patientpermissions.v1.yaml
+    AssociateClinicianToUser:
+      title: Associate Clinician
       type: object
       properties:
-        id:
-          type: string
-    PostClinicBody:
-      title: PostClinicBody
-      description: Newly created clinic object
-      type: object
-      properties:
-        id:
-          type: string
-    PostClinicResponse:
-      title: PostClinicResponse
-      type: object
-      description: Response from a call to post clinic endpoint
-      properties:
-        clinicId:
-          type: string
-    User:
-      title: User
-      type: object
-      properties:
-        userid:
-          type: string
-        username:
-          type: string
-        fullname:
+        userId:
           type: string
       required:
-        - userid
-        - username
-        - fullname
+        - userId
+    ClinicianClinicRelationship:
+      title: ClinicianClinicRelationship
+      type: object
+      properties:
+        clinician:
+          $ref: '#/components/schemas/Clinician'
+        clinic:
+          $ref: '#/components/schemas/Clinic'
+      required:
+        - clinician
+        - clinic
+    ClinicianClinicRelationships:
+      title: ClinicianClinicRelationships
+      type: array
+      items:
+        $ref: '#/components/schemas/ClinicianClinicRelationship'
   securitySchemes:
-    TidepoolAuth:
-      type: http
-      scheme: basic
+    sessionToken:
+      name: x-tidepool-session-token
+      type: apiKey
+      in: header
+      description: ''
+  headers:
+    x-tidepool-session-token:
+      schema:
+        $ref: ./common/models/tidepoolsessiontoken.v1.yaml
+      description: A Tidepool session token
+  parameters:
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        minimum: 0
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 10
+    clinicId:
+      name: clinicId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-f0-9]{24}$'
+    clinicianId:
+      name: clinicianId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+    patientId:
+      name: patientId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/TidepoolUserId'
+    inviteId:
+      name: inviteId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 1
+    email:
+      name: email
+      in: query
+      required: false
+      schema:
+        type: string
+        format: email
+    search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Full text search query
+tags:
+  - name: auth
+    description: Tidepool Authentication
+  - name: data
+    description: Tidepool Diabetes Data
+  - name: export
+    description: Tidepool Data Export
+  - name: clinic
+    description: Tidepool Clinic
+  - name: invite
+  - name: confirmation
+security:
+  - sessionToken: []

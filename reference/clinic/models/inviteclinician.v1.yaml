@@ -1,0 +1,13 @@
+title: Invite Clinician
+type: object
+description: ''
+properties:
+  email:
+    x-go-type: string
+    type: string
+    format: email
+  roles:
+    $ref: ./clinicianroles.v1.yaml
+required:
+  - email
+  - roles

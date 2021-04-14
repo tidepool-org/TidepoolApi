@@ -1,0 +1,48 @@
+title: Clinic
+x-examples:
+  example:
+    name: ACME Diabetes Clinic
+    address: 3000 Main drive
+    phoneNumbers:
+      type: main
+      number: 555-555-5555
+description: ''
+type: object
+properties:
+  id:
+    $ref: ../../common/models/objectid.v1.yaml
+  address:
+    type: string
+    minLength: 1
+  city:
+    type: string
+    minLength: 1
+  postalCode:
+    type: string
+    minLength: 1
+  state:
+    type: string
+  country:
+    type: string
+    minLength: 1
+  phoneNumbers:
+    type: array
+    items:
+      $ref: ./phonenumber.v1.yaml
+  clinicType:
+    type: string
+  clinicSize:
+    type: integer
+    minimum: 0
+    readOnly: true
+  name:
+    type: string
+    minLength: 1
+  email:
+    type: string
+    format: email
+    x-go-type: string
+required:
+  - id
+  - name
+  - email

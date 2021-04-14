@@ -1,6 +1,7 @@
 type: string
 title: Object Id
-description: BSON ObjectId
+description: String representation of a resource id
 minLength: 24
 maxLength: 24
-pattern: '^[a-f0-9]{24}'
+pattern: '^[a-f0-9]{24}$'
+readOnly: true
