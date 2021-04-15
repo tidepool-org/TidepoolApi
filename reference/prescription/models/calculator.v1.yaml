@@ -1,0 +1,51 @@
+title: calculator.v1
+type: object
+x-examples:
+  example-1: {}
+properties:
+  method:
+    type: string
+    enum:
+      - weight
+      - totalDailyDose
+      - totalDailyDoseAndWeight
+  weight:
+    type: number
+    format: float
+    minimum: 0
+    description: Required if `method` is `weight` or `totalDailyDoseAndWeight`
+  weightUnits:
+    type: string
+    enum:
+      - kg
+      - lbs
+    description: Required if `method` is `weight` or `totalDailyDoseAndWeight`
+  totalDailyDoseScaleFactor:
+    type: number
+    minimum: 0
+    maximum: 1
+    default: 0
+    description: 'Required if `method` is `totalDailyDose` or `totalDailyDoseAndWeight`.  At present, only options are `1` and `0.75`'
+    format: float
+  totalDailyDose:
+    type: number
+    minimum: 0
+    format: float
+    description: Required if `method` is `totalDailyDose` or `totalDailyDoseAndWeight`
+  recommendedBasalRate:
+    type: number
+    minimum: 0
+    format: float
+  recommendedInsulinSensitivity:
+    type: number
+    minimum: 0
+    format: float
+  recommendedCarbohydrateRatio:
+    type: number
+    minimum: 0
+    format: float
+required:
+  - method
+  - recommendedBasalRate
+  - recommendedInsulinSensitivity
+  - recommendedCarbohydrateRatio

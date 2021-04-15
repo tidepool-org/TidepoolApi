@@ -1,5 +1,7 @@
 title: Revision Attributes
 type: object
+x-tags:
+  - prescription
 properties:
   firstName:
     type: string
@@ -42,7 +44,7 @@ properties:
     type: boolean
   state:
     $ref: ./state.v1.yaml
+  calculator:
+    $ref: ./calculator.v1.yaml
 required:
   - state
-x-tags:
-  - prescription
