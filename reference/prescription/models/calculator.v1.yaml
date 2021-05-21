@@ -26,7 +26,6 @@ properties:
     type: number
     minimum: 0
     maximum: 1
-    default: 1
     description: 'Required if `method` is `totalDailyDose` or `totalDailyDoseAndWeight`.  At present, only options are `1` and `0.75`'
     format: float
   totalDailyDose:
