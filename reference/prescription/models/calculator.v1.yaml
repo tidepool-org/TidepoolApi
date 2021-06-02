@@ -2,6 +2,7 @@ title: calculator.v1
 type: object
 x-examples:
   example-1: {}
+description: ''
 properties:
   method:
     type: string
@@ -14,6 +15,7 @@ properties:
     format: float
     minimum: 0
     description: Required if `method` is `weight` or `totalDailyDoseAndWeight`
+    exclusiveMinimum: true
   weightUnits:
     type: string
     enum:
@@ -24,7 +26,6 @@ properties:
     type: number
     minimum: 0
     maximum: 1
-    default: 0
     description: 'Required if `method` is `totalDailyDose` or `totalDailyDoseAndWeight`.  At present, only options are `1` and `0.75`'
     format: float
   totalDailyDose:
@@ -32,18 +33,22 @@ properties:
     minimum: 0
     format: float
     description: Required if `method` is `totalDailyDose` or `totalDailyDoseAndWeight`
+    exclusiveMinimum: true
   recommendedBasalRate:
     type: number
     minimum: 0
     format: float
+    exclusiveMinimum: true
   recommendedInsulinSensitivity:
     type: number
     minimum: 0
     format: float
+    exclusiveMinimum: true
   recommendedCarbohydrateRatio:
     type: number
     minimum: 0
     format: float
+    exclusiveMinimum: true
 required:
   - method
   - recommendedBasalRate
