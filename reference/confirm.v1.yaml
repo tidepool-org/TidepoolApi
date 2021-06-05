@@ -9,6 +9,19 @@ info:
     email: support@tidepool.org
   description: Sends notifications to users for things like forgotten passwords, initial
     signup, and invitations.
+servers:
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
 paths:
   '/confirm/send/signup/{userId}':
     post:
@@ -564,8 +577,6 @@ paths:
 tags:
   - name: auth
   - name: confirm
-servers:
-  - url: https://int-api.tidepool.org/
 components:
   requestBodies:
     confirmation-lookup:

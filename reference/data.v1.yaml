@@ -11,6 +11,19 @@ info:
     name: BSD-2-Clause
     url: https://opensource.org/licenses/BSD-2-Clause
   description: Data Service manages diabetes data in Tidepool Platform.
+servers:
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
 paths:
   '/v1/datasets/{dataSetId}/data':
     post:
@@ -435,8 +448,6 @@ paths:
       - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
 tags:
   - name: data
-servers:
-  - url: https://int-api.tidepool.org
 components:
   securitySchemes:
     sessionToken:
