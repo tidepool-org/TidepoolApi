@@ -9,7 +9,7 @@ info:
     email: support@tidepool.org
   license:
     name: BSD-2-Clause
-    url: https://opensource.org/licenses/BSD-2-Clause
+    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
   description: Data Service manages diabetes data in Tidepool Platform.
 servers:
   - url: 'http://localhost:8080'

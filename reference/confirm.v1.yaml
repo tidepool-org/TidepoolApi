@@ -9,6 +9,9 @@ info:
     email: support@tidepool.org
   description: Sends notifications to users for things like forgotten passwords, initial
     signup, and invitations.
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
 servers:
   - url: 'http://localhost:8080'
     description: local development
