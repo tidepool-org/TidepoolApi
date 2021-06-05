@@ -7,6 +7,9 @@ info:
     name: Tidepool
     url: 'https://www.tidepool.org'
     email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/gatekeeper/blob/develop/LICENSE
 servers:
   - url: 'http://localhost:8080'
     description: local development
