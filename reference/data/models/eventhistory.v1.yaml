@@ -4,8 +4,7 @@ items:
   type: object
   properties:
     time:
-      type: string
-      format: date-time
+      $ref: ../../common/models/datetime.v1.yaml
     changes:
       $ref: ../../common/models/jsonpatch.v1.yaml
   required:

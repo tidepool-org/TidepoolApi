@@ -17,9 +17,7 @@ properties:
       - carbsOnBoard
       - insulinOnBoard
   startDate:
-    type: string
-    format: date-time
-    description: The time at which the first forecasted value occurs.
+    $ref: ../../common/models/datetime.v1.yaml
 required:
   - values
   - unit

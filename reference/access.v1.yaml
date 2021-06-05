@@ -26,6 +26,8 @@ servers:
     description: production
 paths:
   '/access/groups/{userId}':
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
     get:
       responses:
         '200':
@@ -43,13 +45,9 @@ paths:
         - authorization
       security:
         - sessionToken: []
-    parameters:
-      - name: userId
-        in: path
-        required: true
-        schema:
-          type: string
   '/access/{groupId}':
+    parameters:
+      - $ref: ./common/parameters/tidepoolgroupid.v1.yaml
     get:
       responses:
         '200':
@@ -67,13 +65,10 @@ paths:
         - authorization
       security:
         - sessionToken: []
-    parameters:
-      - name: groupId
-        in: path
-        required: true
-        schema:
-          type: string
   '/access/{groupId}/{userId}':
+    parameters:
+      - $ref: ./common/parameters/tidepoolgroupid.v1.yaml
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
     get:
       responses:
         '200':
@@ -92,17 +87,6 @@ paths:
         - authorization
       security:
         - sessionToken: []
-    parameters:
-      - name: groupId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: userId
-        in: path
-        required: true
-        schema:
-          type: string
     post:
       responses:
         '200':

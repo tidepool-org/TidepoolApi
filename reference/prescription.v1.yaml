@@ -72,26 +72,22 @@ paths:
           in: query
           name: state
         - schema:
-            type: string
-            format: date-time
+            $ref: ../../common/models/datetime.v1.yaml
           in: query
           name: createdAfter
           description: inclusive
         - schema:
-            type: string
-            format: date-time
+            $ref: ../../common/models/datetime.v1.yaml
           in: query
           name: createdBefore
           description: exclusive
         - schema:
-            type: string
-            format: date-time
+            $ref: ../../common/models/datetime.v1.yaml
           in: query
           name: modifiedAfter
           description: inclusive
         - schema:
-            type: string
-            format: date-time
+            $ref: ../../common/models/datetime.v1.yaml
           in: query
           name: modifiedBefore
           description: exclusive

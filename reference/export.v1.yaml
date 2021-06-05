@@ -50,14 +50,14 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: ./data.oas2.yml#/definitions/DataArray
+                  - $ref: ./data/models/dataarray.v1.yaml
                   - type: string
                     format: binary
                     description: An Excel spreadsheet
             application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
               schema:
                 oneOf:
-                  - $ref: ./data.oas2.yml#/definitions/DataArray
+                  - $ref: ./data/models/dataarray.v1.yaml
                   - type: string
                     format: binary
                     description: An Excel spreadsheet
@@ -69,13 +69,11 @@ paths:
         - in: query
           name: startDate
           schema:
-            type: string
-            format: date-time
+            $ref: ./common/models/datetime.v1.yaml
         - in: query
           name: endDate
           schema:
-            type: string
-            format: date-time
+            $ref: ./common/models/datetime.v1.yaml
         - in: query
           name: format
           schema:

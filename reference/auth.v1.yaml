@@ -1,7 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Auth API
+  title: Authentication API
   version: '1.0'
+  description: Authentication API
   termsOfService: https://developer.tidepool.org/terms-of-use/
   contact:
     name: API Support
@@ -118,17 +119,13 @@ paths:
                   type: array
                   uniqueItems: true
                   items:
-                    anyOf:
-                      - format: email
-                    type: string
+                    $ref: ./common/models/emailaddress.v1.yaml
                 termsAccepted:
-                  type: string
-                  format: date-time
+                  $ref: ./common/models/datetime.v1.yaml
                 userid:
                   $ref: ./common/models/tidepooluserid.v1.yaml
                 username:
-                  type: string
-                  format: email
+                  $ref: ./common/models/emailaddress.v1.yaml
                 roles:
                   type: array
                   uniqueItems: true
@@ -138,18 +135,15 @@ paths:
                           - clinic
                     type: string
                 createdTime:
-                  type: string
-                  format: date-time
+                  $ref: ./common/models/datetime.v1.yaml
                 createdUserId:
                   $ref: ./common/models/tidepooluserid.v1.yaml
                 modifiedTime:
-                  type: string
-                  format: date-time
+                  $ref: ./common/models/datetime.v1.yaml
                 modifiedUserId:
                   $ref: ./common/models/tidepooluserid.v1.yaml
                 deletedTime:
-                  type: string
-                  format: date-time
+                  $ref: ./common/models/datetime.v1.yaml
                 deletedUserId:
                   $ref: ./common/models/tidepooluserid.v1.yaml
               required:
@@ -651,17 +645,13 @@ components:
           type: array
           uniqueItems: true
           items:
-            anyOf:
-              - format: email
-            type: string
+            $ref: ./common/models/emailaddress.v1.yaml
         termsAccepted:
-          type: string
-          format: date-time
+          $ref: ./common/models/datetime.v1.yaml
         userid:
           $ref: ./common/models/tidepooluserid.v1.yaml
         username:
-          type: string
-          format: email
+          $ref: ./common/models/emailaddress.v1.yaml
         roles:
           type: array
           uniqueItems: true
@@ -671,18 +661,15 @@ components:
                   - clinic
             type: string
         createdTime:
-          type: string
-          format: date-time
+          $ref: ./common/models/datetime.v1.yaml
         createdUserId:
           $ref: ./common/models/tidepooluserid.v1.yaml
         modifiedTime:
-          type: string
-          format: date-time
+          $ref: ./common/models/datetime.v1.yaml
         modifiedUserId:
           $ref: ./common/models/tidepooluserid.v1.yaml
         deletedTime:
-          type: string
-          format: date-time
+          $ref: ./common/models/datetime.v1.yaml
         deletedUserId:
           $ref: ./common/models/tidepooluserid.v1.yaml
       required:
@@ -726,15 +713,12 @@ components:
       type: object
       properties:
         username:
-          type: string
-          format: email
+          $ref: ./common/models/emailaddress.v1.yaml
         emails:
           type: array
           uniqueItems: true
           items:
-            anyOf:
-              - format: email
-            type: string
+            $ref: ./common/models/emailaddress.v1.yaml
         password:
           type: string
           format: password

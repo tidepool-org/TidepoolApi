@@ -165,14 +165,14 @@ components:
       description: The id of an image.
       required: true
       schema:
-        $ref: images.yaml#/components/schemas/ImageId
+        $ref: '#/components/schemas/ImageId'
     contentIntent:
       name: contentIntent
       in: path
       description: The intent for the content of an image.
       required: true
       schema:
-        $ref: images.yaml#/components/schemas/ContentIntent
+        $ref: '#/components/schemas/ContentIntent'
   schemas:
     ImageId:
       type: string
@@ -186,12 +186,6 @@ components:
       enum:
         - available
         - created
-    MediaType:
-      $ref: common.yaml#/components/schemas/MediaType
-      description: The media type of an image.
-      enum:
-        - image/jpeg
-        - image/png
     Metadata:
       type: object
       description: The user metadata for an image.
@@ -202,13 +196,13 @@ components:
           minLength: 1
           maxLength: 100
         associations:
-          $ref: common.yaml#/components/schemas/AssociationArray
+          $ref: ./common/models/associationarray.v1.yaml
         location:
-          $ref: common.yaml#/components/schemas/Location
+          $ref: ./common/models/location.v1.yaml
         metadata:
-          $ref: common.yaml#/components/schemas/Metadata
+          $ref: ./data/models/metadata.v1.yaml
         origin:
-          $ref: common.yaml#/components/schemas/Origin
+          $ref: ./common/models/origin.v1.yaml
       example:
         name: Rover being funny!
         associations:
@@ -257,9 +251,9 @@ components:
         - createdTime
       properties:
         digestMD5:
-          $ref: common.yaml#/components/schemas/DigestMD5
+          $ref: ./common/models/digestmd5.v1.yaml
         mediaType:
-          $ref: images.yaml#/components/schemas/MediaType
+          $ref: ./common/models/mediatype.v1.yaml
         width:
           type: integer
           description: The width of the image content, in pixels.
@@ -270,9 +264,9 @@ components:
           type: integer
           description: The size of the image content, in bytes.
         createdTime:
-          $ref: common.yaml#/components/schemas/CreatedTime
+          $ref: ./common/models/datetime.v1.yaml
         modifiedTime:
-          $ref: common.yaml#/components/schemas/ModifiedTime
+          $ref: ./common/models/datetime.v1.yaml
     ImageBase:
       type: object
       description: The read-only, base portion of an image.
@@ -284,26 +278,26 @@ components:
         - revision
       properties:
         id:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
         userId:
-          $ref: users.yaml#/components/schemas/UserId
+          $ref: ./common/models/tidepooluserid.v1.yaml
         status:
-          $ref: images.yaml#/components/schemas/Status
+          $ref: '#/components/schemas/Status'
         createdTime:
-          $ref: common.yaml#/components/schemas/CreatedTime
+          $ref: ./common/models/datetime.v1.yaml
         modifiedTime:
-          $ref: common.yaml#/components/schemas/ModifiedTime
+          $ref: ./common/models/datetime.v1.yaml
         revision:
           $ref: common.yaml#/components/schemas/Revision
     ImageWithMetadata:
       type: object
       description: An image with just metadata.
       allOf:
-        - $ref: images.yaml#/components/schemas/ImageBase
+        - $ref: '#/components/schemas/ImageBase'
         - type: object
           properties:
             metadata:
-              $ref: images.yaml#/components/schemas/Metadata
+              $ref: '#/components/schemas/Metadata'
       example:
         id: bc4a3d25a01fb8ac0fd9cfc390d7523b
         userId: a43d25a01f
@@ -335,16 +329,16 @@ components:
       type: object
       description: An image with just content.
       allOf:
-        - $ref: images.yaml#/components/schemas/ImageBase
+        - $ref: '#/components/schemas/ImageBase'
         - type: object
           required:
             - contentIntent
             - contentAttributes
           properties:
             contentIntent:
-              $ref: images.yaml#/components/schemas/ContentIntent
+              $ref: '#/components/schemas/ContentIntent'
             contentAttributes:
-              $ref: images.yaml#/components/schemas/ContentAttributes
+              $ref: '#/components/schemas/ContentAttributes'
       example:
         id: ac0fd9cfbc4a3d25a01fb8c390d7523b
         userId: a43d25a01f
@@ -364,18 +358,18 @@ components:
       type: object
       description: An image with both metadata and content.
       allOf:
-        - $ref: images.yaml#/components/schemas/ImageBase
+        - $ref: '#/components/schemas/ImageBase'
         - type: object
           required:
             - contentIntent
             - contentAttributes
           properties:
             metadata:
-              $ref: images.yaml#/components/schemas/Metadata
+              $ref: '#/components/schemas/Metadata'
             contentIntent:
-              $ref: images.yaml#/components/schemas/ContentIntent
+              $ref: '#/components/schemas/ContentIntent'
             contentAttributes:
-              $ref: images.yaml#/components/schemas/ContentAttributes
+              $ref: '#/components/schemas/ContentAttributes'
       example:
         id: ac0fd9cfbc4a3d25a01fb8c390d7523b
         userId: a43d25a01f
@@ -416,7 +410,7 @@ components:
       type: array
       description: An array of images.
       items:
-        $ref: images.yaml#/components/schemas/Image
+        $ref: '#/components/schemas/Image'
       example:
         - id: bc4a3d25a01fb8ac0fd9cfc390d7523b
           userId: a43d25a01f
@@ -460,7 +454,7 @@ components:
             createdTime: 2018-06-15T13:46:15Z
   securitySchemes:
     X-Tidepool-Session-Token:
-      $ref: common.yaml#/components/securitySchemes/X-Tidepool-Session-Token
+      $ref: ./common/models/tidepoolsessiontoken.v1.yaml
 paths:
   '/v1/users/{userId}/images/metadata':
     post:
@@ -477,25 +471,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: images.yaml#/components/schemas/Metadata
+              $ref: '#/components/schemas/Metadata'
       responses:
         '201':
           description: Successfully created an image.
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/ImageWithMetadata
+                $ref: '#/components/schemas/ImageWithMetadata'
       security:
         - X-Tidepool-Session-Token: []
       tags:
         - Images
     parameters:
-      - name: userId
-        in: path
-        description: The id of a user.
-        required: true
-        schema:
-          $ref: users.yaml#/components/schemas/UserId
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/v1/users/{userId}/images/content/{contentIntent}':
     post:
       operationId: Create Image (Content)
@@ -515,33 +504,28 @@ paths:
         required: true
         content:
           image/jpeg:
-            $ref: images.yaml#/components/schemas/Content
+            $ref: '#/components/schemas/Content'
           image/png:
-            $ref: images.yaml#/components/schemas/Content
+            $ref: '#/components/schemas/Content'
       responses:
         '201':
           description: Successfully created image with content.
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/ImageWithContent
+                $ref: '#/components/schemas/ImageWithContent'
       security:
         - X-Tidepool-Session-Token: []
       tags:
         - Images
     parameters:
-      - name: userId
-        in: path
-        description: The id of a user.
-        required: true
-        schema:
-          $ref: users.yaml#/components/schemas/UserId
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
       - name: contentIntent
         in: path
         description: The intent of the image content.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ContentIntent
+          $ref: '#/components/schemas/ContentIntent'
   '/v1/users/{userId}/images':
     post:
       operationId: Create Image (MIME)
@@ -573,11 +557,11 @@ paths:
               type: object
               properties:
                 metadata:
-                  $ref: images.yaml#/components/schemas/Metadata
+                  $ref: '#/components/schemas/Metadata'
                 contentIntent:
-                  $ref: images.yaml#/components/schemas/ContentIntent
+                  $ref: '#/components/schemas/ContentIntent'
                 content:
-                  $ref: images.yaml#/components/schemas/Content
+                  $ref: '#/components/schemas/Content'
             encoding:
               metadata:
                 contentType: application/json; charset=utf-8
@@ -591,7 +575,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/Image
+                $ref: '#/components/schemas/Image'
       security:
         - X-Tidepool-Session-Token: []
       tags:
@@ -688,7 +672,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/ImageArray
+                $ref: '#/components/schemas/ImageArray'
       security:
         - X-Tidepool-Session-Token: []
       tags:
@@ -705,12 +689,7 @@ paths:
       tags:
         - Images
     parameters:
-      - name: userId
-        in: path
-        description: The id of a user.
-        required: true
-        schema:
-          $ref: users.yaml#/components/schemas/UserId
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/v1/images/{imageId}':
     delete:
       operationId: Delete Image
@@ -752,7 +731,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/Image
+                $ref: '#/components/schemas/Image'
       security:
         - X-Tidepool-Session-Token: []
       tags:
@@ -763,7 +742,7 @@ paths:
         description: The id of an image.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
   '/v1/images/{imageId}/metadata':
     get:
       operationId: Get Image Metadata
@@ -775,7 +754,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/Metadata
+                $ref: '#/components/schemas/Metadata'
       security:
         - X-Tidepool-Session-Token: []
       tags:
@@ -813,14 +792,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: images.yaml#/components/schemas/Metadata
+              $ref: '#/components/schemas/Metadata'
       responses:
         '200':
           description: Successfully updated the content and content intent for the image.
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/Image
+                $ref: '#/components/schemas/Image'
       security:
         - X-Tidepool-Session-Token: []
       tags:
@@ -831,7 +810,7 @@ paths:
         description: The id of an image.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
   '/v1/images/{imageId}/content':
     get:
       operationId: Get Image Content
@@ -864,7 +843,7 @@ paths:
         description: The id of an image.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
   '/v1/images/{imageId}/content/{suffix}':
     get:
       operationId: Get Image Content (Suffix)
@@ -920,7 +899,7 @@ paths:
         description: The id of an image.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
       - name: suffix
         in: path
         description: >-
@@ -932,6 +911,7 @@ paths:
           must match the format of the image content. If it does not then a `404` error is returned.
 
           The suffix may be specified to enable useful browser downloads.
+        required: true
         schema:
           type: string
   '/v1/images/{imageId}/content/{contentIntent}':
@@ -989,7 +969,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: images.yaml#/components/schemas/Image
+                $ref: '#/components/schemas/Image'
       security:
         - X-Tidepool-Session-Token: []
       tags:
@@ -1000,13 +980,13 @@ paths:
         description: The id of an image.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
       - name: contentIntent
         in: path
         description: The intent of the image content.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ContentIntent
+          $ref: '#/components/schemas/ContentIntent'
   '/v1/images/{imageId}/rendition/{rendition}.{extension}':
     get:
       operationId: Get Image Rendition
@@ -1104,7 +1084,7 @@ paths:
         description: The id of an image.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
       - name: rendition
         in: path
         description: Rendition parameters. See above.
@@ -1160,7 +1140,7 @@ paths:
         description: The id of an image.
         required: true
         schema:
-          $ref: images.yaml#/components/schemas/ImageId
+          $ref: '#/components/schemas/ImageId'
       - name: rendition
         in: path
         description: Rendition parameters. See above.
@@ -1176,6 +1156,7 @@ paths:
           suffix will be used as the requested rendition format. The suffix may be specified to enable sane
 
           browser downloads.
+        required: true
         schema:
           type: string
       - name: extension

@@ -71,7 +71,6 @@ paths:
         '404':
           description: ''
         '500':
-          $ref: ''
           description: ''
       summary: Fetches confirmation key
       operationId: ConfirmKey
@@ -207,8 +206,7 @@ paths:
                 - permissions
               properties:
                 email:
-                  type: string
-                  format: email
+                  $ref: ./common/models/emailaddress.v1.yaml
                 permissions:
                   type: string
       security:
@@ -244,8 +242,7 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-          format: email
+          $ref: ./common/models/emailaddress.v1.yaml
   '/confirm/resend/signup/{email}':
     post:
       responses:
@@ -280,8 +277,7 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-          format: email
+          $ref: ./common/models/emailaddress.v1.yaml
   /confirm/accept/forgot:
     put:
       responses:

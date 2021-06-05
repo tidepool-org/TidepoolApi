@@ -1,0 +1,5 @@
+title: Date/Time without Timezone
+type: string
+format: date-time
+description: RFC3339/ISO8601 timestamp _without_ timezone information
+example: 2017-02-06T02:37:46

@@ -16,13 +16,9 @@ oneOf:
                   - automatic
                   - manual
               from:
-                type: string
-                description: An ISO 8601 formatted timestamp _without_ any timezone offset information
-                format: date-time
+                $ref: ../../common/models/datetimenotz.v1.yaml
               to:
-                type: string
-                description: An ISO 8601 formatted timestamp _without_ any timezone offset information
-                format: date-time
+                $ref: ../../common/models/datetimenotz.v1.yaml
             required:
               - agent
               - from

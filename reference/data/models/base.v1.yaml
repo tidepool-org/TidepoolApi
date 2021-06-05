@@ -29,9 +29,7 @@ properties:
   timezone:
     type: string
   time:
-    type: string
-    format: date-time
-    description: An ISO-8601 string timestamp. Added to each event during data processing in the Tidepool uploader Chrome application.
+    $ref: ../../common/models/datetime.v1.yaml
   tags:
     $ref: ../../common/models/tagarray.v1.yaml
   source:
@@ -47,8 +45,7 @@ properties:
   modifiedUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   modifiedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   location:
     $ref: ../../common/models/location.v1.yaml
   history:
@@ -57,24 +54,20 @@ properties:
     type: string
     description: A string ID. Added to each event during data processing in the Tidepool uploader Chrome application or upon ingestion by the platform data ingestion service.
   deviceTime:
-    type: string
-    format: date-time
-    description: An ISO-8601 string timestamp without timezone offset information. Added to each event during data processing in the Tidepool uploader Chrome application.
+    $ref: ../../common/models/datetimenotz.v1.yaml
   deviceId:
     type: string
-    description: A string ID. An ISO-8601 string timestamp without timezone offset information. Added to each event during data processing in the Tidepool uploader Chrome application.
+    description: A string ID.
   deletedUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   deletedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   deduplicator:
     $ref: './deduplicatordescriptor.v1.yaml'
   createdUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   createdTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   conversionOffset:
     type: integer
   clockDriftOffset:
@@ -83,8 +76,7 @@ properties:
   associations:
     $ref: ../../common/models/associationarray.v1.yaml
   archivedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   archivedDatasetId:
     type: string
   annotations:
