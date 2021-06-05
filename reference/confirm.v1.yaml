@@ -1,0 +1,668 @@
+openapi: 3.0.0
+info:
+  title: Confirm API
+  version: '1.0'
+  termsOfService: https://developer.tidepool.org/terms-of-use/
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  description: Sends notifications to users for things like forgotten passwords, initial
+    signup, and invitations.
+paths:
+  '/confirm/send/signup/{userId}':
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: ''
+        '401':
+          description: ''
+        '403':
+          description: ''
+        '500':
+          description: ''
+      summary: Initiates account confirmation
+      operationId: SendConfirmation
+      tags:
+        - confirm
+      security:
+        - sessionToken: []
+      description: Sends signup confirmation email
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+  '/confirm/signup/{userId}':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/confirmation'
+        '400':
+          description: ''
+        '401':
+          description: ''
+        '404':
+          description: ''
+        '500':
+          $ref: ''
+          description: ''
+      summary: Fetches confirmation key
+      operationId: ConfirmKey
+      tags:
+        - confirm
+      security:
+        - sessionToken: []
+      description: This endpoint is provided for completeness. We don't expect to need it
+        in the actual user flow.
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+    put:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Cancel signup
+      operationId: CancelSignup
+      tags:
+        - confirm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/confirmation-key'
+      description: Cancels the singup
+  '/confirm/accept/signup/{confirmKey}':
+    put:
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: Invalid confirmation key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '409':
+          description: |-
+            - Password is missing or invdalid
+            - Birthday is missing or invalid
+            - Birthday doesn't match patient's birthday
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '500':
+          description: User was not found or couldn't be updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Accepts confirmation key
+      operationId: ConfirmAccount
+      tags:
+        - confirm
+      security:
+        - sessionToken: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/acceptance'
+      description: This would be PUT by the web page at the link in the signup email.
+    parameters:
+      - name: confirmKey
+        in: path
+        required: true
+        schema:
+          type: string
+  '/confirm/send/invite/{userId}':
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/confirmation'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Sends account invite to master account
+      parameters:
+        - in: query
+          name: email
+          schema:
+            type: string
+        - in: query
+          name: permission
+          schema:
+            type: array
+            items:
+              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - permissions
+              properties:
+                email:
+                  type: string
+                  format: email
+                permissions:
+                  type: string
+      security:
+        - sessionToken: []
+      tags:
+        - confirm
+      operationId: SendInvite
+      description: Send a invite to join my team
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+  '/confirm/forgot/{email}':
+    post:
+      responses:
+        '200':
+          description: ''
+        '400':
+          description: Invalid email address
+      summary: Sends password reset email
+      operationId: SendPasswordReset
+      tags:
+        - confirm
+      description: >-
+        If the request is correctly formed, always returns a 200, even if the
+        email address was not found (this way it can't be used to validate email
+        addresses).
+
+
+        If the email address is found in the Tidepool system, this will:
+          - Create a confirm record and a random key
+          - Send an email with a link containing the key
+    parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+          format: email
+  '/confirm/resend/signup/{email}':
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Resends account confirmation email
+      tags:
+        - confirm
+      operationId: ResendSignup
+      description: If a user didn't receive the confirmation email and logs in, they're
+        directed to the confirmation-required page which can offer to resend the
+        confirmation email.
+    parameters:
+      - name: email
+        in: path
+        required: true
+        schema:
+          type: string
+          format: email
+  /confirm/accept/forgot:
+    put:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '400':
+          description: Request body cannot be decoded or the password of the user cannot be
+            updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '401':
+          description: The confirmation has expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '404':
+          description: No matching confirmation has been found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Accept password change
+      operationId: AcceptPasswordChange
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - email
+                - password
+              properties:
+                key:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      tags:
+        - confirm
+      description: >-
+        Accept the password change
+
+
+        This endpoint will be invoked by the lost password screen with the key that was included in the URL of the lost password screen.
+  '/confirm/accept/invite/{userId}/{invitedBy}':
+    put:
+      responses:
+        '200':
+          description: Invite was successfully accepter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Incoming data is incomplete or incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '403':
+          description: There's a mismatch of the user ID's, type or status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Accept invite
+      operationId: AcceptInvite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+      tags:
+        - confirm
+      description: Accept the given invite
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - name: invitedBy
+        in: path
+        required: true
+        schema:
+          type: string
+  '/confirm/invite/{userId}':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/confirmation'
+        '400':
+          description: '- Invalid userId'
+        '401':
+          description: The user doesn't have root or custodian permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Get sent invitations
+      description: >-
+        Get the still-pending invitations for a group you own or are an admin
+        of.
+
+
+        These are the invitations you have sent that have not been accepted. There is no way to tell if an invitation has been ignored.
+      operationId: GetSentInvitations
+      tags:
+        - confirm
+      security:
+        - sessionToken: []
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+  '/confirm/invitations/{userId}':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/confirmation'
+        '400':
+          description: The provided userId is invalid
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Get received invitations
+      operationId: GetReceivedInvitations
+      tags:
+        - confirm
+      security:
+        - sessionToken: []
+      description: Get list of received invitations for logged in user. These are
+        invitations that have been sent to this user but not yet acted upon.
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+  '/confirm/dismiss/invite/{userId}/{invitedBy}':
+    put:
+      responses:
+        '200':
+          description: The invite was successfully dismissed
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: ''
+        '401':
+          description: ''
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Dismiss Invite
+      operationId: DismissInvite
+      tags:
+        - confirm
+      security:
+        - sessionToken: []
+      requestBody:
+        $ref: '#/components/requestBodies/confirmation-lookup'
+      description: Decline the invite
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - in: path
+        name: invitedBy
+        required: true
+        schema:
+          type: string
+  '/confirm/dismiss/signup/{userId}':
+    put:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: |-
+            - Invalid user id
+            - Invalid request body
+            - Invalid confirmation id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '404':
+          description: The confirmation was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Dismiss Signup
+      tags:
+        - confirm
+      description: In the event that someone uses the wrong email address, the receiver
+        could explicitly dismiss a signup
+      requestBody:
+        $ref: '#/components/requestBodies/confirmation-lookup'
+      operationId: DismissSignup
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+  '/confirm/{userId}/invited/{invitedAddress}':
+    put:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+      summary: Cancel Invite
+      operationId: CancelInvite
+      tags:
+        - confirm
+      security:
+        - sessionToken: []
+      description: Cancel an invite the has been sent to an email address.
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - name: invitedAddress
+        in: path
+        required: true
+        schema:
+          type: string
+tags:
+  - name: auth
+  - name: confirm
+servers:
+  - url: https://int-api.tidepool.org/
+components:
+  requestBodies:
+    confirmation-lookup:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/confirmation-lookup'
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      name: x-tidepool-session-token
+      in: header
+  schemas:
+    confirmation:
+      title: Confirmation
+      allOf:
+        - type: object
+          properties:
+            type:
+              type: string
+            email:
+              type: string
+            creatorId:
+              type: string
+            created:
+              type: string
+            creator:
+              $ref: '#/components/schemas/creator'
+          required:
+            - type
+            - email
+            - creatorId
+            - created
+        - $ref: '#/components/schemas/confirmation-key'
+    creator:
+      type: object
+      title: Creator
+      required:
+        - userid
+        - profile
+      properties:
+        userid:
+          type: string
+        profile:
+          $ref: '#/components/schemas/profile'
+    profile:
+      type: object
+      title: Profile
+      required:
+        - fullName
+        - patient
+      properties:
+        fullName:
+          type: string
+        patient:
+          type: string
+    status:
+      type: object
+      title: Status
+      description: A status object which might represent either a successfull or
+        unsuccessful result.
+      required:
+        - code
+        - reason
+      properties:
+        code:
+          type: integer
+          minimum: 100
+        error:
+          type: integer
+        reason:
+          type: string
+    acceptance:
+      type: object
+      title: Acceptance
+      required:
+        - password
+        - birthday
+      properties:
+        password:
+          type: string
+          minLength: 8
+          maxLength: 72
+          pattern: ^\S{8,72}$
+        birthday:
+          type: string
+          format: date
+          pattern: ^\d{4}-\d{2}-\d{2}$
+    confirmation-key:
+      type: object
+      title: ConfirmationKey
+      required:
+        - key
+      properties:
+        key:
+          type: string
+    confirmation-lookup:
+      allOf:
+        - $ref: '#/components/schemas/confirmation-key'
+      title: ConfirmationLookup

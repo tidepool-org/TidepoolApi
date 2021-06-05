@@ -1,0 +1,188 @@
+openapi: 3.0.0
+info:
+  title: Access API
+  version: '1.0'
+  description: Authorization API for Tidepool
+  termsOfService: https://developer.tidepool.org/terms-of-use/
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/gatekeeper/blob/develop/LICENSE
+paths:
+  '/access/groups/{userId}':
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/users-permissions-response'
+        '401':
+          $ref: '#/components/responses/error-response'
+        '404':
+          $ref: '#/components/responses/error-response'
+        '500':
+          $ref: '#/components/responses/error-response'
+      summary: Get groups for user
+      description: Retrieve all groups the user has access to
+      operationId: GetGroupsForUser
+      tags:
+        - authorization
+      security:
+        - sessionToken: []
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+  '/access/{groupId}':
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/users-permissions-response'
+        '401':
+          $ref: '#/components/responses/error-response'
+        '404':
+          $ref: '#/components/responses/error-response'
+        '500':
+          $ref: '#/components/responses/error-response'
+      summary: Get users in group
+      description: Retrieve all users which have access to this group
+      operationId: GetUsersInGroup
+      tags:
+        - authorization
+      security:
+        - sessionToken: []
+    parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+  '/access/{groupId}/{userId}':
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/permissions-response'
+        '401':
+          $ref: '#/components/responses/error-response'
+        '404':
+          $ref: '#/components/responses/error-response'
+        '500':
+          $ref: '#/components/responses/error-response'
+      summary: Get user permissions in group
+      description: Retrieve the set of permissions a user with id `userId` has in group
+        with id `groupId`
+      operationId: GetPermissionsForUser
+      tags:
+        - authorization
+      security:
+        - sessionToken: []
+    parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      responses:
+        '200':
+          $ref: '#/components/responses/permissions-response'
+        '401':
+          $ref: '#/components/responses/error-response'
+        '404':
+          $ref: '#/components/responses/error-response'
+        '500':
+          $ref: '#/components/responses/error-response'
+      summary: Update or insert permissions for user in group
+      description: Update or insert permissions for user with id `userId` in group with id
+        `groupId`
+      operationId: GrantPermissionsInGroup
+      tags:
+        - authorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertPermissions'
+      security:
+        - sessionToken: []
+tags:
+  - name: authorization
+security:
+  - sessionToken: []
+servers:
+  - url: https://int-api.tidepool.org/
+components:
+  responses:
+    permissions-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Permissions'
+    error-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - statusCode
+            properties:
+              statusCode:
+                type: integer
+                minimum: 100
+                maximum: 599
+              message:
+                type: string
+    users-permissions-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/Permissions'
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      name: x-tidepool-session-token
+      in: header
+  schemas:
+    Permissions:
+      type: object
+      description: Tidepool permissions
+      additionalProperties: false
+      title: Permissions
+      properties:
+        root:
+          type: object
+          additionalProperties: false
+        view:
+          type: object
+          additionalProperties: false
+        note:
+          type: object
+          additionalProperties: false
+        upload:
+          type: object
+          additionalProperties: false
+        custodian:
+          type: object
+          additionalProperties: false
+    UpsertPermissions:
+      type: object
+      properties:
+        view:
+          type: object
+        note:
+          type: object
+        upload:
+          type: object

@@ -1,0 +1,741 @@
+openapi: 3.0.0
+info:
+  title: Auth API
+  version: '1.0'
+  termsOfService: https://developer.tidepool.org/terms-of-use/
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/shoreline/platform/blob/master/LICENSE
+paths:
+  /auth/login:
+    post:
+      responses:
+        '200':
+          $ref: '#/components/responses/user-response'
+        '400':
+          $ref: '#/components/responses/400-response'
+        '401':
+          $ref: '#/components/responses/401-response'
+        '403':
+          $ref: '#/components/responses/403-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Login to Tidepool API
+      security:
+        - basic-login: []
+      tags:
+        - auth
+      operationId: Login
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/token-data-response'
+        '401':
+          $ref: '#/components/responses/401-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Refresh session
+      security:
+        - sessionToken: []
+      tags:
+        - auth
+      operationId: RefreshSession
+  /auth/user:
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/user-response'
+        '401':
+          $ref: '#/components/responses/401-response'
+      summary: Get information for logged in user
+      security:
+        - sessionToken: []
+      tags:
+        - auth
+      operationId: CurrentUserInfo
+    post:
+      responses:
+        '201':
+          $ref: '#/components/responses/user-response'
+        '400':
+          $ref: '#/components/responses/400-response'
+        '409':
+          $ref: '#/components/responses/409-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Create a user
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+        x-examples: {}
+      operationId: CreateUser
+    put:
+      responses:
+        '200':
+          $ref: '#/components/responses/user-response'
+        '400':
+          $ref: '#/components/responses/400-response'
+        '409':
+          $ref: '#/components/responses/409-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Update details of the logged in user
+      security:
+        - sessionToken: []
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                emailVerified:
+                  type: boolean
+                  description: Whether the `User` has been verified by e-mail
+                emails:
+                  type: array
+                  uniqueItems: true
+                  items:
+                    anyOf:
+                      - format: email
+                    type: string
+                termsAccepted:
+                  type: string
+                  format: date-time
+                userid:
+                  $ref: ./common.oas2.yml#/definitions/user-id
+                username:
+                  type: string
+                  format: email
+                roles:
+                  type: array
+                  uniqueItems: true
+                  items:
+                    anyOf:
+                      - enum:
+                          - clinic
+                    type: string
+                createdTime:
+                  type: string
+                  format: date-time
+                createdUserId:
+                  $ref: ./common.oas2.yml#/definitions/user-id
+                modifiedTime:
+                  type: string
+                  format: date-time
+                modifiedUserId:
+                  $ref: ./common.oas2.yml#/definitions/user-id
+                deletedTime:
+                  type: string
+                  format: date-time
+                deletedUserId:
+                  $ref: ./common.oas2.yml#/definitions/user-id
+              required:
+                - emailVerified
+      operationId: UpdateCurrentUser
+  /auth/status:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Service status
+      tags:
+        - auth
+      operationId: Status
+  /auth/users:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/401-response'
+        '401':
+          $ref: '#/components/responses/401-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Get users
+      security:
+        - sessionToken: []
+      description: A server-to-server API call to get users of a specific role
+      parameters:
+        - in: query
+          name: role
+          required: true
+          schema:
+            type: string
+            enum:
+              - clinic
+        - in: query
+          name: id
+          schema:
+            type: array
+            items:
+              type: string
+            minItems: 1
+            maxItems: 200
+            uniqueItems: true
+      tags:
+        - auth
+      operationId: GetUsers
+  '/auth/user/{userId}':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '401':
+          $ref: '#/components/responses/401-response'
+      summary: Get user information
+      security:
+        - sessionToken: []
+      tags:
+        - auth
+      operationId: UserInfo
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+    put:
+      responses:
+        '200':
+          $ref: '#/components/responses/user-response'
+        '400':
+          $ref: '#/components/responses/400-response'
+        '409':
+          $ref: '#/components/responses/409-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Update user
+      security:
+        - sessionToken: []
+      tags:
+        - auth
+      operationId: UpdateUser
+    delete:
+      responses:
+        '202':
+          description: ''
+        '401':
+          description: ''
+        '403':
+          $ref: '#/components/responses/403-response'
+        '500':
+          description: ''
+      summary: Delete user
+      security:
+        - sessionToken: []
+      tags:
+        - auth
+      operationId: DeleteUser
+  '/auth/user/{userId}/user':
+    post:
+      responses:
+        '201':
+          $ref: '#/components/responses/user-response'
+        '401':
+          $ref: '#/components/responses/401-response'
+        '409':
+          $ref: '#/components/responses/409-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Create custodial user
+      security:
+        - sessionToken: []
+      tags:
+        - auth
+      operationId: CreateCustodialUser
+    parameters:
+      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+  '/auth/login/{longtermkey}':
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Login with a long term key
+      x-private: true
+      tags: []
+      operationId: LongTermLogin
+      description: ''
+    parameters:
+      - name: longtermkey
+        in: path
+        required: true
+        schema:
+          type: string
+  /auth/oauthlogin:
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: ''
+        '401':
+          description: ''
+        '403':
+          description: ''
+      summary: OAuth2 login
+      tags: []
+      x-private: true
+  /auth/serverlogin:
+    post:
+      responses:
+        '200':
+          description: ''
+          headers:
+            x-tidepool-session-token:
+              schema:
+                type: string
+                pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
+          content:
+            application/json:
+              schema: {}
+        '400':
+          $ref: '#/components/responses/400-response'
+        '401':
+          $ref: '#/components/responses/401-response'
+        '500':
+          $ref: '#/components/responses/500-response'
+      summary: Server to server login
+      x-private: true
+      tags: []
+      operationId: ServerLogin
+      description: ''
+      parameters:
+        - in: header
+          name: x-tidepool-server-name
+          schema:
+            type: string
+      security:
+        - serverSecret: []
+  '/auth/token/{token}':
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/token-data-response'
+      summary: Check token
+      tags:
+        - auth
+      security:
+        - sessionToken: []
+      operationId: CheckToken
+      x-private: true
+    parameters:
+      - name: token
+        in: path
+        required: true
+        schema:
+          type: string
+  /auth/logout:
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Logout
+      tags:
+        - auth
+      operationId: Logout
+  /auth/private:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Anonymous ID hash pair
+      x-private: true
+      tags: []
+  /auth/oauth2/signup:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: OAuth2 Signup page
+      tags: []
+      x-private: true
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: New OAuth2 signup
+      tags: []
+      x-private: true
+  /auth/oauth2/authorize:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: OAuth2 authorize GET
+      tags: []
+      x-private: true
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: OAuth2 authorize POST
+      tags: []
+      x-private: true
+  /auth/oauth2/token:
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Get OAuth2 token
+      tags: []
+      x-private: true
+  /auth/oauth2/info:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: OAuth info
+      tags: []
+      x-private: true
+  /auth/oauth2/revoke:
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Revoke Refresh Token
+      tags: []
+      x-private: true
+tags:
+  - name: auth
+  - name: incomplete
+servers:
+  - url: https://int-api.tidepool.org/
+components:
+  parameters:
+    sessionToken:
+      name: x-tidepool-session-token
+      in: header
+      schema:
+        type: string
+        pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
+  responses:
+    user-response:
+      description: ''
+      headers:
+        x-tidepool-session-token:
+          schema:
+            type: string
+            pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+    401-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Status'
+              - type: object
+                properties:
+                  code:
+                    type: integer
+                    enum:
+                      - 401
+                  reason:
+                    type: string
+                    enum:
+                      - No user matched the given details
+                      - A server token is required
+                      - Not authorized for requested operation
+                      - Wrong password
+                      - No x-tidepool-session-token was found
+                required:
+                  - code
+                  - reason
+    400-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Status'
+              - type: object
+                properties:
+                  code:
+                    type: integer
+                    enum:
+                      - 400
+                  reason:
+                    type: string
+                    enum:
+                      - The role specified is invalid
+                      - Not all required details were given
+                      - Invalid user details were given
+                      - Missing id and/or password
+                required:
+                  - code
+                  - reason
+    403-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Status'
+              - type: object
+                properties:
+                  code:
+                    type: integer
+                    enum:
+                      - 403
+                  reason:
+                    type: string
+                    enum:
+                      - The user hasn't verified this account yet
+                required:
+                  - code
+                  - reason
+    409-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Status'
+              - type: object
+                properties:
+                  code:
+                    type: integer
+                    enum:
+                      - 409
+                  reason:
+                    type: string
+                    enum:
+                      - User already exists
+                required:
+                  - code
+                  - reason
+    500-response:
+      description: ''
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Status'
+              - type: object
+                properties:
+                  code:
+                    type: integer
+                    enum:
+                      - 500
+                  reason:
+                    type: string
+                    enum:
+                      - Error finding user
+                      - Error generating the token
+                      - Error updating user
+                      - Error updating token
+                required:
+                  - code
+                  - reason
+    token-data-response:
+      description: ''
+      headers:
+        x-tidepool-session-token:
+          schema:
+            type: string
+            pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TokenData'
+  securitySchemes:
+    basic-login:
+      type: http
+      scheme: basic
+    sessionToken:
+      type: apiKey
+      name: x-tidepool-session-token
+      in: header
+    serverSecret:
+      type: apiKey
+      name: x-tidepool-server-secret
+      in: header
+  schemas:
+    User:
+      type: object
+      properties:
+        emailVerified:
+          type: boolean
+          description: Whether the `User` has been verified by e-mail
+        emails:
+          type: array
+          uniqueItems: true
+          items:
+            anyOf:
+              - format: email
+            type: string
+        termsAccepted:
+          type: string
+          format: date-time
+        userid:
+          $ref: ./common.oas2.yml#/definitions/user-id
+        username:
+          type: string
+          format: email
+        roles:
+          type: array
+          uniqueItems: true
+          items:
+            anyOf:
+              - enum:
+                  - clinic
+            type: string
+        createdTime:
+          type: string
+          format: date-time
+        createdUserId:
+          $ref: ./common.oas2.yml#/definitions/user-id
+        modifiedTime:
+          type: string
+          format: date-time
+        modifiedUserId:
+          $ref: ./common.oas2.yml#/definitions/user-id
+        deletedTime:
+          type: string
+          format: date-time
+        deletedUserId:
+          $ref: ./common.oas2.yml#/definitions/user-id
+      required:
+        - emailVerified
+    Status:
+      type: object
+      title: Status
+      description: The status return from an HTTP request
+      properties:
+        code:
+          type: integer
+          enum:
+            - 400
+            - 401
+            - 403
+            - 409
+            - 500
+          description: The HTTP status code
+        reason:
+          type: string
+          description: Human readable `reason` for the resulting `code`
+        error:
+          type: integer
+          minimum: 0
+          description: Internal `error` code.
+      required:
+        - code
+        - reason
+    TokenData:
+      type: object
+      properties:
+        userid:
+          $ref: ./common.oas2.yml#/definitions/user-id
+        isserver:
+          type: boolean
+          description: The token is a `server` (server-to-server) token.
+      required:
+        - userid
+        - isserver
+    NewUser:
+      type: object
+      properties:
+        username:
+          type: string
+          format: email
+        emails:
+          type: array
+          uniqueItems: true
+          items:
+            anyOf:
+              - format: email
+            type: string
+        password:
+          type: string
+          format: password
+        roles:
+          type: array
+          uniqueItems: true
+          items:
+            anyOf:
+              - enum:
+                  - clinic
+            type: string
+      required:
+        - username
+        - emails
+        - password
