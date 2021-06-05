@@ -1,0 +1,6 @@
+name: x-tidepool-session-token
+in: header
+required: true
+description: Tidepool Session Token
+schema:
+  $ref: ../models/tidepoolsessiontoken.v1.yaml

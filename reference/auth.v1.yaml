@@ -125,7 +125,7 @@ paths:
                   type: string
                   format: date-time
                 userid:
-                  $ref: ./common.oas2.yml#/definitions/user-id
+                  $ref: ./common/models/tidepooluserid.v1.yaml
                 username:
                   type: string
                   format: email
@@ -141,17 +141,17 @@ paths:
                   type: string
                   format: date-time
                 createdUserId:
-                  $ref: ./common.oas2.yml#/definitions/user-id
+                  $ref: ./common/models/tidepooluserid.v1.yaml
                 modifiedTime:
                   type: string
                   format: date-time
                 modifiedUserId:
-                  $ref: ./common.oas2.yml#/definitions/user-id
+                  $ref: ./common/models/tidepooluserid.v1.yaml
                 deletedTime:
                   type: string
                   format: date-time
                 deletedUserId:
-                  $ref: ./common.oas2.yml#/definitions/user-id
+                  $ref: ./common/models/tidepooluserid.v1.yaml
               required:
                 - emailVerified
       operationId: UpdateCurrentUser
@@ -211,6 +211,8 @@ paths:
         - auth
       operationId: GetUsers
   '/auth/user/{userId}':
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
     get:
       responses:
         '200':
@@ -228,8 +230,6 @@ paths:
       tags:
         - auth
       operationId: UserInfo
-    parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
     put:
       responses:
         '200':
@@ -263,6 +263,8 @@ paths:
         - auth
       operationId: DeleteUser
   '/auth/user/{userId}/user':
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
     post:
       responses:
         '201':
@@ -279,8 +281,6 @@ paths:
       tags:
         - auth
       operationId: CreateCustodialUser
-    parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
   '/auth/login/{longtermkey}':
     post:
       responses:
@@ -658,7 +658,7 @@ components:
           type: string
           format: date-time
         userid:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         username:
           type: string
           format: email
@@ -674,17 +674,17 @@ components:
           type: string
           format: date-time
         createdUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         modifiedTime:
           type: string
           format: date-time
         modifiedUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         deletedTime:
           type: string
           format: date-time
         deletedUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
       required:
         - emailVerified
     Status:
@@ -715,7 +715,7 @@ components:
       type: object
       properties:
         userid:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         isserver:
           type: boolean
           description: The token is a `server` (server-to-server) token.

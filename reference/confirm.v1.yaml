@@ -52,7 +52,7 @@ paths:
         - sessionToken: []
       description: Sends signup confirmation email
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/confirm/signup/{userId}':
     get:
       responses:
@@ -82,7 +82,7 @@ paths:
       description: This endpoint is provided for completeness. We don't expect to need it
         in the actual user flow.
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
     put:
       responses:
         '200':
@@ -218,7 +218,7 @@ paths:
       operationId: SendInvite
       description: Send a invite to join my team
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/confirm/forgot/{email}':
     post:
       responses:
@@ -385,7 +385,7 @@ paths:
         - confirm
       description: Accept the given invite
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
       - name: invitedBy
         in: path
         required: true
@@ -429,7 +429,7 @@ paths:
       security:
         - sessionToken: []
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/confirm/invitations/{userId}':
     get:
       responses:
@@ -458,7 +458,7 @@ paths:
       description: Get list of received invitations for logged in user. These are
         invitations that have been sent to this user but not yet acted upon.
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/confirm/dismiss/invite/{userId}/{invitedBy}':
     put:
       responses:
@@ -494,7 +494,7 @@ paths:
         $ref: '#/components/requestBodies/confirmation-lookup'
       description: Decline the invite
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
       - in: path
         name: invitedBy
         required: true
@@ -534,7 +534,7 @@ paths:
         $ref: '#/components/requestBodies/confirmation-lookup'
       operationId: DismissSignup
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/confirm/{userId}/invited/{invitedAddress}':
     put:
       responses:
@@ -571,7 +571,7 @@ paths:
         - sessionToken: []
       description: Cancel an invite the has been sent to an email address.
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
       - name: invitedAddress
         in: path
         required: true

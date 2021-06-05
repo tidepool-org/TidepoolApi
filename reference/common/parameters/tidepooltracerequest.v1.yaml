@@ -1,0 +1,12 @@
+name: x-tidepool-trace-request
+in: header
+required: false
+description: >-
+  An optional, unique identifier specified by the client automatically
+  associated with all server logging occurring during the request.
+
+  If not specified, then a new identifier is generated and returned in the matching response header.
+schema:
+  type: string
+  minLength: 1
+  maxLength: 64

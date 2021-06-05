@@ -71,11 +71,7 @@ paths:
                 interstitialSignal: 25.22
       description: Import JSON data to a user's data set
     parameters:
-      - name: dataSetId
-        in: path
-        required: true
-        schema:
-          type: string
+      - $ref: ./data/parameters/datasetid.v1.yaml
   '/v1/datasets/{dataSetId}':
     delete:
       responses:
@@ -94,11 +90,7 @@ paths:
         - sessionToken: []
       description: Deletes entire dataset described by the dataSetId
     parameters:
-      - name: dataSetId
-        in: path
-        required: true
-        schema:
-          type: string
+      - $ref: ./data/parameters/datasetid.v1.yaml
     put:
       responses:
         '200':
@@ -142,7 +134,7 @@ paths:
         - data
       description: Gets data sets for a user account specified by the userId
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
     post:
       responses:
         '200':
@@ -208,7 +200,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: ./common.oas2.yml#/definitions/StatusAndData
+                  - $ref: ./platform/models/statusanddataresponse.v1.yaml
                   - type: object
                     properties:
                       data:
@@ -240,8 +232,8 @@ paths:
         - sessionToken: []
       description: Delete all data for user
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
-      - $ref: ./common.oas2.yml#/components/parameters/tidepool-session-token
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: ./common/parameters/tidepoolsessiontoken.v1.yaml
   '/v1/data_sets/{dataSetId}/data':
     delete:
       responses:
@@ -260,11 +252,7 @@ paths:
         - sessionToken: []
       description: Delete data from data set
     parameters:
-      - name: dataSetId
-        in: path
-        required: true
-        schema:
-          type: string
+      - $ref: ./data/parameters/datasetid.v1.yaml
   /dataservices/status:
     get:
       responses:
@@ -274,7 +262,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: ./common.oas2.yml#/definitions/StatusAndData
+                  - $ref: ./platform/models/statusanddataresponse.v1.yaml
                   - type: object
                     properties:
                       data:
@@ -445,7 +433,7 @@ paths:
       description: Get data for the specified `userId`. Can specify what data type to pull,
         start date and end date.
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
 tags:
   - name: data
 components:
@@ -478,7 +466,7 @@ components:
           items:
             type: object
         byUser:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         client:
           type: object
           properties:
@@ -499,7 +487,7 @@ components:
           type: string
           format: date-time
         createdUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         dataSetType:
           type: string
           enum:
@@ -511,7 +499,7 @@ components:
           type: string
           format: date-time
         deletedUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         deviceId:
           type: string
         deviceManufacturers:
@@ -542,9 +530,9 @@ components:
           type: string
           format: date-time
         modifiedUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         payload:
-          $ref: ./common.oas2.yml#/definitions/Payload
+          $ref: ./common/models/payload.v1.yaml
         source:
           type: string
         time:
@@ -574,7 +562,7 @@ components:
         - type: object
           properties:
             byUser:
-              $ref: ./common.oas2.yml#/definitions/user-id
+              $ref: ./common/models/tidepooluserid.v1.yaml
             client:
               type: object
               properties:
@@ -687,14 +675,14 @@ components:
       title: Base (Abstract)
       properties:
         annotations:
-          $ref: ./common.oas2.yml#/definitions/AnnotationArray
+          $ref: ./common/models/annotationarray.v1.yaml
         archivedDatasetId:
           type: string
         archivedTime:
           type: string
           format: date-time
         associations:
-          $ref: ./common.oas2.yml#/definitions/AssociationArray
+          $ref: ./common/models/associationarray.v1.yaml
         clockDriftOffset:
           type: integer
           description: '(OPTIONAL) An integer value representing milliseconds. '
@@ -704,14 +692,14 @@ components:
           type: string
           format: date-time
         createdUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         deduplicator:
           $ref: '#/components/schemas/DeduplicatorDescriptor'
         deletedTime:
           type: string
           format: date-time
         deletedUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         deviceId:
           type: string
           description: A string ID. An ISO-8601 string timestamp without timezone offset
@@ -733,24 +721,24 @@ components:
         id:
           type: string
         location:
-          $ref: ./common.oas2.yml#/definitions/Location
+          $ref: ./common/models/location.v1.yaml
         modifiedTime:
           type: string
           format: date-time
         modifiedUserId:
-          $ref: ./common.oas2.yml#/definitions/user-id
+          $ref: ./common/models/tidepooluserid.v1.yaml
         notes:
           type: array
           items:
             type: object
         origin:
-          $ref: ./common.oas2.yml#/definitions/Origin
+          $ref: ./common/models/origin.v1.yaml
         payload:
-          $ref: ./common.oas2.yml#/definitions/Payload
+          $ref: ./common/models/payload.v1.yaml
         source:
           type: string
         tags:
-          $ref: ./common.oas2.yml#/definitions/TagArray
+          $ref: ./common/models/tagarray.v1.yaml
         time:
           type: string
           format: date-time
@@ -2739,7 +2727,7 @@ components:
             type: string
             format: date-time
           changes:
-            $ref: ./common.oas2.yml#/definitions/JSONPatch
+            $ref: ./common/models/jsonpatch.v1.yaml
         required:
           - time
           - changes

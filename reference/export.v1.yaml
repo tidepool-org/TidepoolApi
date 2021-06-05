@@ -65,7 +65,7 @@ paths:
           description: ''
       summary: Get export for user
       parameters:
-        - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+        - $ref: ./common/parameters/tidepooluserid.v1.yaml
         - in: query
           name: startDate
           schema:
@@ -98,7 +98,7 @@ paths:
       operationId: ExportUser
       x-private: true
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
 components:
   securitySchemes:
     tidepool-session-token:

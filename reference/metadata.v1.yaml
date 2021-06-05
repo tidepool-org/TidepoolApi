@@ -35,11 +35,7 @@ paths:
       security:
         - sessionToken: []
     parameters:
-      - name: userId
-        in: path
-        required: true
-        schema:
-          type: string
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
   '/metadata/{userId}/profile':
     put:
       responses:
@@ -63,7 +59,7 @@ paths:
       tags:
         - metadata
     parameters:
-      - $ref: ./common.oas2.yml#/components/parameters/tp-userid-param
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
 tags:
   - name: metadata
 components:
