@@ -1,0 +1,59 @@
+swagger: '2.0'
+info:
+  title: Metadata API
+  version: '1.0'
+host: int-api.tidepool.org
+paths:
+  '/metadata/users/{userId}/users':
+    get:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: List Users
+      tags:
+        - metadata
+      security:
+        - sessionToken: []
+    parameters:
+      - name: userId
+        in: path
+        type: string
+        required: true
+  '/metadata/{userId}/profile':
+    put:
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties: {}
+      summary: Update Account
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties: {}
+      security:
+        - sessionToken: []
+      operationId: UpdateAccount
+      tags:
+        - metadata
+    parameters:
+      - $ref: './common.oas2.yml#/parameters/tp-userid-param'
+tags:
+  - name: metadata
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  sessionToken:
+    type: apiKey
+    name: x-tidepool-session-token
+    in: header

@@ -1,0 +1,185 @@
+swagger: '2.0'
+info:
+  title: Access API
+  version: '1.0'
+  description: Authorization API for Tidepool
+  termsOfService: 'https://developer.tidepool.org/terms-of-use/'
+  contact:
+    name: API Support
+    url: 'https://support.tidepool.org/'
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: 'https://github.com/tidepool-org/gatekeeper/blob/develop/LICENSE'
+host: int-api.tidepool.org
+paths:
+  '/access/groups/{userId}':
+    get:
+      responses:
+        '200':
+          $ref: '#/responses/users-permissions-response'
+        '401':
+          $ref: '#/responses/error-response'
+        '404':
+          $ref: '#/responses/error-response'
+        '500':
+          $ref: '#/responses/error-response'
+      summary: Get groups for user
+      description: Retrieve all groups the user has access to
+      operationId: GetGroupsForUser
+      tags:
+        - authorization
+      security:
+        - sessionToken: []
+    parameters:
+      - name: userId
+        in: path
+        type: string
+        required: true
+  '/access/{groupId}':
+    get:
+      responses:
+        '200':
+          $ref: '#/responses/users-permissions-response'
+        '401':
+          $ref: '#/responses/error-response'
+        '404':
+          $ref: '#/responses/error-response'
+        '500':
+          $ref: '#/responses/error-response'
+      summary: Get users in group
+      description: Retrieve all users which have access to this group
+      operationId: GetUsersInGroup
+      tags:
+        - authorization
+      security:
+        - sessionToken: []
+    parameters:
+      - name: groupId
+        in: path
+        type: string
+        required: true
+  '/access/{groupId}/{userId}':
+    get:
+      responses:
+        '200':
+          $ref: '#/responses/permissions-response'
+        '401':
+          $ref: '#/responses/error-response'
+        '404':
+          $ref: '#/responses/error-response'
+        '500':
+          $ref: '#/responses/error-response'
+      summary: Get user permissions in group
+      description: >-
+        Retrieve the set of permissions a user with id `userId` has in group
+        with id `groupId`
+      operationId: GetPermissionsForUser
+      tags:
+        - authorization
+      security:
+        - sessionToken: []
+    parameters:
+      - name: groupId
+        in: path
+        type: string
+        required: true
+      - name: userId
+        in: path
+        type: string
+        required: true
+    post:
+      responses:
+        '200':
+          $ref: '#/responses/permissions-response'
+        '401':
+          $ref: '#/responses/error-response'
+        '404':
+          $ref: '#/responses/error-response'
+        '500':
+          $ref: '#/responses/error-response'
+      summary: Update or insert permissions for user in group
+      description: >-
+        Update or insert permissions for user with id `userId` in group with id
+        `groupId`
+      operationId: GrantPermissionsInGroup
+      tags:
+        - authorization
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/UpsertPermissions'
+      security:
+        - sessionToken: []
+definitions:
+  Permissions:
+    type: object
+    description: Tidepool permissions
+    additionalProperties: false
+    title: Permissions
+    properties:
+      root:
+        type: object
+        additionalProperties: false
+      view:
+        type: object
+        additionalProperties: false
+      note:
+        type: object
+        additionalProperties: false
+      upload:
+        type: object
+        additionalProperties: false
+      custodian:
+        type: object
+        additionalProperties: false
+  UpsertPermissions:
+    type: object
+    properties:
+      view:
+        type: object
+      note:
+        type: object
+      upload:
+        type: object
+schemes:
+  - https
+tags:
+  - name: authorization
+securityDefinitions:
+  sessionToken:
+    type: apiKey
+    name: x-tidepool-session-token
+    in: header
+consumes:
+  - application/json
+produces:
+  - application/json
+security:
+  - sessionToken: []
+basePath: /
+responses:
+  permissions-response:
+    description: ''
+    schema:
+      $ref: '#/definitions/Permissions'
+  error-response:
+    description: ''
+    schema:
+      type: object
+      required:
+        - statusCode
+      properties:
+        statusCode:
+          type: integer
+          minimum: 100
+          maximum: 599
+        message:
+          type: string
+  users-permissions-response:
+    description: ''
+    schema:
+      type: object
+      additionalProperties:
+        $ref: '#/definitions/Permissions'

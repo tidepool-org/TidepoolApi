@@ -1,0 +1,6 @@
+swagger: '2.0'
+info:
+  title: Blob API
+  version: '1.0'
+host: example.com
+paths: {}
