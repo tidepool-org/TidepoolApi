@@ -7,18 +7,15 @@ properties:
   deletedUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   deletedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   modifiedUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   modifiedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   createdUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   createdTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   roles:
     type: array
     enum:
@@ -32,8 +29,7 @@ properties:
   userid:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   termsAccepted:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   emails:
     type: array
     uniqueItems: true

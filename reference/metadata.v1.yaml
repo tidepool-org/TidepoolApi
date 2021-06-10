@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Metadata API
+  version: '1.0'
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+servers:
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+paths:
+  '/metadata/users/{userId}/users':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: List Users
+      tags:
+        - metadata
+      security:
+        - sessionToken: []
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+  '/metadata/{userId}/profile':
+    put:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Update Account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      security:
+        - sessionToken: []
+      operationId: UpdateAccount
+      tags:
+        - metadata
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+tags:
+  - name: metadata
+components:
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      name: x-tidepool-session-token
+      in: header

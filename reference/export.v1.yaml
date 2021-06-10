@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: Export Service API
+  version: '1.0'
+  termsOfService: https://developer.tidepool.org/terms-of-use/
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/export/blob/master/LICENSE
+  contact:
+    name: Tidepool Api Support
+    url: https://support.tidepool.org
+    email: support@tidepool.org
+servers:
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+paths:
+  /export/status:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/status'
+              examples:
+                response:
+                  value:
+                    uptime: 532641.68
+      summary: Get service status
+      operationId: Status
+      x-private: true
+  '/export/{userId}':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: ./data/models/dataarray.v1.yaml
+                  - type: string
+                    format: binary
+                    description: An Excel spreadsheet
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                oneOf:
+                  - $ref: ./data/models/dataarray.v1.yaml
+                  - type: string
+                    format: binary
+                    description: An Excel spreadsheet
+        '401':
+          description: ''
+      summary: Get export for user
+      parameters:
+        - $ref: ./common/parameters/tidepooluserid.v1.yaml
+        - in: query
+          name: startDate
+          schema:
+            $ref: ./common/models/datetime.v1.yaml
+        - in: query
+          name: endDate
+          schema:
+            $ref: ./common/models/datetime.v1.yaml
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - xlsx
+            default: xlsx
+        - in: query
+          name: bgUnits
+          schema:
+            type: string
+            enum:
+              - mmol/L
+              - mg/dL
+            default: mmol/L
+      security:
+        - tidepool-session-token: []
+        - tidepool-restricted-token: []
+      operationId: ExportUser
+      x-private: true
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+components:
+  securitySchemes:
+    tidepool-session-token:
+      type: apiKey
+      name: x-tidepool-session-token
+      in: header
+    tidepool-restricted-token:
+      type: apiKey
+      name: restricted_token
+      in: query
+  schemas:
+    status:
+      type: object
+      properties:
+        uptime:
+          type: number
+          minimum: 0

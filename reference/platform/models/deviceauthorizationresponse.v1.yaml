@@ -15,14 +15,11 @@ properties:
   devicePushToken:
     $ref: ./devicepushtoken.v1.yaml
   createdTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   expirationTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   modifiedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   bundleId:
     type: string
     enum:

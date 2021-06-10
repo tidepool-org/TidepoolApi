@@ -1,0 +1,6 @@
+title: MediaType
+description: The media type of an image.
+enum:
+  - image/jpeg
+  - image/png
+example: 'image/jpeg'

@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: Task API
+  version: '1.0'
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+paths: {}
+servers:
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production

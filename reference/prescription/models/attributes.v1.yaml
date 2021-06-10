@@ -3,8 +3,7 @@ allOf:
   - type: object
     properties:
       createdTime:
-        type: string
-        format: date-time
+        $ref: ../../common/models/datetime.v1.yaml
       createdUserId:
         $ref: ../../common/models/tidepooluserid.v1.yaml
 title: Revision Attributes

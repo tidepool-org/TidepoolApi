@@ -1,3 +1,5 @@
 type: string
 title: Tidepool Session Token
 pattern: "^[a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"
+readOnly: true
+example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcGkudGlkZXBvb2wub3JnIiwiZHVyIjoydfsdjfhgsajhfggdsjE2MjU0NTQyNTYsImlhdCI6MTYyMjg2MjI1NiwiaXNzIjoiYXBpLnRpZGVwb29sLm9yZyIsInN1YiI6ImQ0MjA2ZDI2YTYiLCJzdnIiOiJubyIsInVzciI6ImQ0MjA2ZDI2YTYifQ.v-Xdf-EkdnZdhdoVJ5prurhxq8iFHbENh0jF_q4MIm9ZYLFiujodqdIP_zHmPSVgAnPhzPRoZeAyKtJoy1WedzEBfn4pTcBenHMiKfxelJRp9bzz0XsbP3Xh8b0SCf8eW2RPVwKBs1Ne6aybuyfFL6eX9-VWtHjVIQ_WBOYFMamAp2CB_cz1hHhDRaNakQhmBBEJzWwd4mS25tCkjb2NknJ-3ANZriEkkhVOYLGwyqSlhTdNyRrQnHUOYkCLC1PlEPB83ztbuxlpJtZ1y3McStySXioFeG6aSkh8LBUQcQT3Xuhyi0Y-qoj8YCTOE6wdXJUADl9zsBpOSRq_wZ9bIg

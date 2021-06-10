@@ -22,8 +22,7 @@ properties:
       - none
       - utc-bootstrapping
   time:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   source:
     type: string
   payload:
@@ -31,13 +30,11 @@ properties:
   modifiedUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   modifiedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   guid:
     type: string
   deviceTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   deviceTags:
     type: array
     items:
@@ -60,8 +57,7 @@ properties:
   deletedUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   deletedTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   deduplicator:
     $ref: ./deduplicatordescriptor.v1.yaml
   dataSetType:
@@ -72,13 +68,11 @@ properties:
   createdUserId:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   createdTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   conversionOffset:
     type: integer
   computerTime:
-    type: string
-    format: date-time
+    $ref: ../../common/models/datetime.v1.yaml
   clockDriftOffset:
     type: integer
   client:

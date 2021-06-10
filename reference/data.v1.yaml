@@ -1,0 +1,441 @@
+openapi: 3.0.0
+info:
+  title: Data Service API (preliminary)
+  version: '1.0'
+  termsOfService: https://developer.tidepool.org/terms-of-use/
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+  description: Data Service manages diabetes data in Tidepool Platform.
+servers:
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+paths:
+  '/v1/datasets/{dataSetId}/data':
+    post:
+      tags:
+        - data
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ./data/models/dataarray.v1.yaml
+      summary: Upload Data to Data Set
+      operationId: UploadData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ./data/models/data.v1.yaml
+        x-examples:
+          application/json:
+            - time: 2017-02-05T13:26:51.000Z
+              timezoneOffset: 660
+              clockDriftOffset: 0
+              conversionOffset: 0
+              deviceTime: 2017-02-06T00:26:51
+              deviceId: MMT-1711:12345678
+              type: cbg
+              value: 119
+              units: mg/dL
+              payload:
+                interstitialSignal: 24.98
+            - time: 2017-02-05T13:31:51.000Z
+              timezoneOffset: 660
+              clockDriftOffset: 0
+              conversionOffset: 0
+              deviceTime: 2017-02-06T00:31:51
+              deviceId: MMT-1711:12345678
+              type: cbg
+              value: 120
+              units: mg/dL
+              payload:
+                interstitialSignal: 25.22
+      description: Import JSON data to a user's data set
+    parameters:
+      - $ref: ./data/parameters/datasetid.v1.yaml
+  '/v1/datasets/{dataSetId}':
+    delete:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Delete Data Set
+      operationId: DeleteDataset
+      tags:
+        - data
+      security:
+        - sessionToken: []
+      description: Deletes entire dataset described by the dataSetId
+    parameters:
+      - $ref: ./data/parameters/datasetid.v1.yaml
+    put:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Update Data Set
+      operationId: UpdateDataset
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      security:
+        - sessionToken: []
+      description: Update data set
+  '/v1/users/{userId}/datasets':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: ./data/models/dataset.v1.yaml
+      summary: Get Data Sets for User
+      security:
+        - sessionToken: []
+      operationId: GetDataset
+      tags:
+        - data
+      description: Gets data sets for a user account specified by the userId
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ./data/models/dataset.v1.yaml
+              examples:
+                response:
+                  value:
+                    data:
+                      createdTime: 2017-02-06T02:37:46Z
+                      createdUserId: 
+                      type: upload
+                      uploadId: 
+                    meta:
+                      trace:
+                        request: ' '
+      summary: Create Data Set for User
+      operationId: CreateDataset
+      tags:
+        - data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./data/models/dataset.v1.yaml
+        x-examples:
+          application/json:
+            type: upload
+            client:
+              name: com.devicecorp.tidepooluploader
+              version: 0.100.0
+            dataSetType: normal
+            deduplicator:
+              name: org.tidepool.deduplicator.device.deactivate.hash
+            deviceManufacturers:
+              - DeviceCorp
+            deviceModel: Devicey McDeviceface
+            deviceSerialNumber: B97B6D59
+            deviceTags:
+              - bgm
+              - cgm
+              - insulin-pump
+            timeProcessing: none
+            timezone: Europe/London
+            clockDriftOffset: 0
+            conversionOffset: 0
+            deviceId: DevId0987654321
+            deviceTime: 2016-06-27T18:09:55
+            time: 2016-06-28T01:09:55.132Z
+            timezoneOffset: -420
+      security:
+        - sessionToken: []
+      description: Create data set for user
+  /dataservices/v1/time:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ./platform/models/statusanddataresponse.v1.yaml
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          time:
+                            $ref: ./common/models/datetime.v1.yaml
+      summary: Get server time
+      operationId: ServerTime
+      tags:
+        - data
+      description: Get server time
+  '/v1/users/{userId}/data':
+    delete:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Delete all data for User
+      tags:
+        - data
+      operationId: DeleteUserData
+      security:
+        - sessionToken: []
+      description: Delete all data for user
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: ./common/parameters/tidepoolsessiontoken.v1.yaml
+  '/v1/data_sets/{dataSetId}/data':
+    delete:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Delete data from Data Set
+      operationId: DeleteDatasetData
+      tags:
+        - data
+      security:
+        - sessionToken: []
+      description: Delete data from data set
+    parameters:
+      - $ref: ./data/parameters/datasetid.v1.yaml
+  /dataservices/status:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ./platform/models/statusanddataresponse.v1.yaml
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          Version:
+                            type: string
+                          Environment:
+                            type: string
+                          DataStore:
+                            type: object
+                            properties:
+                              State:
+                                type: string
+                              BuildInfo:
+                                type: object
+                                properties:
+                                  Version:
+                                    type: string
+                                  VersionArray:
+                                    type: array
+                                    items:
+                                      allOf:
+                                        - description: Major version
+                                        - description: Minor version
+                                        - description: Patch version
+                                        - description: Tag version
+                                      type: integer
+                                  GitVersion:
+                                    type: string
+                                  OpenSSLVersion:
+                                    type: string
+                                  SysInfo:
+                                    type: string
+                                  Bits:
+                                    type: integer
+                                  Debug:
+                                    type: boolean
+                                  MaxObjectSize:
+                                    type: integer
+                              LiveServers:
+                                type: array
+                                items:
+                                  type: string
+                              Mode:
+                                type: integer
+                              Safe:
+                                type: object
+                                properties:
+                                  W:
+                                    type: integer
+                                  WMode:
+                                    type: string
+                                  WTimeout:
+                                    type: integer
+                                  FSync:
+                                    type: boolean
+                                  J:
+                                    type: boolean
+                              Ping:
+                                type: string
+                          Server:
+                            type: object
+                            properties:
+                              Pid:
+                                type: integer
+                              UpTime:
+                                type: string
+                              UpTimeSec:
+                                type: number
+                              Time:
+                                type: string
+                              TimeUnix:
+                                type: integer
+                              StatusCodeCount:
+                                type: object
+                                properties:
+                                  '200':
+                                    type: integer
+                                  '201':
+                                    type: integer
+                                  '400':
+                                    type: integer
+                                  '401':
+                                    type: integer
+                                  '403':
+                                    type: integer
+                                  '404':
+                                    type: integer
+                                  '500':
+                                    type: integer
+                              TotalCount:
+                                type: integer
+                              TotalResponseTime:
+                                type: string
+                              TotalResponseTimeSec:
+                                type: number
+                              AverageResponseTime:
+                                type: string
+                              AverageResponseTimeSec:
+                                type: number
+      summary: Status of the platform dataservice service
+      tags:
+        - data
+      operationId: DataserviceStatus
+      description: Status of the platform dataservice
+  /data/status:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Status of the tide-whisperer service
+      tags:
+        - data
+      operationId: TidewhispererStatus
+      description: 'Get the status of the `tide-whisperer` service. '
+  '/data/{userId}':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: ./data/models/dataarray.v1.yaml
+      summary: Get data for user
+      security:
+        - sessionToken: []
+      parameters:
+        - in: query
+          name: uploadId
+          schema:
+            type: string
+        - in: query
+          name: deviceId
+          schema:
+            type: string
+        - in: query
+          name: type
+          schema:
+            type: string
+        - in: query
+          name: subType
+          schema:
+            type: string
+        - in: query
+          name: startDate
+          schema:
+            $ref: ./common/models/datetime.v1.yaml
+        - in: query
+          name: endDate
+          schema:
+            $ref: ./common/models/datetime.v1.yaml
+        - in: query
+          name: latest
+          schema:
+            type: boolean
+      operationId: GetData
+      tags:
+        - data
+      description: Get data for the specified `userId`. Can specify what data type to pull,
+        start date and end date.
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+tags:
+  - name: data
+components:
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      name: x-tidepool-session-token
+      in: header
