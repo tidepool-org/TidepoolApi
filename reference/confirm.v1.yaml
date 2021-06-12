@@ -233,7 +233,6 @@ paths:
         email address was not found (this way it can't be used to validate email
         addresses).
 
-
         If the email address is found in the Tidepool system, this will:
           - Create a confirm record and a random key
           - Send an email with a link containing the key
@@ -329,7 +328,6 @@ paths:
       description: >-
         Accept the password change
 
-
         This endpoint will be invoked by the lost password screen with the key that was included in the URL of the lost password screen.
   '/confirm/accept/invite/{userId}/{invitedBy}':
     put:
@@ -416,7 +414,6 @@ paths:
       description: >-
         Get the still-pending invitations for a group you own or are an admin
         of.
-
 
         These are the invitations you have sent that have not been accepted. There is no way to tell if an invitation has been ignored.
       operationId: GetSentInvitations
@@ -586,7 +583,7 @@ components:
   securitySchemes:
     sessionToken:
       type: apiKey
-      name: x-tidepool-session-token
+      name: X-Tidepool-Session-Token
       in: header
   schemas:
     confirmation:

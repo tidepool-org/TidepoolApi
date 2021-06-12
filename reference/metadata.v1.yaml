@@ -70,5 +70,5 @@ components:
   securitySchemes:
     sessionToken:
       type: apiKey
-      name: x-tidepool-session-token
+      name: X-Tidepool-Session-Token
       in: header

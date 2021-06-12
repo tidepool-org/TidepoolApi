@@ -319,7 +319,7 @@ paths:
         '200':
           description: ''
           headers:
-            x-tidepool-session-token:
+            X-Tidepool-Session-Token:
               schema:
                 type: string
                 pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
@@ -484,7 +484,7 @@ tags:
 components:
   parameters:
     sessionToken:
-      name: x-tidepool-session-token
+      name: X-Tidepool-Session-Token
       in: header
       schema:
         type: string
@@ -493,7 +493,7 @@ components:
     user-response:
       description: ''
       headers:
-        x-tidepool-session-token:
+        X-Tidepool-Session-Token:
           schema:
             type: string
             pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
@@ -521,7 +521,7 @@ components:
                       - A server token is required
                       - Not authorized for requested operation
                       - Wrong password
-                      - No x-tidepool-session-token was found
+                      - No X-Tidepool-Session-Token was found
                 required:
                   - code
                   - reason
@@ -614,7 +614,7 @@ components:
     token-data-response:
       description: ''
       headers:
-        x-tidepool-session-token:
+        X-Tidepool-Session-Token:
           schema:
             type: string
             pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
@@ -628,7 +628,7 @@ components:
       scheme: basic
     sessionToken:
       type: apiKey
-      name: x-tidepool-session-token
+      name: X-Tidepool-Session-Token
       in: header
     serverSecret:
       type: apiKey
