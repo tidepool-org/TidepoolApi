@@ -524,7 +524,7 @@ components:
       type: apiKey
       in: header
     sessionToken:
-      name: x-tidepool-session-token
+      name: X-Tidepool-Session-Token
       type: apiKey
       in: header
       description: ''
@@ -533,7 +533,7 @@ components:
       scheme: bearer
       description: ''
   headers:
-    x-tidepool-session-token:
+    X-Tidepool-Session-Token:
       schema:
         $ref: ./common/models/tidepoolsessiontoken.v1.yaml
       description: A Tidepool session token

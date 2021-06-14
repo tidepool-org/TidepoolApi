@@ -78,7 +78,7 @@ paths:
         '200':
           description: OK
           headers:
-            x-tidepool-session-token:
+            X-Tidepool-Session-Token:
               $ref: '#/components/headers/x-tidepool-session-token'
           content:
             application/json:

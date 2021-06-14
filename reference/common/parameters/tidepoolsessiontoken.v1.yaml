@@ -1,4 +1,4 @@
-name: x-tidepool-session-token
+name: X-Tidepool-Session-Token
 in: header
 required: true
 description: Tidepool Session Token

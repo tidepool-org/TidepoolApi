@@ -7,22 +7,17 @@ info:
 
     with the Tidepool Platform.
 
-
     # Authentication
-
 
     Most Tidepool API requests require authentication using the `X-Tidepool-Session-Token` header received from the
 
     Login API endpoint (not documented here).
 
-
     # Tracing
-
 
     All Tidepool API requests may include two HTTP headers to trace requests and 'sessions' of requests throughout the
 
     Tidepool ecosystem.
-
 
     The `X-Tidepool-Trace-Request` HTTP header allows for a 1-64 character string value to be associated with all server logging
 
@@ -32,7 +27,6 @@ info:
 
     any failure for future analysis.
 
-
     The `X-Tidepool-Trace-Session` HTTP header allows for a 1-64 character string value to be associated with all server logging
 
     during a 'session' of requests. Typically, a client would generate a unique value when a session starts and add it to
@@ -41,12 +35,9 @@ info:
 
     The client should capture this header value with any failure for future analysis.
 
-
     For brevity, these headers are *not* documented for each specific endpoint below.
 
-
     For example, a request with both headers specified:
-
 
     ```
 
@@ -60,14 +51,11 @@ info:
 
     ```
 
-
     # Errors
-
 
     The Tidepool API uses standard HTTP status codes to indicate success or failure of any API call. In the case of failure,
 
     the body of the response will be UTF-8 JSON in the following format:
-
 
     ```
 
@@ -83,16 +71,13 @@ info:
 
     ```
 
-
     The `code`, `title`, and `detail` fields are required. The `source` and `metadata` fields are optional and are dependent
 
     upon the type and location of the error.
 
-
     The most common failure HTTP status codes are `400`, `401`, `403`, and `404`, but `413`, `429`, and `500` may be
 
     used under certain circumstances.
-
 
     For brevity, these errors are *not* documented for each specific endpoint below.
   termsOfService: https://tidepool.org/terms
@@ -127,16 +112,13 @@ tags:
     description: >-
       List, create, and manage images.
 
-
       Images may be created with or without metadata and content. The content format may be either JPEG or PNG, with or without transparency.
 
       The content width and height may be up to 10,000 pixels. The content size, in bytes, may be up to 100MB.
 
-
       Each image has a `status`. If an image is created without content, then its status is `created`. If the image is created with content
 
       or has been updated to include content then its status is `available`.
-
 
       Each image with content has a `contentIntent`. When content is uploaded for an image, the uploader must specify whether the intent of
 
@@ -148,9 +130,7 @@ tags:
 
       resolution `alternate` content while on a cellular network and later uploading the `original` content while on a WiFi network.
 
-
       When content is uploaded or downloaded, the MD5 digest of the content may be included to confirm the correct bytes were received.
-
 
       Renditions of the current content can be requested using a variety of URL path parameters. The requested rendition can
 
@@ -464,7 +444,6 @@ paths:
         Create a new image for the specified user with only metadata. Content
         can be added later.
 
-
         The body of the request is the UTF-8 JSON encoded Metadata.
       requestBody:
         required: true
@@ -495,9 +474,7 @@ paths:
 
         content intent. Metadata can be added later.
 
-
         The body of the request is the raw bytes of the content.
-
 
         The Content-Type header must be the MIME type of the content.
       requestBody:
@@ -536,9 +513,7 @@ paths:
 
         containing metadata, content intent, and content.
 
-
         The Content-Type header must be `multipart/form-data` and include a valid `boundary` parameter.
-
 
         The form may contain three parts:
           - `metadata` where the part body is the UTF-8 JSON encoded Metadata and includes a Content-Type
@@ -587,7 +562,6 @@ paths:
         List images for the specified user after applying all of the specified
         filters.
 
-
         The `status` query parameter may be specified to filter the response to only those images with the specified
 
         `status`. The `status` query parameter may be set to one of:
@@ -597,7 +571,6 @@ paths:
         If the `status` query parameter is not specified then the default behavior is to filter on `available` status. This
 
         query parameter may be specified *multiple* times.
-
 
         The `contentIntent` query parameter may be specified to filter the response to only those images with content
 
@@ -611,9 +584,7 @@ paths:
 
         query parameter may be specified *multiple* times.
 
-
         The `page` and `size` query parameters may be specified to paginate the response.
-
 
         For example:
           - `GET /v1/users/a43d25a01f/images`
@@ -697,7 +668,6 @@ paths:
       description: >-
         Delete the specified image, including all content and renditions.
 
-
         The `revision` query parameter may be specified to require that the current
 
         image *must* have the specified revision in order to delete the image. If the specified
@@ -765,11 +735,9 @@ paths:
       description: >-
         Update the metadata associated with the specified image.
 
-
         The update is not a wholesale replace of the entire metadata. Each field within
 
         the metadata update replaces each field in the existing image metadata.
-
 
         The `revision` query parameter may be specified to require that the current
 
@@ -819,7 +787,6 @@ paths:
         Get the content for specified image. It may be alternate or original
         content.
 
-
         If the image does not have content then a `404` error will be returned.
       responses:
         '200':
@@ -851,7 +818,6 @@ paths:
       description: >-
         Get the content for specified image with an optional suffix.
 
-
         The suffix may be any additional path segments after the required portion. The only restriction
 
         is that if the last path segment specifies an extension (ie. contains a dot) then the extension
@@ -859,7 +825,6 @@ paths:
         must match the format of the image content. If it does not then a `404` error is returned.
 
         The suffix may be specified to enable sane browser downloads.
-
 
         An example provides the clearest explanation. If the `imageId` were
 
@@ -874,7 +839,6 @@ paths:
         - `/v1/images/ac0fd9cfbc4a3d25a01fb8c390d7523b/content/a/house`
 
         - `/v1/images/ac0fd9cfbc4a3d25a01fb8c390d7523b/content/b/c/car.jpeg`
-
 
         If the image does not have content then a `404` error will be returned.
       responses:
@@ -922,19 +886,15 @@ paths:
         Update the image with the specified content intent and the content in
         the request body.
 
-
         If the image does not already have content, then any content intent is allowed on update.
-
 
         If the image already has content with `alternate` content intent, then only `original` content
 
         intent is allowed on update.
 
-
         If the image already has content with `original` content intent, then any request to update the
 
         content results in a `400` error being returned.
-
 
         The `revision` query parameter may be specified to require that the current
 
@@ -994,7 +954,6 @@ paths:
       description: >-
         Get a rendition of the image content.
 
-
         The `rendition` parameter is a sequence of key-value pairs separated by an underscore
 
         followed by a filename `extension` parameter representing the format of the requested rendition.
@@ -1002,7 +961,6 @@ paths:
         These parameters are used to calculate the necessary transformations to apply to the
 
         image content before returning.
-
 
         The valid rendition parameters are:
           - `w` - width - the value is an integer width of the requested rendition; if the width is not
@@ -1042,21 +1000,17 @@ paths:
 
         The key and value of each rendition parameter are separated by a `=` and each of those are separated by a `_`.
 
-
         Only one of the width or height rendition parameters are required. All other rendition parameters are optional.
 
         The order of the parameters is irrelevant.
-
 
         The rendition extension does *not* have to match the image content MIME type. Any necessary conversion between
 
         image formats will be made.
 
-
         This API is intended to generate a *small, single-digit* number of different renditions for each image. Please do
 
         not use this API to generate large numbers of different renditions.
-
 
         Some examples:
           - `/v1/images/ac0fd9cfbc4a3d25a01fb8c390d7523b/rendition/w=300_h=200_m=scaleDown_b=ff00ffff_q=80.jpeg`
@@ -1107,13 +1061,11 @@ paths:
       description: >-
         Get a rendition of the image content with an optional suffix.
 
-
         Same as Get Image Rendition with the addition of allowing for an optional suffix between
 
         the rendition parameters and rendition extension. The suffix may be any sequence of additional path segments.
 
         The suffix may be specified to enable sane browser downloads.
-
 
         For example:
           - `/v1/images/ac0fd9cfbc4a3d25a01fb8c390d7523b/rendition/h=180_m=fit/dog_small.png`

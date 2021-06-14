@@ -148,9 +148,9 @@ paths:
                   value:
                     data:
                       createdTime: 2017-02-06T02:37:46Z
-                      createdUserId: 
+                      createdUserId:
                       type: upload
-                      uploadId: 
+                      uploadId:
                     meta:
                       trace:
                         request: ' '
@@ -437,5 +437,5 @@ components:
   securitySchemes:
     sessionToken:
       type: apiKey
-      name: x-tidepool-session-token
+      name: X-Tidepool-Session-Token
       in: header

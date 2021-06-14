@@ -13,7 +13,7 @@ allOf:
           - A server token is required
           - Not authorized for requested operation
           - Wrong password
-          - No x-tidepool-session-token was found
+          - No X-Tidepool-Session-Token was found
     required:
       - code
       - reason
