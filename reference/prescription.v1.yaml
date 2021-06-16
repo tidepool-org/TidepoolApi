@@ -9,11 +9,11 @@ info:
     email: support@tidepool.org
   termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
-    name: 'BSD 2-Clause "Simplified" License'
+    name: BSD 2-Clause "Simplified" License
 servers:
   - url: 'http://localhost:3000'
 paths:
-  /v1/prescriptions:
+  '/v1/clinics/{clinicId}/prescriptions':
     get:
       summary: List Prescriptions
       tags:
@@ -51,8 +51,8 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/errorresponse.v1.yaml
-      operationId: ListPrescriptions
-      description: "Retrieve the list of prescriptions visible to the currently authenticated user. \n\nIf the current user is a patient, they'll be able to see only their claimed prescriptions. \n\nClinicians will see a list of all prescriptions which were created by other clinic members."
+      operationId: ListClinicPrescriptions
+      description: Retrieve the list of prescriptions created by clinic members
       parameters:
         - schema:
             type: string
@@ -72,22 +72,26 @@ paths:
           in: query
           name: state
         - schema:
-            $ref: ../../common/models/datetime.v1.yaml
+            type: string
+            format: date-time
           in: query
           name: createdAfter
           description: inclusive
         - schema:
-            $ref: ../../common/models/datetime.v1.yaml
+            type: string
+            format: date-time
           in: query
           name: createdBefore
           description: exclusive
         - schema:
-            $ref: ../../common/models/datetime.v1.yaml
+            type: string
+            format: date-time
           in: query
           name: modifiedAfter
           description: inclusive
         - schema:
-            $ref: ../../common/models/datetime.v1.yaml
+            type: string
+            format: date-time
           in: query
           name: modifiedBefore
           description: exclusive
@@ -133,7 +137,13 @@ paths:
           application/json:
             schema:
               $ref: ./prescription/models/writableattributes.v1.yaml
-  '/v1/prescriptions/{prescriptionId}':
+    parameters:
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
+  '/v1/clinics/{clinicId}/prescriptions/{prescriptionId}':
     parameters:
       - schema:
           type: string
@@ -141,6 +151,11 @@ paths:
         in: path
         required: true
         description: ''
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
     get:
       summary: Get Prescription
       tags:
@@ -172,49 +187,6 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       operationId: GetPrescriptionById
       description: Retrieve a prescription by id
-    patch:
-      summary: Activate Prescription
-      operationId: ActivatePrescription
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ./prescription/models/prescription.v1.yaml
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: ./platform/models/errorresponse.v1.yaml
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: ./platform/models/errorresponse.v1.yaml
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: ./platform/models/errorresponse.v1.yaml
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: ./platform/models/errorresponse.v1.yaml
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: ./platform/models/errorresponse.v1.yaml
-      tags:
-        - prescription
-      description: Patient only endpoint to set prescription status to active
     delete:
       summary: Delete Prescription
       operationId: DeletePrescription
@@ -249,11 +221,16 @@ paths:
         Clinician only endpoint to delete a prescription. Works only when the prescription has status `draft`
       tags:
         - prescription
-  '/v1/prescriptions/{prescriptionId}/revisions':
+  '/v1/clinics/{clinicId}/prescriptions/{prescriptionId}/revisions':
     parameters:
       - schema:
           type: string
         name: prescriptionId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: clinicId
         in: path
         required: true
     post:
@@ -296,7 +273,7 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/errorresponse.v1.yaml
-      description: Clinitian only endpoint to add a new revision to a prescription which is still a draft.
+      description: Add a new revision to a prescription which is still a draft.
       tags:
         - prescription
       requestBody:
@@ -305,7 +282,7 @@ paths:
             schema:
               $ref: ./prescription/models/writableattributes.v1.yaml
         description: ''
-  /v1/prescriptions/claim:
+  '/v1/patients/{userId}/prescriptions':
     post:
       summary: Claim Prescription
       operationId: ClaimPrescription
@@ -348,22 +325,69 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       tags:
         - prescription
-      description: Patient only endpoint to claim a submitted prescription using an access code and date of birth.
+      description: Claim a submitted prescription using an access code and date of birth.
       requestBody:
         content:
           application/json:
             schema:
               $ref: ./prescription/models/claim.req.v1.yaml
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: List Prescriptions for Patient
+      operationId: ListPatientPrescriptions
+      responses:
+        '200':
+          description: OK
+      description: Retrieve a list of prescription that the user has claimed
+      tags:
+        - prescription
+  '/v1/patients/{userId}/prescriptions/{prescriptionId}':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: prescriptionId
+        in: path
+        required: true
+    get:
+      summary: Get Prescription for User
+      tags:
+        - prescription
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./prescription/models/prescription.v1.yaml
+      operationId: GetPrescriptionForUser
+      description: Retrieve a prescription by id
+    patch:
+      summary: Update Prescription State
+      operationId: UpdatePrescriptionState
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./prescription/models/prescription.v1.yaml
+      description: Update prescription state
+      tags:
+        - prescription
 components:
   schemas: {}
   securitySchemes: {}
-  parameters:
-    prescriptionId:
-      name: prescriptionId
-      in: path
-      schema:
-        $ref: ./common/models/objectid.v1.yaml
-      required: true
+  parameters: {}
 tags:
   - name: prescription
     description: Tidepool Prescription
