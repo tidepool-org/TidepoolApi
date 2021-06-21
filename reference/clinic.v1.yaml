@@ -9,7 +9,7 @@ info:
     email: support@tidepool.org
   license:
     name: BSD-2-Clause
-    url: https://github.com/tidepool-org/gatekeeper/blob/develop/LICENSE
+    url: 'https://github.com/tidepool-org/gatekeeper/blob/develop/LICENSE'
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -95,6 +95,27 @@ paths:
       tags:
         - clinic
       parameters: []
+  '/v1/clinics/share_code/{shareCode}':
+    parameters:
+      - schema:
+          type: string
+          minLength: 1
+        name: shareCode
+        in: path
+        required: true
+    get:
+      summary: Get Clinic by Share Code
+      tags:
+        - clinic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/clinic.v1.yaml
+      operationId: GetClinicByShareCode
+      description: Retrieve a clinic object with a share code
   '/v1/clinics/{clinicId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -642,14 +663,9 @@ components:
         $ref: '#/components/schemas/ClinicianClinicRelationship'
   securitySchemes:
     sessionToken:
-      name: X-Tidepool-Session-Token
+      name: x-tidepool-session-token
       type: apiKey
       in: header
-      description: ''
-  headers:
-    X-Tidepool-Session-Token:
-      schema:
-        $ref: ./common/models/tidepoolsessiontoken.v1.yaml
       description: A Tidepool session token
   parameters:
     offset:
