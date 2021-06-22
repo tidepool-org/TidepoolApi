@@ -28,6 +28,9 @@ properties:
     $ref: ../../common/models/tidepooluserid.v1.yaml
   latestRevision:
     $ref: ./revision.v1.yaml
+  clinicId:
+    type: string
+    description: A string represation of a Tidepool Clinic Id
 required:
   - id
   - state
@@ -36,3 +39,4 @@ required:
   - modifiedTime
   - modifiedUserId
   - latestRevision
+  - clinicId
