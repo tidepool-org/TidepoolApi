@@ -472,7 +472,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientPermissions'
-      description: Update permissions that a clinic has over a patient account. Only patients can change the permissions.
+      description: |-
+        Update permissions that a clinic has over a patient account. If all permissions are revoked as a result of the update, the patient profile will be removed from the clinic.
+
+        Only patients can change the permissions.
       tags:
         - clinic
       requestBody:
@@ -498,7 +501,10 @@ paths:
     delete:
       summary: Delete Patient Permission
       operationId: DeletePatientPermission
-      description: Remove a single permission that a clinic has over a patient account. Only patients can change the permissions.
+      description: |-
+        Remove a single permission that a clinic has over a patient account. If all permissions are revoked as a result of the update, the patient profile will be removed from the clinic.
+
+        Only patients can change the permissions.
       tags:
         - clinic
       parameters: []
