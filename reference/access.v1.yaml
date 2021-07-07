@@ -1,9 +1,14 @@
 openapi: 3.0.0
 info:
-  title: Access API
+  title: Authorization API
   version: '1.0'
-  description: Authorization API for Tidepool
-  termsOfService: https://developer.tidepool.org/terms-of-use/
+  description: |-
+    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
+  termsOfService: https://developer.tidepool.org/terms-of-use
   contact:
     name: API Support
     url: https://support.tidepool.org/
@@ -11,6 +16,8 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/gatekeeper/blob/develop/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/gatekeeper
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -24,160 +31,204 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+security:
+  - sessionToken: []
+
+tags:
+  - name: Authorization
+    description: >-
+      List, create and manage authorizations that grant access to another user's diabetes data.
+
 paths:
   '/access/groups/{userId}':
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
+      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
+      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
     get:
       responses:
         '200':
-          $ref: '#/components/responses/users-permissions-response'
-        '401':
-          $ref: '#/components/responses/error-response'
-        '404':
-          $ref: '#/components/responses/error-response'
-        '500':
-          $ref: '#/components/responses/error-response'
-      summary: Get groups for user
-      description: Retrieve all groups the user has access to
+          $ref: '#/components/responses/GroupPermissions'
+        # '401':
+        #   $ref: './common/responses/unauthorized.v1.yaml'
+        # '403':
+        #   $ref: './common/responses/forbidden.v1.yaml'
+        # '404':
+        #   $ref: './common/responses/notfound.v1.yaml'
+      summary: Get Groups for User
+      description: Retrieve all groups accessible to the user `userId`.
       operationId: GetGroupsForUser
       tags:
-        - authorization
-      security:
-        - sessionToken: []
-  '/access/{groupId}':
+        - Authorization
+
+  '/access/{sharerId}':
     parameters:
-      - $ref: ./common/parameters/tidepoolgroupid.v1.yaml
+      - $ref: './common/parameters/tidepoolsharerid.v1.yaml'
+      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
+      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
+      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
     get:
       responses:
         '200':
-          $ref: '#/components/responses/users-permissions-response'
-        '401':
-          $ref: '#/components/responses/error-response'
-        '404':
-          $ref: '#/components/responses/error-response'
-        '500':
-          $ref: '#/components/responses/error-response'
-      summary: Get users in group
-      description: Retrieve all users which have access to this group
+          $ref: '#/components/responses/GroupPermissions'
+        # '401':
+        #   $ref: './common/responses/unauthorized.v1.yaml'
+        # '403':
+        #   $ref: './common/responses/forbidden.v1.yaml'
+        # '404':
+        #   $ref: './common/responses/notfound.v1.yaml'
+      summary: Get Users in Group
+      description: Retrieve all users that have access to group `sharerId`.
       operationId: GetUsersInGroup
       tags:
-        - authorization
-      security:
-        - sessionToken: []
-  '/access/{groupId}/{userId}':
+        - Authorization
+
+  '/access/{sharerId}/{userId}':
     parameters:
-      - $ref: ./common/parameters/tidepoolgroupid.v1.yaml
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: './common/parameters/tidepoolsharerid.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
+      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
+      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
     get:
       responses:
         '200':
-          $ref: '#/components/responses/permissions-response'
-        '401':
-          $ref: '#/components/responses/error-response'
-        '404':
-          $ref: '#/components/responses/error-response'
-        '500':
-          $ref: '#/components/responses/error-response'
-      summary: Get user permissions in group
-      description: Retrieve the set of permissions a user with id `userId` has in group
-        with id `groupId`
+          $ref: '#/components/responses/UserPermissions'
+        # '401':
+        #   $ref: './common/responses/unauthorized.v1.yaml'
+        # '403':
+        #   $ref: './common/responses/forbidden.v1.yaml'
+        # '404':
+        #   $ref: './common/responses/notfound.v1.yaml'
+      summary: Get User Permissions in Group
+      description: Retrieve the set of permissions for `userId` in group `sharerId`.
       operationId: GetPermissionsForUser
       tags:
-        - authorization
-      security:
-        - sessionToken: []
+        - Authorization
     post:
       responses:
         '200':
-          $ref: '#/components/responses/permissions-response'
-        '401':
-          $ref: '#/components/responses/error-response'
-        '404':
-          $ref: '#/components/responses/error-response'
-        '500':
-          $ref: '#/components/responses/error-response'
-      summary: Update or insert permissions for user in group
-      description: Update or insert permissions for user with id `userId` in group with id
-        `groupId`
+          $ref: '#/components/responses/UserPermissions'
+        # '401':
+        #   $ref: './common/responses/unauthorized.v1.yaml'
+        # '403':
+        #   $ref: './common/responses/forbidden.v1.yaml'
+        # '404':
+        #   $ref: './common/responses/notfound.v1.yaml'
+      summary: Update Permissions for User in Group
+      description: >-
+        Update permissions for `userId` in group `sharerId`.
+        The permissions provided in the request body override the existing permissions.
       operationId: GrantPermissionsInGroup
       tags:
-        - authorization
+        - Authorization
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpsertPermissions'
-      security:
-        - sessionToken: []
-tags:
-  - name: authorization
-security:
-  - sessionToken: []
+              $ref: '#/components/schemas/UpsertUserPermissions'
+
+  '/access/status':
+    get:
+      responses:
+        '200':
+          description: Service status
+          content:
+            'application/json':
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+      summary: Get Service Status
+      description: Get service status
+      operationId: GetServiceStatus
+      x-private: true
+      tags:
+        - Authorization
+
 components:
   responses:
-    permissions-response:
-      description: ''
+    UserPermissions:
+      description: 'Access permissions of a user'
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Permissions'
-    error-response:
-      description: ''
+            $ref: '#/components/schemas/UserPermissions'
+
+    GroupPermissions:
+      description: 'Access permissions of one or more users within a group'
       content:
         application/json:
           schema:
-            type: object
-            required:
-              - statusCode
-            properties:
-              statusCode:
-                type: integer
-                minimum: 100
-                maximum: 599
-              message:
-                type: string
-    users-permissions-response:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            additionalProperties:
-              $ref: '#/components/schemas/Permissions'
+            $ref: '#/components/schemas/GroupPermissions'
+
   securitySchemes:
     sessionToken:
       type: apiKey
       name: X-Tidepool-Session-Token
       in: header
+
   schemas:
-    Permissions:
+    UserPermissions:
+      title: User Permissions
+      description: Access permissions granted to a user
       type: object
-      description: Tidepool permissions
       additionalProperties: false
-      title: Permissions
       properties:
         root:
           type: object
           additionalProperties: false
+          example: { }
         view:
           type: object
           additionalProperties: false
+          example: { }
         note:
           type: object
           additionalProperties: false
+          example: { }
         upload:
           type: object
           additionalProperties: false
+          example: { }
         custodian:
           type: object
           additionalProperties: false
-    UpsertPermissions:
+          example: { }
+
+    GroupPermissions:
+      title: Group Permissions
+      description: Access permissions granted to one or more users
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/UserPermissions'
+      example:
+        "d4206d26a6":
+          "root": { }
+        "305cabe660":
+          "note": { }
+          "view": { }
+        "7575613eca":
+          "view": { }
+          "note": { }
+          "upload": { }
+        "975ac5cc92":
+          "note": { }
+          "view": { }
+
+    UpsertUserPermissions:
       type: object
       properties:
         view:
           type: object
+          example: { }
         note:
           type: object
+          example: { }
         upload:
           type: object
+          example: { }

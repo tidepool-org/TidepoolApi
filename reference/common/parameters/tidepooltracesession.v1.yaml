@@ -1,4 +1,4 @@
-name: x-tidepool-trace-session
+name: X-Tidepool-Trace-Session
 in: header
 required: false
 description: >-

@@ -2,6 +2,12 @@ openapi: 3.0.0
 info:
   title: Task API
   version: '1.0'
+  description: |-
+    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
   contact:
     name: API Support
     url: https://support.tidepool.org/
@@ -9,7 +15,7 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/platform/blob/master/LICENSE
-paths: {}
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -23,3 +29,5 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+paths: {}

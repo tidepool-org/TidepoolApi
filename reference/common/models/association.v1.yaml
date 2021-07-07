@@ -1,3 +1,5 @@
+title: Association
+description: Associate this resource with another Tidepool resource ID.
 type: object
 properties:
   id:
@@ -22,5 +24,3 @@ properties:
     maxLength: 1000
 required:
   - type
-description: Associate this resource with another Tidepool resource ID.
-title: Association

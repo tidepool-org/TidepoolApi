@@ -1,0 +1,8 @@
+title: Blob status
+description: Blob status
+type: string
+enum:
+  - created
+  - available
+readOnly: true
+example: created

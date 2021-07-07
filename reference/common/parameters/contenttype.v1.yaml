@@ -1,0 +1,11 @@
+name: Content-Type
+description: Content type of the resource
+in: header
+required: true
+schema:
+  $ref: '../models/mediatype.v1.yaml'
+examples:
+  binary:
+    value: 'application/octet-stream'
+  text:
+    value: 'text/plain'

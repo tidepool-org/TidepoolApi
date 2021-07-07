@@ -1,6 +1,6 @@
 title: MediaType
-description: The media type of an image.
-enum:
-  - image/jpeg
-  - image/png
-example: 'image/jpeg'
+description: >-
+  Media type as defined in [RFC 2045](https://www.ietf.org/rfc/rfc2045.txt).
+type: string
+pattern: '^\w+/[-+.\w]+$'
+example: application/octet-stream

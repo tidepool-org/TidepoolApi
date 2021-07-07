@@ -1,4 +1,4 @@
-name: x-tidepool-trace-request
+name: X-Tidepool-Trace-Request
 in: header
 required: false
 description: >-
