@@ -1,0 +1,6 @@
+name: sharerId
+in: path
+required: true
+description: Tidepool User ID of user who granted access
+schema:
+  $ref: '../models/tidepooluserid.v1.yaml'

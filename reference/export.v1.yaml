@@ -1,15 +1,23 @@
 openapi: 3.0.0
 info:
-  title: Export Service API
+  title: Export API
   version: '1.0'
+  description: |-
+    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
   termsOfService: https://developer.tidepool.org/terms-of-use/
-  license:
-    name: BSD-2-Clause
-    url: https://github.com/tidepool-org/export/blob/master/LICENSE
   contact:
     name: Tidepool Api Support
     url: https://support.tidepool.org
     email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/export/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/export
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -23,94 +31,120 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+tags:
+  - name: Export
+    description: >-
+      Enable bulk export of diabetes data from user's Tidepool account.
+
 paths:
   /export/status:
     get:
       responses:
         '200':
-          description: ''
+          description: 'Service status'
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/status'
-              examples:
-                response:
-                  value:
-                    uptime: 532641.68
+                $ref: '#/components/schemas/ExportServiceStatus'
       summary: Get service status
-      operationId: Status
+      description: Get export service status
+      operationId: ExportServiceStatus
       x-private: true
+      tags:
+        - Export
+
   '/export/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     get:
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: ./data/models/dataarray.v1.yaml
-                  - type: string
-                    format: binary
-                    description: An Excel spreadsheet
-            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
-              schema:
-                oneOf:
-                  - $ref: ./data/models/dataarray.v1.yaml
-                  - type: string
-                    format: binary
-                    description: An Excel spreadsheet
-        '401':
-          description: ''
-      summary: Get export for user
+      summary: Export user data
+      description: >-
+        Exports the diabetes data from user identified by `userId`, from `startDate` to `endDate`, in the requested `format`.
+        Either a Tidepool session token, or a restricted token must be supplied.
       parameters:
-        - $ref: ./common/parameters/tidepooluserid.v1.yaml
-        - in: query
-          name: startDate
+        - name: startDate
+          in: query
           schema:
-            $ref: ./common/models/datetime.v1.yaml
-        - in: query
-          name: endDate
+            $ref: './common/models/datetime.v1.yaml'
+        - name: endDate
+          in: query
           schema:
-            $ref: ./common/models/datetime.v1.yaml
-        - in: query
-          name: format
+            $ref: './common/models/datetime.v1.yaml'
+        - name: format
+          description: Export format
+          in: query
           schema:
             type: string
             enum:
               - json
               - xlsx
             default: xlsx
-        - in: query
-          name: bgUnits
+        - name: bgUnits
+          in: query
           schema:
             type: string
             enum:
               - mmol/L
               - mg/dL
             default: mmol/L
+      responses:
+        '200':
+          description: >-
+            User data exported in the requested `format`.
+          headers:
+            Content-Disposition:
+              description: >-
+                Tells the browser to show a `Save As` dialog box to save the exported file locally.
+              schema:
+                type: string
+                default: 'attachment; filename="TidepoolExport.{format}"'
+          content:
+            application/json:
+              $ref: '#/components/schemas/ExportAsJson'
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              $ref: '#/components/schemas/ExportAsExcel'
+        # '400':
+        #   $ref: './common/responses/badrequest.v1.yaml'
+        # '401':
+        #   $ref: './common/responses/unauthorized.v1.yaml'
+        # '403':
+        #   $ref: './common/responses/forbidden.v1.yaml'
       security:
-        - tidepool-session-token: []
-        - tidepool-restricted-token: []
-      operationId: ExportUser
+        - sessionToken: []
+        - restrictedToken: []
+      operationId: ExportUserData
       x-private: true
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      tags:
+        - Export
+
 components:
   securitySchemes:
-    tidepool-session-token:
+    sessionToken:
       type: apiKey
       name: X-Tidepool-Session-Token
       in: header
-    tidepool-restricted-token:
+
+    restrictedToken:
       type: apiKey
       name: restricted_token
       in: query
+
   schemas:
-    status:
+    ExportServiceStatus:
       type: object
       properties:
-        uptime:
-          type: number
-          minimum: 0
+        status:
+          type: string
+          example: ok
+          default: ok
+
+    ExportAsJson:
+      schema:
+        $ref: './data/models/dataarray.v1.yaml'
+
+    ExportAsExcel:
+      schema:
+        type: string
+        format: binary
+        description: An Excel spreadsheet

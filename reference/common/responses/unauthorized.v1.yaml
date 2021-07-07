@@ -1,0 +1,5 @@
+description: 401 Unauthorized
+content:
+  'application/json':
+    schema:
+      $ref: '../models/error.v1.yaml'

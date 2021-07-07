@@ -2,8 +2,13 @@ openapi: 3.0.0
 info:
   title: Authentication API
   version: '1.0'
-  description: Authentication API
-  termsOfService: https://developer.tidepool.org/terms-of-use/
+  description: |-
+    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
+  termsOfService: https://developer.tidepool.org/terms-of-use
   contact:
     name: API Support
     url: https://support.tidepool.org/
@@ -11,6 +16,8 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/shoreline/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/shoreline
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -24,12 +31,22 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+tags:
+  - name: Authentication
+    description: >-
+      Login and logout.
+
+  - name: Users
+    description: >-
+      List and manage users.
+
 paths:
   /auth/login:
     post:
       responses:
         '200':
-          $ref: '#/components/responses/user-response'
+          $ref: '#/components/responses/User'
         '400':
           $ref: '#/components/responses/400-response'
         '401':
@@ -39,51 +56,78 @@ paths:
         '500':
           $ref: '#/components/responses/500-response'
       summary: Login to Tidepool API
+      description: >-
+        Creates a new session token.
+        Session tokens 
       security:
-        - basic-login: []
+        - basicAuth: []
       tags:
-        - auth
-      operationId: Login
+        - Authentication
+      operationId: CreateSessionToken
     get:
       responses:
         '200':
-          $ref: '#/components/responses/token-data-response'
+          $ref: '#/components/responses/Token'
         '401':
           $ref: '#/components/responses/401-response'
         '500':
           $ref: '#/components/responses/500-response'
-      summary: Refresh session
+      summary: Refresh Session Token
+      description: >-
+        Refreshes an existing session token.
       security:
         - sessionToken: []
       tags:
-        - auth
-      operationId: RefreshSession
+        - Authentication
+      operationId: RefreshSessionToken
+
+  /auth/logout:
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Logout
+      description: >-
+        Remove session token.
+      tags:
+        - Authentication
+      operationId: Logout
+
   /auth/user:
     get:
       responses:
         '200':
-          $ref: '#/components/responses/user-response'
+          $ref: '#/components/responses/User'
         '401':
           $ref: '#/components/responses/401-response'
-      summary: Get information for logged in user
+      summary: Get Current User
+      description: >-
+        Get information for logger-in user.
       security:
         - sessionToken: []
       tags:
-        - auth
-      operationId: CurrentUserInfo
+        - Users
+      operationId: GetCurrentUserInfo
     post:
       responses:
         '201':
-          $ref: '#/components/responses/user-response'
+          $ref: '#/components/responses/User'
         '400':
           $ref: '#/components/responses/400-response'
         '409':
           $ref: '#/components/responses/409-response'
         '500':
           $ref: '#/components/responses/500-response'
-      summary: Create a user
+      summary: Create User
+      description: >-
+        Create new user account
       tags:
-        - auth
+        - Users
       requestBody:
         content:
           application/json:
@@ -94,18 +138,19 @@ paths:
     put:
       responses:
         '200':
-          $ref: '#/components/responses/user-response'
+          $ref: '#/components/responses/User'
         '400':
           $ref: '#/components/responses/400-response'
         '409':
           $ref: '#/components/responses/409-response'
         '500':
           $ref: '#/components/responses/500-response'
-      summary: Update details of the logged in user
+      summary: Update Current User
+      description: Update details of the logged-in user.
       security:
         - sessionToken: []
       tags:
-        - auth
+        - Users
       requestBody:
         content:
           application/json:
@@ -119,13 +164,13 @@ paths:
                   type: array
                   uniqueItems: true
                   items:
-                    $ref: ./common/models/emailaddress.v1.yaml
+                    $ref: './common/models/emailaddress.v1.yaml'
                 termsAccepted:
-                  $ref: ./common/models/datetime.v1.yaml
+                  $ref: './common/models/datetime.v1.yaml'
                 userid:
-                  $ref: ./common/models/tidepooluserid.v1.yaml
+                  $ref: './common/models/tidepooluserid.v1.yaml'
                 username:
-                  $ref: ./common/models/emailaddress.v1.yaml
+                  $ref: './common/models/emailaddress.v1.yaml'
                 roles:
                   type: array
                   uniqueItems: true
@@ -135,34 +180,21 @@ paths:
                           - clinic
                     type: string
                 createdTime:
-                  $ref: ./common/models/datetime.v1.yaml
+                  $ref: './common/models/datetime.v1.yaml'
                 createdUserId:
-                  $ref: ./common/models/tidepooluserid.v1.yaml
+                  $ref: './common/models/tidepooluserid.v1.yaml'
                 modifiedTime:
-                  $ref: ./common/models/datetime.v1.yaml
+                  $ref: './common/models/datetime.v1.yaml'
                 modifiedUserId:
-                  $ref: ./common/models/tidepooluserid.v1.yaml
+                  $ref: './common/models/tidepooluserid.v1.yaml'
                 deletedTime:
-                  $ref: ./common/models/datetime.v1.yaml
+                  $ref: './common/models/datetime.v1.yaml'
                 deletedUserId:
-                  $ref: ./common/models/tidepooluserid.v1.yaml
+                  $ref: './common/models/tidepooluserid.v1.yaml'
               required:
                 - emailVerified
       operationId: UpdateCurrentUser
-  /auth/status:
-    get:
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      summary: Service status
-      tags:
-        - auth
-      operationId: Status
+
   /auth/users:
     get:
       responses:
@@ -202,11 +234,12 @@ paths:
             maxItems: 200
             uniqueItems: true
       tags:
-        - auth
+        - Users
       operationId: GetUsers
+
   '/auth/user/{userId}':
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     get:
       responses:
         '200':
@@ -218,27 +251,31 @@ paths:
                 properties: {}
         '401':
           $ref: '#/components/responses/401-response'
-      summary: Get user information
+      summary: Get User
+      description: >-
+        Get information for the user identified by `userId`.
       security:
         - sessionToken: []
       tags:
-        - auth
-      operationId: UserInfo
+        - Users
+      operationId: GetUserInfo
     put:
       responses:
         '200':
-          $ref: '#/components/responses/user-response'
+          $ref: '#/components/responses/User'
         '400':
           $ref: '#/components/responses/400-response'
         '409':
           $ref: '#/components/responses/409-response'
         '500':
           $ref: '#/components/responses/500-response'
-      summary: Update user
+      summary: Update User
+      description: >-
+        Updates the user identified by `userId`.
       security:
         - sessionToken: []
       tags:
-        - auth
+        - Users
       operationId: UpdateUser
     delete:
       responses:
@@ -250,31 +287,37 @@ paths:
           $ref: '#/components/responses/403-response'
         '500':
           description: ''
-      summary: Delete user
+      summary: Delete User
+      description: >-
+        Deletes the user identified by `userId`.
       security:
         - sessionToken: []
       tags:
-        - auth
+        - Users
       operationId: DeleteUser
+
   '/auth/user/{userId}/user':
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     post:
       responses:
         '201':
-          $ref: '#/components/responses/user-response'
+          $ref: '#/components/responses/User'
         '401':
           $ref: '#/components/responses/401-response'
         '409':
           $ref: '#/components/responses/409-response'
         '500':
           $ref: '#/components/responses/500-response'
-      summary: Create custodial user
+      summary: Create Custodial User
+      description: >-
+        Creates a custodial user, that is, a user that has no independent login.
       security:
         - sessionToken: []
       tags:
-        - auth
+        - Users
       operationId: CreateCustodialUser
+
   '/auth/login/{longtermkey}':
     post:
       responses:
@@ -286,33 +329,19 @@ paths:
                 type: object
                 properties: {}
       summary: Login with a long term key
+      description: >-
+        Creates a long-lived session token.
       x-private: true
-      tags: []
+      tags:
+        - Authentication
       operationId: LongTermLogin
-      description: ''
     parameters:
       - name: longtermkey
         in: path
         required: true
         schema:
           type: string
-  /auth/oauthlogin:
-    post:
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema: {}
-        '400':
-          description: ''
-        '401':
-          description: ''
-        '403':
-          description: ''
-      summary: OAuth2 login
-      tags: []
-      x-private: true
+
   /auth/serverlogin:
     post:
       responses:
@@ -332,26 +361,31 @@ paths:
           $ref: '#/components/responses/401-response'
         '500':
           $ref: '#/components/responses/500-response'
-      summary: Server to server login
-      x-private: true
-      tags: []
+      summary: Server to Server Login
+      description: >-
+        Server-to-server login
+      tags:
+        - Authentication
       operationId: ServerLogin
-      description: ''
       parameters:
         - in: header
-          name: x-tidepool-server-name
+          name: X-Tidepool-Server-Name
           schema:
             type: string
       security:
         - serverSecret: []
+      x-private: true
+
   '/auth/token/{token}':
     get:
       responses:
         '200':
-          $ref: '#/components/responses/token-data-response'
-      summary: Check token
+          $ref: '#/components/responses/Token'
+      summary: Check Token
+      description: >-
+        Checks the validity of a server token.
       tags:
-        - auth
+        - Authentication
       security:
         - sessionToken: []
       operationId: CheckToken
@@ -362,20 +396,7 @@ paths:
         required: true
         schema:
           type: string
-  /auth/logout:
-    post:
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      summary: Logout
-      tags:
-        - auth
-      operationId: Logout
+
   /auth/private:
     get:
       responses:
@@ -387,8 +408,32 @@ paths:
                 type: object
                 properties: {}
       summary: Anonymous ID hash pair
+      tags:
+        - Authentication
       x-private: true
-      tags: []
+      operationId: AnonIDHashPair
+
+  /auth/oauthlogin:
+    post:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: ''
+        '401':
+          description: ''
+        '403':
+          description: ''
+      summary: OAuth2 login
+      tags:
+        - Authentication
+      deprecated: true
+      x-private: true
+      operationId: OAuthLogin
+
   /auth/oauth2/signup:
     get:
       responses:
@@ -400,8 +445,11 @@ paths:
                 type: object
                 properties: {}
       summary: OAuth2 Signup page
-      tags: []
+      tags:
+        - Users
+      deprecated: true
       x-private: true
+      operationId: OAuth2Signup
     post:
       responses:
         '200':
@@ -412,8 +460,12 @@ paths:
                 type: object
                 properties: {}
       summary: New OAuth2 signup
-      tags: []
+      tags:
+        - Users
+      deprecated: true
       x-private: true
+      operationId: NewOAuth2Signup
+
   /auth/oauth2/authorize:
     get:
       responses:
@@ -425,8 +477,11 @@ paths:
                 type: object
                 properties: {}
       summary: OAuth2 authorize GET
-      tags: []
+      tags:
+        - Authentication
+      deprecated: true
       x-private: true
+      operationId: OAuth2AuthorizeGet
     post:
       responses:
         '200':
@@ -437,8 +492,12 @@ paths:
                 type: object
                 properties: {}
       summary: OAuth2 authorize POST
-      tags: []
+      tags:
+        - Authentication
+      deprecated: true
       x-private: true
+      operationId: OAuth2AuthorizePost
+
   /auth/oauth2/token:
     post:
       responses:
@@ -450,8 +509,12 @@ paths:
                 type: object
                 properties: {}
       summary: Get OAuth2 token
-      tags: []
+      tags:
+        - Authentication
+      deprecated: true
       x-private: true
+      operationId: GetOAuth2Token
+
   /auth/oauth2/info:
     get:
       responses:
@@ -463,8 +526,12 @@ paths:
                 type: object
                 properties: {}
       summary: OAuth info
-      tags: []
+      tags:
+        - Authentication
+      deprecated: true
       x-private: true
+      operationId: OAuth2Info
+
   /auth/oauth2/revoke:
     post:
       responses:
@@ -476,22 +543,38 @@ paths:
                 type: object
                 properties: {}
       summary: Revoke Refresh Token
-      tags: []
+      tags:
+        - Authentication
+      deprecated: true
       x-private: true
-tags:
-  - name: auth
-  - name: incomplete
+      operationId: OAuth2Revoke
+
+  /auth/status:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      summary: Get Service Status
+      description: >-
+        Get service status.
+      tags:
+        - Authentication
+      operationId: GetAuthServiceStatus
+      x-private: true
+
 components:
   parameters:
     sessionToken:
-      name: X-Tidepool-Session-Token
-      in: header
-      schema:
-        type: string
-        pattern: ^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$
+      $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
+
   responses:
-    user-response:
-      description: ''
+    User:
+      description: 'Tidepool user account'
       headers:
         X-Tidepool-Session-Token:
           schema:
@@ -501,6 +584,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/User'
+
     401-response:
       description: ''
       content:
@@ -525,6 +609,7 @@ components:
                 required:
                   - code
                   - reason
+
     400-response:
       description: ''
       content:
@@ -548,6 +633,7 @@ components:
                 required:
                   - code
                   - reason
+
     403-response:
       description: ''
       content:
@@ -568,6 +654,7 @@ components:
                 required:
                   - code
                   - reason
+
     409-response:
       description: ''
       content:
@@ -588,6 +675,7 @@ components:
                 required:
                   - code
                   - reason
+
     500-response:
       description: ''
       content:
@@ -611,7 +699,8 @@ components:
                 required:
                   - code
                   - reason
-    token-data-response:
+
+    Token:
       description: ''
       headers:
         X-Tidepool-Session-Token:
@@ -622,18 +711,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/TokenData'
+
   securitySchemes:
-    basic-login:
+    basicAuth:
       type: http
       scheme: basic
+
     sessionToken:
       type: apiKey
       name: X-Tidepool-Session-Token
       in: header
+
     serverSecret:
       type: apiKey
-      name: x-tidepool-server-secret
+      name: X-Tidepool-Server-Secret
       in: header
+
   schemas:
     User:
       type: object
@@ -645,13 +738,13 @@ components:
           type: array
           uniqueItems: true
           items:
-            $ref: ./common/models/emailaddress.v1.yaml
+            $ref: './common/models/emailaddress.v1.yaml'
         termsAccepted:
-          $ref: ./common/models/datetime.v1.yaml
+          $ref: './common/models/datetime.v1.yaml'
         userid:
-          $ref: ./common/models/tidepooluserid.v1.yaml
+          $ref: './common/models/tidepooluserid.v1.yaml'
         username:
-          $ref: ./common/models/emailaddress.v1.yaml
+          $ref: './common/models/emailaddress.v1.yaml'
         roles:
           type: array
           uniqueItems: true
@@ -661,19 +754,20 @@ components:
                   - clinic
             type: string
         createdTime:
-          $ref: ./common/models/datetime.v1.yaml
+          $ref: './common/models/datetime.v1.yaml'
         createdUserId:
-          $ref: ./common/models/tidepooluserid.v1.yaml
+          $ref: './common/models/tidepooluserid.v1.yaml'
         modifiedTime:
-          $ref: ./common/models/datetime.v1.yaml
+          $ref: './common/models/datetime.v1.yaml'
         modifiedUserId:
-          $ref: ./common/models/tidepooluserid.v1.yaml
+          $ref: './common/models/tidepooluserid.v1.yaml'
         deletedTime:
-          $ref: ./common/models/datetime.v1.yaml
+          $ref: './common/models/datetime.v1.yaml'
         deletedUserId:
-          $ref: ./common/models/tidepooluserid.v1.yaml
+          $ref: './common/models/tidepooluserid.v1.yaml'
       required:
         - emailVerified
+
     Status:
       type: object
       title: Status
@@ -698,27 +792,29 @@ components:
       required:
         - code
         - reason
+
     TokenData:
       type: object
       properties:
         userid:
-          $ref: ./common/models/tidepooluserid.v1.yaml
+          $ref: './common/models/tidepooluserid.v1.yaml'
         isserver:
           type: boolean
           description: The token is a `server` (server-to-server) token.
       required:
         - userid
         - isserver
+
     NewUser:
       type: object
       properties:
         username:
-          $ref: ./common/models/emailaddress.v1.yaml
+          $ref: './common/models/emailaddress.v1.yaml'
         emails:
           type: array
           uniqueItems: true
           items:
-            $ref: ./common/models/emailaddress.v1.yaml
+            $ref: './common/models/emailaddress.v1.yaml'
         password:
           type: string
           format: password

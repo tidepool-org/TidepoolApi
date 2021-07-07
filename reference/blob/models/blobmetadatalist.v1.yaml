@@ -1,0 +1,6 @@
+title: Blob list
+type: array
+readOnly: true
+minItems: 0
+items:
+  $ref: './blobmetadata.v1.yaml'

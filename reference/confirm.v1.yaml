@@ -2,16 +2,20 @@ openapi: 3.0.0
 info:
   title: Confirm API
   version: '1.0'
+  description: |-
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
   termsOfService: https://developer.tidepool.org/terms-of-use/
   contact:
     name: API Support
     url: https://support.tidepool.org/
     email: support@tidepool.org
-  description: Sends notifications to users for things like forgotten passwords, initial
-    signup, and invitations.
   license:
     name: BSD-2-Clause
-    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+    url: https://github.com/tidepool-org/hydrophone/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/hydrophone
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -25,8 +29,19 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+security:
+  - sessionToken: []
+
+tags:
+  - name: Confirm
+    description: >-
+      Manage confirmations for account creation, sharing invites, etc.
+
 paths:
   '/confirm/send/signup/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     post:
       responses:
         '200':
@@ -47,13 +62,14 @@ paths:
       summary: Initiates account confirmation
       operationId: SendConfirmation
       tags:
-        - confirm
+        - Confirm
       security:
         - sessionToken: []
       description: Sends signup confirmation email
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+
   '/confirm/signup/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     get:
       responses:
         '200':
@@ -61,9 +77,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/confirmation'
+                $ref: '#/components/schemas/ConfirmationList'
         '400':
           description: ''
         '401':
@@ -75,13 +89,12 @@ paths:
       summary: Fetches confirmation key
       operationId: ConfirmKey
       tags:
-        - confirm
+        - Confirm
       security:
         - sessionToken: []
-      description: This endpoint is provided for completeness. We don't expect to need it
-        in the actual user flow.
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      description: >-
+        This endpoint is provided for completeness.
+        We don't expect to need it in the actual user flow.
     put:
       responses:
         '200':
@@ -96,24 +109,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '404':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Cancel signup
       operationId: CancelSignup
       tags:
-        - confirm
+        - Confirm
       requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/confirmation-key'
+        $ref: '#/components/requestBodies/ConfirmationId'
       description: Cancels the singup
-  '/confirm/accept/signup/{confirmKey}':
+
+  '/confirm/accept/signup/{confirmId}':
+    parameters:
+      - $ref: '#/components/parameters/confirmId'
     put:
       responses:
         '200':
@@ -123,7 +136,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '409':
           description: |-
             - Password is missing or invdalid
@@ -132,32 +145,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '500':
           description: User was not found or couldn't be updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Accepts confirmation key
       operationId: ConfirmAccount
       tags:
-        - confirm
+        - Confirm
       security:
         - sessionToken: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/acceptance'
+              $ref: '#/components/schemas/ConfirmationAcceptance'
       description: This would be PUT by the web page at the link in the signup email.
-    parameters:
-      - name: confirmKey
-        in: path
-        required: true
-        schema:
-          type: string
+
   '/confirm/send/invite/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     post:
       responses:
         '200':
@@ -165,25 +175,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/confirmation'
+                $ref: '#/components/schemas/Confirmation'
         '400':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '401':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '500':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Sends account invite to master account
       parameters:
         - in: query
@@ -206,18 +216,19 @@ paths:
                 - permissions
               properties:
                 email:
-                  $ref: ./common/models/emailaddress.v1.yaml
+                  $ref: './common/models/emailaddress.v1.yaml'
                 permissions:
                   type: string
       security:
         - sessionToken: []
       tags:
-        - confirm
+        - Confirm
       operationId: SendInvite
       description: Send a invite to join my team
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+
   '/confirm/forgot/{email}':
+    parameters:
+      - $ref: '#/components/parameters/confirmEmail'
     post:
       responses:
         '200':
@@ -227,7 +238,7 @@ paths:
       summary: Sends password reset email
       operationId: SendPasswordReset
       tags:
-        - confirm
+        - Confirm
       description: >-
         If the request is correctly formed, always returns a 200, even if the
         email address was not found (this way it can't be used to validate email
@@ -236,13 +247,10 @@ paths:
         If the email address is found in the Tidepool system, this will:
           - Create a confirm record and a random key
           - Send an email with a link containing the key
-    parameters:
-      - name: email
-        in: path
-        required: true
-        schema:
-          $ref: ./common/models/emailaddress.v1.yaml
+
   '/confirm/resend/signup/{email}':
+    parameters:
+      - $ref: '#/components/parameters/confirmEmail'
     post:
       responses:
         '200':
@@ -257,27 +265,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '500':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Resends account confirmation email
       tags:
-        - confirm
+        - Confirm
       operationId: ResendSignup
       description: If a user didn't receive the confirmation email and logs in, they're
         directed to the confirmation-required page which can offer to resend the
         confirmation email.
-    parameters:
-      - name: email
-        in: path
-        required: true
-        schema:
-          $ref: ./common/models/emailaddress.v1.yaml
-  /confirm/accept/forgot:
+
+  '/confirm/accept/forgot':
     put:
       responses:
         '200':
@@ -285,26 +288,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '400':
           description: Request body cannot be decoded or the password of the user cannot be
             updated.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '401':
           description: The confirmation has expired
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '404':
           description: No matching confirmation has been found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Accept password change
       operationId: AcceptPasswordChange
       requestBody:
@@ -324,12 +327,20 @@ paths:
                 password:
                   type: string
       tags:
-        - confirm
+        - Confirm
       description: >-
         Accept the password change
 
         This endpoint will be invoked by the lost password screen with the key that was included in the URL of the lost password screen.
+
   '/confirm/accept/invite/{userId}/{invitedBy}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      - name: invitedBy
+        in: path
+        required: true
+        schema:
+          $ref: './common/models/tidepooluserid.v1.yaml'
     put:
       responses:
         '200':
@@ -344,25 +355,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '403':
           description: There's a mismatch of the user ID's, type or status
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '404':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '500':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Accept invite
       operationId: AcceptInvite
       requestBody:
@@ -376,16 +387,12 @@ paths:
                 key:
                   type: string
       tags:
-        - confirm
+        - Confirm
       description: Accept the given invite
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
-      - name: invitedBy
-        in: path
-        required: true
-        schema:
-          type: string
+
   '/confirm/invite/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     get:
       responses:
         '200':
@@ -393,9 +400,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/confirmation'
+                $ref: '#/components/schemas/ConfirmationList'
         '400':
           description: '- Invalid userId'
         '401':
@@ -403,13 +408,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '500':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Get sent invitations
       description: >-
         Get the still-pending invitations for a group you own or are an admin
@@ -418,12 +423,13 @@ paths:
         These are the invitations you have sent that have not been accepted. There is no way to tell if an invitation has been ignored.
       operationId: GetSentInvitations
       tags:
-        - confirm
+        - Confirm
       security:
         - sessionToken: []
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+
   '/confirm/invitations/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     get:
       responses:
         '200':
@@ -431,9 +437,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/confirmation'
+                $ref: '#/components/schemas/ConfirmationList'
         '400':
           description: The provided userId is invalid
         '401':
@@ -441,18 +445,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Get received invitations
       operationId: GetReceivedInvitations
       tags:
-        - confirm
+        - Confirm
       security:
         - sessionToken: []
       description: Get list of received invitations for logged in user. These are
         invitations that have been sent to this user but not yet acted upon.
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+
   '/confirm/dismiss/invite/{userId}/{invitedBy}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      - name: invitedBy
+        in: path        
+        required: true
+        schema:
+          $ref: './common/models/tidepooluserid.v1.yaml'
     put:
       responses:
         '200':
@@ -470,30 +480,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '500':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Dismiss Invite
       operationId: DismissInvite
       tags:
-        - confirm
+        - Confirm
       security:
         - sessionToken: []
       requestBody:
-        $ref: '#/components/requestBodies/confirmation-lookup'
+        $ref: '#/components/requestBodies/ConfirmationLookup'
       description: Decline the invite
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
-      - in: path
-        name: invitedBy
-        required: true
-        schema:
-          type: string
+
   '/confirm/dismiss/signup/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
     put:
       responses:
         '200':
@@ -511,24 +517,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '404':
           description: The confirmation was not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Dismiss Signup
       tags:
-        - confirm
+        - Confirm
       description: In the event that someone uses the wrong email address, the receiver
         could explicitly dismiss a signup
       requestBody:
-        $ref: '#/components/requestBodies/confirmation-lookup'
+        $ref: '#/components/requestBodies/ConfirmationLookup'
       operationId: DismissSignup
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+
   '/confirm/{userId}/invited/{invitedAddress}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      - name: invitedAddress
+        in: path
+        required: true
+        schema:
+          $ref: './common/models/emailaddress.v1.yaml'
     put:
       responses:
         '200':
@@ -543,84 +555,148 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '401':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
         '500':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/status'
+                $ref: '#/components/schemas/ConfirmationStatus'
       summary: Cancel Invite
       operationId: CancelInvite
       tags:
-        - confirm
+        - Confirm
       security:
         - sessionToken: []
       description: Cancel an invite the has been sent to an email address.
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
-      - name: invitedAddress
-        in: path
-        required: true
-        schema:
-          type: string
-tags:
-  - name: auth
-  - name: confirm
+
+  '/confirm/status':
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+      summary: Get service status
+      description: >-
+        Returns the status of the confirmation service
+      operationId: ConfirmServiceStatus
+      tags:
+        - Confirm
+      x-private: true
+
 components:
-  requestBodies:
-    confirmation-lookup:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/confirmation-lookup'
   securitySchemes:
     sessionToken:
       type: apiKey
       name: X-Tidepool-Session-Token
       in: header
+
+  parameters:
+    confirmId:
+      name: confirmId
+      description: Confirmation ID
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ConfirmationId'
+
+    confirmEmail:
+      name: email
+      in: path
+      required: true
+      schema:
+        $ref: './common/models/emailaddress.v1.yaml'
+
+  requestBodies:
+    ConfirmationId:
+      content:
+        application/json:
+          schema:
+            type: object
+            title: Confirmation key
+            required:
+              - key
+            properties:
+              key:
+                $ref: '#/components/schemas/ConfirmationId'
+
+    ConfirmationLookup:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConfirmationLookup'
+
   schemas:
-    confirmation:
+    ConfirmationId:
+      title: Confirmation ID that uniquely identifies each confirmation
+      type: string
+      format: byte
+
+    ConfirmationType:
+      title: Confirmation type
+      type: string
+      enum:
+        - password_reset
+        - careteam_invitation
+        - signup_confirmation
+        - no_account
+
+    Confirmation:
       title: Confirmation
-      allOf:
-        - type: object
-          properties:
-            type:
-              type: string
-            email:
-              type: string
-            creatorId:
-              type: string
-            created:
-              type: string
-            creator:
-              $ref: '#/components/schemas/creator'
-          required:
-            - type
-            - email
-            - creatorId
-            - created
-        - $ref: '#/components/schemas/confirmation-key'
-    creator:
       type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/ConfirmationId'
+        type:
+          $ref: '#/components/schemas/ConfirmationType'
+        email:
+          $ref: './common/models/emailaddress.v1.yaml'
+        creatorId:
+          $ref: './common/models/tidepooluserid.v1.yaml'
+        created:
+          $ref: './common/models/datetime.v1.yaml'
+        creator:
+          $ref: '#/components/schemas/ConfirmationCreator'
+        context:
+          type: string
+      required:
+        - key
+        - type
+        - email
+        - creatorId
+        - created
+
+    ConfirmationList:
+      title: Confirmation list
+      type: array
+      items:
+        $ref: '#/components/schemas/Confirmation'
+
+    ConfirmationCreator:
       title: Creator
+      type: object
+      properties:
+        userid:
+          $ref: './common/models/tidepooluserid.v1.yaml'
+        profile:
+          $ref: '#/components/schemas/ConfirmationProfile'
       required:
         - userid
         - profile
-      properties:
-        userid:
-          type: string
-        profile:
-          $ref: '#/components/schemas/profile'
-    profile:
+
+    ConfirmationProfile:
+      title: Creator user profile
       type: object
-      title: Profile
       required:
         - fullName
         - patient
@@ -628,8 +704,22 @@ components:
         fullName:
           type: string
         patient:
+          $ref: '#/components/schemas/ConfirmationPatient'
+
+    ConfirmationPatient:
+      title: Patient user profile
+      type: object
+      properties:
+        birthday:
           type: string
-    status:
+        diagnosisDate:
+          type: string
+        isOtherPerson:
+          type: string
+        fullName:
+          type: string
+
+    ConfirmationStatus:
       type: object
       title: Status
       description: A status object which might represent either a successfull or
@@ -645,7 +735,8 @@ components:
           type: integer
         reason:
           type: string
-    acceptance:
+
+    ConfirmationAcceptance:
       type: object
       title: Acceptance
       required:
@@ -661,15 +752,8 @@ components:
           type: string
           format: date
           pattern: ^\d{4}-\d{2}-\d{2}$
-    confirmation-key:
-      type: object
-      title: ConfirmationKey
-      required:
-        - key
-      properties:
-        key:
-          type: string
-    confirmation-lookup:
+
+    ConfirmationLookup:
+      title: Confirmation Lookup
       allOf:
-        - $ref: '#/components/schemas/confirmation-key'
-      title: ConfirmationLookup
+        - $ref: '#/components/schemas/ConfirmationId'

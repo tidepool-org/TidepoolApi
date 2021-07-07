@@ -3,9 +3,14 @@ tags:
   - name: summary
     description: Tidepool Summary
 info:
-  description: Summary service
   title: Summary
   version: '1.0'
+  description: |-
+    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
   contact:
     name: API Support
     url: 'https://support.tidepool.org/'

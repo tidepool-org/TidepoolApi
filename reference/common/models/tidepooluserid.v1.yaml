@@ -1,7 +1,11 @@
-type: string
 title: Tidepool User ID
+type: string
 pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
-description: Tidepool User ID
+description: >-
+  Tidepool User ID.
+  Old style IDs are 10-digit strings consisting of only hexadeximcal digits.
+  New style IDs are 36-digit [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)).
 readOnly: true
+minLength: 10
 x-go-type: string
-example: '0123456789'
+example: '7b39b1e1-5db5-4a09-9602-d9255b08a8e4'

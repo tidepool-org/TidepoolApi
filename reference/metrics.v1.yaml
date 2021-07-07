@@ -2,13 +2,20 @@ openapi: 3.0.0
 info:
   title: Metrics API
   version: '1.0'
+  description: |-
+    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
   contact:
     name: API Support
     url: https://support.tidepool.org/
     email: support@tidepool.org
   license:
     name: BSD-2-Clause
-    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+    url: https://github.com/tidepool-org/highwater/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/highwater
 paths: {}
 servers:
   - url: 'http://localhost:8080'

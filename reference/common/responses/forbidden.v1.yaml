@@ -1,0 +1,5 @@
+description: 403 Forbidden
+content:
+  'application/json':
+    schema:
+      $ref: '../models/error.v1.yaml'

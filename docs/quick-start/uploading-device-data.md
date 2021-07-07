@@ -1,3 +1,5 @@
+![Tidepool Logo](../../assets/images/Tidepool_Logo_Light_Large.png)
+
 # Uploading Device Data
 
 ### Table of Contents
@@ -24,8 +26,8 @@ Your client will also need to provide a [Semantic Version](https://semver.org/) 
 
 ## Data upload session types
 Platform has two data upload modes:
-* [Normal](./device-data/uploading-device-data/normal.md)
-* [Continuous](./device-data/uploading-device-data/continuous.md)
+* [Normal](./uploading-device-data/normal.md)
+* [Continuous](./uploading-device-data/continuous.md)
 
 You will need to determine which mode is the best to use for your upload implementation.
 
@@ -56,5 +58,5 @@ _TODO: Section on deduplicators goes here_
 
 ### Keep reading
 
-* [Using a continuous upload session](./quick-start/uploading-device-data/continuous.md)
-* [Using a normal upload session](./quick-start/uploading-device-data/normal.md)
+* [Using a continuous upload session](./uploading-device-data/continuous.md)
+* [Using a normal upload session](./uploading-device-data/normal.md)

@@ -1,0 +1,6 @@
+title: Blob ID
+description: Blob ID
+type: string
+pattern: '^[0-9a-z]{32}$'
+readOnly: true
+example: 97a9fae8a19b4da58bb48dc90c9562c9

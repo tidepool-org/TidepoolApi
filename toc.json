@@ -1,0 +1,117 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "Welcome!",
+      "uri": "docs/welcome.md"
+    },
+    {
+      "type": "item",
+      "title": "Getting Started",
+      "uri": "docs/quick-start.md"
+    },
+    {
+      "type": "item",
+      "title": "Datetime Guide",
+      "uri": "docs/datetime.md"
+    },
+    {
+      "type": "item",
+      "title": "Diabetes Device Data Model",
+      "uri": "docs/device-data.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIs"
+    },
+    {
+      "type": "item",
+      "title": "Authentication",
+      "uri": "reference/auth.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Authorization",
+      "uri": "reference/access.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Blobs",
+      "uri": "reference/blob.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Clinics",
+      "uri": "reference/clinic.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Data",
+      "uri": "reference/data.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Export",
+      "uri": "reference/export.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Images",
+      "uri": "reference/images.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Notes",
+      "uri": "reference/message.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Metadata",
+      "uri": "reference/metadata.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Metrics",
+      "uri": "reference/metrics.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Prescriptions",
+      "uri": "reference/prescription.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Summaries",
+      "uri": "reference/summary.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Tasks",
+      "uri": "reference/task.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Users",
+      "uri": "reference/user.v1.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Links"
+    },
+    {
+      "type": "item",
+      "title": "GitHub",
+      "uri": "https://github.com/tidepool-org"
+    },
+    {
+      "type": "item",
+      "title": "Tidepool Developer Site",
+      "uri": "https://developer.tidepool.org"
+    },
+    {
+      "type": "item",
+      "title": "Tidepool Marketing Site",
+      "uri": "https://tidepool.org"
+    }
+  ]
+}

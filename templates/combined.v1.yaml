@@ -1,0 +1,72 @@
+openapi: 3.0.0
+
+info:
+  title: Tidepool API
+  version: '1.0'
+  description: |-
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
+  termsOfService: https://developer.tidepool.org/terms-of-use/
+  contact:
+    name: Tidepool
+    url: 'https://www.tidepool.org/'
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: 'https://github.com/tidepool-org/platform/blob/master/LICENSE'
+
+externalDocs:
+  description: 'See more'
+  url: 'https://developer.tidepool.org'
+
+servers:
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+
+security:
+  [ ]
+
+tags:
+  [ ]
+
+paths:
+  { }
+
+components:
+  schemas:
+    { }
+
+  responses:
+    { }
+
+  parameters:
+    { }
+
+  examples:
+    { }
+
+  requestBodies:
+    { }
+
+  headers:
+    { }
+
+  securitySchemes:
+    { }
+
+  links:
+    { }
+
+  callbacks:
+    { }

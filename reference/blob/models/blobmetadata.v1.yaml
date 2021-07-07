@@ -1,0 +1,37 @@
+title: Blob metadata
+type: object
+readOnly: true
+properties:
+  id:
+    $ref: './blobid.v1.yaml'
+  userId:
+    $ref: '../../common/models/tidepooluserid.v1.yaml'
+  digestMD5:
+    $ref: '../../common/models/digestmd5.v1.yaml'
+  mediaType:
+    $ref: '../../common/models/mediatype.v1.yaml'
+  size:
+    description: Size of the binary blob, in bytes
+    type: integer
+    readOnly: true
+    example: 1024
+  status:
+    $ref: './blobstatus.v1.yaml'
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  modifiedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  deletedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  revision:
+    description: Revision number of the blob
+    type: integer
+required:
+  - id
+  - userId
+  - digestMD5
+  - mediaType
+  - size
+  - status
+  - createdTime
+  - revision

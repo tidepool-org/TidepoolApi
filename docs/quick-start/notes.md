@@ -17,7 +17,7 @@ curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-T
 }
 ```
 
-You can also specify start time and end time in ISO date/time format to search for data relating to a specific event (similar to [query parameters](./quick-start/fetching-device-data.md#query-parameters)):
+You can also specify start time and end time in ISO date/time format to search for data relating to a specific event (similar to [query parameters](./fetching-device-data.md#query-parameters)):
 
 `?starttime=2015-10-10T15:00:00.000Z&endtime=2015-10-11T15:00:00.000Z`
 

@@ -1,3 +1,5 @@
 title: MD5 digest
+description: MD5 digest of the content per [RFC 1321](https://www.ietf.org/rfc/rfc1321.txt), encoded as base64 ([RFC 4648](https://www.ietf.org/rfc/rfc4648.txt)).
 type: string
-example: 1f32f4e4af1d0e21c55693d6c55b9baa
+pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
+example: 'NGQ1MDgzMjg3N2Q3ZWU3MTEyZGFmMTU5MzNlNDc0N2MK'

@@ -1,0 +1,21 @@
+title: Error
+type: object
+properties:
+  code:
+    type: string
+    example: 'length-out-of-range'
+  title:
+    type: string
+    example: 'length is out of range'
+  detail:
+    type: string
+    example: 'length 101 is not less than or equal to 100'
+  source:
+    type: string
+    example: '/name'
+  metadata:
+    type: object
+required:
+  - code
+  - title
+  - detail

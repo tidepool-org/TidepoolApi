@@ -1,5 +1,5 @@
-type: string
 title: Object Id
+type: string
 description: String representation of a resource id
 minLength: 24
 maxLength: 24

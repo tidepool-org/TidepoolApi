@@ -1,3 +1,5 @@
+![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
 # Welcome!
 
 Welcome to Tidepool's developer documentation

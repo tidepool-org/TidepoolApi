@@ -1,3 +1,5 @@
+title: Accuracy
+description: Accuracy of a measurement
 type: object
 properties:
   value:
@@ -18,5 +20,3 @@ properties:
       - meters
 required:
   - units
-title: Accuracy
-description: ''

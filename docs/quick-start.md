@@ -1,3 +1,5 @@
+![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
 # Getting Started
 
 <!-- theme: success -->
@@ -9,8 +11,10 @@
 ### Table of Contents
 
 1. [Authentication](#authentication)
-2. [Access user accounts](#access-user-accounts)
-3. [Keep reading](#keep-reading)
+2. [Tracing](#tracing)
+3. [Errors](#errors)
+4. [Access user accounts](#access-user-accounts)
+5. [Keep reading](#keep-reading)
 
 ---
 
@@ -54,6 +58,63 @@ Connection: keep-alive
 ```
 
 From the response headers, save the **Tidepool session token**. From the response body, save the **user ID**, excluding the quotation marks.
+
+---
+
+# Tracing
+
+All Tidepool API requests may include two HTTP headers to trace requests and 'sessions' of requests throughout the
+Tidepool ecosystem:
+
+* The `X-Tidepool-Trace-Request` HTTP header allows for a 1-64 character string value to be associated with all server logging during the request. Typically, a client would generate a unique value and add it to each request. If not specified with the request, then one is generated and returned in the response. The client should capture this header value with any failure for future analysis.
+* The `X-Tidepool-Trace-Session` HTTP header allows for a 1-64 character string value to be associated with all server logging during a 'session' of requests. Typically, a client would generate a unique value when a session starts and add it to each request during the session. If not specified by the client on the request, no header is returned in the response. The client should capture this header value with any failure for future analysis.
+
+<!-- theme: info -->
+
+> ### Brevity
+>
+> For brevity, these headers are *not* documented for each specific endpoint.
+
+For example, a request with both headers specified:
+
+```
+GET  /v1/users/a43d25a01f/images HTTP/1.1
+Host: int-api.tidepool.org
+X-Tidepool-Trace-Request: c836ab48d92c4789abb38d759a021b3e
+X-Tidepool-Trace-Session: a4928790fbc02cabd749dbc920eb9c73
+```
+
+# Errors
+
+The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) to indicate success or failure of any API call. In the case of failure, the body of the response will provide developer guidance in UTF-8 JSON format.
+
+<!-- theme: warning -->
+
+> ### Format
+>
+> Some Tidepool legacy APIs return the developer guidance in different UTF-8 JSON format.
+
+```
+{
+  'code': 'length-out-of-range',
+  'title': 'length is out of range',
+  'detail': 'length 101 is not less than or equal to 100',
+  'source': '/name',
+  'metadata': {
+    'type': 'image'
+  }
+}
+```
+
+The `code`, `title`, and `detail` fields are required. The `source` and `metadata` fields are optional and are dependent
+upon the type and location of the error. The most common failure HTTP status codes are `400`, `401`, `403`, and `404`, but `413`, `429`, and `500` may be used under certain circumstances.
+
+
+<!-- theme: info -->
+
+> ### Brevity
+>
+> For brevity, these errors are *not* documented for each specific endpoint.
 
 ---
 
