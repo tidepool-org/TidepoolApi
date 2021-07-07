@@ -87,9 +87,9 @@ The resulting data looks like:
 
 ### Keep reading
 
-* [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Bolus](./device-data/data-types/bolus.md)
-* [Bolus calculator](./device-data/data-types/pump-settings-calculator.md)
-* [Common fields](./device-data/common-fields.md)
-* [Reservoir change](./device-data/data-types/device-event/reservoir-change.md)
-* [Status](./device-data/data-types/device-event/status.md)
+* [Alarm](./data-types/device-event/alarm.md)
+* [Bolus](./data-types/bolus.md)
+* [Bolus calculator](./data-types/pump-settings-calculator.md)
+* [Common fields](./common-fields.md)
+* [Reservoir change](./data-types/device-event/reservoir-change.md)
+* [Status](./data-types/device-event/status.md)

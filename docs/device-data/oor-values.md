@@ -29,11 +29,13 @@ For example, for a low CGM reading for a device that displays in mg/dL with a lo
   "time": "2016-06-14T02:05:43.959Z",
   "timezoneOffset": -420,
   "uploadId": "SampleUploadId",
-  "annotations": [{
-    "code": "bg/out-of-range",
-    "value": "low",
-    "threshold": 40,
-  }]
+  "annotations": [
+    {
+      "code": "bg/out-of-range",
+      "value": "low",
+      "threshold": 40,
+    }
+  ]
 }
 ```
 
@@ -61,11 +63,13 @@ For example, for a high CGM reading for a device that displays in mmol/L with a 
   "time": "2016-06-14T02:05:43.959Z",
   "timezoneOffset": -420,
   "uploadId": "SampleUploadId",
-  "annotations": [{
-    "code": "bg/out-of-range",
-    "value": "high",
-    "threshold": 414,
-  }]
+  "annotations": [
+    {
+      "code": "bg/out-of-range",
+      "value": "high",
+      "threshold": 414,
+    }
+  ]
 }
 ```
 
@@ -89,7 +93,8 @@ If the device (or manufacturer) does not provide the exact threshold levels, the
   "time": "2016-06-14T02:05:43.500Z",
   "timezoneOffset": -420,
   "uploadId": "SampleUploadId",
-  "annotations": [{
+  "annotations": [
+    {
       "code": "ketone/out-of-range",
       "value": "high"
     },
@@ -106,7 +111,7 @@ In this instance, because the threshold was unknown, we used a value that we kne
 
 ### Keep reading
 
-* [Blood ketones](./device-data/data-types/blood-ketones.md)
-* [Continuous blood glucose (CBG)](./device-data/data-types/cbg.md)
-* [CGM settings](./device-data/data-types/cgm-settings.md)
-* [Self-monitored glucose (SMBG)](./device/data/data-types/pump-settings/smbg.md)
+* [Blood ketones](./data-types/blood-ketones.md)
+* [Continuous blood glucose (CBG)](./data-types/cbg.md)
+* [CGM settings](./data-types/cgm-settings.md)
+* [Self-monitored glucose (SMBG)](./data-types/pump-settings/smbg.md)

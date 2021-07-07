@@ -33,13 +33,13 @@
 
 ## Clock drift offset (`clockDriftOffset`)
 
-This field is Platform's best effort to convert the device's local [display time](#device-time-devicetime) to UTC. This optional field records the offset from UTC (in milliseconds) resulting from small adjustments a user may make to a device's display time due to "clock drift." See the technical documentation describing ["Bootstrapping to UTC"](./datetime/btutc.md#clock-drift-offset-clockdriftoffset) for more information.
+This field is Platform's best effort to convert the device's local [display time](#device-time-devicetime) to UTC. This optional field records the offset from UTC (in milliseconds) resulting from small adjustments a user may make to a device's display time due to "clock drift." See the technical documentation describing ["Bootstrapping to UTC"](../datetime/btutc.md#clock-drift-offset-clockdriftoffset) for more information.
 
 ---
 
 ## Conversion offset (`conversionOffset`)
 
-This field is Platform's best effort to convert the device's local [display time](#device-time-devicetime) to UTC. This field records the offset from UTC resulting from *very large* adjustments a user may make due to realizing the device was set to the wrong day, month, or year. See the technical documentation describing ["Bootstrapping to UTC"](./datetime/btutc.md#conversion-offset-conversionoffset) for more information.
+This field is Platform's best effort to convert the device's local [display time](#device-time-devicetime) to UTC. This field records the offset from UTC resulting from *very large* adjustments a user may make due to realizing the device was set to the wrong day, month, or year. See the technical documentation describing ["Bootstrapping to UTC"](../datetime/btutc.md#conversion-offset-conversionoffset) for more information.
 
 ---
 

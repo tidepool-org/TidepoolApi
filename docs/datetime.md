@@ -1,3 +1,5 @@
+![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+
 # Datetime Guide
 
 ### Table of Contents
