@@ -348,6 +348,15 @@ paths:
               $ref: '#/components/schemas/Patient'
       tags:
         - clinic
+    delete:
+      summary: Delete Patient
+      operationId: DeletePatient
+      responses:
+        '204':
+          description: No Content
+      description: Deletes patient from a clinic. Requires the request to be made by a clinic admin or the currently authenticated user id to match the patient id.
+      tags:
+        - clinic
   '/v1/clinics/{clinicId}/invites/clinicians':
     parameters:
       - $ref: '#/components/parameters/clinicId'
