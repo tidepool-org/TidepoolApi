@@ -16,7 +16,7 @@ info:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/highwater/master/LICENSE
   x-tidepool-service: https://github.com/tidepool-org/highwater
-paths: {}
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -30,3 +30,153 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+tags:
+  - name: Metrics
+    description: |-
+      Record metrics events.
+
+      These metrics APIs are intended for use by Tidepool products to capture free-form metrics events.
+      The APIs have no request body, nor do they return any meaningful responses.
+      There are very few constraints or validation of the input parameters.
+      Any number of additional query parameters can be included in the API requests, and they are recorded along with the metrics event.
+      It is OK to send them asynchronously in a fire-and-forget manner.
+
+paths:
+  '/metrics/user/{userId}/{eventName}':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/eventName'
+    get:
+      summary: Record Metrics Event for User
+      description: >-
+        Records a new metrics event for the user identified by the `userId` parameter.
+        This API does not require a session token, but if one is provided it must be a valid token.
+        The `userId` parameter is not validated.
+        Any query parameters supplied with the request will be recorded as part of the event.
+      responses:
+        '200':
+          description: >-
+            Success
+      operationId: RecordMetricsEventForNamedUser
+      tags:
+        - Metrics
+
+  '/metrics/thisuser/{eventName}':
+    parameters:
+      - $ref: '#/components/parameters/eventName'
+    get:
+      summary: Record Metrics Event for Logged-In User
+      description: >-
+        Records a new metrics event for the user identified by the session token.
+        This API requires a session token, and it must be a valid user token.
+        The `userId` parameter is extracted from the session token.
+        Any query parameters supplied with the request will be recorded as part of the event.
+      responses:
+        '200':
+          description: >-
+            Success
+        '401':
+          description: >-
+            Unauthorized
+      operationId: RecordMetricsEventForLoggedInUser
+      security:
+        - sessionToken: []
+      tags:
+        - Metrics
+
+  '/metrics/server/{serverName}/{eventName}':
+    parameters:
+      - $ref: '#/components/parameters/serverName'
+      - $ref: '#/components/parameters/eventName'
+    get:
+      summary: Record Metrics Event for Server
+      description: >-
+        Records a new metrics event on behalf of a server.
+        This API requires a session token, and it must be a valid server token.
+        Any query parameters supplied with the request will be recorded as part of the event.
+      responses:
+        '200':
+          description: >-
+            Success
+        '401':
+          description: >-
+            Unauthorized
+      operationId: RecordMetricsEventForServer
+      security:
+        - sessionToken: []
+      tags:
+        - Metrics
+      x-private: true
+
+  '/metrics/status':
+    get:
+      summary: Get Metrics Service Status
+      description: >-
+        Returns status of the metrics service.
+      responses:
+        '200':
+          description: >-
+            Success
+          content:
+            'text/plain':
+              schema:
+                type: string
+                example: 'OK'
+      operationId: GetMetricsServiceStatus
+      tags:
+        - Metrics
+      x-private: true
+
+components:
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      name: X-Tidepool-Session-Token
+      in: header
+
+  parameters:
+    userId:
+      description: Tidepool User ID
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: './common/models/tidepooluserid.v1.yaml'
+        
+    eventName:
+      description: >-
+        Client-defined event name.
+        The metrics service imposes no restrictions on the event name.
+        The event name must be URL-safe, or encoded as such, as it is sent as part of the URL path.
+        Current best practice is to prefix the event name with the client application name, such as `blip`,
+        followed by the actual event name, such as `Viewed Care Team List`.
+        The resulting full event name might be `blip - Viewed Care Team List`, but encoded in URL-safe manner (i.e. converting spaces to `%20`).
+        This allows differentiation between recording similar events by different client applications.
+      name: eventName
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/EventName'
+        
+    serverName:
+      description: >-
+        Server-defined server name.
+        The metrics service imposes no restrictions on the server name.
+        The server name must be URL-safe, or encoded as such, as it is sent as part of the URL path.
+      name: serverName
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ServerName'
+        
+  schemas:
+    EventName:
+      title: Metrics Event Name
+      type: string
+      example: 'blip%20-%20Viewed%20Care%20Team%20List'
+
+    ServerName:
+      title: Metrics Server Name
+      type: string
+      example: 'hydrophone'
