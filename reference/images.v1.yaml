@@ -127,7 +127,7 @@ components:
       type: string
       description: Image ID
       format: imageId
-      example: ac0fd9cfbc4a3d25a01fb8c390d7523b
+      example: 'ac0fd9cfbc4a3d25a01fb8c390d7523b'
 
     ImageStatus:
       type: string
@@ -138,7 +138,7 @@ components:
       enum:
         - available
         - created
-      example: created
+      example: 'created'
 
     ImageRevision:
       type: integer

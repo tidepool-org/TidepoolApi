@@ -6,7 +6,7 @@ properties:
     example: 404
   message:
     type: string
-    example: Requested resources was not found
+    example: 'Requested resources was not found'
 required:
   - code
   - message

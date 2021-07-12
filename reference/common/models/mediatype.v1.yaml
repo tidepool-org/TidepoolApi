@@ -3,4 +3,4 @@ description: >-
   Media type as defined in [RFC 2045](https://www.ietf.org/rfc/rfc2045.txt).
 type: string
 pattern: '^\w+/[-+.\w]+$'
-example: application/octet-stream
+example: 'application/octet-stream'

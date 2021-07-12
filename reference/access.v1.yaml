@@ -142,7 +142,7 @@ paths:
                 properties:
                   status:
                     type: string
-                    example: ok
+                    example: 'ok'
       summary: Get Service Status
       description: Get service status
       operationId: GetServiceStatus

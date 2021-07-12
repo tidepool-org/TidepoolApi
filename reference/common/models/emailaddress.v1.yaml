@@ -3,4 +3,4 @@ type: string
 format: email
 description: Email address
 minLength: 3
-example: example@tidepool.org
+example: 'example@tidepool.org'
