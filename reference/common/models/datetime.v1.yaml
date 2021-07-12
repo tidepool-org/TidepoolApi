@@ -3,4 +3,4 @@ description: >-
   [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) / [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) timestamp _with_ timezone information
 type: string
 format: date-time
-example: 2017-02-06T02:37:46Z
+example: '2017-02-06T02:37:46Z'
