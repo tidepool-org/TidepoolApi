@@ -14,7 +14,9 @@ info:
     email: support@tidepool.org
   license:
     name: BSD-2-Clause
-    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+    url: https://github.com/tidepool-org/seagull/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/seagull
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -28,53 +30,392 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
-paths:
-  '/metadata/users/{userId}/users':
-    get:
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      summary: List Users
-      tags:
-        - metadata
-      security:
-        - sessionToken: []
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
-  '/metadata/{userId}/profile':
-    put:
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      summary: Update Account
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
-      security:
-        - sessionToken: []
-      operationId: UpdateAccount
-      tags:
-        - metadata
-    parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+
 tags:
-  - name: metadata
+  - name: Metadata
+    description: |-
+      Create and update user metadata.
+
+paths:
+  '/metadata/collections':
+    get:
+      operationId: GetMetadataCollections
+      summary: Get Metadata Collections
+      description: >-
+        Returns list of valid metadata collections.
+      responses:
+        '200':
+          description: 'Success'
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/MetadataCollectionNames'
+      security:
+        - sessionToken: []
+      tags:
+        - Metadata
+
+  '/metadata/{userId}/{collectionName}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      - $ref: '#/components/parameters/collectionName'
+    get:
+      operationId: GetUserMetadataCollection
+      summary: Get User Metadata Collection
+      description: >-
+        Returns the user's metadata collection corresponding to `collectionName`.
+        Each metadata collection is an unbounded JSON object with client-defined fields.
+      responses:
+        '200':
+          $ref: '#/components/responses/MetadataCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - sessionToken: []
+      tags:
+        - Metadata
+
+    post:
+      operationId: UpdateUserMetadataCollectionPost
+      summary: Update User Metadata Collection
+      description: >-
+        Updates the user's metadata collection corresponding to `collectionName`.
+        Each metadata collection is an unbounded JSON object with client-defined fields.
+      requestBody:
+        $ref: '#/components/requestBodies/MetadataCollection'
+      responses:
+        '200':
+          $ref: '#/components/responses/MetadataCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - sessionToken: []
+      tags:
+        - Metadata
+
+    put:
+      operationId: UpdateUserMetadataCollectionPut
+      summary: Update User Metadata Collection
+      description: >-
+        Updates the user's metadata collection corresponding to `collectionName`.
+        Each metadata collection is an unbounded JSON object with client-defined fields.
+      requestBody:
+        $ref: '#/components/requestBodies/MetadataCollection'
+      responses:
+        '200':
+          $ref: '#/components/responses/MetadataCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - sessionToken: []
+      tags:
+        - Metadata
+
+    # delete:
+    #   operationId: DeleteUserMetadataCollection
+    #   summary: Delete User Metadata Collection
+    #   description: >-
+    #     Deletes the user's metadata collection corresponding to `collectionName`.
+    #     Each metadata collection is an unbounded JSON object with client-defined fields.
+    #   responses:
+    #     '501':
+    #       description: 'Not Implemented'
+    #   security:
+    #     - sessionToken: []
+    #   tags:
+    #     - Metadata
+    #.  x-private: true
+
+  # '/metadata/{userId}/private/{fieldName}':
+  #   parameters:
+  #     - $ref: './common/parameters/tidepooluserid.v1.yaml'
+  #     - $ref: '#/components/parameters/fieldName'
+  #   get:
+  #     operationId: GetUserPrivateMetadataItem
+  #     summary: Get User's Private Metadata Item
+  #     description: >-
+  #       Returns the named item from the user's private metadata collection.
+  #     responses:
+  #       '200':
+  #         description: ''
+  #     security:
+  #       - serverToken: []
+  #     tags:
+  #       - Metadata
+  #     x-private: true
+
+    # delete:
+    #   operationId: DeleteUserPrivateMetadataItem
+    #   summary: Delete User's Private Metadata Item
+    #   description: >-
+    #     Deletes the named item in the user's private metadata collection.
+    #   responses:
+    #     '501':
+    #       description: 'Not Implemented'
+    #   security:
+    #     - serverToken: []
+    #   tags:
+    #     - Metadata
+    #   x-private: true
+
+  '/metadata/users/{userId}/users':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+    get:
+      operationId: ListUsers
+      summary: List Users
+      description: >-
+        List all users who have trustee access to the user account identified by `userId`.
+      responses:
+        '200':
+          $ref: '#/components/responses/TrusteeUsers'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Metadata
+      security:
+        - sessionToken: []
+
 components:
   securitySchemes:
     sessionToken:
       type: apiKey
       name: X-Tidepool-Session-Token
       in: header
+
+    serverToken:
+      type: apiKey
+      name: X-Tidepool-Session-Token
+      in: header
+
+  schemas:
+    MetadataCollectionName:
+      type: string
+      enum:
+        - profile
+        - preferences # used by Tidepool Web
+        - settings # used by Tidepool Web
+        - groups # unused?
+        - private # used by Tidepool Platform
+      example: 'profile'
+
+    MetadataCollectionNames:
+      type: array
+      items:
+        $ref: '#/components/schemas/MetadataCollectionName'
+      example: [ 'profile', 'groups', 'private' ]
+
+    MetadataCollection:
+      type: object
+      anyOf:
+        - $ref: '#/components/schemas/MetadataProfileCollection'
+        - $ref: '#/components/schemas/MetadataPreferencesCollection'
+        - $ref: '#/components/schemas/MetadataSettingsCollection'
+        - $ref: '#/components/schemas/MetadataPrivateCollection'
+
+    MetadataProfileCollection:
+      title: Profile Collection
+      description: >-
+        Profile collection used by Tidepool Web
+      type: object
+      properties:
+        fullName:
+          type: string
+          example: 'James Jellyfish'
+        patient:
+          type: object
+          properties:
+            diagnosisType:
+              type: string
+              enum:
+                - type1
+                - type2
+                - gestational
+                - prediabetes
+                - lada
+                - mody
+                - other
+              example: 'type1'
+            diagnosisDate:
+              type: string
+              example: '2014-08-15'
+            birthday:
+              type: string
+              example: '2013-01-01'
+            biologicalSex:
+              type: string
+              example: 'male'
+            targetDevices:
+              type: array
+              items:
+                type: string
+                example: 'bayercontournext'
+            targetTimezone:
+              type: string
+              example: 'US/Eastern'
+            about:
+              type: string
+              example: 'Jellyman is awesome!'
+      additionalProperties: true
+
+    MetadataPreferencesCollection:
+      title: Preferences Collection
+      description: >-
+        Preferences collection used by Tidepool Web
+      type: object
+      properties:
+        dismissedDexcomConnectBannerTime:
+          $ref: './common/models/datetime.v1.yaml'
+      additionalProperties: true
+
+    MetadataSettingsCollection:
+      title: Settings Collection
+      description: >-
+        Settings collection used by Tidepool Web
+      type: object
+      properties:
+        bgTarget:
+          type: object
+          properties:
+            low:
+              type: number
+              example: 65
+            high:
+              type: number
+              example: 180
+      additionalProperties: true
+
+    MetadataPrivateCollection:
+      title: Private Collection
+      description: >-
+        Private collection used by Tidepool Platform
+      type: object
+      properties:
+        uploads:
+          type: object
+          properties:
+            name:
+              type: string
+              example: ''
+            id:
+              $ref: './common/models/tidepooluserid.v1.yaml'
+            hash:
+              type: string
+              example: '27dc848b6ca43eb92add9d4d'
+      additionalProperties: true
+
+    TrusteeUser:
+      type: object
+      properties:
+        emailVerified:
+          type: boolean
+          example: true
+        emails:
+          type: array
+          items:
+            $ref: './common/models/emailaddress.v1.yaml'
+        termsAccepted:
+          $ref: './common/models/datetime.v1.yaml'
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+              - clinic
+            example: 'clinic'
+        userid:
+          $ref: './common/models/tidepooluserid.v1.yaml'
+        username:
+          $ref: './common/models/emailaddress.v1.yaml'
+        trusteePermissions:
+          type: object
+          properties:
+            view:
+              type: object
+            note:
+              type: object
+            upload:
+              type: object
+          additionalProperties: true
+          example:
+            view: { }
+            note: { }
+            upload: { }
+        profile:
+          type: object
+          properties:
+            fullName:
+              type: string
+              example: 'Tidepool Big Data Project'
+            clinic:
+              type: object
+              properties:
+                role:
+                  type: string
+                  example: 'information_technology'
+                name:
+                  type: string
+                  example: 'Tidepool'
+              additionalProperties: true
+          additionalProperties: true
+      required:
+        - userid
+        - trusteePermissions
+
+    TrusteeUsers:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrusteeUser'
+
+  parameters:
+    collectionName:
+      description: Collection Name
+      name: collectionName
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/MetadataCollectionName'
+
+    fieldName:
+      description: Field Name
+      name: fieldName
+      in: path
+      required: true
+      schema:
+        type: string
+
+  requestBodies:
+    MetadataCollection:
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/MetadataCollection'
+
+  responses:
+    MetadataCollection:
+      description: 'Success'
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/MetadataCollection'
+
+    TrusteeUsers:
+      description: 'Success'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TrusteeUsers'
+
+    Unauthorized:
+      description: 'Unauthorized'
+  
+    NotFound:
+      description: 'Not Found'
