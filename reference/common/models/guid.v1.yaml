@@ -1,0 +1,8 @@
+title: GUID
+description: >-
+  UUID v4 as defined in [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt).
+type: string
+format: uuid
+pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+example: 'b9468a76-4afc-4c33-8d1d-1f08324d9160'
+x-go-type: string

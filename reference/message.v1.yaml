@@ -14,8 +14,9 @@ info:
     email: support@tidepool.org
   license:
     name: BSD-2-Clause
-    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
-paths: {}
+    url: https://github.com/tidepool-org/message-api/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/message-api/
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -29,3 +30,492 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+tags:
+  - name: Messages
+    description: |-
+      List, create and manage messages (also known as notes) in the user's account.
+
+      All APIs require a valid session token provided via the `X-Tidepool-Session-Token` header.
+      There is currently no unauthenticated access to messages.
+
+      The common API input parameter `groupId` is a Tidepool User ID that identifies the user whose account contains the messages.
+      That user may have shared their account with (=given permission to) other users who can view and manage messages in their account.
+      Therefore, in each API request the user ID identified with the session token must either a) match the `ownerId` parameter,
+      or b) the corresponding user must have been granted the `note` permission to manage messages in the user account identified by `groupId`.
+
+      Similarly, in the API responses the `groupid` field is a Tidepool User ID that identifies the user whose account contains the messages, corresponding to the `groupId` parameter in requests.
+      The `userid` field identifies the user who actually created the message, corresponding to the user ID encoded within the session token.
+      The message was created by the owner of the account if these two fields match.
+
+      Each message has a unique message ID, and the messages can be threaded.
+      A user can create either a new message, or create a reply to another message.
+      Each message contains a `parentmessage` field that contains the message ID of previous message in the thread.
+      Messages that have no `parentmessage` field value (i.e. it is `null`) are top-level messages, that is, the beginning of a message thread.
+
+      See the Authorization API for details on how permissions are managed.
+
+paths:
+  '/message/all/{groupId}':
+    parameters:
+      - $ref: '#/components/parameters/groupId'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+    get:
+      summary: List All Messages
+      description: >-
+        List all messages in the user account identified by `groupId`, optionally within the time range bounded by `starttime` and/or `endtime`.
+      responses:
+        '200':
+          $ref: '#/components/responses/MessageList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: ListAllMessages
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/notes/{groupId}':
+    parameters:
+      - $ref: '#/components/parameters/groupId'
+      - $ref: '#/components/parameters/startTime'
+      - $ref: '#/components/parameters/endTime'
+    get:
+      summary: List Top-Level Messages
+      description: >-
+        List only the top-level message threads in the user account identified by `groupId`, optionally within the time range bounded by `starttime` and/or `endtime`.
+        Top-level messages are the starting point of each message thread (i.e. `parentmessage` == `null`), that is, messages that are not responses to other messages.
+      responses:
+        '200':
+          $ref: '#/components/responses/MessageList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: ListTopLevelMessages
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/send/{groupId}':
+    parameters:
+      - $ref: '#/components/parameters/groupId'
+    post:
+      summary: Create New Top-Level Message
+      description: >-
+        Creates a new top-level message (thread) in the account identified by `groupId`.
+        Top-level messages are the starting point of a message thread (i.e. `parentmessage` == `null`), that is, not a response to any other message.
+      operationId: CreateMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMessage'
+      responses:
+        '201':
+          $ref: '#/components/responses/MessageCreated'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/reply/{messageId}':
+    parameters:
+      - $ref: '#/components/parameters/messageId'
+    post:
+      summary: Reply to Message
+      description: >-
+        Adds a reply to an existing message identified by `messageId`.
+      operationId: ReplyToMessage
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/NewMessage'
+      responses:
+        '201':
+          $ref: '#/components/responses/MessageCreated'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/read/{messageId}':
+    parameters:
+      - $ref: '#/components/parameters/messageId'
+    get:
+      summary: Get Message by ID
+      description: >-
+        Returns message identified by `messageId`
+      responses:
+        '200':
+          $ref: '#/components/responses/Message'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: FindMessageById
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/thread/{messageId}':
+    parameters:
+      - $ref: '#/components/parameters/messageId'
+    get:
+      summary: Get Message Thread by ID
+      description: >-
+        Returns message thread identified by `messageId`
+      responses:
+        '200':
+          $ref: '#/components/responses/MessageList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: GetMessageThread
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/edit/{messageId}':
+    parameters:
+      - $ref: '#/components/parameters/messageId'
+    put:
+      summary: Update Message
+      description: >-
+        Updates the message identified by `messageId`.
+        Either the `timestamp` or the `messagetext` field or both must be supplied in the request body.
+        No other fields of the message may be updated.
+        The `modifiedtime` field of the message will indicate when the message was last modified.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: '#/components/schemas/EditMessage'
+      responses:
+        '200':
+          description: 'Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: UpdateMessage
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/remove/{messageId}':
+    parameters:
+      - $ref: '#/components/parameters/messageId'
+    delete:
+      summary: Delete Message
+      description: >-
+        Deletes the message identified by `messageId`.
+      responses:
+        '202':
+          description: 'Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: DeleteMessage
+      security:
+        - sessionToken: []
+      tags:
+        - Messages
+
+  '/message/status':
+    get:
+      summary: Get Service Status
+      description: >-
+        Returns the message service status.
+      operationId: GetMessageServiceStatus
+      responses:
+        '200':
+          $ref: '#/components/responses/MessageServiceStatus'
+      tags:
+        - Messages
+      x-private: true
+
+components:
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      name: X-Tidepool-Session-Token
+      in: header
+
+  parameters:
+    groupId:
+      description: Tidepool User ID
+      name: groupId
+      in: path
+      required: true
+      schema:
+        $ref: './common/models/tidepooluserid.v1.yaml'
+        
+    messageId:
+      description: Message ID
+      name: messageId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/MessageId'
+        
+    startTime:
+      description: Start date/time of the range for messages
+      name: starttime
+      in: query
+      required: false
+      schema:
+        $ref: './common/models/datetime.v1.yaml'
+        
+    endTime:
+      description: End date/time of the range for messages
+      name: endtime
+      in: query
+      required: false
+      schema:
+        $ref: './common/models/datetime.v1.yaml'
+        
+  schemas:
+    MessageId:
+      title: Message ID
+      type: string
+      pattern: '^[0-9a-f]{24}$'
+      minLength: 24
+      maxLength: 24
+      example: '60e64ddf98b2350011b0f37f'
+
+    NullableMessageId:
+      title: Optional Message ID
+      type: string
+      pattern: '^[0-9a-f]{24}$'
+      minLength: 24
+      maxLength: 24
+      example: '60e64ddf98b2350011b0f37f'
+      nullable: true
+
+    NewMessage:
+      title: New Message
+      type: object
+      properties:
+        message:
+          type: object
+          properties:
+            messagetext:
+              type: string
+            timestamp:
+              $ref: './common/models/datetime.v1.yaml'
+            guid:
+              $ref: './common/models/guid.v1.yaml'
+          required:
+            - messagetext
+            - timestamp
+            - guid
+
+    EditMessage:
+      title: Edit Message
+      type: object
+      properties:
+        message:
+          anyOf:
+            - type: object
+              properties:
+                messagetext:
+                  type: string
+                timestamp:
+                  $ref: './common/models/datetime.v1.yaml'
+              required:
+                - messagetext
+            - type: object
+              properties:
+                messagetext:
+                  type: string
+                timestamp:
+                  $ref: './common/models/datetime.v1.yaml'
+              required:
+                - timestamp
+
+    Message:
+      title: Message
+      description: >-
+        The `id` field is a unique message ID that identifies this message.
+        The `groupid` is the Tidepool User ID of the user who owns the account that contains this message.
+        The `userid` is the Tidepool User ID of the user who created this message. They may differ.
+        Messages may be chained togeher to form a message thread.
+        The `parentmessage` is either `null` to indicate that this is a top-level message (=start of a message thread),
+        or it is the message ID of the parent of this message.
+      type: object
+      properties:
+        message:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/MessageId'
+            guid:
+              $ref: './common/models/guid.v1.yaml'
+            parentmessage:
+              $ref: '#/components/schemas/NullableMessageId'
+            userid:
+              $ref: './common/models/tidepooluserid.v1.yaml'
+            groupid:
+              $ref: './common/models/tidepooluserid.v1.yaml'
+            timestamp:
+              $ref: './common/models/datetime.v1.yaml'
+            createdtime:
+              $ref: './common/models/datetime.v1.yaml'
+            modifiedtime:
+              $ref: './common/models/datetime.v1.yaml'
+            messagetext:
+              type: string
+              example: 'I ate a taco with 10g of carbs'
+            user:
+              type: object
+              properties:
+                fullName:
+                  type: string
+                  example: 'James Jellyfish'
+              required:
+                - fullName
+          required:
+            - id
+            - guid
+            - parentmessage
+            - userid
+            - groupid
+            - timestamp
+            - createdtime
+            - messagetext
+
+    MessageList:
+      title: Message List
+      description: >-
+        This list may be empty, for example if no matching messages are being returned.
+        Messages, if present, are sorted in descending order by the `timestamp` field.
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+        - messages
+
+    MessageResponse:
+      title: Message Response
+      description: >-
+        The `id` identifies the new message and can be used in subsequent requests to find this message.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/MessageId'
+      required:
+        - id
+
+  responses:
+    MessageServiceStatus:
+      description: >-
+        Message service status.
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                default: 'ok' 
+
+    MessageCreated:
+      description: >-
+        Message created
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/MessageResponse'
+
+    Message:
+      description: >-
+        Message.
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    MessageList:
+      description: >-
+        Message list.
+      content:
+        'application/json':
+          schema:
+            $ref: '#/components/schemas/MessageList'
+
+    NotFound:
+      description: >-
+        Not Found. The requested account or message was not found.
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              messages:
+                type: array
+                items:
+                  type: string
+
+    Unauthorized:
+      description: >-
+        Unauthorized. The session token is either not present, or it is invalid.
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              messages:
+                type: array
+                items:
+                  type: string
+
+    Forbidden:
+      description: >-
+        Forbidden. The session token is valid, but not authorized to access this account.
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              messages:
+                type: array
+                items:
+                  type: string

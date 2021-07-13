@@ -136,8 +136,8 @@ components:
       properties:
         status:
           type: string
-          example: ok
-          default: ok
+          example: 'ok'
+          default: 'ok'
 
     ExportAsJson:
       schema:
