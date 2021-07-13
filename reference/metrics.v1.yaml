@@ -45,7 +45,7 @@ tags:
 paths:
   '/metrics/user/{userId}/{eventName}':
     parameters:
-      - $ref: '#/components/parameters/userId'
+      - $ref: './common/parameters/tidepooluserid.v1.yaml'
       - $ref: '#/components/parameters/eventName'
     get:
       summary: Record Metrics Event for User
@@ -136,14 +136,6 @@ components:
       in: header
 
   parameters:
-    userId:
-      description: Tidepool User ID
-      name: userId
-      in: path
-      required: true
-      schema:
-        $ref: './common/models/tidepooluserid.v1.yaml'
-        
     eventName:
       description: >-
         Client-defined event name.
