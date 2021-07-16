@@ -1,0 +1,5 @@
+title: User Role
+type: string
+enum:
+  - clinic
+example: 'clinic'

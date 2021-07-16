@@ -1,0 +1,7 @@
+title: New Custodial User
+type: object
+properties:
+  username:
+    $ref: '../../common/models/emailaddress.v1.yaml'
+  emails:
+    $ref: './emailaddresses.v1.yaml'

@@ -1,0 +1,6 @@
+title: User Email Verification Status
+description: >-
+  `true` if the user has verified their email address.
+  `false` or not present if the user has not verified their email address.
+type: boolean
+example: true

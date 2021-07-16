@@ -1,0 +1,11 @@
+title: Token Data
+type: object
+properties:
+  userid:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  isserver:
+    type: boolean
+    description: The token is a `server` (server-to-server) token.
+required:
+  - userid
+  - isserver

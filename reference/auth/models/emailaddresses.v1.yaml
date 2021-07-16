@@ -1,0 +1,6 @@
+title: User Email Addresses
+type: array
+uniqueItems: true
+items:
+  $ref: '../../common/models/emailaddress.v1.yaml'
+minItems: 1
