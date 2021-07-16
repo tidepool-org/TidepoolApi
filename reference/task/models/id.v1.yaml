@@ -1,0 +1,6 @@
+title: Task ID
+type: string
+pattern: '^[0-9a-f]{32}$'
+minLength: 32
+maxLength: 32
+example: '354b6adc10bc417eb715a8e7b21d6031'

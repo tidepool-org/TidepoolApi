@@ -15,6 +15,7 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/platform/task
 
 servers:
   - url: 'http://localhost:8080'
@@ -30,4 +31,156 @@ servers:
   - url: 'https://api.tidepool.org'
     description: production
 
-paths: {}
+security:
+  - serverToken: []
+
+tags:
+  - name: Tasks
+    description: >-
+      List, create and manage generic background tasks.
+
+paths:
+  '/v1/tasks':
+    get:
+      operationId: ListTasks
+      summary: List Tasks
+      description: >-
+        Returns list of tasks.
+        The list can be filtered with the `name`, `type`, or `state` query parameters.
+        It can also be paginated with the `page` and `size` query parameters.
+      parameters:
+        - $ref: './task/parameters/name.v1.yaml'
+        - $ref: './task/parameters/type.v1.yaml'
+        - $ref: './task/parameters/state.v1.yaml'
+        - $ref: './common/parameters/paginationpage.v1.yaml'
+        - $ref: './common/parameters/paginationsize.v1.yaml'
+      responses:
+        '200':
+          $ref: '#/components/responses/Tasks'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Tasks
+
+    post:
+      operationId: CreateTask
+      summary: Create New Task
+      description: >-
+        Creates a new task.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: './task/models/newtask.v1.yaml'
+      responses:
+        '200':
+          $ref: '#/components/responses/Task'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Tasks
+
+  '/v1/tasks/{taskId}':
+    parameters:
+      - $ref: './task/parameters/id.v1.yaml'
+    get:
+      operationId: GetTask
+      summary: Get Task
+      description: >-
+        Returns the task identified by `taskId`.
+      responses:
+        '200':
+          $ref: '#/components/responses/Task'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Tasks
+
+    put:
+      operationId: UpdateTask
+      summary: Update Task
+      description: >-
+        Updates the task identified by `taskId`.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: './task/models/updatetask.v1.yaml'
+      responses:
+        '200':
+          $ref: '#/components/responses/Task'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Tasks
+
+    delete:
+      operationId: DeleteTask
+      summary: Delete Task
+      description: >-
+        Deletes the task identified by `taskId`.
+      responses:
+        '200':
+          description: 'Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Tasks
+
+components:
+  securitySchemes:
+    serverToken:
+      $ref: './common/security/tidepoolservertoken.v1.yaml'
+
+  responses:
+    Task:
+      description: 'Task'
+      content:
+        'application/json':
+          schema:
+            $ref: './task/models/task.v1.yaml'
+
+    Tasks:
+      description: 'Tasks'
+      content:
+        'application/json':
+          schema:
+            $ref: './task/models/tasks.v1.yaml'
+
+    BadRequest:
+      $ref: './common/responses/badrequest.v1.yaml'
+
+    NotFound:
+      $ref: './common/responses/notfound.v1.yaml'
+
+    Unauthorized:
+      $ref: './common/responses/unauthorized.v1.yaml'
+
+    ServerError:
+      $ref: './common/responses/servererror.v1.yaml'

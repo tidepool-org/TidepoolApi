@@ -1,0 +1,7 @@
+title: Task State Filter
+description: Filter by task state
+name: state
+in: query
+required: false
+schema:
+  $ref: '../models/state.v1.yaml'

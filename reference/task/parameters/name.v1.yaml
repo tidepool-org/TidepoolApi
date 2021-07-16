@@ -1,0 +1,7 @@
+title: Task Name Filter
+description: Filter by task name
+name: name
+in: query
+required: false
+schema:
+  $ref: '../models/name.v1.yaml'

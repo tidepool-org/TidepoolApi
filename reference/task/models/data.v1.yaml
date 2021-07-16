@@ -1,0 +1,3 @@
+title: Task Data
+type: object
+additionalProperties: true
