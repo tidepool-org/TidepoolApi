@@ -28,7 +28,7 @@ properties:
   payload:
     $ref: ../../common/models/payload.v1.yaml
   modifiedUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   modifiedTime:
     $ref: ../../common/models/datetime.v1.yaml
   guid:
@@ -55,7 +55,7 @@ properties:
   deviceId:
     type: string
   deletedUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   deletedTime:
     $ref: ../../common/models/datetime.v1.yaml
   deduplicator:
@@ -66,7 +66,7 @@ properties:
       - continuous
       - normal
   createdUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   createdTime:
     $ref: ../../common/models/datetime.v1.yaml
   conversionOffset:
@@ -85,7 +85,7 @@ properties:
       private:
         $ref: ./metadata.v1.yaml
   byUser:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   annotations:
     type: array
     items:

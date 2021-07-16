@@ -622,8 +622,6 @@ components:
         $ref: '#/components/schemas/Patient'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
-    TidepoolUserId:
-      $ref: ./common/models/tidepooluserid.v1.yaml
     ClinicianRoles:
       $ref: ./clinic/models/clinicianroles.v1.yaml
     PhoneNumber:
@@ -680,10 +678,7 @@ components:
         $ref: '#/components/schemas/ClinicianClinicRelationship'
   securitySchemes:
     sessionToken:
-      name: x-tidepool-session-token
-      type: apiKey
-      in: header
-      description: A Tidepool session token
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
   parameters:
     offset:
       name: offset
@@ -710,21 +705,15 @@ components:
       in: path
       required: true
       schema:
-        type: string
-        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+        $ref: './common/models/tidepooluserid.yaml'
     patientId:
       name: patientId
       in: path
       required: true
       schema:
-        type: string
-        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+        $ref: './common/models/tidepooluserid.yaml'
     userId:
-      name: userId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/TidepoolUserId'
+      $ref: './common/parameters/tidepooluserid.yaml'
     inviteId:
       name: inviteId
       in: path
@@ -750,8 +739,7 @@ components:
       in: query
       required: false
       schema:
-        type: string
-        format: email
+        $ref: './common/models/emailaddress.v1.yaml'
 tags:
   - name: auth
     description: Tidepool Authentication

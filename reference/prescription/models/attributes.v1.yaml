@@ -5,7 +5,7 @@ allOf:
       createdTime:
         $ref: ../../common/models/datetime.v1.yaml
       createdUserId:
-        $ref: ../../common/models/tidepooluserid.v1.yaml
+        $ref: '../../common/models/tidepooluserid.yaml'
 title: Revision Attributes
 x-tags:
   - prescription

@@ -43,7 +43,7 @@ properties:
     items:
       type: object
   modifiedUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   modifiedTime:
     $ref: ../../common/models/datetime.v1.yaml
   location:
@@ -59,13 +59,13 @@ properties:
     type: string
     description: A string ID.
   deletedUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   deletedTime:
     $ref: ../../common/models/datetime.v1.yaml
   deduplicator:
     $ref: './deduplicatordescriptor.v1.yaml'
   createdUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   createdTime:
     $ref: ../../common/models/datetime.v1.yaml
   conversionOffset:

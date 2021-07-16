@@ -1,7 +1,4 @@
 openapi: 3.0.0
-tags:
-  - name: summary
-    description: Tidepool Summary
 info:
   title: Summary
   version: '1.0'
@@ -18,7 +15,9 @@ info:
   termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
     name: 'BSD 2-Clause "Simplified" License'
-    url: 'https://github.com/tidepool-org/platform/blob/master/LICENSE'
+    url: 'https://github.com/tidepool-org/summary/blob/master/LICENSE'
+  x-tidepool-service: https://github.com/tidepool-org/summary
+
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -32,14 +31,16 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
+
+tags:
+  - name: Summary
+    description: |-
+      Summary data service
+
 paths:
-  '/v1/users/{userid}/summary':
+  '/v1/users/{userId}/summary':
     parameters:
-      - schema:
-          type: string
-        name: userid
-        in: path
-        required: true
+      - $ref: './common/parameters/tidepooluserid.yaml'
     post:
       tags: []
       summary: ''
@@ -57,13 +58,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SummaryRequest'
-  '/v1/users/{userid}/summaries':
+  '/v1/users/{userId}/summaries':
     parameters:
-      - schema:
-          type: string
-        name: userid
-        in: path
-        required: true
+      - $ref: './common/parameters/tidepooluserid.yaml'
     post:
       tags: []
       summary: ''
@@ -520,23 +517,16 @@ components:
     Device:
       $ref: ./data/models/uploaddevice.yaml
     UserId:
-      $ref: ./common/models/tidepooluserid.v1.yaml
+      $ref: './common/models/tidepooluserid.yaml'
     Units:
       $ref: ./data/models/bloodglucoseunits.v1.yaml
   securitySchemes:
     serverSecret:
-      name: x-tidepool-server-secret
-      type: apiKey
-      in: header
+      $ref: './common/security/tidepoolserversecret.v1.yaml'
     sessionToken:
-      name: X-Tidepool-Session-Token
-      type: apiKey
-      in: header
-      description: ''
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
     bearerToken:
-      type: http
-      scheme: bearer
-      description: ''
+      $ref: './common/security/bearertoken.v1.yaml'
   headers:
     X-Tidepool-Session-Token:
       schema:
@@ -547,7 +537,7 @@ components:
       name: userId
       in: path
       schema:
-        $ref: ./common/models/tidepooluserid.v1.yaml
+        $ref: './common/models/tidepooluserid.yaml'
       required: true
     deviceAuthorizationId:
       name: deviceAuthorizationId
