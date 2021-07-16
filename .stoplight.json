@@ -1,6 +1,7 @@
 {
   "exclude": [
-    "tools"
+    "tools",
+    "templates"
   ],
   "formats": {
     "openapi": {
