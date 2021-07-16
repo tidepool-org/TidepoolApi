@@ -61,376 +61,30 @@ tags:
 components:
   securitySchemes:
     sessionToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
 
-  parameters:
-    imageId:
-      name: imageId
-      in: path
-      description: The id of an image.
-      required: true
-      schema:
-        $ref: '#/components/schemas/ImageId'
-
-    imageContentIntent:
-      name: contentIntent
-      in: path
-      description: The intent for the content of an image.
-      required: true
-      schema:
-        $ref: '#/components/schemas/ImageContentIntent'
-
-    imageSuffix:
-      name: suffix
-      in: path
-      description: >-
-        The suffix may be any additional path segments between the required portions.
-        The extension of the suffix will be used as the requested rendition format.
-        The only restriction is that if the last path segment contains an extension (ie. contains a dot) then the extension must match the format of the image content.
-        If it does not then a `404` error is returned.
-        The suffix may be specified to enable sane browser downloads.
-      required: true
-      schema:
-        type: string
-
-    imageRendition:
-      name: rendition
-      in: path
-      description: Rendition parameters. See above.
-      required: true
-      schema:
-        type: string
-
-    imageExtension:
-      name: extension
-      in: path
-      description: Mime type extension of the requested rendition.
-      required: true
-      schema:
-        type: string
-        enum:
-          - jpeg
-          - png
-
-    imageRevision:
-      name: revision
-      in: query
-      description: The revision the current image must match in order to delete the image.
-      required: false
-      schema:
-        $ref: '#/components/schemas/ImageRevision'
-
-  schemas:
-    ImageId:
-      type: string
-      description: Image ID
-      format: imageId
-      example: 'ac0fd9cfbc4a3d25a01fb8c390d7523b'
-
-    ImageStatus:
-      type: string
-      description: >-
-        The status of an image.
-        The status is `available` if and only if the image has content.
-        Otherwise, the status is `created`.
-      enum:
-        - available
-        - created
-      example: 'created'
-
-    ImageRevision:
-      type: integer
-      description: The revision of an image.
-      example: 0
-
-    ImageMetadata:
-      type: object
-      description: The user metadata for an image.
-      properties:
-        name:
-          type: string
-          description: A name for the image.
-          minLength: 1
-          maxLength: 100
-        associations:
-          $ref: './common/models/associationarray.v1.yaml'
-        location:
-          $ref: './common/models/location.v1.yaml'
-        metadata:
-          $ref: './data/models/metadata.v1.yaml'
-        origin:
-          $ref: './common/models/origin.v1.yaml'
-      example:
-        name: Rover being funny!
-        associations:
-          - type: url
-            url: https://disneyland.disney.go.com/
-            reason: Disneyland is the greatest place on earth!
-        location:
-          name: Disneyland Park, Anaheim, CA, USA
-          gps:
-            latitude:
-              units: degrees
-              value: 33.812101
-            longitude:
-              units: degrees
-              value: -117.918975
-        metadata:
-          animal: dog
-        origin:
-          id: AA5634B2-387A-415E-AB32-166C9EDAC32D
-          name: com.apple.HealthKit
-          type: service
-
-    ImageContentIntent:
-      type: string
-      description: >-
-        The intent of the image content.
-        It is preferred to only upload the original image content.
-        In some cases, however, it is not possible to do so and a smaller, lower resolution or
-          lower quality alternate image content must be uploaded prior to (or instead of) uploading the
-          original image content.
-      enum:
-        - alternate
-        - original
+  responses:
+    Image:
+      description: Successfully created an image.
+      content:
+        'application/json':
+          schema:
+            $ref: './images/models/image.v1.yaml'
 
     ImageContent:
-      type: string
-      format: binary
-      description: The raw bytes of the content of the image.
-
-    ImageContentAttributes:
-      type: object
-      required:
-        - digestMD5
-        - mediaType
-        - width
-        - height
-        - size
-        - createdTime
-      properties:
-        digestMD5:
-          $ref: './common/models/digestmd5.v1.yaml'
-        mediaType:
-          $ref: './common/models/imagemediatype.v1.yaml'
-        width:
-          type: integer
-          description: The width of the image content, in pixels.
-          minimum: 1
-          maximum: 10000
-        height:
-          type: integer
-          description: The height of the image content, in pixels.
-          minimum: 1
-          maximum: 10000
-        size:
-          type: integer
-          description: The size of the image content, in bytes.
-          maximum: 104857600
-        createdTime:
-          $ref: './common/models/datetime.v1.yaml'
-        modifiedTime:
-          $ref: './common/models/datetime.v1.yaml'
-
-    ImageBase:
-      type: object
-      description: The read-only, base portion of an image.
-      required:
-        - id
-        - userId
-        - status
-        - createdTime
-        - revision
-      properties:
-        id:
-          $ref: '#/components/schemas/ImageId'
-        userId:
-          $ref: './common/models/tidepooluserid.v1.yaml'
-        status:
-          $ref: '#/components/schemas/ImageStatus'
-        createdTime:
-          $ref: './common/models/datetime.v1.yaml'
-        modifiedTime:
-          $ref: './common/models/datetime.v1.yaml'
-        revision:
-          $ref: '#/components/schemas/ImageRevision'
-
-    ImageWithMetadata:
-      type: object
-      description: An image with just metadata.
-      allOf:
-        - $ref: '#/components/schemas/ImageBase'
-        - type: object
-          properties:
-            metadata:
-              $ref: '#/components/schemas/ImageMetadata'
-      example:
-        id: bc4a3d25a01fb8ac0fd9cfc390d7523b
-        userId: a43d25a01f
-        status: created
-        createdTime: 2018-06-15T13:45:56Z
-        revision: 0
-        metadata:
-          name: Rover being funny!
-          associations:
-            - type: url
-              url: https://disneyland.disney.go.com/
-              reason: Disneyland is the greatest place on earth!
-          location:
-            name: Disneyland Park, Anaheim, CA, USA
-            gps:
-              latitude:
-                units: degrees
-                value: 33.812101
-              longitude:
-                units: degrees
-                value: -117.918975
-          metadata:
-            animal: dog
-          origin:
-            id: AA5634B2-387A-415E-AB32-166C9EDAC32D
-            name: com.apple.HealthKit
-            type: service
-
-    ImageWithContent:
-      type: object
-      description: An image with just content.
-      allOf:
-        - $ref: '#/components/schemas/ImageBase'
-        - type: object
-          required:
-            - contentIntent
-            - contentAttributes
-          properties:
-            contentIntent:
-              $ref: '#/components/schemas/ImageContentIntent'
-            contentAttributes:
-              $ref: '#/components/schemas/ImageContentAttributes'
-      example:
-        id: ac0fd9cfbc4a3d25a01fb8c390d7523b
-        userId: a43d25a01f
-        status: available
-        createdTime: 2018-06-15T13:45:58Z
-        modifiedTime: 2018-06-15T13:46:15Z
-        revision: 2
-        contentIntent: alternate
-        contentAttributes:
-          digestMD5: 1f32f4e4af1d0e21c55693d6c55b9baa
-          mediaType: image/png
-          width: 400
-          height: 300
-          size: 125390
-          createdTime: 2018-06-15T13:46:15Z
-
-    Image:
-      type: object
-      description: An image with both metadata and content.
-      allOf:
-        - $ref: '#/components/schemas/ImageBase'
-        - type: object
-          required:
-            - contentIntent
-            - contentAttributes
-          properties:
-            metadata:
-              $ref: '#/components/schemas/ImageMetadata'
-            contentIntent:
-              $ref: '#/components/schemas/ImageContentIntent'
-            contentAttributes:
-              $ref: '#/components/schemas/ImageContentAttributes'
-      example:
-        id: ac0fd9cfbc4a3d25a01fb8c390d7523b
-        userId: a43d25a01f
-        status: available
-        createdTime: 2018-06-15T13:45:58Z
-        modifiedTime: 2018-06-15T13:46:15Z
-        revision: 2
-        metadata:
-          name: Rover being funny!
-          associations:
-            - type: url
-              url: https://disneyland.disney.go.com/
-              reason: Disneyland is the greatest place on earth!
-          location:
-            name: Disneyland Park, Anaheim, CA, USA
-            gps:
-              latitude:
-                units: degrees
-                value: 33.812101
-              longitude:
-                units: degrees
-                value: -117.918975
-          metadata:
-            animal: dog
-          origin:
-            id: AA5634B2-387A-415E-AB32-166C9EDAC32D
-            name: com.apple.HealthKit
-            type: service
-        contentIntent: alternate
-        contentAttributes:
-          digestMD5: 1f32f4e4af1d0e21c55693d6c55b9baa
-          mediaType: image/png
-          width: 400
-          height: 300
-          size: 125390
-          createdTime: 2018-06-15T13:46:15Z
-
-    ImageArray:
-      type: array
-      description: An array of images.
-      items:
-        $ref: '#/components/schemas/Image'
-      example:
-        - id: bc4a3d25a01fb8ac0fd9cfc390d7523b
-          userId: a43d25a01f
-          status: created
-          createdTime: 2018-06-15T13:45:56Z
-          revision: 0
-        - id: ac0fd9cfbc4a3d25a01fb8c390d7523b
-          userId: a43d25a01f
-          status: available
-          createdTime: 2018-06-15T13:45:58Z
-          modifiedTime: 2018-06-15T13:46:15Z
-          revision: 2
-          metadata:
-            name: Rover being funny!
-            associations:
-              - type: url
-                url: https://disneyland.disney.go.com/
-                reason: Disneyland is the greatest place on earth!
-            location:
-              name: Disneyland Park, Anaheim, CA, USA
-              gps:
-                latitude:
-                  units: degrees
-                  value: 33.812101
-                longitude:
-                  units: degrees
-                  value: -117.918975
-            metadata:
-              animal: dog
-            origin:
-              id: AA5634B2-387A-415E-AB32-166C9EDAC32D
-              name: com.apple.HealthKit
-              type: service
-          contentIntent: alternate
-          contentAttributes:
-            digestMD5: 1f32f4e4af1d0e21c55693d6c55b9baa
-            mediaType: image/png
-            width: 400
-            height: 300
-            size: 125390
-            createdTime: 2018-06-15T13:46:15Z
+      description: Successfully returned content for the specified image.
+      content:
+        'image/jpeg':
+          schema:
+            $ref: './images/models/content.v1.yaml'
+        'image/png':
+          schema:
+            $ref: './images/models/content.v1.yaml'
 
 paths:
   '/v1/users/{userId}/images/metadata':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
     post:
       operationId: CreateImageMetadata
       summary: Create Image (Metadata)
@@ -442,34 +96,29 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          'application/json':
             schema:
-              $ref: '#/components/schemas/ImageMetadata'
+              $ref: './images/models/metadata.v1.yaml'
       responses:
         '201':
           description: Successfully created an image.
           content:
-            application/json:
+            'application/json':
               schema:
-                $ref: '#/components/schemas/ImageWithMetadata'
+                $ref: './images/models/imagewithmetadata.v1.yaml'
       tags:
         - Images
 
   '/v1/users/{userId}/images/content/{contentIntent}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      - $ref: '#/components/parameters/imageContentIntent'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: './images/parameters/contentintent.v1.yaml'
     post:
       operationId: CreateImageContent
       summary: Create Image (Content)
       description: >-
         Create a new image for the specified user with only content using the
-        specified
-
-        content intent. Metadata can be added later.
+        specified content intent. Metadata can be added later.
 
         The body of the request is the raw bytes of the content.
 
@@ -477,36 +126,31 @@ paths:
       requestBody:
         required: true
         content:
-          image/jpeg:
+          'image/jpeg':
             schema:
-              $ref: '#/components/schemas/ImageContent'
-          image/png:
+              $ref: './images/models/content.v1.yaml'
+          'image/png':
             schema:
-              $ref: '#/components/schemas/ImageContent'
+              $ref: './images/models/content.v1.yaml'
       responses:
         '201':
           description: Successfully created image with content.
           content:
-            application/json:
+            'application/json':
               schema:
-                $ref: '#/components/schemas/ImageWithContent'
+                $ref: './images/models/imagewithcontent.v1.yaml'
       tags:
         - Images
 
   '/v1/users/{userId}/images':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
     post:
       operationId: CreateImageMIME
       summary: Create Image (MIME)
       description: >-
         Create a new image for the specified user from a MIME/Multipart encoded
-        request body
-
-        containing metadata, content intent, and content.
+        request body containing metadata, content intent, and content.
 
         The Content-Type header must be `multipart/form-data` and include a valid `boundary` parameter.
 
@@ -527,11 +171,11 @@ paths:
               type: object
               properties:
                 metadata:
-                  $ref: '#/components/schemas/ImageMetadata'
+                  $ref: './images/models/metadata.v1.yaml'
                 contentIntent:
-                  $ref: '#/components/schemas/ImageContentIntent'
+                  $ref: './images/models/contentintent.v1.yaml'
                 content:
-                  $ref: '#/components/schemas/ImageContent'
+                  $ref: './images/models/content.v1.yaml'
             encoding:
               metadata:
                 contentType: application/json; charset=utf-8
@@ -541,11 +185,7 @@ paths:
                 contentType: image/jpeg, image/png
       responses:
         '201':
-          description: Successfully created an image.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Image'
+          $ref: '#/components/responses/Image'
       tags:
         - Images
     get:
@@ -586,7 +226,7 @@ paths:
             If not specified, only images with `available` status are returned.
             May be specified *multiple* times.
           schema:
-            $ref: '#/components/schemas/ImageStatus'
+            $ref: './images/models/status.v1.yaml'
         - name: contentIntent
           in: query
           description: >-
@@ -595,16 +235,16 @@ paths:
             If not specified, no filtering based upon content intent is applied.
             May be specified *multiple* times.
           schema:
-            $ref: '#/components/schemas/ImageContentIntent'
+            $ref: './images/models/contentintent.v1.yaml'
         - $ref: './common/parameters/paginationpage.v1.yaml'
         - $ref: './common/parameters/paginationsize.v1.yaml'
       responses:
         '200':
           description: Successfully returned user images.
           content:
-            application/json:
+            'application/json':
               schema:
-                $ref: '#/components/schemas/ImageArray'
+                $ref: './images/models/imagelist.v1.yaml'
       tags:
         - Images
     delete:
@@ -619,10 +259,7 @@ paths:
 
   '/v1/images/{imageId}':
     parameters:
-      - $ref: '#/components/parameters/imageId'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './images/parameters/id.v1.yaml'
     delete:
       operationId: DeleteImage
       summary: Delete Image
@@ -633,7 +270,7 @@ paths:
         If the specified `revision` does not match the actual revision of the image, then a `404` error is returned.
         If used properly this can prevent accidental overwrite by multiple simultaneous updates or deletes.
       parameters:
-        - $ref: '#/components/parameters/imageRevision'
+        - $ref: './images/parameters/revision.v1.yaml'
       responses:
         '204':
           $ref: './common/responses/nocontent.v1.yaml'
@@ -645,20 +282,13 @@ paths:
       description: Get the specified image.
       responses:
         '200':
-          description: Successfully returned image.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Image'
+          $ref: '#/components/responses/Image'
       tags:
         - Images
 
   '/v1/images/{imageId}/metadata':
     parameters:
-      - $ref: '#/components/parameters/imageId'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './images/parameters/id.v1.yaml'
     get:
       operationId: GetImageMetadata
       summary: Get Image Metadata
@@ -667,9 +297,9 @@ paths:
         '200':
           description: Successfully returned metadata for the specified image.
           content:
-            application/json:
+            'application/json':
               schema:
-                $ref: '#/components/schemas/ImageMetadata'
+                $ref: './images/models/metadata.v1.yaml'
       tags:
         - Images
     put:
@@ -684,29 +314,22 @@ paths:
         If the specified `revision` does not match the actual revision of the image, then a `404` error is returned.
         If used properly this can prevent accidental overwrite by multiple simultaneous updates or deletes.
       parameters:
-        - $ref: '#/components/parameters/imageRevision'
+        - $ref: './images/parameters/revision.v1.yaml'
       requestBody:
         required: true
         content:
-          application/json:
+          'application/json':
             schema:
-              $ref: '#/components/schemas/ImageMetadata'
+              $ref: './images/models/metadata.v1.yaml'
       responses:
         '200':
-          description: Successfully updated the content and content intent for the image.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Image'
+          $ref: '#/components/responses/Image'
       tags:
         - Images
 
   '/v1/images/{imageId}/content':
     parameters:
-      - $ref: '#/components/parameters/imageId'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './images/parameters/id.v1.yaml'
     get:
       operationId: GetImageContent
       summary: Get Image Content
@@ -717,26 +340,14 @@ paths:
         If the image does not have content then a `404` error will be returned.
       responses:
         '200':
-          description: Successfully returned content for the specified image.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-            image/png:
-              schema:
-                type: string
-                format: binary
+          $ref: '#/components/responses/ImageContent'
       tags:
         - Images
 
   '/v1/images/{imageId}/content/{suffix}':
     parameters:
-      - $ref: '#/components/parameters/imageId'
-      - $ref: '#/components/parameters/imageSuffix'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './images/parameters/id.v1.yaml'
+      - $ref: './images/parameters/suffix.v1.yaml'
     get:
       operationId: GetImageContentWithSuffix
       summary: Get Image Content (Suffix)
@@ -761,26 +372,14 @@ paths:
         If the image does not have content then a `404` error will be returned.
       responses:
         '200':
-          description: Successfully returned content for the specified image.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-            image/png:
-              schema:
-                type: string
-                format: binary
+          $ref: '#/components/responses/ImageContent'
       tags:
         - Images
 
   '/v1/images/{imageId}/content/{contentIntent}':
     parameters:
-      - $ref: '#/components/parameters/imageId'
-      - $ref: '#/components/parameters/imageContentIntent'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './images/parameters/id.v1.yaml'
+      - $ref: './images/parameters/contentintent.v1.yaml'
     put:
       operationId: PutImageContent
       summary: Put Image Content
@@ -795,36 +394,29 @@ paths:
         If the specified `revision` does not match the actual revision of the image, then a `404` error is returned.
         If used properly this can prevent accidental overwrite by multiple simultaneous updates or deletes.
       parameters:
-        - $ref: '#/components/parameters/imageRevision'
+        - $ref: './images/parameters/revision.v1.yaml'
       requestBody:
         required: true
         content:
-          image/jpeg:
+          'image/jpeg':
             schema:
               type: string
               format: binary
-          image/png:
+          'image/png':
             schema:
               type: string
               format: binary
       responses:
         '200':
-          description: Successfully updated the content and content intent for the image.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Image'
+          $ref: '#/components/responses/Image'
       tags:
         - Images
 
   '/v1/images/{imageId}/rendition/{rendition}.{extension}':
     parameters:
-      - $ref: '#/components/parameters/imageId'
-      - $ref: '#/components/parameters/imageRendition'
-      - $ref: '#/components/parameters/imageExtension'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './images/parameters/id.v1.yaml'
+      - $ref: './images/parameters/rendition.v1.yaml'
+      - $ref: './images/parameters/extension.v1.yaml'
     get:
       operationId: GetImageRendition
       summary: Get Image Rendition
@@ -886,28 +478,16 @@ paths:
           - `/v1/images/ac0fd9cfbc4a3d25a01fb8c390d7523b/rendition/w=800_h=200.jpeg`
       responses:
         '200':
-          description: Successfully returned requested rendition for the specified image.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-            image/png:
-              schema:
-                type: string
-                format: binary
+          $ref: '#/components/responses/ImageContent'
       tags:
         - Images
 
   '/v1/images/{imageId}/rendition/{rendition}/{suffix}.{extension}':
     parameters:
-      - $ref: '#/components/parameters/imageId'
-      - $ref: '#/components/parameters/imageRendition'
-      - $ref: '#/components/parameters/imageSuffix'
-      - $ref: '#/components/parameters/imageExtension'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './images/parameters/id.v1.yaml'
+      - $ref: './images/parameters/rendition.v1.yaml'
+      - $ref: './images/parameters/suffix.v1.yaml'
+      - $ref: './images/parameters/extension.v1.yaml'
     get:
       operationId: GetImageRenditionWithSuffix
       summary: Get Image Rendition (Suffix)
@@ -924,15 +504,6 @@ paths:
           - `/v1/images/ac0fd9cfbc4a3d25a01fb8c390d7523b/rendition/h=180_m=fit/dog/black_lab.jpg`
       responses:
         '200':
-          description: Successfully returned requested rendition for the specified image.
-          content:
-            image/jpeg:
-              schema:
-                type: string
-                format: binary
-            image/png:
-              schema:
-                type: string
-                format: binary
+          $ref: '#/components/responses/ImageContent'
       tags:
         - Images

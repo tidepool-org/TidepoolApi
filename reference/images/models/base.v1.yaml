@@ -1,0 +1,22 @@
+title: Image Base
+type: object
+description: The read-only, base portion of an image.
+properties:
+  id:
+    $ref: './id.v1.yaml'
+  userId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  status:
+    $ref: './status.v1.yaml'
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  modifiedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  revision:
+    $ref: './revision.v1.yaml'
+required:
+  - id
+  - userId
+  - status
+  - createdTime
+  - revision

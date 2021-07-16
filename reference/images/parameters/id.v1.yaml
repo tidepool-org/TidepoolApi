@@ -1,0 +1,7 @@
+title: Image ID
+name: imageId
+in: path
+description: The id of an image.
+required: true
+schema:
+  $ref: '../models/id.v1.yaml'

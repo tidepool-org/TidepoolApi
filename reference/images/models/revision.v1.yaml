@@ -1,0 +1,4 @@
+title: Image Revision
+type: integer
+description: The revision of an image.
+example: 0

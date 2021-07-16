@@ -1,0 +1,7 @@
+title: Image Rendition
+name: rendition
+in: path
+description: Rendition parameters. See above.
+required: true
+schema:
+  type: string

@@ -1,0 +1,11 @@
+title: Image Content Intent
+type: string
+description: >-
+  The intent of the image content.
+  It is preferred to only upload the original image content.
+  In some cases, however, it is not possible to do so and a smaller, lower resolution or
+    lower quality alternate image content must be uploaded prior to (or instead of) uploading the
+    original image content.
+enum:
+  - alternate
+  - original

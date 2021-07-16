@@ -1,0 +1,32 @@
+title: Image Content Attributes
+type: object
+required:
+  - digestMD5
+  - mediaType
+  - width
+  - height
+  - size
+  - createdTime
+properties:
+  digestMD5:
+    $ref: '../../common/models/digestmd5.v1.yaml'
+  mediaType:
+    $ref: '../../common/models/imagemediatype.v1.yaml'
+  width:
+    type: integer
+    description: The width of the image content, in pixels.
+    minimum: 1
+    maximum: 10000
+  height:
+    type: integer
+    description: The height of the image content, in pixels.
+    minimum: 1
+    maximum: 10000
+  size:
+    type: integer
+    description: The size of the image content, in bytes.
+    maximum: 104857600
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  modifiedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
