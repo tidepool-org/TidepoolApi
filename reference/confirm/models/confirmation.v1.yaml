@@ -1,0 +1,23 @@
+title: Confirmation
+type: object
+properties:
+  key:
+    $ref: './key.v1.yaml'
+  type:
+    $ref: './type.v1.yaml'
+  email:
+    $ref: '../../common/models/emailaddress.v1.yaml'
+  creatorId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  created:
+    $ref: '../../common/models/datetime.v1.yaml'
+  creator:
+    $ref: './creator.v1.yaml'
+  context:
+    type: string
+required:
+  - key
+  - type
+  - email
+  - creatorId
+  - created

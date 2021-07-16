@@ -1,0 +1,6 @@
+title: Confirmation Email
+name: email
+in: path
+required: true
+schema:
+  $ref: '../../common/models/emailaddress.v1.yaml'

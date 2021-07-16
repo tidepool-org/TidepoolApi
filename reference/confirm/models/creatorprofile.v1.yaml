@@ -1,0 +1,10 @@
+title: Creator user profile
+type: object
+properties:
+  fullName:
+    type: string
+  patient:
+    $ref: './patientprofile.v1.yaml'
+required:
+  - fullName
+  - patient

@@ -1,0 +1,21 @@
+title: Care Team Invitation
+type: object
+properties:
+  email:
+    $ref: '../../common/models/emailaddress.v1.yaml'
+  permissions:
+    type: object
+    properties:
+      note:
+        type: object
+      upload:
+        type: object
+      view:
+        type: object
+    example:
+      note: { }
+      upload: { }
+      view: { }
+required:
+  - email
+  - permissions

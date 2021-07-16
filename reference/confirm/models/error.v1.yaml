@@ -1,0 +1,15 @@
+type: object
+title: Confirmation Error
+description: >-
+  Error response.
+required:
+  - code
+  - reason
+properties:
+  code:
+    type: integer
+    minimum: 100
+  error:
+    type: integer
+  reason:
+    type: string

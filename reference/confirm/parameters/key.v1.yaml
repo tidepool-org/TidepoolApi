@@ -1,0 +1,7 @@
+title: Confirmation Key
+name: key
+description: Confirmation Key
+in: path
+required: true
+schema:
+  $ref: '../models/key.v1.yaml'

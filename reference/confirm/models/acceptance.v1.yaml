@@ -1,0 +1,10 @@
+title: Confirmation Acceptance
+type: object
+properties:
+  password:
+    $ref: '../../common/models/password.v1.yaml'
+  birthday:
+    $ref: '../../common/models/birthday.v1.yaml'
+required:
+  - password
+  - birthday

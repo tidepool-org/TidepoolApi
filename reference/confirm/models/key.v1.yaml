@@ -1,0 +1,5 @@
+title: Confirmation key that uniquely identifies each confirmation
+type: string
+minLength: 32
+maxLength: 32
+example: 'Sds2PHMALZrmt++JyD5mIjLkZruJldiM'

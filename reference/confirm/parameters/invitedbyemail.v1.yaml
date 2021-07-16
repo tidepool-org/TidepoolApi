@@ -1,0 +1,6 @@
+title: Invited by Email Address
+name: invitedBy
+in: path
+required: true
+schema:
+  $ref: '../../common/models/emailaddress.v1.yaml'

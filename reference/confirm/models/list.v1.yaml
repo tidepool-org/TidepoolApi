@@ -1,0 +1,4 @@
+title: Confirmation list
+type: array
+items:
+  $ref: './confirmation.v1.yaml'
