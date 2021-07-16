@@ -1,6 +1,0 @@
-name: groupId
-in: path
-required: true
-description: Tidepool Group ID
-schema:
-  type: string

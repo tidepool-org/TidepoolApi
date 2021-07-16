@@ -3,4 +3,4 @@ in: header
 required: true
 description: Tidepool Session Token
 schema:
-  $ref: ../models/tidepoolsessiontoken.v1.yaml
+  $ref: '../models/tidepoolsessiontoken.v1.yaml'

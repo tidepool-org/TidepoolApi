@@ -1,0 +1,4 @@
+description: Tidepool Session Token
+type: apiKey
+name: X-Tidepool-Session-Token
+in: header

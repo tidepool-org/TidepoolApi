@@ -1,0 +1,10 @@
+description: >-
+  Tidepool Session Token
+required: true
+schema:
+  $ref: '../models/tidepoolsessiontoken.v1.yaml'
+  # type: string
+  # pattern: "^[a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"
+  # readOnly: true
+  # example: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQ--truncated--2YTYifQ.v-Xdf-Ekd--truncated--Z9bIg'
+  # x-go-type: string

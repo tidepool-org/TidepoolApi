@@ -1,6 +1,7 @@
-title: User Email
+title: Email Address
 type: string
 format: email
 description: Email address
-minLength: 3
+minLength: 6
 example: 'example@tidepool.org'
+x-go-type: string

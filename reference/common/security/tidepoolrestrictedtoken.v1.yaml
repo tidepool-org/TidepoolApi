@@ -1,0 +1,4 @@
+description: Tidepool Restricted Token
+type: apiKey
+name: restricted_token
+in: query
