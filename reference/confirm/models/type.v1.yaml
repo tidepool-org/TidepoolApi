@@ -1,0 +1,7 @@
+title: Confirmation Type
+type: string
+enum:
+  - password_reset
+  - careteam_invitation
+  - signup_confirmation
+  - no_account

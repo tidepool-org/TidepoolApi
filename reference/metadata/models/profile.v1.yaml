@@ -1,0 +1,9 @@
+title: Profile
+description: >-
+  Profiles used by Tidepool Web
+type: object
+anyOf:
+  - $ref: './userprofile.v1.yaml'
+  - $ref: './clinicianprofile.v1.yaml'
+  - $ref: './patientprofile.v1.yaml'
+

@@ -1,0 +1,4 @@
+title: Tasks
+type: array
+items:
+  $ref: './task.v1.yaml'

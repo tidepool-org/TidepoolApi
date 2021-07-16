@@ -6,7 +6,7 @@ allOf:
   - type: object
     properties:
       byUser:
-        $ref: ../../common/models/tidepooluserid.v1.yaml
+        $ref: '../../common/models/tidepooluserid.yaml'
       client:
         $ref: ./clientsoftware.yaml
       computerTime:

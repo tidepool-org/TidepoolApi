@@ -4,3 +4,4 @@ description: >-
 type: string
 format: date-time
 example: '2017-02-06T02:37:46Z'
+x-go-type: string

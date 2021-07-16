@@ -1,0 +1,10 @@
+title: View
+description: >-
+  Permission to view diabetes data in the account.
+type: object
+properties:
+  view:
+    $ref: '../permission.v1.yaml'
+example:
+  view: { }
+  

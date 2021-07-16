@@ -1,0 +1,30 @@
+title: User
+type: object
+properties:
+  emailVerified:
+    $ref: './emailverified.v1.yaml'
+  emails:
+    $ref: './emailaddresses.v1.yaml'
+  termsAccepted:
+    $ref: '../../common/models/datetime.v1.yaml'
+  userid:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  username:
+    $ref: '../../common/models/emailaddress.v1.yaml'
+  roles:
+    $ref: './roles.v1.yaml'
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  createdUserId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  modifiedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  modifiedUserId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  deletedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  deletedUserId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+required:
+  - userid
+  - emailVerified

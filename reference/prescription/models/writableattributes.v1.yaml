@@ -8,13 +8,11 @@ properties:
   lastName:
     type: string
   birthday:
-    type: string
-    format: date
+    $ref: '../../common/models/birthday.v1.yaml'
   mrn:
     type: string
   email:
-    type: string
-    format: email
+    $ref: '../../common/models/emailaddress.v1.yaml'
   sex:
     type: string
     enum:

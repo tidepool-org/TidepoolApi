@@ -48,10 +48,7 @@ tags:
 paths:
   '/v1/users/{userId}/blobs':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
     get:
       operationId: ListBlobs
       summary: List Binary Blobs
@@ -59,8 +56,8 @@ paths:
         List previously uploaded binary blobs in the user's account.
         The list can be filtered with `mediaType` and `status` query parameters.
       parameters:
-        - $ref: '#/components/parameters/blobMediaType'
-        - $ref: '#/components/parameters/blobStatus'
+        - $ref: './blob/parameters/mediatype.v1.yaml'
+        - $ref: './blob/parameters/status.v1.yaml'
       responses:
         '200':
           $ref: '#/components/responses/BlobMetadataList'
@@ -90,7 +87,7 @@ paths:
         content:
           '*/*':
             schema:
-              $ref: '#/components/schemas/BlobContent'
+              $ref: './blob/models/content.v1.yaml'
       responses:
         '201':
           $ref: '#/components/responses/BlobMetadata'
@@ -125,11 +122,7 @@ paths:
 
   '/v1/blobs/{blobId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      - $ref: '#/components/parameters/blobId'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './blob/parameters/id.v1.yaml'
     get:
       operationId: GetBlobMetadata
       summary: Get Binary Blob Metadata
@@ -170,11 +163,7 @@ paths:
 
   '/v1/blobs/{blobId}/content':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      - $ref: '#/components/parameters/blobId'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './blob/parameters/id.v1.yaml'
     get:
       operationId: GetBlobContent
       summary: Get Binary Blob Content
@@ -197,50 +186,7 @@ paths:
 components:
   securitySchemes:
     sessionToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
-
-  parameters:
-    blobId:
-      name: blobId
-      description: Blob ID
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/BlobId'
-
-    blobMediaType:
-      name: mediaType
-      description: Media type
-      in: query
-      required: false
-      schema:
-        $ref: './common/models/mediatype.v1.yaml'
-
-    blobStatus:
-      name: status
-      description: Status
-      in: query
-      required: false
-      schema:
-        $ref: '#/components/schemas/BlobStatus'
-
-  schemas:
-    BlobId:
-      $ref: './blob/models/blobid.v1.yaml'
-
-    BlobStatus:
-      $ref: './blob/models/blobstatus.v1.yaml'
-
-    BlobMetadata:
-      $ref: './blob/models/blobmetadata.v1.yaml'
-
-    BlobMetadataList:
-      $ref: './blob/models/blobmetadatalist.v1.yaml'
-
-    BlobContent:
-      $ref: './blob/models/blobcontent.v1.yaml'
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
 
   responses:
     BlobMetadataList:
@@ -248,14 +194,14 @@ components:
       content:
         'application/json':
           schema:
-            $ref: '#/components/schemas/BlobMetadataList'
+            $ref: './blob/models/metadatalist.v1.yaml'
 
     BlobMetadata:
       description: Binary blob metadata
       content:
         'application/json':
           schema:
-            $ref: '#/components/schemas/BlobMetadata'
+            $ref: './blob/models/metadata.v1.yaml'
       links:
         DeleteBlob:
           operationId: DeleteBlob
@@ -274,13 +220,8 @@ components:
       description: Binary blob content
       headers:
         'Digest':
-          description: >-
-            Digest of the resource, per [RFC 3230](https://www.ietf.org/rfc/rfc3230.txt)
-          schema:
-            type: string
-            pattern: '^md5=(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
-          example: 'md5=NGQ1MDgzMjg3N2Q3ZWU3MTEyZGFmMTU5MzNlNDc0N2MK'
+          $ref: './common/headers/digestmd5.v1.yaml'
       content:
         '*/*':
           schema:
-            $ref: '#/components/schemas/BlobContent'
+            $ref: './blob/models/content.v1.yaml'

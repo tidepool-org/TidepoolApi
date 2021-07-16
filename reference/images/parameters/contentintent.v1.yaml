@@ -1,0 +1,7 @@
+title: Image Content Intent
+name: contentIntent
+in: path
+description: The intent for the content of an image.
+required: true
+schema:
+  $ref: '../models/contentintent.v1.yaml'

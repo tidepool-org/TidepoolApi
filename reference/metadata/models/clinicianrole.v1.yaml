@@ -1,0 +1,13 @@
+type: string
+enum:
+  - clinic_manager
+  - diabetes_educator
+  - endocrinologist
+  - front_desk
+  - information_technology
+  - medical_assistant
+  - nurse
+  - primary_care_physician
+  - physician_assistant
+  - other
+example: 'clinic_manager'

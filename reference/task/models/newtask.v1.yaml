@@ -1,0 +1,22 @@
+title: New Task
+type: object
+properties:
+  name:
+    $ref: './name.v1.yaml'
+  type:
+    $ref: './type.v1.yaml'
+  priority:
+    $ref: './priority.v1.yaml'
+  data:
+    $ref: './data.v1.yaml'
+  availableTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  expirationTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+required:
+  - name
+  - type
+  - priority
+  - data
+  - availableTime
+  - expirationTime

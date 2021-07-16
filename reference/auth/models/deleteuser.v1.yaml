@@ -1,0 +1,5 @@
+title: Delete User
+type: object
+properties:
+  password:
+    $ref: '../../common/models/password.v1.yaml'

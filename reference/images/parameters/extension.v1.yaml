@@ -1,0 +1,10 @@
+title: Image Extension
+name: extension
+in: path
+description: Mime type extension of the requested rendition.
+required: true
+schema:
+  type: string
+  enum:
+    - jpeg
+    - png

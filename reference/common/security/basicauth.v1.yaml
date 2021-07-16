@@ -1,0 +1,4 @@
+description: HTTP Basic Authentication, as defined by [RFC 7235](https://tools.ietf.org/html/rfc7235#section-5.1)
+type: http
+scheme: basic
+in: header

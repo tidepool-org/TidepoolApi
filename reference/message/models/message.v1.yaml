@@ -1,0 +1,49 @@
+title: Message
+description: >-
+  The `id` field is a unique message ID that identifies this message.
+  The `groupid` is the Tidepool User ID of the user who owns the account that contains this message.
+  The `userid` is the Tidepool User ID of the user who created this message. They may differ.
+  Messages may be chained togeher to form a message thread.
+  The `parentmessage` is either `null` to indicate that this is a top-level message (=start of a message thread),
+  or it is the message ID of the parent of this message.
+type: object
+properties:
+  message:
+    type: object
+    properties:
+      id:
+        $ref: './messageid.v1.yaml'
+      guid:
+        $ref: '../../common/models/guid.v1.yaml'
+      parentmessage:
+        $ref: './nullablemessageid.v1.yaml'
+      userid:
+        $ref: '../../common/models/tidepooluserid.yaml'
+      groupid:
+        $ref: '../../common/models/tidepooluserid.yaml'
+      timestamp:
+        $ref: '../../common/models/datetime.v1.yaml'
+      createdtime:
+        $ref: '../../common/models/datetime.v1.yaml'
+      modifiedtime:
+        $ref: '../../common/models/datetime.v1.yaml'
+      messagetext:
+        type: string
+        example: 'I ate a taco with 10g of carbs'
+      user:
+        type: object
+        properties:
+          fullName:
+            type: string
+            example: 'James Jellyfish'
+        required:
+          - fullName
+    required:
+      - id
+      - guid
+      - parentmessage
+      - userid
+      - groupid
+      - timestamp
+      - createdtime
+      - messagetext

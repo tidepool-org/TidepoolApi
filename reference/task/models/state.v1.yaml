@@ -1,0 +1,9 @@
+title: Task State
+type: string
+enum:
+  - pending
+  - running
+  - failed
+  - completed
+example: 'running'
+x-go-type: string

@@ -1,0 +1,5 @@
+title: Export as Excel
+description: >-
+  Exported data in Microsoft Excel spreadsheet
+type: string
+format: binary

@@ -1,0 +1,21 @@
+title: Edit Message
+type: object
+properties:
+  message:
+    anyOf:
+      - type: object
+        properties:
+          messagetext:
+            type: string
+          timestamp:
+            $ref: '../../common/models/datetime.v1.yaml'
+        required:
+          - messagetext
+      - type: object
+        properties:
+          messagetext:
+            type: string
+          timestamp:
+            $ref: '../../common/models/datetime.v1.yaml'
+        required:
+          - timestamp

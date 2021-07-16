@@ -1,0 +1,9 @@
+title: Upload
+description: >-
+  Permission to upload diabetes data to the account.
+type: object
+properties:
+  upload:
+    $ref: '../permission.v1.yaml'
+example:
+  upload: { }

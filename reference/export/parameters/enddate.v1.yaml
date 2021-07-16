@@ -1,0 +1,6 @@
+title: End Date
+name: endDate
+description: End date for the exported data
+in: query
+schema:
+  $ref: '../../common/models/datetime.v1.yaml'

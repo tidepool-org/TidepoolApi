@@ -1,0 +1,16 @@
+title: Private Collection
+description: >-
+  Private collection used by Tidepool Platform
+type: object
+properties:
+  uploads:
+    type: object
+    properties:
+      name:
+        type: string
+        example: ''
+      id:
+        $ref: '../../common/models/tidepooluserid.yaml'
+      hash:
+        type: string
+        example: '27dc848b6ca43eb92add9d4d'

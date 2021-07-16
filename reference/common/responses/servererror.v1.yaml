@@ -1,0 +1,5 @@
+description: 500 Server Error
+content:
+  'application/json':
+    schema:
+      $ref: '../models/error.v1.yaml'

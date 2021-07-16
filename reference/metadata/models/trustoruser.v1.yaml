@@ -1,0 +1,10 @@
+title: Trustor User
+type: object
+allOf:
+  - $ref: './user.v1.yaml'
+  - type: object
+    properties:
+      trustorPermissions:
+        $ref: '../../access/models/userpermissions.v1.yaml'
+required:
+  - trustorPermissions

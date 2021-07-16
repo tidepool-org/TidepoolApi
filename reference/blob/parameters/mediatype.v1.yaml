@@ -1,0 +1,7 @@
+title: Blob Media Type
+name: mediaType
+description: Media type
+in: query
+required: false
+schema:
+  $ref: '../../common/models/mediatype.v1.yaml'

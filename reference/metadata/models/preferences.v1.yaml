@@ -1,0 +1,8 @@
+title: User Preferences
+description: >-
+  User preferences collection used by Tidepool Web
+type: object
+properties:
+  dismissedDexcomConnectBannerTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+additionalProperties: true

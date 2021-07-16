@@ -1,0 +1,7 @@
+title: Metadata Field Name
+description: Field Name
+name: fieldName
+in: path
+required: true
+schema:
+  type: string

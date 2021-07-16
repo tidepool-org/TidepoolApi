@@ -9,3 +9,23 @@ examples:
     value: 'application/octet-stream'
   text:
     value: 'text/plain'
+  text UTF-8:
+    value: 'text/plain; charset=utf-8'
+  HTML:
+    value: 'text/html'
+  JSON:
+    value: 'application/json'
+  XML:
+    value: 'application/xml' # same as text/xml
+  XML text:
+    value: 'text/xml' # same as application/xml
+  JPEG image:
+    value: 'image/jpeg'
+  PNG image:
+    value: 'image/png'
+  MPEG4 video:
+    value: 'video/mp4'
+  PDF:
+    value: 'application/pdf'
+  ZIP:
+    value: 'application/zip'

@@ -1,0 +1,6 @@
+title: User Roles
+type: array
+uniqueItems: true
+items:
+  $ref: './role.v1.yaml'
+minItems: 0

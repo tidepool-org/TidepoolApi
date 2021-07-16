@@ -1,0 +1,6 @@
+title: Glucose Units
+name: bgUnits
+description: Glucose units of the exported data
+in: query
+schema:
+  $ref: '../models/glucoseunits.v1.yaml'

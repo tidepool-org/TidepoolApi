@@ -45,8 +45,8 @@ tags:
 paths:
   '/metrics/user/{userId}/{eventName}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      - $ref: '#/components/parameters/eventName'
+      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: './metrics/parameters/eventname.v1.yaml'
     get:
       summary: Record Metrics Event for User
       description: >-
@@ -64,7 +64,7 @@ paths:
 
   '/metrics/thisuser/{eventName}':
     parameters:
-      - $ref: '#/components/parameters/eventName'
+      - $ref: './metrics/parameters/eventname.v1.yaml'
     get:
       summary: Record Metrics Event for Logged-In User
       description: >-
@@ -87,8 +87,8 @@ paths:
 
   '/metrics/server/{serverName}/{eventName}':
     parameters:
-      - $ref: '#/components/parameters/serverName'
-      - $ref: '#/components/parameters/eventName'
+      - $ref: './metrics/parameters/servername.v1.yaml'
+      - $ref: './metrics/parameters/eventname.v1.yaml'
     get:
       summary: Record Metrics Event for Server
       description: >-
@@ -109,66 +109,7 @@ paths:
         - Metrics
       x-private: true
 
-  '/metrics/status':
-    get:
-      summary: Get Metrics Service Status
-      description: >-
-        Returns status of the metrics service.
-      responses:
-        '200':
-          description: >-
-            Success
-          content:
-            'text/plain':
-              schema:
-                type: string
-                example: 'OK'
-      operationId: GetMetricsServiceStatus
-      tags:
-        - Metrics
-      x-private: true
-
 components:
   securitySchemes:
     sessionToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
-
-  parameters:
-    eventName:
-      description: >-
-        Client-defined event name.
-        The metrics service imposes no restrictions on the event name.
-        The event name must be URL-safe, or encoded as such, as it is sent as part of the URL path.
-        Current best practice is to prefix the event name with the client application name, such as `blip`,
-        followed by the actual event name, such as `Viewed Care Team List`.
-        The resulting full event name might be `blip - Viewed Care Team List`, but encoded in URL-safe manner (i.e. converting spaces to `%20`).
-        This allows differentiation between recording similar events by different client applications.
-      name: eventName
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/EventName'
-        
-    serverName:
-      description: >-
-        Server-defined server name.
-        The metrics service imposes no restrictions on the server name.
-        The server name must be URL-safe, or encoded as such, as it is sent as part of the URL path.
-      name: serverName
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/ServerName'
-        
-  schemas:
-    EventName:
-      title: Metrics Event Name
-      type: string
-      example: 'blip%20-%20Viewed%20Care%20Team%20List'
-
-    ServerName:
-      title: Metrics Server Name
-      type: string
-      example: 'hydrophone'
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'

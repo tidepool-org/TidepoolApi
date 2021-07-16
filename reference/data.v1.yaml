@@ -134,7 +134,7 @@ paths:
         - data
       description: Gets data sets for a user account specified by the userId
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: './common/parameters/tidepooluserid.yaml'
     post:
       responses:
         '200':
@@ -231,8 +231,7 @@ paths:
         - sessionToken: []
       description: Delete all data for user
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
-      - $ref: ./common/parameters/tidepoolsessiontoken.v1.yaml
+      - $ref: './common/parameters/tidepooluserid.yaml'
   '/v1/data_sets/{dataSetId}/data':
     delete:
       responses:
@@ -430,12 +429,10 @@ paths:
       description: Get data for the specified `userId`. Can specify what data type to pull,
         start date and end date.
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.v1.yaml
+      - $ref: './common/parameters/tidepooluserid.yaml'
 tags:
   - name: data
 components:
   securitySchemes:
     sessionToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'

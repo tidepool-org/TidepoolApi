@@ -4,8 +4,7 @@ properties:
   accessCode:
     $ref: ./accesscode.v1.yaml
   birthday:
-    type: string
-    format: date
+    $ref: '../../common/models/birthday.v1.yaml'
 required:
   - accessCode
   - birthday

@@ -1,0 +1,6 @@
+title: Diagnosis Date
+type: string
+format: date
+pattern: ^\d{4}-\d{2}-\d{2}$
+example: '2013-05-09' # Date when GreenDot Diabetes was renamed Tidepool Project
+x-go-type: string

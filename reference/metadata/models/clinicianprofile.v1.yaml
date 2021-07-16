@@ -1,0 +1,16 @@
+title: Clinician Profile
+description: >-
+  Clinician profile used by Tidepool Web
+type: object
+properties:
+  fullName:
+    $ref: './fullname.v1.yaml'
+  clinic:
+    type: object
+    properties:
+      name:
+        $ref: './clinicname.v1.yaml'
+      role:
+        $ref: './clinicianrole.v1.yaml'
+      telephone:
+        $ref: './phonenumber.v1.yaml'

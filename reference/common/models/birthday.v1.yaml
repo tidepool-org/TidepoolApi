@@ -1,0 +1,6 @@
+title: Birthday
+type: string
+format: date
+pattern: ^\d{4}-\d{2}-\d{2}$
+example: '2012-08-30' # Date when Tidepool was incorporated as GreenDot Diabetes
+x-go-type: string

@@ -1,0 +1,7 @@
+description: >-
+  Tells the browser to show a `Save As` dialog box to save the exported file locally.
+required: true
+schema:
+  type: string
+  default: 'attachment; filename="TidepoolExport.{format}"'
+example: 'attachment; filename="TidepoolExport.json"'

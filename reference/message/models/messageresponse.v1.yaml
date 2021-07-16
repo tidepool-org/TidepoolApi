@@ -1,0 +1,9 @@
+title: Message Response
+description: >-
+  The `id` identifies the new message and can be used in subsequent requests to find this message.
+type: object
+properties:
+  id:
+    $ref: './messageid.v1.yaml'
+required:
+  - id

@@ -1,0 +1,23 @@
+title: Status
+type: object
+description: The status return from an HTTP request
+properties:
+  code:
+    type: integer
+    enum:
+      - 400
+      - 401
+      - 403
+      - 409
+      - 500
+    description: The HTTP status code
+  reason:
+    type: string
+    description: Human readable `reason` for the resulting `code`
+  error:
+    type: integer
+    minimum: 0
+    description: Internal `error` code.
+required:
+  - code
+  - reason

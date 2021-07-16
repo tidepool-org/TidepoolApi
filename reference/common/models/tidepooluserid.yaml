@@ -1,0 +1,4 @@
+title: Tidepool User ID
+oneOf:
+  - $ref: './tidepooluserid.v1.yaml'
+  - $ref: './tidepooluserid.v2.yaml'

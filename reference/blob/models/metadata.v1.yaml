@@ -3,9 +3,9 @@ type: object
 readOnly: true
 properties:
   id:
-    $ref: './blobid.v1.yaml'
+    $ref: './id.v1.yaml'
   userId:
-    $ref: '../../common/models/tidepooluserid.v1.yaml'
+    $ref: '../../common/models/tidepooluserid.yaml'
   digestMD5:
     $ref: '../../common/models/digestmd5.v1.yaml'
   mediaType:
@@ -16,7 +16,7 @@ properties:
     readOnly: true
     example: 1024
   status:
-    $ref: './blobstatus.v1.yaml'
+    $ref: './status.v1.yaml'
   createdTime:
     $ref: '../../common/models/datetime.v1.yaml'
   modifiedTime:

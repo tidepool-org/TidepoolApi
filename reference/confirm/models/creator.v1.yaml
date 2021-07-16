@@ -1,0 +1,10 @@
+title: Creator
+type: object
+properties:
+  userid:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  profile:
+    $ref: './creatorprofile.v1.yaml'
+required:
+  - userid
+  - profile

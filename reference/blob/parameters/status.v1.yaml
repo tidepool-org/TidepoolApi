@@ -1,0 +1,7 @@
+title: Blob Status
+name: status
+description: Status
+in: query
+required: false
+schema:
+  $ref: '../models/status.v1.yaml'

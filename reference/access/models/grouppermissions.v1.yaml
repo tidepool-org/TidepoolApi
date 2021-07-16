@@ -1,0 +1,22 @@
+title: Group Permissions
+description: >-
+  Access permissions granted to one or more users.
+  The key for each child object is the Tidepool User ID of that user.
+  The value of each child object is the set of permissions granted to that user.
+type: object
+additionalProperties:
+  $ref: './userpermissions.v1.yaml'
+minProperties: 1
+example:
+  'd4206d26a6':
+    root: { }
+  '305cabe660':
+    note: { }
+    view: { }
+  '7575613eca':
+    view: { }
+    note: { }
+    upload: { }
+  '975ac5cc92':
+    note: { }
+    view: { }

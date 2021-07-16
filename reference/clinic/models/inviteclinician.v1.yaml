@@ -3,9 +3,7 @@ type: object
 description: ''
 properties:
   email:
-    x-go-type: string
-    type: string
-    format: email
+    $ref: '../../common/models/emailaddress.v1.yaml'
   roles:
     $ref: ./clinicianroles.v1.yaml
 required:

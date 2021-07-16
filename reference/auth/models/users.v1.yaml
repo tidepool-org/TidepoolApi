@@ -1,0 +1,4 @@
+title: Users
+type: array
+items:
+  $ref: './user.v1.yaml'

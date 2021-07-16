@@ -1,0 +1,7 @@
+title: Task ID
+description: Task ID
+name: taskId
+in: path
+required: true
+schema:
+  $ref: '../models/id.v1.yaml'

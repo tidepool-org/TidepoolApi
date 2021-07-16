@@ -49,7 +49,7 @@ paths:
           content:
             'application/json':
               schema:
-                $ref: '#/components/schemas/MetadataCollectionNames'
+                $ref: './metadata/models/collectionnames.v1.yaml'
       security:
         - sessionToken: []
       tags:
@@ -57,8 +57,8 @@ paths:
 
   '/metadata/{userId}/{collectionName}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      - $ref: '#/components/parameters/collectionName'
+      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: './metadata/parameters/collectionname.v1.yaml'
     get:
       operationId: GetUserMetadataCollection
       summary: Get User Metadata Collection
@@ -132,23 +132,23 @@ paths:
     #     - Metadata
     #.  x-private: true
 
-  # '/metadata/{userId}/private/{fieldName}':
-  #   parameters:
-  #     - $ref: './common/parameters/tidepooluserid.v1.yaml'
-  #     - $ref: '#/components/parameters/fieldName'
-  #   get:
-  #     operationId: GetUserPrivateMetadataItem
-  #     summary: Get User's Private Metadata Item
-  #     description: >-
-  #       Returns the named item from the user's private metadata collection.
-  #     responses:
-  #       '200':
-  #         description: ''
-  #     security:
-  #       - serverToken: []
-  #     tags:
-  #       - Metadata
-  #     x-private: true
+  '/metadata/{userId}/private/{fieldName}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: './metadata/parameters/fieldname.v1.yaml'
+    get:
+      operationId: GetUserPrivateMetadataItem
+      summary: Get User's Private Metadata Item
+      description: >-
+        Returns the named item from the user's private metadata collection.
+      responses:
+        '200':
+          description: ''
+      security:
+        - serverToken: []
+      tags:
+        - Metadata
+      x-private: true
 
     # delete:
     #   operationId: DeleteUserPrivateMetadataItem
@@ -166,15 +166,15 @@ paths:
 
   '/metadata/users/{userId}/users':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
     get:
       operationId: ListUsers
       summary: List Users
       description: >-
-        List all users who have trustee access to the user account identified by `userId`.
+        List all users who have trustee or trustor access to the user account identified by `userId`.
       responses:
         '200':
-          $ref: '#/components/responses/TrusteeUsers'
+          $ref: '#/components/responses/TrustUsers'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -187,217 +187,17 @@ paths:
 components:
   securitySchemes:
     sessionToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
 
     serverToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
-
-  schemas:
-    MetadataCollectionName:
-      type: string
-      enum:
-        - profile
-        - preferences # used by Tidepool Web
-        - settings # used by Tidepool Web
-        - groups # unused?
-        - private # used by Tidepool Platform
-      example: 'profile'
-
-    MetadataCollectionNames:
-      type: array
-      items:
-        $ref: '#/components/schemas/MetadataCollectionName'
-      example: [ 'profile', 'groups', 'private' ]
-
-    MetadataCollection:
-      type: object
-      anyOf:
-        - $ref: '#/components/schemas/MetadataProfileCollection'
-        - $ref: '#/components/schemas/MetadataPreferencesCollection'
-        - $ref: '#/components/schemas/MetadataSettingsCollection'
-        - $ref: '#/components/schemas/MetadataPrivateCollection'
-
-    MetadataProfileCollection:
-      title: Profile Collection
-      description: >-
-        Profile collection used by Tidepool Web
-      type: object
-      properties:
-        fullName:
-          type: string
-          example: 'James Jellyfish'
-        patient:
-          type: object
-          properties:
-            diagnosisType:
-              type: string
-              enum:
-                - type1
-                - type2
-                - gestational
-                - prediabetes
-                - lada
-                - mody
-                - other
-              example: 'type1'
-            diagnosisDate:
-              type: string
-              example: '2014-08-15'
-            birthday:
-              type: string
-              example: '2013-01-01'
-            biologicalSex:
-              type: string
-              example: 'male'
-            targetDevices:
-              type: array
-              items:
-                type: string
-                example: 'bayercontournext'
-            targetTimezone:
-              type: string
-              example: 'US/Eastern'
-            about:
-              type: string
-              example: 'Jellyman is awesome!'
-      additionalProperties: true
-
-    MetadataPreferencesCollection:
-      title: Preferences Collection
-      description: >-
-        Preferences collection used by Tidepool Web
-      type: object
-      properties:
-        dismissedDexcomConnectBannerTime:
-          $ref: './common/models/datetime.v1.yaml'
-      additionalProperties: true
-
-    MetadataSettingsCollection:
-      title: Settings Collection
-      description: >-
-        Settings collection used by Tidepool Web
-      type: object
-      properties:
-        bgTarget:
-          type: object
-          properties:
-            low:
-              type: number
-              example: 65
-            high:
-              type: number
-              example: 180
-      additionalProperties: true
-
-    MetadataPrivateCollection:
-      title: Private Collection
-      description: >-
-        Private collection used by Tidepool Platform
-      type: object
-      properties:
-        uploads:
-          type: object
-          properties:
-            name:
-              type: string
-              example: ''
-            id:
-              $ref: './common/models/tidepooluserid.v1.yaml'
-            hash:
-              type: string
-              example: '27dc848b6ca43eb92add9d4d'
-      additionalProperties: true
-
-    TrusteeUser:
-      type: object
-      properties:
-        emailVerified:
-          type: boolean
-          example: true
-        emails:
-          type: array
-          items:
-            $ref: './common/models/emailaddress.v1.yaml'
-        termsAccepted:
-          $ref: './common/models/datetime.v1.yaml'
-        roles:
-          type: array
-          items:
-            type: string
-            enum:
-              - clinic
-            example: 'clinic'
-        userid:
-          $ref: './common/models/tidepooluserid.v1.yaml'
-        username:
-          $ref: './common/models/emailaddress.v1.yaml'
-        trusteePermissions:
-          type: object
-          properties:
-            view:
-              type: object
-            note:
-              type: object
-            upload:
-              type: object
-          additionalProperties: true
-          example:
-            view: { }
-            note: { }
-            upload: { }
-        profile:
-          type: object
-          properties:
-            fullName:
-              type: string
-              example: 'Tidepool Big Data Project'
-            clinic:
-              type: object
-              properties:
-                role:
-                  type: string
-                  example: 'information_technology'
-                name:
-                  type: string
-                  example: 'Tidepool'
-              additionalProperties: true
-          additionalProperties: true
-      required:
-        - userid
-        - trusteePermissions
-
-    TrusteeUsers:
-      type: array
-      items:
-        $ref: '#/components/schemas/TrusteeUser'
-
-  parameters:
-    collectionName:
-      description: Collection Name
-      name: collectionName
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/MetadataCollectionName'
-
-    fieldName:
-      description: Field Name
-      name: fieldName
-      in: path
-      required: true
-      schema:
-        type: string
+      $ref: './common/security/tidepoolservertoken.v1.yaml'
 
   requestBodies:
     MetadataCollection:
       content:
         'application/json':
           schema:
-            $ref: '#/components/schemas/MetadataCollection'
+            $ref: './metadata/models/collection.v1.yaml'
 
   responses:
     MetadataCollection:
@@ -405,14 +205,14 @@ components:
       content:
         'application/json':
           schema:
-            $ref: '#/components/schemas/MetadataCollection'
+            $ref: './metadata/models/collection.v1.yaml'
 
-    TrusteeUsers:
+    TrustUsers:
       description: 'Success'
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/TrusteeUsers'
+            $ref: './metadata/models/trustusers.v1.yaml'
 
     Unauthorized:
       description: 'Unauthorized'

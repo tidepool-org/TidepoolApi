@@ -1,0 +1,10 @@
+title: Tidepool User ID v2
+type: string
+pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+description: >-
+  Tidepool User ID version 2: 36-digit [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)).
+readOnly: true
+minLength: 36
+maxLength: 36
+x-go-type: string
+example: '7b39b1e1-5db5-4a09-9602-d9255b08a8e4'

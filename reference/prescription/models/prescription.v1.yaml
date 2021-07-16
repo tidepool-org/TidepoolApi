@@ -7,25 +7,25 @@ properties:
   id:
     $ref: ../../common/models/objectid.v1.yaml
   patientUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   state:
     $ref: ./state.v1.yaml
   expirationTime:
     $ref: ../../common/models/datetime.v1.yaml
   prescriberUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   createdTime:
     $ref: ../../common/models/datetime.v1.yaml
   createdUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   deletedTime:
     $ref: ../../common/models/datetime.v1.yaml
   deletedUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   modifiedTime:
     $ref: ../../common/models/datetime.v1.yaml
   modifiedUserId:
-    $ref: ../../common/models/tidepooluserid.v1.yaml
+    $ref: '../../common/models/tidepooluserid.yaml'
   latestRevision:
     $ref: ./revision.v1.yaml
   clinicId:

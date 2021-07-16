@@ -1,0 +1,7 @@
+title: Blob ID
+name: blobId
+description: Blob ID
+in: path
+required: true
+schema:
+  $ref: '../models/id.v1.yaml'

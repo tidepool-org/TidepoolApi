@@ -1,0 +1,9 @@
+title: Metadata Collection Name
+type: string
+enum:
+  - profile
+  - preferences # used by Tidepool Web
+  - settings # used by Tidepool Web
+  - groups # unused?
+  - private # used by Tidepool Platform
+example: 'profile'

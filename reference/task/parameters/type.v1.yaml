@@ -1,0 +1,7 @@
+title: Task Type Filter
+description: Filter by task type
+name: type
+in: query
+required: false
+schema:
+  $ref: '../models/type.v1.yaml'
