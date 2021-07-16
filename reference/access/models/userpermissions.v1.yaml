@@ -1,0 +1,15 @@
+title: User Permissions
+description: >-
+  Access permissions granted to a single user.
+type: object
+anyOf:
+  - $ref: './permissions/owner.v1.yaml'
+  - $ref: './permissions/custodian.v1.yaml'
+  - $ref: './permissions/view.v1.yaml'
+  - $ref: './permissions/note.v1.yaml'
+  - $ref: './permissions/upload.v1.yaml'
+minProperties: 1
+example:
+  note: { }
+  upload: { }
+  view: { }

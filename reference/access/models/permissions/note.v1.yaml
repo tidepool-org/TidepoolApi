@@ -1,0 +1,9 @@
+title: Notes
+description: >-
+  Permission to view and manage notes in the account.
+type: object
+properties:
+  note:
+    $ref: '../permission.v1.yaml'
+example:
+  note: { }

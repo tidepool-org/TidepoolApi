@@ -1,0 +1,10 @@
+title: Custodian
+description: >-
+  Full custodial permission.
+type: object
+properties:
+  custodian:
+    $ref: '../permission.v1.yaml'
+example:
+  custodian: { }
+  

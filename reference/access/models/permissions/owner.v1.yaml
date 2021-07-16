@@ -1,0 +1,9 @@
+title: Owner
+description: >-
+  Full account owner access permission.
+type: object
+properties:
+  root:
+    $ref: '../permission.v1.yaml'
+example:
+  root: { }

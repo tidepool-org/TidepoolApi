@@ -1,0 +1,8 @@
+title: Modify User Permissions
+type: object
+anyOf:
+  - $ref: './permissions/view.v1.yaml'
+  - $ref: './permissions/note.v1.yaml'
+  - $ref: './permissions/upload.v1.yaml'
+minProperties: 1
+maxProperties: 3

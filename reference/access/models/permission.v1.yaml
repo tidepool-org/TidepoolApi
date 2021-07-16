@@ -1,0 +1,5 @@
+title: Permission
+description: >-
+  The presence of this object indicates that the user has been granted the named permission.
+type: object
+example: { }

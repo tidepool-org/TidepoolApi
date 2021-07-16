@@ -43,192 +43,136 @@ tags:
 paths:
   '/access/groups/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
     get:
+      operationId: GetGroupsForUser
+      summary: Get Groups for User
+      description: >-
+        Retrieve all groups accessible to the user `userId`.
       responses:
         '200':
           $ref: '#/components/responses/GroupPermissions'
-        # '401':
-        #   $ref: './common/responses/unauthorized.v1.yaml'
-        # '403':
-        #   $ref: './common/responses/forbidden.v1.yaml'
-        # '404':
-        #   $ref: './common/responses/notfound.v1.yaml'
-      summary: Get Groups for User
-      description: Retrieve all groups accessible to the user `userId`.
-      operationId: GetGroupsForUser
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
       tags:
         - Authorization
 
   '/access/{sharerId}':
     parameters:
       - $ref: './common/parameters/tidepoolsharerid.v1.yaml'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
     get:
+      operationId: GetUsersInGroup
+      summary: Get Users in Group
+      description: >-
+        Retrieve all users that have access to group `sharerId`.
       responses:
         '200':
           $ref: '#/components/responses/GroupPermissions'
-        # '401':
-        #   $ref: './common/responses/unauthorized.v1.yaml'
-        # '403':
-        #   $ref: './common/responses/forbidden.v1.yaml'
-        # '404':
-        #   $ref: './common/responses/notfound.v1.yaml'
-      summary: Get Users in Group
-      description: Retrieve all users that have access to group `sharerId`.
-      operationId: GetUsersInGroup
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
       tags:
         - Authorization
 
   '/access/{sharerId}/{userId}':
     parameters:
       - $ref: './common/parameters/tidepoolsharerid.v1.yaml'
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
-      # - $ref: './common/parameters/tidepoolsessiontoken.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracesession.v1.yaml'
-      # - $ref: './common/parameters/tidepooltracerequest.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
     get:
+      operationId: GetPermissionsForUser
+      summary: Get User Permissions in Group
+      description: >-
+        Retrieve permissions of individual user `userId` in group `sharerId`.
       responses:
         '200':
           $ref: '#/components/responses/UserPermissions'
-        # '401':
-        #   $ref: './common/responses/unauthorized.v1.yaml'
-        # '403':
-        #   $ref: './common/responses/forbidden.v1.yaml'
-        # '404':
-        #   $ref: './common/responses/notfound.v1.yaml'
-      summary: Get User Permissions in Group
-      description: Retrieve the set of permissions for `userId` in group `sharerId`.
-      operationId: GetPermissionsForUser
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
       tags:
         - Authorization
+
     post:
-      responses:
-        '200':
-          $ref: '#/components/responses/UserPermissions'
-        # '401':
-        #   $ref: './common/responses/unauthorized.v1.yaml'
-        # '403':
-        #   $ref: './common/responses/forbidden.v1.yaml'
-        # '404':
-        #   $ref: './common/responses/notfound.v1.yaml'
+      operationId: GrantPermissionsInGroup
       summary: Update Permissions for User in Group
       description: >-
-        Update permissions for `userId` in group `sharerId`.
-        The permissions provided in the request body override the existing permissions.
-      operationId: GrantPermissionsInGroup
-      tags:
-        - Authorization
+        Update permissions of individual user `userId` in group `sharerId`.
+        The permissions provided in the request body replace all existing permissions for that user.
+        Therefore to delete a permission, submit the request body without that permission.
       requestBody:
         content:
-          application/json:
+          'application/json':
             schema:
-              $ref: '#/components/schemas/UpsertUserPermissions'
-
-  '/access/status':
-    get:
+              $ref: './access/models/modifyuserpermissions.v1.yaml'
       responses:
         '200':
-          description: Service status
-          content:
-            'application/json':
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: 'ok'
-      summary: Get Service Status
-      description: Get service status
-      operationId: GetServiceStatus
-      x-private: true
+          $ref: '#/components/responses/UserPermissions'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
       tags:
         - Authorization
 
 components:
+  securitySchemes:
+    sessionToken:
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
+
   responses:
     UserPermissions:
       description: 'Access permissions of a user'
       content:
-        application/json:
+        'application/json':
           schema:
-            $ref: '#/components/schemas/UserPermissions'
+            $ref: './access/models/userpermissions.v1.yaml'
 
     GroupPermissions:
       description: 'Access permissions of one or more users within a group'
       content:
-        application/json:
+        'application/json':
           schema:
-            $ref: '#/components/schemas/GroupPermissions'
+            $ref: './access/models/grouppermissions.v1.yaml'
 
-  securitySchemes:
-    sessionToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
+    BadRequest:
+      description: 'Bad Request'
 
-  schemas:
-    UserPermissions:
-      title: User Permissions
-      description: Access permissions granted to a user
-      type: object
-      additionalProperties: false
-      properties:
-        root:
-          type: object
-          additionalProperties: false
-          example: { }
-        view:
-          type: object
-          additionalProperties: false
-          example: { }
-        note:
-          type: object
-          additionalProperties: false
-          example: { }
-        upload:
-          type: object
-          additionalProperties: false
-          example: { }
-        custodian:
-          type: object
-          additionalProperties: false
-          example: { }
+    Unauthorized:
+      description: 'Unauthorized'
 
-    GroupPermissions:
-      title: Group Permissions
-      description: Access permissions granted to one or more users
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/UserPermissions'
-      example:
-        "d4206d26a6":
-          "root": { }
-        "305cabe660":
-          "note": { }
-          "view": { }
-        "7575613eca":
-          "view": { }
-          "note": { }
-          "upload": { }
-        "975ac5cc92":
-          "note": { }
-          "view": { }
+    Forbidden:
+      description: 'Forbidden'
 
-    UpsertUserPermissions:
-      type: object
-      properties:
-        view:
-          type: object
-          example: { }
-        note:
-          type: object
-          example: { }
-        upload:
-          type: object
-          example: { }
+    NotFound:
+      description: 'Not Found'
+
+    ServerError:
+      description: 'Server Error'
