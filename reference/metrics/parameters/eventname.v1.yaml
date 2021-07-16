@@ -1,0 +1,14 @@
+title: Metrics Event Name
+description: >-
+  Client-defined event name.
+  The metrics service imposes no restrictions on the event name.
+  The event name must be URL-safe, or encoded as such, as it is sent as part of the URL path.
+  Current best practice is to prefix the event name with the client application name, such as `blip`,
+  followed by the actual event name, such as `Viewed Care Team List`.
+  The resulting full event name might be `blip - Viewed Care Team List`, but encoded in URL-safe manner (i.e. converting spaces to `%20`).
+  This allows differentiation between recording similar events by different client applications.
+name: eventName
+in: path
+required: true
+schema:
+  $ref: '../models/eventname.v1.yaml'

@@ -1,0 +1,10 @@
+title: Metrics Server Name
+description: >-
+  Server-defined server name.
+  The metrics service imposes no restrictions on the server name.
+  The server name must be URL-safe, or encoded as such, as it is sent as part of the URL path.
+name: serverName
+in: path
+required: true
+schema:
+  $ref: '../models/servername.v1.yaml'
