@@ -1,0 +1,7 @@
+title: Metadata Collection
+type: object
+anyOf:
+  - $ref: './profile.v1.yaml'
+  - $ref: './preferences.v1.yaml'
+  - $ref: './settings.v1.yaml'
+  - $ref: './private.v1.yaml'

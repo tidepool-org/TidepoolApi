@@ -1,0 +1,6 @@
+title: Trustee and Trustor Users
+type: array
+items:
+  anyOf:
+    - $ref: './trusteeuser.v1.yaml'
+    - $ref: './trustoruser.v1.yaml'

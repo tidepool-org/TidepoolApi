@@ -1,0 +1,19 @@
+title: User
+type: object
+properties:
+  emailVerified:
+    $ref: '../../auth/models/emailverified.v1.yaml'
+  emails:
+    $ref: '../../auth/models/emailaddresses.v1.yaml'
+  termsAccepted:
+    $ref: '../../common/models/datetime.v1.yaml'
+  roles:
+    $ref: '../../auth/models/roles.v1.yaml'
+  userid:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  username:
+    $ref: '../../common/models/emailaddress.v1.yaml'
+  profile:
+    $ref: './profile.v1.yaml'
+required:
+  - userid

@@ -1,0 +1,10 @@
+title: Trustee User
+type: object
+allOf:
+  - $ref: './user.v1.yaml'
+  - type: object
+    properties:
+      trusteePermissions:
+        $ref: '../../access/models/userpermissions.v1.yaml'
+required:
+  - trusteePermissions

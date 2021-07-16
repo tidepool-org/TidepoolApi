@@ -1,0 +1,22 @@
+title: Patient Profile
+description: >-
+  Patient profile used by Tidepool Web
+type: object
+properties:
+  fullName:
+    $ref: './fullname.v1.yaml'
+  patient:
+    type: object
+    properties:
+      birthday:
+        $ref: '../../common/models/birthday.v1.yaml'
+      email:
+        $ref: '../../common/models/emailaddress.v1.yaml'
+      mrn:
+        $ref: './mrn.v1.yaml'
+      targetDevices:
+        $ref: './targetdevices.v1.yaml'
+      targetTimezone:
+        $ref: './targettimezone.v1.yaml'
+  emails:
+    $ref: '../../auth/models/emailaddresses.v1.yaml'

@@ -1,0 +1,5 @@
+title: Metadata Collection Names
+type: array
+items:
+  $ref: './collectionname.v1.yaml'
+example: [ 'profile', 'groups', 'private' ]

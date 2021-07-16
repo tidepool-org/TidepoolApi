@@ -1,0 +1,14 @@
+title: User Settings
+description: >-
+  User settings used by Tidepool Web
+type: object
+properties:
+  bgTarget:
+    type: object
+    properties:
+      low:
+        type: number
+        example: 65
+      high:
+        type: number
+        example: 180

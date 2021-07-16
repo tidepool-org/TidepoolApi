@@ -1,0 +1,3 @@
+title: Target Time Zone
+type: string
+example: 'US/Eastern'

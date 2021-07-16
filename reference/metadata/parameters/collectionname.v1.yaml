@@ -1,0 +1,7 @@
+title: Metadata Collection Name
+description: Collection Name
+name: collectionName
+in: path
+required: true
+schema:
+  $ref: '../models/collectionname.v1.yaml'

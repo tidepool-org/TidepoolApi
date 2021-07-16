@@ -1,0 +1,5 @@
+title: Target Devices
+type: array
+items:
+  type: string
+  example: 'bayercontournext'

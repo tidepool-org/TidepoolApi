@@ -1,0 +1,6 @@
+title: Biological Sex
+type: string
+enum:
+  - male
+  - female
+example: 'male'

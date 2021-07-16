@@ -1,0 +1,11 @@
+title: Diagnosis Type
+type: string
+enum:
+  - type1
+  - type2
+  - gestational
+  - prediabetes
+  - lada
+  - mody
+  - other
+example: 'type1'
