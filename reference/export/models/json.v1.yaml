@@ -1,0 +1,5 @@
+title: Export as JSON
+description: >-
+  Exported data in JSON format
+allOf:
+  - $ref: '../../data/models/dataarray.v1.yaml'

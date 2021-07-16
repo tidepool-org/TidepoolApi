@@ -1,0 +1,7 @@
+title: Export Format
+type: string
+enum:
+  - json
+  - xlsx
+default: xlsx
+example: xlsx

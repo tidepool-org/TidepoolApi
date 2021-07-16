@@ -38,82 +38,45 @@ tags:
       Enable bulk export of diabetes data from user's Tidepool account.
 
 paths:
-  /export/status:
-    get:
-      responses:
-        '200':
-          description: 'Service status'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExportServiceStatus'
-      summary: Get service status
-      description: Get export service status
-      operationId: ExportServiceStatus
-      x-private: true
-      tags:
-        - Export
-
   '/export/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.v1.yaml'
+      - $ref: './common/parameters/tidepooluserid.yaml'
     get:
+      operationId: ExportUserData
       summary: Export user data
       description: >-
         Exports the diabetes data from user identified by `userId`, from `startDate` to `endDate`, in the requested `format`.
         Either a Tidepool session token, or a restricted token must be supplied.
       parameters:
-        - name: startDate
-          in: query
-          schema:
-            $ref: './common/models/datetime.v1.yaml'
-        - name: endDate
-          in: query
-          schema:
-            $ref: './common/models/datetime.v1.yaml'
-        - name: format
-          description: Export format
-          in: query
-          schema:
-            type: string
-            enum:
-              - json
-              - xlsx
-            default: xlsx
-        - name: bgUnits
-          in: query
-          schema:
-            type: string
-            enum:
-              - mmol/L
-              - mg/dL
-            default: mmol/L
+        - $ref: './export/parameters/startdate.v1.yaml'
+        - $ref: './export/parameters/enddate.v1.yaml'
+        - $ref: './export/parameters/format.v1.yaml'
+        - $ref: './export/parameters/glucoseunits.v1.yaml'
       responses:
         '200':
           description: >-
             User data exported in the requested `format`.
           headers:
             Content-Disposition:
-              description: >-
-                Tells the browser to show a `Save As` dialog box to save the exported file locally.
-              schema:
-                type: string
-                default: 'attachment; filename="TidepoolExport.{format}"'
+              $ref: './common/headers/contentdisposition.v1.yaml'
           content:
-            application/json:
-              $ref: '#/components/schemas/ExportAsJson'
-            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
-              $ref: '#/components/schemas/ExportAsExcel'
-        # '400':
-        #   $ref: './common/responses/badrequest.v1.yaml'
-        # '401':
-        #   $ref: './common/responses/unauthorized.v1.yaml'
-        # '403':
-        #   $ref: './common/responses/forbidden.v1.yaml'
+            'application/json':
+              schema:
+                $ref: './export/models/json.v1.yaml'
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+              schema:
+                $ref: './export/models/excel.v1.yaml'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/ServerError'
       security:
         - sessionToken: []
         - restrictedToken: []
-      operationId: ExportUserData
       x-private: true
       tags:
         - Export
@@ -121,30 +84,20 @@ paths:
 components:
   securitySchemes:
     sessionToken:
-      type: apiKey
-      name: X-Tidepool-Session-Token
-      in: header
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
 
     restrictedToken:
-      type: apiKey
-      name: restricted_token
-      in: query
+      $ref: './common/security/tidepoolrestrictedtoken.v1.yaml'
 
-  schemas:
-    ExportServiceStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          example: 'ok'
-          default: 'ok'
+  responses:
+    BadRequest:
+      description: 'Bad Request'
 
-    ExportAsJson:
-      schema:
-        $ref: './data/models/dataarray.v1.yaml'
+    Unauthorized:
+      description: 'Unauthorized'
 
-    ExportAsExcel:
-      schema:
-        type: string
-        format: binary
-        description: An Excel spreadsheet
+    Forbidden:
+      description: 'Forbidden'
+
+    ServerError:
+      description: 'Server Error'
