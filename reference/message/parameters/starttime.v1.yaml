@@ -1,0 +1,7 @@
+title: Start Time
+description: Start date/time of the range for messages
+name: starttime
+in: query
+required: false
+schema:
+  $ref: '../../common/models/datetime.v1.yaml'

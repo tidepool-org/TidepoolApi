@@ -1,0 +1,12 @@
+title: Message List
+description: >-
+  This list may be empty, for example if no matching messages are being returned.
+  Messages, if present, are sorted in descending order by the `timestamp` field.
+type: object
+properties:
+  messages:
+    type: array
+    items:
+      $ref: './message.v1.yaml'
+required:
+  - messages

@@ -1,0 +1,7 @@
+title: Message ID
+description: Message ID
+name: messageId
+in: path
+required: true
+schema:
+  $ref: '../models/messageid.v1.yaml'

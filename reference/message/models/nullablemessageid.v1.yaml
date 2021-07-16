@@ -1,0 +1,7 @@
+title: Optional Message ID
+type: string
+pattern: '^[0-9a-f]{24}$'
+minLength: 24
+maxLength: 24
+example: '60e64ddf98b2350011b0f37f'
+nullable: true

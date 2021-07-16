@@ -1,0 +1,16 @@
+title: New Message
+type: object
+properties:
+  message:
+    type: object
+    properties:
+      messagetext:
+        type: string
+      timestamp:
+        $ref: '../../common/models/datetime.v1.yaml'
+      guid:
+        $ref: '../../common/models/guid.v1.yaml'
+    required:
+      - messagetext
+      - timestamp
+      - guid
