@@ -1,0 +1,4 @@
+title: Restricted Token Path
+type: string
+minLength: 1
+pattern: '^/.*$'

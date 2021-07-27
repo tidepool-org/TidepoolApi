@@ -2,3 +2,5 @@ description: Tidepool Restricted Token
 type: apiKey
 name: restricted_token
 in: query
+schema:
+  $ref: '../../auth/models/restricted/id.v1.yaml'

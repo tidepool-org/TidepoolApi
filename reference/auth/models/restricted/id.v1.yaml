@@ -1,0 +1,5 @@
+title: Restricted Token ID
+type: string
+minLength: 32
+maxLength: 32
+pattern: '^[0-9a-z]{32}$'

@@ -1,0 +1,6 @@
+title: Restricted Token ID
+name: tokenId
+in: path
+required: true
+schema:
+  $ref: '../../models/restricted/id.v1.yaml'

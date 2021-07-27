@@ -1,0 +1,7 @@
+title: Restricted Tokens
+description: >-
+  An array of restricted tokens.
+type: array
+uniqueItems: true
+items:
+  $ref: './token.v1.yaml'

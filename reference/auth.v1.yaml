@@ -45,7 +45,7 @@ tags:
       List and manage users.
 
 paths:
-  /auth/login:
+  '/auth/login':
     post:
       operationId: CreateSessionToken
       summary: Create New Session Token
@@ -87,7 +87,7 @@ paths:
       tags:
         - Authentication
 
-  /auth/logout:
+  '/auth/logout':
     post:
       operationId: Logout
       summary: Logout
@@ -100,7 +100,7 @@ paths:
       tags:
         - Authentication
 
-  /auth/user:
+  '/auth/user':
     get:
       operationId: GetCurrentUserInfo
       summary: Get Current User
@@ -169,7 +169,7 @@ paths:
       tags:
         - Users
 
-  /auth/users:
+  '/auth/users':
     get:
       operationId: GetUsers
       summary: Get Users
@@ -359,7 +359,7 @@ paths:
       tags:
         - Authentication
 
-  /auth/serverlogin:
+  '/auth/serverlogin':
     post:
       operationId: ServerLogin
       summary: Server to Server Login
@@ -423,6 +423,151 @@ paths:
         - serverToken: []
       x-private: true
 
+  '/v1/device_check/verify':
+    get:
+      operationId: VerifyDeviceToken
+      summary: Verify Device Token
+      description: >-
+        Checks the validity of Apple's DeviceCheck token by calling Apple's server to verify it.
+        For more details, see Apple's [developer documentation](https://developer.apple.com/documentation/devicecheck).
+      requestBody:
+        $ref: '#/components/requestBodies/VerifyDeviceToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/DeviceTokenVerification'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      tags:
+        - Authentication
+      security:
+        - sessionToken: []
+
+  '/v1/users/{userId}/restricted_tokens':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.yaml'
+    get:
+      operationId: ListUserRestrictedTokens
+      summary: List All Restricted Tokens
+      description: >-
+        Lists all restricted tokens associated with the user `userId`.
+        The list can be optionally paginated.
+      parameters:
+        - $ref: './common/parameters/paginationpage.v1.yaml'
+        - $ref: './common/parameters/paginationsize.v1.yaml'
+      responses:
+        '200':
+          $ref: '#/components/responses/RestrictedTokens'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+ 
+    post:
+      operationId: CreateUserRestrictedToken
+      summary: Create New Restricted Token
+      description: >-
+        Creates a new restricted token associated with the user `userId`.
+      requestBody:
+        $ref: '#/components/requestBodies/NewRestrictedToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/RestrictedToken'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+    delete:
+      operationId: DeleteAllUserRestrictedTokens
+      summary: Delete All Restricted Tokens
+      description: >-
+        Deletes all restricted tokens associated with the user `userId`.
+      responses:
+        '204':
+          description: 'Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+  '/v1/restricted_tokens/{tokenId}':
+    parameters:
+      - $ref: './auth/parameters/restricted/tokenid.v1.yaml'
+    get:
+      operationId: GetRestrictedToken
+      summary: Get Restricted Token
+      description: >-
+        Returns the restricted token specified by the `tokenId`.
+      responses:
+        '200':
+          $ref: '#/components/responses/RestrictedToken'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+    put:
+      operationId: UpdateRestrictedToken
+      summary: Update Restricted Token
+      description: >-
+        Updates the restricted token specified by the `tokenId`.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateRestrictedToken'
+      responses:
+        '200':
+          $ref: '#/components/responses/RestrictedToken'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+    delete:
+      operationId: DeleteRestrictedToken
+      summary: Delete Restricted Token
+      description: >-
+        Delete the restricted token specified by `tokenId`.
+      responses:
+        '200':
+          description: 'Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
   '/auth/v1/users/{userId}/provider_sessions':
     parameters:
       - $ref: './common/parameters/tidepooluserid.yaml'
@@ -440,6 +585,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ProviderSessions'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -459,6 +606,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ProviderSession'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -476,6 +625,8 @@ paths:
       responses:
         '204':
           description: 'Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -492,10 +643,12 @@ paths:
       operationId: GetUserDataProviderSession
       summary: Get Data Provider Session
       description: >-
-        Returns the data provider session specified by the `providerSessionId`.
+        Returns the data provider session specified by the `sessionId`.
       responses:
         '200':
           $ref: '#/components/responses/ProviderSession'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -509,12 +662,14 @@ paths:
       operationId: UpdateUserDataProviderSession
       summary: Update Data Provider Session
       description: >-
-        Updates the data provider session specified by the `providerSessionId`.
+        Updates the data provider session specified by the `sessionId`.
       requestBody:
         $ref: '#/components/requestBodies/UpdateProviderSession'
       responses:
         '200':
           $ref: '#/components/responses/ProviderSession'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -526,12 +681,14 @@ paths:
 
     delete:
       operationId: DeleteUserDataProviderSession
-      summary: Delete Data Provider Sessions
+      summary: Delete Data Provider Session
       description: >-
-        Delete the data provider session specified by `providerSessionId`.
+        Delete the data provider session specified by `sessionId`.
       responses:
         '200':
           description: 'Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -562,6 +719,33 @@ components:
         'application/json':
           schema:
             $ref: './auth/models/updateuser.v1.yaml'
+
+    VerifyDeviceToken:
+      description: 'Verify device token'
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              device_token:
+                type: string
+                minLength: 1
+            required:
+              - device_token
+
+    NewRestrictedToken:
+      description: 'New restricted token'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/restricted/newtoken.v1.yaml'
+
+    UpdateRestrictedToken:
+      description: 'Updated restricted token'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/restricted/updatetoken.v1.yaml'
 
     NewProviderSession:
       description: 'New provider session'
@@ -617,6 +801,32 @@ components:
       headers:
         'X-Tidepool-Session-Token':
           $ref: './common/headers/tidepoolsessiontoken.v1.yaml'
+
+    DeviceTokenVerification:
+      description: 'Device token verification response'
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              valid:
+                type: boolean
+            required:
+              - valid
+
+    RestrictedToken:
+      description: 'Restricted Token'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/restricted/token.v1.yaml'
+
+    RestrictedTokens:
+      description: 'Restricted Tokens'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/restricted/tokens.v1.yaml'
 
     ProviderSession:
       description: 'Provider Session'
