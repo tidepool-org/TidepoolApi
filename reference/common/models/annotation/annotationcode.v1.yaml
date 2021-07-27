@@ -1,0 +1,70 @@
+title: Annotation Code
+description: |-
+  Annotation codes that appear in Tidepool diabetes data records.
+  The annotation codes are primarily intended for machine processing, but they are usually readable enough to make sense.
+  These are by convention structured as series of strings separated by slashes (`/`), in order from more general to more specific.
+  For example:
+
+    * `wrong-device-time` or `time-change`, generic annotations.
+    * `basal/unknown-duration` or `bg/out-of-range`, generic annotations around a particular theme.
+    * `medtronic/basal/flat-rate`, a manufacturer-specific annotation.
+    * `medtronic600/smbg/user-rejected-remote-bg`, a device-specific annotation.
+type: string
+# harvested by grepping for 'annotations' throughout all Tidepool repositories
+enum:
+  - 'animas/basal/flat-rate'
+  - 'animas/basal/marked-suspended-from-alarm'
+  - 'animas/bolus/extended-equal-split'
+  - 'animas/bolus/unknown-duration'
+  - 'animas/out-of-sequence'
+  - 'animas/status/fabricated-from-alarm'
+  - 'basal/auto'
+  - 'basal/intersects-incomplete-suspend'
+  - 'basal/mismatched-series'
+  - 'basal/unknown-duration'
+  - 'bg/out-of-range'
+  - 'carelink/basal/fabricated-from-schedule'
+  - 'carelink/basal/fabricated-from-suppressed'
+  - 'carelink/basal/off-schedule-rate'
+  - 'carelink/bolus/missing-square-component'
+  - 'carelink/wizard/long-search'
+  - 'final-basal/fabricated-from-schedule'
+  - 'insulet/basal/fabricated-from-schedule'
+  - 'insulet/bolus/split-extended'
+  - 'medtronic/basal/fabricated-from-schedule'
+  - 'medtronic/basal/flat-rate'
+  - 'medtronic/basal/one-second-gap'
+  - 'medtronic/basal/time-change'
+  - 'medtronic/status/fabricated-from-device-event'
+  - 'medtronic/wizard/carb-to-exchange-ratio-deconverted'
+  - 'medtronic600/smbg/bg-reading-received'
+  - 'medtronic600/smbg/bg-sent-for-calib'
+  - 'medtronic600/smbg/bg-si-fail-result-recd-frm-gst'
+  - 'medtronic600/smbg/bg-si-pass-result-recd-frm-gst'
+  - 'medtronic600/smbg/entered-as-bg-marker'
+  - 'medtronic600/smbg/entered-in-bg-entry'
+  - 'medtronic600/smbg/entered-in-bolus-wizard'
+  - 'medtronic600/smbg/entered-in-meal-wizard'
+  - 'medtronic600/smbg/entered-in-sensor-calib'
+  - 'medtronic600/smbg/remote-bg-acceptance-screen-timeout'
+  - 'medtronic600/smbg/user-accepted-remote-bg'
+  - 'medtronic600/smbg/user-rejected-remote-bg'
+  - 'medtronic600/smbg/user-rejected-sensor-calib'
+  - 'spring-forward'
+  - 'stats-how-calculated'
+  - 'stats-how-calculated-average-cbg'
+  - 'stats-how-calculated-average-smbg'
+  - 'stats-how-calculated-range-cbg'
+  - 'stats-how-calculated-range-smbg'
+  - 'stats-how-calculated-ratio'
+  - 'stats-insufficient-data'
+  - 'status/incomplete-tuple'
+  - 'tandem/basal/fabricated-from-new-day'
+  - 'tandem/basal/temp-without-rate-change'
+  - 'tandem/pumpSettingsOverride/estimated-duration'
+  - 'tandem/pumpSettingsOverride/fabricated-from-new-day'
+  - 'time-change'
+  - 'uncertain-timestamp'
+  - 'wizard/target-automated'
+  - 'wrong-device-time'
+example: 'wrong-device-time'

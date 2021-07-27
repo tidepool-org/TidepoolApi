@@ -1,6 +1,7 @@
 title: Image List
+description: >-
+  An array of images.
 type: array
-description: An array of images.
 items:
   $ref: './image.v1.yaml'
 example:

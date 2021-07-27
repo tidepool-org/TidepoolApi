@@ -1,0 +1,5 @@
+name: dataSourceId
+in: path
+required: true
+schema:
+  $ref: '../models/sources/id.v1.yaml'

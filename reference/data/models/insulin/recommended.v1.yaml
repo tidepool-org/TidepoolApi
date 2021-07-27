@@ -1,0 +1,34 @@
+title: Insulin Recommended
+description: >-
+  An object encoding the amount of insulin calculated as a recommended dose to "cover" the `bgInput` and `carbInput`, possibly taking into account the `insulinOnBoard`.
+type: object
+properties:
+  net:
+    type: number
+    description: |-
+      A floating point value representing units of insulin.
+
+      Floating point value rounded to the appropriate significant figures for the device's precision.
+    format: float
+    minimum: -100
+    maximum: 100
+  correction:
+    type: number
+    description: |-
+      A floating point value representing units of insulin.
+
+      Floating point value rounded to the appropriate significant figures for the device's precision.
+    format: float
+    minimum: -100
+    maximum: 100
+  carb:
+    type: number
+    description: |-
+      A floating point value representing units of insulin.
+
+      Floating point value rounded to the appropriate significant figures for the device's precision.
+    format: float
+    minimum: 0
+    maximum: 100
+x-tags:
+  - Data

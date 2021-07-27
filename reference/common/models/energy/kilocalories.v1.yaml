@@ -1,0 +1,15 @@
+title: Energy (kilocalories)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - kilocalories
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 10000
+required:
+  - units
+  - value

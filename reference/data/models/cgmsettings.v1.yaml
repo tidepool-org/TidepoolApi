@@ -1,7 +1,7 @@
 title: CGM Settings
 description: Continuous Glucose Monitor settings
 allOf:
-  - $ref: ./base.v1.yaml
+  - $ref: './base.v1.yaml'
   - type: object
     properties:
       highAlerts:
@@ -14,7 +14,7 @@ allOf:
           enabled:
             type: boolean
           level:
-            $ref: ./bloodglucosevalue.v1.yaml
+            $ref: './blood/value.v1.yaml'
           snooze:
             type: integer
             minimum: 0
@@ -30,7 +30,7 @@ allOf:
           enabled:
             type: boolean
           level:
-            $ref: ./bloodglucosevalue.v1.yaml
+            $ref: './blood/value.v1.yaml'
           snooze:
             type: integer
             minimum: 0
@@ -114,13 +114,13 @@ allOf:
         enum:
           - mg/dL
           - mmol/L
-    required:
-      - highAlerts
-      - lowAlerts
-      - outOfRangeAlerts
-      - rateOfChangeAlert
-      - transmitterId
-      - type
-      - units
+required:
+  - highAlerts
+  - lowAlerts
+  - outOfRangeAlerts
+  - rateOfChangeAlert
+  - transmitterId
+  - type
+  - units
 x-tags:
-  - data
+  - Data

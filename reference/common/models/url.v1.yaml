@@ -1,0 +1,5 @@
+title: URL
+description: >-
+  URL
+type: string
+format: uri

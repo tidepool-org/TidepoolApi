@@ -1,0 +1,20 @@
+title: Water Consumption
+description: >-
+  Water consumption
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - water
+    required:
+      - type
+  - oneOf:
+    - $ref: './gallons.v1.yaml'
+    - $ref: './ounces.v1.yaml'
+    - $ref: './liters.v1.yaml'
+    - $ref: './milliliters.v1.yaml'
+x-tags:
+  - Data

@@ -1,7 +1,6 @@
 title: 'Forecast (Abstract)[Proposed]'
+description: ''
 type: object
-x-tags:
-  - data
 properties:
   values:
     type: array
@@ -17,9 +16,10 @@ properties:
       - carbsOnBoard
       - insulinOnBoard
   startDate:
-    $ref: ../../common/models/datetime.v1.yaml
+    $ref: '../../common/models/datetime.v1.yaml'
 required:
   - values
   - unit
   - startDate
-description: ''
+x-tags:
+  - Data

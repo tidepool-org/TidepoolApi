@@ -1,6 +1,7 @@
 title: Metadata Array
 type: array
+maxItems: 100
 items:
-  $ref: ./metadata.v1.yaml
+  $ref: './metadata.v1.yaml'
 x-tags:
-  - data
+  - Data

@@ -1,0 +1,14 @@
+title: Glucose Trend
+description: >-
+  Trends are annotated in terms of `slow`, `moderate` and `rapid`, since different manufacturers use different arrow glyphs.
+type: string
+enum:
+  - constant
+  - slowFall
+  - slowRise
+  - moderateFall
+  - moderateRise
+  - rapidFall
+  - rapidRise
+x-tags:
+  - Data

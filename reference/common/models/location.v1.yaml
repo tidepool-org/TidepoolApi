@@ -1,6 +1,8 @@
 title: Location
 type: object
-description: Location information associated with the resource. One or both of `name` and `gps` must be specified.
+description: >-
+  Location information associated with the resource.
+  One or both of `name` and `gps` must be specified.
 properties:
   name:
     type: string
@@ -8,4 +10,4 @@ properties:
     minLength: 1
     maxLength: 100
   gps:
-    $ref: ./gps.v1.yaml
+    $ref: './gps.v1.yaml'

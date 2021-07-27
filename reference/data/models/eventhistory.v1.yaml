@@ -1,15 +1,15 @@
 title: 'Event History [Proposed]'
+description: Revision history of the event
 type: array
 items:
   type: object
   properties:
     time:
-      $ref: ../../common/models/datetime.v1.yaml
+      $ref: '../../common/models/datetime.v1.yaml'
     changes:
-      $ref: ../../common/models/jsonpatch.v1.yaml
+      $ref: '../../common/models/jsonpatch.v1.yaml'
   required:
     - time
     - changes
 x-tags:
-  - data
-description: Revision history of the event
+  - Data

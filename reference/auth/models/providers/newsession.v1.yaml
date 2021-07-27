@@ -1,0 +1,15 @@
+title: New Provider Session
+description: >-
+  New provider session.
+type: object
+properties:
+  name:
+    $ref: './name.v1.yaml'
+  type:
+    $ref: './type.v1.yaml'
+  oauthToken:
+    $ref: './oauthtoken.v1.yaml'
+required:
+  - name
+  - type
+  - oauthToken

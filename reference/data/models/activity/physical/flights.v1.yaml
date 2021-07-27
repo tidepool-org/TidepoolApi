@@ -1,0 +1,11 @@
+title: Flights
+type: object
+properties:
+  count:
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 10000
+required:
+  - count
+example: 5

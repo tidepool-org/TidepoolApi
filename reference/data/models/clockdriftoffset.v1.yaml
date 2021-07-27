@@ -1,0 +1,10 @@
+title: Clock Drift Offset
+description: >-
+  Clock drift offset, expressed as milliseconds.
+type: integer
+# These limits are too broad
+minimum: -86400000
+maximum: 86400000
+example: 0
+x-tags:
+  - Data

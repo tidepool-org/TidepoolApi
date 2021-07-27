@@ -1,0 +1,10 @@
+title: Origin Type
+description: >-
+  The type of the origin source.
+type: string
+enum:
+  - application
+  - device
+  - manual
+  - service
+example: 'device'

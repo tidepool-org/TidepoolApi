@@ -1,95 +1,99 @@
 title: Tidepool Data Set
+description: >-
+  Tidepool diabetes data set.
 type: object
 properties:
   id:
-    type: string
+    $ref: './datasetid.v1.yaml'
   version:
-    type: string
+    $ref: '../../common/models/semanticversion.v1.yaml'
   uploadId:
-    type: string
+    $ref: './uploadid.v1.yaml'
   type:
     type: string
     enum:
       - upload
   timezoneOffset:
-    type: string
+    $ref: './timezoneoffset.v1.yaml'
   timezone:
-    type: string
+    type: './timezonename.v1.yaml'
   timeProcessing:
-    type: string
-    enum:
-      - across-the-board-timezone
-      - none
-      - utc-bootstrapping
+    $ref: './timeprocessing.v1.yaml'
   time:
-    $ref: ../../common/models/datetime.v1.yaml
+    $ref: '../../common/models/datetime.v1.yaml'
   source:
     type: string
   payload:
-    $ref: ../../common/models/payload.v1.yaml
+    $ref: '../../common/models/payload.v1.yaml'
   modifiedUserId:
     $ref: '../../common/models/tidepooluserid.yaml'
   modifiedTime:
-    $ref: ../../common/models/datetime.v1.yaml
+    $ref: '../../common/models/datetime.v1.yaml'
   guid:
     type: string
+    description: >-
+      A string ID.
+      Added to each event during data processing in the Tidepool Uploader or upon ingestion by the platform data ingestion service.
+    deprecated: true
   deviceTime:
-    $ref: ../../common/models/datetime.v1.yaml
+    $ref: '../../common/models/datetime.v1.yaml'
   deviceTags:
-    type: array
-    items:
-      anyOf:
-        - enum:
-            - bgm
-            - cgm
-            - insulin-pump
-      type: string
+    $ref: './devicetags.v1.yaml'
   deviceSerialNumber:
-    type: string
+    $ref: './deviceserialnumber.v1.yaml'
   deviceModel:
-    type: string
+    $ref: './devicemodelname.v1.yaml'
   deviceManufacturers:
-    type: array
-    items:
-      type: string
+    $ref: './devicemanufacturers.v1.yaml'
   deviceId:
-    type: string
+    $ref: './deviceid.v1.yaml'
   deletedUserId:
     $ref: '../../common/models/tidepooluserid.yaml'
   deletedTime:
-    $ref: ../../common/models/datetime.v1.yaml
+    $ref: '../../common/models/datetime.v1.yaml'
   deduplicator:
-    $ref: ./deduplicatordescriptor.v1.yaml
+    $ref: './deduplicatordescriptor.v1.yaml'
   dataSetType:
-    type: string
-    enum:
-      - continuous
-      - normal
+    $ref: './datasettype.v1.yaml'
   createdUserId:
     $ref: '../../common/models/tidepooluserid.yaml'
   createdTime:
-    $ref: ../../common/models/datetime.v1.yaml
+    $ref: '../../common/models/datetime.v1.yaml'
   conversionOffset:
-    type: integer
+    $ref: './conversionoffset.v1.yaml'
   computerTime:
-    $ref: ../../common/models/datetime.v1.yaml
+    $ref: './computertime.v1.yaml'
   clockDriftOffset:
-    type: integer
+    $ref: './clockdriftoffset.v1.yaml'
   client:
-    type: object
-    properties:
-      name:
-        type: string
-      version:
-        type: string
-      private:
-        $ref: ./metadata.v1.yaml
+    $ref: './clientsoftware.v1.yaml'
   byUser:
     $ref: '../../common/models/tidepooluserid.yaml'
   annotations:
-    type: array
-    items:
-      type: object
-description: ''
+    $ref: '../../common/models/annotationarray.v1.yaml'
+example:
+  type: 'upload'
+  client:
+    name: 'com.devicecorp.tidepooluploader'
+    version: 0.100.0
+  dataSetType: 'normal'
+  deduplicator:
+    name: 'org.tidepool.deduplicator.device.deactivate.hash'
+  deviceManufacturers:
+    - DeviceCorp
+  deviceModel: 'Devicey McDeviceface'
+  deviceSerialNumber: 'B97B6D59'
+  deviceTags:
+    - bgm
+    - cgm
+    - insulin-pump
+  timeProcessing: 'none'
+  timezone: 'Europe/London'
+  clockDriftOffset: 0
+  conversionOffset: 0
+  deviceId: 'DevId0987654321'
+  deviceTime: '2016-06-27T18:09:55'
+  time: '2016-06-28T01:09:55.132Z'
+  timezoneOffset: -420
 x-tags:
-  - data
+  - Data

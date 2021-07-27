@@ -1,0 +1,4 @@
+title: Floor
+type: integer
+minimum: -1000
+maximum: 1000

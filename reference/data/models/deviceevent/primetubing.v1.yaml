@@ -1,0 +1,26 @@
+title: Tubing Prime Event
+description: >-
+  A tubing prime event.
+allOf:
+  - $ref: './event.v1.yaml'
+  - type: object
+    properties:
+      primeTarget:
+        type: string
+        enum:
+          - tubing
+      subType:
+        type: string
+        enum:
+          - prime
+      volume:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 100
+required:
+  - primeTarget
+  - subType
+  - volume
+x-tags:
+  - Data

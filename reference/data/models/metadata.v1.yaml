@@ -1,5 +1,5 @@
 title: Metadata
 type: object
-properties: {}
+additionalProperties: true
 x-tags:
-  - data
+  - Data

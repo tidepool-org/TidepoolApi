@@ -1,0 +1,6 @@
+title: Bolus Subtype
+type: string
+enum:
+  - dual/square
+  - normal
+  - square

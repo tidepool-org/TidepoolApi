@@ -1,0 +1,9 @@
+title: Upload ID
+description: >-
+  Search for data by `uploadId`.
+  Only objects with a `uploadId` field matching the specified `uploadId` parameter will be returned.
+name: uploadId
+in: query
+required: false
+schema:
+  $ref: '../models/uploadid.v1.yaml'

@@ -1,0 +1,28 @@
+title: Tidepool Data Array
+description: Diabetes Data Array
+type: object
+properties:
+  deviceId:
+    $ref: './deviceid.v1.yaml'
+  deviceModel:
+    $ref: './devicemodelname.v1.yaml'
+  deviceSerialNumber:
+    $ref: './deviceserialnumber.v1.yaml'
+  state:
+    $ref: './datasetstate.v1.yaml'
+  time:
+    $ref: '../../common/models/datetime.v1.yaml'
+  timezone:
+    $ref: './timezonename.v1.yaml'
+  timezoneOffset:
+    $ref: './timezoneoffset.v1.yaml'
+required:
+  - deviceId
+  - deviceModel
+  - deviceSerialNumber
+  - state
+  - time
+  - timezone
+  - timezoneOffset
+x-tags:
+  - Data

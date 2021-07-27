@@ -1,0 +1,14 @@
+title: Device Tag
+description: |-
+  Tag indicating the function(s) of a particular device.
+type: string
+maxLength: 100
+enum:
+  - bgm
+  - cgm
+  - insulin-pump
+  - fgm # from jellyfish
+  - pen # from jellyfish
+  - manual # from jellyfish
+x-tags:
+  - Data

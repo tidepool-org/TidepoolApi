@@ -1,0 +1,11 @@
+title: Data Source State
+description: >-
+  State of the data source.
+type: string
+enum:
+  - connected
+  - disconnected
+  - error
+example: 'connected'
+x-tags:
+  - Data

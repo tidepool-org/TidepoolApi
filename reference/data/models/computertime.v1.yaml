@@ -1,0 +1,15 @@
+title: Computer Time
+description: |-
+  An ISO 8601 formatted timestamp without any timezone offset information.
+
+  The `computerTime` field encodes the *local* time at upload with no timezone offset information since we are storing `timezone` separately.
+  We store this field in order to be able to audit and/or detect the correspondence between the user's browser time and the timezone they selected at the time of upload.
+  If the user selected the timezone that was actually in effect for their browser at the time of upload, then applying the stored `timezone` to the UTC Zulu `time` field will match `computerTime`.
+  If, on the other hand, the user selected a *different* timezone from that effective in their browser at the time of upload, applying the `timezone` to `time` will *not* match `computerTime`.
+
+  There are some use cases when it is perfectly justified to select a timezone that does *not* reflect the browser's current timezone.
+  For example, some insulin pump users do not change the time on their devices when traveling for short periods of time across many timezones, but when uploading a device a user should always choose the timezone that aligns with the most recent data on the device and thus that will *not* match the local browser timezone.
+type: string
+format: time
+x-tags:
+  - Data

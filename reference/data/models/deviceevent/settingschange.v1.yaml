@@ -1,0 +1,51 @@
+title: 'Device Settings Change [Proposed]'
+description: >-
+  An insulin pump settings change.
+allOf:
+  - $ref: './event.v1.yaml'
+  - type: object
+    properties:
+      basalSchedule:
+        type: object
+        properties:
+          from:
+            type: string
+          to:
+            type: string
+        required:
+          - to
+      bgTarget:
+        type: object
+        properties:
+          from:
+            type: string
+          to:
+            type: string
+        required:
+          - to
+      carbRatio:
+        type: object
+        properties:
+          from:
+            type: string
+          to:
+            type: string
+        required:
+          - to
+      insulinSensitivityFactor:
+        type: object
+        properties:
+          from:
+            type: string
+          to:
+            type: string
+        required:
+          - to
+      subType:
+        type: string
+        enum:
+          - settingsChange
+    required:
+      - subType
+x-tags:
+  - Data

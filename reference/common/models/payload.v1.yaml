@@ -1,3 +1,6 @@
 title: Payload
+description: >-
+  Additional user-specified metadata.
+  The maximum size is 4K bytes.
 type: object
-description: Additional user-specified metadata. The maximum size is 4K bytes.
+additionalProperties: true

@@ -1,0 +1,24 @@
+title: Insulin
+description: >-
+  An Insulin delivery event.
+  Could be automated or manual.
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      dose:
+        $ref: './dose.v1.yaml'
+      formulation:
+        $ref: './formulation.v1.yaml'
+      site:
+        type: string
+        minLength: 0
+        maxLength: 100
+      type:
+        type: string
+        enum:
+          - insulin
+required:
+  - type
+x-tags:
+  - Data

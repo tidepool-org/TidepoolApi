@@ -1,0 +1,6 @@
+title: Origin Name
+description: >-
+  A human-readable name for the origin source.
+type: string
+minLength: 1
+maxLength: 100

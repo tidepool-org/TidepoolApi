@@ -1,0 +1,18 @@
+title: 'DeviceTransmitterEvent [Proposed]'
+description: A transmitter event
+allOf:
+  - $ref: './event.v1.yaml'
+  - type: object
+    properties:
+      subType:
+        type: string
+        enum:
+          - transmitterEvent
+      eventType:
+        type: string
+        enum:
+          - expired
+          - start
+          - stop
+x-tags:
+  - Data

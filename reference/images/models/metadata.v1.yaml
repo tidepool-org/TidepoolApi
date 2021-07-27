@@ -1,12 +1,10 @@
 title: Image Metadata
+description: >-
+  The user metadata for an image.
 type: object
-description: The user metadata for an image.
 properties:
   name:
-    type: string
-    description: A name for the image.
-    minLength: 1
-    maxLength: 100
+    $ref: './name.v1.yaml'
   associations:
     $ref: '../../common/models/associationarray.v1.yaml'
   location:

@@ -1,0 +1,8 @@
+title: Data Set Type
+type: string
+enum:
+  - continuous
+  - normal
+example: 'continuous'
+x-tags:
+  - Data

@@ -1,36 +1,49 @@
-title: Tidepool Data
-description: Tidepool diabetes data object
+title: Tidepool Diabetes Data
+description: >-
+  This is a composite data type that represents all possible Tidepool diabetes data objects.
 oneOf:
-  - $ref: ./basalautomated.v1.yaml
-  - $ref: ./basalscheduled.v1.yaml
-  - $ref: ./basalsuspend.v1.yaml
-  - $ref: ./basaltemporary.v1.yaml
-  - $ref: ./bloodketone.v1.yaml
-  - $ref: ./boluscombination.v1.yaml
-  - $ref: ./bolusextended.v1.yaml
-  - $ref: ./bolusnormal.v1.yaml
-  - $ref: ./boluscalculator.v1.yaml
-  - $ref: ./cgmsettings.v1.yaml
-  - $ref: ./continuousglucose.v1.yaml
-  - $ref: ./devicealarm.v1.yaml
-  - $ref: ./devicecalibration.v1.yaml
-  - $ref: ./devicedeliverystatus.v1.yaml
-  - $ref: ./deviceprimeevent.v1.yaml
-  - $ref: ./devicereservoirchange.v1.yaml
-  - $ref: ./devicesensorevent.v1.yaml
-  - $ref: ./devicesettingschange.v1.yaml
-  - $ref: ./devicetransmitterevent.v1.yaml
-  - $ref: ./dosingdecision.v1.yaml
-  - $ref: ./devicetimechange.v1.yaml
-  - $ref: ./food.v1.yaml
-  - $ref: ./insulin.v1.yaml
-  - $ref: ./physicalactivity.v1.yaml
-  - $ref: ./pumpsettings.v1.yaml
-  - $ref: ./pumpstatus.v1.yaml
-  - $ref: ./reportedstate.v1.yaml
-  - $ref: ./selfmonitoredglucose.v1.yaml
-  - $ref: ./settings.v1.yaml
-  - $ref: ./upload.v1.yaml
-  - $ref: ./water.v1.yaml
+  - $ref: './basal/automated.v1.yaml'
+  - $ref: './basal/scheduled.v1.yaml'
+  - $ref: './basal/suspend.v1.yaml'
+  - $ref: './basal/temporary.v1.yaml'
+  - $ref: './blood/continuousglucose.v1.yaml'
+  - $ref: './blood/selfmonitoredglucose.v1.yaml'
+  - $ref: './blood/ketone.v1.yaml'
+  - $ref: './bolus/combination.v1.yaml'
+  - $ref: './bolus/extended.v1.yaml'
+  - $ref: './bolus/normal.v1.yaml'
+  - $ref: './bolus/calculator.v1.yaml'
+  - $ref: './cgmsettings.v1.yaml'
+  - $ref: './deviceevent/alarm.v1.yaml'
+  - $ref: './deviceevent/calibration.v1.yaml'
+  - $ref: './deviceevent/deliverystatus.v1.yaml'
+  - $ref: './deviceevent/prime.v1.yaml'
+  - $ref: './deviceevent/reservoirchange.v1.yaml'
+  - $ref: './deviceevent/sensor.v1.yaml'
+  - $ref: './deviceevent/settingschange.v1.yaml'
+  - $ref: './deviceevent/timechange.v1.yaml'
+  - $ref: './deviceevent/transmitter.v1.yaml'
+  - $ref: './dosingdecision.v1.yaml'
+  - $ref: './food/food.v1.yaml'
+  - $ref: './insulin/insulin.v1.yaml'
+  - $ref: './activity/physical/physical.v1.yaml'
+  - $ref: './pumpsettings.v1.yaml'
+  - $ref: './pumpstatus.v1.yaml'
+  - $ref: './state/reportedstate.v1.yaml'
+  - $ref: './settings.v1.yaml'
+  - $ref: './upload.v1.yaml'
+  - $ref: './water/consumption.v1.yaml'
+example:
+  time: '2017-02-05T13:26:51.000Z'
+  timezoneOffset: 660
+  clockDriftOffset: 0
+  conversionOffset: 0
+  deviceTime: '2017-02-06T00:26:51'
+  deviceId: 'MMT-1711:12345678'
+  type: 'cbg'
+  value: 119
+  units: 'mg/dL'
+  payload:
+    interstitialSignal: 24.98
 x-tags:
-  - data
+  - Data

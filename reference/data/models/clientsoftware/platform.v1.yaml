@@ -1,0 +1,7 @@
+title: Client Software Platform
+description: >-
+  The software platform on which the client software was run.
+type: string
+example: 'macOS 10.15.4'
+x-tags:
+  - Data

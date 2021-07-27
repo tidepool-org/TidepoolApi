@@ -1,6 +1,7 @@
 title: Image with Metadata
+description: >-
+  An image with just metadata.
 type: object
-description: An image with just metadata.
 allOf:
   - $ref: './base.v1.yaml'
   - type: object

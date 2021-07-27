@@ -1,0 +1,26 @@
+title: Provider Session
+description: >-
+  Provider session.
+type: object
+properties:
+  createdTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  id:
+    $ref: './sessionid.v1.yaml'
+  modifiedTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  name:
+    $ref: './name.v1.yaml'
+  oauthToken:
+    $ref: './oauthtoken.v1.yaml'
+  type:
+    $ref: './type.v1.yaml'
+  userId:
+    $ref: '../../../common/models/tidepooluserid.yaml'
+required:
+  - createdTime
+  - id
+  - name
+  - oauthToken
+  - type
+  - userId

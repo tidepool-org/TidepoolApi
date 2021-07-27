@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  title: Summary
+  title: Summary Data
   version: '1.0'
   description: |-
-    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
 
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
@@ -16,6 +16,9 @@ info:
   license:
     name: 'BSD 2-Clause "Simplified" License'
     url: 'https://github.com/tidepool-org/summary/blob/master/LICENSE'
+  x-logo: # ReDoc extension
+    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
+    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/summary
 
 servers:
@@ -513,13 +516,13 @@ components:
             time: '2020-08-18T08:29:02Z'
             type: upload
     Client:
-      $ref: ./data/models/clientsoftware.yaml
+      $ref: ./data/models/clientsoftware.v1.yaml
     Device:
-      $ref: ./data/models/uploaddevice.yaml
+      $ref: ./data/models/uploaddevice.v1.yaml
     UserId:
       $ref: './common/models/tidepooluserid.yaml'
     Units:
-      $ref: ./data/models/bloodglucoseunits.v1.yaml
+      $ref: ./data/models/blood/units.v1.yaml
   securitySchemes:
     serverSecret:
       $ref: './common/security/tidepoolserversecret.v1.yaml'

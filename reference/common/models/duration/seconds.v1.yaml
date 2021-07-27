@@ -1,0 +1,16 @@
+title: Duration (seconds)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - seconds
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 604800
+    example: 42
+required:
+  - units
+  - value

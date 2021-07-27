@@ -1,0 +1,14 @@
+title: Laps
+type: object
+properties:
+  count:
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 10000
+    example: 5
+  distance:
+    $ref: '../../../../common/models/distance.v1.yaml'
+required:
+  - count
+  - distance

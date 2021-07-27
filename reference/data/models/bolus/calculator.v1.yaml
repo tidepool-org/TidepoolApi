@@ -1,0 +1,52 @@
+title: Bolus Calculator
+description: A bolus calculator event
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      bgInput:
+        $ref: '../blood/value.v1.yaml'
+      bgTarget:
+        $ref: '../blood/glucose/target.v1.yaml'
+      bolus:
+        description: The bolus event resulting from this wizard event.
+        # TODO: Investigate this with Darin
+        # This does not appear to match the code in platform/data/types/calculator/calculator.go
+        # The code seems to show this as the bolus ID rather than the actual bolus, but the validator refers to a `bolusId` field
+        #oneOf:
+        #  - $ref: './combination.v1.yaml'
+        #  - $ref: './extended.v1.yaml'
+        #  - $ref: './normal.v1.yaml'
+      carbInput:
+        type: integer
+        description: "An integer encoding the PWD's carbohydrate input into the bolus calculator."
+        minimum: 0
+        maximum: 1000
+      insulinCarbRatio:
+        type: number
+        description: 'An integer encoding the grams of carbohydrate "covered" by one unit of insulin for the PWD.'
+        format: double
+        minimum: 0
+        maximum: 250
+      insulinOnBoard:
+        type: number
+        description: A floating point value representing units of insulin.
+        format: float
+        minimum: 0
+        maximum: 250
+      insulinSensitivity:
+        $ref: '../blood/value.v1.yaml'
+      recommended:
+        $ref: '../insulin/recommended.v1.yaml'
+      type:
+        type: string
+        enum:
+          - wizard
+      units:
+        type: string
+      carbUnits:
+        $ref: '../carbs/units.v1.yaml'
+required:
+  - type
+x-tags:
+  - Data

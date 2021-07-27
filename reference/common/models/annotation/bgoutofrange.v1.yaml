@@ -1,0 +1,20 @@
+title: Blood Glucose Out of Range
+type: object
+properties:
+  code:
+    type: string
+    enum:
+      - 'bg/out-of-range'
+  value:
+    type: string
+    enum:
+      - low
+      - high
+    example: 'low'
+  threshold:
+    type: number
+    example: 40.0
+required:
+  - code
+  - value
+  - threshold

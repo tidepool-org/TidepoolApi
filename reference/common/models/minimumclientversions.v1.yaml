@@ -1,0 +1,17 @@
+title: Minimum Tidepool Client Versions
+description: >-
+  Lists minimum version numbers of Tidepool client applications.
+  The version numbers are represented as Semantic Versions.
+  When a client application fetches this object, it should compare its version number against the minimum version here.
+type: object
+properties:
+  versions:
+    type: object
+    properties:
+      uploaderMinimum:
+        $ref: './semanticversion.v1.yaml'
+    required:
+      - uploaderMinimum
+additionalProperties: true
+required:
+  - versions

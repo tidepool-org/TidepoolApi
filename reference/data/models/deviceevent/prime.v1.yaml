@@ -1,0 +1,11 @@
+title: Device Prime Event
+description: >-
+  An insulin pump prime event.
+oneOf:
+  - $ref: './primecannula.v1.yaml'
+  - $ref: './primetubing.v1.yaml'
+required:
+  - primeTarget
+  - subType
+x-tags:
+  - Data

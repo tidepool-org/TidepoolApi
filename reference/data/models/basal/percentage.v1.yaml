@@ -1,0 +1,7 @@
+title: Insulin Delivery Percentage
+description: >-
+  Floating point value representing a percentage, where 1.0 represents 100%.
+type: number
+format: float
+minimum: 0
+maximum: 10

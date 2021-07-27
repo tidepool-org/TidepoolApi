@@ -1,0 +1,20 @@
+title: New Data Source
+description: >-
+  New data source
+type: object
+properties:
+  providerName:
+    $ref: '../../../auth/models/providers/name.v1.yaml'
+  providerSessionId:
+    $ref: '../../../auth/models/providers/sessionid.v1.yaml'
+  providerType:
+    $ref: '../../../auth/models/providers/type.v1.yaml'
+  state:
+    $ref: './state.v1.yaml'
+required:
+  - providerName
+  - providerSessionId
+  - providerType
+  - state
+x-tags:
+  - Data

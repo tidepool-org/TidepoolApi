@@ -1,0 +1,7 @@
+title: Conversion Offset
+description: >-
+  Conversion offset, expressed as milliseconds.
+type: integer
+example: 0
+x-tags:
+  - Data

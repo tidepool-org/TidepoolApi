@@ -1,0 +1,10 @@
+title: Blood Value (mg/dL)
+description: >-
+  An integer value representing a `mg/dL` value.
+type: integer
+format: int32
+minimum: 0
+maximum: 1000
+example: 105
+x-tags:
+  - Data

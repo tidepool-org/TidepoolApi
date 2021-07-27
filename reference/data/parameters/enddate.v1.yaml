@@ -1,0 +1,9 @@
+title: End Date
+description: >-
+  Only objects with `time` field less than to or equal to start date will be returned.
+  Must be in ISO 8601 date/time format e.g. `2015-10-10T15:00:00.000Z`.
+name: endDate
+in: query
+required: false
+schema:
+  $ref: '../../common/models/datetime.v1.yaml'

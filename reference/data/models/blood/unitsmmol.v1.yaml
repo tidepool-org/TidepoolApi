@@ -1,0 +1,8 @@
+title: Blood Unit (mmol/L)
+type: string
+enum:
+  - mmol/L
+  - mmol/l
+example: 'mmol/L'
+x-tags:
+  - Data

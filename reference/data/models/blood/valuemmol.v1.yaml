@@ -1,0 +1,10 @@
+title: Blood Value (mmol/L)
+description: >-
+  A floating point value representing a `mmol/L` value.
+type: number
+format: float
+minimum: 0
+maximum: 55
+example: 5.5
+x-tags:
+  - Data

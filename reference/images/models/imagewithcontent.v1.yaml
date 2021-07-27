@@ -1,6 +1,7 @@
 title: Image with Content
+description: >-
+  An image with just content.
 type: object
-description: An image with just content.
 allOf:
   - $ref: './base.v1.yaml'
   - type: object

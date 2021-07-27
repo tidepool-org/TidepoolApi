@@ -1,5 +1,7 @@
-title: NoteArray
+title: Note Array
+description: >-
+  An array of notes.
 type: array
+maxItems: 100
 items:
   $ref: ./note.v1.yaml
-description: An array of `Note`s

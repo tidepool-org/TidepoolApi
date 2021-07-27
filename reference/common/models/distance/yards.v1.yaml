@@ -1,0 +1,16 @@
+title: Distance (yards)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - yards
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 176000
+    example: 42
+required:
+  - units
+  - value

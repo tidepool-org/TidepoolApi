@@ -1,0 +1,8 @@
+title: Data Set ID
+type: string
+pattern: '^([0-9a-f]{32}|[0-9a-z]{32})$'
+minLength: 32
+maxLength: 32
+example: 'ce8cc5f7595575945f91fc6710db6fef'
+x-tags:
+  - Data

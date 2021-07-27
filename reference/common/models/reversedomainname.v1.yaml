@@ -1,0 +1,6 @@
+title: Reverse Domain Name
+description: >-
+  Name in the [reverse domain name notation](https://en.wikipedia.org/wiki/Reverse_domain_name_notation).
+type: string
+pattern: '^[a-zA-Z0-9](|[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])(\.[a-zA-Z0-9](|[a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))+$'
+example: 'org.tidepool.uploader'

@@ -1,0 +1,55 @@
+title: Device Time Change
+description: >-
+  A device time change.
+allOf:
+  - $ref: './event.v1.yaml'
+  - oneOf:
+      - description: A `timeChange` event
+        type: object
+        properties:
+          subType:
+            type: string
+            enum:
+              - timeChange
+          method:
+            type: string
+            enum:
+              - automatic
+              - manual
+          from:
+            $ref: './timechangeinfo.v1.yaml'
+          to:
+            $ref: './timechangeinfo.v1.yaml'
+        required:
+          - subType
+          - method
+          - to
+      - description: Legacy `timeChange` event
+        type: object
+        properties:
+          subType:
+            type: string
+            enum:
+              - timeChange
+          change:
+            properties:
+              agent:
+                type: string
+                enum:
+                  - automatic
+                  - manual
+              from:
+                $ref: '../../../common/models/datetimenotz.v1.yaml'
+              to:
+                $ref: '../../../common/models/datetimenotz.v1.yaml'
+            required:
+              - agent
+              - from
+              - to
+            oneOf:
+              - type: string
+              - type: object
+        required:
+          - subType
+x-tags:
+  - Data

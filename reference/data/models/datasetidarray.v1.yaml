@@ -1,0 +1,9 @@
+title: Data Set ID Array
+description: >-
+  An array of data set IDs.
+  The IDs in the array must be unique.
+type: array
+uniqueItems: true
+minItems: 1
+items:
+  $ref: './datasetid.v1.yaml'

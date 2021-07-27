@@ -1,0 +1,18 @@
+title: Device Event
+description: >-
+  An abstract base data type for all device events.
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - deviceEvent
+      subType:
+        $ref: './subtype.v1.yaml'
+required:
+  - subType
+  - type
+x-tags:
+  - Data

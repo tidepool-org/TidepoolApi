@@ -1,0 +1,15 @@
+title: Device Calibration
+description: A blood glucose device calibration event
+allOf:
+  - $ref: './event.v1.yaml'
+  - type: object
+    properties:
+      subType:
+        type: string
+        enum:
+          - calibration
+    required:
+      - subType
+  - $ref: '../blood/glucose/glucose.v1.yaml'
+x-tags:
+  - Data

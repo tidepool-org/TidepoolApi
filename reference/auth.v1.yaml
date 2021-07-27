@@ -3,7 +3,7 @@ info:
   title: Authentication API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
 
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
@@ -16,6 +16,9 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/shoreline/blob/master/LICENSE
+  x-logo: # ReDoc extension
+    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
+    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/shoreline
 
 servers:
@@ -420,6 +423,124 @@ paths:
         - serverToken: []
       x-private: true
 
+  '/auth/v1/users/{userId}/provider_sessions':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.yaml'
+    get:
+      operationId: ListUserDataProviderSessions
+      summary: List Data Provider Sessions
+      description: >-
+        Lists all data provider sessions associated with the user `userId`.
+        The list can be optionally paginated, and filtered by provider name and/or type.
+      parameters:
+        - $ref: './common/parameters/paginationpage.v1.yaml'
+        - $ref: './common/parameters/paginationsize.v1.yaml'
+        - $ref: './auth/parameters/providers/name.v1.yaml'
+        - $ref: './auth/parameters/providers/type.v1.yaml'
+      responses:
+        '200':
+          $ref: '#/components/responses/ProviderSessions'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+    
+    post:
+      operationId: CreateUserDataProviderSession
+      summary: Create New Data Provider Sessions
+      description: >-
+        Creates a new data provider session associated with the user `userId`.
+      requestBody:
+        $ref: '#/components/requestBodies/NewProviderSession'
+      responses:
+        '200':
+          $ref: '#/components/responses/ProviderSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+    delete:
+      operationId: DeleteAllUserDataProviderSessions
+      summary: Delete All Data Provider Sessions
+      description: >-
+        Deletes all data provider sessions associated with the user `userId`.
+      responses:
+        '204':
+          description: 'Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+  '/auth/v1/provider_sessions/{sessionId}':
+    parameters:
+      - $ref: './auth/parameters/providers/sessionid.v1.yaml'
+    get:
+      operationId: GetUserDataProviderSession
+      summary: Get Data Provider Session
+      description: >-
+        Returns the data provider session specified by the `providerSessionId`.
+      responses:
+        '200':
+          $ref: '#/components/responses/ProviderSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+    put:
+      operationId: UpdateUserDataProviderSession
+      summary: Update Data Provider Session
+      description: >-
+        Updates the data provider session specified by the `providerSessionId`.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateProviderSession'
+      responses:
+        '200':
+          $ref: '#/components/responses/ProviderSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
+    delete:
+      operationId: DeleteUserDataProviderSession
+      summary: Delete Data Provider Sessions
+      description: >-
+        Delete the data provider session specified by `providerSessionId`.
+      responses:
+        '200':
+          description: 'Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+      security:
+        - serverToken: []
+
 components:
   securitySchemes:
     basicAuth:
@@ -441,6 +562,20 @@ components:
         'application/json':
           schema:
             $ref: './auth/models/updateuser.v1.yaml'
+
+    NewProviderSession:
+      description: 'New provider session'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/providers/newsession.v1.yaml'
+
+    UpdateProviderSession:
+      description: 'Updated provider session'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/providers/updatesession.v1.yaml'
 
   responses:
     User:
@@ -482,6 +617,20 @@ components:
       headers:
         'X-Tidepool-Session-Token':
           $ref: './common/headers/tidepoolsessiontoken.v1.yaml'
+
+    ProviderSession:
+      description: 'Provider Session'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/providers/session.v1.yaml'
+
+    ProviderSessions:
+      description: 'Provider Sessions'
+      content:
+        'application/json':
+          schema:
+            $ref: './auth/models/providers/sessions.v1.yaml'
 
     Unauthorized:
       description: 'Unauthorized'

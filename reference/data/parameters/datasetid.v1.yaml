@@ -2,4 +2,4 @@ name: dataSetId
 in: path
 required: true
 schema:
-  type: string
+  $ref: '../models/datasetid.v1.yaml'

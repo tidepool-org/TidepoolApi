@@ -1,0 +1,7 @@
+title: Self Monitored Glucose Sub Type
+type: string
+enum:
+  - linked
+  - manual
+  - scanned
+example: 'scanned'

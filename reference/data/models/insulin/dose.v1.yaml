@@ -1,0 +1,33 @@
+title: Insulin Dose
+description: An object representing an Insulin Dose
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - Units
+  total:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 250
+  food:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 250
+  correction:
+    type: number
+    format: float
+    minimum: -250
+    maximum: 250
+  active:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 250
+required:
+  - total
+  - units
+x-tags:
+  - Data

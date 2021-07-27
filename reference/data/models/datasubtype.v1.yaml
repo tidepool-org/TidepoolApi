@@ -1,0 +1,8 @@
+title: Data Sub Type
+anyOf:
+  # stored in `activityType` field, not `subType`
+  # - $ref: './activity/physical/activitytype.v1.yaml'
+  - $ref: './blood/subtype.v1.yaml'
+  - $ref: './bolus/subtype.v1.yaml'
+  - $ref: './deviceevent/subtype.v1.yaml'
+example: 'square'

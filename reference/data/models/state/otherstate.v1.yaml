@@ -1,0 +1,9 @@
+title: Other State
+description: >-
+  Should only be present if `state` is `other`
+type: string
+minLength: 1
+maxLength: 100
+example: 'buzzed'
+x-tags:
+  - Data

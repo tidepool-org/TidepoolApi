@@ -1,0 +1,10 @@
+title: Time Zone offset
+description: >-
+  Time zone offset, expressed as positive or negative number of minutes from UTC.
+type: integer
+# These limits are too broad
+minimum: -10080
+maximum: 10080
+example: -420
+x-tags:
+  - Data

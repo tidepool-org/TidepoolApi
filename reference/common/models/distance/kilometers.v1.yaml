@@ -1,0 +1,16 @@
+title: Distance (kilometers)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - kilometers
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 160.9344
+    example: 42
+required:
+  - units
+  - value

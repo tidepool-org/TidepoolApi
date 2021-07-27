@@ -1,0 +1,5 @@
+title: Provider Type
+type: string
+enum:
+  - oauth
+example: 'oauth'

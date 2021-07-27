@@ -1,0 +1,26 @@
+title: Update Data Source
+type: object
+properties:
+  dataSetIds:
+    $ref: '../datasetidarray.v1.yaml'
+  earliestDataTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  error:
+    type: string
+  lastImportTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  latestDataTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  providerSessionId:
+    $ref: '../../../auth/models/providers/sessionid.v1.yaml'
+  state:
+    $ref: './state.v1.yaml'
+required:
+  - dataSetIds
+  - earliestDataTime
+  - lastImportTime
+  - latestDataTime
+  - providerSessionId
+  - state
+x-tags:
+  - Data

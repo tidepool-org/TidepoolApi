@@ -1,0 +1,5 @@
+title: Aggregate
+description: >-
+  Set to `true` if this is an aggregate activity.
+type: boolean
+example: false

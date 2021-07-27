@@ -1,0 +1,7 @@
+title: Image Size
+description: >-
+  The size of the image content, in bytes.
+type: integer
+minimum: 1
+maximum: 104857600
+example: 28348

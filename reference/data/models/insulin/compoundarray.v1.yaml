@@ -1,0 +1,8 @@
+title: Insulin Compound Array
+type: array
+items:
+  $ref: './compound.v1.yaml'
+maxItems: 100
+minItems: 1
+x-tags:
+  - Data

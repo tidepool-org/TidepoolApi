@@ -1,0 +1,9 @@
+title: Latest Data
+description: >-
+  Returns only the most recent results for each `type` matching the results filtered by the other query parameters.
+name: latest
+in: query
+required: false
+schema:
+  type: boolean
+default: false

@@ -1,6 +1,7 @@
 title: Image Base
+description: >-
+  The read-only, base portion of an image.
 type: object
-description: The read-only, base portion of an image.
 properties:
   id:
     $ref: './id.v1.yaml'

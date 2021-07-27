@@ -1,0 +1,9 @@
+title: Insulin Model
+description: ''
+type: string
+enum:
+  - rapidChild
+  - rapidAdult
+example: 'rapidAdult'
+x-tags:
+  - Data

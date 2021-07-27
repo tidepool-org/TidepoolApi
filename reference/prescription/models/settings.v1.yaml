@@ -4,29 +4,29 @@ x-tags:
   - prescription
 properties:
   bloodGlucoseUnits:
-    $ref: ../../data/models/bloodglucoseunits.v1.yaml
+    $ref: ../../data/models/blood/units.v1.yaml
   basalRateSchedule:
-    $ref: ../../data/models/basalratestartarray.v1.yaml
+    $ref: ../../data/models/basal/rate/startarray.v1.yaml
   bloodGlucoseTargetSchedule:
     type: array
     items:
-      $ref: ../../data/models/bloodglucosetargetstart.v1.yaml
+      $ref: ../../data/models/blood/glucose/targetstart.v1.yaml
   carbohydrateRatioSchedule:
     type: array
     items:
-      $ref: ../../data/models/carbohydrateratiostart.v1.yaml
+      $ref: ../../data/models/carbs/ratiostart.v1.yaml
   insulinSensitivitySchedule:
     type: array
     items:
-      $ref: ../../data/models/insulinsensitivitystart.v1.yaml
+      $ref: ../../data/models/insulin/sensitivitystart.v1.yaml
   basalRateMaximum:
-    $ref: ../../data/models/basalratemaximum.v1.yaml
+    $ref: ../../data/models/basal/rate/maximum.v1.yaml
   bolusAmountMaximum:
-    $ref: ../../data/models/bolusamountmaximum.v1.yaml
+    $ref: ../../data/models/bolus/amountmaximum.v1.yaml
   bloodGlucoseSuspendThreshold:
     $ref: ../../data/models/suspendthreshold.v1.yaml
   insulinModel:
-    $ref: ../../data/models/insulinmodel.v1.yaml
+    $ref: ../../data/models/insulin/model.v1.yaml
   pumpId:
     type: string
     format: uuid
@@ -34,9 +34,9 @@ properties:
     type: string
     format: uuid
   bloodGlucoseTargetPhysicalActivity:
-    $ref: ../../data/models/bloodglucosetarget.v1.yaml
+    $ref: ../../data/models/blood/glucose/target.v1.yaml
   bloodGlucoseTargetPreprandial:
-    $ref: ../../data/models/bloodglucosetarget.v1.yaml
+    $ref: ../../data/models/blood/glucose/target.v1.yaml
 required:
   - bloodGlucoseUnits
   - basalRateSchedule

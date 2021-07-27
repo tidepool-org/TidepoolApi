@@ -1,4 +1,9 @@
-title: AnnotationArray
+title: Annotation Array
+description: >-
+  An array of annotations.
 type: array
+uniqueItems: true
+minItems: 0
+maxItems: 100
 items:
-  $ref: ./annotation.v1.yaml
+  $ref: './annotation.v1.yaml'

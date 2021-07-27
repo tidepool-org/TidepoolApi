@@ -1,0 +1,14 @@
+title: Device Serial Number
+description: |-
+  A string encoding the device's serial number.
+
+  The `deviceSerialNumber` is a string that encodes the serial number of the device.
+  Note that even if a manufacturer only uses digits in its serial numbers, the SN should be stored as a string regardless.
+
+  Uniquely of string fields in the Tidepool device data models, `deviceSerialNumber` *may* be an empty string.
+  This is essentially a compromise: having the device serial number is extremely important (especially for e.g., clinical studies) but in 2016 we came across our first case where we *cannot* recover the serial number of the device that generated the data: Dexcom G5 data uploaded to Tidepool through Apple iOS's HealthKit integration.
+type: string
+minLength: 1
+example: 'B97B6D59'
+x-tags:
+  - Data

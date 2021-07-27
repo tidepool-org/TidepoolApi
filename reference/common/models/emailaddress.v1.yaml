@@ -1,7 +1,8 @@
 title: Email Address
+description: >-
+  An email address, as specified by [RFC 5322](https://datatracker.ietf.org/doc/html/rfc5322).
 type: string
 format: email
-description: Email address
 minLength: 6
 example: 'example@tidepool.org'
 x-go-type: string

@@ -1,0 +1,11 @@
+title: Carbohydrate Ratio
+type: object
+properties:
+  amount:
+    type: number
+    minimum: 0
+    maximum: 250
+required:
+  - amount
+x-tags:
+  - Data

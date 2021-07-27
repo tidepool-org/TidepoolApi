@@ -1,0 +1,6 @@
+title: Blood Unit (mg/dL or mmol/L)
+oneOf:
+  - $ref: './unitsmgdl.v1.yaml'
+  - $ref: './unitsmmol.v1.yaml'
+x-tags:
+  - Data

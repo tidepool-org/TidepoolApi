@@ -1,0 +1,9 @@
+title: Device ID
+description: >-
+  Search for data by `deviceId`.
+  Only objects with a `deviceId` field matching the specified `uploadId` parameter will be returned.
+name: deviceId
+in: query
+required: false
+schema:
+  $ref: '../models/deviceid.v1.yaml'

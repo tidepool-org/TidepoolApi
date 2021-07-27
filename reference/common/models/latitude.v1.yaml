@@ -1,0 +1,19 @@
+title: Latitude
+description: >-
+  Latitude is an angle which ranges from -90° at the South pole to 0° at the Equator to 90° at the North pole.
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - degrees
+    example: 'degrees'
+  value:
+    type: number
+    format: double
+    minimum: -90
+    maximum: 90
+    example: 37.4454404
+required:
+  - units
+  - value

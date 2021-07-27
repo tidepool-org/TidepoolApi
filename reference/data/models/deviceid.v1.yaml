@@ -1,0 +1,8 @@
+title: Device ID
+description: >-
+  Device identifier, if provided by the manufacturer.
+type: string
+minLength: 1
+example: 'MMT-1711:12345678'
+x-tags:
+  - Data

@@ -1,0 +1,17 @@
+title: Self Monitored Glucose
+description: A self-monitored glucose measurement
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - smbg
+      subType:
+        $ref: './subtype.v1.yaml'
+    required:
+      - type
+  - $ref: './glucose/glucose.v1.yaml'
+x-tags:
+  - Data

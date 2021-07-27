@@ -1,0 +1,16 @@
+title: Water Amount, in Liters
+allOf:
+  - $ref: '../amount.v1.yaml'
+  - type: object
+    properties:
+      units:
+        type: string
+        enum:
+          - liters
+      value:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 37.854118
+x-tags:
+  - Data

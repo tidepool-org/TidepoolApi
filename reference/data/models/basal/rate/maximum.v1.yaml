@@ -1,0 +1,16 @@
+title: Basal Rate Maximum
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - Units/hour
+  value:
+    type: number
+    minimum: 0
+    maximum: 100
+required:
+  - units
+  - value
+x-tags:
+  - Data

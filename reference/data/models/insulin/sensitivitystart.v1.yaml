@@ -1,0 +1,9 @@
+title: Insulin Sensitivity Start
+allOf:
+  - type: object
+    properties:
+      amount:
+        $ref: '../blood/value.v1.yaml'
+  - $ref: '../start.v1.yaml'
+x-tags:
+  - Data

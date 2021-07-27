@@ -1,4 +1,6 @@
 title: Elevation
+description: >-
+  Elevation, expressed as `meters` or `feet`.
 type: object
 properties:
   units:
@@ -6,16 +8,21 @@ properties:
     enum:
     - feet
     - meters
+    example: 'meters'
   value:
     oneOf:
     - description: If `units` is in `meters`
+      type: number
       format: double
       minimum: 0
       maximum: 10000
+      example: 42
     - description: If `units` is in `feet`
+      type: number
       format: double
       minimum: 0
       maximum: 32808
-    type: number
+      example: 42
 required:
-- units
+  - units
+  - value

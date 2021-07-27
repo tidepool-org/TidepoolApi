@@ -1,0 +1,42 @@
+title: New Tidepool Diabetes Data Set
+description: >-
+  Create a new Tidepool diabetes data set.
+type: object
+properties:
+  client:
+    $ref: './clientsoftware.v1.yaml'
+  dataSetType:
+    $ref: './datasettype.v1.yaml'
+  deviceId:
+    $ref: './deviceid.v1.yaml'
+  deviceManufacturers:
+    $ref: './devicemanufacturers.v1.yaml'
+  deviceModel:
+    $ref: './devicemodelname.v1.yaml'
+  deviceSerialNumber:
+    $ref: './deviceserialnumber.v1.yaml'
+  deviceTags:
+    $ref: './devicetags.v1.yaml'
+  deduplicator:
+    $ref: './deduplicatordescriptor.v1.yaml'
+  time:
+    $ref: '../../common/models/datetime.v1.yaml'
+  timeProcessing:
+    $ref: './timeprocessing.v1.yaml'
+  timezone:
+    type: './timezonename.v1.yaml'
+  timezoneOffset:
+    $ref: './timezoneoffset.v1.yaml'
+required:
+  - dataSetType
+  - deviceId
+  - deviceManufacturers
+  - deviceModel
+  - deviceSerialNumber
+  - deviceTgs
+  - time
+  - timeProcessing
+  - timezone
+  - timezoneOffset
+x-tags:
+  - Data

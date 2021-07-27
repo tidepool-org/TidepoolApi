@@ -1,0 +1,6 @@
+title: Association Reason
+description: >-
+  The reason for the association.
+type: string
+minLength: 1
+maxLength: 1000

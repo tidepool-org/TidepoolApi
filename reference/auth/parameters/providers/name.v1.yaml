@@ -1,0 +1,7 @@
+title: Provider Name
+name: name
+description: Filter by provider name
+in: query
+required: false
+schema:
+  $ref: '../../models/providers/name.v1.yaml'

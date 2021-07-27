@@ -1,0 +1,8 @@
+title: Duration
+description: >-
+  Duration, expressed as `hours`, `minutes` or `seconds`.
+type: object
+oneOf:
+  - $ref: './duration/hours.v1.yaml'
+  - $ref: './duration/minutes.v1.yaml'
+  - $ref: './duration/seconds.v1.yaml'

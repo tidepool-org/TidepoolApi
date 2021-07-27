@@ -1,0 +1,16 @@
+title: Distance (feet)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - feet
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 528000
+    example: 42
+required:
+  - units
+  - value

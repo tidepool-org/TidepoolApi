@@ -1,0 +1,43 @@
+title: Physical Activity
+description: Logging of physical activity
+allOf:
+  - $ref: '../../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - physicalActivity
+      activityType:
+        $ref: './activitytype.v1.yaml'
+      activityTypeOther:
+        $ref: './otheractivitytype.v1.yaml'
+      name:
+        $ref: './name.v1.yaml'
+      reportedIntensity:
+        $ref: './reportedintensity.v1.yaml'
+      aggregate:
+        $ref: './aggregate.v1.yaml'
+      distance:
+        $ref: '../../../../common/models/distance.v1.yaml'
+      duration:
+        $ref: '../../../../common/models/duration.v1.yaml'
+      elevationChange:
+        oneOf:
+          - $ref: '../../../../common/models/distance/feet.v1.yaml'
+          - $ref: '../../../../common/models/distance/meters.v1.yaml'
+      energy:
+        $ref: '../../../../common/models/energy.v1.yaml'
+      flight:
+        $ref: './flights.v1.yaml'
+      lap:
+        $ref: './laps.v1.yaml'
+      step:
+        $ref: './steps.v1.yaml'
+    required:
+      - type
+      - activityType
+      - name
+      - reportedIntensity  
+x-tags:
+  - Data
