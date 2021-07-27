@@ -1,0 +1,17 @@
+title: Elevation (meters)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - meters
+    example: 'meters'
+  value:
+    type: number
+    format: double
+    minimum: 0
+    maximum: 10000
+    example: 42
+required:
+  - units
+  - value
