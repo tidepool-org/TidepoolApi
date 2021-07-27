@@ -1,4 +1,5 @@
-title: Invited by User ID
+description: >-
+  Invited by User ID
 name: invitedBy
 in: path        
 required: true

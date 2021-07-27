@@ -1,9 +1,10 @@
+description: >-
+  Page size for pagination
 name: size
 in: query
 required: false
-description: Page size for pagination
 schema:
   type: integer
-  default: 100
   mininum: 1
   maximum: 1000
+  default: 100

@@ -1,5 +1,5 @@
-title: Task ID
-description: Task ID
+description: >-
+  Task ID
 name: taskId
 in: path
 required: true

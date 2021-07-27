@@ -1,6 +1,6 @@
-title: Blob Status
+description: >-
+  Blob Status
 name: status
-description: Status
 in: query
 required: false
 schema:

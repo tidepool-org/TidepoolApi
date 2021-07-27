@@ -1,6 +1,7 @@
-title: Dexcom Data
+description: >-
+  Dexcom Data
 name: dexcom
 in: query
 schema:
   type: boolean
-default: false
+  default: false

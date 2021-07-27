@@ -1,5 +1,5 @@
-title: Device ID
 description: >-
+  Device ID.
   Search for data by `deviceId`.
   Only objects with a `deviceId` field matching the specified `uploadId` parameter will be returned.
 name: deviceId

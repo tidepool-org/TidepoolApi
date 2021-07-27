@@ -1,7 +1,8 @@
-title: Image Revision
+description: >-
+  Image Revision.
+  The revision the current image must match in order to delete the image.
 name: revision
 in: query
-description: The revision the current image must match in order to delete the image.
 required: false
 schema:
   $ref: '../models/revision.v1.yaml'

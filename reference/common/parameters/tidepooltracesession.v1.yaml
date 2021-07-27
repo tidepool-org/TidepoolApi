@@ -1,12 +1,12 @@
-name: X-Tidepool-Trace-Session
-in: header
-required: false
 description: >-
   An optional, unique identifier specified by the client automatically
   associated with all server logging occurring during a 'session' of
   requests.
 
   It is up to the client to determine how a 'session' is defined. If specified, then the identifer is returned in the matching response header.
+name: X-Tidepool-Trace-Session
+in: header
+required: false
 schema:
   type: string
   minLength: 1

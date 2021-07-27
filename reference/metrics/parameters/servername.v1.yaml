@@ -1,4 +1,3 @@
-title: Metrics Server Name
 description: >-
   Server-defined server name.
   The metrics service imposes no restrictions on the server name.

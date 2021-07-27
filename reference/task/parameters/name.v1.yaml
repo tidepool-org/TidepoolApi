@@ -1,5 +1,6 @@
-title: Task Name Filter
-description: Filter by task name
+description: >-
+  Task Name Filter.
+  Filter by task name
 name: name
 in: query
 required: false

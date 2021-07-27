@@ -1,4 +1,5 @@
-title: Confirmation Email
+description: >-
+  Confirmation Email
 name: email
 in: path
 required: true

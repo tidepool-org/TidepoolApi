@@ -1,6 +1,6 @@
-title: Provider Type
-name: name
-description: Filter by provider type
+description: >-
+  Provider Type
+name: type
 in: query
 required: false
 schema:

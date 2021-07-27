@@ -1,4 +1,5 @@
-title: Restricted Token ID
+description: >-
+  Restricted Token ID
 name: tokenId
 in: path
 required: true

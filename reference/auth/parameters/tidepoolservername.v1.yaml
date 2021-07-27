@@ -1,6 +1,5 @@
-title: Tidepool Server Name
 description: >-
-  Server name to be used in a server token.
+  Tidepool Server Name. Server name to be used in a server token.
 name: X-Tidepool-Server-Name
 in: header
 required: true

@@ -1,6 +1,6 @@
-title: Provider Name
+description: >-
+  Provider Session Name
 name: name
-description: Filter by provider name
 in: query
 required: false
 schema:

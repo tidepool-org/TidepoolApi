@@ -1,6 +1,7 @@
-title: Carelink Data
+description: >-
+  Carelink Data
 name: carelink
 in: query
 schema:
   type: boolean
-default: false
+  default: false

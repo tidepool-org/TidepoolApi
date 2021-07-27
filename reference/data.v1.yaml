@@ -298,7 +298,6 @@ paths:
       description: >-
         Uploads data to a user's data set identified by the `dataSetId`.
       requestBody:
-        -$ref: '#/components/requestBodies/UploadDataList'
         $ref: '#/components/requestBodies/UploadDataList'
       responses:
         '200':

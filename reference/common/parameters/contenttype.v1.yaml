@@ -1,5 +1,6 @@
+description: >-
+  Content type of the resource
 name: Content-Type
-description: Content type of the resource
 in: header
 required: true
 schema:

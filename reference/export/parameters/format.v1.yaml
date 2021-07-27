@@ -1,6 +1,6 @@
-title: Export Format
+description: >-
+  Export format
 name: format
-description: Export format
 in: query
 schema:
   $ref: '../models/format.v1.yaml'

@@ -1,6 +1,5 @@
-title: Sub Type
 description: >-
-  The data subtype to search for.
+  Sub Type. The data subtype to search for.
   Only objects with a `subType` field matching the specified `subType` parameter will be returned.
   It can be a single value like `?subtype=physicalactivity` or a comma separated list like `?subtypetype=physicalactivity,steps`.
   If it is a comma separated list, then objects matching *any* of the types will be returned.

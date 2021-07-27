@@ -1,3 +1,5 @@
+description: >-
+  Data Source ID
 name: dataSourceId
 in: path
 required: true

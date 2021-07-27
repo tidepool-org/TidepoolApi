@@ -1,4 +1,3 @@
-title: Metrics Event Name
 description: >-
   Client-defined event name.
   The metrics service imposes no restrictions on the event name.

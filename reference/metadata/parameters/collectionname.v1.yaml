@@ -1,5 +1,5 @@
-title: Metadata Collection Name
-description: Collection Name
+description: >-
+  Metadata Collection Name
 name: collectionName
 in: path
 required: true

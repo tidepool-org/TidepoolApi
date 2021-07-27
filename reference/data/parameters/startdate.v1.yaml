@@ -1,5 +1,5 @@
-title: Start Date
 description: >-
+  Start Date.
   Only objects with `time` field equal to or greater than start date will be returned.
   Must be in ISO 8601 date/time format e.g. `2015-10-10T15:00:00.000Z`.
 name: startDate

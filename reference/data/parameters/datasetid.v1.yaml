@@ -1,3 +1,5 @@
+description: >-
+  Data Set ID
 name: dataSetId
 in: path
 required: true

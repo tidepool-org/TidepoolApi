@@ -1,6 +1,5 @@
-title: Upload Type
 description: >-
-  The data type to search for.
+  Upload Type. The data type to search for.
   Only objects with a `type` field matching the specified `type` parameter will be returned.
   It can be a single value like `/data/userid?type=smbg` or a comma separated list like `/data/userid?type=smgb,cbg`.
   If is a comma separated list, then objects matching *any* of the types will be returned.

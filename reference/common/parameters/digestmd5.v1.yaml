@@ -1,6 +1,6 @@
-name: Digest
 description: >-
   Digest of the resource, per [RFC 3230](https://www.ietf.org/rfc/rfc3230.txt)
+name: Digest
 in: header
 required: true
 schema:

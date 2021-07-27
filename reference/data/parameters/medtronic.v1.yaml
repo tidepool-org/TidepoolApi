@@ -1,6 +1,7 @@
-title: Medtronic Data
+description: >-
+  Medtronic Data
 name: medtronic
 in: query
 schema:
   type: boolean
-default: false
+  default: false

@@ -1,5 +1,6 @@
-title: Task State Filter
-description: Filter by task state
+description: >-
+  Task State Filter.
+  Filter by task state
 name: state
 in: query
 required: false
