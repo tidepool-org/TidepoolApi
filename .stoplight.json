@@ -5,10 +5,10 @@
   ],
   "formats": {
     "openapi": {
-      "rootDir": "reference",
+      "rootDir": "reference"
     },
     "json_schema": {
-      "rootDir": "reference",
+      "rootDir": "reference"
     },
     "markdown": {
       "rootDir": "docs"
