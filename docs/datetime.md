@@ -1,17 +1,17 @@
 ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
 
-# Datetime Guide
+# Date/Time Guide
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
-3. [Handling diabetes data](#handling-diabetes-data)
-	1. [Handling datetimes on ingestion](#handling-datetimes-on-ingestion)
-	2. [Handling datetimes in the API client](#handling-datetimes-in-the-api-client)
-4. [Handling browser-local datetimes "now"](#handling-browserlocal-datetimes-now)
-5. [Handling user-significant dates](#handling-usersignificant-dates)
-6. [Keep reading](#keep-reading)
+3. [Handling Diabetes Data](#handling-diabetes-data)
+    1. [Handling Datetimes On Ingestion](#handling-datetimes-on-ingestion)
+    2. [Handling Datetimes In The Api Client](#handling-datetimes-in-the-api-client)
+4. [Handling Browser-Local Datetimes "Now"](#handling-browserlocal-datetimes-now)
+5. [Handling User-significant Dates](#handling-usersignificant-dates)
+6. [Keep Reading](#keep-reading)
 
 ---
 
@@ -33,7 +33,7 @@ It can be difficult to handle [datetimes](./datetime/glossary.md#datetime) when 
 
 ---
 
-## Handling diabetes data
+## Handling Diabetes Data
 
 No diabetes device stores the datetimes of events that occur in [UTC](./datetime/glossary.md#utc) or UTC-anchored time (with the possible exception of an iPhone serving as a receiver for a Dexcom G5 CGM). To align data from multiple devices on the same timeline reliably, Tidepool has implemented an [algorithm](./datetime/btutc.md) to convert local device time to UTC time.
 
@@ -63,7 +63,7 @@ In general, it is good to approach diabetes device times with a [set of incorrec
 
 ---
 
-### Handling datetimes on ingestion
+### Handling Datetimes On Ingestion
 
 Running the BtUTC algorithm gets you most of the way there, but there is still a situation — plus BtUTC edge cases and bugs — that requires the engineer working on data ingestion to manipulate datetimes directly.
 
@@ -71,7 +71,7 @@ Basal schedules and other insulin pump settings are based on a schedule that is 
 
 ---
 
-### Handling datetimes in the API client
+### Handling Datetimes In The API Client
 
 In the API client, the guideline for handling diabetes data datetimes is quite simple: Use the time field in the Tidepool data model, in combination with the user's configured timezone preferences.
 
@@ -79,7 +79,7 @@ When using [Moment.js](https://momentjs.com/) to manipulate and/or display datet
 
 ---
 
-## Handling browser-local datetimes "now"
+## Handling Browser-Local Datetimes "Now"
 
 The reason we cannot use JavaScript's built-in date constructor (jsDate) at Tidepool — particularly when dealing with diabetes device data — is because jsDate only handles two types of [datetime](./datetime/glossary.md#datetime) objects:
 
@@ -94,14 +94,14 @@ For formatting a browser-local datetime, any tool may be used. Some people who h
 
 ---
 
-## Handling user-significant dates
+## Handling User-Significant Dates
 
 Currently, the user-significant dates in the Tidepool data model are a person with diabetes' birthday and diagnosis date. These dates are [calendar dates](./datetime/glossary.md#calendar-dates), and as such they do not include any timezone information. Since [UTC](./datetime/glossary.md#utc) is an absolute time scale that is also free from the complications of non-universal timezones, using d3-time-format can provide good examples of this.
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Bootstrapping to UTC](./datetime/btutc.md)
-* [Datetime glossary](./datetime/glossary.md)
-* [Incorrect assumptions](./datetime/assumptions.md)
+* [Datetime Glossary](./datetime/glossary.md)
+* [Incorrect Assumptions](./datetime/assumptions.md)

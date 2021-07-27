@@ -1,35 +1,29 @@
 # Status (`status`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
 3. [Duration](#duration-duration)
-4. [Expected duration](#expected-duration-expectedduration)
+4. [Expected Duration](#expected-duration-expectedduration)
 5. [Reason](#reason-reason)
 6. [Status](#status-status)
 7. [Example (client)](#example-client)
 8. [Example (ingestion)](#example-ingestion)
 9. [Example (storage)](#example-storage)
-10. [Keep reading](#keep-reading)
+10. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Status",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/devicedeliverystatus.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/devicedeliverystatus.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 This is the Tidepool data type for an insulin pump's insulin delivery status. This is used to represent suspensions of insulin delivery — intervals of time when neither bolus or basal insulin is delivered by an insulin pump. When a user suspends an insulin pump or the pump suspends itself automatically, any bolus currently in progress is terminated and the basal insulin is stopped.
 
@@ -186,14 +180,14 @@ Platform will only accept a suspended value for the status field.
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Alarm](./device-data/data-types/device-event/alarm.md)
 * [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common fields](./device-data/common-fields.md)
-* [Device event](./device-data/data-types/device-event.md)
-* [Linking events](./device-data/linking-events.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Device Event](./device-data/data-types/device-event.md)
+* [Linking Events](./device-data/linking-events.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump settings](device-data/data-types/pump-settings)
-* [Reservoir change](./device-data/data-types/device-event/reservoir-change.md)
-* [Time change](./device-data/data-types/device-event/time-change.md)
+* [Pump Settings](device-data/data-types/pump-settings)
+* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
+* [Time Change](./device-data/data-types/device-event/time-change.md)

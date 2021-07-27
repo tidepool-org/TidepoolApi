@@ -8,11 +8,11 @@ Along with Tidepool's release of ["Bootstrapping to UTC"](./datetime/btutc.md) (
 
 > These sub-types are *not* device metadata that may be user-invisible (or irrelevant to the user), such as device model and serial numbers, etc.
 
-## Device event sub-types:
+## Device Event Sub-Types
 
 * [Alarm](./device-data/data-types/device-event/alarm.md)
 * [Calibration](./device-data/data-types/device-event/calibration.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
-* [Reservoir change](./device-data/data-types/device-event/reservoir-change.md)
+* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
-* [Time change](./device-data/data-types/device-event/time-change.md)
+* [Time Change](./device-data/data-types/device-event/time-change.md)

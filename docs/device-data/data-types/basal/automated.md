@@ -1,31 +1,25 @@
 # Automated Basals (`automated`)
 
-### Table of Contents
+## Table of Contents
 
 1. [Quick summary](#quick-summary)
-2. [Delivery type](#delivery-type-deliverytype)
+2. [Delivery Type](#delivery-type-deliverytype)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
-6. [Keep reading](#keep-reading)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Automated basals",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/basalautomated.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: "../../../../reference/data/models/basal/automated.v1.yaml"
 ```
 
 ---
 
-## Delivery type (`deliveryType`)
+## Delivery Type (`deliveryType`)
 
 This is the sub-type of basal event representing intervals of basal insulin delivery triggered by the pump itself (rather than manual user entry) according to a closed loop algorithm.
 
@@ -103,13 +97,13 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Basal](./device-data/data-types/automated.md)
-* [Common fields](./device-data/common-fields.md)
-* [Pump settings](./device-data/pump-settings.md)
-* [Scheduled basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed basals](./device-data/data-types/basal/suppressed.md)
-* [Suspend basals](./device-data/data-types/basal/suspend.md)
-* [Temporary basals](./device-data/data-types/basal/temp.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Pump Settings](./device-data/pump-settings.md)
+* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
+* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
+* [Suspend Basals](./device-data/data-types/basal/suspend.md)
+* [Temporary Basals](./device-data/data-types/basal/temp.md)
 * [Units](./device-data/units.md)

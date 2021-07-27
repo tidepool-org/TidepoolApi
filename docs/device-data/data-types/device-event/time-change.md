@@ -1,32 +1,26 @@
 # Time Change (`timeChange`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
 3. [Change](#change-change)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
 6. [Example (storage)](#example-storage)
-7. [Keep reading](#keep-reading)
+7. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Time change",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/devicetimechange.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/devicetimechange.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 A time change event represents an instance when a diabetes device user changed the display date & time settings on the device. An accurate history of time change events is crucial as Platform uses the most recent set of time change events, raw log from a device's records and user's selection of timezone to translate relative (local time) timestamps of device records into UTC timestamps. This is to align all diabetes device timelines. For further information, please see ["Bootstrapping" to UTC](./datetime/btutc.md).
 
@@ -126,14 +120,14 @@ The method field on the change object details whether the time change was manual
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Alarm](./device-data/data-types/device-event/alarm.md)
 * [Bootstrapping to UTC](./datetime/btutc.md)
 * [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common fields](./device-data/common-fields.md)
-* [Device event](./device-data/data-types/device-event.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Device Event](./device-data/data-types/device-event.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump settings](device-data/data-types/pump-settings)
-* [Reservoir change](./device-data/data-types/device-event/reservoir-change.md)
+* [Pump Settings](device-data/data-types/pump-settings)
+* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)

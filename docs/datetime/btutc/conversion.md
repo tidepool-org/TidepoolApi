@@ -1,9 +1,9 @@
 # Conversion Offset (`conversionOffset`)
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
-2. [Keep reading](#keep-reading)
+2. [Keep Reading](#keep-reading)
 
 ---
 
@@ -22,12 +22,12 @@ The consequence of this is that the timezone offset stored on a user’s data wi
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Bootstrapping to UTC](../btutc.md)
-* [BtUTC usage](./usage.md)
-* [Clock drift offset](./clock-drift.md)
-* [Timezone offset](./timezone.md)
-* [Datetime glossary](../glossary.md)
-* [Datetime guide](../../datetime.md)
-* [Incorrect assumptions about datetime](../assumptions.md)
+* [BtUTC Usage](./usage.md)
+* [Clock Drift Offset](./clock-drift.md)
+* [Timezone Offset](./timezone.md)
+* [Datetime Glossary](../glossary.md)
+* [Datetime Guide](../../datetime.md)
+* [Incorrect Assumptions About Datetime](../assumptions.md)

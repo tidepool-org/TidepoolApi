@@ -1,35 +1,29 @@
 # Upload Metadata (`upload`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [By user](#by-user-byuser)
-3. [Computer time](#computer-time-computertime)
-4. [Device manufacturers](#device-manufacturers-devicemanufacturers)
-5. [Device model](#device-model-devicemodel)
-6. [Device serial number](#device-serial-number)
-7. [Device tags](#device-tags-devicetags)
-8. [Time processing](#time-processing-timeprocessing)
+1. [Quick Summary](#quick-summary)
+2. [By User](#by-user-byuser)
+3. [Computer Time](#computer-time-computertime)
+4. [Device Manufacturers](#device-manufacturers-devicemanufacturers)
+5. [Device Model](#device-model-devicemodel)
+6. [Device Serial Number](#device-serial-number)
+7. [Device Tags](#device-tags-devicetags)
+8. [Time Processing](#time-processing-timeprocessing)
 9. [Timezone](#timezone-timezone)
 10. [Upload ID](#upload-id-uploadid)
 11. [Version](#version-version)
 12. [Example (client)](#example-client)
 13. [Example (ingestion)](#example-ingestion)
 14. [Example (storage)](#example-storage)
-15. [Keep reading](#keep-reading)
+15. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Upload metadata",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/upload.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/upload.v1.yaml'
 ```
 
 ---
@@ -53,13 +47,13 @@ The fields under this type are:
 
 ---
 
-## By user (`byUser`)
+## By User (`byUser`)
 
 The by user field is provided for data auditing purposes. Since Tidepool provides functionality to share data and data permissions between users — for example, between a clinician and a patient — the user that logged in and performed the device upload may not be the PwD whose data is being uploaded.
 
 ---
 
-## Computer time (`computerTime`)
+## Computer Time (`computerTime`)
 
 The computer time field encodes the local time at upload with no timezone offset information (Tidepool stores timezone separately). We store this field to audit and/or detect the correspondence between the user's browser time and the timezone they selected at the time of upload. If the user selected the *correct* timezone for their browser, then the timezone will be converted to UTC Zulu time and then again to computer time (which should match the selected timezone). If, however, the user selected a *different* timezone from that effective in their browser, the computer time and timezone will not match.
 
@@ -67,7 +61,7 @@ There are some cases where it is perfectly justified to select a timezone that d
 
 ---
 
-## Device manufacturers (`deviceManufacurers`)
+## Device Manufacturers (`deviceManufacurers`)
 
 To avoid confusion resulting from referring to a single manufacturer with more than one name — for example, using both "Minimed" and "Medtronic" interchangeably — Tidepool restricts device manufacturer string "tags" to those detailed in the quick summary above and enforces exact string matches (including casing).
 
@@ -75,13 +69,13 @@ Device manufacturers is an array of one or more string tags because  some device
 
 ---
 
-## Device model (`deviceModel`)
+## Device Model (`deviceModel`)
 
 The device model is a non-empty string that encodes the model of device. We endeavor to match each manufacturer's standard for how they represent model name in terms of casing, whether parts of the name are represented as one word or two, etc.
 
 ---
 
-## Device serial number (`deviceSerialNumber`)
+## Device Serial Number (`deviceSerialNumber`)
 
 The device serial number is a string that encodes the serial number of the device.
 
@@ -93,13 +87,13 @@ Having the device serial number is extremely important (especially for clinical 
 
 ---
 
-## Device tags (`deviceTags`)
+## Device Tags (`deviceTags`)
 
 The device tags array should be fairly self-explanatory as an array of tags indicating the function/s of a particular device. For example, the Insulet OmniPod insulin delivery system has the tags "bgm" and "insulin-pump" since the PDM (personal diabetes monitor) is both an insulin pump controller and includes a built-in blood glucose monitor.
 
 ---
 
-## Time processing (`timeProcessing`)
+## Time Processing (`timeProcessing`)
 
 For data auditing purposes, Tidepool stores a string encoding the type of algorithm used to generate the time, timezone offset, and other related fields from the local device time. At present, there are only three options for this value:
 
@@ -229,12 +223,12 @@ A string identifying the software version of the uploading client. For Tidepool 
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Bolus calculator](./device-data/data-types/pump-settings/calculator.md)
-* [Common fields](./device-data/common-fields.md)
-* [Datetime guide](./datetime.md)
-* [Diabetes data types](./device-data/data-types.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
-* [Self-monitored glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
+* [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Datetime Guide](./datetime.md)
+* [Diabetes Data Types](./device-data/data-types.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
+* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
 * [Units](./device-data/units.md)

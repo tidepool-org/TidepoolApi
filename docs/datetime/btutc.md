@@ -1,11 +1,11 @@
 # Bootstrapping to UTC (BtUTC)
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
-2. [Across-the-board timezone default](#acrosstheboard-timezone-default)
+2. [Across-The-Board Timezone Default](#acrosstheboard-timezone-default)
 3. [Daylight Savings Time](#daylight-savings-time)
-4. [Keep reading](#keep-reading)
+4. [Keep Reading](#keep-reading)
 
 ---
 ## Overview
@@ -31,7 +31,7 @@ In its current version, BtUTC now keeps track of three offsets from UTC:
 3. [Clock Drift Offset](./btutc/clock-drift.md)
 
 ---
-## Across-the-board timezone default
+## Across-The-Board Timezone Default
 
 Some traditional fingerstick blood glucose meters that Tidepool supports, do not provide date & time settings changes. For these devices, when Timezone Offset Utility is initialized with an empty array for changes, it defaults to across-the-board timezone application to convert local device time into UTC time.
 
@@ -50,12 +50,12 @@ For Tidepool's purposes, all that is important to understand regarding [Daylight
 
 ---
 
-### Keep Reading
+## Keep Reading
 
-* [BtUTC usage](./btutc/usage.md)
-* [Clock drift offset](./btutc/clock-drift.md)
-* [Conversion offset](./btutc/conversion.md)
-* [Timezone offset](./btutc/timezone.md)
-* [Datetime glossary](./glossary.md)
-* [Datetime guide](../datetime.md)
-* [Incorrect assumptions about datetime](./assumptions.md)
+* [BtUTC Usage](./btutc/usage.md)
+* [Clock Drift Offset](./btutc/clock-drift.md)
+* [Conversion Offset](./btutc/conversion.md)
+* [Timezone Offset](./btutc/timezone.md)
+* [Datetime Glossary](./glossary.md)
+* [Datetime Guide](../datetime.md)
+* [Incorrect Assumptions About Datetime](./assumptions.md)

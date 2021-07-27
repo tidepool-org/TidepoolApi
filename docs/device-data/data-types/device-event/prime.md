@@ -1,33 +1,27 @@
 # Prime (`prime`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
-3. [Prime target](#prime-target-primetarget)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
+3. [Prime Target](#prime-target-primetarget)
 4. [Volume](#volume-volume)
 5. [Example (client)](#example-client)
 6. [Example (ingestion)](#example-ingestion)
 7. [Example (storage)](#example-storage)
-8. [Keep reading](#keep-reading)
+8. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Prime",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/deviceprimeevent.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/deviceprimeevent.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 The prime sub-type of device event represents a user's "priming" of either an insulin infusion line (used with traditional insulin pumps) or an insulin delivery cannula (used in tubeless patch pumps and some traditional pumps).
 
@@ -40,7 +34,7 @@ The priming process removes any air from the tubing or cannula to ensure seamles
 
 ---
 
-## Prime target (`primeTarget`)
+## Prime Target (`primeTarget`)
 
 The prime target field identifies the object of the priming action — "tubing" for an infusion line prime or "cannula" for a cannula prime.
 
@@ -125,14 +119,14 @@ Where available in the data, the volume of a priming event should be included to
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Alarm](./device-data/data-types/device-event/alarm.md)
 * [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common fields](./device-data/common-fields.md)
-* [Device event](./device-data/data-types/device-event.md)
-* [Pump settings](device-data/data-types/pump-settings)
-* [Reservoir change](./device-data/data-types/device-event/reservoir-change.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Device Event](./device-data/data-types/device-event.md)
+* [Pump Settings](device-data/data-types/pump-settings)
+* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
-* [Time change](./device-data/data-types/device-event/time-change.md)
+* [Time Change](./device-data/data-types/device-event/time-change.md)
 

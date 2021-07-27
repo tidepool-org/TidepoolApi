@@ -1,29 +1,30 @@
 # Glossary
 
-### Table of Contents
+## Table of Contents
 
 1. [BtUTC](#btutc)
-2. [Calendar date](#calendar-date)
-3. [Clock time](#clock-time)
+2. [Calendar Date](#calendar-date)
+3. [Clock Time](#clock-time)
 4. [Datetime](#datetime)
-5. [Display time](#display-time)
+5. [Display Time](#display-time)
 6. [DST](#dst)
 7. [Hammertime](#hammertime)
 8. [ISO 8601](#iso-8601)
 9. [PwD](#pwd)
 10. [Timezone](#timezone)
-11. [Timezone offset](#timezone-offset)
-12. [Unix time](#unix-time)
+11. [Timezone Offset](#timezone-offset)
+12. [Unix Time](#unix-time)
 13. [UTC](#utc)
 
 ---
 
 ## BtUTC
+
 [Bootstrapping to UTC](./datetime/btutc.md) (BtUTC) is the algorithm Tidepool uses to translate local device time to [UTC](#utc) datetimes.
 
 ---
 
-## Calendar date
+## Calendar Date
 
 An object involving only date information — year, month, and day — and referring to a date in the 365-day Gregorian calendar; represented best in [ISO 8601](#iso-8601) YYYY–MM–DD format.
 
@@ -37,7 +38,7 @@ Examples:
 
 ---
 
-## Clock time
+## Clock Time
 
 An object involving only time information — hours, minutes, seconds, and sometimes milliseconds — and referring to a point within a standard 24-hour day.
 
@@ -66,13 +67,14 @@ Examples:
 
 ---
 
-## Display time
+## Display Time
 
 A display time is a type of relative or local datetime. That is, a datetime without [timezone](#timezone) information and therefore not anchored to [UTC](#utc). For example, if you look at a diabetes device right now, you should be able to see a display time (on the datetime display).
 
 ---
 
 ## DST
+
 Daylight Savings Time (DST) is the practice of advancing [clock time](#clock-time) by an hour during the summer months, so that evening daylight lasts longer.
 
 Many [timezones](#timezone) throughout the world observe DST, but some do not. Local governments decide when the shift to and away from DST occurs.
@@ -99,6 +101,7 @@ Currently, there are no examples of hammertimes in the data Tidepool stores. How
 ---
 
 ## ISO 8601
+
 ISO 8601 is the International Organization for Standardization's (ISO) standard covering the exchange of date and time related data, which you can read about [here](https://en.wikipedia.org/wiki/ISO_8601).
 
 Tidepool uses ISO 8601 [datetime](#datetime) formatting for calendar dates and for local and [UTC](#utc) datetimes. We use the "Zulu" format with milliseconds for the time field. For the relative datetime (stored in the device time field), we use the date and time formatting specifications to second precision.
@@ -113,6 +116,7 @@ Examples:
 ---
 
 ## PwD
+
 Person with diabetes (PwD) is used  to avoid the disease-centric term "diabetic." It is very commonly used throughout the diabetes community.
 
 ---
@@ -135,11 +139,12 @@ The upload type in Tidepool's data model stores a timezone in the timezone prope
 
 ---
 
-## Timezone offset
+## Timezone Offset
 
 A timezone offset is a positive or negative integer representing an offset from [UTC](#utc) in minutes. In many cases, a [timezone](#timezone) will not match a timezone offset year-round because of Daylight Savings Time.
 
 Examples:
+
 * The US/Pacific timezone ordinarily has an offset to UTC of -480 minutes
 * The US/Pacific timezone has an offset of -420 minutes when [DST](#dst) is in effect
 
@@ -149,7 +154,7 @@ Tidepool's data model includes a calculated (via [BtUTC](#btutc)) timezone offse
 
 ---
 
-## Unix time
+## Unix Time
 
 Unix time is a machine-friendly method for representing a [datetime](#datetime), defined as the number of seconds that have elapsed since 12:00 am, 1st January 1970. Unix time is sometimes referred to as "POSIX time" or "epoch time."
 
@@ -171,8 +176,8 @@ UTC does not observe [DST](#dst), and is the successor to Greenwich Mean Time (G
 In Tidepool's data model, all time fields are in UTC.
 
 Examples:
+
 * 2004-12-30T13:29:34+000Z in ISO 8601 format
 * 1:29 pm, 30th December 2004 with 0 offset from UTC in non-ISO 8601 format
 * 2019-08-02T07:13:11+600 in ISO 8601 format
 * 7:13 am, 2nd August 2019 with +600 minutes offset from UTC in non-ISO 8601 format
-

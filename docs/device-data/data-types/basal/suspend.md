@@ -1,31 +1,25 @@
 # Suspend Basals (`suspend`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Delivery type](#delivery-type-deliverytype)
+1. [Quick Summary](#quick-summary)
+2. [Delivery Type](#delivery-type-deliverytype)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
-6. [Keep reading](#keep-reading)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Suspend basals",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/basalsuspend.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/basal/suspend.v1.yaml'
 ```
 
 ---
 
-## Delivery type (`deliveryType`)
+## Delivery Type (`deliveryType`)
 
 This is the sub-type of basal event representing the total suspension of insulin delivery on a pump within the stream of basal events — which should be without gaps or overlaps. The user's inputs to suspend (and later resume) insulin delivery are part of Tidepool's [device event](./device-data/data-types/device-event.md) data type. We represent suspend intervals as a suspend basal to maintain a continuous stream of basal data, making the calculation of statistics (e.g. total basal dose per day) easier.
 
@@ -120,13 +114,13 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Automated basals](./device-data/data-types/basal/automated.md)
+* [Automated Basals](./device-data/data-types/basal/automated.md)
 * [Basal](./device-data/data-types/automated.md)
-* [Common fields](./device-data/common-fields.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
-* [Scheduled basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed basals](./device-data/data-types/basal/suppressed.md)
-* [Temporary basals](./device-data/data-types/basal/temp.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
+* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
+* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
+* [Temporary Basals](./device-data/data-types/basal/temp.md)
 * [Units](./device-data/units.md)

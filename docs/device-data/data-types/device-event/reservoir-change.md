@@ -1,32 +1,26 @@
 # Reservoir Change (`reservoirChange`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
 3. [Status](#status-status)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
 6. [Example (storage)](#example-storage)
-7. [Keep reading](#keep-reading)
+7. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Reservoir change",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/devicereservoirchange.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/devicereservoirchange.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 A reservoir change event represents a recent change or refill of the insulin reservoir. Conventional insulin pumps refer to this as a "rewind" event, whereas an Insulet OmniPod system will call this a "deactivation" event.
 
@@ -125,14 +119,14 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Alarm](./device-data/data-types/device-event/alarm.md)
 * [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common fields](./device-data/common-fields.md)
-* [Device event](./device-data/data-types/device-event.md)
-* [Linking events](./device-data/linking-events.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Device Event](./device-data/data-types/device-event.md)
+* [Linking Events](./device-data/linking-events.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump settings](device-data/data-types/pump-settings)
+* [Pump Settings](device-data/data-types/pump-settings)
 * [Status](./device-data/data-types/device-event/status.md)
-* [Time change](./device-data/data-types/device-event/time-change.md)
+* [Time Change](./device-data/data-types/device-event/time-change.md)

@@ -1,31 +1,25 @@
 # Extended Bolus (`extended`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
-6. [Keep reading](#keep-reading)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Extended bolus",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/bolusextended.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/bolus/extended.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 This is the sub-type of bolus event that represents a bolus insulin dose programmed to be delivered evenly over a duration of time (typically 15 minutes to several hours).
 
@@ -106,11 +100,11 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Bolus](./device-data/data-types/bolus.md)
-* [Combination bolus](./device-data/data-types/bolus/combination.md)
-* [Common fields](./device-data/common-fields.md)
-* [Normal bolus](./device-data/data-types/bolus/normal.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
+* [Combination Bolus](./device-data/data-types/bolus/combination.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Normal Bolus](./device-data/data-types/bolus/normal.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
 * [Units](./device-data/units.md)

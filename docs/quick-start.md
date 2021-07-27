@@ -2,21 +2,21 @@
 
 # Getting Started
 
+## Table of Contents
+
+1. [Authentication](#authentication)
+2. [Tracing](#tracing)
+3. [Errors](#errors)
+4. [Access User Accounts](#access-user-accounts)
+5. [Keep Reading](#keep-reading)
+
+---
+
 <!-- theme: success -->
 
 > ### Prerequisites
 >
 > Before you begin, you will need to create a [Tidepool user account](http://int-app.tidepool.org/signup). It's free and should take you less than two minutes. You can also download [curl](http://curl.haxx.se/download.html) or [Postman](http://app.getpostman.com/run-collection/9b665f2fb9a8a483bf30?via=clientlibraries) onto your computer (this isn't strictly required but is strongly encouraged).
-
-### Table of Contents
-
-1. [Authentication](#authentication)
-2. [Tracing](#tracing)
-3. [Errors](#errors)
-4. [Access user accounts](#access-user-accounts)
-5. [Keep reading](#keep-reading)
-
----
 
 ## Authentication
 
@@ -26,7 +26,7 @@ To get access to your diabetes data, you will  need to get an **authorization se
 curl -i -X POST -u [your account email]:[your account password] https://int-api.tidepool.org/auth/login
 ```
 
-```yaml http
+```json http
 {
   "method": "post",
   "url": "https://int-api.tidepool.org/auth/login",
@@ -118,7 +118,7 @@ upon the type and location of the error. The most common failure HTTP status cod
 
 ---
 
-## Access user accounts
+## Access User Accounts
 
 The following command returns user information associated with the given user ID. This step is only necessary if you have not previously stored the user IDs you wish to access:
 
@@ -126,7 +126,7 @@ The following command returns user information associated with the given user ID
 curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" 'https://int-api.tidepool.org/metadata/users/<your-userid>/users'
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/metadata/users/{$$.env.userid}/users",
@@ -144,7 +144,7 @@ From this list, find the user ID of the patient (or study subject) whose data yo
 curl -s -X GET -H "X-Tidepool-Session-Token: ey...uk" -H "Content-Type: application/json" "https://int-api.tidepool.org/metadata/users/4533925fea/users"
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/metadata/users/{$$.env.userid}/users",
@@ -158,7 +158,7 @@ curl -s -X GET -H "X-Tidepool-Session-Token: ey...uk" -H "Content-Type: applicat
 
 This request will return something like this:
 
-```json
+```json title="Response" lineNumbers
 [
   {
     "emailVerified": true,
@@ -214,7 +214,7 @@ As you can see, this example master account has view access for two kinds of use
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Fetching device data](./quick-start/fetching-device-data.md)
 * [Fetching user notes](./quick-start/notes.md)

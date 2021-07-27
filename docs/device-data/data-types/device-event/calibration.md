@@ -1,31 +1,26 @@
 # Calibration (`calibration`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
-6. [Keep reading](#keep-reading)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Calibration",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/devicecalibration.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/devicecalibration.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
+
 The calibration sub-type of device event represents a user's manual entry of a self-monitored glucose (SMBG) value to calibrate a continuous glucose monitoring (CGM) device.
 
 ---
@@ -77,14 +72,14 @@ The calibration sub-type of device event represents a user's manual entry of a s
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Common fields](./device-data/common-fields.md)
-* [Continuous blood glucose](./device-data/data-types/cbg.md)
-* [Device event](./device-data/data-types/device-event.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Continuous Blood Glucose (CBG)](./device-data/data-types/cbg.md)
+* [Device Event](./device-data/data-types/device-event.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump settings](device-data/data-types/pump-settings)
-* [Reservoir change](./device-data/data-types/device-event/reservoir-change.md)
+* [Pump Settings](device-data/data-types/pump-settings)
+* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
-* [Time change](./device-data/data-types/device-event/time-change.md)
+* [Time Change](./device-data/data-types/device-event/time-change.md)

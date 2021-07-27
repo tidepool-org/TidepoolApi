@@ -1,26 +1,20 @@
 # Continuous Blood Glucose (`cbg`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
+1. [Quick Summary](#quick-summary)
 2. [Type](#type-type)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
-6. [Keep reading](#keep-reading)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Continuous blood glucose (CBG)",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../reference/data/models/continuousglucose.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../reference/data/models/blood/continuousglucose.v1.yaml'
 ```
 
 ---
@@ -99,11 +93,11 @@ The device time field is only optional for *this* data type. This is because Tid
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Annotations](./device-data/annotations.md)
-* [CGM settings](./device-data/data-types/cgm-settings.md)
-* [Common fields](./device-data/common-fields.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
-* [Self-monitored glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
+* [CGM Settings](./device-data/data-types/cgm-settings.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
+* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
 * [Units](./device-data/units.md)

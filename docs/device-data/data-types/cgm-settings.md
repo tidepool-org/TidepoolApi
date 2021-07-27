@@ -1,31 +1,25 @@
 # Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
+1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
 3. [Type](#type-type)
-4. [High alerts](#high-alerts-highalerts)
-5. [Low alerts](#low-alerts-lowalerts)
-6. [Out of range alerts](#out-of-range-alerts-outofrangealerts)
-7. [Rate of change alerts](#rate-of-change-alerts-rateofchangealerts)
+4. [High Alerts](#high-alerts-highalerts)
+5. [Low Alerts](#low-alerts-lowalerts)
+6. [Out Of Range Alerts](#out-of-range-alerts-outofrangealerts)
+7. [Rate Of Change Alerts](#rate-of-change-alerts-rateofchangealerts)
 8. [Example (client)](#example-client)
 9. [Example (ingestion)](#example-ingestion)
 10. [Example (storage)](#example-storage)
-11. [Keep reading](#keep-reading)
+11. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "CGM settings: Dexcom",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../reference/data/models/cgmsettings.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../reference/data/models/cgmsettings.v1.yaml'
 ```
 
 ---
@@ -52,7 +46,7 @@ This is the Tidepool data type to represent CGM settings at a given point in tim
 
 ---
 
-## High alerts (`highAlerts`)
+## High Alerts (`highAlerts`)
 
 The high alerts object encodes the user’s preferences for receiving alerts about high blood glucose events (hyperglycemia).
 
@@ -64,7 +58,7 @@ Contains the following:
 
 ---
 
-## Low alerts (`lowAlerts`)
+## Low Alerts (`lowAlerts`)
 
 The low alerts object encodes the user’s preferences for receiving alerts about low blood glucose events (hypoglycemia).
 
@@ -76,7 +70,7 @@ Contains the following:
 
 ---
 
-## Out of range alerts (`outOfRangeAlerts`)
+## Out Of Range Alerts (`outOfRangeAlerts`)
 
 The out of range alerts object encodes the user's settings for receiving alerts from the receiver if the connection between the transmitter and the receiver has been disrupted. (This is typically due to the transmitter being situated physically out of range of the receiver.)
 
@@ -91,7 +85,7 @@ Contains the following:
 
 ---
 
-## Rate of change alerts (`rateOfChangeAlerts`)
+## Rate Of Change Alerts (`rateOfChangeAlerts`)
 
 The rate of change alerts object encodes the user's preferences for receiving alerts when the person with diabetes' blood glucose is changing rapidly — either rising or falling.
 
@@ -244,10 +238,10 @@ Contains the following:
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Annotations](./device-data/annotations.md)
-* [Continuous blood glucose](./device-data/data-types/cbg.md)
-* [Common fields](./device-data/common-fields.md)
-* [Out of range values](./device-data/oor-values.md)
+* [Continuous Blood Glucose (CBG)](./device-data/data-types/cbg.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Out Of Range Values](./device-data/oor-values.md)
 * [Units](./device-data/units.md)

@@ -1,21 +1,23 @@
 # Uploading Data in a Normal Session (`normal`)
 
-<!-- theme: success -->
+## Table of Contents
 
-> ### Are you authenticated?
->
-> Make sure that you have a [Tidepool session token](../../quick-start.md#authentication) before trying to fetch data.
-
-### Table of Contents
-
-1. [Open a normal session](#open-a-normal-session)
-2. [Upload device data to the normal session](#upload-normal-device-data-to-the-normal-session)
-3. [Close the upload session](#close-the-upload-session)
-4. [Keep reading](#keep-reading)
+1. [Open A Normal Session](#open-a-normal-session)
+2. [Upload Device Data To The Normal Session](#upload-normal-device-data-to-the-normal-session)
+3. [Close The Upload Session](#close-the-upload-session)
+4. [Keep Reading](#keep-reading)
 
 ---
 
-## Open a normal session
+<!-- theme: success -->
+
+> ### Are You Authenticated?
+>
+> Make sure that you have a [Tidepool session token](../../quick-start.md#authentication) before trying to fetch data.
+
+---
+
+## Open A Normal Session
 
 ```shell
 curl 'https://int-api.tidepool.org/dataservices/v1/users/<subject-userid>/data_sets' -H 'X-Tidepool-Session-Token: <your-session-token>' -H 'Content-Type: application/json' --data-binary '<upload-post-data>'
@@ -23,7 +25,7 @@ curl 'https://int-api.tidepool.org/dataservices/v1/users/<subject-userid>/data_s
 
 The body for this HTTP POST should be JSON, and follow the format outlined in the [diabetes data types](./data-types.md) documentation.
 
-```yaml http
+```json http
 {
   "method": "post",
   "url": "https://int-api.tidepool.org/dataservices/v1/users/{$$.env.subject-userid}/data_sets",
@@ -67,14 +69,15 @@ This will return an HTTP response with a JSON body. You should temporarily store
 
 ---
 
-## Upload device data to the open session
+## Upload Device Data To The Open Session
+
 Upload data to Platform in chunks of 1,000 records.
 
 ```shell
 curl 'https://int-api.tidepool.org/dataservices/v1/datasets/<upload-session-id>/data' –H 'X-Tidepool-Session-Token: <your-session-token>' –H 'Content-Type: application/json' --data-binary '[<array of diabetes device data objects>]'
 ```
 
-```yaml http
+```json http
 {
   "method": "post",
   "url": "https://int-api.tidepool.org/dataservices/v1/datasets/{$$.env.upload-session-id}/data",
@@ -97,13 +100,13 @@ curl 'https://int-api.tidepool.org/dataservices/v1/datasets/<upload-session-id>/
 
 ---
 
-## Close the upload session
+## Close The Upload Session
 
 ```shell
 curl -X PUT 'https://int-api.tidepool.org/dataservices/v1/datasets/<upload-session-id>' -H 'X-Tidepool-Session-Token: <your-session-token>' -H 'Content-Type: application/json' --data-binary '{"dataState":"closed"}'
 ```
 
-```yaml http
+```json http
 {
   "method": "put",
   "url": "https://int-api.tidepool.org/dataservices/v1/datasets/{$$.env.upload-session-id}",
@@ -122,8 +125,8 @@ curl -X PUT 'https://int-api.tidepool.org/dataservices/v1/datasets/<upload-sessi
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Diabetes data types](./device-data/data-types.md)
-* [Diabetes device data model](./device-data.md)
-* [Using a continuous upload session](./quick-start/uploading-device-data/continuous.md)
+* [Diabetes Data Types](./device-data/data-types.md)
+* [Diabetes Device Data Model](./device-data.md)
+* [Using A Continuous Upload Session](./quick-start/uploading-device-data/continuous.md)

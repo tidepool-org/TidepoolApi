@@ -1,27 +1,21 @@
 # Blood Ketones (`bloodKetone`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
+1. [Quick Summary](#quick-summary)
 2. [Type](#type)
 3. [Value](#value)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
 6. [Example (storage)](#example-storage)
-7. [Keep reading](#keep-reading)
+7. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Blood ketones",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../reference/data/models/bloodketone.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../reference/data/models/bloodketone.v1.yaml'
 ```
 
 ---
@@ -104,9 +98,9 @@ Tidepool has used the most popular blood ketone meter on the American market —
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Annotations](./device-data/annotations.md)
-* [Common fields](./device-data/common-fields.md)
-* [Out of range values](./device-data/oor-values.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Out Of Range Values](./device-data/oor-values.md)
 * [Units](./device-data/units.md)

@@ -1,15 +1,15 @@
 # Bolus Insulin (`bolus`)
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Duration](#duration-duration)
-3. [Expected duration](#expected-duration-expectedduration)
-4. [Expected extended](#expected-extended-expectedextended)
-5. [Expected normal](#expected-normal-expectednormal)
+3. [Expected Duration](#expected-duration-expectedduration)
+4. [Expected Extended](#expected-extended-expectedextended)
+5. [Expected Normal](#expected-normal-expectednormal)
 6. [Extended](#extended-extended)
 7. [Normal](#normal-normal)
-8. [Keep reading](#keep-reading)
+8. [Keep Reading](#keep-reading)
 
 ---
 
@@ -36,7 +36,7 @@ In the case of combination boluses, the duration is the elapsed time for the ext
 
 ---
 
-## Expected duration (`expectedDuration`)
+## Expected Duration (`expectedDuration`)
 
 When an extended bolus is interrupted or canceled by the user, the expected duration field is used to store the value of the *original* programmed dose of insulin represented in extended (whereas duration encodes the *actual* elapsed duration of dose delivery).
 
@@ -48,7 +48,7 @@ The value of expected duration must be greater than or equal to the duration, si
 
 ---
 
-## Expected extended (`expectedExtended`)
+## Expected Extended (`expectedExtended`)
 
 When an extended bolus is interrupted or canceled by the user, the expected extended field is used to store the value of the *original* programmed dose of insulin (whereas extended represents the value of the *actual* delivered dose).
 
@@ -58,7 +58,7 @@ When an extended bolus is interrupted or canceled by the user, the expected exte
 
 ---
 
-## Expected normal (`expectedNormal`)
+## Expected Normal (`expectedNormal`)
 
 When a bolus is interrupted or canceled by the user, the expected normal field is used to store the value of the *original* programmed dose of insulin (whereas normal represents the value of the *actual* delivered dose).
 
@@ -77,7 +77,7 @@ The extended field represents the numerical value of the insulin dose delivered 
 ---
 
 ## Normal (`normal`)
-		
+
 The normal field represents the numerical value of the dose of insulin delivered by an insulin pump. To avoid noise in the data, Platform does not allow the upload of boluses with a total delivered dose of 0 units.
 
 The *only* exception allowing a bolus with a normal of 0 units to upload through Platform, is if a user programs a bolus but cancels the delivery before any insulin has been successfully delivered. This should result in an expected normal field with a value greater than 0.
@@ -90,12 +90,12 @@ Insulin pumps generally include a maximum bolus setting that a user can customiz
 
 ---
 
-### Keep Reading
+## Keep Reading
 
 * [Annotations](./device-data/annotations.md)
-* [Combination bolus](./device-data/data-types/bolus/combination.md)
-* [Common fields](./device-data/common-fields.md)
-* [Extended bolus](./device-data/data-types/bolus/extended.md)
-* [Normal bolus](./device-data/data-types/bolus/normal.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
+* [Combination Bolus](./device-data/data-types/bolus/combination.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Extended Bolus](./device-data/data-types/bolus/extended.md)
+* [Normal Bolus](./device-data/data-types/bolus/normal.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
 * [Units](./device-data/units.md)

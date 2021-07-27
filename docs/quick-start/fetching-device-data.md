@@ -1,28 +1,30 @@
 # Fetching Device Data
 
-<!-- theme: success -->
-
-> ### Are you authenticated?
->
-> Make sure that you have a [Tidepool session token](../quick-start.md#authentication) before trying to fetch data.
-
-### Table of Contents
+## Table of Contents
 1. [Fetch device data](#fetch-device-data)
 2. [Query parameters](#query-parameters)
 3. [Fetch Dexcom CGM data](#fetch-dexcom-cgm-data)
-4. [Keep reading](#keep-reading)
+4. [Keep Reading](#keep-reading)
 
 ---
 
-## Fetch device data
+<!-- theme: success -->
+
+> ### Are You Authenticated?
+>
+> Make sure that you have a [Tidepool session token](../quick-start.md#authentication) before trying to fetch data.
+
+---
+
+## Fetch Device Data
 
 To fetch data for authorized accounts, issue the following command:
 
 ```shell
-curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/data/<subject-userid>"	
+curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/data/<subject-userid>"
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/data/<{$$.env.subject-userid}>",
@@ -37,7 +39,8 @@ Subject user ID is the Tidepool user ID of the user whose data you want to view.
 
 ---
 
-## Query parameters
+## Query Parameters
+
 You can narrow the fetch query by specifying a type, sub-type and/or date query parameter to Platform's URL. Comma-separated lists will return data matching any of the specified types (see [GitHub](http://github.com/tidepool-org/tide-whisperer/blob/master/tide-whisperer.go#L193) comments for more detail):
 
 <!-- title: Query Parameters -->
@@ -67,10 +70,10 @@ In addition, there are several “special” parameters that have an effect on t
 To fetch just the pump settings for Jill Jellyfish, use:
 
 ```shell
-curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/data/5d509deb6b?type=pumpSettings"	
+curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/data/5d509deb6b?type=pumpSettings"
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/data/{$$.env.subject-userid}",
@@ -91,7 +94,7 @@ curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-T
 
 ---
 
-## Fetch Dexcom CGM data
+## Fetch Dexcom CGM Data
 
 Tidepool gives users the ability to [link their Dexcom account](https://godoc.org/github.com/tidepool-org/shoreline/oauth2) to their Tidepool account to fetch Dexcom data. This creates the possibility of duplicate or overlapping data if the user is also using Tidepool Mobile or Tidepool Uploader to upload their Dexcom data.
 
@@ -111,9 +114,9 @@ However, if you use the standard GET data Tidepool API, but add the dexcom true 
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Command line data tools](http://github.com/tidepool-org/command-line-data-tools)
-* [Diabetes device data model](./device-data)
-* [Fetching user notes](./quick-start/notes.md)
-* [Uploading device data](./quick-start/uploading-device-data.md)
+* [Command Line Data Tools](http://github.com/tidepool-org/command-line-data-tools)
+* [Diabetes Device Data Model](./device-data)
+* [Fetching User Notes](./quick-start/notes.md)
+* [Uploading Device Data](./quick-start/uploading-device-data.md)

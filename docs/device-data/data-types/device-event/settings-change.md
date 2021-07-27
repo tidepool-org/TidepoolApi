@@ -1,16 +1,15 @@
 # Device Settings Change (`settingsChange`)
 
-```json json_schema
-{
-  "title": "Device settings change",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/devicesettingschange.v1.yaml"
-  }
-}
+---
+## Quick Summary
+
+```yaml json_schema
+$ref: '../../../../reference/data/models/devicesettingschange.v1.yaml'
 ```
 
 An event that occurs when a device has switched to a different setting.
+
+---
 
 ## Example
 

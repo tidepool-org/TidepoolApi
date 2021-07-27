@@ -1,34 +1,28 @@
 # Pump Settings (`pumpSettings`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
+1. [Quick Summary](#quick-summary)
 2. [Type](#type-type)
-3. [Active schedule](#active-schedule-activeschedule)
-4. [Basal schedules](#basal-schedules-basalschedules)
-	1. [Rate](#rate-rate)
-	2. [Start](#start-start)
-5. [Blood glucose target](#blood-glucose-target-bgtarget)
-6. [Carb ratio](#carb-ratio-carbratio)
-7. [Insulin sensitivity](#insulin-sensitivity-insulinsensitivity)
+3. [Active Schedule](#active-schedule-activeschedule)
+4. [Basal Schedules](#basal-schedules-basalschedules)
+    1. [Rate](#rate-rate)
+    2. [Start](#start-start)
+5. [Blood Glucose Target](#blood-glucose-target-bgtarget)
+6. [Carb Ratio](#carb-ratio-carbratio)
+7. [Insulin Sensitivity](#insulin-sensitivity-insulinsensitivity)
 8. [Units](#units-units)
 9. [Example (client)](#example-client)
 10. [Example (ingestion)](#example-ingestion)
 11. [Example (storage)](#example-storage)
-12. [Keep reading](#keep-reading)
+12. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Pump settings",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../reference/data/models/pumpsettings.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../reference/data/models/pumpsettings.v1.yaml'
 ```
 
 ---
@@ -47,13 +41,13 @@ Either the singular or plural version of the field must be present for a pump se
 
 ---
 
-## Active schedule (`activeSchedule`)
+## Active Schedule (`activeSchedule`)
 
 For Tandem pump settings, the active schedule will allow a client application to identify BG targets, carb ratios and insulin sensitivities, as well as which of the basal schedules is active.
 
 ---
 
-## Basal schedules (`basalSchedules`)
+## Basal Schedules (`basalSchedules`)
 
 Each basal schedule segment object within each array value contains the following properties:
 
@@ -76,7 +70,7 @@ All subsequent starts must be positive (they cannot be a negative number) and no
 
 ---
 
-## Blood glucose target (`bgTarget`)
+## Blood Glucose Target (`bgTarget`)
 
 Each BG target segment object in the array contains a subset of the following properties:
 
@@ -126,7 +120,7 @@ Each segment in a carb ratio schedule is an object with a start and an amount. T
 
 ---
 
-## Insulin sensitivity (`insulinSensitivity`)
+## Insulin Sensitivity (`insulinSensitivity`)
 
 Each insulin sensitivity segment object in the array contains the following properties:
 
@@ -475,12 +469,12 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Bolus calculator](./device-data/data-types/pump-settings/calculator.md)
-* [Common fields](./device-data/common-fields.md)
-* [Datetime guide](./datetime.md)
-* [Diabetes data types](./device-data/data-types.md)
-* [Self-monitored glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
+* [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Datetime Guide](./datetime.md)
+* [Diabetes Data Types](./device-data/data-types.md)
+* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
 * [Units](./device-data/units.md)
-* [Upload metadata](./device-data/data-types/pump-settings/upload.md)
+* [Upload Metadata](./device-data/data-types/pump-settings/upload.md)

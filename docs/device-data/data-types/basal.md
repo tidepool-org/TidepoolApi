@@ -1,13 +1,13 @@
 # Basal Insulin (`basal`)
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Duration](#duration-duration)
-3. [Expected duration](#expected-duration-expectedduration)
+3. [Expected Duration](#expected-duration-expectedduration)
 4. [Rate](#rate-rate)
-5. [Schedule name](#schedule-name-schedulename)
-6. [Keep reading](#keep-reading)
+5. [Schedule Name](#schedule-name-schedulename)
+6. [Keep Reading](#keep-reading)
 
 ---
 
@@ -41,7 +41,7 @@ Platform expects the duration value of basals to be >= 0 and <= 604800000  milli
 
 ---
 
-## Expected duration (`expectedDuration`)
+## Expected Duration (`expectedDuration`)
 
 Many insulin pumps provide information on the expected duration of basals in addition to the *actual* duration of basals. (These values may differ in the case of a basal being suspended or canceled.) Where this is true, Platform will provide the same information. If you do not know what the expected duration is, do not include this information as it is an optional field.
 
@@ -57,7 +57,7 @@ Many insulin pump manufacturers do not allow a basal rate higher than 10.0 or 15
 
 ---
 
-## Schedule name (`scheduleName`)
+## Schedule Name (`scheduleName`)
 
 Tidepool would love to surface the basal schedule names for every pump manufacturer. Unfortunately, most manufacturers do not provide this information or record pump setting changes. In some cases, we can find this information ourselves by looking up the active pump settings at the time of a particular basal event.
 
@@ -65,14 +65,14 @@ Schedule name is an optional field and should only be added to basal data when d
 
 ---
 
-### Keep reading:
+## Keep Reading
 
 * [Annotations](./device-data/annotations.md)
-* [Automated basals](./device-data/data-types/basal/automated.md)
-* [Common fields](./device-data/common-fields.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
-* [Scheduled basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed basals](./device-data/data-types/basal/suppressed.md)
-* [Suspend basals](./device-data/data-types/basal/suspend.md)
-* [Temporary basals](./device/data/data-types/basal/temp.md)
+* [Automated Basals](./device-data/data-types/basal/automated.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
+* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
+* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
+* [Suspend Basals](./device-data/data-types/basal/suspend.md)
+* [Temporary Basals](./device/data/data-types/basal/temp.md)
 * [Units](./device-data/units.md)
