@@ -4,10 +4,14 @@ node_js:
 install:
 - npm install -g markdownlint-cli
 - npm install -g @stoplight/spectral
-script:
-- echo "******* Pending TODOs *******"
-- egrep -R -i TODO *
-- echo "******* Markdown lint *******"
-- markdownlint './docs/**/*.md'
-- echo "******* OpenAPI 3 lint *******"
-- spectral lint ./reference/*.yaml --verbose
+jobs:
+  include:
+    - stage: List pending TODOs
+      script:
+        - egrep -R -i TODO *
+    - stage: Markdown documentation lint
+      script:
+        - markdownlint './docs/**/*.md'
+    - stage: OpenAPI 3 specifications lint
+      script:
+        - spectral lint ./reference/*.yaml --verbose
