@@ -3,8 +3,12 @@ type: object
 properties:
   type:
     type: string
+    minLength: 1
   number:
     type: string
     minLength: 1
 required:
   - number
+example:
+  type: 'main'
+  number: '+1 (555) 555-1212'

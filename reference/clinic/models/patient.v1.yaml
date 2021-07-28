@@ -21,8 +21,7 @@ properties:
     items:
       type: string
   permissions:
-    $ref: ./patientpermissions.v1.yaml
-    readOnly: true
+    $ref: './patientpermissions.v1.yaml'
 required:
   - id
   - fullName

@@ -1,0 +1,8 @@
+title: Quantile Percentage
+description: >-
+  The percentage of samples below the threshold value.
+type: number
+format: float
+minimum: 0
+maximum: 100
+example: 55.5

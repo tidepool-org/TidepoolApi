@@ -1,0 +1,7 @@
+description: >-
+  Clinic ID
+name: clinicId
+in: path
+required: true
+schema:
+  $ref: '../models/clinicid.v1.yaml'

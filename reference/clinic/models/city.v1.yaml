@@ -1,0 +1,6 @@
+title: City
+description: >-
+  City name.
+type: string
+minLength: 1
+example: 'Palo Alto'

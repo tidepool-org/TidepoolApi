@@ -558,7 +558,7 @@ paths:
       description: Retrieve a list of the outstanding invites to join a clinic
   '/v1/clinicians/{userId}/invites/{inviteId}':
     parameters:
-      - $ref: ./summary.v1.yaml#/components/parameters/userId
+      - $ref: '#/components/parameters/userId'
       - $ref: '#/components/parameters/inviteId'
     delete:
       summary: Dismiss Clinician Invite

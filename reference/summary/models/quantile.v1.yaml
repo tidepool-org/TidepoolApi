@@ -1,0 +1,20 @@
+title: Quantile
+description: >-
+  A quantile of samples.
+  Observe that the count is optional.
+  Some implementation may not maintain exact counts.
+type: object
+properties:
+  name:
+    $ref: './name.v1.yaml'
+  threshold:
+    $ref: './threshold.v1.yaml'
+  percentage:
+    $ref: './percentage.v1.yaml'
+  count:
+    type: integer
+    description: The number of values below the threshold value.
+required:
+  - name
+  - threshold
+  - percentage

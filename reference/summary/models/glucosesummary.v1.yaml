@@ -1,0 +1,12 @@
+title: Glucose Summary
+description: >-
+  Summary diabetes statistics.
+type: object
+properties:
+  period:
+    $ref: './period.v1.yaml'
+  stats:
+    $ref: './statistics.v1.yaml'
+required:
+  - period
+  - stats

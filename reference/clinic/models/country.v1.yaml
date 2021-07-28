@@ -1,0 +1,6 @@
+title: Country
+description: >-
+  Country name.
+type: string
+minLength: 1
+example: 'USA'

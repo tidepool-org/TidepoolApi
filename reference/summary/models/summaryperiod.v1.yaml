@@ -1,0 +1,17 @@
+title: Summary Period
+description: Summary period
+type: object
+properties:
+  start:
+    $ref: '../../common/models/datetime.v1.yaml'
+  updated:
+    $ref: '../../common/models/datetime.v1.yaml'
+  end:
+    $ref: '../../common/models/datetime.v1.yaml'
+  length:
+    $ref: './period.v1.yaml'
+required:
+  - start
+  - updated
+  - end
+  - length

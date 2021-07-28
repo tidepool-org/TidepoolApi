@@ -1,0 +1,5 @@
+title: Street Address
+description: >-
+  Street address.
+type: string
+minLength: 1
