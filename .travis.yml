@@ -8,6 +8,6 @@ script:
 - echo "******* Pending TODOs *******"
 - egrep -R -i TODO *
 - echo "******* Markdown lint *******"
-- markdownlint-cli './docs/**/*.md'
+- markdownlint './docs/**/*.md'
 - echo "******* OpenAPI 3 lint *******"
 - spectral lint ./reference/*.yaml --verbose
