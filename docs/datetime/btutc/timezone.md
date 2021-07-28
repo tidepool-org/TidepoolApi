@@ -15,7 +15,7 @@
 
 A [timezone offset](../glossary.md#timezone-offset) is a positive or negative integer representing an offset from [UTC](../glossary.md#utc) in minutes. For example, San Francisco is –480 minutes (eight hours) behind UTC, reflecting that you must *subtract* eight hours from UTC to get [the local time]( https://www.timeanddate.com/worldclock/difference.html?p1=3875).
 
-Date & time settings changes in a device’s history will factor into updates to the stored timezone offset, conversion offset, or clock drift offset. 
+Date & time settings changes in a device’s history will factor into updates to the stored timezone offset, conversion offset, or clock drift offset.
 
 The original version of BtUTC only stored a timezone offset because it was primarily concerned with solving the two most common-use cases for device time changes on diabetes devices:
 

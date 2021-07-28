@@ -38,6 +38,6 @@ allOf:
       - type
       - activityType
       - name
-      - reportedIntensity  
+      - reportedIntensity
 x-tags:
   - Data

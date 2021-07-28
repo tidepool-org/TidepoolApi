@@ -24,6 +24,7 @@ This page documents the fields shared by various bolus sub-types. The three sub-
 * [Combination](./device-data/data-types/bolus/combination.md)
 * [Extended](./device-data/data-types/bolus/extended.md)
 * [Normal](./device-data/data-types/bolus/normal.md)
+
 ---
 
 ## Duration (`duration`)

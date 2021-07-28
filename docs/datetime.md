@@ -1,6 +1,6 @@
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
-
 # Date/Time Guide
+
+![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
 
 ## Table of Contents
 

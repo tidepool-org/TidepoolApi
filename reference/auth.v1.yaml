@@ -465,7 +465,7 @@ paths:
         - Authentication
       security:
         - serverToken: []
- 
+
     post:
       operationId: CreateUserRestrictedToken
       summary: Create New Restricted Token
@@ -595,7 +595,7 @@ paths:
         - Authentication
       security:
         - serverToken: []
-    
+
     post:
       operationId: CreateUserDataProviderSession
       summary: Create New Data Provider Sessions

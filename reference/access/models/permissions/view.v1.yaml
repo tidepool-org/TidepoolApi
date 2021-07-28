@@ -7,4 +7,3 @@ properties:
     $ref: '../permission.v1.yaml'
 example:
   view: { }
-  

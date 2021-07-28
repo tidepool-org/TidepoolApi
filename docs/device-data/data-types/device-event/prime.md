@@ -129,4 +129,3 @@ Where available in the data, the volume of a priming event should be included to
 * [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
 * [Time Change](./device-data/data-types/device-event/time-change.md)
-

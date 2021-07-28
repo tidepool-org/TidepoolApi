@@ -1,6 +1,7 @@
 # Device Settings Change (`settingsChange`)
 
 ---
+
 ## Quick Summary
 
 ```yaml json_schema

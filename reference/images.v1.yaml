@@ -338,7 +338,7 @@ paths:
       summary: Get Image Content
       description: >-
         Get the content for specified image.
-        
+
         It may be alternate or original content.
         If the image does not have content then a `404` error will be returned.
       responses:

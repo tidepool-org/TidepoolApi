@@ -8,6 +8,7 @@
 4. [Keep Reading](#keep-reading)
 
 ---
+
 ## Overview
 
 [Bootstrapping to UTC](https://github.com/tidepool-org/uploader/blob/develop/lib/TimezoneOffsetUtil.js) (BtUTC) is Tidepool's method of creating an absolute scale of time to track time-related data ingested through Platform. This is an important tool as it can help us define why, for example, an insulin pump's display time is inaccurate. Is it due to Daylight Savings, travel across a different timezone, user error, clock drift, or something else?
@@ -26,11 +27,12 @@ This method produces a more accurate conversion to UTC than applying a timezone 
 
 In its current version, BtUTC now keeps track of three offsets from UTC:
 
-1. [Timezone Offset](./btutc/timezone.md) 
+1. [Timezone Offset](./btutc/timezone.md)
 2. [Conversion Offset](./btutc/conversion.md)
 3. [Clock Drift Offset](./btutc/clock-drift.md)
 
 ---
+
 ## Across-The-Board Timezone Default
 
 Some traditional fingerstick blood glucose meters that Tidepool supports, do not provide date & time settings changes. For these devices, when Timezone Offset Utility is initialized with an empty array for changes, it defaults to across-the-board timezone application to convert local device time into UTC time.

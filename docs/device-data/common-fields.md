@@ -63,6 +63,7 @@ Examples:
 No currently available diabetes device (that Tidepool knows of) stores data in UTC or UTC-anchored time via a timezone offset. This means all diabetes devices currently store the device's display time *at the time the event occurred*. Platform makes a best effort to [convert this device time to UTC](../datetime/btutc.md), but the raw device time is also stored for data-auditing purposes. It is stored in the [ISO 8601 format](../datetime/glossary.md#iso-8601), but without any timezone offset information.
 
 Example:
+
 * `2015-11-08T17:06:53`
 
 ---
@@ -74,6 +75,7 @@ An [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) version 4 UUID (universally 
 See [here](http://github.com/tidepool-org/uploader/blob/master/lib/core/api.js) for Tidepool Uploader implementation and `app/uuid.go` for Platform ingestion implementation.
 
 Example:
+
 * `6380d89e-1894-49de-bdaf-cb1e8c163dec`
 
 ---
@@ -83,6 +85,7 @@ Example:
 The IDs generated for each event by Platform are simply [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) version 4 UUIDs with the - characters deleted. This provides a backwards compatibility with the format of the earlier jellyfish-generated IDs, which were alphanumeric.
 
 Example:
+
 * `c4c31493417b4c6d968b72f08e6b3712`
 
 <!-- theme: info -->

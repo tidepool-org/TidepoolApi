@@ -1,6 +1,7 @@
 # Fetching Device Data
 
 ## Table of Contents
+
 1. [Fetch device data](#fetch-device-data)
 2. [Query parameters](#query-parameters)
 3. [Fetch Dexcom CGM data](#fetch-dexcom-cgm-data)

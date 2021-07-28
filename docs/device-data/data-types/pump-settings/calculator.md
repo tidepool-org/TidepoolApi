@@ -13,10 +13,10 @@
     1. [Recommended: carb](#recommended-carb-recommendedcarb)
     2. [Recommended: correction](#recommended-correction-recommendedcorrection)
     3. [Recommended: net](#recommended-net-recommendednet)
-10. [Example (client)](#example-client)
-11. [Example (ingestion)](#example-ingestion)
-12. [Example (storage)](#example-storage)
-13. [Keep Reading](#keep-reading)
+9. [Example (client)](#example-client)
+10. [Example (ingestion)](#example-ingestion)
+11. [Example (storage)](#example-storage)
+12. [Keep Reading](#keep-reading)
 
 ---
 
@@ -233,4 +233,3 @@ Net is the net number of units of insulin the bolus calculator recommended given
 * [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
 * [Units](./device-data/units.md)
 * [Upload Metadata](./device-data/data-types/pump-settings/upload.md)
-

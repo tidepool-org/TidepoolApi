@@ -219,6 +219,6 @@ components:
 
     Unauthorized:
       description: 'Unauthorized'
-  
+
     NotFound:
       description: 'Not Found'

@@ -1,7 +1,7 @@
 description: >-
   Invited by User ID
 name: invitedBy
-in: path        
+in: path
 required: true
 schema:
   $ref: '../../common/models/tidepooluserid.yaml'

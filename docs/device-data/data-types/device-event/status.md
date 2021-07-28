@@ -1,4 +1,4 @@
-# Status (`status`)
+# Device Delivery Status (`status`)
 
 ## Table of Contents
 

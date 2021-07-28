@@ -19,7 +19,7 @@ end
 class TableEntry
     include Comparable
     attr_reader :title
-    
+
     def initialize(title)
         @title = title
     end
@@ -27,7 +27,7 @@ class TableEntry
     def <=>(other)
         @title <=> other.title
     end
-    
+
     def to_toc
         raise 'not implemented'
     end
@@ -102,7 +102,7 @@ class Table
         {
             items: @items.to_toc(root_dir),
         }
-    end    
+    end
 end
 
 def get_title_from_md(file)

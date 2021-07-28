@@ -1,6 +1,6 @@
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+# Welcome
 
-# Welcome!
+![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
 
 Welcome to Tidepool's developer documentation
 

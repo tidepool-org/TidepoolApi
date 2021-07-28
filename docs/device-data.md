@@ -1,6 +1,6 @@
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
-
 # Diabetes Device Data Model
+
+![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
 
 This is the data model for diabetes device types and other related data that is read and stored in Platform. All events read and stored by Platform use the JSON data interchange format and have a type field identifying the subcategory of event.
 

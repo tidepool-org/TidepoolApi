@@ -1,6 +1,6 @@
-![Tidepool Logo](../../assets/images/Tidepool_Logo_Light_Large.png)
-
 # Uploading Device Data
+
+![Tidepool Logo](../../assets/images/Tidepool_Logo_Light_Large.png)
 
 ## Table of Contents
 
@@ -58,7 +58,7 @@ You are still able to use a continuous upload session to upload a large amount o
 
 ## Upload Deduplicators
 
-_TODO: Section on deduplicators goes here_
+TODO: Section on deduplicators goes here.
 
 ---
 

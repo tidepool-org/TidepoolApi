@@ -33,6 +33,7 @@ The 365-day calendar does not quite line up to [UTC](#utc) because it guarantees
 In Tidepool's code, there are two dates stored in a [PwD's](#pwd) profile: birthday and diagnosis date.
 
 Examples:
+
 * 2016–01–10 (10th January 2016)
 * 2019–08–27 (27th August 2019)
 

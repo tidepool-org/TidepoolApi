@@ -1,6 +1,6 @@
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
-
 # Getting Started
+
+![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
 
 ## Table of Contents
 
@@ -41,7 +41,7 @@ curl -i -X POST -u [your account email]:[your account password] https://int-api.
 
 This will return an HTTP response that looks like this:
 
-```
+```http
 Access-Control-Allow-Headers: Authorization, Content-Type, X-Tidepool-Session-Token
 Access-Control-Allow-Methods: GET, POST, PUT
 X-Tidepool-Session-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkdXIiOjIuNTkyZSswNiwiZXhwIjoxNDcxMTM0MzIzLCJzdnIiOiJubyIsInVzciI6IjU0YzkwZmIzMjUifQ.bbkzG_rwp9IVMI3HVYm_ct8mMW_YTnTALUW12345678
@@ -61,7 +61,7 @@ From the response headers, save the **Tidepool session token**. From the respons
 
 ---
 
-# Tracing
+## Tracing
 
 All Tidepool API requests may include two HTTP headers to trace requests and 'sessions' of requests throughout the
 Tidepool ecosystem:
@@ -71,20 +71,20 @@ Tidepool ecosystem:
 
 <!-- theme: info -->
 
-> ### Brevity
+> ### Brevity (headers)
 >
 > For brevity, these headers are *not* documented for each specific endpoint.
 
 For example, a request with both headers specified:
 
-```
+```http
 GET  /v1/users/a43d25a01f/images HTTP/1.1
 Host: int-api.tidepool.org
 X-Tidepool-Trace-Request: c836ab48d92c4789abb38d759a021b3e
 X-Tidepool-Trace-Session: a4928790fbc02cabd749dbc920eb9c73
 ```
 
-# Errors
+## Errors
 
 The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) to indicate success or failure of any API call. In the case of failure, the body of the response will provide developer guidance in UTF-8 JSON format.
 
@@ -94,7 +94,7 @@ The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/
 >
 > Some Tidepool legacy APIs return the developer guidance in different UTF-8 JSON format.
 
-```
+```json
 {
   'code': 'length-out-of-range',
   'title': 'length is out of range',
@@ -109,10 +109,9 @@ The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/
 The `code`, `title`, and `detail` fields are required. The `source` and `metadata` fields are optional and are dependent
 upon the type and location of the error. The most common failure HTTP status codes are `400`, `401`, `403`, and `404`, but `413`, `429`, and `500` may be used under certain circumstances.
 
-
 <!-- theme: info -->
 
-> ### Brevity
+> ### Brevity (errors)
 >
 > For brevity, these errors are *not* documented for each specific endpoint.
 

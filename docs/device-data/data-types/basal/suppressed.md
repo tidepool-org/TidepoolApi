@@ -40,7 +40,7 @@ $ref: '../../../../reference/data/models/basal/suppressed/temporary.v1.yaml'
 
 ## Overview
 
-A suppressed basal is a way to essentially replace one basal with another basal. For example, if a PwD's blood glucose is falling, they may program a temp basal to try and prevent hypoglycemia. By programming a temp basal, they are suppressing a scheduled basal, which was previously in effect. A suppressed can apply to all basal types except a suspend — [see here](#suppressed-suspend-basals). 
+A suppressed basal is a way to essentially replace one basal with another basal. For example, if a PwD's blood glucose is falling, they may program a temp basal to try and prevent hypoglycemia. By programming a temp basal, they are suppressing a scheduled basal, which was previously in effect. A suppressed can apply to all basal types except a suspend — [see here](#suppressed-suspend-basals).
 
 A suppressed may contain the following properties:
 
