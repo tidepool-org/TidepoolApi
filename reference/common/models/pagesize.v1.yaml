@@ -4,7 +4,7 @@ description: >-
 type: integer
 format: int32
 readOnly: true
-mininum: 1
+minimum: 1
 maximum: 1000
 default: 100
 example: 42

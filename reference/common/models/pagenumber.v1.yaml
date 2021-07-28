@@ -4,6 +4,6 @@ description: >-
 type: integer
 format: int32
 readOnly: true
-mininum: 0
+minimum: 0
 default: 0
 example: 0
