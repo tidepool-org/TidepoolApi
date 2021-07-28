@@ -5,10 +5,10 @@ type: object
 properties:
   accessToken:
     type: string
-    format: bytes
+    format: byte
   refreshToken:
     type: string
-    format: bytes
+    format: byte
   tokenType:
     type: string
   expirationTime:

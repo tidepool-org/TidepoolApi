@@ -2,6 +2,7 @@ title: Conversion Offset
 description: >-
   Conversion offset, expressed as milliseconds.
 type: integer
+format: int64
 example: 0
 x-tags:
   - Data

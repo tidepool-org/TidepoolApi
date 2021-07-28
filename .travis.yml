@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+- '16.5'
+install:
+- npm install -g @stoplight/spectral
+script:
+- spectral lint ./reference/*.yaml --verbose

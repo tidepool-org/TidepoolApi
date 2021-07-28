@@ -7,9 +7,11 @@ allOf:
     properties:
       duration:
         type: integer
+        format: int64
         minimum: 0
       expectedDuration:
         type: integer
+        format: int64
         minimum: 0
       reason:
         type: object

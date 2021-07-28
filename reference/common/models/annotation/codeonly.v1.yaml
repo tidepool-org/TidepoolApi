@@ -2,6 +2,6 @@ title: Annotation Code Only
 type: object
 properties:
   code:
-    $ref: './annotationcode.v1.yaml'
+    $ref: './code.v1.yaml'
 required:
   - code

@@ -5,6 +5,7 @@ properties:
     type: string
     enum:
       - 'bg/out-of-range'
+    example: 'bg/out-of-range'
   value:
     type: string
     enum:

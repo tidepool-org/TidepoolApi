@@ -24,7 +24,7 @@ properties:
   timeProcessing:
     $ref: './timeprocessing.v1.yaml'
   timezone:
-    type: './timezonename.v1.yaml'
+    $ref: './timezonename.v1.yaml'
   timezoneOffset:
     $ref: './timezoneoffset.v1.yaml'
 required:

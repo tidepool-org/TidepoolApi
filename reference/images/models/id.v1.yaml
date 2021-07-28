@@ -2,5 +2,5 @@ title: Image ID
 description: >-
   Image ID.
 type: string
-format: imageId
+pattern: '^[0-9a-f]{32}$'
 example: 'ac0fd9cfbc4a3d25a01fb8c390d7523b'

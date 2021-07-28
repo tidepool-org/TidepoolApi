@@ -5,6 +5,7 @@ properties:
     type: string
     enum:
       - feet
+    example: 'feet'
   value:
     type: number
     format: float

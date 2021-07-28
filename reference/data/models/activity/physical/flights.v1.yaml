@@ -6,6 +6,6 @@ properties:
     format: int32
     minimum: 0
     maximum: 10000
+    example: 42
 required:
   - count
-example: 5

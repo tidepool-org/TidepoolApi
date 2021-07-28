@@ -2,5 +2,6 @@ title: Insulin Delivery Duration
 description: >-
   An integer value representing a duration of time in milliseconds.
 type: integer
+format: int64
 minimum: 0
 maximum: 604800000

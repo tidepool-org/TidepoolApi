@@ -57,14 +57,14 @@ properties:
       - carelink
   tags:
     $ref: '../../common/models/tagarray.v1.yaml'
-  type:
-    $ref: './datatype.v1.yaml'
   time:
     $ref: '../../common/models/datetime.v1.yaml'
   timezone:
     $ref: './timezonename.v1.yaml'
   timezoneOffset:
     $ref: './timezoneoffset.v1.yaml'
+  type:
+    $ref: './datatype.v1.yaml'
   uploadId:
     $ref: './uploadid.v1.yaml'
 required:

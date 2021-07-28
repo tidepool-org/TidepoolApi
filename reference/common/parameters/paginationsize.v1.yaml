@@ -4,7 +4,4 @@ name: size
 in: query
 required: false
 schema:
-  type: integer
-  mininum: 1
-  maximum: 1000
-  default: 100
+  $ref: '../models/pagesize.v1.yaml'

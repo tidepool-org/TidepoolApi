@@ -1,4 +1,5 @@
 title: Floor
 type: integer
+format: int32
 minimum: -1000
 maximum: 1000

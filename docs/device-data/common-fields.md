@@ -60,7 +60,7 @@ Examples:
 
 ## Device Time (`deviceTime`)
 
-No curently available diabetes device (that Tidepool knows of) stores data in UTC or UTC-anchored time via a timezone offset. This means all diabetes devices currently store the device's display time *at the time the event occurred*. Platform makes a best effort to [convert this device time to UTC](../datetime/btutc.md), but the raw device time is also stored for data-auditing purposes. It is stored in the [ISO 8601 format](../datetime/glossary.md#iso-8601), but without any timezone offset information.
+No currently available diabetes device (that Tidepool knows of) stores data in UTC or UTC-anchored time via a timezone offset. This means all diabetes devices currently store the device's display time *at the time the event occurred*. Platform makes a best effort to [convert this device time to UTC](../datetime/btutc.md), but the raw device time is also stored for data-auditing purposes. It is stored in the [ISO 8601 format](../datetime/glossary.md#iso-8601), but without any timezone offset information.
 
 Example:
 * `2015-11-08T17:06:53`

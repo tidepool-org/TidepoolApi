@@ -2,6 +2,7 @@ title: Time Zone offset
 description: >-
   Time zone offset, expressed as positive or negative number of minutes from UTC.
 type: integer
+format: int32
 # These limits are too broad
 minimum: -10080
 maximum: 10080

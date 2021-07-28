@@ -5,6 +5,7 @@ properties:
     type: string
     enum:
       - kilometers
+    example: 'kilometers'
   value:
     type: number
     format: float

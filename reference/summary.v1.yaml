@@ -192,7 +192,7 @@ components:
       x-examples:
         example:
           count: 838
-          name: veryHigh
+          name: 'veryHigh'
           percentage: 2.554878
           threshold: 250
       properties:

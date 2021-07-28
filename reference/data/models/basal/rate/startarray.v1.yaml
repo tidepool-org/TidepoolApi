@@ -13,6 +13,7 @@ items:
       maximum: 20
     start:
       type: integer
+      format: int64
       description: Integer value representing milliseconds since midnight.
       minimum: 0
       maximum: 86400000

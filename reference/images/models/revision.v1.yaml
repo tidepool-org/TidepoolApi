@@ -2,4 +2,5 @@ title: Image Revision
 description: >-
   The revision of an image.
 type: integer
+format: int32
 example: 0

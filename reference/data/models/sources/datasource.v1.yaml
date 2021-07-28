@@ -25,6 +25,7 @@ properties:
     $ref: '../../../auth/models/providers/type.v1.yaml'
   revision:
     type: integer
+    format: int32
   state:
     $ref: './state.v1.yaml'
   userId:

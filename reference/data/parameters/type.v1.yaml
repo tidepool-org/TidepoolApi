@@ -13,4 +13,4 @@ schema:
   minItems: 1
   items:
     $ref: '../models/datatype.v1.yaml'
-example: 'type=smbg'
+example: [ 'cbg', 'smbg' ]

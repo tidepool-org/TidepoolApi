@@ -1,0 +1,7 @@
+title: Blob Revision
+description: >-
+  Revision number of the blob
+type: integer
+format: int32
+minimum: 0
+example: 42

@@ -19,6 +19,7 @@ allOf:
         #  - $ref: './normal.v1.yaml'
       carbInput:
         type: integer
+        format: int32
         description: "An integer encoding the PWD's carbohydrate input into the bolus calculator."
         minimum: 0
         maximum: 1000

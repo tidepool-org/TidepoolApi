@@ -6,11 +6,13 @@ allOf:
     properties:
       duration:
         type: integer
+        format: int64
         minimum: 0
         maximum: 86400000
         description: Integer value representing milliseconds
       expectedDuration:
         type: integer
+        format: int64
         minimum: 0
         maximum: 86400000
         description: Integer value representing milliseconds

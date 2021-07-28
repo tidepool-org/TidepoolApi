@@ -5,6 +5,7 @@ properties:
     type: string
     enum:
       - hours
+    example: 'hours'
   value:
     type: number
     format: float

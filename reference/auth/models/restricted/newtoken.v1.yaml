@@ -1,4 +1,6 @@
 title: New Restricted Token
+description: >-
+  The maximum expiration time is current time plus one hour.
 type: object
 properties:
   paths:

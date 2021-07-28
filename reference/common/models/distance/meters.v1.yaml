@@ -5,6 +5,7 @@ properties:
     type: string
     enum:
       - meters
+    example: 'meters'
   value:
     type: number
     format: float

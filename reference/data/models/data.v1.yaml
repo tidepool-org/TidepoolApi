@@ -33,17 +33,5 @@ oneOf:
   - $ref: './settings.v1.yaml'
   - $ref: './upload.v1.yaml'
   - $ref: './water/consumption.v1.yaml'
-example:
-  time: '2017-02-05T13:26:51.000Z'
-  timezoneOffset: 660
-  clockDriftOffset: 0
-  conversionOffset: 0
-  deviceTime: '2017-02-06T00:26:51'
-  deviceId: 'MMT-1711:12345678'
-  type: 'cbg'
-  value: 119
-  units: 'mg/dL'
-  payload:
-    interstitialSignal: 24.98
 x-tags:
   - Data

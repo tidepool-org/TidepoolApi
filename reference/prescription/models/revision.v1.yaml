@@ -3,6 +3,7 @@ type: object
 properties:
   revisionId:
     type: integer
+    format: int32
   attributes:
     $ref: ./attributes.v1.yaml
 x-tags:

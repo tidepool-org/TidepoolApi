@@ -1,5 +1,6 @@
-type: string
 title: Device Push Token
-description: "For iOS devices this is a device token that's already registered with Tidepool's Backend"
+description: >-
+  For iOS devices this is a device token that's already registered with Tidepool's Backend.
+type: string
 minLength: 64
-pattern: "^(\\w|-){64,}"
+pattern: '^(\\w|-){64,}$'

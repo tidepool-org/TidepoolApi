@@ -4,6 +4,4 @@ name: page
 in: query
 required: false
 schema:
-  type: integer
-  mininum: 0
-  default: 0
+  $ref: '../models/pagenumber.v1.yaml'

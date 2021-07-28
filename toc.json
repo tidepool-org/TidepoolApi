@@ -444,11 +444,6 @@
           "items": [
             {
               "type": "item",
-              "title": "Authentication Server Status",
-              "uri": "reference/auth/models/serverstatus.v1.yaml"
-            },
-            {
-              "type": "item",
               "title": "Date Filter",
               "uri": "reference/auth/models/date.v1.yaml"
             },
