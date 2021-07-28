@@ -76,6 +76,9 @@ components:
 
     ImageContent:
       description: Successfully returned content for the specified image.
+      headers:
+        Digest:
+          $ref: './common/headers/digestmd5.v1.yaml'
       content:
         'image/jpeg':
           schema:
@@ -347,10 +350,10 @@ paths:
       tags:
         - Images
 
-  '/v1/images/{imageId}/content/{suffix}':
+  '/v1/images/{imageId}/content/{suffixOrContentIntent}':
     parameters:
       - $ref: './images/parameters/id.v1.yaml'
-      - $ref: './images/parameters/suffix.v1.yaml'
+      - $ref: './images/parameters/suffixorcontentintent.v1.yaml'
     get:
       operationId: GetImageContentWithSuffix
       summary: Get Image Content (Suffix)
@@ -379,10 +382,6 @@ paths:
       tags:
         - Images
 
-  '/v1/images/{imageId}/content/{contentIntent}':
-    parameters:
-      - $ref: './images/parameters/id.v1.yaml'
-      - $ref: './images/parameters/contentintent.v1.yaml'
     put:
       operationId: PutImageContent
       summary: Put Image Content
