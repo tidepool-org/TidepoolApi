@@ -1,6 +1,6 @@
 ![Tidepool Logo](assets/images/Tidepool_Logo_Light_Large.png)
 
-[![Build Status](https://travis-ci.com/tidepool-org/TidepoolApi.svg?branch=main)](https://travis-ci.com/tidepool-org/TidepoolApi)
+[![Build Status](https://travis-ci.com/tidepool-org/TidepoolApi.svg?branch=master)](https://travis-ci.com/tidepool-org/TidepoolApi)
 
 # TidepoolApi
 
