@@ -1,17 +1,18 @@
 language: node_js
 node_js:
 - '16.5'
-install:
-- npm install -g markdownlint-cli
-- npm install -g @stoplight/spectral
 jobs:
   include:
     - stage: List pending TODOs
       script:
         - egrep -R -i TODO *
-    - stage: Markdown documentation lint
+    - stage: Lint the Markdown documentation
+      install:
+        - npm install -g markdownlint-cli
       script:
         - markdownlint './docs/**/*.md'
-    - stage: OpenAPI 3 specifications lint
+    - stage: Lint the OpenAPI 3 specifications
+      install:
+        - npm install -g @stoplight/spectral
       script:
         - spectral lint ./reference/*.yaml --verbose
