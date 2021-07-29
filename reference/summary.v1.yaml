@@ -41,7 +41,11 @@ security:
 tags:
   - name: Summary
     description: |-
-      Summary data service
+      Summary Data
+
+      This service was a prototype for separate service that calculates summary statistics for user accounts.
+      It is replaced by additional APIs exposed by the `data` service, and executed by the `task` service.
+      This documentation is for archival only.
 
 paths:
   '/v1/users/{userId}/summary':
