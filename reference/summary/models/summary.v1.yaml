@@ -1,0 +1,19 @@
+title: Summary response
+description: >-
+  A summary of the most recent diabetes data for a set of users.
+type: object
+properties:
+  activity:
+    type: array
+    items:
+      $ref: './uploadactivity.v1.yaml'
+  glucose:
+    type: array
+    items:
+      $ref: './glucosesummary.v1.yaml'
+  userid:
+    $ref: '../../common/models/tidepooluserid.yaml'
+required:
+  - activity
+  - glucose
+  - userid

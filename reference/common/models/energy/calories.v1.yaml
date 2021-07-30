@@ -1,0 +1,15 @@
+title: Energy (calories)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - calories
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 10000000
+required:
+  - units
+  - value

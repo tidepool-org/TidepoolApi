@@ -1,0 +1,11 @@
+title: Image Suffix
+description: >-
+  The suffix may be any additional path segments between the required portions.
+  The extension of the suffix will be used as the requested rendition format.
+  The only restriction is that if the last path segment contains an extension (ie. contains a dot) then the extension must match the format of the image content.
+  If it does not then a `404` error is returned.
+  The suffix may be specified to enable sane browser downloads.
+type: string
+minLength: 1
+pattern: '^[^.]{1,}(\..+)+$'
+example: 'a/big/house.jpg'

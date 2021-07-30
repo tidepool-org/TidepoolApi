@@ -1,0 +1,12 @@
+title: Device Event Sub Type
+type: string
+enum:
+  - alarm
+  - calibration
+  - prime
+  - reservoirChange
+  - sensorEvent
+  - settingsChange
+  - status
+  - timeChange
+  - transmitterEvent

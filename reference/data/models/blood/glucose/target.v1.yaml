@@ -1,0 +1,6 @@
+title: Blood Glucose Target
+oneOf:
+  - $ref: './targetmgdl.v1.yaml'
+  - $ref: './targetmmol.v1.yaml'
+x-tags:
+  - Data

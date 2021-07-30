@@ -1,0 +1,15 @@
+title: Energy (kilojoules)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - kilojoules
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 41858
+required:
+  - units
+  - value

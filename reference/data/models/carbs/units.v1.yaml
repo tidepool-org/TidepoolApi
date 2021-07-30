@@ -1,0 +1,6 @@
+title: Carbohydrate Units
+type: string
+enum:
+  - grams
+  - exchanges
+example: 'grams'

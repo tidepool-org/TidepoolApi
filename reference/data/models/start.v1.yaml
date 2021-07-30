@@ -1,8 +1,6 @@
-type: object
 title: Start Time
-x-tags:
-  - data
 description: Start time as millisecond offset from midnight
+type: object
 properties:
   start:
     type: number
@@ -10,3 +8,5 @@ properties:
     maximum: 86400000
 required:
   - start
+x-tags:
+  - Data

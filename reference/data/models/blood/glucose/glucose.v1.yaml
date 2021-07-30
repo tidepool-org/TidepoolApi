@@ -1,0 +1,9 @@
+title: Blood Glucose
+description: >-
+  Blood glucose value, in `mg/dL` or `mmol/L`
+# This is not a top-level diabetes data object. Hence no inclusion of '../base.v1.yaml'
+oneOf:
+  - $ref: './glucosemgdl.v1.yaml'
+  - $ref: './glucosemmol.v1.yaml'
+x-tags:
+  - Data

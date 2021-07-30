@@ -1,0 +1,8 @@
+title: Data Source ID
+type: string
+minLength: 32
+maxLength: 32
+pattern: '^[0-9a-f]{32}$'
+example: 'c0ce05326529c6b35b0f4a568a344026'
+x-tags:
+  - Data

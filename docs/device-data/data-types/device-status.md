@@ -1,13 +1,7 @@
 # Device Status (`deviceStatus`)
 
-```json json_schema
-{
-  "title": "Device status",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../reference/data/models/devicestatus.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../reference/data/models/devicestatus.v1.yaml'
 ```
 
 This type is used to convey the status of a device.

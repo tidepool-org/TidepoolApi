@@ -1,9 +1,9 @@
 title: Image Status
-type: string
 description: >-
   The status of an image.
   The status is `available` if and only if the image has content.
   Otherwise, the status is `created`.
+type: string
 enum:
   - available
   - created

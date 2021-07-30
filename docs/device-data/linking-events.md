@@ -1,11 +1,11 @@
 # Linking Events
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
-2. [Potentially linked events](#potentially-linked-events)
-3. [How to link events](#how-to-link-events)
-4. [Keep reading](#keep-reading)
+2. [Potentially Linked Events](#potentially-linked-events)
+3. [How To Link Events](#how-to-link-events)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -15,7 +15,7 @@ Not all events from diabetes management devices are independent. Some events are
 
 ---
 
-## Potentially linked events
+## Potentially Linked Events
 
 * Bolus calculator (`wizard`) -> Bolus (`bolus`)
 * Alarm (`alarm`) -> Status (`status`)
@@ -23,7 +23,7 @@ Not all events from diabetes management devices are independent. Some events are
 
 ---
 
-## How to link events
+## How To Link Events
 
 Platform creates GUIDs for the ID of each event. This means that linked events such as pairs of wizard and bolus events *cannot* be uploaded separately. Instead, only the "outer" event is uploaded with the "inner" linked event embedded inside it. Upon ingestion of this compound event, Tidepool's Platform:
 
@@ -85,11 +85,11 @@ The resulting data looks like:
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Alarm](./data-types/device-event/alarm.md)
 * [Bolus](./data-types/bolus.md)
-* [Bolus calculator](./data-types/pump-settings-calculator.md)
-* [Common fields](./common-fields.md)
-* [Reservoir change](./data-types/device-event/reservoir-change.md)
+* [Bolus Calculator](./data-types/pump-settings-calculator.md)
+* [Common Fields](./common-fields.md)
+* [Reservoir Change](./data-types/device-event/reservoir-change.md)
 * [Status](./data-types/device-event/status.md)

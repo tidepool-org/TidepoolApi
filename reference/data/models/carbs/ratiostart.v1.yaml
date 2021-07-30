@@ -1,0 +1,6 @@
+title: Carbohydrate Ratio Start
+allOf:
+  - $ref: '../start.v1.yaml'
+  - $ref: './ratio.v1.yaml'
+x-tags:
+  - Data

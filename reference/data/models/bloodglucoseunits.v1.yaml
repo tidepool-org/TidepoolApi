@@ -1,9 +1,0 @@
-type: string
-title: Blood Glucose Units
-enum:
-  - mmol/L
-  - mmol/l
-  - mg/dL
-  - mg/dl
-x-tags:
-  - data

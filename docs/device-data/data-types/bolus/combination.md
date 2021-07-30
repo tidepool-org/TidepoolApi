@@ -1,31 +1,25 @@
 # Combination Bolus (`combination`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
-6. [Keep reading](#keep-reading)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Combination bolus",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/boluscombination.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/bolus/combination.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 This is the sub-type of bolus event that represents a bolus insulin dose programmed to deliver part of the dose immediatley (a normal bolus) and the remainder delivered evenly over a duration of time (an extended bolus). Essentially, this sub-type is a combination of both normal and extended boluses.
 
@@ -111,11 +105,11 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Bolus](./device-data/data-types/bolus.md)
-* [Common fields](./device-data/common-fields.md)
-* [Extended bolus](./device-data/data-types/bolus/extended.md)
-* [Normal bolus](./device-data/data-types/bolus/normal.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Extended Bolus](./device-data/data-types/bolus/extended.md)
+* [Normal Bolus](./device-data/data-types/bolus/normal.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
 * [Units](./device-data/units.md)

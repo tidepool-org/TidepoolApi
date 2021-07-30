@@ -1,0 +1,9 @@
+title: Ingredient Array
+description: An array of ingredients
+type: array
+items:
+  $ref: './ingredient.v1.yaml'
+maxItems: 100
+minItems: 1
+x-tags:
+  - Data

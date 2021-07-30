@@ -1,0 +1,8 @@
+title: Blood Unit (mg/dL)
+type: string
+enum:
+  - mg/dL
+  - mg/dl
+example: 'mg/dL'
+x-tags:
+  - Data

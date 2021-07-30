@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- '16.5'
+jobs:
+  include:
+    - stage: List pending TODOs
+      script:
+        - egrep -R -i TODO *
+    - stage: Lint the Markdown documentation
+      install:
+        - npm install -g markdownlint-cli
+      script:
+        - tools/lint_markdown.sh
+    - stage: Lint the OpenAPI 3 specifications
+      install:
+        - npm install -g @stoplight/spectral
+      script:
+        - tools/lint_openapi.sh

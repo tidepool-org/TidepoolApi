@@ -1,0 +1,9 @@
+title: Restricted Token Path Array
+description: >-
+  An array of restricted token paths.
+type: array
+uniqueItems: true
+minItems: 1
+maxItems: 10
+items:
+  $ref: './path.v1.yaml'

@@ -1,6 +1,6 @@
-title: Blob Media Type
+description: >-
+  Blob Media Type
 name: mediaType
-description: Media type
 in: query
 required: false
 schema:

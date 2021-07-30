@@ -1,22 +1,22 @@
+# Getting Started
+
 ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
 
-# Getting Started
+## Table of Contents
+
+1. [Authentication](#authentication)
+2. [Tracing](#tracing)
+3. [Errors](#errors)
+4. [Access User Accounts](#access-user-accounts)
+5. [Keep Reading](#keep-reading)
+
+---
 
 <!-- theme: success -->
 
 > ### Prerequisites
 >
 > Before you begin, you will need to create a [Tidepool user account](http://int-app.tidepool.org/signup). It's free and should take you less than two minutes. You can also download [curl](http://curl.haxx.se/download.html) or [Postman](http://app.getpostman.com/run-collection/9b665f2fb9a8a483bf30?via=clientlibraries) onto your computer (this isn't strictly required but is strongly encouraged).
-
-### Table of Contents
-
-1. [Authentication](#authentication)
-2. [Tracing](#tracing)
-3. [Errors](#errors)
-4. [Access user accounts](#access-user-accounts)
-5. [Keep reading](#keep-reading)
-
----
 
 ## Authentication
 
@@ -26,7 +26,7 @@ To get access to your diabetes data, you will  need to get an **authorization se
 curl -i -X POST -u [your account email]:[your account password] https://int-api.tidepool.org/auth/login
 ```
 
-```yaml http
+```json http
 {
   "method": "post",
   "url": "https://int-api.tidepool.org/auth/login",
@@ -41,7 +41,7 @@ curl -i -X POST -u [your account email]:[your account password] https://int-api.
 
 This will return an HTTP response that looks like this:
 
-```
+```http
 Access-Control-Allow-Headers: Authorization, Content-Type, X-Tidepool-Session-Token
 Access-Control-Allow-Methods: GET, POST, PUT
 X-Tidepool-Session-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkdXIiOjIuNTkyZSswNiwiZXhwIjoxNDcxMTM0MzIzLCJzdnIiOiJubyIsInVzciI6IjU0YzkwZmIzMjUifQ.bbkzG_rwp9IVMI3HVYm_ct8mMW_YTnTALUW12345678
@@ -61,7 +61,7 @@ From the response headers, save the **Tidepool session token**. From the respons
 
 ---
 
-# Tracing
+## Tracing
 
 All Tidepool API requests may include two HTTP headers to trace requests and 'sessions' of requests throughout the
 Tidepool ecosystem:
@@ -71,20 +71,20 @@ Tidepool ecosystem:
 
 <!-- theme: info -->
 
-> ### Brevity
+> ### Brevity (headers)
 >
 > For brevity, these headers are *not* documented for each specific endpoint.
 
 For example, a request with both headers specified:
 
-```
+```http
 GET  /v1/users/a43d25a01f/images HTTP/1.1
 Host: int-api.tidepool.org
 X-Tidepool-Trace-Request: c836ab48d92c4789abb38d759a021b3e
 X-Tidepool-Trace-Session: a4928790fbc02cabd749dbc920eb9c73
 ```
 
-# Errors
+## Errors
 
 The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) to indicate success or failure of any API call. In the case of failure, the body of the response will provide developer guidance in UTF-8 JSON format.
 
@@ -94,7 +94,7 @@ The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/
 >
 > Some Tidepool legacy APIs return the developer guidance in different UTF-8 JSON format.
 
-```
+```json
 {
   'code': 'length-out-of-range',
   'title': 'length is out of range',
@@ -109,16 +109,15 @@ The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/
 The `code`, `title`, and `detail` fields are required. The `source` and `metadata` fields are optional and are dependent
 upon the type and location of the error. The most common failure HTTP status codes are `400`, `401`, `403`, and `404`, but `413`, `429`, and `500` may be used under certain circumstances.
 
-
 <!-- theme: info -->
 
-> ### Brevity
+> ### Brevity (errors)
 >
 > For brevity, these errors are *not* documented for each specific endpoint.
 
 ---
 
-## Access user accounts
+## Access User Accounts
 
 The following command returns user information associated with the given user ID. This step is only necessary if you have not previously stored the user IDs you wish to access:
 
@@ -126,7 +125,7 @@ The following command returns user information associated with the given user ID
 curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" 'https://int-api.tidepool.org/metadata/users/<your-userid>/users'
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/metadata/users/{$$.env.userid}/users",
@@ -144,7 +143,7 @@ From this list, find the user ID of the patient (or study subject) whose data yo
 curl -s -X GET -H "X-Tidepool-Session-Token: ey...uk" -H "Content-Type: application/json" "https://int-api.tidepool.org/metadata/users/4533925fea/users"
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/metadata/users/{$$.env.userid}/users",
@@ -158,7 +157,7 @@ curl -s -X GET -H "X-Tidepool-Session-Token: ey...uk" -H "Content-Type: applicat
 
 This request will return something like this:
 
-```json
+```json title="Response" lineNumbers
 [
   {
     "emailVerified": true,
@@ -214,7 +213,7 @@ As you can see, this example master account has view access for two kinds of use
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Fetching device data](./quick-start/fetching-device-data.md)
 * [Fetching user notes](./quick-start/notes.md)

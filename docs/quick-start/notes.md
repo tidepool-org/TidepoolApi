@@ -3,10 +3,10 @@
 You can fetch user notes by issuing the following command:
 
 ```shell
-curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/message/notes/<subject-userid>"	
+curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/message/notes/<subject-userid>"
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/message/notes/<{$$.env.subject-userid}>",
@@ -21,7 +21,7 @@ You can also specify start time and end time in ISO date/time format to search f
 
 `?starttime=2015-10-10T15:00:00.000Z&endtime=2015-10-11T15:00:00.000Z`
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/message/notes/{$$.env.subject-userid}",

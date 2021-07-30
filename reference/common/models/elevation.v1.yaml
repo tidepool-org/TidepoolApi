@@ -1,21 +1,10 @@
 title: Elevation
+description: >-
+  Elevation, expressed as `meters` or `feet`.
 type: object
-properties:
-  units:
-    type: string
-    enum:
-    - feet
-    - meters
-  value:
-    oneOf:
-    - description: If `units` is in `meters`
-      format: double
-      minimum: 0
-      maximum: 10000
-    - description: If `units` is in `feet`
-      format: double
-      minimum: 0
-      maximum: 32808
-    type: number
+oneOf:
+  - $ref: './elevation/meters.v1.yaml'
+  - $ref: './elevation/feet.v1.yaml'
 required:
-- units
+  - units
+  - value

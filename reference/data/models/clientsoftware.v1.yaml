@@ -1,0 +1,18 @@
+title: Client Software
+description: >-
+  The client software that provided diabetes data.
+type: object
+properties:
+  name:
+    $ref: '../../common/models/reversedomainname.v1.yaml'
+  version:
+    $ref: '../../common/models/semanticversion.v1.yaml'
+  platform:
+    $ref: './clientsoftware/platform.v1.yaml'
+  private:
+    $ref: './metadata.v1.yaml'
+required:
+  - name
+  - version
+x-tags:
+  - Data

@@ -1,0 +1,6 @@
+title: Origin ID
+description: >-
+  Any external identifier uniquely identifying the resource at the origin source.
+type: string
+minLength: 1
+maxLength: 100

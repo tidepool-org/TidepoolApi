@@ -1,117 +1,2769 @@
 {
   "items": [
     {
+      "type": "divider",
+      "title": "Documentation"
+    },
+    {
       "type": "item",
       "title": "Welcome!",
       "uri": "docs/welcome.md"
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Getting Started",
-      "uri": "docs/quick-start.md"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "docs/quick-start.md"
+        },
+        {
+          "type": "item",
+          "title": "Fetching Device Data",
+          "uri": "docs/quick-start/fetching-device-data.md"
+        },
+        {
+          "type": "item",
+          "title": "Fetching User Notes",
+          "uri": "docs/quick-start/notes.md"
+        },
+        {
+          "type": "group",
+          "title": "Uploading Device Data",
+          "items": [
+            {
+              "type": "item",
+              "title": "Overview",
+              "uri": "docs/quick-start/uploading-device-data.md"
+            },
+            {
+              "type": "item",
+              "title": "Uploading Data in a Continuous Session (`continuous`)",
+              "uri": "docs/quick-start/uploading-device-data/continuous.md"
+            },
+            {
+              "type": "item",
+              "title": "Uploading Data in a Normal Session (`normal`)",
+              "uri": "docs/quick-start/uploading-device-data/normal.md"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
-      "title": "Datetime Guide",
-      "uri": "docs/datetime.md"
+      "type": "group",
+      "title": "Date/Time Guide",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "docs/datetime.md"
+        },
+        {
+          "type": "group",
+          "title": "Bootstrapping to UTC (BtUTC)",
+          "items": [
+            {
+              "type": "item",
+              "title": "Overview",
+              "uri": "docs/datetime/btutc.md"
+            },
+            {
+              "type": "item",
+              "title": "Clock Drift Offset (`clockDriftOffset`)",
+              "uri": "docs/datetime/btutc/clock-drift.md"
+            },
+            {
+              "type": "item",
+              "title": "Conversion Offset (`conversionOffset`)",
+              "uri": "docs/datetime/btutc/conversion.md"
+            },
+            {
+              "type": "item",
+              "title": "Timezone Offset (`timezoneOffset`)",
+              "uri": "docs/datetime/btutc/timezone.md"
+            },
+            {
+              "type": "item",
+              "title": "Usage",
+              "uri": "docs/datetime/btutc/usage.md"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "title": "Glossary",
+          "uri": "docs/datetime/glossary.md"
+        },
+        {
+          "type": "item",
+          "title": "Incorrect Assumptions About Diabetes Device Times",
+          "uri": "docs/datetime/assumptions.md"
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Diabetes Device Data Model",
-      "uri": "docs/device-data.md"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "docs/device-data.md"
+        },
+        {
+          "type": "item",
+          "title": "Annotations",
+          "uri": "docs/device-data/annotations.md"
+        },
+        {
+          "type": "item",
+          "title": "Common Fields",
+          "uri": "docs/device-data/common-fields.md"
+        },
+        {
+          "type": "group",
+          "title": "Diabetes Data Types",
+          "items": [
+            {
+              "type": "item",
+              "title": "Overview",
+              "uri": "docs/device-data/data-types.md"
+            },
+            {
+              "type": "group",
+              "title": "Basal Insulin (`basal`)",
+              "items": [
+                {
+                  "type": "item",
+                  "title": "Overview",
+                  "uri": "docs/device-data/data-types/basal.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Automated Basals (`automated`)",
+                  "uri": "docs/device-data/data-types/basal/automated.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Scheduled Basals (`scheduled`)",
+                  "uri": "docs/device-data/data-types/basal/scheduled.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Suppressed Basals (`suppressed`)",
+                  "uri": "docs/device-data/data-types/basal/suppressed.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Suspend Basals (`suspend`)",
+                  "uri": "docs/device-data/data-types/basal/suspend.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Temporary Basals (`temp`)",
+                  "uri": "docs/device-data/data-types/basal/temp.md"
+                }
+              ]
+            },
+            {
+              "type": "item",
+              "title": "Blood Ketones (`bloodKetone`)",
+              "uri": "docs/device-data/data-types/blood-ketones.md"
+            },
+            {
+              "type": "group",
+              "title": "Bolus Insulin (`bolus`)",
+              "items": [
+                {
+                  "type": "item",
+                  "title": "Overview",
+                  "uri": "docs/device-data/data-types/bolus.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Combination Bolus (`combination`)",
+                  "uri": "docs/device-data/data-types/bolus/combination.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Extended Bolus (`extended`)",
+                  "uri": "docs/device-data/data-types/bolus/extended.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Normal Bolus (`normal`)",
+                  "uri": "docs/device-data/data-types/bolus/normal.md"
+                }
+              ]
+            },
+            {
+              "type": "item",
+              "title": "Continuous Blood Glucose (`cbg`)",
+              "uri": "docs/device-data/data-types/cbg.md"
+            },
+            {
+              "type": "item",
+              "title": "Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)",
+              "uri": "docs/device-data/data-types/cgm-settings.md"
+            },
+            {
+              "type": "group",
+              "title": "Device Event (`deviceEvent`)",
+              "items": [
+                {
+                  "type": "item",
+                  "title": "Overview",
+                  "uri": "docs/device-data/data-types/device-event.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Alarm (`alarm`)",
+                  "uri": "docs/device-data/data-types/device-event/alarm.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Calibration (`calibration`)",
+                  "uri": "docs/device-data/data-types/device-event/calibration.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Device Settings Change (`settingsChange`)",
+                  "uri": "docs/device-data/data-types/device-event/settings-change.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Prime (`prime`)",
+                  "uri": "docs/device-data/data-types/device-event/prime.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Reservoir Change (`reservoirChange`)",
+                  "uri": "docs/device-data/data-types/device-event/reservoir-change.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Sensor Event (`sensorEvent`)",
+                  "uri": "docs/device-data/data-types/device-event/sensor-event.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Status (`status`)",
+                  "uri": "docs/device-data/data-types/device-event/status.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Time Change (`timeChange`)",
+                  "uri": "docs/device-data/data-types/device-event/time-change.md"
+                }
+              ]
+            },
+            {
+              "type": "item",
+              "title": "Device Status (`deviceStatus`)",
+              "uri": "docs/device-data/data-types/device-status.md"
+            },
+            {
+              "type": "group",
+              "title": "Pump Settings (`pumpSettings`)",
+              "items": [
+                {
+                  "type": "item",
+                  "title": "Overview",
+                  "uri": "docs/device-data/data-types/pump-settings.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Bolus Calculator Records (`wizard`)",
+                  "uri": "docs/device-data/data-types/pump-settings/calculator.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Self-Monitored Blood Glucose (`smbg`)",
+                  "uri": "docs/device-data/data-types/pump-settings/smbg.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Upload Metadata (`upload`)",
+                  "uri": "docs/device-data/data-types/pump-settings/upload.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "title": "Event History",
+          "uri": "docs/device-data/event-history.md"
+        },
+        {
+          "type": "item",
+          "title": "Linking Events",
+          "uri": "docs/device-data/linking-events.md"
+        },
+        {
+          "type": "item",
+          "title": "Out of Range Values",
+          "uri": "docs/device-data/oor-values.md"
+        },
+        {
+          "type": "item",
+          "title": "Units",
+          "uri": "docs/device-data/units.md"
+        }
+      ]
     },
     {
       "type": "divider",
-      "title": "APIs"
+      "title": "API Reference"
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Authentication",
-      "uri": "reference/auth.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/auth.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Check Session Token",
+              "uri": "reference/auth.v1.yaml#CheckSessionToken"
+            },
+            {
+              "type": "item",
+              "title": "Create Custodial User",
+              "uri": "reference/auth.v1.yaml#CreateCustodialUser"
+            },
+            {
+              "type": "item",
+              "title": "Create New Data Provider Sessions",
+              "uri": "reference/auth.v1.yaml#CreateUserDataProviderSession"
+            },
+            {
+              "type": "item",
+              "title": "Create New Session Token",
+              "uri": "reference/auth.v1.yaml#CreateSessionToken"
+            },
+            {
+              "type": "item",
+              "title": "Create New User Account",
+              "uri": "reference/auth.v1.yaml#CreateNewUser"
+            },
+            {
+              "type": "item",
+              "title": "Delete All Data Provider Sessions",
+              "uri": "reference/auth.v1.yaml#DeleteAllUserDataProviderSessions"
+            },
+            {
+              "type": "item",
+              "title": "Delete Data Provider Sessions",
+              "uri": "reference/auth.v1.yaml#DeleteUserDataProviderSession"
+            },
+            {
+              "type": "item",
+              "title": "Delete User",
+              "uri": "reference/auth.v1.yaml#DeleteUser"
+            },
+            {
+              "type": "item",
+              "title": "Get Current User",
+              "uri": "reference/auth.v1.yaml#GetCurrentUserInfo"
+            },
+            {
+              "type": "item",
+              "title": "Get Data Provider Session",
+              "uri": "reference/auth.v1.yaml#GetUserDataProviderSession"
+            },
+            {
+              "type": "item",
+              "title": "Get User",
+              "uri": "reference/auth.v1.yaml#GetUserInfo"
+            },
+            {
+              "type": "item",
+              "title": "Get Users",
+              "uri": "reference/auth.v1.yaml#GetUsers"
+            },
+            {
+              "type": "item",
+              "title": "List Data Provider Sessions",
+              "uri": "reference/auth.v1.yaml#ListUserDataProviderSessions"
+            },
+            {
+              "type": "item",
+              "title": "Login with a long term key",
+              "uri": "reference/auth.v1.yaml#LongTermLogin"
+            },
+            {
+              "type": "item",
+              "title": "Logout",
+              "uri": "reference/auth.v1.yaml#Logout"
+            },
+            {
+              "type": "item",
+              "title": "Refresh Session Token",
+              "uri": "reference/auth.v1.yaml#RefreshSessionToken"
+            },
+            {
+              "type": "item",
+              "title": "Server Check Token",
+              "uri": "reference/auth.v1.yaml#ServerCheckToken"
+            },
+            {
+              "type": "item",
+              "title": "Server to Server Login",
+              "uri": "reference/auth.v1.yaml#ServerLogin"
+            },
+            {
+              "type": "item",
+              "title": "Update Current User Account",
+              "uri": "reference/auth.v1.yaml#UpdateCurrentUser"
+            },
+            {
+              "type": "item",
+              "title": "Update Data Provider Session",
+              "uri": "reference/auth.v1.yaml#UpdateUserDataProviderSession"
+            },
+            {
+              "type": "item",
+              "title": "Update User",
+              "uri": "reference/auth.v1.yaml#UpdateUser"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Date Filter",
+              "uri": "reference/auth/models/date.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Delete User",
+              "uri": "reference/auth/models/deleteuser.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "New Custodial User",
+              "uri": "reference/auth/models/newcustodialuser.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "New Provider Session",
+              "uri": "reference/auth/models/providers/newsession.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "New User",
+              "uri": "reference/auth/models/newuser.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Provider Name",
+              "uri": "reference/auth/models/providers/name.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Provider OAuth Token",
+              "uri": "reference/auth/models/providers/oauthtoken.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Provider Session",
+              "uri": "reference/auth/models/providers/session.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Provider Session ID",
+              "uri": "reference/auth/models/providers/sessionid.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Provider Sessions",
+              "uri": "reference/auth/models/providers/sessions.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Provider Type",
+              "uri": "reference/auth/models/providers/type.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Status",
+              "uri": "reference/auth/models/error.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Token Data",
+              "uri": "reference/auth/models/tokendata.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Update Provider Session",
+              "uri": "reference/auth/models/providers/updatesession.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Update User",
+              "uri": "reference/auth/models/updateuser.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User",
+              "uri": "reference/auth/models/user.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Email Addresses",
+              "uri": "reference/auth/models/emailaddresses.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Email Verification Status",
+              "uri": "reference/auth/models/emailverified.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Role",
+              "uri": "reference/auth/models/role.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Roles",
+              "uri": "reference/auth/models/roles.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Users",
+              "uri": "reference/auth/models/users.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Authorization",
-      "uri": "reference/access.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/access.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get Groups for User",
+              "uri": "reference/access.v1.yaml#GetGroupsForUser"
+            },
+            {
+              "type": "item",
+              "title": "Get User Permissions in Group",
+              "uri": "reference/access.v1.yaml#GetPermissionsForUser"
+            },
+            {
+              "type": "item",
+              "title": "Get Users in Group",
+              "uri": "reference/access.v1.yaml#GetUsersInGroup"
+            },
+            {
+              "type": "item",
+              "title": "Update Permissions for User in Group",
+              "uri": "reference/access.v1.yaml#GrantPermissionsInGroup"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Custodian",
+              "uri": "reference/access/models/permissions/custodian.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Group Permissions",
+              "uri": "reference/access/models/grouppermissions.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Modify User Permissions",
+              "uri": "reference/access/models/modifyuserpermissions.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Notes",
+              "uri": "reference/access/models/permissions/note.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Owner",
+              "uri": "reference/access/models/permissions/owner.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Permission",
+              "uri": "reference/access/models/permission.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Upload",
+              "uri": "reference/access/models/permissions/upload.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Permissions",
+              "uri": "reference/access/models/userpermissions.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "View",
+              "uri": "reference/access/models/permissions/view.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
-      "title": "Blobs",
-      "uri": "reference/blob.v1.yaml"
+      "type": "group",
+      "title": "Blob",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/blob.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Create New Binary Blob",
+              "uri": "reference/blob.v1.yaml#CreateBlob"
+            },
+            {
+              "type": "item",
+              "title": "Delete All Binary Blobs",
+              "uri": "reference/blob.v1.yaml#DeleteAllBlobs"
+            },
+            {
+              "type": "item",
+              "title": "Delete Binary Blob",
+              "uri": "reference/blob.v1.yaml#DeleteBlob"
+            },
+            {
+              "type": "item",
+              "title": "Get Binary Blob Content",
+              "uri": "reference/blob.v1.yaml#GetBlobContent"
+            },
+            {
+              "type": "item",
+              "title": "Get Binary Blob Metadata",
+              "uri": "reference/blob.v1.yaml#GetBlobMetadata"
+            },
+            {
+              "type": "item",
+              "title": "List Binary Blobs",
+              "uri": "reference/blob.v1.yaml#ListBlobs"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Blob ID",
+              "uri": "reference/blob/models/id.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blob content",
+              "uri": "reference/blob/models/content.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blob list",
+              "uri": "reference/blob/models/metadatalist.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blob metadata",
+              "uri": "reference/blob/models/metadata.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blob status",
+              "uri": "reference/blob/models/status.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Clinics",
-      "uri": "reference/clinic.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/clinic.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "",
+              "uri": "reference/clinic.v1.yaml#ResendInvite"
+            },
+            {
+              "type": "item",
+              "title": "Accept Clinician Invite",
+              "uri": "reference/clinic.v1.yaml#AcceptClinicianInvite"
+            },
+            {
+              "type": "item",
+              "title": "Accept Patient Invitation",
+              "uri": "reference/clinic.v1.yaml#AcceptPatientInvitation"
+            },
+            {
+              "type": "item",
+              "title": "Associate Clinician to User",
+              "uri": "reference/clinic.v1.yaml#AssociateClinicianToUser"
+            },
+            {
+              "type": "item",
+              "title": "Create Clinic",
+              "uri": "reference/clinic.v1.yaml#CreateClinic"
+            },
+            {
+              "type": "item",
+              "title": "Create Clinician",
+              "uri": "reference/clinic.v1.yaml#CreateClinician"
+            },
+            {
+              "type": "item",
+              "title": "Create Patient Account",
+              "uri": "reference/clinic.v1.yaml#CreatePatientAccount"
+            },
+            {
+              "type": "item",
+              "title": "Create Patient from Existing User",
+              "uri": "reference/clinic.v1.yaml#CreatePatientFromUser"
+            },
+            {
+              "type": "item",
+              "title": "Delete Clinician",
+              "uri": "reference/clinic.v1.yaml#DeleteClinician"
+            },
+            {
+              "type": "item",
+              "title": "Delete Invite",
+              "uri": "reference/clinic.v1.yaml#DeleteInvite"
+            },
+            {
+              "type": "item",
+              "title": "Delete Invited Clinician",
+              "uri": "reference/clinic.v1.yaml#DeleteInvitedClinician"
+            },
+            {
+              "type": "item",
+              "title": "Delete Patient",
+              "uri": "reference/clinic.v1.yaml#DeletePatient"
+            },
+            {
+              "type": "item",
+              "title": "Delete Patient Permission",
+              "uri": "reference/clinic.v1.yaml#DeletePatientPermission"
+            },
+            {
+              "type": "item",
+              "title": "Dismiss Clinician Invite",
+              "uri": "reference/clinic.v1.yaml#DismissClinicianInvite"
+            },
+            {
+              "type": "item",
+              "title": "Get Clinic",
+              "uri": "reference/clinic.v1.yaml#GetClinic"
+            },
+            {
+              "type": "item",
+              "title": "Get Clinic by Share Code",
+              "uri": "reference/clinic.v1.yaml#GetClinicByShareCode"
+            },
+            {
+              "type": "item",
+              "title": "Get Clinician",
+              "uri": "reference/clinic.v1.yaml#GetClinician"
+            },
+            {
+              "type": "item",
+              "title": "Get Invited Clinician",
+              "uri": "reference/clinic.v1.yaml#GetInvitedClinician"
+            },
+            {
+              "type": "item",
+              "title": "Get Patient",
+              "uri": "reference/clinic.v1.yaml#GetPatient"
+            },
+            {
+              "type": "item",
+              "title": "Get Patient Invites",
+              "uri": "reference/clinic.v1.yaml#GetPatientInvites"
+            },
+            {
+              "type": "item",
+              "title": "Invite Clinician",
+              "uri": "reference/clinic.v1.yaml#InviteClinician"
+            },
+            {
+              "type": "item",
+              "title": "List Clinician Invites",
+              "uri": "reference/clinic.v1.yaml#ListClinicianInvites"
+            },
+            {
+              "type": "item",
+              "title": "List Clinicians",
+              "uri": "reference/clinic.v1.yaml#ListClinicians"
+            },
+            {
+              "type": "item",
+              "title": "List Clinics",
+              "uri": "reference/clinic.v1.yaml#ListClinics"
+            },
+            {
+              "type": "item",
+              "title": "List Clinics for Clinician",
+              "uri": "reference/clinic.v1.yaml#ListClinicsForClinician"
+            },
+            {
+              "type": "item",
+              "title": "List Clinics for Patient",
+              "uri": "reference/clinic.v1.yaml#ListClinicsForPatient"
+            },
+            {
+              "type": "item",
+              "title": "List Patients",
+              "uri": "reference/clinic.v1.yaml#ListPatients"
+            },
+            {
+              "type": "item",
+              "title": "Update Clinic",
+              "uri": "reference/clinic.v1.yaml#UpdateClinic"
+            },
+            {
+              "type": "item",
+              "title": "Update Clinician",
+              "uri": "reference/clinic.v1.yaml#UpdateClinician"
+            },
+            {
+              "type": "item",
+              "title": "Update Patient",
+              "uri": "reference/clinic.v1.yaml#UpdatePatient"
+            },
+            {
+              "type": "item",
+              "title": "Update Patient Permissions",
+              "uri": "reference/clinic.v1.yaml#UpdatePatientPermissions"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Accept Invite",
+              "uri": "reference/clinic/models/acceptinvite.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Clinic",
+              "uri": "reference/clinic/models/clinic.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Clinician",
+              "uri": "reference/clinic/models/clinician.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Clinician Permissions",
+              "uri": "reference/clinic/models/clinicianroles.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Invite Clinician",
+              "uri": "reference/clinic/models/inviteclinician.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Patient",
+              "uri": "reference/clinic/models/patient.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Patient Permissions",
+              "uri": "reference/clinic/models/patientpermissions.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Phone Number",
+              "uri": "reference/clinic/models/phonenumber.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
+      "title": "Confirmation",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/confirm.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Accept Account Signup",
+              "uri": "reference/confirm.v1.yaml#ConfirmAccountSignup"
+            },
+            {
+              "type": "item",
+              "title": "Accept Invitation to Join Care Team",
+              "uri": "reference/confirm.v1.yaml#AcceptCareTeamInvite"
+            },
+            {
+              "type": "item",
+              "title": "Accept password change",
+              "uri": "reference/confirm.v1.yaml#AcceptPasswordChange"
+            },
+            {
+              "type": "item",
+              "title": "Cancel Account Signup",
+              "uri": "reference/confirm.v1.yaml#CancelAccountSignupConfirmation"
+            },
+            {
+              "type": "item",
+              "title": "Cancel Care Team Invitation",
+              "uri": "reference/confirm.v1.yaml#CancelInvite"
+            },
+            {
+              "type": "item",
+              "title": "Dismiss Account Signup",
+              "uri": "reference/confirm.v1.yaml#DismissAccountSignup"
+            },
+            {
+              "type": "item",
+              "title": "Dismiss Care Team Invitation",
+              "uri": "reference/confirm.v1.yaml#DismissInvite"
+            },
+            {
+              "type": "item",
+              "title": "Get Account Signup Confirmation",
+              "uri": "reference/confirm.v1.yaml#GetAccountSignupConfirmation"
+            },
+            {
+              "type": "item",
+              "title": "Get Pending Care Team Invitations",
+              "uri": "reference/confirm.v1.yaml#GetSentInvitations"
+            },
+            {
+              "type": "item",
+              "title": "Get Received Care Team Invitations",
+              "uri": "reference/confirm.v1.yaml#GetReceivedInvitations"
+            },
+            {
+              "type": "item",
+              "title": "Resend account signup confirmation email",
+              "uri": "reference/confirm.v1.yaml#ResendAccountSignup"
+            },
+            {
+              "type": "item",
+              "title": "Send Account Signup Confirmation",
+              "uri": "reference/confirm.v1.yaml#SendAccountSignupConfirmation"
+            },
+            {
+              "type": "item",
+              "title": "Send Invitation to Join Care Team",
+              "uri": "reference/confirm.v1.yaml#SendCareTeamInvite"
+            },
+            {
+              "type": "item",
+              "title": "Send Password Reset Email",
+              "uri": "reference/confirm.v1.yaml#SendPasswordReset"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Accept Password Change",
+              "uri": "reference/confirm/models/acceptpassword.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Care Team Invitation",
+              "uri": "reference/confirm/models/invitation.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Confirmation",
+              "uri": "reference/confirm/models/confirmation.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Confirmation Acceptance",
+              "uri": "reference/confirm/models/acceptance.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Confirmation Error",
+              "uri": "reference/confirm/models/error.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Confirmation Lookup",
+              "uri": "reference/confirm/models/lookup.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Confirmation Type",
+              "uri": "reference/confirm/models/type.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Confirmation key that uniquely identifies each confirmation",
+              "uri": "reference/confirm/models/key.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Confirmation list",
+              "uri": "reference/confirm/models/list.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Creator",
+              "uri": "reference/confirm/models/creator.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Creator user profile",
+              "uri": "reference/confirm/models/creatorprofile.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Patient User Profile",
+              "uri": "reference/confirm/models/patientprofile.v1.yaml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
       "title": "Data",
-      "uri": "reference/data.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/data.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Create New Data Set for User",
+              "uri": "reference/data.v1.yaml#CreateDataSet"
+            },
+            {
+              "type": "item",
+              "title": "Create New Data Set for User",
+              "uri": "reference/data.v1.yaml#CreateDataSet2"
+            },
+            {
+              "type": "item",
+              "title": "Create New Data Source for User",
+              "uri": "reference/data.v1.yaml#CreateDataSource"
+            },
+            {
+              "type": "item",
+              "title": "Delete All Data Sources for User",
+              "uri": "reference/data.v1.yaml#DeleteAllDataSources"
+            },
+            {
+              "type": "item",
+              "title": "Delete All Data for User",
+              "uri": "reference/data.v1.yaml#DeleteAllUserData"
+            },
+            {
+              "type": "item",
+              "title": "Delete Data Set",
+              "uri": "reference/data.v1.yaml#DeleteDataSet2"
+            },
+            {
+              "type": "item",
+              "title": "Delete Data Set",
+              "uri": "reference/data.v1.yaml#DeleteDataSet"
+            },
+            {
+              "type": "item",
+              "title": "Delete Data Source",
+              "uri": "reference/data.v1.yaml#DeleteDataSource"
+            },
+            {
+              "type": "item",
+              "title": "Delete Data from Data Set",
+              "uri": "reference/data.v1.yaml#DeleteDataSetData"
+            },
+            {
+              "type": "item",
+              "title": "Get Data Set",
+              "uri": "reference/data.v1.yaml#GetDataSet"
+            },
+            {
+              "type": "item",
+              "title": "Get Data Sets for User",
+              "uri": "reference/data.v1.yaml#GetUserDataSets"
+            },
+            {
+              "type": "item",
+              "title": "Get Data Source",
+              "uri": "reference/data.v1.yaml#GetDataSource"
+            },
+            {
+              "type": "item",
+              "title": "Get Data for User",
+              "uri": "reference/data.v1.yaml#GetData"
+            },
+            {
+              "type": "item",
+              "title": "List Data Sets for User",
+              "uri": "reference/data.v1.yaml#ListDataSets"
+            },
+            {
+              "type": "item",
+              "title": "List Data Sources for User",
+              "uri": "reference/data.v1.yaml#ListDataSources"
+            },
+            {
+              "type": "item",
+              "title": "Update Data Set",
+              "uri": "reference/data.v1.yaml#UpdateDataSet2"
+            },
+            {
+              "type": "item",
+              "title": "Update Data Set",
+              "uri": "reference/data.v1.yaml#UpdateDataSet"
+            },
+            {
+              "type": "item",
+              "title": "Update Data Source",
+              "uri": "reference/data.v1.yaml#UpdateDataSource"
+            },
+            {
+              "type": "item",
+              "title": "Upload Data (LEGACY)",
+              "uri": "reference/data.v1.yaml#UploadData"
+            },
+            {
+              "type": "item",
+              "title": "Upload Data to Data Set",
+              "uri": "reference/data.v1.yaml#UploadDataToDataSet2"
+            },
+            {
+              "type": "item",
+              "title": "Upload Data to Data Set",
+              "uri": "reference/data.v1.yaml#UploadDataToDataSet"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Activity Name",
+              "uri": "reference/data/models/activity/physical/name.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Aggregate",
+              "uri": "reference/data/models/activity/physical/aggregate.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Amount",
+              "uri": "reference/data/models/amount.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal",
+              "uri": "reference/data/models/basal/basal.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Automated",
+              "uri": "reference/data/models/basal/automated.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Rate Maximum",
+              "uri": "reference/data/models/basal/rate/maximum.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Rate Start Array",
+              "uri": "reference/data/models/basal/rate/startarray.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Scheduled",
+              "uri": "reference/data/models/basal/scheduled.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Suppressed (Abstract)",
+              "uri": "reference/data/models/basal/suppressed.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Suppressed Automated",
+              "uri": "reference/data/models/basal/suppressed/automated.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Suppressed Scheduled",
+              "uri": "reference/data/models/basal/suppressed/scheduled.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Suppressed Temporary",
+              "uri": "reference/data/models/basal/suppressed/temporary.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Suspend",
+              "uri": "reference/data/models/basal/suspend.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Basal Temporary",
+              "uri": "reference/data/models/basal/temporary.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Base",
+              "uri": "reference/data/models/base.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Glucose",
+              "uri": "reference/data/models/blood/glucose/glucose.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Glucose (mg/dL)",
+              "uri": "reference/data/models/blood/glucose/glucosemgdl.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Glucose (mmol/L)",
+              "uri": "reference/data/models/blood/glucose/glucosemmol.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Glucose Target",
+              "uri": "reference/data/models/blood/glucose/target.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Glucose Target Start",
+              "uri": "reference/data/models/blood/glucose/targetstart.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Glucose Target Value (mg/dL)",
+              "uri": "reference/data/models/blood/glucose/targetmgdl.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Glucose Target Value (mmol/L)",
+              "uri": "reference/data/models/blood/glucose/targetmmol.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Ketone",
+              "uri": "reference/data/models/blood/ketone.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Unit (mg/dL or mmol/L)",
+              "uri": "reference/data/models/blood/units.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Unit (mg/dL)",
+              "uri": "reference/data/models/blood/unitsmgdl.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Unit (mmol/L)",
+              "uri": "reference/data/models/blood/unitsmmol.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Value (in mg/dL or mmol/L units)",
+              "uri": "reference/data/models/blood/value.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Value (mg/dL)",
+              "uri": "reference/data/models/blood/valuemgdl.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Blood Value (mmol/L)",
+              "uri": "reference/data/models/blood/valuemmol.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Bolus",
+              "uri": "reference/data/models/bolus/bolus.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Bolus Amount Maximum",
+              "uri": "reference/data/models/bolus/amountmaximum.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Bolus Calculator",
+              "uri": "reference/data/models/bolus/calculator.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Bolus Combination",
+              "uri": "reference/data/models/bolus/combination.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Bolus Extended",
+              "uri": "reference/data/models/bolus/extended.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Bolus Normal",
+              "uri": "reference/data/models/bolus/normal.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Bolus Subtype",
+              "uri": "reference/data/models/bolus/subtype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "CGM Settings",
+              "uri": "reference/data/models/cgmsettings.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Cannula Prime Event",
+              "uri": "reference/data/models/deviceevent/primecannula.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Carbohydrate Ratio",
+              "uri": "reference/data/models/carbs/ratio.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Carbohydrate Ratio Start",
+              "uri": "reference/data/models/carbs/ratiostart.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Carbohydrate Units",
+              "uri": "reference/data/models/carbs/units.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Client Software",
+              "uri": "reference/data/models/clientsoftware.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Client Software Platform",
+              "uri": "reference/data/models/clientsoftware/platform.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Clock Drift Offset",
+              "uri": "reference/data/models/clockdriftoffset.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Computer Time",
+              "uri": "reference/data/models/computertime.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Continuous Glucose",
+              "uri": "reference/data/models/blood/continuousglucose.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Conversion Offset",
+              "uri": "reference/data/models/conversionoffset.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Set ID",
+              "uri": "reference/data/models/datasetid.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Set ID Array",
+              "uri": "reference/data/models/datasetidarray.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Set State",
+              "uri": "reference/data/models/datasetstate.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Set Type",
+              "uri": "reference/data/models/datasettype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Source",
+              "uri": "reference/data/models/sources/datasource.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Source ID",
+              "uri": "reference/data/models/sources/id.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Source State",
+              "uri": "reference/data/models/sources/state.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Data Sub Type",
+              "uri": "reference/data/models/datasubtype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Deduplicator Descriptor",
+              "uri": "reference/data/models/deduplicatordescriptor.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Delivery Type",
+              "uri": "reference/data/models/basal/deliverytype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Alarm",
+              "uri": "reference/data/models/deviceevent/alarm.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Calibration",
+              "uri": "reference/data/models/deviceevent/calibration.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Delivery Status",
+              "uri": "reference/data/models/deviceevent/deliverystatus.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Event",
+              "uri": "reference/data/models/deviceevent/event.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Event Sub Type",
+              "uri": "reference/data/models/deviceevent/subtype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device ID",
+              "uri": "reference/data/models/deviceid.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Manufacturers",
+              "uri": "reference/data/models/devicemanufacturers.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Model Name",
+              "uri": "reference/data/models/devicemodelname.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Prime Event",
+              "uri": "reference/data/models/deviceevent/prime.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Reservoir Change",
+              "uri": "reference/data/models/deviceevent/reservoirchange.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Serial Number",
+              "uri": "reference/data/models/deviceserialnumber.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Settings Change [Proposed]",
+              "uri": "reference/data/models/deviceevent/settingschange.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Tag",
+              "uri": "reference/data/models/devicetag.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Tags",
+              "uri": "reference/data/models/devicetags.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Time Change",
+              "uri": "reference/data/models/deviceevent/timechange.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "DeviceSensorEvent [Proposed]",
+              "uri": "reference/data/models/deviceevent/sensor.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "DeviceTransmitterEvent [Proposed]",
+              "uri": "reference/data/models/deviceevent/transmitter.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Dosing Decision",
+              "uri": "reference/data/models/dosingdecision.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Event History [Proposed]",
+              "uri": "reference/data/models/eventhistory.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Expected Insulin Delivery Duration",
+              "uri": "reference/data/models/basal/expectedduration.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Flights",
+              "uri": "reference/data/models/activity/physical/flights.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Food",
+              "uri": "reference/data/models/food/food.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Forecast (Abstract)[Proposed]",
+              "uri": "reference/data/models/forecast.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Glucose Trend",
+              "uri": "reference/data/models/blood/glucose/trend.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Glucose Trend Rate",
+              "uri": "reference/data/models/blood/glucose/trendrate.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Ingredient",
+              "uri": "reference/data/models/food/ingredient.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Ingredient Array",
+              "uri": "reference/data/models/food/ingredientarray.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin",
+              "uri": "reference/data/models/insulin/insulin.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Compound",
+              "uri": "reference/data/models/insulin/compound.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Compound Array",
+              "uri": "reference/data/models/insulin/compoundarray.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Concentration",
+              "uri": "reference/data/models/insulin/concentration.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Delivery Duration",
+              "uri": "reference/data/models/basal/duration.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Delivery Percentage",
+              "uri": "reference/data/models/basal/percentage.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Delivery Rate",
+              "uri": "reference/data/models/basal/deliveryrate.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Delivery Schedule Name",
+              "uri": "reference/data/models/basal/schedulename.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Dose",
+              "uri": "reference/data/models/insulin/dose.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Formulation",
+              "uri": "reference/data/models/insulin/formulation.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Model",
+              "uri": "reference/data/models/insulin/model.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Recommended",
+              "uri": "reference/data/models/insulin/recommended.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Sensitivity Start",
+              "uri": "reference/data/models/insulin/sensitivitystart.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Insulin Simple",
+              "uri": "reference/data/models/insulin/simple.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Laps",
+              "uri": "reference/data/models/activity/physical/laps.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Metadata",
+              "uri": "reference/data/models/metadata.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Metadata Array",
+              "uri": "reference/data/models/metadataarray.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "New Data Source",
+              "uri": "reference/data/models/sources/newdatasource.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "New Tidepool Diabetes Data Set",
+              "uri": "reference/data/models/newdataset.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Other Activity Type",
+              "uri": "reference/data/models/activity/physical/otheractivitytype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Other State",
+              "uri": "reference/data/models/state/otherstate.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Physical Activity",
+              "uri": "reference/data/models/activity/physical/physical.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Physical Activity Type",
+              "uri": "reference/data/models/activity/physical/activitytype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Pump Settings",
+              "uri": "reference/data/models/pumpsettings.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Pump Status",
+              "uri": "reference/data/models/pumpstatus.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Reported Intensity",
+              "uri": "reference/data/models/activity/physical/reportedintensity.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Reported State",
+              "uri": "reference/data/models/state/reportedstate.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Self Monitored Glucose",
+              "uri": "reference/data/models/blood/selfmonitoredglucose.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Self Monitored Glucose Sub Type",
+              "uri": "reference/data/models/blood/subtype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Settings",
+              "uri": "reference/data/models/settings.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Severity",
+              "uri": "reference/data/models/state/severity.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Start Time",
+              "uri": "reference/data/models/start.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "State",
+              "uri": "reference/data/models/state/state.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "States",
+              "uri": "reference/data/models/state/states.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Steps",
+              "uri": "reference/data/models/activity/physical/steps.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Suspend Threshold",
+              "uri": "reference/data/models/suspendthreshold.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tidepool Data Array",
+              "uri": "reference/data/models/updatedataset.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tidepool Data Set",
+              "uri": "reference/data/models/dataset.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tidepool Data Set Array",
+              "uri": "reference/data/models/datasetarray.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tidepool Data Type",
+              "uri": "reference/data/models/datatype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tidepool Diabetes Data",
+              "uri": "reference/data/models/data.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tidepool Diabetes Data Array",
+              "uri": "reference/data/models/dataarray.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Time Change Info",
+              "uri": "reference/data/models/deviceevent/timechangeinfo.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Time Processing",
+              "uri": "reference/data/models/timeprocessing.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Time Zone",
+              "uri": "reference/data/models/timezonename.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Time Zone offset",
+              "uri": "reference/data/models/timezoneoffset.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tubing Prime Event",
+              "uri": "reference/data/models/deviceevent/primetubing.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Update Data Source",
+              "uri": "reference/data/models/sources/updatedatasource.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Upload",
+              "uri": "reference/data/models/upload.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Upload Device",
+              "uri": "reference/data/models/uploaddevice.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Upload ID",
+              "uri": "reference/data/models/uploadid.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Water Amount, in Gallons",
+              "uri": "reference/data/models/water/gallons.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Water Amount, in Liters",
+              "uri": "reference/data/models/water/liters.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Water Amount, in Milliliters",
+              "uri": "reference/data/models/water/milliliters.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Water Amount, in Ounces",
+              "uri": "reference/data/models/water/ounces.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Water Consumption",
+              "uri": "reference/data/models/water/consumption.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Export",
-      "uri": "reference/export.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/export.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Export user data",
+              "uri": "reference/export.v1.yaml#ExportUserData"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Export Format",
+              "uri": "reference/export/models/format.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Export Glucose Units",
+              "uri": "reference/export/models/glucoseunits.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Export as Excel",
+              "uri": "reference/export/models/excel.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Export as JSON",
+              "uri": "reference/export/models/json.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
+      "title": "General",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/general.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get Minimum Client Versions",
+              "uri": "reference/general.v1.yaml#GetMinimumClientVersions"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
       "title": "Images",
-      "uri": "reference/images.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/images.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Create Image (Content)",
+              "uri": "reference/images.v1.yaml#CreateImageContent"
+            },
+            {
+              "type": "item",
+              "title": "Create Image (MIME)",
+              "uri": "reference/images.v1.yaml#CreateImageMIME"
+            },
+            {
+              "type": "item",
+              "title": "Create Image (Metadata)",
+              "uri": "reference/images.v1.yaml#CreateImageMetadata"
+            },
+            {
+              "type": "item",
+              "title": "Delete All Images",
+              "uri": "reference/images.v1.yaml#DeleteAllImages"
+            },
+            {
+              "type": "item",
+              "title": "Delete Image",
+              "uri": "reference/images.v1.yaml#DeleteImage"
+            },
+            {
+              "type": "item",
+              "title": "Get Image",
+              "uri": "reference/images.v1.yaml#GetImage"
+            },
+            {
+              "type": "item",
+              "title": "Get Image Content",
+              "uri": "reference/images.v1.yaml#GetImageContent"
+            },
+            {
+              "type": "item",
+              "title": "Get Image Content (Suffix)",
+              "uri": "reference/images.v1.yaml#GetImageContentWithSuffix"
+            },
+            {
+              "type": "item",
+              "title": "Get Image Metadata",
+              "uri": "reference/images.v1.yaml#GetImageMetadata"
+            },
+            {
+              "type": "item",
+              "title": "Get Image Rendition",
+              "uri": "reference/images.v1.yaml#GetImageRendition"
+            },
+            {
+              "type": "item",
+              "title": "Get Image Rendition (Suffix)",
+              "uri": "reference/images.v1.yaml#GetImageRenditionWithSuffix"
+            },
+            {
+              "type": "item",
+              "title": "List Images",
+              "uri": "reference/images.v1.yaml#ListImages"
+            },
+            {
+              "type": "item",
+              "title": "Put Image Content",
+              "uri": "reference/images.v1.yaml#PutImageContent"
+            },
+            {
+              "type": "item",
+              "title": "Put Image Metadata",
+              "uri": "reference/images.v1.yaml#PutImageMetadata"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Image",
+              "uri": "reference/images/models/image.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Base",
+              "uri": "reference/images/models/base.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Content",
+              "uri": "reference/images/models/content.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Content Attributes",
+              "uri": "reference/images/models/contentattributes.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Content Intent",
+              "uri": "reference/images/models/contentintent.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Height",
+              "uri": "reference/images/models/height.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image ID",
+              "uri": "reference/images/models/id.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image List",
+              "uri": "reference/images/models/imagelist.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Metadata",
+              "uri": "reference/images/models/metadata.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Name",
+              "uri": "reference/images/models/name.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Revision",
+              "uri": "reference/images/models/revision.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Size",
+              "uri": "reference/images/models/size.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Status",
+              "uri": "reference/images/models/status.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image Width",
+              "uri": "reference/images/models/width.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image with Content",
+              "uri": "reference/images/models/imagewithcontent.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Image with Metadata",
+              "uri": "reference/images/models/imagewithmetadata.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "MediaType",
+              "uri": "reference/images/models/imagemediatype.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
-      "title": "Notes",
-      "uri": "reference/message.v1.yaml"
+      "type": "group",
+      "title": "Messages",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/message.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Create New Top-Level Message",
+              "uri": "reference/message.v1.yaml#CreateMessage"
+            },
+            {
+              "type": "item",
+              "title": "Delete Message",
+              "uri": "reference/message.v1.yaml#DeleteMessage"
+            },
+            {
+              "type": "item",
+              "title": "Get Message Thread by ID",
+              "uri": "reference/message.v1.yaml#GetMessageThread"
+            },
+            {
+              "type": "item",
+              "title": "Get Message by ID",
+              "uri": "reference/message.v1.yaml#FindMessageById"
+            },
+            {
+              "type": "item",
+              "title": "List All Messages",
+              "uri": "reference/message.v1.yaml#ListAllMessages"
+            },
+            {
+              "type": "item",
+              "title": "List Top-Level Messages",
+              "uri": "reference/message.v1.yaml#ListTopLevelMessages"
+            },
+            {
+              "type": "item",
+              "title": "Reply to Message",
+              "uri": "reference/message.v1.yaml#ReplyToMessage"
+            },
+            {
+              "type": "item",
+              "title": "Update Message",
+              "uri": "reference/message.v1.yaml#UpdateMessage"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Edit Message",
+              "uri": "reference/message/models/editmessage.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Message",
+              "uri": "reference/message/models/message.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Message ID",
+              "uri": "reference/message/models/messageid.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Message List",
+              "uri": "reference/message/models/messagelist.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Message Response",
+              "uri": "reference/message/models/messageresponse.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "New Message",
+              "uri": "reference/message/models/newmessage.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Optional Message ID",
+              "uri": "reference/message/models/nullablemessageid.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Metadata",
-      "uri": "reference/metadata.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/metadata.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Get Metadata Collections",
+              "uri": "reference/metadata.v1.yaml#GetMetadataCollections"
+            },
+            {
+              "type": "item",
+              "title": "Get User Metadata Collection",
+              "uri": "reference/metadata.v1.yaml#GetUserMetadataCollection"
+            },
+            {
+              "type": "item",
+              "title": "Get User's Private Metadata Item",
+              "uri": "reference/metadata.v1.yaml#GetUserPrivateMetadataItem"
+            },
+            {
+              "type": "item",
+              "title": "List Users",
+              "uri": "reference/metadata.v1.yaml#ListUsers"
+            },
+            {
+              "type": "item",
+              "title": "Update User Metadata Collection",
+              "uri": "reference/metadata.v1.yaml#UpdateUserMetadataCollectionPost"
+            },
+            {
+              "type": "item",
+              "title": "Update User Metadata Collection",
+              "uri": "reference/metadata.v1.yaml#UpdateUserMetadataCollectionPut"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "About Me",
+              "uri": "reference/metadata/models/about.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Biological Sex",
+              "uri": "reference/metadata/models/biologicalsex.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Clinic Name",
+              "uri": "reference/metadata/models/clinicname.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Clinician Profile",
+              "uri": "reference/metadata/models/clinicianprofile.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Diagnosis Type",
+              "uri": "reference/metadata/models/diagnosistype.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Full Name",
+              "uri": "reference/metadata/models/fullname.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Medical Record Number (MRN)",
+              "uri": "reference/metadata/models/mrn.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Metadata Collection",
+              "uri": "reference/metadata/models/collection.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Metadata Collection Name",
+              "uri": "reference/metadata/models/collectionname.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Metadata Collection Names",
+              "uri": "reference/metadata/models/collectionnames.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Patient Profile",
+              "uri": "reference/metadata/models/patientprofile.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Phone Number",
+              "uri": "reference/metadata/models/phonenumber.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Private Collection",
+              "uri": "reference/metadata/models/private.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Profile",
+              "uri": "reference/metadata/models/profile.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Target Devices",
+              "uri": "reference/metadata/models/targetdevices.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Target Time Zone",
+              "uri": "reference/metadata/models/targettimezone.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Trustee User",
+              "uri": "reference/metadata/models/trusteeuser.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Trustee and Trustor Users",
+              "uri": "reference/metadata/models/trustusers.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Trustor User",
+              "uri": "reference/metadata/models/trustoruser.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User",
+              "uri": "reference/metadata/models/user.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Preferences",
+              "uri": "reference/metadata/models/preferences.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Profile",
+              "uri": "reference/metadata/models/userprofile.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "User Settings",
+              "uri": "reference/metadata/models/settings.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Users",
+              "uri": "reference/metadata/models/users.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "clinicianrole",
+              "uri": "reference/metadata/models/clinicianrole.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Metrics",
-      "uri": "reference/metrics.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/metrics.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Record Metrics Event for Logged-In User",
+              "uri": "reference/metrics.v1.yaml#RecordMetricsEventForLoggedInUser"
+            },
+            {
+              "type": "item",
+              "title": "Record Metrics Event for Server",
+              "uri": "reference/metrics.v1.yaml#RecordMetricsEventForServer"
+            },
+            {
+              "type": "item",
+              "title": "Record Metrics Event for User",
+              "uri": "reference/metrics.v1.yaml#RecordMetricsEventForNamedUser"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Metrics Event Name",
+              "uri": "reference/metrics/models/eventname.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Metrics Server Name",
+              "uri": "reference/metrics/models/servername.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
+      "type": "group",
       "title": "Prescriptions",
-      "uri": "reference/prescription.v1.yaml"
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/prescription.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Claim Prescription",
+              "uri": "reference/prescription.v1.yaml#ClaimPrescription"
+            },
+            {
+              "type": "item",
+              "title": "Create a Prescription",
+              "uri": "reference/prescription.v1.yaml#CreatePrescription"
+            },
+            {
+              "type": "item",
+              "title": "Create new revision",
+              "uri": "reference/prescription.v1.yaml#CreatePrescriptionRevision"
+            },
+            {
+              "type": "item",
+              "title": "Delete Prescription",
+              "uri": "reference/prescription.v1.yaml#DeletePrescription"
+            },
+            {
+              "type": "item",
+              "title": "Get Prescription",
+              "uri": "reference/prescription.v1.yaml#GetPrescriptionById"
+            },
+            {
+              "type": "item",
+              "title": "Get Prescription for User",
+              "uri": "reference/prescription.v1.yaml#GetPrescriptionForUser"
+            },
+            {
+              "type": "item",
+              "title": "List Prescriptions",
+              "uri": "reference/prescription.v1.yaml#ListClinicPrescriptions"
+            },
+            {
+              "type": "item",
+              "title": "List Prescriptions for Patient",
+              "uri": "reference/prescription.v1.yaml#ListPatientPrescriptions"
+            },
+            {
+              "type": "item",
+              "title": "Update Prescription State",
+              "uri": "reference/prescription.v1.yaml#UpdatePrescriptionState"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "Access Code",
+              "uri": "reference/prescription/models/accesscode.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Claim Prescription Request",
+              "uri": "reference/prescription/models/claim.req.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Phone Number",
+              "uri": "reference/prescription/models/phone.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Prescription Revision",
+              "uri": "reference/prescription/models/revision.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Prescriptions State",
+              "uri": "reference/prescription/models/state.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Pump Settings",
+              "uri": "reference/prescription/models/settings.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Revision Attributes",
+              "uri": "reference/prescription/models/attributes.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Revision Attributes",
+              "uri": "reference/prescription/models/writableattributes.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tidepool Loop Prescription",
+              "uri": "reference/prescription/models/prescription.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Weight",
+              "uri": "reference/prescription/models/weight.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "calculator.v1",
+              "uri": "reference/prescription/models/calculator.v1.yaml"
+            }
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
-      "title": "Summaries",
-      "uri": "reference/summary.v1.yaml"
+      "type": "group",
+      "title": "Summary Data",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/summary.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "",
+              "uri": "reference/summary.v1.yaml#post-v1-users-userid-summary"
+            },
+            {
+              "type": "item",
+              "title": "",
+              "uri": "reference/summary.v1.yaml#post-v1-users-userid-summaries"
+            },
+            {
+              "type": "item",
+              "title": "Retrieve summaries for all patients of a clinic",
+              "uri": "reference/summary.v1.yaml#post-v1-clinics-cliniid-summary"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+
+          ]
+        }
+      ]
     },
     {
-      "type": "item",
-      "title": "Tasks",
-      "uri": "reference/task.v1.yaml"
-    },
-    {
-      "type": "item",
-      "title": "Users",
-      "uri": "reference/user.v1.yaml"
-    },
-    {
-      "type": "divider",
-      "title": "Links"
-    },
-    {
-      "type": "item",
-      "title": "GitHub",
-      "uri": "https://github.com/tidepool-org"
-    },
-    {
-      "type": "item",
-      "title": "Tidepool Developer Site",
-      "uri": "https://developer.tidepool.org"
-    },
-    {
-      "type": "item",
-      "title": "Tidepool Marketing Site",
-      "uri": "https://tidepool.org"
+      "type": "group",
+      "title": "Task",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "reference/task.v1.yaml"
+        },
+        {
+          "type": "group",
+          "title": "Operations",
+          "items": [
+            {
+              "type": "item",
+              "title": "Create New Task",
+              "uri": "reference/task.v1.yaml#CreateTask"
+            },
+            {
+              "type": "item",
+              "title": "Delete Task",
+              "uri": "reference/task.v1.yaml#DeleteTask"
+            },
+            {
+              "type": "item",
+              "title": "Get Task",
+              "uri": "reference/task.v1.yaml#GetTask"
+            },
+            {
+              "type": "item",
+              "title": "List Tasks",
+              "uri": "reference/task.v1.yaml#ListTasks"
+            },
+            {
+              "type": "item",
+              "title": "Update Task",
+              "uri": "reference/task.v1.yaml#UpdateTask"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "title": "Models",
+          "items": [
+            {
+              "type": "item",
+              "title": "New Task",
+              "uri": "reference/task/models/newtask.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task",
+              "uri": "reference/task/models/task.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task Data",
+              "uri": "reference/task/models/data.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task Duration",
+              "uri": "reference/task/models/duration.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task Error(s)",
+              "uri": "reference/task/models/error.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task ID",
+              "uri": "reference/task/models/id.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task Name",
+              "uri": "reference/task/models/name.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task Priority",
+              "uri": "reference/task/models/priority.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task State",
+              "uri": "reference/task/models/state.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Task Type",
+              "uri": "reference/task/models/type.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Tasks",
+              "uri": "reference/task/models/tasks.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Update Task",
+              "uri": "reference/task/models/updatetask.v1.yaml"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

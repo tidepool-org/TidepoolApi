@@ -1,0 +1,46 @@
+title: Data Source
+description: >-
+  Data source for diabetes data.
+type: object
+properties:
+  createdTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  dataSetIds:
+    $ref: '../datasetidarray.v1.yaml'
+  earliestDataTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  id:
+    $ref: './id.v1.yaml'
+  lastImportTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  latestDataTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  modifiedTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  providerName:
+    $ref: '../../../auth/models/providers/name.v1.yaml'
+  providerSessionId:
+    $ref: '../../../auth/models/providers/sessionid.v1.yaml'
+  providerType:
+    $ref: '../../../auth/models/providers/type.v1.yaml'
+  revision:
+    type: integer
+    format: int32
+  state:
+    $ref: './state.v1.yaml'
+  userId:
+    $ref: '../../../common/models/tidepooluserid.yaml'
+required:
+  - createdTime
+  - dataSetIds
+  - earliestDataTime
+  - id
+  - lastImportTime
+  - latestDataTime
+  - providerName
+  - providerSessionId
+  - providerType
+  - state
+  - userId
+x-tags:
+  - Data

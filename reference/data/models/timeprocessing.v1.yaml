@@ -1,0 +1,16 @@
+title: Time Processing
+description: |-
+  A string indicating what variety of processing was used to create the `time` and related fields such as `timezoneOffset` on data in this upload.
+
+  For data auditing purposes, we store a string encoding the type of algorithm used to generate the `time`, `timezoneOffset`, and other related fields from the local `deviceTime`. At present, there are only three options for this value:
+  - `none` for data sources that already include a UTC-anchored `time` value. At present, the *only* data source for which this is true is Dexcom G5 or Dexcom G6 data coming through Apple's iOS HealthKit integration.
+  - `across-the-board-timezone` for devices (all BGMs, for example) that cannot have their `deviceTime` values ["bootstrapped" to a UTC `time` value](http://developer.tidepool.io/uploader/docs/BootstrappingToUTC.html); in such cases, we apply a single user-selected timezone to every `deviceTime` "across the board" to generate the `time` value.
+  - `utc-bootstrapping` for devices (most insulin pumps and CGMs) where we use a combination of the user-selected timezone at time of upload, the most recent timestamp on device, and the history of display time changes on the device to infer the correct `time` value for each record.
+type: string
+enum:
+  - none
+  - across-the-board-timezone
+  - utc-bootstrapping
+example: 'utc-bootstrapping'
+x-tags:
+  - Data

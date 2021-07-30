@@ -1,5 +1,6 @@
-title: TagArray
+title: Tag Array
+description: >-
+  An array of tags.
 type: array
-description: An array of `Tag`s
 items:
-  $ref: ./tag.v1.yaml
+  $ref: './tag.v1.yaml'

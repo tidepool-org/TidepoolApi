@@ -1,0 +1,12 @@
+title: New Restricted Token
+description: >-
+  The maximum expiration time is current time plus one hour.
+type: object
+properties:
+  paths:
+    $ref: './paths.v1.yaml'
+  expirationTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+required:
+  - paths
+  - expirationTime

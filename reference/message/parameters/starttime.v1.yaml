@@ -1,5 +1,6 @@
-title: Start Time
-description: Start date/time of the range for messages
+description: >-
+  Start Time.
+  Start date/time of the range for messages
 name: starttime
 in: query
 required: false

@@ -1,0 +1,8 @@
+title: Clinic Share Code
+description: >-
+  Globally unique share code for a clinic.
+  The share code is 3 groups of 4 uppercase alphanumeric characters in each group.
+  Ambiguous characters such as `I` and `1`, or `O` and `0` are excluded.
+type: string
+pattern: '^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{4}-[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{4}-[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{4}$'
+readOnly: true

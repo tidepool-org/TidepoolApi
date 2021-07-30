@@ -1,6 +1,6 @@
-title: Confirmation Key
+description: >-
+  Confirmation Key
 name: key
-description: Confirmation Key
 in: path
 required: true
 schema:

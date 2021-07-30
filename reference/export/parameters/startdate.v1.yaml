@@ -1,6 +1,6 @@
-title: Start Date
+description: >-
+  Start date for the export data
 name: startDate
-description: Start date for the export data
 in: query
 schema:
   $ref: '../../common/models/datetime.v1.yaml'

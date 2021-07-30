@@ -1,0 +1,19 @@
+title: Insulin Formulation
+type: object
+oneOf:
+  - properties:
+      compounds:
+        $ref: './compoundarray.v1.yaml'
+      name:
+        type: string
+        minLength: 1
+        maxLength: 100
+  - properties:
+      simple:
+        $ref: './simple.v1.yaml'
+      name:
+        type: string
+        minLength: 1
+        maxLength: 100
+x-tags:
+  - Data

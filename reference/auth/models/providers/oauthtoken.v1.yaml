@@ -1,0 +1,17 @@
+title: Provider OAuth Token
+description: >-
+  OAuth token from a provider.
+type: object
+properties:
+  accessToken:
+    type: string
+    format: byte
+  refreshToken:
+    type: string
+    format: byte
+  tokenType:
+    type: string
+  expirationTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+required:
+  - accessToken

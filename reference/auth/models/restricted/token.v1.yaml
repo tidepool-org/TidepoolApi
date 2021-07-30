@@ -1,0 +1,22 @@
+title: Restricted Token
+type: object
+properties:
+  createdTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  expirationTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  id:
+    $ref: './id.v1.yaml'
+  modifiedTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  paths:
+    $ref: './paths.v1.yaml'
+  userId:
+    $ref: '../../../common/models/tidepooluserid.yaml'
+required:
+  - createdTime
+  - expirationTime
+  - id
+  - modifiedTime
+  - paths
+  - userId

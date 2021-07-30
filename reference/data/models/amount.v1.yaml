@@ -1,13 +1,13 @@
-x-tags:
-  - data
-required:
-  - units
-  - value
+title: Amount
+type: object
 properties:
   units:
     type: string
   value:
     type: number
     format: double
-title: Amount (Abstract)
-type: object
+required:
+  - units
+  - value
+x-tags:
+  - Data

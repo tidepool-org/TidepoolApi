@@ -1,0 +1,17 @@
+title: Insulin Compound
+type: object
+properties:
+  # TODO: investigate this with Darin!
+  # This `compound.v1.yaml` model includes `formulation.v1.yaml`, which in turn includes `compoundarray.v1.yaml`, which contains `ncompound.v1.yaml`
+  # This creates an infinite recursion, and likely the reason why Stoplight Studio just about dies when loading `../data.v1.yaml`
+  # More concerning is that the Data Service does not appear to have any limit to that recursion during parsing and validation.
+  #formulation:
+  #  $ref: './formulation.v1.yaml'
+  amount:
+    type: number
+    format: double
+    minimum: 0
+required:
+  - amount
+x-tags:
+  - Data

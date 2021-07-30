@@ -1,0 +1,16 @@
+title: Bolus Amount Maximum
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - Units
+  value:
+    type: number
+    minimum: 0
+    maximum: 100
+required:
+  - units
+  - value
+x-tags:
+  - Data

@@ -1,0 +1,19 @@
+title: 'DeviceSensorEvent [Proposed]'
+description: >-
+  A device sensor event.
+allOf:
+  - $ref: './event.v1.yaml'
+  - type: object
+    properties:
+      subType:
+        type: string
+        enum:
+          - sensorEvent
+      eventType:
+        type: string
+        enum:
+          - expired
+          - start
+          - stop
+x-tags:
+  - Data

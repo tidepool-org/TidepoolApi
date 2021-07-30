@@ -1,0 +1,5 @@
+title: Activity Name
+type: string
+minLength: 1
+maxLength: 100
+example: 'Hiking the John Muir Trail'

@@ -1,0 +1,21 @@
+title: Blood Ketone
+description: >-
+  A blood ketone measurement event, always in `mmol/L`
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - bloodKetone
+      units:
+        $ref: './unitsmmol.v1.yaml'
+      value:
+        $ref: './valuemmol.v1.yaml'
+    required:
+      - units
+      - value
+      - type
+x-tags:
+  - Data

@@ -1,0 +1,7 @@
+title: Glucose Trend Rate
+type: number
+format: double
+minimum: -100
+maximum: 100
+x-tags:
+  - Data

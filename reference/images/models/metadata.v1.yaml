@@ -1,12 +1,10 @@
 title: Image Metadata
+description: >-
+  The user metadata for an image.
 type: object
-description: The user metadata for an image.
 properties:
   name:
-    type: string
-    description: A name for the image.
-    minLength: 1
-    maxLength: 100
+    $ref: './name.v1.yaml'
   associations:
     $ref: '../../common/models/associationarray.v1.yaml'
   location:
@@ -15,24 +13,3 @@ properties:
     $ref: '../../data/models/metadata.v1.yaml'
   origin:
     $ref: '../../common/models/origin.v1.yaml'
-example:
-  name: Rover being funny!
-  associations:
-    - type: url
-      url: https://disneyland.disney.go.com/
-      reason: Disneyland is the greatest place on earth!
-  location:
-    name: Disneyland Park, Anaheim, CA, USA
-    gps:
-      latitude:
-        units: degrees
-        value: 33.812101
-      longitude:
-        units: degrees
-        value: -117.918975
-  metadata:
-    animal: dog
-  origin:
-    id: AA5634B2-387A-415E-AB32-166C9EDAC32D
-    name: com.apple.HealthKit
-    type: service

@@ -1,0 +1,7 @@
+title: Blob Size
+description: >-
+  Size of the binary blob, in bytes
+type: integer
+format: int64
+readOnly: true
+example: 1024

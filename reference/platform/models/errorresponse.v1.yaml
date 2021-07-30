@@ -3,6 +3,7 @@ type: object
 properties:
   code:
     type: integer
+    format: int32
     description: Error reason code
   reason:
     type: string

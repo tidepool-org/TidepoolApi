@@ -1,0 +1,7 @@
+title: Postal Code
+description: >-
+  Postal code.
+  In the U.S., typically the zip code such as `94301` or `94301-1704`.
+type: string
+minLength: 1
+example: '94301'

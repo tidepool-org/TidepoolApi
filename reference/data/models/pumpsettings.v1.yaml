@@ -9,9 +9,13 @@ description: |-
   - insulinSensitivity/insulinSensitivities
   - add properties of all of the above
 allOf:
-  - $ref: ./base.v1.yaml
+  - $ref: './base.v1.yaml'
   - type: object
     properties:
+      type:
+        type: string
+        enum:
+          - pumpSettings
       activeSchedule:
         type: string
         description: "A string value encoding the name of the PWD's active basal schedule."
@@ -21,7 +25,7 @@ allOf:
         type: object
         description: "A set of key-value pairs encoding the PWD's programmed basal schedules, where each key is a basal schedule name and each value is an array of basal schedule segment objects."
       bgTarget:
-        $ref: ./bloodglucosetarget.v1.yaml
+        $ref: './blood/glucose/target.v1.yaml'
       bgTargets:
         type: object
       bolus:
@@ -185,7 +189,7 @@ allOf:
           - rapidAdult
           - rapidChild
           - fiasp
-    required:
-      - activeSchedule
+required:
+  - activeSchedule
 x-tags:
-  - data
+  - Data

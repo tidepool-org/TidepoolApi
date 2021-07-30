@@ -1,7 +1,8 @@
-title: Image Extension
+description: >-
+  Image Extension.
+  Mime type extension of the requested rendition.
 name: extension
 in: path
-description: Mime type extension of the requested rendition.
 required: true
 schema:
   type: string

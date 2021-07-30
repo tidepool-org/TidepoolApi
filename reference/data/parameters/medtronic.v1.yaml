@@ -1,0 +1,7 @@
+description: >-
+  Medtronic Data
+name: medtronic
+in: query
+schema:
+  type: boolean
+  default: false

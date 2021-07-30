@@ -1,68 +1,9 @@
 title: Distance
+description: >-
+  Distance, expressed as `meters`, `kilometers`, `feet`, `yards`, or `miles`.
 oneOf:
-  - properties:
-      units:
-        type: string
-        enum:
-          - feet
-      value:
-        type: number
-        format: float
-        minimum: 0
-        maximum: 528000
-    required:
-      - units
-      - value
-  - properties:
-      units:
-        type: string
-        enum:
-          - kilometers
-      value:
-        type: number
-        format: float
-        minimum: 0
-        maximum: 160.9344
-    required:
-      - units
-      - value
-  - properties:
-      units:
-        type: string
-        enum:
-          - meters
-      value:
-        type: number
-        format: float
-        minimum: 0
-        maximum: 160934.4
-    required:
-      - units
-      - value
-  - properties:
-      units:
-        type: string
-        enum:
-          - miles
-      value:
-        type: number
-        format: float
-        minimum: 0
-        maximum: 100
-    required:
-      - units
-      - value
-  - properties:
-      units:
-        type: string
-        enum:
-          - yards
-      value:
-        type: number
-        format: float
-        minimum: 0
-        maximum: 176000
-    required:
-      - units
-      - value
-type: object
+  - $ref: './distance/meters.v1.yaml'
+  - $ref: './distance/kilometers.v1.yaml'
+  - $ref: './distance/feet.v1.yaml'
+  - $ref: './distance/yards.v1.yaml'
+  - $ref: './distance/miles.v1.yaml'

@@ -1,14 +1,14 @@
 # Usage
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
-	1. [Import the Utility](#import-the-utility)
-	2. [Initialize the Utility](#initialize-the-utility)
-	3. [Employ the Utility's fill-in UTC information](#employ-the-utility's-fillin-utc-information)
-2. [Tracking the time generation method](#tracking-the-time-generation-method)
-3. [Expectations for time change events](#expectations-for-time-change-events)
-4. [Keep reading](#keep-reading)
+    1. [Import the Utility](#import-the-utility)
+    2. [Initialize The Utility](#initialize-the-utility)
+    3. [Employ The Utility'S Fill-In UTC Information](#employ-the-utility's-fillin-utc-information)
+2. [Tracking The Time Generation Method](#tracking-the-time-generation-method)
+3. [Expectations For Time Change Events](#expectations-for-time-change-events)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -20,7 +20,7 @@ For example, each driver should: import the Utility; initialize the Utility; and
 
 ---
 
-### Import the Utility
+### Import The Utility
 
 ```javascript
 var TZOUtil = require('lib/TimezoneOffsetUtil');
@@ -28,7 +28,7 @@ var TZOUtil = require('lib/TimezoneOffsetUtil');
 
 ---
 
-### Initialize the Utility
+### Initialize The Utility
 
 Initialize the Utility with:
 
@@ -42,7 +42,7 @@ cfg.tzoUtil = new TZOUtil(timezone, mostRecent, changes);
 
 ---
 
-### Employ the Utility's fill-in UTC information
+### Employ The Utility'S Fill-In UTC Information
 
 Employ the Utility’s fill-in UTC info to fill in the:
 
@@ -60,8 +60,8 @@ To employ this, you will need the following pieces of time-related information a
 (`datum.index`)
 
 3. A JavaScript Date object (or equivalent) resulting from parsing the device's native datetime format using:
-	* `sundial.buildTimestamp` or
-	* `sundial.parseFromFormat` (usually this is the object used to produce device time via `sundial.formatDeviceTime`)
+    * `sundial.buildTimestamp` or
+    * `sundial.parseFromFormat` (usually this is the object used to produce device time via `sundial.formatDeviceTime`)
 
 ```javascript
 _.each(data, function(datum) {
@@ -71,21 +71,21 @@ _.each(data, function(datum) {
 
 ---
 
-## Tracking the time generation method
+## Tracking The Time Generation Method
 
 Each instance of the Timezone Offset Utility keeps track of which method for generating the time field is being employed — BtUTC or [across-the-board application](../btutc.md#acrosstheboard-timezone-default) of a timezone. The method of time generation is publicly available through the type property on the instance (i.e. `cfg.tzoUtil.type`) and must be retrieved and provided as the time processing field of [upload metadata](../../device-data/data-types/pump-settings/upload.md).
 
 ---
 
-## Expectations for time change events
+## Expectations For Time Change Events
 
 The partially-built time change events composing the array of changes is provided as the third argument to a new Timezone Offset Utility instance. All timestamps should be [ISO 8601-formatted](../glossary.md#iso-8601), without timezone offset information. The following listed fields should be set through use of Tidepool Uploader's object builder:
 
 * Device time = timestamp
-*	Change = an object that itself has the following fields:
-	* From = timestamp
-	* To = timestamp
-	* Method = string (optional)
+* Change = an object that itself has the following fields:
+  * From = timestamp
+  * To = timestamp
+  * Method = string (optional)
 * jsDate = a JavaScript Date constructed from the **to** time
 * Index = an index (with an expectation that all indices be monotonically increasing with event order) for the datum that allows it to be sorted on the device in the order that the events actually happened (which will not match device time order in the case of date & time settings changes on the device)
 
@@ -107,12 +107,12 @@ The fill-in UTC info method from the usage example above also mutates the object
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Bootstrapping to UTC](../btutc.md)
-* [Clock drift offset](./clock-drift.md)
-* [Conversion offset](./conversion.md)
-* [Timezone offset](./timezone.md)
-* [Datetime glossary](../glossary.md)
-* [Datetime guide](../../datetime.md)
-* [Incorrect assumptions about datetime](../assumptions.md)
+* [Clock Drift Offset](./clock-drift.md)
+* [Conversion Offset](./conversion.md)
+* [Timezone Offset](./timezone.md)
+* [Datetime Glossary](../glossary.md)
+* [Datetime Guide](../../datetime.md)
+* [Incorrect Assumptions About Datetime](../assumptions.md)

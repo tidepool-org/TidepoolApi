@@ -1,0 +1,12 @@
+title: Update Event
+description: >-
+  The time that that the device was last used to provide diabetes data.
+type: object
+properties:
+  type:
+    $ref: './uploadtype.v1.yaml'
+  time:
+    $ref: '../../common/models/datetime.v1.yaml'
+required:
+  - type
+  - time

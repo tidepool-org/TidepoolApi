@@ -1,5 +1,5 @@
-title: Metadata Field Name
-description: Field Name
+description: >-
+  Metadata Field Name
 name: fieldName
 in: path
 required: true

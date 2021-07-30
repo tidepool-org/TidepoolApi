@@ -1,0 +1,18 @@
+title: Accuracy (meters)
+description: >-
+  Accuracy of a measurement, expressed as meters.
+type: object
+properties:
+  value:
+    type: number
+    format: double
+    minimum: 0
+    maximum: 1000
+    example: 42
+  units:
+    type: string
+    enum:
+      - meters
+    example: 'meters'
+required:
+  - units

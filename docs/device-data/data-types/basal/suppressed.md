@@ -1,64 +1,46 @@
 # Suppressed Basals (`suppressed`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary: scheduled](#quick-summary-scheduled)
-2. [Quick summary: automated](#quick-summary-automated)
-3. [Quick summary: temporary](#quick-summary-temporary)
+1. [Quick Summary: scheduled](#quick-summary-scheduled)
+2. [Quick Summary: automated](#quick-summary-automated)
+3. [Quick Summary: temporary](#quick-summary-temporary)
 4. [Overview](#overview)
-5. [Supprressed across schedule boundaries](#suppressed-across-schedule-boundaries)
-6. [Suppressed: when a temp or suspend is edited](#suppressed-when-a-temp-or-suspend-is-edited)
-7. [Nested suppressed in suspend basals](#nested-suppressed-in-suspend-basals)
-8. [Supressed suspend basals](#suppressed-suspend-basals)
-9. [Keep reading](#keep-reading)
+5. [Suppressed Across Schedule Boundaries](#suppressed-across-schedule-boundaries)
+6. [Suppressed: When A Temp Or Suspend Is Edited](#suppressed-when-a-temp-or-suspend-is-edited)
+7. [Nested Suppressed In Suspend Basals](#nested-suppressed-in-suspend-basals)
+8. [Supressed Suspend Basals](#suppressed-suspend-basals)
+9. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary: scheduled
+## Quick Summary: scheduled
 
-```json json_schema
-{
-  "title": "Suppressed Basal: scheduled",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/basalsuppressedscheduled.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/basal/suppressed/scheduled.v1.yaml'
 ```
 
 ---
 
-## Quick summary: automated
+## Quick Summary: automated
 
-```json json_schema
-{
-  "title": "Suppressed basal: automated",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/basalsuppressedautomated.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/basal/suppressed/automated.v1.yaml'
 ```
 
 ---
 
-## Quick summary: temporary
+## Quick Summary: temporary
 
-```json json_schema
-{
-  "title": "Supressed basal: temporary",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/basalsuppressedtemporary.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/basal/suppressed/temporary.v1.yaml'
 ```
 
 ---
 
 ## Overview
 
-A suppressed basal is a way to essentially replace one basal with another basal. For example, if a PwD's blood glucose is falling, they may program a temp basal to try and prevent hypoglycemia. By programming a temp basal, they are suppressing a scheduled basal, which was previously in effect. A suppressed can apply to all basal types except a suspend — [see here](#suppressed-suspend-basals). 
+A suppressed basal is a way to essentially replace one basal with another basal. For example, if a PwD's blood glucose is falling, they may program a temp basal to try and prevent hypoglycemia. By programming a temp basal, they are suppressing a scheduled basal, which was previously in effect. A suppressed can apply to all basal types except a suspend — [see here](#suppressed-suspend-basals).
 
 A suppressed may contain the following properties:
 
@@ -72,7 +54,7 @@ Some insulin pump data protocols let us track various aspects of the basal that 
 If the current active basal is a suspend and the suppressed is a temp, then the following temp fields may also be present on the suppressed object:
 
 * [Percent](./device-data/data-types/basal/temp.md#percent-percent)
-* [Nested suppressed object](#nested-suppressed-in-suspend-basals)
+* [Nested Suppressed Object](#nested-suppressed-in-suspend-basals)
 
 <!-- theme: warning -->
 
@@ -80,7 +62,7 @@ If the current active basal is a suspend and the suppressed is a temp, then the 
 
 ---
 
-## Suppressed across schedule boundaries
+## Suppressed Across Schedule Boundaries
 
 When a temp or suspend basal crosses a basal schedule boundary, the original programmed basal rate *changes* in accordance with the schedule change. This necessitates splitting the temp or suspend into multiple segments: each type of basal; the sum of all segments' durations; and the total duration of the temp or suspend (as reported by the insulin pump).
 
@@ -236,7 +218,7 @@ For a suspend that crosses scheduled boundaries, the examples would be very simi
 
 ---
 
-## Suppressed: when a temp or suspend is edited
+## Suppressed: When A Temp Or Suspend Is Edited
 
 To date, we know of one insulin pump manufacturer (Medtronic) that allows for *editing* a temp basal while it is in effect. In principle, the same could apply to a suspend programmed with a duration (as required for OmniPod). For the purposes of our temp basal model, we treat the editing of a temp basal as a cancellation, followed by the immediate scheduling of a second temp. We *do not* consider the first temp basal to be suppressed by the second edited temp. For example, consider a user running a "flat rate" basal schedule:
 
@@ -306,7 +288,7 @@ The second follows immediately,  but carries no indication that it is an "edited
 
 ---
 
-## Nested suppressed in suspend basals
+## Nested Suppressed In Suspend Basals
 
 Because a suspend can occur when a temp is in effect, there is the possibility of **nested** suppressed in a suspend basal. The suppressed on the suspend basal contains information about the temp that was in effect *before* the suspend was programmed or triggered.
 
@@ -345,7 +327,7 @@ Just as with a single level of suppressed, nested suppressed should be adjusted 
 
 ---
 
-## Supressed suspend basals
+## Supressed Suspend Basals
 
 A suspend basal can embed a scheduled, automatic or temporary suppressed basal, *even if that basal already contains a suppressed basal event*. For example:
 
@@ -355,13 +337,13 @@ A suspend basal can embed a scheduled, automatic or temporary suppressed basal, 
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Automated basals](./device-data/data-types/basal/automated.md)
+* [Automated Basals](./device-data/data-types/basal/automated.md)
 * [Basal](./device-data/data-types/automated.md)
-* [Common fields](./device-data/common-fields.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
-* [Scheduled basals](./device-data/data-types/basal/scheduled.md)
-* [Suspend basals](./device-data/data-types/basal/suspend.md)
-* [Temporary basals](./device-data/data-types/basal/temp.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
+* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
+* [Suspend Basals](./device-data/data-types/basal/suspend.md)
+* [Temporary Basals](./device-data/data-types/basal/temp.md)
 * [Units](./device-data/units.md)

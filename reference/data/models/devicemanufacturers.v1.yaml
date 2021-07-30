@@ -1,0 +1,13 @@
+title: Device Manufacturers
+description: |-
+  An array of string tags indicating the manufacturer(s) of the device.
+
+  In order to avoid confusion resulting from referring to a single manufacturer with more than one name—for example, using both 'Minimed' and 'Medtronic' interchangeably—we restrict the set of strings used to refer to manufacturers to the set listed above and enforce *exact* string matches (including casing).
+
+  `deviceManufacturers` is an array of one or more string "tags" because there are devices resulting from a collaboration between more than one manufacturer, such as the Tandem G4 insulin pump with CGM integration (a collaboration between `Tandem` and `Dexcom`).
+type: array
+items:
+  type: string
+example: [ 'DeviceCo' ]
+x-tags:
+  - Data

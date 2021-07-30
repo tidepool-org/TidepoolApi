@@ -1,11 +1,11 @@
 # Clock Drift Offset (`clockDriftOffset`)
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
-2. [Adjustments for clock drift](#adjustments-for-clock-drift)
-3. [Clock drift offset starts at zero](#clock-drift-offset-starts-at-zero)
-4. [Keep reading](#keep-reading)
+2. [Adjustments For Clock Drift](#adjustments-for-clock-drift)
+3. [Clock Drift Offset Starts At Zero](#clock-drift-offset-starts-at-zero)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -18,7 +18,7 @@ The clock drift offset was introduced to handle:
 
 ---
 
-### Adjustments for clock drift
+### Adjustments For Clock Drift
 
 Diabetes devices often suffer from “clock drift,” and some users are in the habit of regularly correcting this drift on their devices. Clock drift adjustments can happen unintentionally due to the way device UIs often work: by allowing the user to set only the hour and minutes in the display time, changes the user makes will never be precisely x number of hours earlier or later, but rather x + some seconds. That difference of seconds will be perceived by the BtUTC code as clock drift adjustment.
 
@@ -28,7 +28,7 @@ When a user adjusts the clock drift at the same time as making a change related 
 
 ---
 
-### Clock Drift Offset Starts at Zero
+### Clock Drift Offset Starts At Zero
 
 An assumption built into the current code is that the clock drift offset starts at zero for the most recent data upload on the device. This is a simplifying assumption; in most cases, there is probably a small difference between the user’s device time and computer time. As Tidepool continues building a more robust interface, we may introduce a future version that corrects for this difference immediately.
 
@@ -36,12 +36,12 @@ For the current version of BtUTC, it is essential the user selects the timezone 
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Bootstrapping to UTC](../btutc.md)
-* [BtUTC usage](./usage.md)
-* [Conversion offset](./conversion.md)
-* [Timezone offset](./timezone.md)
-* [Datetime glossary](../glossary.md)
-* [Datetime guide](../../datetime.md)
-* [Incorrect assumptions about datetime](../assumptions.md)
+* [BtUTC Usage](./usage.md)
+* [Conversion Offset](./conversion.md)
+* [Timezone Offset](./timezone.md)
+* [Datetime Glossary](../glossary.md)
+* [Datetime Guide](../../datetime.md)
+* [Incorrect Assumptions About Datetime](../assumptions.md)

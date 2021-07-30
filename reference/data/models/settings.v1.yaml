@@ -1,14 +1,16 @@
 title: Settings
-type: object
-properties:
-  name:
-    type: string
-    minLength: 1
-    maxLength: 1000
-  loopAppVersion:
-    type: string
-    minLength: 1
-    maxLength: 1000
 description: Global Settings Object
+allOf:
+  - $ref: './base.v1.yaml'
+  - type: object
+    properties:
+      name:
+        type: string
+        minLength: 1
+        maxLength: 1000
+      loopAppVersion:
+        type: string
+        minLength: 1
+        maxLength: 1000
 x-tags:
-  - data
+  - Data

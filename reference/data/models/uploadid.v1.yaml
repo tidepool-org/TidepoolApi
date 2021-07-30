@@ -1,0 +1,8 @@
+title: Upload ID
+type: string
+pattern: '^([0-9a-f]{32}|upid_[0-9a-f]{12})$'
+minLength: 17
+maxLength: 32
+example: '0d92d5c1c22117a18f3620b9e24d3c06'
+x-tags:
+  - Data

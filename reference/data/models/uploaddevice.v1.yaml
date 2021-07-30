@@ -1,0 +1,16 @@
+title: Upload Device
+description: The device used to provide diabetes data
+type: object
+properties:
+  deviceManufacturers:
+    $ref: './devicemanufacturers.v1.yaml'
+  deviceModel:
+    $ref: './devicemodelname.v1.yaml'
+  deviceSerialNumber:
+    $ref: './deviceserialnumber.v1.yaml'
+  deviceTags:
+    $ref: './devicetags.v1.yaml'
+additionalProperties: false
+default: {}
+x-tags:
+  - Data

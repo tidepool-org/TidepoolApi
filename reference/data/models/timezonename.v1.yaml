@@ -1,0 +1,7 @@
+title: Time Zone
+description: >-
+  A string timezone name from the [IANA timezone database](https://www.iana.org/time-zones)
+type: string
+example: 'Europe/London'
+x-tags:
+  - Data

@@ -1,0 +1,33 @@
+title: Blood Glucose Target Value (mg/dL)
+description: >-
+  Blood glucose target values, in `mg/dL`
+type: object
+properties:
+  high:
+    type: number
+    minimum: 0
+    maximum: 1000
+    description: |-
+      An integer encoding the upper bound of a PWD's blood glucose target.
+
+      The minimum value should be >= `low` or `target`, whichever present
+  low:
+    type: number
+    minimum: 0
+    maximum: 1000
+    description: "An integer encoding the lower bound of a PWD's blood glucose target."
+  range:
+    type: number
+    minimum: 0
+    maximum: 1000
+    description: |-
+      An integer encoding the allowed deviation above or below the PWD's target blood glucose.
+
+      Maximum should be min(`target`, 1000 - `target`) such that `target`-`range` >= 0 and `target`+`range` <= 1000
+  target:
+    type: number
+    minimum: 0
+    maximum: 1000
+    description: "An integer encoding the PWD's target blood glucose as a single value."
+x-tags:
+  - Data

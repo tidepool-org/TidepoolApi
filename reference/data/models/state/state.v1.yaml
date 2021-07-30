@@ -1,0 +1,13 @@
+title: State
+type: string
+enum:
+  - alcohol
+  - cycle
+  - hyperglycemiaSymptoms
+  - hypoglycemiaSymptoms
+  - illness
+  - other
+  - stress
+example: 'alcohol'
+x-tags:
+  - Data

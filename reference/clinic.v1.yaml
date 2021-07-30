@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Clinic service
+  title: Clinics API
   version: '1.0'
   description: 'Web service that stores information about clinics, clinicians and their patients'
   contact:
@@ -10,6 +10,9 @@ info:
   license:
     name: BSD-2-Clause
     url: 'https://github.com/tidepool-org/clinic/blob/master/LICENSE'
+  x-logo: # ReDoc extension
+    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
+    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/clinic/
 
 servers:
@@ -555,7 +558,7 @@ paths:
       description: Retrieve a list of the outstanding invites to join a clinic
   '/v1/clinicians/{userId}/invites/{inviteId}':
     parameters:
-      - $ref: ./summary.v1.yaml#/components/parameters/userId
+      - $ref: '#/components/parameters/userId'
       - $ref: '#/components/parameters/inviteId'
     delete:
       summary: Dismiss Clinician Invite
@@ -622,14 +625,8 @@ components:
         $ref: '#/components/schemas/Patient'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
-    ClinicianRoles:
-      $ref: ./clinic/models/clinicianroles.v1.yaml
-    PhoneNumber:
-      $ref: ./clinic/models/phonenumber.v1.yaml
     PatientPermissions:
       $ref: ./clinic/models/patientpermissions.v1.yaml
-    Id:
-      $ref: ./common/models/objectid.v1.yaml
     PatientClinicRelationship:
       title: PatientClinicRelationship
       type: object
@@ -698,8 +695,7 @@ components:
       in: path
       required: true
       schema:
-        type: string
-        pattern: '^[a-f0-9]{24}$'
+        $ref: './clinic/models/clinicid.v1.yaml'
     clinicianId:
       name: clinicianId
       in: path

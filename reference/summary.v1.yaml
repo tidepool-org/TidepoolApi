@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  title: Summary
+  title: Summary Data
   version: '1.0'
   description: |-
-    ![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
+    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
 
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
@@ -16,6 +16,9 @@ info:
   license:
     name: 'BSD 2-Clause "Simplified" License'
     url: 'https://github.com/tidepool-org/summary/blob/master/LICENSE'
+  x-logo: # ReDoc extension
+    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
+    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/summary
 
 servers:
@@ -32,64 +35,80 @@ servers:
   - url: 'https://api.tidepool.org'
     description: production
 
+security:
+  - sessionToken: []
+
 tags:
   - name: Summary
     description: |-
-      Summary data service
+      Summary Data
+
+      This service was a prototype for separate service that calculates summary statistics for user accounts.
+      It is replaced by additional APIs exposed by the `data` service, and executed by the `task` service.
+      This documentation is for archival only.
 
 paths:
   '/v1/users/{userId}/summary':
     parameters:
       - $ref: './common/parameters/tidepooluserid.yaml'
     post:
-      tags: []
-      summary: ''
-      operationId: post-v1-users-userid-summary
+      operationId: GetUserSummary
+      summary: Get User Summary
+      description: >-
+        Retrieves summary information for the user specified by `userId`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './summary/models/summaryrequest.v1.yaml'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SummaryResponse'
-      description: Retrieve summary information
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SummaryRequest'
+                $ref: './summary/models/summary.v1.yaml'
+      tags:
+        - Summary
+      deprecated: true
+
   '/v1/users/{userId}/summaries':
     parameters:
       - $ref: './common/parameters/tidepooluserid.yaml'
     post:
-      tags: []
-      summary: ''
-      operationId: post-v1-users-userid-summaries
+      operationId: GetUserSharedSummaries
+      summary: Get User's Shared Summaries
+      description: >-
+        Retrieves summary information for all of the users who have granted access permission to the user specified by `userId`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './summary/models/summaryrequest.v1.yaml'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SummaryResponse'
-      description: Retrieve summary information for user who have given permission to this user
+                $ref: './summary/models/summary.v1.yaml'
+      tags:
+        - Summary
+      deprecated: true
+
+  '/v1/clinics/{clinicId}/summaries':
+    parameters:
+      - $ref: './clinic/parameters/clinicid.v1.yaml'
+    post:
+      operationId: GetClinicPatientSummary
+      summary: Get Clinic Patient Summary
+      description: >-
+        Returns summary information for all patients of a clinic.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SummaryRequest'
-  '/v1/clinics/{clinicid}/summaries':
-    parameters:
-      - schema:
-          type: string
-        name: clinicid
-        in: path
-        required: true
-    post:
-      summary: Retrieve summaries for all patients of a clinic
-      security:
-        - sessionToken: []
-      tags: []
+              $ref: './summary/models/summaryrequest.v1.yaml'
       responses:
         '200':
           description: OK
@@ -98,450 +117,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SummaryResponse'
-              examples: {}
-      operationId: post-v1-clinics-cliniid-summary
-      description: Return summary information for all patients of a clinic
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SummaryRequest'
+                  $ref: './summary/models/summary.v1.yaml'
+      tags:
+        - Summary
+      deprecated: true
+
 components:
-  schemas:
-    SummaryPeriod:
-      type: object
-      title: Summary period
-      description: Summary period
-      default: {}
-      additionalProperties: false
-      x-examples:
-        example-1:
-          end: '2020-08-12T00:00:00Z'
-          length: week
-          start: '2020-08-05T00:00:00Z'
-          updated: '2020-08-18T00:55:37.5193082Z'
-      properties:
-        start:
-          type: string
-          format: date-time
-          description: The starting date-time (inclusive).
-        updated:
-          type: string
-          format: date-time
-          description: The time that these statistics were last updated for the given period.
-        end:
-          type: string
-          format: date-time
-          description: The ending date-time (exclusive)
-        length:
-          type: string
-          enum:
-            - day
-            - week
-          description: The length of the sample period
-      required:
-        - start
-        - updated
-        - end
-        - length
-    UpdateEvent:
-      type: object
-      title: Last Update Time
-      description: The time that that the device was last used to provide diabetes data
-      default: {}
-      additionalProperties: false
-      x-examples:
-        example-1:
-          time: '2020-08-18T08:29:02Z'
-          type: upload
-      properties:
-        type:
-          $id: '#/properties/type'
-          type: string
-          enum:
-            - smbg
-            - cbg
-          title: Uploaded Data Type
-          description: The data type that was uploaded.
-          default: ''
-          examples:
-            - smbg
-        time:
-          $id: '#/properties/time'
-          type: string
-          format: date-time
-          title: Last Upload Time
-          description: The time of the most recent upload.
-          default: ''
-          examples:
-            - '2020-06-20T14:20:02Z'
-      required:
-        - type
-        - time
-    Quantile:
-      type: object
-      title: Quantile
-      description: |
-        A quantile of samples.  Observe that the count is optional.  Some
-        implementation may not maintain exact counts.
-      additionalProperties: false
-      x-examples:
-        example:
-          count: 838
-          name: veryHigh
-          percentage: 2.554878
-          threshold: 250
-      properties:
-        name:
-          type: string
-          description: The name of the quantile.
-        threshold:
-          type: number
-          description: The threshold of the quantile.
-          format: float
-          minimum: 0
-          maximum: 1000
-        percentage:
-          type: number
-          description: The percentage of samples below the threshold value.
-          format: float
-          minimum: 0
-          maximum: 100
-        count:
-          type: integer
-          description: The number of values below the threshold value.
-      required:
-        - name
-        - threshold
-        - percentage
-    GlucoseSummary:
-      type: object
-      title: Summary statistics
-      description: Summary diabetes statistics
-      default: {}
-      additionalProperties: false
-      x-examples:
-        example-1:
-          period:
-            end: '2020-08-12T00:00:00Z'
-            length: week
-            start: '2020-08-05T00:00:00Z'
-            updated: '2020-08-18T00:55:37.5193082Z'
-          stats:
-            count: 328
-            mean: 155.55234
-            quantiles:
-              - count: 838
-                name: veryHigh
-                percentage: 2.554878
-                threshold: 250
-              - count: 564
-                name: high
-                percentage: 1.7195122
-                threshold: 180
-              - count: 177
-                name: low
-                percentage: 0.53963417
-                threshold: 70
-              - count: 104
-                name: veryLow
-                percentage: 0.31707317
-                threshold: 54
-            units: mg/dl
-      properties:
-        period:
-          $ref: '#/components/schemas/SummaryPeriod'
-        stats:
-          $ref: '#/components/schemas/SummaryStatistics'
-      required:
-        - period
-        - stats
-    SummaryRequest:
-      title: Summary request
-      description: "Request a set of named quantiles over a set of periods.  The named quantiles MUST include the names: \"veryHigh\", \"high\", \"low\", \"veryLow\". Other named quantiles MAY be provided. \n"
-      default: {}
-      additionalProperties: false
-      type: object
-      x-examples:
-        example-1:
-          units: mg/dl
-          quantiles:
-            - name: veryHigh
-              threshold: 250
-            - name: high
-              threshold: 180
-            - name: low
-              threshold: 70
-            - name: veryLow
-              threshold: 54
-          period:
-            length: week
-            numPeriods: 2
-      properties:
-        units:
-          $ref: '#/components/schemas/Units'
-        quantiles:
-          type: array
-          items:
-            type: object
-            additionalProperties: false
-            properties:
-              name:
-                type: string
-                description: The name of the quantile.
-              threshold:
-                type: number
-                description: The threshold value for the quantiles.  All samples must be below the threshold to be included in the count.
-                format: float
-            required:
-              - name
-              - threshold
-        period:
-          type: object
-          required:
-            - length
-            - numPeriods
-          properties:
-            length:
-              type: string
-              example: week
-              enum:
-                - day
-                - week
-            numPeriods:
-              type: integer
-              minimum: 0
-      required:
-        - units
-        - quantiles
-        - period
-    SummaryStatistics:
-      type: object
-      title: Summary statistics
-      description: Summary diabetes statistics
-      default: {}
-      additionalProperties: false
-      x-examples:
-        example-1:
-          count: 302
-          mean: 154.7332
-          quantiles:
-            - count: 838
-              name: veryHigh
-              percentage: 2.7748344
-              threshold: 250
-            - count: 564
-              name: high
-              percentage: 1.8675497
-              threshold: 180
-            - count: 177
-              name: low
-              percentage: 0.5860927
-              threshold: 70
-            - count: 104
-              name: veryLow
-              percentage: 0.34437087
-              threshold: 54
-          units: mg/dl
-      properties:
-        mean:
-          type: number
-          title: Mean glucose
-          description: Mean glucose over samples in period
-        units:
-          $ref: '#/components/schemas/Units'
-        count:
-          type: integer
-          minimum: 0
-          description: Total number of samples in period.
-        quantiles:
-          type: array
-          description: An array of quantile measurements.
-          items:
-            $ref: '#/components/schemas/Quantile'
-      required:
-        - mean
-        - units
-        - count
-        - quantiles
-    SummaryResponse:
-      type: object
-      title: Summary response
-      description: 'A summary of the most recent diabetes data for a set of users. '
-      default: {}
-      additionalProperties: false
-      x-examples:
-        example-1:
-          activity:
-            - client:
-                name: Tidepool Mobile 99.3
-                platform: windows
-              device:
-                deviceManufacturers:
-                  - dexcom
-                deviceModel: G6
-                deviceSerialNumber: '0xfeedbeef'
-              event:
-                time: '2020-08-18T08:29:02Z'
-                type: upload
-          glucose:
-            - period:
-                end: '2020-08-19T00:00:00Z'
-                length: week
-                start: '2020-08-12T00:00:00Z'
-                updated: '2020-08-18T00:55:37.5193082Z'
-              stats:
-                count: 302
-                mean: 154.7332
-                quantiles:
-                  - count: 838
-                    name: veryHigh
-                    percentage: 2.7748344
-                    threshold: 250
-                  - count: 564
-                    name: high
-                    percentage: 1.8675497
-                    threshold: 180
-                  - count: 177
-                    name: low
-                    percentage: 0.5860927
-                    threshold: 70
-                  - count: 104
-                    name: veryLow
-                    percentage: 0.34437087
-                    threshold: 54
-                units: mg/dl
-            - period:
-                end: '2020-08-12T00:00:00Z'
-                length: week
-                start: '2020-08-05T00:00:00Z'
-                updated: '2020-08-18T00:55:37.5193082Z'
-              stats:
-                count: 328
-                mean: 155.55234
-                quantiles:
-                  - count: 838
-                    name: veryHigh
-                    percentage: 2.554878
-                    threshold: 250
-                  - count: 564
-                    name: high
-                    percentage: 1.7195122
-                    threshold: 180
-                  - count: 177
-                    name: low
-                    percentage: 0.53963417
-                    threshold: 70
-                  - count: 104
-                    name: veryLow
-                    percentage: 0.31707317
-                    threshold: 54
-                units: mg/dl
-            - period:
-                end: '2020-08-05T00:00:00Z'
-                length: week
-                start: '2020-07-29T00:00:00Z'
-                updated: '2020-08-18T00:55:37.5193082Z'
-              stats:
-                count: 328
-                mean: 154.47261
-                quantiles:
-                  - count: 838
-                    name: veryHigh
-                    percentage: 2.554878
-                    threshold: 250
-                  - count: 564
-                    name: high
-                    percentage: 1.7195122
-                    threshold: 180
-                  - count: 177
-                    name: low
-                    percentage: 0.53963417
-                    threshold: 70
-                  - count: 104
-                    name: veryLow
-                    percentage: 0.31707317
-                    threshold: 54
-                units: mg/dl
-          userid: meme
-      properties:
-        activity:
-          $id: '#/properties/activity'
-          type: array
-          title: Recent Upload Activity Summary
-          description: A summary of which devices were used and when to upload diabetes data
-          default: []
-          additionalItems: false
-          items:
-            $ref: '#/components/schemas/UploadActivity'
-        glucose:
-          type: array
-          title: Recent Statisical Summaries
-          description: Summary of recent glucose information.
-          items:
-            $ref: '#/components/schemas/GlucoseSummary'
-        userid:
-          $ref: '#/components/schemas/UserId'
-      required:
-        - activity
-        - glucose
-        - userid
-    UploadActivity:
-      type: object
-      title: Recent Upload Activity
-      description: A report on when a diabetes device was most recently used
-      additionalProperties: false
-      properties:
-        client:
-          $ref: '#/components/schemas/Client'
-        device:
-          $ref: '#/components/schemas/Device'
-        event:
-          $ref: '#/components/schemas/UpdateEvent'
-      x-examples:
-        example-1:
-          client:
-            name: Tidepool Mobile 99.3
-            platform: windows
-          device:
-            deviceManufacturers:
-              - dexcom
-            deviceModel: G6
-            deviceSerialNumber: '0xfeedbeef'
-          event:
-            time: '2020-08-18T08:29:02Z'
-            type: upload
-    Client:
-      $ref: ./data/models/clientsoftware.yaml
-    Device:
-      $ref: ./data/models/uploaddevice.yaml
-    UserId:
-      $ref: './common/models/tidepooluserid.yaml'
-    Units:
-      $ref: ./data/models/bloodglucoseunits.v1.yaml
   securitySchemes:
-    serverSecret:
-      $ref: './common/security/tidepoolserversecret.v1.yaml'
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
-    bearerToken:
-      $ref: './common/security/bearertoken.v1.yaml'
-  headers:
-    X-Tidepool-Session-Token:
-      schema:
-        $ref: ./common/models/tidepoolsessiontoken.v1.yaml
-      description: A Tidepool session token
-  parameters:
-    userId:
-      name: userId
-      in: path
-      schema:
-        $ref: './common/models/tidepooluserid.yaml'
-      required: true
-    deviceAuthorizationId:
-      name: deviceAuthorizationId
-      schema:
-        $ref: ./platform/models/deviceauthorizationid.v1.yaml
-      required: true
-      in: path

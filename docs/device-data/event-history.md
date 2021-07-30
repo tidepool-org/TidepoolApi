@@ -8,7 +8,7 @@
 
 * Use [JSON Patch](http://jsonpatch.com/) to keep event history
 * It can be applied to any of Tidepool's data base data models
-	* It's up to the server to reject invalid event patch requests
+* It's up to the server to reject invalid event patch requests
 
 > **TBD:** Since we want event history to be immutable, we are adding the event history to the original event. Since we are not actually "changing" the original event, but providing a change history, we may not want to use the HTTP `PATCH` verb. We may want to make a new endpoint that "adds" history to an existing data event.
 

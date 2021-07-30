@@ -1,6 +1,7 @@
+description: >-
+  Tidepool User ID
 name: userId
 in: path
 required: true
-description: Tidepool User ID
 schema:
   $ref: '../models/tidepooluserid.yaml'

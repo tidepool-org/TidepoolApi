@@ -1,0 +1,24 @@
+title: Tidepool Data Type
+description: >-
+  Data type
+type: string
+enum:
+  - basal
+  - bloodKetone
+  - bolus
+  - cbg
+  - cgmSettings
+  - deviceEvent
+  - deviceStatus
+  - food
+  - insulin
+  - physicalActivity
+  - pumpSettings
+  - reportedState
+  - smbg
+  - upload
+  - water
+  - wizard
+example: 'upload'
+x-tags:
+  - Data

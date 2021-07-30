@@ -11,10 +11,7 @@ properties:
   mediaType:
     $ref: '../../common/models/mediatype.v1.yaml'
   size:
-    description: Size of the binary blob, in bytes
-    type: integer
-    readOnly: true
-    example: 1024
+    $ref: './size.v1.yaml'
   status:
     $ref: './status.v1.yaml'
   createdTime:
@@ -24,8 +21,7 @@ properties:
   deletedTime:
     $ref: '../../common/models/datetime.v1.yaml'
   revision:
-    description: Revision number of the blob
-    type: integer
+    $ref: './revision.v1.yaml'
 required:
   - id
   - userId

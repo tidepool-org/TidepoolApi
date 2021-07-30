@@ -1,5 +1,6 @@
-title: End Time
-description: End date/time of the range for messages
+description: >-
+  End Time.
+  End date/time of the range for messages
 name: endtime
 in: query
 required: false

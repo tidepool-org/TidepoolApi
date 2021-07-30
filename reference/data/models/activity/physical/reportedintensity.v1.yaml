@@ -1,0 +1,7 @@
+title: Reported Intensity
+type: string
+enum:
+  - high
+  - low
+  - medium
+example: 'medium'

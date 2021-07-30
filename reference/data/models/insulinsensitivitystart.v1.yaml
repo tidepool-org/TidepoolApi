@@ -1,9 +1,0 @@
-title: Insulin Sensitivity Start
-allOf:
-  - type: object
-    properties:
-      amount:
-        $ref: ./bloodglucosevalue.v1.yaml
-  - $ref: ./start.v1.yaml
-x-tags:
-  - data

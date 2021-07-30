@@ -1,17 +1,15 @@
+title: Deduplicator Descriptor
 type: object
 properties:
   hash:
     type: string
     minLength: 1
   version:
-    type: string
-    pattern: "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(\\+[0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*)?$"
+    $ref: '../../common/models/semanticversion.v1.yaml'
   name:
-    type: string
-    pattern: "^[a-zA-Z0-9](|[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])(\\.[a-zA-Z0-9](|[a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))+$"
+    $ref: '../../common/models/reversedomainname.v1.yaml'
 required:
   - name
   - version
-title: Deduplicator Descriptor
 x-tags:
-  - data
+  - Data

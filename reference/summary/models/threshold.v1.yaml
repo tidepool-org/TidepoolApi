@@ -1,0 +1,8 @@
+title: Quantile Threshold
+description: >-
+  The threshold of the quantile.
+type: number
+format: float
+minimum: 0
+maximum: 1000
+example: 42

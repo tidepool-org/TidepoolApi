@@ -1,0 +1,4 @@
+title: Association ID
+description: >-
+  The ID of the associated Tidepool resource if type is blob, datum, or image.
+type: string

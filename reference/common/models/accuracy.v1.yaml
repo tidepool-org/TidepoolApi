@@ -1,22 +1,6 @@
 title: Accuracy
 description: Accuracy of a measurement
 type: object
-properties:
-  value:
-    oneOf:
-      - description: If `units` is in `meters`
-        format: double
-        minimum: 0
-        maximum: 1000
-      - description: If `units` is in `feet`
-        format: double
-        minimum: 0
-        maximum: 3280
-    type: number
-  units:
-    type: string
-    enum:
-      - feet
-      - meters
-required:
-  - units
+oneOf:
+  - $ref: './accuracy/meters.v1.yaml'
+  - $ref: './accuracy/feet.v1.yaml'

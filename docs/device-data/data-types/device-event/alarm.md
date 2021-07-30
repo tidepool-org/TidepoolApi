@@ -1,39 +1,33 @@
 # Alarm (`alarm`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Sub-type](#subtype-subtype)
-3. [Alarm types](#alarm-types-alarmtypes)
+1. [Quick Summary](#quick-summary)
+2. [Sub-Type](#subtype-subtype)
+3. [Alarm Types](#alarm-types-alarmtypes)
 4. [Status](#status-status)
 5. [Example (client)](#example-client)
 6. [Example (ingestion)](#example-ingestion)
 7. [Example (storage)](#example-storage)
-8. [Keep reading](#keep-reading)
+8. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## QUick Summary
 
-```json json_schema
-{
-  "title": "Device alarm",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/devicealarm.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/devicealarm.v1.yaml'
 ```
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 The alarm sub-type describes alerts and alarms surfaced to the user by insulin pumps and continuous glucose monitors.
 
 ---
 
-## Alarm types (`alarmType`)
+## Alarm Types (`alarmType`)
 
 The alarm types built into the data model are common alarms to most insulin pumps or continuous glucose monitors. At present, Tidepool has only modeled the set of alarms for insulin pumps:
 
@@ -141,14 +135,14 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 
 ---
 
-### Keep reading
+## Keep Reading
 
 * [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common fields](./device-data/common-fields.md)
-* [Device event](./device-data/data-types/device-event.md)
-* [Linking events](./device-data/linking-events.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Device Event](./device-data/data-types/device-event.md)
+* [Linking Events](./device-data/linking-events.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump settings](device-data/data-types/pump-settings)
-* [Reservoir change](./device-data/data-types/device-event/reservoir-change.md)
+* [Pump Settings](device-data/data-types/pump-settings)
+* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
-* [Time change](./device-data/data-types/device-event/time-change.md)
+* [Time Change](./device-data/data-types/device-event/time-change.md)

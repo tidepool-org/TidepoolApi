@@ -1,0 +1,9 @@
+title: Update Provider Session
+description: >-
+  Update provider session.
+type: object
+properties:
+  oauthToken:
+    $ref: './oauthtoken.v1.yaml'
+required:
+  - oauthToken

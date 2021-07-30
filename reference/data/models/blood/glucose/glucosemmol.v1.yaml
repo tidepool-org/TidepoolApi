@@ -1,0 +1,14 @@
+title: Blood Glucose (mmol/L)
+description: >-
+  Blood glucose value, in `mmol/L`
+type: object
+properties:
+  units:
+    $ref: '../unitsmmol.v1.yaml'
+  value:
+    $ref: '../valuemmol.v1.yaml'
+required:
+  - units
+  - value
+x-tags:
+  - Data

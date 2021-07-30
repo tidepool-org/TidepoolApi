@@ -1,4 +1,5 @@
-title: Invited by Email Address
+description: >-
+  Invited by Email Address
 name: invitedBy
 in: path
 required: true

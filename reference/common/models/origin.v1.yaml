@@ -1,32 +1,23 @@
 title: Origin
+description: >-
+  External origin information for the source of the resource.
 type: object
-description: External origin information for the source of the resource.
 properties:
   id:
-    type: string
-    description: Any external identifier uniquely identifying the resource at the origin source.
-    maxLength: 100
-  version:
-    type: string
-    description: The version of the origin source at the time the resources was obtained.
-    minLength: 1
-    maxLength: 100
-  type:
-    type: string
-    enum:
-      - application
-      - device
-      - manual
-      - service
-    description: The type of the origin source.
-  time:
-    $ref: ./datetime.v1.yaml
-  payload:
-    $ref: ./payload.v1.yaml
-  origin:
-    $ref: ./origin.v1.yaml
+    $ref: './origin/id.v1.yaml'
   name:
-    type: string
-    description: A human-readable name for the origin source.
-    minLength: 1
-    maxLength: 100
+    $ref: './origin/name.v1.yaml'
+  payload:
+    $ref: './payload.v1.yaml'
+  time:
+    $ref: './datetime.v1.yaml'
+  type:
+    $ref: './origin/type.v1.yaml'
+  version:
+    $ref: './origin/version.v1.yaml'
+required:
+  - id
+  - name
+  - time
+  - type
+  - version

@@ -1,88 +1,75 @@
-title: Base (Abstract)
+title: Base
+description: >-
+  An abstract base data type for all Tidepool diabetes data objects.
 type: object
 properties:
-  id:
-    type: string
-  uploadId:
-    type: string
-  type:
-    type: string
-    enum:
-      - basal
-      - bloodKetone
-      - bolus
-      - cbg
-      - cgmSettings
-      - deviceEvent
-      - deviceStatus
-      - food
-      - insulin
-      - physicalActivity
-      - pumpSettings
-      - reportedState
-      - smbg
-      - upload
-      - water
-      - wizard
-  timezoneOffset:
-    type: number
-  timezone:
-    type: string
-  time:
-    $ref: ../../common/models/datetime.v1.yaml
-  tags:
-    $ref: ../../common/models/tagarray.v1.yaml
-  source:
-    type: string
-  payload:
-    $ref: ../../common/models/payload.v1.yaml
-  origin:
-    $ref: ../../common/models/origin.v1.yaml
-  notes:
-    type: array
-    items:
-      type: object
-  modifiedUserId:
-    $ref: '../../common/models/tidepooluserid.yaml'
-  modifiedTime:
-    $ref: ../../common/models/datetime.v1.yaml
-  location:
-    $ref: ../../common/models/location.v1.yaml
-  history:
-    $ref: './eventhistory.v1.yaml'
-  guid:
-    type: string
-    description: A string ID. Added to each event during data processing in the Tidepool uploader Chrome application or upon ingestion by the platform data ingestion service.
-  deviceTime:
-    $ref: ../../common/models/datetimenotz.v1.yaml
-  deviceId:
-    type: string
-    description: A string ID.
-  deletedUserId:
-    $ref: '../../common/models/tidepooluserid.yaml'
-  deletedTime:
-    $ref: ../../common/models/datetime.v1.yaml
-  deduplicator:
-    $ref: './deduplicatordescriptor.v1.yaml'
+  annotations:
+    $ref: '../../common/models/annotationarray.v1.yaml'
+  archivedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  archivedDatasetId:
+    $ref: './datasetid.v1.yaml'
+  associations:
+    $ref: '../../common/models/associationarray.v1.yaml'
+  clockDriftOffset:
+    $ref: './clockdriftoffset.v1.yaml'
+  conversionOffset:
+    $ref: './conversionoffset.v1.yaml'
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
   createdUserId:
     $ref: '../../common/models/tidepooluserid.yaml'
-  createdTime:
-    $ref: ../../common/models/datetime.v1.yaml
-  conversionOffset:
-    type: integer
-  clockDriftOffset:
-    type: integer
-    description: '(OPTIONAL) An integer value representing milliseconds. '
-  associations:
-    $ref: ../../common/models/associationarray.v1.yaml
-  archivedTime:
-    $ref: ../../common/models/datetime.v1.yaml
-  archivedDatasetId:
+  deduplicator:
+    $ref: './deduplicatordescriptor.v1.yaml'
+  deletedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  deletedUserId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  deviceId:
+    $ref: './deviceid.v1.yaml'
+  deviceTime:
+    $ref: '../../common/models/datetimenotz.v1.yaml'
+  guid:
     type: string
-  annotations:
-    $ref: ../../common/models/annotationarray.v1.yaml
+    description: >-
+      A string ID.
+      Added to each event during data processing in the Tidepool Uploader or upon ingestion by the platform data ingestion service.
+    deprecated: true
+  history:
+    $ref: './eventhistory.v1.yaml'
+  id:
+    $ref: './datasetid.v1.yaml'
+  location:
+    $ref: '../../common/models/location.v1.yaml'
+  modifiedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  modifiedUserId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  notes:
+    $ref: '../../common/models/notearray.v1.yaml'
+  origin:
+    $ref: '../../common/models/origin.v1.yaml'
+  payload:
+    $ref: '../../common/models/payload.v1.yaml'
+  source:
+    type: string
+    enum:
+      - carelink
+  tags:
+    $ref: '../../common/models/tagarray.v1.yaml'
+  time:
+    $ref: '../../common/models/datetime.v1.yaml'
+  timezone:
+    $ref: './timezonename.v1.yaml'
+  timezoneOffset:
+    $ref: './timezoneoffset.v1.yaml'
+  type:
+    $ref: './datatype.v1.yaml'
+  uploadId:
+    $ref: './uploadid.v1.yaml'
 required:
+  - id
   - type
-description: ''
+  - time
 x-tags:
-  - data
+  - Data

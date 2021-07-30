@@ -1,0 +1,19 @@
+title: States
+type: array
+uniqueItems: true
+minItems: 1
+maxItems: 100
+items:
+  type: object
+  additionalProperties: false
+  properties:
+    severity:
+      $ref: './severity.v1.yaml'
+    state:
+      $ref: './state.v1.yaml'
+    stateOther:
+      $ref: './otherstate.v1.yaml'
+  required:
+    - state
+x-tags:
+  - Data

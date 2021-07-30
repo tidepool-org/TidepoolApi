@@ -1,0 +1,16 @@
+title: Reported State
+description: Reported states that can have an impact on blood glucose
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - reportedState
+      states:
+        $ref: './states.v1.yaml'
+required:
+  - states
+x-tags:
+  - Data

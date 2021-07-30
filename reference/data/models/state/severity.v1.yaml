@@ -1,0 +1,8 @@
+title: Severity
+type: integer
+format: int32
+minimum: 0
+maximum: 10
+example: 5
+x-tags:
+  - Data

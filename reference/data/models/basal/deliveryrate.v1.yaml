@@ -1,0 +1,7 @@
+title: Insulin Delivery Rate
+description: >-
+  A floating point number >= 0 representing the amount of insulin delivered in units per hour.
+type: number
+format: double
+minimum: 0
+maximum: 100

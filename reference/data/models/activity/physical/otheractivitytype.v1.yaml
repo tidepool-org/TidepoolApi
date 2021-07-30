@@ -1,0 +1,7 @@
+title: Other Activity Type
+description: >-
+  This is only applicable if the `activityType` is `other`
+type: string
+minLength: 1
+maxLength: 100
+example: 'skydiving'

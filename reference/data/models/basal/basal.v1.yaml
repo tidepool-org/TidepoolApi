@@ -1,0 +1,19 @@
+title: Basal
+description: >-
+  This is an abstract base type used to define [automated](./automated.v1.yaml), [scheduled](./scheduled.v1.yaml), [suspended](./suspend.v1.yaml) and [temporary](./temporary.v1.yaml) basal types.
+type: object
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        enum:
+          - basal
+        type: string
+      deliveryType:
+        $ref: './deliverytype.v1.yaml'
+    required:
+      - deliveryType
+      - type
+x-tags:
+  - Data

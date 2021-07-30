@@ -23,6 +23,7 @@ properties:
     $ref: ./weight.v1.yaml
   yearOfDiagnosis:
     type: integer
+    format: int32
     minimum: 1900
   phoneNumber:
     $ref: ./phone.v1.yaml

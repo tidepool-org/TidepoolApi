@@ -1,0 +1,6 @@
+title: Origin Version
+description: >-
+  The version of the origin source at the time the resources was obtained.
+type: string
+minLength: 1
+maxLength: 100

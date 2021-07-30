@@ -1,5 +1,6 @@
-title: Task Type Filter
-description: Filter by task type
+description: >-
+  Task Type Filter.
+  Filter by task type
 name: type
 in: query
 required: false

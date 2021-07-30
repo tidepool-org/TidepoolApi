@@ -1,7 +1,8 @@
-title: Image Rendition
+description: >-
+  Image Rendition.
+  Rendition parameters, described in the API description.
 name: rendition
 in: path
-description: Rendition parameters. See above.
 required: true
 schema:
   type: string

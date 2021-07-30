@@ -1,0 +1,35 @@
+title: Basal Automated
+description: >-
+  An automated basal delivery event.
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      deliveryType:
+        $ref: './deliverytype.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - basal
+      deliveryType:
+        type: string
+        enum:
+          - automated
+      duration:
+        $ref: './duration.v1.yaml'
+      expectedDuration:
+        $ref: './expectedduration.v1.yaml'
+      insulinFormulation:
+        $ref: '../insulin/formulation.v1.yaml'
+      rate:
+        $ref: './deliveryrate.v1.yaml'
+      scheduleName:
+        $ref: './schedulename.v1.yaml'
+    required:
+      - deliveryType
+      - duration
+      - rate
+x-tags:
+  - Data

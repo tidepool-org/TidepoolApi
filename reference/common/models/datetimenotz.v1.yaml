@@ -2,6 +2,8 @@ title: Date/Time without Timezone
 description: >-
   [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) / [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) timestamp _without_ timezone information
 type: string
-format: date-time
+# We can't use `format: date-time` because it expects a full ISO 8601 timestamp with timezone
+# format: date-time
+pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$'
 example: '2017-02-06T02:37:46'
 x-go-type: string

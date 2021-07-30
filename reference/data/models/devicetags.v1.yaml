@@ -1,0 +1,12 @@
+title: Device Tags
+description: |-
+  An array of string tags indicating the function(s) of the device.
+
+  The `deviceTags` array should be fairly self-explanatory as an array of tags indicating the function(s) of a particular device.
+  For example, the Insulet OmniPod insulin delivery system has the tags `bgm` and `insulin-pump` since the PDM is both an insulin pump controller and includes a built-in blood glucose monitor.
+type: array
+minItems: 1
+items:
+  $ref: './devicetag.v1.yaml'
+x-tags:
+  - Data

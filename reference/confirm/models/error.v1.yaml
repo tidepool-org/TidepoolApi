@@ -8,6 +8,7 @@ required:
 properties:
   code:
     type: integer
+    format: int32
     minimum: 100
   error:
     type: integer

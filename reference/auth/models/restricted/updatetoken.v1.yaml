@@ -1,0 +1,10 @@
+title: Update Restricted Token
+type: object
+properties:
+  paths:
+    $ref: './paths.v1.yaml'
+  expirationTime:
+    $ref: '../../../common/models/datetime.v1.yaml'
+required:
+  - paths
+  - expirationTime

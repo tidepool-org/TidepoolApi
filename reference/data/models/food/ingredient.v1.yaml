@@ -1,0 +1,28 @@
+title: Ingredient
+description: A nutritional ingredient
+type: object
+properties:
+  nutrition:
+    $ref: '../../../common/models/nutrition.v1.yaml'
+  name:
+    type: string
+    minLength: 1
+    maxLength: 100
+  # TODO: investigate this with Darin
+  # This `ingredient.v1.yaml` model includes `ingredientarray.v1.yaml` which itself is an array of... `ingredient.v1.yaml`!
+  # This creates an infinite recursion, and likely the reason why Stoplight Studio just about dies when loading `data.v1.yaml`
+  # More concerning is that the Data Service does not appear to have any limit to that recursion during parsing and validation.
+  #ingredients:
+  #  $ref: './ingredientarray.v1.yaml'
+  code:
+    type: string
+    minLength: 1
+    maxLength: 100
+  brand:
+    type: string
+    minLength: 1
+    maxLength: 100
+  amount:
+    $ref: '../amount.v1.yaml'
+x-tags:
+  - Data

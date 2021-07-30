@@ -1,37 +1,10 @@
 title: Image with Metadata
+description: >-
+  An image with just metadata.
 type: object
-description: An image with just metadata.
 allOf:
   - $ref: './base.v1.yaml'
   - type: object
     properties:
       metadata:
         $ref: './metadata.v1.yaml'
-example:
-  id: bc4a3d25a01fb8ac0fd9cfc390d7523b
-  userId: a43d25a01f
-  status: created
-  createdTime: 2018-06-15T13:45:56Z
-  revision: 0
-  metadata:
-    name: Rover being funny!
-    associations:
-      - type: url
-        url: https://disneyland.disney.go.com/
-        reason: Disneyland is the greatest place on earth!
-    location:
-      name: Disneyland Park, Anaheim, CA, USA
-      gps:
-        latitude:
-          units: degrees
-          value: 33.812101
-        longitude:
-          units: degrees
-          value: -117.918975
-    metadata:
-      animal: dog
-    origin:
-      id: AA5634B2-387A-415E-AB32-166C9EDAC32D
-      name: com.apple.HealthKit
-      type: service
-

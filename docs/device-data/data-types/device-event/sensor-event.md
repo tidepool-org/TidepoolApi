@@ -1,14 +1,14 @@
 # Sensor Event (`sensorEvent`)
 
-```json json_schema
-{
-  "title": "Sensor event",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/devicesensorevent.v1.yaml"
-  }
-}
+---
+
+## Quick Summary
+
+```yaml json_schema
+$ref: '../../../../reference/data/models/devicesensorevent.v1.yaml'
 ```
+
+---
 
 ## Example
 

@@ -1,0 +1,18 @@
+title: Accuracy (feet)
+description: >-
+  Accuracy of a measurement, expressed in `feet`.
+type: object
+properties:
+  value:
+    type: number
+    format: double
+    minimum: 0
+    maximum: 3280
+    example: 42
+  units:
+    type: string
+    enum:
+      - feet
+    example: 'feet'
+required:
+  - units

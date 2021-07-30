@@ -1,0 +1,15 @@
+title: Energy (joules)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - joules
+  value:
+    type: number
+    format: float
+    minimum: 0
+    maximum: 41858000
+required:
+  - units
+  - value

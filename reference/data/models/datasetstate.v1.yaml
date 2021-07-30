@@ -1,0 +1,8 @@
+title: Data Set State
+type: string
+enum:
+  - open
+  - closed
+example: 'open'
+x-tags:
+  - Data

@@ -1,0 +1,7 @@
+title: State
+description: >-
+  State or province.
+  In the U.S., typically something like `CA` or `California`.
+type: string
+minLength: 1
+example: 'CA'

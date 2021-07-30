@@ -1,0 +1,9 @@
+title: Expected Insulin Delivery Duration
+description: |-
+  An integer value representing an original programmed duration of time in milliseconds, copied from the duration field on ingestion when a following event has resulted in truncation of the original programmed duration.
+
+  `expectedDuration` cannot be less than the value of `duration`
+type: integer
+format: int64
+minimum: 0
+maximum: 604800000

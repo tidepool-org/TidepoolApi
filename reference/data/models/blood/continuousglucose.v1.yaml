@@ -1,0 +1,19 @@
+title: Continuous Glucose
+description: A continuous glucose measurement
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - cbg
+      trend:
+        $ref: './glucose/trend.v1.yaml'
+      trendRate:
+        $ref: './glucose/trendrate.v1.yaml'
+    required:
+      - type
+  - $ref: './glucose/glucose.v1.yaml'
+x-tags:
+  - Data

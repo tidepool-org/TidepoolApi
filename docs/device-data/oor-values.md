@@ -1,11 +1,11 @@
 # Out of Range Values
 
-### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
-2. [Out of range annotation: units](#out-of-range-annotation-units)
-3. [Range threshold levels](#range-threshold-levels)
-4. [Keep reading](#keep-reading)
+2. [Out Of Range Annotation: Units](#out-of-range-annotation-units)
+3. [Range Threshold Levels](#range-threshold-levels)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -41,7 +41,7 @@ For example, for a low CGM reading for a device that displays in mg/dL with a lo
 
 ---
 
-## Out of range annotation: units
+## Out Of Range Annotation: Units
 
 Unlike all other data model types, the out of range annotation does not currently include a field for units. Because of this, when annotating CBG or SMBG readings, the threshold should *always* be in mg/dL, even when the device displays readings in mmol/L. Although an unfortunate oversight, the reason for this is that all devices (that Tidepool knows of) store readings in mg/dL, even if they display in mmol/L.
 
@@ -75,7 +75,7 @@ For example, for a high CGM reading for a device that displays in mmol/L with a 
 
 ---
 
-## Range threshold levels
+## Range Threshold Levels
 
 If the device (or manufacturer) does not provide the exact threshold levels, then the threshold field should *not* be provided, and an additional `[datatype]/unknown-value` annotation should be provided. This is the case in our current Abbott Precision Xtra driver for ketone readings:
 
@@ -109,9 +109,9 @@ In this instance, because the threshold was unknown, we used a value that we kne
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Blood ketones](./data-types/blood-ketones.md)
-* [Continuous blood glucose (CBG)](./data-types/cbg.md)
-* [CGM settings](./data-types/cgm-settings.md)
-* [Self-monitored glucose (SMBG)](./data-types/pump-settings/smbg.md)
+* [Blood Ketones](./data-types/blood-ketones.md)
+* [Continuous Blood Glucose (CBG)](./data-types/cbg.md)
+* [CGM Settings](./data-types/cgm-settings.md)
+* [Self-Monitored Glucose (SMBG)](./data-types/pump-settings/smbg.md)

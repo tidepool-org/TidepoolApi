@@ -1,0 +1,7 @@
+description: ._
+  Provider Session ID
+name: sessionId
+in: path
+required: true
+schema:
+  $ref: '../../models/providers/sessionid.v1.yaml'

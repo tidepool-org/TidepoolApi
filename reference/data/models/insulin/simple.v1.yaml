@@ -1,0 +1,20 @@
+title: Insulin Simple
+type: object
+required:
+  - actingType
+properties:
+  actingType:
+    type: string
+    enum:
+      - intermediate
+      - long
+      - rapid
+      - short
+  brand:
+    type: string
+    minLength: 1
+    maxLength: 100
+  concentration:
+    $ref: './concentration.v1.yaml'
+x-tags:
+  - Data

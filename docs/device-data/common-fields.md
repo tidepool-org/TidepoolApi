@@ -1,6 +1,6 @@
 # Common Fields
 
-### Table of Contents
+## Table of Contents
 
 1. [Quick summary](#quick-summary)
 2. [Clock drift offset](#clock-drift-offset-clockdriftoffset)
@@ -19,31 +19,25 @@
 
 ## Quick summary
 
-```json json_schema
-{
-  "title": "Common fields",
-  "type": "object",
-  "properties": {
-    "$ref": "../../reference/data/models/base.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../reference/data/models/base.v1.yaml'
 ```
 
 ---
 
-## Clock drift offset (`clockDriftOffset`)
+## Clock Drift Offset (`clockDriftOffset`)
 
 This field is Platform's best effort to convert the device's local [display time](#device-time-devicetime) to UTC. This optional field records the offset from UTC (in milliseconds) resulting from small adjustments a user may make to a device's display time due to "clock drift." See the technical documentation describing ["Bootstrapping to UTC"](../datetime/btutc.md#clock-drift-offset-clockdriftoffset) for more information.
 
 ---
 
-## Conversion offset (`conversionOffset`)
+## Conversion Offset (`conversionOffset`)
 
 This field is Platform's best effort to convert the device's local [display time](#device-time-devicetime) to UTC. This field records the offset from UTC resulting from *very large* adjustments a user may make due to realizing the device was set to the wrong day, month, or year. See the technical documentation describing ["Bootstrapping to UTC"](../datetime/btutc.md#conversion-offset-conversionoffset) for more information.
 
 ---
 
-## Created time (`createdTime`)
+## Created Time (`createdTime`)
 
 Created time is the machine-time when the event was first ingested into Platform. This is represented as an [ISO 8601-formatted](../datetime/glossary.md#iso-8601) UTC timestamp with a final Z for "Zulu" time.
 
@@ -64,11 +58,12 @@ Examples:
 
 ---
 
-## Device time (`deviceTime`)
+## Device Time (`deviceTime`)
 
-No curently available diabetes device (that Tidepool knows of) stores data in UTC or UTC-anchored time via a timezone offset. This means all diabetes devices currently store the device's display time *at the time the event occurred*. Platform makes a best effort to [convert this device time to UTC](../datetime/btutc.md), but the raw device time is also stored for data-auditing purposes. It is stored in the [ISO 8601 format](../datetime/glossary.md#iso-8601), but without any timezone offset information.
+No currently available diabetes device (that Tidepool knows of) stores data in UTC or UTC-anchored time via a timezone offset. This means all diabetes devices currently store the device's display time *at the time the event occurred*. Platform makes a best effort to [convert this device time to UTC](../datetime/btutc.md), but the raw device time is also stored for data-auditing purposes. It is stored in the [ISO 8601 format](../datetime/glossary.md#iso-8601), but without any timezone offset information.
 
 Example:
+
 * `2015-11-08T17:06:53`
 
 ---
@@ -80,6 +75,7 @@ An [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) version 4 UUID (universally 
 See [here](http://github.com/tidepool-org/uploader/blob/master/lib/core/api.js) for Tidepool Uploader implementation and `app/uuid.go` for Platform ingestion implementation.
 
 Example:
+
 * `6380d89e-1894-49de-bdaf-cb1e8c163dec`
 
 ---
@@ -89,6 +85,7 @@ Example:
 The IDs generated for each event by Platform are simply [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) version 4 UUIDs with the - characters deleted. This provides a backwards compatibility with the format of the earlier jellyfish-generated IDs, which were alphanumeric.
 
 Example:
+
 * `c4c31493417b4c6d968b72f08e6b3712`
 
 <!-- theme: info -->
@@ -110,7 +107,7 @@ Examples:
 
 ---
 
-## Timezone offset (`timezoneOffset`)
+## Timezone Offset (`timezoneOffset`)
 
 This field is Platform's best effort to convert the device's local [display time](#device-time-devicetime) to UTC. Timezone offset encodes the offest (in minutes from UTC) to convert the UTC timestamp back to local display time. See ["Bootstrapping to UTC"](../datetime/btutc.md) for more information.
 
@@ -132,7 +129,7 @@ An upload identifier. This field should be the upload ID of the corresponding up
 
 ---
 
-## Example (all possible fields)
+## Example (All Possible Fields)
 
 ```json
 {

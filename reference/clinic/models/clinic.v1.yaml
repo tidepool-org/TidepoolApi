@@ -1,34 +1,22 @@
 title: Clinic
-x-examples:
-  example:
-    name: ACME Diabetes Clinic
-    address: 3000 Main drive
-    phoneNumbers:
-      type: main
-      number: 555-555-5555
-description: ''
+description: >-
+  Clinic
 type: object
 properties:
   id:
-    $ref: ../../common/models/objectid.v1.yaml
+    $ref: './clinicid.v1.yaml'
   address:
-    type: string
-    minLength: 1
+    $ref: './streetaddress.v1.yaml'
   city:
-    type: string
-    minLength: 1
+    $ref: './city.v1.yaml'
   postalCode:
-    type: string
-    minLength: 1
+    $ref: './postalcode.v1.yaml'
   state:
-    type: string
+    $ref: './state.v1.yaml'
   country:
-    type: string
-    minLength: 1
+    $ref: './country.v1.yaml'
   phoneNumbers:
-    type: array
-    items:
-      $ref: ./phonenumber.v1.yaml
+    $ref: './phonenumbers.v1.yaml'
   clinicType:
     type: string
   clinicSize:
@@ -36,12 +24,18 @@ properties:
     minimum: 0
     readOnly: true
   name:
-    type: string
-    minLength: 1
+    $ref: './name.v1.yaml'
   shareCode:
-    type: string
-    readOnly: true
+    $ref: './sharecode.v1.yaml'
 required:
   - id
   - name
+  - address
+  - city
+  - state
+  - postalCode
+  - country
+  - clinicType
+  - clinicSize
+  - phonenumbers
   - shareCode

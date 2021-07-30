@@ -1,0 +1,7 @@
+title: Blood Glucose Target Start
+description: ''
+allOf:
+  - $ref: './target.v1.yaml'
+  - $ref: '../../start.v1.yaml'
+x-tags:
+  - Data

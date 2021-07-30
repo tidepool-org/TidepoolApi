@@ -1,0 +1,9 @@
+title: Time Change Info
+type: object
+properties:
+  timeZoneName:
+    $ref: '../timezonename.v1.yaml'
+  time:
+    $ref: '../../../common/models/datetimenotz.v1.yaml'
+x-tags:
+  - Data

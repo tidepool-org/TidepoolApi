@@ -1,21 +1,23 @@
 # Uploading Data in a Continuous Session (`continuous`)
 
-<!-- theme: success -->
+## Table of Contents
 
-> ### Are you authenticated?
->
-> Make sure that you have a [Tidepool session token](../../quick-start.md#authentication) before trying to fetch data.
-
-### Table of Contents
-
-1. [Open a new continuous session](#open-a-new-continuous-session)
-2. [Find an existing continuous session](#find-an-existing-continuous-session)
-3. [Upload device data to the open session](#upload-device-data-to-the-open-session)
-4. [Keep reading](#keep-reading)
+1. [Open A New Continuous Session](#open-a-new-continuous-session)
+2. [Find An Existing Continuous Session](#find-an-existing-continuous-session)
+3. [Upload Device Data To The Open Session](#upload-device-data-to-the-open-session)
+4. [Keep Reading](#keep-reading)
 
 ---
 
-## Open a New Continuous Session
+<!-- theme: success -->
+
+> ### Are You Authenticated?
+>
+> Make sure that you have a [Tidepool session token](../../quick-start.md#authentication) before trying to fetch data.
+
+---
+
+## Open A New Continuous Session
 
 If you have previously opened a continuous session, [skip ahead](#find-an-existing-continuous-session). Otherwise, issue the following command:
 
@@ -23,7 +25,7 @@ If you have previously opened a continuous session, [skip ahead](#find-an-existi
 curl -X POST https://int-api.tidepool.org/v1/users/<subject-userid>/data_sets -H 'X-Tidepool-Session-Token: <your-session-token>' --data-binary '{ "client": { "name": "<client-name>", "version": "<client-version>" }, "dataSetType": "continuous", "deduplicator": { "name": "org.tidepool.deduplicator.dataset.delete.origin" } }'
 ```
 
-```yaml http
+```json http
 {
   "method": "post",
   "url": "https://int-api.tidepool.org/v1/users/{$$.env.subject-userid}/data_sets",
@@ -61,7 +63,7 @@ This will return an HTTP response with a JSON body. You should store **the value
 
 ---
 
-## Find an existing continuous session
+## Find An Existing Continuous Session
 
 If you have previously opened a continuous session, you can use this request to get the session ID if you haven't cached it somewhere (if you already know your session ID, [skip ahead](#upload-device-data-to-the-open-session)):
 
@@ -69,7 +71,7 @@ If you have previously opened a continuous session, you can use this request to 
 curl https://int-api.tidepool.org/v1/users/<subject-userid>/data_sets?client.name=<client-name> -H 'X-Tidepool-Session-Token: <your-session-token>'
 ```
 
-```yaml http
+```json http
 {
   "method": "get",
   "url": "https://int-api.tidepool.org/v1/users/{$$.env.subject-userid}/data_sets",
@@ -109,14 +111,15 @@ This will return an HTTP response with a JSON body. You should temporarily store
 
 ---
 
-## Upload device data to the open session
+## Upload Device Data To The Open Session
+
 Upload data in chunks of 1,000 records:
 
 ```shell
 curl 'https://int-api.tidepool.org/dataservices/v1/datasets/<upload-session-id>/data' –H 'X-Tidepool-Session-Token: <your-session-token>' –H 'Content-Type: application/json' --data-binary '[<array of diabetes device data objects>]'
 ```
 
-```yaml http
+```json http
 {
   "method": "post",
   "url": "https://int-api.tidepool.org/dataservices/v1/datasets/{$$.env.upload-session-id}/data",
@@ -144,8 +147,8 @@ curl 'https://int-api.tidepool.org/dataservices/v1/datasets/<upload-session-id>/
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Diabetes data types](./device-data/data-types.md)
-* [Diabetes device data model](./device-data.md)
-* [Using a normal upload session](./quick-start/uploading-device-data/normal.md)
+* [Diabetes Data Types](./device-data/data-types.md)
+* [Diabetes Device Data Model](./device-data.md)
+* [Using A Normal Upload Session](./quick-start/uploading-device-data/normal.md)

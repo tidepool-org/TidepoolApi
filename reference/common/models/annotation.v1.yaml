@@ -1,2 +1,22 @@
 title: Annotation
+description: >-
+  Annotation attached to the diabetes data record to provide additional information.
+  Annotation is at minimum a `code` (string) that describes the annotation.
+  It may also include additional properties that further describe the annotation.
+  The maximum size is 4K bytes.
 type: object
+allOf:
+  - type: object
+    properties:
+      code:
+        $ref: './annotation/code.v1.yaml'
+    required:
+      - code
+  - oneOf:
+    - type: object
+      properties:
+        code:
+          $ref: './annotation/code.v1.yaml'
+      required:
+        - code
+    - $ref: './annotation/bgoutofrange.v1.yaml'

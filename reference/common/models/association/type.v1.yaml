@@ -1,0 +1,13 @@
+title: Association Type
+description: >-
+  The type of the association.
+  If type is `blob`, `datum`, or `image`, then `id` must also be specified.
+  If type is `url`, then url must also be specified.
+type: string
+enum:
+  - blob
+  - datum
+  - image
+  - url
+example: 'blob'
+x-go-type: string

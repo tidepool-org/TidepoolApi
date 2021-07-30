@@ -1,0 +1,21 @@
+title: Basal Suppressed Automated
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - basal
+  deliveryType:
+    type: string
+    enum:
+      - automated
+  scheduleName:
+    $ref: '../schedulename.v1.yaml'
+  rate:
+    $ref: '../deliveryrate.v1.yaml'
+  insulinFormulation:
+    $ref: '../../insulin/formulation.v1.yaml'
+  annotations:
+    $ref: '../../../../common/models/annotationarray.v1.yaml'
+x-tags:
+  - Data

@@ -1,0 +1,10 @@
+title: Page Size
+description: >-
+  Page size for pagination
+type: integer
+format: int32
+readOnly: true
+minimum: 1
+maximum: 1000
+default: 100
+example: 42

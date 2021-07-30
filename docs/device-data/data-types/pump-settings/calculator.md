@@ -1,35 +1,29 @@
 # Bolus Calculator Records (`wizard`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
+1. [Quick Summary](#quick-summary)
 2. [Type](#type-type)
-3. [Blood glucose input](#blood-glucose-input-bloodglucoseinput)
+3. [Blood Glucose Input](#blood-glucose-input-bloodglucoseinput)
 4. [Bolus](#bolus-bolus)
-5. [Carb input](#carb-input-carbinput)
-6. [Insulin-to-carb ratio](#insulintocarb-ratio-insulintocarbratio)
-7. [Insulin on board](#insulin-on-board-insulinonboard)
+5. [Carb Input](#carb-input-carbinput)
+6. [Insulin-To-Carb Ratio](#insulintocarb-ratio-insulintocarbratio)
+7. [Insulin On Board](#insulin-on-board-insulinonboard)
 8. [Recommended](#recommended-recommended)
-	1. [Recommended: carb](#recommended-carb-recommendedcarb)
-	2. [Recommended: correction](#recommended-correction-recommendedcorrection)
-	3. [Recommended: net](#recommended-net-recommendednet)
-10. [Example (client)](#example-client)
-11. [Example (ingestion)](#example-ingestion)
-12. [Example (storage)](#example-storage)
-13. [Keep reading](#keep-reading)
+    1. [Recommended: carb](#recommended-carb-recommendedcarb)
+    2. [Recommended: correction](#recommended-correction-recommendedcorrection)
+    3. [Recommended: net](#recommended-net-recommendednet)
+9. [Example (client)](#example-client)
+10. [Example (ingestion)](#example-ingestion)
+11. [Example (storage)](#example-storage)
+12. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Bolus calculator (wizard)",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/calculator.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/calculator.v1.yaml'
 ```
 
 ---
@@ -46,7 +40,7 @@ Some insulin pumps record every user interaction with the bolus calculator, rega
 
 ---
 
-## Blood glucose input (`bgInput`)
+## Blood Glucose Input (`bgInput`)
 
 Like all blood glucose-related fields, the BG input should be uploaded in either mg/dL or mmol/L, as appropriate to how the data is retrieved from the device. However, all values will be converted to mmol/L on ingestion.
 
@@ -60,7 +54,7 @@ See [linking events](./device-data/linking-events.md) for more details on how ev
 
 ---
 
-## Carb input (`carbInput`)
+## Carb Input (`carbInput`)
 
 Not every use of a pump's bolus calculator involves the input of carbohydrates; a user may be using the calculator to program a correction bolus. Therefore, the carb input field is optional and should only be used when relevant.
 
@@ -72,7 +66,7 @@ Some devices have a separate field to enter a carbohydrate value on their bolus 
 
 ---
 
-## Insulin-to-carb ratio (`insulinCarbRatio`)
+## Insulin-To-Carb Ratio (`insulinCarbRatio`)
 
 The insulin-to-carb (I:C) ratio is part of an insulin pump's settings. A user may program one I:C ratio to be used across-the-board, or particular ratios on a schedule per each 24-hour day. For more information on these persistent I:C ratios, see [carb ratios](./device-data/data-types/pump-settings.md#carb-ratio-carbratio).
 
@@ -80,7 +74,7 @@ Most pumps make it possible to change the I:C for the bolus *currently being cal
 
 ---
 
-## Insulin on board (`insulinOnBoard`)
+## Insulin On Board (`insulinOnBoard`)
 
 The insulin on board (IOB) field  encodes the pump's estimate of how much insulin is metabolically active in the person with diabetes' system from previous boluses. Some pumps use a simple linear function for estimating the metabolic uptake and consumption of insulin, while others use more complex functions. A key benefit of using an insulin pump is the ability to track IOB in order to avoid "stacking" boluses (taking more insulin on top of a dose that is still active, possibly resulting in hypoglycemia). It is important to include insulin on board in the data to audit bolusing behavior.
 
@@ -230,13 +224,12 @@ Net is the net number of units of insulin the bolus calculator recommended given
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Common fields](./device-data/common-fields.md)
-* [Datetime guide](./datetime.md)
-* [Diabetes data types](./device-data/data-types.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
-* [Self-monitored glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Datetime Guide](./datetime.md)
+* [Diabetes Data Types](./device-data/data-types.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
+* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
 * [Units](./device-data/units.md)
-* [Upload metadata](./device-data/data-types/pump-settings/upload.md)
-
+* [Upload Metadata](./device-data/data-types/pump-settings/upload.md)

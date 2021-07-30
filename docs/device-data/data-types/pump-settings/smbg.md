@@ -1,27 +1,21 @@
 # Self-Monitored Blood Glucose (`smbg`)
 
-### Table of Contents
+## Table of Contents
 
-1. [Quick summary](#quick-summary)
+1. [Quick Summary](#quick-summary)
 2. [Type](#type-type)
-3. [Sub-type](#subtype-subtype)
+3. [Sub-Type](#subtype-subtype)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
 6. [Example (storage)](#example-storage)
-7. [Keep reading](#keep-reading)
+7. [Keep Reading](#keep-reading)
 
 ---
 
-## Quick summary
+## Quick Summary
 
-```json json_schema
-{
-  "title": "Self-monitored blood glucose (SMBG)",
-  "type": "object",
-  "properties": {
-    "$ref": "../../../../reference/data/models/selfmonitoredglucose.v1.yaml"
-  }
-}
+```yaml json_schema
+$ref: '../../../../reference/data/models/blood/selfmonitoredglucose.v1.yaml'
 ```
 
 ---
@@ -32,7 +26,7 @@ This is the Tidepool data type for traditional fingerstick blood glucose meter d
 
 ---
 
-## Sub-type (`subType`)
+## Sub-Type (`subType`)
 
 Sub-type appears on blood glucose values that are being read from another data source, such as an insulin pump (rather than directly from a traditional fingerstick blood glucose meter).
 
@@ -111,12 +105,12 @@ The linked value indicates that the blood glucose value was transferred from a b
 
 ---
 
-### Keep reading
+## Keep Reading
 
-* [Bolus calculator](./device-data/data-types/pump-settings/calculator.md)
-* [Common fields](./device-data/common-fields.md)
-* [Datetime guide](./datetime.md)
-* [Diabetes data types](./device-data/data-types.md)
-* [Pump settings](./device-data/data-types/pump-settings.md)
+* [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
+* [Common Fields](./device-data/common-fields.md)
+* [Datetime Guide](./datetime.md)
+* [Diabetes Data Types](./device-data/data-types.md)
+* [Pump Settings](./device-data/data-types/pump-settings.md)
 * [Units](./device-data/units.md)
-* [Upload metadata](./device-data/data-types/pump-settings/upload.md)
+* [Upload Metadata](./device-data/data-types/pump-settings/upload.md)

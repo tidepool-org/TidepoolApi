@@ -1,0 +1,17 @@
+title: Elevation (feet)
+type: object
+properties:
+  units:
+    type: string
+    enum:
+      - feet
+    example: 'feet'
+  value:
+    type: number
+    format: double
+    minimum: 0
+    maximum: 32808
+    example: 42
+required:
+  - units
+  - value

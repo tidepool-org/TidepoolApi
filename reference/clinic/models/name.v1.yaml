@@ -1,0 +1,5 @@
+title: Clinic Name
+description: >-
+  Name of the clinic.
+type: string
+minItems: 1

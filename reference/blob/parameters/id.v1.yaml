@@ -1,6 +1,6 @@
-title: Blob ID
+description: >-
+  Blob ID
 name: blobId
-description: Blob ID
 in: path
 required: true
 schema:

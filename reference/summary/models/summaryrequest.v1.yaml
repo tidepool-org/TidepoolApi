@@ -1,0 +1,36 @@
+title: Summary Request
+description: >-
+  Request a set of named quantiles over a set of periods.
+  The named quantiles MUST include the names: `veryHigh`, `high`, `low`, `veryLow`.
+  Other named quantiles MAY be provided.
+type: object
+properties:
+  units:
+    $ref: '../../data/models/blood/units.v1.yaml'
+  quantiles:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          $ref: './name.v1.yaml'
+        threshold:
+          $ref: './threshold.v1.yaml'
+      required:
+        - name
+        - threshold
+  period:
+    type: object
+    properties:
+      length:
+        $ref: './period.v1.yaml'
+      numPeriods:
+        type: integer
+        minimum: 0
+    required:
+      - length
+      - numPeriods
+required:
+  - units
+  - quantiles
+  - period

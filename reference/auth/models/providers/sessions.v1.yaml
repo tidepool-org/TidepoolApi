@@ -1,0 +1,8 @@
+title: Provider Sessions
+description: >-
+  An array of provider sessions.
+type: array
+uniqueItems: true
+minItems: 0
+items:
+  $ref: './session.v1.yaml'

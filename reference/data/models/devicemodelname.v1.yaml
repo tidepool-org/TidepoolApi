@@ -1,0 +1,11 @@
+title: Device Model Name
+description: |-
+  A string identifying the model of the device.
+
+  The `deviceModel` is a non-empty string that encodes the model of device.
+  We endeavor to match each manufacturer's standard for how they represent model name in terms of casing, whether parts of the name are represented as one word or two, etc.
+type: string
+minLength: 1
+example: 'Devicey McDeviceface'
+x-tags:
+  - Data

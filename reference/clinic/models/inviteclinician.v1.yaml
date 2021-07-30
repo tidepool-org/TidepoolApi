@@ -5,7 +5,7 @@ properties:
   email:
     $ref: '../../common/models/emailaddress.v1.yaml'
   roles:
-    $ref: ./clinicianroles.v1.yaml
+    $ref: './clinicianroles.v1.yaml'
 required:
   - email
   - roles
