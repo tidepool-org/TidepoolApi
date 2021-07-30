@@ -10,6 +10,8 @@ description: |-
     * `medtronic/basal/flat-rate`, a manufacturer-specific annotation.
     * `medtronic600/smbg/user-rejected-remote-bg`, a device-specific annotation.
 type: string
+minLength: 1
+pattern: '^[0-9a-z\-\_]+(/[0-9a-z\-\_]+(/[0-9a-z\-\_]+)?)?$'
 # harvested by grepping for 'annotations' throughout all Tidepool repositories
 enum:
   - 'animas/basal/flat-rate'

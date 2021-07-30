@@ -625,14 +625,8 @@ components:
         $ref: '#/components/schemas/Patient'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
-    ClinicianRoles:
-      $ref: ./clinic/models/clinicianroles.v1.yaml
-    PhoneNumber:
-      $ref: ./clinic/models/phonenumber.v1.yaml
     PatientPermissions:
       $ref: ./clinic/models/patientpermissions.v1.yaml
-    Id:
-      $ref: ./common/models/objectid.v1.yaml
     PatientClinicRelationship:
       title: PatientClinicRelationship
       type: object
@@ -701,8 +695,7 @@ components:
       in: path
       required: true
       schema:
-        type: string
-        pattern: '^[a-f0-9]{24}$'
+        $ref: './clinic/models/clinicid.v1.yaml'
     clinicianId:
       name: clinicianId
       in: path

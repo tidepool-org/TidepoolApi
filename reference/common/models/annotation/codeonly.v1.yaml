@@ -1,7 +1,0 @@
-title: Annotation Code Only
-type: object
-properties:
-  code:
-    $ref: './code.v1.yaml'
-required:
-  - code

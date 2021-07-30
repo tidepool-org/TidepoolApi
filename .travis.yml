@@ -10,9 +10,9 @@ jobs:
       install:
         - npm install -g markdownlint-cli
       script:
-        - markdownlint './docs/**/*.md'
+        - tools/lint_markdown.sh
     - stage: Lint the OpenAPI 3 specifications
       install:
         - npm install -g @stoplight/spectral
       script:
-        - spectral lint ./reference/*.yaml --verbose
+        - tools/lint_openapi.sh

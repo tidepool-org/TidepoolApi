@@ -5,6 +5,18 @@ description: >-
   It may also include additional properties that further describe the annotation.
   The maximum size is 4K bytes.
 type: object
-oneOf:
-  - $ref: './annotation/codeonly.v1.yaml'
-  - $ref: './annotation/bgoutofrange.v1.yaml'
+allOf:
+  - type: object
+    properties:
+      code:
+        $ref: './annotation/code.v1.yaml'
+    required:
+      - code
+  - oneOf:
+    - type: object
+      properties:
+        code:
+          $ref: './annotation/code.v1.yaml'
+      required:
+        - code
+    - $ref: './annotation/bgoutofrange.v1.yaml'
