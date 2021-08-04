@@ -8,6 +8,7 @@ properties:
       - 400
       - 401
       - 403
+      - 404
       - 409
       - 500
     description: The HTTP status code
