@@ -51,6 +51,15 @@ properties:
     description: Canonicalized and SHA-512-encrypted hex output of the sent revision payload
   createdUserId:
     $ref: ../../common/models/tidepooluserid.yaml
+  caregiverFirstName:
+    type: string
+  caregiverLastName:
+    type: string
+  accountType:
+    type: string
+    enum:
+      - patient
+      - caregiver
 required:
   - state
   - revisionHash
