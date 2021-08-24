@@ -45,10 +45,12 @@ properties:
     $ref: ./state.v1.yaml
   calculator:
     $ref: ./calculator.v1.yaml
-  initialSettingsHash:
+  revisionHash:
     type: string
-    description: Canonicalized and SHA-512-encrypted hex output of initialSettings object
     pattern: '^[A-Fa-f0-9]{64}$'
+    description: Canonicalized and SHA-512-encrypted hex output of the sent revision payload
+  createdUserId:
+    $ref: ../../common/models/tidepooluserid.yaml
 required:
   - state
-  - initialSettingsHash
+  - revisionHash
