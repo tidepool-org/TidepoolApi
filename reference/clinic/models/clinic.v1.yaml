@@ -19,14 +19,24 @@ properties:
     $ref: './phonenumbers.v1.yaml'
   clinicType:
     type: string
+    minLength: 1
   clinicSize:
-    type: integer
-    minimum: 0
-    readOnly: true
+    type: string
+    enum:
+      - 0-249
+      - 250-499
+      - 500-999
+      - 1000+
   name:
     $ref: './name.v1.yaml'
   shareCode:
     $ref: './sharecode.v1.yaml'
+  canMigrate:
+    type: boolean
+    readOnly: true
+  website:
+    type: string
+    format: uri
 required:
   - id
   - name
@@ -39,3 +49,4 @@ required:
   - clinicSize
   - phonenumbers
   - shareCode
+  - canMigrate
