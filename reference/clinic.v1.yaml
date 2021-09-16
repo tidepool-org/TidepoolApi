@@ -711,7 +711,7 @@ components:
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:
-      $ref: ./common/models/tidepooluserid.v1.yaml
+      $ref: ./common/models/tidepooluserid.yaml
     ClinicianRoles:
       $ref: ./clinic/models/clinicianroles.v1.yaml
     PhoneNumber:
@@ -719,7 +719,7 @@ components:
     PatientPermissions:
       $ref: ./clinic/models/patientpermissions.v1.yaml
     Id:
-      $ref: ./common/models/objectid.v1.yaml
+      $ref: ./clinic/models/clinicid.v1.yaml
     PatientClinicRelationship:
       title: PatientClinicRelationship
       type: object
@@ -790,7 +790,10 @@ components:
         $ref: '#/components/schemas/Migration'
   securitySchemes:
     sessionToken:
-      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
+      name: x-tidepool-session-token
+      type: apiKey
+      in: header
+      description: A Tidepool session token
   parameters:
     offset:
       name: offset
@@ -810,21 +813,28 @@ components:
       in: path
       required: true
       schema:
-        $ref: './clinic/models/clinicid.v1.yaml'
+        type: string
+        pattern: '^[a-f0-9]{24}$'
     clinicianId:
       name: clinicianId
       in: path
       required: true
       schema:
-        $ref: './common/models/tidepooluserid.yaml'
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
     patientId:
       name: patientId
       in: path
       required: true
       schema:
-        $ref: './common/models/tidepooluserid.yaml'
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
     userId:
-      $ref: './common/parameters/tidepooluserid.yaml'
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/TidepoolUserId'
     inviteId:
       name: inviteId
       in: path
@@ -850,7 +860,8 @@ components:
       in: query
       required: false
       schema:
-        $ref: './common/models/emailaddress.v1.yaml'
+        type: string
+        format: email
 tags:
   - name: auth
     description: Tidepool Authentication

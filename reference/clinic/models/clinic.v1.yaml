@@ -40,13 +40,5 @@ properties:
 required:
   - id
   - name
-  - address
-  - city
-  - state
-  - postalCode
-  - country
-  - clinicType
-  - clinicSize
-  - phonenumbers
   - shareCode
   - canMigrate

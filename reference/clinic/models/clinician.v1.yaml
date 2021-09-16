@@ -1,21 +1,22 @@
 title: Clinician
-description: >-
-  The `id` may be empty if the clinician invite has not been accepted.
+description: The `id` may be empty if the clinician invite has not been accepted.
 type: object
 properties:
   id:
-    $ref: '../../common/models/tidepooluserid.yaml'
+    $ref: ../../common/models/tidepooluserid.yaml
   inviteId:
     type: string
     description: The id of the invite if it hasn't been accepted
   email:
-    $ref: '../../common/models/emailaddress.v1.yaml'
+    type: string
+    x-go-type: string
+    format: email
   name:
     type: string
     description: The name of the clinician
     minLength: 1
   roles:
-    $ref: './clinicianroles.v1.yaml'
+    $ref: ./clinicianroles.v1.yaml
 required:
   - email
   - roles
