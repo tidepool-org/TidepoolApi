@@ -1,4 +1,6 @@
+type: string
 title: Tidepool User ID
-oneOf:
-  - $ref: './tidepooluserid.v1.yaml'
-  - $ref: './tidepooluserid.v2.yaml'
+pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+description: String representation of a Tidepool User ID. Old style IDs are 10-digit strings consisting of only hexadeximcal digits. New style IDs are 36-digit [UUID v4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
+readOnly: true
+x-go-type: string

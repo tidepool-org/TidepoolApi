@@ -3,15 +3,19 @@ title: Patient
 description: ''
 properties:
   id:
-    $ref: '../../common/models/tidepooluserid.yaml'
+    $ref: ../../common/models/tidepooluserid.yaml
   email:
-    $ref: '../../common/models/emailaddress.v1.yaml'
+    type: string
+    x-go-type: string
+    format: email
   fullName:
     type: string
     description: The full name of the patient
     minLength: 1
   birthDate:
-    $ref: '../../common/models/birthday.v1.yaml'
+    type: string
+    format: date
+    example: '2012-08-30'
   mrn:
     type: string
     description: The medical record number of the patient
@@ -21,7 +25,7 @@ properties:
     items:
       type: string
   permissions:
-    $ref: './patientpermissions.v1.yaml'
+    $ref: ./patientpermissions.v1.yaml
 required:
   - id
   - fullName
