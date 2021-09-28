@@ -1,0 +1,5 @@
+title: Migration
+type: object
+properties:
+  id:
+    type: string

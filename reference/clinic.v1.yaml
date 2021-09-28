@@ -10,11 +10,10 @@ info:
   license:
     name: BSD-2-Clause
     url: 'https://github.com/tidepool-org/clinic/blob/master/LICENSE'
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
+  x-logo:
+    url: 'https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png'
     altText: Tidepool Logo
-  x-tidepool-service: https://github.com/tidepool-org/clinic/
-
+  x-tidepool-service: 'https://github.com/tidepool-org/clinic/'
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -686,6 +685,38 @@ paths:
       operationId: TriggerInitialMigration
       description: Trigger the initial migration
       x-internal: true
+  '/v1/clinics/{clinicId}/migrations/{userId}':
+    parameters:
+      - $ref: ./clinic/parameters/clinicid.v1.yaml
+      - $ref: '#/components/parameters/userId'
+    get:
+      summary: Get Migration
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migration'
+      operationId: GetMigration
+      description: Get a migration by user id
+    patch:
+      summary: Update Migration
+      operationId: UpdateMigration
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migration'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrationUpdate'
+      description: Internal endpoint to update the status of a migration
 components:
   schemas:
     Error:
@@ -776,18 +807,35 @@ components:
           type: string
           description: The user id of the legacy clinician account that needs to be migrated.
           minLength: 1
+        status:
+          $ref: ./clinic/models/migrationstatus.v1.yaml
         createdTime:
           type: string
-          format: date
+          format: date-time
+          readOnly: true
+        updatedTime:
+          type: string
+          format: date-time
           readOnly: true
       required:
         - userId
         - createdTime
+        - updatedTime
     Migrations:
       title: Migrations
       type: array
       items:
         $ref: '#/components/schemas/Migration'
+    MigrationUpdate:
+      title: MigrationUpdate
+      type: object
+      properties:
+        status:
+          $ref: ./clinic/models/migrationstatus.v1.yaml
+      required:
+        - status
+    MigrationStatus:
+      $ref: ./clinic/models/migrationstatus.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
