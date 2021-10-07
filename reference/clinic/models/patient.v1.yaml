@@ -26,7 +26,17 @@ properties:
       type: string
   permissions:
     $ref: ./patientpermissions.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+    readOnly: true
+  updatedTime:
+    type: string
+    format: date-time
+    readOnly: true
 required:
   - id
   - fullName
   - birthDate
+  - createdTime
+  - updatedTime

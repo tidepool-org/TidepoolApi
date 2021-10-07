@@ -390,6 +390,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./confirm/models/confirmation.v1.yaml
       description: Resend invite to the email address of the clinician.
       tags:
         - confirmation
@@ -400,6 +404,19 @@ paths:
         '200':
           description: OK
       description: Deletes unaccepted invite
+      tags:
+        - confirmation
+    get:
+      summary: Get Clinician Invite
+      operationId: GetClinicianInvite
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./confirm/models/confirmation.v1.yaml
+      description: Retrieve an invitation sent to clinician to join the clinic
       tags:
         - confirmation
   '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}/clinician':
