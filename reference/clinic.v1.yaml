@@ -205,6 +205,7 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/email'
+        - $ref: '#/components/parameters/role'
     post:
       summary: Create Clinician
       operationId: CreateClinician
@@ -951,6 +952,12 @@ components:
       schema:
         type: string
         format: email
+    role:
+      name: role
+      in: query
+      required: false
+      schema:
+        type: string
 tags:
   - name: auth
     description: Tidepool Authentication
