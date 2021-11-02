@@ -17,6 +17,16 @@ properties:
     minLength: 1
   roles:
     $ref: ./clinicianroles.v1.yaml
+  createdTime:
+    type: string
+    format: date-time
+    readOnly: true
+  updatedTime:
+    type: string
+    format: date-time
+    readOnly: true
 required:
   - email
   - roles
+  - createdTime
+  - updatedTime

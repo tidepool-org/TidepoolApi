@@ -11,6 +11,8 @@ properties:
     $ref: '../../common/models/tidepooluserid.yaml'
   created:
     $ref: '../../common/models/datetime.v1.yaml'
+  modified:
+    $ref: '../../common/models/datetime.v1.yaml'
   creator:
     $ref: './creator.v1.yaml'
   context:

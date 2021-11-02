@@ -1,22 +1,21 @@
 title: Clinic
-description: >-
-  Clinic
+description: Clinic
 type: object
 properties:
   id:
-    $ref: './clinicid.v1.yaml'
+    $ref: ./clinicid.v1.yaml
   address:
-    $ref: './streetaddress.v1.yaml'
+    $ref: ./streetaddress.v1.yaml
   city:
-    $ref: './city.v1.yaml'
+    $ref: ./city.v1.yaml
   postalCode:
-    $ref: './postalcode.v1.yaml'
+    $ref: ./postalcode.v1.yaml
   state:
-    $ref: './state.v1.yaml'
+    $ref: ./state.v1.yaml
   country:
-    $ref: './country.v1.yaml'
+    $ref: ./country.v1.yaml
   phoneNumbers:
-    $ref: './phonenumbers.v1.yaml'
+    $ref: ./phonenumbers.v1.yaml
   clinicType:
     type: string
     minLength: 1
@@ -28,17 +27,27 @@ properties:
       - 500-999
       - 1000+
   name:
-    $ref: './name.v1.yaml'
+    $ref: ./name.v1.yaml
   shareCode:
-    $ref: './sharecode.v1.yaml'
+    $ref: ./sharecode.v1.yaml
   canMigrate:
     type: boolean
     readOnly: true
   website:
     type: string
     format: uri
+  createdTime:
+    type: string
+    format: date-time
+    readOnly: true
+  updatedTime:
+    type: string
+    format: date-time
+    readOnly: true
 required:
   - id
   - name
   - shareCode
   - canMigrate
+  - createdTime
+  - updatedTime
