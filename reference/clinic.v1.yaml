@@ -734,6 +734,30 @@ paths:
             schema:
               $ref: '#/components/schemas/MigrationUpdate'
       description: Internal endpoint to update the status of a migration
+  '/v1/users/{userId}/clinics':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    delete:
+      summary: ''
+      operationId: DeleteUserFromClinics
+      responses:
+        '200':
+          description: OK
+      tags:
+        - clinic
+      x-internal: true
+      description: |-
+        Internal endpoint that deletes any user associations with clinics they are a patient or a member of. 
+
+        If the user is a patient of a clinic the service will delete the patient-clinic relationship.
+
+        If the user is one of many admins of any clinic the service will delete the clinician-clinic relationship.
+
+        If the user is the only admin of a clinic the service will:
+        - delete the clinician record, leaving the clinic without an admin
+        - delete all non-custodial patient relationships of the clinic
+        - keep all custodian relationships, allowing users to claim custodial accounts with an email
+        - keep all custodian accounts and data even if they can’t be claimed when there isn’t an email address associated with the account
 components:
   schemas:
     Error:
