@@ -1,0 +1,35 @@
+title: Controller Settings Notifications
+description: The notifications for the controller settings.
+allOf:
+  - type: object
+    properties:
+      authorization:
+        type: string
+        enum:
+          - authorized
+          - denied
+          - ephemeral
+          - notDetermined
+          - provisional
+      alert:
+        type: boolean
+      criticalAlert:
+        type: boolean
+      badge:
+        type: boolean
+      sound:
+        type: boolean
+      announcement:
+        type: boolean
+      notificationCenter:
+        type: boolean
+      lockScreen:
+        type: boolean
+      alertStyle:
+        type: string
+        enum:
+          - alert
+          - banner
+          - none
+x-tags:
+  - Data

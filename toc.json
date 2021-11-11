@@ -209,6 +209,11 @@
               "uri": "docs/device-data/data-types/cgm-settings.md"
             },
             {
+              "type": "item",
+              "title": "Controller Settings (`controllerSettings`)",
+              "uri": "docs/device-data/data-types/controller-settings.md"
+            },
+            {
               "type": "group",
               "title": "Device Event (`deviceEvent`)",
               "items": [
@@ -236,6 +241,11 @@
                   "type": "item",
                   "title": "Prime (`prime`)",
                   "uri": "docs/device-data/data-types/device-event/prime.md"
+                },
+                {
+                  "type": "item",
+                  "title": "Pump Settings Override (`pumpSettingsOverride`)",
+                  "uri": "docs/device-data/data-types/device-event/pump-settings-override.md"
                 },
                 {
                   "type": "item",
@@ -1399,6 +1409,11 @@
             },
             {
               "type": "item",
+              "title": "Controller Settings",
+              "uri": "reference/data/models/controllersettings/controllersettings.v1.yaml"
+            },
+            {
+              "type": "item",
               "title": "Cannula Prime Event",
               "uri": "reference/data/models/deviceevent/primecannula.v1.yaml"
             },
@@ -1541,6 +1556,11 @@
               "type": "item",
               "title": "Device Prime Event",
               "uri": "reference/data/models/deviceevent/prime.v1.yaml"
+            },
+            {
+              "type": "item",
+              "title": "Device Pump Settings Override",
+              "uri": "reference/data/models/deviceevent/pumpsettingsoverride.v1.yaml"
             },
             {
               "type": "item",
@@ -1750,7 +1770,7 @@
             {
               "type": "item",
               "title": "Pump Settings",
-              "uri": "reference/data/models/pumpsettings.v1.yaml"
+              "uri": "reference/data/models/pumpsettings/pumpsettings.v1.yaml"
             },
             {
               "type": "item",

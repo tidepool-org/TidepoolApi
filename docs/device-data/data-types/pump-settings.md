@@ -3,26 +3,32 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Type](#type-type)
-3. [Active Schedule](#active-schedule-activeschedule)
-4. [Basal Schedules](#basal-schedules-basalschedules)
-    1. [Rate](#rate-rate)
-    2. [Start](#start-start)
-5. [Blood Glucose Target](#blood-glucose-target-bgtarget)
-6. [Carb Ratio](#carb-ratio-carbratio)
-7. [Insulin Sensitivity](#insulin-sensitivity-insulinsensitivity)
-8. [Units](#units-units)
-9. [Example (client)](#example-client)
-10. [Example (ingestion)](#example-ingestion)
-11. [Example (storage)](#example-storage)
-12. [Keep Reading](#keep-reading)
+1. [Type](#type-type)
+1. [Active Schedule](#active-schedule-activeschedule)
+1. [Basal Schedules](#basal-schedules-basalschedules)
+1. [Blood Glucose Target](#blood-glucose-target-bgtarget)
+1. [Carb Ratio](#carb-ratio-carbratio)
+1. [Firmware Version](#firmware-version-firmwareversion)
+1. [Hardware Version](#hardware-version-hardwareversion)
+1. [Insulin Sensitivity](#insulin-sensitivity-insulinsensitivity)
+1. [Manufacturers](#manufacturers-manufacturers)
+1. [Model](#model-model)
+1. [Name](#name-name)
+1. [Override Presets](#override-presets-overridepresets)
+1. [Serial Number](#serial-number-serialnumber)
+1. [Software Version](#software-version-softwareversion)
+1. [Units](#units-units)
+1. [Example (client)](#example-client)
+1. [Example (ingestion)](#example-ingestion)
+1. [Example (storage)](#example-storage)
+1. [Keep Reading](#keep-reading)
 
 ---
 
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../reference/data/models/pumpsettings.v1.yaml'
+$ref: '../../../reference/data/models/pumpsettings/pumpsettings.v1.yaml'
 ```
 
 ---
@@ -120,6 +126,18 @@ Each segment in a carb ratio schedule is an object with a start and an amount. T
 
 ---
 
+## Firmware Version (`firmwareVersion`)
+
+The firmware version of the pump, if known.
+
+---
+
+## Hardware Version (`hardwareVersion`)
+
+The hardware version of the pump, if known.
+
+---
+
 ## Insulin Sensitivity (`insulinSensitivity`)
 
 Each insulin sensitivity segment object in the array contains the following properties:
@@ -140,6 +158,73 @@ Each segment in an insulin sensitivity schedule is an object with a start and an
 On bolus calculation events, the insulin sensitivity records the ISF employed in the calculation.
 
 Most pumps make it possible to change the ISF for the bolus *currently being calculated*, without also changing the pump settings. Therefore, the insulin sensitivity value on a bolus calculation may not always match the expected ratio given the user's insulin pump settings at the time of the calculation.
+
+---
+
+## Manufacturers (`manufacturers`)
+
+The manufacturer(s) of the pump. An array of strings.
+
+---
+
+## Model (`model`)
+
+The model of the pump, if known.
+
+---
+
+## Name (`name`)
+
+The name of the pump, if known.
+
+---
+
+## Override Presets (`overridePresets`)
+
+Any overrides setup in advance as presets prior to enabling any `pumpSettingsOverride`. The `overridePresets` field is a map of the preset name to the preset settings. The preset settings contains the following fields:
+
+* [Abbreviation](#abbreviation-abbreviation)
+* [Duration](#duration-duration)
+* [Blood Glucose Target (Preset)](#blood-glucose-target-preset-bgtarget)
+* [Basal Rate Scale Factor](#basal-rate-scale-factor-basalratescalefactor)
+* [Carbohydrate Ratio Scale Factor](#carbohydrate-ratio-scale-factor-carbratioscalefactor)
+* [Insulin Sensitivity Scale Factor](#insulin-sensitivity-scale-factor-insulinsensitivityscalefactor)
+
+### Abbreviation (`abbreviation`)
+
+An abbreviation for the preset. Commonly set to an emoji.
+
+### Duration (`duration`)
+
+The intended duration of the override when initially enabled. Not specifying this field indicates that the override should be enable indefinitely.
+
+### Blood Glucose Target (Preset) (`bgTarget`)
+
+The intended blood glucose target of the override. The blood glucose target range in effect while the override is enabled. Not specified means no change.
+
+### Basal Rate Scale Factor (`basalRateScaleFactor`)
+
+The intended basal rate scale factor of the override. The basal rate scale factor in effect while the override is enabled. This is a percentage of the active basal rate found in the basal rate schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
+
+### Carbohydrate Ratio Scale Factor (`carbRatioScaleFactor`)
+
+The intended carbohydrate ratio scale factor of the override. The carbohydrate ratio scale factor in effect while the override is enabled. This is a percentage of the active carbohydrate ratio found in the carbohydrate ratio schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
+
+### Insulin Sensitivity Scale Factor (`insulinSensitivityScaleFactor`)
+
+The intended insulin sensitivity scale factor of the override. The insulin sensitivity scale factor in effect while the override is enabled. This is a percentage of the active insulin sensitivity found in the insulin sensitivity schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
+
+---
+
+## Serial Number (`serialNumber`)
+
+The serial number of the pump, if known.
+
+---
+
+## Software Version (`softwareVersion`)
+
+The software version of the pump, if known.
 
 ---
 
@@ -198,10 +283,6 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             }
         ]
     },
-    "units": {
-        "carbs": "grams",
-        "bg": "mmol/L"
-    },
     "bgTarget": [
         {
             "start": 0,
@@ -231,6 +312,8 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             "start": 73800000
         }
     ],
+    "firmwareVersion": "1.2",
+    "hardwareVersion": "2.3r45",
     "insulinSensitivity": [
         {
             "amount": 4.662628312478248,
@@ -241,6 +324,27 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             "start": 61200000
         }
     ],
+    "manufacturers": [
+        "Acme"
+    ],
+    "model": "Pump A Lot",
+    "name": "My Pump",
+    "overridePresets": {
+        "Running": {
+            "abbreviation": "🏃‍♀️",
+            "duration": 7200,
+            "bgTarget": {},
+            "basalRateScaleFactor": 0.8,
+            "carbRatioScaleFactor": 1.25,
+            "insulinSensitivityScaleFactor": 1.25
+        }
+    },
+    "serialNumber": "1234567890",
+    "softwareVersion": "3.4.5",
+    "units": {
+        "carbs": "grams",
+        "bg": "mmol/L"
+    },
     "clockDriftOffset": 0,
     "conversionOffset": 0,
     "deviceId": "DevId0987654321",
@@ -282,10 +386,6 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
                 "rate": 0.15
             }
         ]
-    },
-    "units": {
-        "carbs": "grams",
-        "bg": "mg/dL"
     },
     "bgTargets": {
         "Normal": [
@@ -331,6 +431,8 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             }
         ]
     },
+    "firmwareVersion": "1.2",
+    "hardwareVersion": "2.3r45",
     "insulinSensitivities": {
         "Normal": [
             {
@@ -344,6 +446,27 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
                 "start": 0
             }
         ]
+    },
+    "manufacturers": [
+        "Acme"
+    ],
+    "model": "Pump A Lot",
+    "name": "My Pump",
+    "overridePresets": {
+        "Running": {
+            "abbreviation": "🏃‍♀️",
+            "duration": 7200,
+            "bgTarget": {},
+            "basalRateScaleFactor": 0.8,
+            "carbRatioScaleFactor": 1.25,
+            "insulinSensitivityScaleFactor": 1.25
+        }
+    },
+    "serialNumber": "1234567890",
+    "softwareVersion": "3.4.5",
+    "units": {
+        "carbs": "grams",
+        "bg": "mg/dL"
     },
     "clockDriftOffset": 0,
     "conversionOffset": 0,
@@ -411,10 +534,6 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             }
         ]
     },
-    "units": {
-        "carbs": "grams",
-        "bg": "mmol/L"
-    },
     "bgTarget": [
         {
             "start": 0,
@@ -428,6 +547,8 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             "start": 0
         }
     ],
+    "firmwareVersion": "1.2",
+    "hardwareVersion": "2.3r45",
     "insulinSensitivity": [
         {
             "amount": 0.7215972388359193,
@@ -450,6 +571,27 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             "start": 61200000
         }
     ],
+    "manufacturers": [
+        "Acme"
+    ],
+    "model": "Pump A Lot",
+    "name": "My Pump",
+    "overridePresets": {
+        "Running": {
+            "abbreviation": "🏃‍♀️",
+            "duration": 7200,
+            "bgTarget": {},
+            "basalRateScaleFactor": 0.8,
+            "carbRatioScaleFactor": 1.25,
+            "insulinSensitivityScaleFactor": 1.25
+        }
+    },
+    "serialNumber": "1234567890",
+    "softwareVersion": "3.4.5",
+    "units": {
+        "carbs": "grams",
+        "bg": "mmol/L"
+    },
     "_active": true,
     "_groupId": "abcdef",
     "_schemaVersion": 0,
@@ -472,6 +614,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 ## Keep Reading
 
 * [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Common Fields](./device-data/common-fields.md)
 * [Datetime Guide](./datetime.md)
 * [Diabetes Data Types](./device-data/data-types.md)

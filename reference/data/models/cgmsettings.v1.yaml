@@ -1,52 +1,73 @@
 title: CGM Settings
 description: Continuous Glucose Monitor settings
 allOf:
-  - $ref: './base.v1.yaml'
+  - $ref: ./base.v1.yaml
   - type: object
     properties:
+      firmwareVersion:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: '1.2'
+      hardwareVersion:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: 2.3r45
       highAlerts:
         type: object
-        required:
-          - enabled
-          - level
-          - snooze
         properties:
           enabled:
             type: boolean
           level:
-            $ref: './blood/value.v1.yaml'
+            $ref: ./blood/value.v1.yaml
           snooze:
             type: integer
             minimum: 0
             maximum: 86400000
             description: Integer value representing milliseconds
+        required:
+          - enabled
+          - level
+          - snooze
       lowAlerts:
         type: object
-        required:
-          - enabled
-          - level
-          - snooze
         properties:
           enabled:
             type: boolean
           level:
-            $ref: './blood/value.v1.yaml'
+            $ref: ./blood/value.v1.yaml
           snooze:
             type: integer
             minimum: 0
             maximum: 86400000
             description: Integer value representing milliseconds
-      manufacturers:
-        type: array
-        items:
-          type: object
-      model:
-        type: string
-      outOfRangeAlerts:
-        type: object
         required:
           - enabled
+          - level
           - snooze
+      manufacturers:
+        type: array
+        maxLength: 10
+        minLength: 1
+        example:
+          - Acme
+        items:
+          type: string
+          maxLength: 100
+          minLength: 1
+      model:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: Turbo CGM III
+      name:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: My CGM
+      outOfRangeAlerts:
+        type: object
         properties:
           enabled:
             type: boolean
@@ -56,11 +77,11 @@ allOf:
             format: double
             minimum: 0
             maximum: 86400000
+        required:
+          - enabled
+          - snooze
       rateOfChangeAlert:
         type: object
-        required:
-          - fallRate
-          - riseRate
         properties:
           fallRate:
             type: object
@@ -78,7 +99,6 @@ allOf:
                   - description: Floating point value representing a `mmol/L` value.
                     format: double
                     minimum: -0.55
-                    exclusiveMinimum: false
                     maximum: 0
                     exclusiveMaximum: true
                 type: number
@@ -91,20 +111,32 @@ allOf:
                 oneOf:
                   - description: Integer value representing a `mg/dL` value.
                     format: double
-                    minimum: 0
                     exclusiveMinimum: true
+                    minimum: 0
                     maximum: 10
                     multipleOf: 1
                   - description: Floating point value representing a `mmol/L` value.
                     format: double
-                    minimum: 0
                     exclusiveMinimum: true
+                    minimum: 0
                     maximum: 0.55
                 type: number
+        required:
+          - fallRate
+          - riseRate
       serialNumber:
         type: string
+        maxLength: 100
+        minLength: 1
+        example: '1234567890'
+      softwareVersion:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: 3.4.5
       transmitterId:
         type: string
+        example: G8X568
       type:
         type: string
         enum:
@@ -115,12 +147,6 @@ allOf:
           - mg/dL
           - mmol/L
 required:
-  - highAlerts
-  - lowAlerts
-  - outOfRangeAlerts
-  - rateOfChangeAlert
-  - transmitterId
   - type
-  - units
 x-tags:
   - Data

@@ -9,7 +9,7 @@ description: |-
   - insulinSensitivity/insulinSensitivities
   - add properties of all of the above
 allOf:
-  - $ref: './base.v1.yaml'
+  - $ref: ../base.v1.yaml
   - type: object
     properties:
       type:
@@ -18,14 +18,14 @@ allOf:
           - pumpSettings
       activeSchedule:
         type: string
-        description: "A string value encoding the name of the PWD's active basal schedule."
+        description: A string value encoding the name of the PWD's active basal schedule.
       basalSchedule:
         type: object
       basalSchedules:
         type: object
-        description: "A set of key-value pairs encoding the PWD's programmed basal schedules, where each key is a basal schedule name and each value is an array of basal schedule segment objects."
+        description: 'A set of key-value pairs encoding the PWD''s programmed basal schedules, where each key is a basal schedule name and each value is an array of basal schedule segment objects.'
       bgTarget:
-        $ref: './blood/glucose/target.v1.yaml'
+        $ref: ../blood/glucose/target.v1.yaml
       bgTargets:
         type: object
       bolus:
@@ -92,10 +92,10 @@ allOf:
         format: double
         minimum: 0
         maximum: 250
-        description: 'An integer encoding the grams of carbohydrate "covered" by one unit of insulin for the PWD.'
+        description: An integer encoding the grams of carbohydrate "covered" by one unit of insulin for the PWD.
       carbRatios:
         type: object
-        description: "A set of key-value pairs encoding the PWD's programmed carb ratio schedules, where each key is a schedule name and each value is an array of carb ratio segment objects."
+        description: 'A set of key-value pairs encoding the PWD''s programmed carb ratio schedules, where each key is a schedule name and each value is an array of carb ratio segment objects.'
       display:
         type: object
         properties:
@@ -109,6 +109,16 @@ allOf:
                   - mmol/L
             required:
               - units
+      firmwareVersion:
+        type: string
+        minLength: 1
+        maxLength: 100
+        example: '1.2'
+      hardwareVersion:
+        type: string
+        minLength: 1
+        maxLength: 100
+        example: 2.3r45
       insulinSensitivity:
         type: object
       insulinSensitivities:
@@ -118,6 +128,8 @@ allOf:
         uniqueItems: true
         minItems: 0
         maxItems: 10
+        example:
+          - Acme
         items:
           type: string
           minLength: 1
@@ -126,10 +138,21 @@ allOf:
         type: string
         minLength: 1
         maxLength: 100
+        example: Pump A Lot
+      name:
+        type: string
+        minLength: 1
+        maxLength: 100
+        example: My Pump
       serialNumber:
         type: string
         minLength: 1
         maxLength: 100
+      softwareVersion:
+        type: string
+        minLength: 1
+        maxLength: 100
+        example: 3.4.5
       units:
         type: object
         properties:
@@ -166,30 +189,45 @@ allOf:
         required:
           - low
           - high
-      suspendThreshold:
+      bgSafetyLimit:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 1000
+        example: 75
+      insulinModel:
         type: object
         properties:
-          value:
-            type: number
-            minimum: 0
-            maximum: 1000
-          unit:
+          modelType:
             type: string
             enum:
-              - mmol/L
-              - mmo/l
-              - mg/dL
-              - mg/dl
-        required:
-          - value
-          - unit
-      insulinModel:
-        type: string
-        enum:
-          - rapidAdult
-          - rapidChild
-          - fiasp
-required:
-  - activeSchedule
+              - rapidAdult
+              - rapidChild
+              - fiasp
+              - walsh
+              - other
+          modelTypeOther:
+            type: string
+            maxLength: 100
+            minLength: 1
+          actionDelay:
+            type: number
+            format: integer
+            minimum: 0
+            maximum: 86400
+          actionDuration:
+            type: number
+            format: integer
+            minimum: 0
+            maximum: 86400
+          actionPeakOffset:
+            type: number
+            format: integer
+            minimum: 0
+            maximum: 86400
+      overridePresets:
+        type: object
+        additionalProperties:
+          $ref: overridepreset.v1.yaml
 x-tags:
   - Data
