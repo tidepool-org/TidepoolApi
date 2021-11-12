@@ -818,6 +818,8 @@ components:
           $ref: ./clinic/models/patientpermissions.v1.yaml
         isMigrated:
           type: boolean
+        legacyClinicianId:
+          $ref: '#/components/schemas/TidepoolUserId'
     AssociateClinicianToUser:
       title: Associate Clinician
       type: object
