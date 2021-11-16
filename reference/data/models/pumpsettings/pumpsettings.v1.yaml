@@ -119,6 +119,8 @@ allOf:
         minLength: 1
         maxLength: 100
         example: 2.3r45
+      insulinFormulation:
+        $ref: '../insulin/formulation.v1.yaml'
       insulinSensitivity:
         type: object
       insulinSensitivities:
