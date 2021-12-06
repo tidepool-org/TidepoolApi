@@ -1,0 +1,7 @@
+description: >-
+  End At Datetime
+name: endAt
+in: query
+required: true
+schema:
+  $ref: '../../common/models/datetime.v1.yaml'

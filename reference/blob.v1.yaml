@@ -49,6 +49,59 @@ tags:
       If the blob is created with content or has been updated to include content then its status is `available`.
 
 paths:
+  '/v1/users/{userId}/device-logs':
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.yaml
+    post:
+      operationId: UploadDeviceLogs
+      summary: Upload new device logs as binary blobs
+      description: 'Upload s a new device logs binary blob in the user''s account. The `Content-Type` and the `Digest` headers must represent the media type and MD5 hash of the binary blob content, respectively.'
+      parameters:
+        - $ref: ./common/parameters/contenttype.v1.yaml
+        - $ref: ./common/parameters/digestmd5.v1.yaml
+        - schema:
+            type: string
+            format: date-time
+            example: '2017-02-06T02:37:46Z'
+          in: header
+          name: X-Logs-Start-At
+          description: Starting time of device logs inside the uploaded binary blob
+          required: true
+        - schema:
+            type: string
+            format: date-time
+            example: '2017-02-06T02:37:46Z'
+          in: header
+          name: X-Logs-End-At
+          description: End time of device logs inside the uploaded binary blob
+          required: true
+      requestBody:
+        description: Binary blob
+        required: true
+        content:
+          '*/*':
+            schema:
+              $ref: ./blob/models/content.v1.yaml
+            examples:
+              example-1:
+                value: string
+      responses:
+        '201':
+          $ref: '#/components/responses/DeviceLogsMetadata'
+      tags:
+        - Blobs
+    get:
+      operationId: ListDeviceLogs
+      summary: List Device Logs
+      description: List previously uploaded device logs binary blobs in the user's account. The list must be filtered with startAt and endAt parameters
+      parameters:
+        - $ref: ./blob/parameters/start-at.v1.yaml
+        - $ref: ./blob/parameters/end-at.v1.yaml
+      responses:
+        '200':
+          $ref: '#/components/responses/DeviceLogsMetadataList'
+      tags:
+        - Blobs
   '/v1/users/{userId}/blobs':
     parameters:
       - $ref: './common/parameters/tidepooluserid.yaml'
@@ -218,7 +271,18 @@ components:
           operationId: GetBlobContent
           parameters:
             blobId: '$response.body#/id'
-
+    DeviceLogsMetadata:
+      description: Device logs metadata
+      content:
+        application/json:
+          schema:
+            $ref: ./blob/models/device-logs-metadata.v1.yaml
+    DeviceLogsMetadataList:
+      description: List of binary blob metadata
+      content:
+        application/json:
+          schema:
+            $ref: ./blob/models/device-logs-metadatalist.v1.yaml
     BlobContent:
       description: Binary blob content
       headers:

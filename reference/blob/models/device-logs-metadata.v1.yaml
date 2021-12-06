@@ -1,0 +1,29 @@
+title: Device logs blob metadata
+type: object
+readOnly: true
+properties:
+  id:
+    $ref: './id.v1.yaml'
+  userId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  digestMD5:
+    $ref: '../../common/models/digestmd5.v1.yaml'
+  mediaType:
+    $ref: '../../common/models/mediatype.v1.yaml'
+  size:
+    $ref: './size.v1.yaml'
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  startAt:
+    $ref: '../../common/models/datetime.v1.yaml'
+  endAt:
+    $ref: '../../common/models/datetime.v1.yaml'
+required:
+  - id
+  - userId
+  - digestMD5
+  - mediaType
+  - size
+  - createdTime
+  - startAt
+  - endAt

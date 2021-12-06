@@ -1,0 +1,6 @@
+title: Device logs blob list
+type: array
+readOnly: true
+minItems: 0
+items:
+  $ref: './device-logs-metadata.v1.yaml'
