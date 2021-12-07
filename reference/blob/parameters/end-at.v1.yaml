@@ -1,6 +1,6 @@
 description: >-
   End At Datetime
-name: endAt
+name: endAtTime
 in: query
 required: true
 schema:

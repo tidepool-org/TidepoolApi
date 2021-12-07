@@ -55,7 +55,7 @@ paths:
     post:
       operationId: UploadDeviceLogs
       summary: Upload new device logs as binary blobs
-      description: 'Upload s a new device logs binary blob in the user''s account. The `Content-Type` and the `Digest` headers must represent the media type and MD5 hash of the binary blob content, respectively.'
+      description: Uploads a new device logs binary blob to the user's account. The `Content-Type` and the `Digest` headers must represent the media type and MD5 hash of the binary blob content, respectively.
       parameters:
         - $ref: ./common/parameters/contenttype.v1.yaml
         - $ref: ./common/parameters/digestmd5.v1.yaml
@@ -64,7 +64,7 @@ paths:
             format: date-time
             example: '2017-02-06T02:37:46Z'
           in: header
-          name: X-Logs-Start-At
+          name: X-Logs-Start-At-Time
           description: Starting time of device logs inside the uploaded binary blob
           required: true
         - schema:
@@ -72,7 +72,7 @@ paths:
             format: date-time
             example: '2017-02-06T02:37:46Z'
           in: header
-          name: X-Logs-End-At
+          name: X-Logs-End-At-Time
           description: End time of device logs inside the uploaded binary blob
           required: true
       requestBody:
@@ -278,7 +278,7 @@ components:
           schema:
             $ref: ./blob/models/device-logs-metadata.v1.yaml
     DeviceLogsMetadataList:
-      description: List of binary blob metadata
+      description: List of device logs metadata
       content:
         application/json:
           schema:

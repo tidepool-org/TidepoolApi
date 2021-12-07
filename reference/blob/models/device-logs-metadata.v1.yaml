@@ -14,9 +14,9 @@ properties:
     $ref: './size.v1.yaml'
   createdTime:
     $ref: '../../common/models/datetime.v1.yaml'
-  startAt:
+  startAtTime:
     $ref: '../../common/models/datetime.v1.yaml'
-  endAt:
+  endAtTime:
     $ref: '../../common/models/datetime.v1.yaml'
 required:
   - id

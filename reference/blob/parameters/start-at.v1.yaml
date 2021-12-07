@@ -1,6 +1,6 @@
 description: >-
   Start At Datetime
-name: startAt
+name: startAtTime
 in: query
 required: true
 schema:
