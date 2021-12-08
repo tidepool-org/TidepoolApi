@@ -69,3 +69,8 @@ properties:
     required:
       - total
       - units
+example:
+  absorptionDuration: 10800
+  carbohydrate:
+    net: 25
+    units: grams

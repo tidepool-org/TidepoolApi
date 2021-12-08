@@ -214,6 +214,11 @@
               "uri": "docs/device-data/data-types/controller-settings.md"
             },
             {
+              "type": "item",
+              "title": "Controller Status (`controllerStatus`)",
+              "uri": "docs/device-data/data-types/controller-status.md"
+            },
+            {
               "type": "group",
               "title": "Device Event (`deviceEvent`)",
               "items": [
@@ -299,6 +304,11 @@
                   "uri": "docs/device-data/data-types/pump-settings/upload.md"
                 }
               ]
+            },
+            {
+              "type": "item",
+              "title": "Pump Status (`pumpStatus`)",
+              "uri": "docs/device-data/data-types/pump-status.md"
             }
           ]
         },
@@ -1414,6 +1424,11 @@
             },
             {
               "type": "item",
+              "title": "Controller Status",
+              "uri": "reference/data/models/controllerstatus.v1.yaml"
+            },
+            {
+              "type": "item",
               "title": "Cannula Prime Event",
               "uri": "reference/data/models/deviceevent/primecannula.v1.yaml"
             },
@@ -1605,7 +1620,7 @@
             {
               "type": "item",
               "title": "Dosing Decision",
-              "uri": "reference/data/models/dosingdecision.v1.yaml"
+              "uri": "reference/data/models/dosingdecision/dosingdecision.v1.yaml"
             },
             {
               "type": "item",
