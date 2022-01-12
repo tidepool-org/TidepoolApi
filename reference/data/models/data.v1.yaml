@@ -9,6 +9,7 @@ oneOf:
   - $ref: './blood/continuousglucose.v1.yaml'
   - $ref: './blood/selfmonitoredglucose.v1.yaml'
   - $ref: './blood/ketone.v1.yaml'
+  - $ref: './bolus/automated.v1.yaml'
   - $ref: './bolus/combination.v1.yaml'
   - $ref: './bolus/extended.v1.yaml'
   - $ref: './bolus/normal.v1.yaml'
