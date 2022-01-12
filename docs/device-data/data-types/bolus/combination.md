@@ -107,6 +107,7 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 
 ## Keep Reading
 
+* [Automated Bolus](./device-data/data-types/bolus/automated.md)
 * [Bolus](./device-data/data-types/bolus.md)
 * [Common Fields](./device-data/common-fields.md)
 * [Extended Bolus](./device-data/data-types/bolus/extended.md)

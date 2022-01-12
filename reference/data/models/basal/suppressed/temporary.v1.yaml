@@ -10,8 +10,9 @@ properties:
     enum:
       - temporary
   suppressed:
-    # the only valid type here is suppressed scheduled basal
-    $ref: './scheduled.v1.yaml'
+    oneOf:
+      - $ref: './automated.v1.yaml'
+      - $ref: './scheduled.v1.yaml'
   rate:
     $ref: '../deliveryrate.v1.yaml'
   percent:

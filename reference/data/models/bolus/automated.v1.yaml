@@ -1,0 +1,27 @@
+title: Bolus Automated
+description: An automated bolus event
+allOf:
+  - $ref: './bolus.v1.yaml'
+  - type: object
+    properties:
+      expectedNormal:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 100
+        description: "Floating point value rounded to the appropriate significant figures for the device's precision."
+      normal:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 100
+        description: "Floating point value rounded to the appropriate significant figures for the device's precision."
+      subType:
+        type: string
+        enum:
+          - automated
+    required:
+      - normal
+      - subType
+x-tags:
+  - Data

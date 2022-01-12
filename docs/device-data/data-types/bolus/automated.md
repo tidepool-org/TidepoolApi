@@ -1,4 +1,4 @@
-# Extended Bolus (`extended`)
+# Automated Bolus (`automated`)
 
 ## Table of Contents
 
@@ -14,14 +14,14 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/bolus/extended.v1.yaml'
+$ref: '../../../../reference/data/models/bolus/automated.v1.yaml'
 ```
 
 ---
 
 ## Sub-Type (`subType`)
 
-This is the sub-type of bolus event that represents a bolus insulin dose programmed to be delivered evenly over a duration of time (typically 15 minutes to several hours).
+This is the sub-type of bolus event that represents a bolus insulin dose delivered within a matter of seconds or a small number of minutes (depending on the insulin pump and the user's settings). At Tidepool, we follow the common convention of representing automated boluses as point-in-time events since their durations are so short.
 
 ---
 
@@ -30,18 +30,16 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 ```json
 {
     "type": "bolus",
-    "subType": "square",
-    "extended": 9.75,
-    "expectedExtended": 14.625,
-    "duration": 3600000,
-    "expectedDuration": 5400000,
+    "subType": "automated",
+    "normal": 7.75,
+    "expectedNormal": 9.3,
     "clockDriftOffset": 0,
     "conversionOffset": 0,
     "deviceId": "DevId0987654321",
     "deviceTime": "2018-05-14T18:17:06",
-    "guid": "05934ef2-230c-42cb-bebc-e2163462dbf7",
-    "id": "5753389d95f842c283de92bb85ca43cf",
-    "time": "2018-05-14T08:17:06.859Z",
+    "guid": "3645b635-e97a-410b-b866-5ccc8cb98cbf",
+    "id": "622cc9f88a61475f8a1290909ec56e5c",
+    "time": "2018-05-14T08:17:06.676Z",
     "timezoneOffset": 600,
     "uploadId": "SampleUploadId"
 }
@@ -54,16 +52,14 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 ```json
 {
     "type": "bolus",
-    "subType": "square",
-    "extended": 8.25,
-    "expectedExtended": 12.375,
-    "duration": 25200000,
-    "expectedDuration": 37800000,
+    "subType": "automated",
+    "normal": 4.5,
+    "expectedNormal": 5.4,
     "clockDriftOffset": 0,
     "conversionOffset": 0,
     "deviceId": "DevId0987654321",
     "deviceTime": "2018-05-14T18:17:06",
-    "time": "2018-05-14T08:17:06.860Z",
+    "time": "2018-05-14T08:17:06.676Z",
     "timezoneOffset": 600,
     "uploadId": "SampleUploadId"
 }
@@ -76,23 +72,21 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 ```json
 {
     "type": "bolus",
-    "subType": "square",
-    "extended": 6,
-    "expectedExtended": 9,
-    "duration": 23400000,
-    "expectedDuration": 35100000,
+    "subType": "automated",
+    "normal": 8.25,
+    "expectedNormal": 9.9,
     "_active": true,
     "_groupId": "abcdef",
     "_schemaVersion": 0,
     "_version": 0,
     "clockDriftOffset": 0,
     "conversionOffset": 0,
-    "createdTime": "2018-05-14T08:17:11.860Z",
+    "createdTime": "2018-05-14T08:17:11.676Z",
     "deviceId": "DevId0987654321",
     "deviceTime": "2018-05-14T18:17:06",
-    "guid": "23f71af0-f30b-4348-88f6-4169bd46ffcb",
-    "id": "b862128865b34aabad71d02389717579",
-    "time": "2018-05-14T08:17:06.860Z",
+    "guid": "5f7a9c48-ec16-449c-9597-2cef1f679096",
+    "id": "8480f23a08484c91a7436475ee40c0c6",
+    "time": "2018-05-14T08:17:06.676Z",
     "timezoneOffset": 600,
     "uploadId": "SampleUploadId"
 }
@@ -102,10 +96,10 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ## Keep Reading
 
-* [Automated Bolus](./device-data/data-types/bolus/automated.md)
 * [Bolus](./device-data/data-types/bolus.md)
 * [Combination Bolus](./device-data/data-types/bolus/combination.md)
 * [Common Fields](./device-data/common-fields.md)
+* [Extended Bolus](./device-data/data-types/bolus/extended.md)
 * [Normal Bolus](./device-data/data-types/bolus/normal.md)
 * [Pump Settings](./device-data/data-types/pump-settings.md)
 * [Units](./device-data/units.md)
