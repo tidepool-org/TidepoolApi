@@ -64,6 +64,8 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/shareCode'
+        - $ref: '#/components/parameters/createdTimeStart'
+        - $ref: '#/components/parameters/createdTimeEnd'
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -199,7 +201,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Clinicians'
       operationId: ListClinicians
-      description: 'Retrieve the list of all clinic members. '
+      description: 'Retrieve the list of clinic members. '
       parameters:
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/offset'
@@ -760,6 +762,27 @@ paths:
         - delete all non-custodial patient relationships of the clinic
         - keep all custodian relationships, allowing users to claim custodial accounts with an email
         - keep all custodian accounts and data even if they can’t be claimed when there isn’t an email address associated with the account
+  /v1/clinicians:
+    get:
+      summary: List All Clinicians
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClinicianClinicRelationship'
+      operationId: ListAllClinicians
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/createdTimeStart'
+        - $ref: '#/components/parameters/createdTimeEnd'
+      description: Returns list of all clinician/clinic relationships in the system. Internal endpoint used for reporting purposes.
+      x-internal: true
 components:
   schemas:
     Error:
@@ -983,6 +1006,22 @@ components:
         type: string
         pattern: '(?:-|\+)(?:[a-zA-Z]|_)+'
       description: Sort order and attribute (e.g. +name or -name)
+    createdTimeStart:
+      name: createdTimeStart
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+      description: Return records created after the given date (inclusive)
+    createdTimeEnd:
+      name: createdTimeEnd
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+      description: Return records created before the given date (exclusive)
 tags:
   - name: auth
     description: Tidepool Authentication

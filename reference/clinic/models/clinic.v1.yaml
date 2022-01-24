@@ -19,6 +19,12 @@ properties:
   clinicType:
     type: string
     minLength: 1
+    enum:
+      - provider_practice
+      - healthcare_system
+      - veterinary_clinic
+      - other
+      - researcher
   clinicSize:
     type: string
     enum:
