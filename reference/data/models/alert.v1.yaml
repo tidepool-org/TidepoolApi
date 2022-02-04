@@ -1,0 +1,55 @@
+title: Alert
+description: Alert presented to user
+allOf:
+  - $ref: './base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - alert
+      name:
+        type: string
+        minLength: 1
+        maxLength: 100
+      priority:
+        type: string
+        enum:
+          - critical
+          - normal
+          - timeSensitive
+      trigger:
+        type: string
+        enum:
+          - delayed
+          - immediate
+          - repeating
+      triggerDelay:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 86400
+      sound:
+        type: string
+        enum:
+          - name
+          - silence
+          - vibrate
+      soundName:
+        type: string
+        minLength: 1
+        maxLength: 100
+      parameters:
+        type: object
+        additionalProperties: true
+      issuedTime:
+        $ref: '../../common/models/datetime.v1.yaml'
+      acknowledgedTime:
+        $ref: '../../common/models/datetime.v1.yaml'
+      retractedTime:
+        $ref: '../../common/models/datetime.v1.yaml'
+    required:
+      - name
+      - issuedTime
+x-tags:
+  - Data
