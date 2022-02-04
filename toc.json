@@ -132,6 +132,11 @@
               "uri": "docs/device-data/data-types.md"
             },
             {
+              "type": "item",
+              "title": "Alert (`alert`)",
+              "uri": "docs/device-data/data-types/alert.md"
+            },
+            {
               "type": "group",
               "title": "Basal Insulin (`basal`)",
               "items": [

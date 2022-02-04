@@ -3,6 +3,7 @@ description: >-
   Data type
 type: string
 enum:
+  - alert
   - basal
   - bloodKetone
   - bolus
