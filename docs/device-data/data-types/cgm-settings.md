@@ -3,16 +3,25 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Overview](#overview)
-3. [Type](#type-type)
-4. [High Alerts](#high-alerts-highalerts)
-5. [Low Alerts](#low-alerts-lowalerts)
-6. [Out Of Range Alerts](#out-of-range-alerts-outofrangealerts)
-7. [Rate Of Change Alerts](#rate-of-change-alerts-rateofchangealerts)
-8. [Example (client)](#example-client)
-9. [Example (ingestion)](#example-ingestion)
-10. [Example (storage)](#example-storage)
-11. [Keep Reading](#keep-reading)
+1. [Overview](#overview)
+1. [Type](#type-type)
+1. [Firmware Version](#firmware-version-firmwareversion)
+1. [Hardware Version](#hardware-version-hardwareversion)
+1. [High Alerts](#high-alerts-highalerts)
+1. [Low Alerts](#low-alerts-lowalerts)
+1. [Manufacturers](#manufacturers-manufacturers)
+1. [Model](#model-model)
+1. [Name](#name-name)
+1. [Out Of Range Alerts](#out-of-range-alerts-outofrangealerts)
+1. [Rate Of Change Alerts](#rate-of-change-alerts-rateofchangealerts)
+1. [Serial Number](#serial-number-serialnumber)
+1. [Software Version](#software-version-softwareversion)
+1. [Transmitter ID](#transmitter-id-transmitterid)
+1. [Units](#units-units)
+1. [Example (client)](#example-client)
+1. [Example (ingestion)](#example-ingestion)
+1. [Example (storage)](#example-storage)
+1. [Keep Reading](#keep-reading)
 
 ---
 
@@ -46,6 +55,18 @@ This is the Tidepool data type to represent CGM settings at a given point in tim
 
 ---
 
+## Firmware Version (`firmwareVersion`)
+
+The firmware version of the CGM, if known.
+
+---
+
+## Hardware Version (`hardwareVersion`)
+
+The hardware version of the CGM, if known.
+
+---
+
 ## High Alerts (`highAlerts`)
 
 The high alerts object encodes the user’s preferences for receiving alerts about high blood glucose events (hyperglycemia).
@@ -67,6 +88,24 @@ Contains the following:
 * Enabled
 * Level: Threshold for low BG alerts
 * Snooze: Allows the user to configure how often the alert should repeat if the person with diabetes' blood glucose remains below the threshold value. A common value is 15 minutes
+
+---
+
+## Manufacturers (`manufacturers`)
+
+The manufacturer(s) of the CGM. An array of strings.
+
+---
+
+## Model (`model`)
+
+The model of the CGM, if known.
+
+---
+
+## Name (`name`)
+
+The name of the CGM, if known.
 
 ---
 
@@ -100,11 +139,37 @@ Contains the following:
 
 ---
 
+## Serial Number (`serialNumber`)
+
+The serial number of the CGM, if known.
+
+---
+
+## Software Version (`softwareVersion`)
+
+The software version of the CGM, if known.
+
+---
+
+## Transmitter ID (`transmitterId`)
+
+The transmitter ID of the CGM, if known.
+
+---
+
+## Units (`units`)
+
+The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
+
+---
+
 ## Example (client)
 
 ```json
 {
     "type": "cgmSettings",
+    "firmwareVersion": "1.2",
+    "hardwareVersion": "2.3r45",
     "highAlerts": {
         "enabled": true,
         "level": 10.82395858253879,
@@ -115,6 +180,11 @@ Contains the following:
         "level": 3.33044879462732,
         "snooze": 1800000
     },
+    "manufacturers": [
+        "Acme"
+    ],
+    "model": "Turbo CGM III",
+    "name": "My CGM",
     "outOfRangeAlerts": {
         "enabled": false,
         "snooze": 1800000
@@ -129,6 +199,8 @@ Contains the following:
             "rate": 0.055507479910455335
         }
     },
+    "serialNumber": "1234567890",
+    "softwareVersion": "3.4.5",
     "transmitterId": "C8E65",
     "units": "mmol/L",
     "clockDriftOffset": 0,
@@ -150,6 +222,8 @@ Contains the following:
 ```json
 {
     "type": "cgmSettings",
+    "firmwareVersion": "1.2",
+    "hardwareVersion": "2.3r45",
     "highAlerts": {
         "enabled": true,
         "level": 185,
@@ -160,6 +234,11 @@ Contains the following:
         "level": 85,
         "snooze": 900000
     },
+    "manufacturers": [
+        "Acme"
+    ],
+    "model": "Turbo CGM III",
+    "name": "My CGM",
     "outOfRangeAlerts": {
         "enabled": false,
         "snooze": 3600000
@@ -174,6 +253,8 @@ Contains the following:
             "rate": 2
         }
     },
+    "serialNumber": "1234567890",
+    "softwareVersion": "3.4.5",
     "transmitterId": "BE61A",
     "units": "mg/dL",
     "clockDriftOffset": 0,
@@ -193,6 +274,8 @@ Contains the following:
 ```json
 {
     "type": "cgmSettings",
+    "firmwareVersion": "1.2",
+    "hardwareVersion": "2.3r45",
     "highAlerts": {
         "enabled": true,
         "level": 10.268883783434237,
@@ -203,6 +286,11 @@ Contains the following:
         "level": 3.8855235937318735,
         "snooze": 1800000
     },
+    "manufacturers": [
+        "Acme"
+    ],
+    "model": "Turbo CGM III",
+    "name": "My CGM",
     "outOfRangeAlerts": {
         "enabled": false,
         "snooze": 3600000
@@ -217,6 +305,8 @@ Contains the following:
             "rate": 0.16652243973136602
         }
     },
+    "serialNumber": "1234567890",
+    "softwareVersion": "3.4.5",
     "transmitterId": "E3250",
     "units": "mmol/L",
     "_active": true,

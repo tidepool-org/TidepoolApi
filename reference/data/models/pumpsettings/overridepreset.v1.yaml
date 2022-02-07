@@ -1,0 +1,41 @@
+title: Pump Settings Override Preset
+description: An insulin pump settings override preset.
+allOf:
+  - type: object
+    properties:
+      abbreviation:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: 🏃‍♀️
+      duration:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 604800
+        example: 7200
+      bgTarget:
+        $ref: ../blood/glucose/target.v1.yaml
+        example:
+          high: 160
+          low: 150
+      basalRateScaleFactor:
+        type: number
+        format: float
+        minimum: 0.1
+        maximum: 10
+        example: 0.8
+      carbRatioScaleFactor:
+        type: number
+        format: float
+        minimum: 0.1
+        maximum: 10
+        example: 1.25
+      insulinSensitivityScaleFactor:
+        type: number
+        format: float
+        minimum: 0.1
+        maximum: 10
+        example: 1.25
+x-tags:
+  - Data

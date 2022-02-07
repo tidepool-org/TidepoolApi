@@ -80,6 +80,7 @@ The calibration sub-type of device event represents a user's manual entry of a s
 * [Device Event](./device-data/data-types/device-event.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
 * [Pump Settings](device-data/data-types/pump-settings)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
 * [Time Change](./device-data/data-types/device-event/time-change.md)
