@@ -39,9 +39,6 @@ allOf:
         type: string
         minLength: 1
         maxLength: 100
-      parameters:
-        type: object
-        additionalProperties: true
       issuedTime:
         $ref: '../../common/models/datetime.v1.yaml'
       acknowledgedTime:

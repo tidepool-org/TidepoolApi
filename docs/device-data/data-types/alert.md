@@ -11,7 +11,6 @@
 1. [Trigger Delay](#trigger-delay-triggerdelay)
 1. [Sound](#sound-sound)
 1. [Sound Name](#sound-name-soundname)
-1. [Parameters](#parameters-parameters)
 1. [Issued Time](#issued-time-issuedtime)
 1. [Acknowledged Time](#acknowledged-time-acknowledgedtime)
 1. [Retracted Time](#retracted-time-retractedtime)
@@ -64,10 +63,6 @@ The sound associated with the alert. One of `name`, `silence`, or `vibrate`.
 
 For a `name` sound, then name of the sound played when the alert is presented.
 
-### Parameters (`parameters`)
-
-Any dynamic parameters that are applied to the standard, localized alert text to customize the alert for this specific instance. For example, it might include the blood glucose value and trend for a low glucose alert. Is a generic dictionary of values that only has meaning for alerts with the same name.
-
 ### Issued Time (`issuedTime`)
 
 The time the alert was issued (aka created).
@@ -95,9 +90,6 @@ The time the alert was retracted after it was presented.
     "triggerDelay": 900,
     "sound": "name",
     "soundName": "Gong",
-    "parameters": {
-        "glucoseValue": 66
-    },
     "issuedTime": "2018-05-14T08:17:07.560Z",
     "acknowledgedTime": "2018-05-14T08:33:03.254Z",
     "retractedTime": "2018-05-14T08:35:12.884Z",
