@@ -762,6 +762,19 @@ paths:
         - delete all non-custodial patient relationships of the clinic
         - keep all custodian relationships, allowing users to claim custodial accounts with an email
         - keep all custodian accounts and data even if they can’t be claimed when there isn’t an email address associated with the account
+    post:
+      summary: Update User Details
+      operationId: UpdateClinicUserDetails
+      responses:
+        '204':
+          description: No Content
+      description: Internal endpoint to update clinician details. In the future it may be extended to support patient updates.
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDetails'
   /v1/clinicians:
     get:
       summary: List All Clinicians
@@ -918,6 +931,14 @@ components:
           $ref: '#/components/schemas/Patients'
         meta:
           $ref: '#/components/schemas/Meta'
+    UpdateUserDetails:
+      title: UpdateUserDetails
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
