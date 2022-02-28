@@ -8,12 +8,16 @@ enum:
   - bolus
   - cbg
   - cgmSettings
+  - controllerSettings
+  - controllerStatus
   - deviceEvent
   - deviceStatus
+  - dosingDecision
   - food
   - insulin
   - physicalActivity
   - pumpSettings
+  - pumpStatus
   - reportedState
   - smbg
   - upload
