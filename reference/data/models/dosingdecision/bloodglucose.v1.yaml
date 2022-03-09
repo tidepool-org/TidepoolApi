@@ -1,0 +1,13 @@
+title: Blood Glucose for Dosing Decision
+description: A simple blood glucose for a dosing decision.
+type: object
+properties:
+  time:
+    type: string
+    format: date-time
+  value:
+    $ref: '../blood/value.v1.yaml'
+required:
+  - value
+x-tags:
+  - Data
