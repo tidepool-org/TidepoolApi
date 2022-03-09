@@ -2,6 +2,7 @@ title: Tidepool Diabetes Data
 description: >-
   This is a composite data type that represents all possible Tidepool diabetes data objects.
 oneOf:
+  - $ref: './alert.v1.yaml'
   - $ref: './basal/automated.v1.yaml'
   - $ref: './basal/scheduled.v1.yaml'
   - $ref: './basal/suspend.v1.yaml'
