@@ -1,0 +1,37 @@
+title: patientsummary.v1
+type: object
+properties:
+  userId:
+    type: string
+  lastUpdated:
+    $ref: ../../common/models/datetime.v1.yaml
+  firstData:
+    $ref: ../../common/models/datetime.v1.yaml
+  lastData:
+    $ref: ../../common/models/datetime.v1.yaml
+  lastUpload:
+    $ref: ../../common/models/datetime.v1.yaml
+  outdatedSince:
+    $ref: ../../common/models/datetime.v1.yaml
+  avgGlucose:
+    $ref: ../../data/models/blood/glucose/glucose.v1.yaml
+  glucoseMgmtIndicator:
+    type: number
+  timeInRange:
+    type: number
+  timeAboveRange:
+    type: number
+  timeVeryAboveRange:
+    type: number
+  timeBelowRange:
+    type: number
+  timeVeryBelowRange:
+    type: number
+  timeCGMUse:
+    type: number
+  highGlucoseThreshold:
+    type: number
+  lowGlucoseThreshold:
+    type: number
+required:
+  - userId

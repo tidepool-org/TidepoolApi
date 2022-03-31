@@ -34,6 +34,8 @@ properties:
     type: string
     format: date-time
     readOnly: true
+  summary:
+    $ref: ./patientsummary.v1.yaml
 required:
   - id
   - fullName

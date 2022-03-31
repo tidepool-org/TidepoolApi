@@ -50,6 +50,8 @@ properties:
     type: string
     format: date-time
     readOnly: true
+  summary:
+    $ref: ./clinicsummary.v1.yaml
 required:
   - id
   - name
