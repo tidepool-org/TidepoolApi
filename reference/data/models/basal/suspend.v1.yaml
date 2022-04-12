@@ -21,6 +21,9 @@ allOf:
       expectedDuration:
         $ref: './expectedduration.v1.yaml'
       suppressed:
-        $ref: './suppressed.v1.yaml'
+        oneOf:
+          - $ref: './suppressed/automated.v1.yaml'
+          - $ref: './suppressed/scheduled.v1.yaml'
+          - $ref: './suppressed/temporary.v1.yaml'
 x-tags:
   - Data
