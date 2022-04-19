@@ -706,6 +706,11 @@ paths:
       operationId: TriggerInitialMigration
       description: Trigger the initial migration
       x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerMigration'
   '/v1/clinics/{clinicId}/migrations/{userId}':
     parameters:
       - $ref: ./clinic/parameters/clinicid.v1.yaml
@@ -856,6 +861,8 @@ components:
           type: boolean
         legacyClinicianId:
           $ref: '#/components/schemas/TidepoolUserId'
+        attestationSubmitted:
+          type: boolean
     AssociateClinicianToUser:
       title: Associate Clinician
       type: object
@@ -898,10 +905,15 @@ components:
           type: string
           format: date-time
           readOnly: true
+        attestationTime:
+          type: string
+          format: date-time
+          readOnly: true
       required:
         - userId
         - createdTime
         - updatedTime
+        - attestationTime
     Migrations:
       title: Migrations
       type: array
@@ -939,6 +951,14 @@ components:
           type: string
           format: email
           minLength: 1
+    TriggerMigration:
+      title: TriggerMigration
+      type: object
+      properties:
+        attestationSubmitted:
+          type: boolean
+      required:
+        - attestationSubmitted
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
