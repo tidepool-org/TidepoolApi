@@ -21,15 +21,15 @@ properties:
     $ref: ../../data/models/blood/glucose/glucosemgdl.v1.yaml
   glucoseManagementIndicator:
     type: number
-  timeInRange:
+  percentTimeInTarget:
     type: number
-  timeAboveRange:
+  percentTimeInHigh:
     type: number
-  timeVeryAboveRange:
+  percentTimeInVeryHigh:
     type: number
-  timeBelowRange:
+  percentTimeInLow:
     type: number
-  timeVeryBelowRange:
+  percentTimeInVeryLow:
     type: number
   timeCGMUse:
     type: number

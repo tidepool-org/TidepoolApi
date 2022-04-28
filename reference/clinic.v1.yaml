@@ -244,38 +244,38 @@ paths:
         - $ref: '#/components/parameters/sort'
         - schema:
             type: string
-            pattern: ^(>=|>|<=|<)\d\d?\d?$
-            example: '>=70'
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
           in: query
-          name: summary.timeVeryBelowRange
+          name: summary.percentTimeInVeryLow
           description: Percentage of time below 54 mg/dL
         - schema:
             type: string
-            pattern: ^(>=|>|<=|<)\d\d?\d?$
-            example: '>=70'
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
           in: query
-          name: summary.timeBelowRange
+          name: summary.percentTimeInLow
           description: Percentage of time in range 54-70 mg/dL
         - schema:
             type: string
-            pattern: ^(>=|>|<=|<)\d\d?\d?$
-            example: '>=70'
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
           in: query
-          name: summary.timeInRange
+          name: summary.percentTimeInTarget
           description: Percentage of time in range 70-180 mg/dL
         - schema:
             type: string
-            pattern: ^(>=|>|<=|<)\d\d?\d?$
-            example: '>=70'
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
           in: query
-          name: summary.timeAboveRange
+          name: summary.percentTimeInHigh
           description: Percentage of time in range 180-250 mg/dL
         - schema:
             type: string
-            pattern: ^(>=|>|<=|<)\d\d?\d?$
-            example: '>=70'
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
           in: query
-          name: summary.timeVeryAboveRange
+          name: summary.percentTimeInVeryHigh
           description: Percentage of time above range 250 mg/dL
         - schema:
             type: string
