@@ -242,6 +242,53 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/sort'
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\d?\d?$
+            example: '>=70'
+          in: query
+          name: summary.timeVeryBelowRange
+          description: Percentage of time below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\d?\d?$
+            example: '>=70'
+          in: query
+          name: summary.timeBelowRange
+          description: Percentage of time in range 54-70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\d?\d?$
+            example: '>=70'
+          in: query
+          name: summary.timeInRange
+          description: Percentage of time in range 70-180 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\d?\d?$
+            example: '>=70'
+          in: query
+          name: summary.timeAboveRange
+          description: Percentage of time in range 180-250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\d?\d?$
+            example: '>=70'
+          in: query
+          name: summary.timeVeryAboveRange
+          description: Percentage of time above range 250 mg/dL
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: summary.lastUploadFrom
+          description: Inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: summary.lastUploadTo
+          description: Exclusive
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -959,6 +1006,10 @@ components:
           type: boolean
       required:
         - attestationSubmitted
+    PatientSummary:
+      $ref: ./clinic/models/patientsummary.v1.yaml
+    AverageGlucose:
+      $ref: ./data/models/blood/glucose/glucosemgdl.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token

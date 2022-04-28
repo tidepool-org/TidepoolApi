@@ -36,6 +36,8 @@ properties:
     readOnly: true
   attestationSubmitted:
     type: boolean
+  summary:
+    $ref: ./patientsummary.v1.yaml
 required:
   - id
   - fullName
