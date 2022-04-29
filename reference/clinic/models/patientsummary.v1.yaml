@@ -2,7 +2,7 @@ type: object
 title: patientsummary.v1
 description: ''
 properties:
-  lastUpdated:
+  lastUpdatedDate:
     type: string
     format: date-time
   firstData:
@@ -11,7 +11,7 @@ properties:
   lastData:
     type: string
     format: date-time
-  lastUpload:
+  lastUploadDate:
     type: string
     format: date-time
   outdatedSince:
@@ -31,7 +31,7 @@ properties:
     type: number
   percentTimeInVeryLow:
     type: number
-  timeCGMUse:
+  percentTimeCGMUse:
     type: number
   highGlucoseThreshold:
     type: number
