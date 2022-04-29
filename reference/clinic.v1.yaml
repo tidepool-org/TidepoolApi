@@ -848,6 +848,47 @@ paths:
         - $ref: '#/components/parameters/createdTimeEnd'
       description: Returns list of all clinician/clinic relationships in the system. Internal endpoint used for reporting purposes.
       x-internal: true
+  '/v1/patients/{patientId}/summary':
+    parameters:
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: UpdatePatientSummary
+      operationId: UpdatePatientSummary
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Internal endpoint which updates the summary in all patient records which match the user id.
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientSummary'
+            examples:
+              example-1:
+                value:
+                  lastUpdatedDate: '2019-08-24T14:15:22Z'
+                  firstData: '2019-08-24T14:15:22Z'
+                  lastData: '2019-08-24T14:15:22Z'
+                  lastUploadDate: '2019-08-24T14:15:22Z'
+                  outdatedSince: '2019-08-24T14:15:22Z'
+                  averageGlucose:
+                    units: mg/dL
+                    value: 105
+                  glucoseManagementIndicator: 0
+                  percentTimeInTarget: 0.7
+                  percentTimeInHigh: 0.1
+                  percentTimeInVeryHigh: 0.1
+                  percentTimeInLow: 0.05
+                  percentTimeInVeryLow: 0.05
+                  percentTimeCGMUse: 1
+                  highGlucoseThreshold: 0
+                  lowGlucoseThreshold: 0
+        description: ''
 components:
   schemas:
     Error:

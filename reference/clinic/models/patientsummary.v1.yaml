@@ -37,4 +37,3 @@ properties:
     type: number
   lowGlucoseThreshold:
     type: number
-readOnly: true
