@@ -879,13 +879,13 @@ paths:
                   averageGlucose:
                     units: mg/dL
                     value: 105
-                  glucoseManagementIndicator: 0
+                  glucoseManagementIndicator: 0.06
                   percentTimeInTarget: 0.7
                   percentTimeInHigh: 0.1
                   percentTimeInVeryHigh: 0.1
                   percentTimeInLow: 0.05
                   percentTimeInVeryLow: 0.05
-                  percentTimeCGMUse: 1
+                  percentTimeCGMUse: 0.9
                   highGlucoseThreshold: 0
                   lowGlucoseThreshold: 0
         description: ''

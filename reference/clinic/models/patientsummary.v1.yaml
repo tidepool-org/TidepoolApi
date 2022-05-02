@@ -21,19 +21,28 @@ properties:
     $ref: ../../data/models/blood/glucose/glucosemgdl.v1.yaml
   glucoseManagementIndicator:
     type: number
+    x-go-type: float64
   percentTimeInTarget:
     type: number
+    x-go-type: float64
   percentTimeInHigh:
     type: number
+    x-go-type: float64
   percentTimeInVeryHigh:
     type: number
+    x-go-type: float64
   percentTimeInLow:
     type: number
+    x-go-type: float64
   percentTimeInVeryLow:
     type: number
+    x-go-type: float64
   percentTimeCGMUse:
     type: number
+    x-go-type: float64
   highGlucoseThreshold:
     type: number
+    x-go-type: float64
   lowGlucoseThreshold:
     type: number
+    x-go-type: float64
