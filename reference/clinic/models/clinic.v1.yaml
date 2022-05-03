@@ -50,6 +50,13 @@ properties:
     type: string
     format: date-time
     readOnly: true
+  tierDescription:
+    type: string
+    minLength: 1
+    example: Free
+  tier:
+    $ref: ./tier.v1.yaml
+    readOnly: true
 required:
   - id
   - name
@@ -57,3 +64,5 @@ required:
   - canMigrate
   - createdTime
   - updatedTime
+  - tier
+  - tierDescription
