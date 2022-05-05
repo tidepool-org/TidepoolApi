@@ -55,7 +55,9 @@ properties:
     minLength: 1
     example: Free
   tier:
-    $ref: ./tier.v1.yaml
+    type: string
+    example: tier0100
+    minLength: 1
     readOnly: true
 required:
   - id
@@ -64,5 +66,5 @@ required:
   - canMigrate
   - createdTime
   - updatedTime
-  - tier
   - tierDescription
+  - tier
