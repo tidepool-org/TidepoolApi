@@ -907,6 +907,19 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTier'
+  '/v1/clinics/{clinicId}/patients/{patientId}/upload_reminder':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Send Upload Reminder
+      operationId: SendUploadReminder
+      responses:
+        '200':
+          description: OK
+      description: Sends upload reminder to the patient
+      tags:
+        - clinic
 components:
   schemas:
     Error:
