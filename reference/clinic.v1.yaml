@@ -884,7 +884,7 @@ paths:
                   lastUploadDate: '2019-08-24T14:15:22Z'
                   outdatedSince: '2019-08-24T14:15:22Z'
                   averageGlucose:
-                    units: mg/dL
+                    units: mmol/l
                     value: 105
                   glucoseManagementIndicator: 0.06
                   percentTimeInTarget: 0.7
