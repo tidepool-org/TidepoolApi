@@ -54,11 +54,17 @@ properties:
     type: string
     minLength: 1
     example: Free
+    readOnly: true
   tier:
     type: string
     example: tier0100
     minLength: 1
     readOnly: true
+  preferredBgUnits:
+    type: string
+    enum:
+      - mg/dl
+      - mmol/l
 required:
   - id
   - name
@@ -68,3 +74,4 @@ required:
   - updatedTime
   - tierDescription
   - tier
+  - preferredBgUnits
