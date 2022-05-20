@@ -63,8 +63,8 @@ properties:
   preferredBgUnits:
     type: string
     enum:
-      - mg/dl
-      - mmol/l
+      - mg/dL
+      - mmol/L
 required:
   - id
   - name
