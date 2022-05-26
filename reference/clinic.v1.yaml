@@ -247,42 +247,42 @@ paths:
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.5'
           in: query
-          name: summary.percentTimeCGMUse
+          name: summary.timeCGMUsePercent
           description: Percentage of time of CGM use
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.percentTimeInVeryLow
+          name: summary.timeInVeryLowPercent
           description: Percentage of time below 54 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.percentTimeInLow
+          name: summary.timeInLowPercent
           description: Percentage of time in range 54-70 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.percentTimeInTarget
+          name: summary.timeInTargetPercent
           description: Percentage of time in range 70-180 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.percentTimeInHigh
+          name: summary.timeInHighPercent
           description: Percentage of time in range 180-250 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.percentTimeInVeryHigh
+          name: summary.timeInVeryHighPercent
           description: Percentage of time above range 250 mg/dL
         - schema:
             type: string

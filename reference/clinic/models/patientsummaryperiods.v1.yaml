@@ -1,0 +1,8 @@
+type: object
+x-stoplight:
+  id: i99fgumcbrwph
+title: patientsummaryperiods.v1
+description: ''
+properties:
+  14d:
+    $ref: ./patientsummaryperiod.v1.yaml
