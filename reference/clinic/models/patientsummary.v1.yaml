@@ -17,6 +17,9 @@ properties:
   outdatedSince:
     type: string
     format: date-time
+  totalDays:
+    type: number
+    x-go-type: int
   highGlucoseThreshold:
     type: number
     x-go-type: float64
