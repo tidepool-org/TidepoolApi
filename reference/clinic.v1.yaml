@@ -1039,7 +1039,6 @@ components:
         - userId
         - createdTime
         - updatedTime
-        - attestationTime
     Migrations:
       title: Migrations
       type: array
@@ -1083,8 +1082,6 @@ components:
       properties:
         attestationSubmitted:
           type: boolean
-      required:
-        - attestationSubmitted
     PatientSummary:
       $ref: ./clinic/models/patientsummary.v1.yaml
     PatientSummaryPeriods:
