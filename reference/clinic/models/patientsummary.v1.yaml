@@ -1,37 +1,36 @@
-title: patientsummary.v1
 type: object
+title: patientsummary.v1
+description: ''
 properties:
-  userId:
+  lastUpdatedDate:
     type: string
-  lastUpdated:
-    $ref: ../../common/models/datetime.v1.yaml
+    format: date-time
   firstData:
-    $ref: ../../common/models/datetime.v1.yaml
+    type: string
+    format: date-time
   lastData:
-    $ref: ../../common/models/datetime.v1.yaml
-  lastUpload:
-    $ref: ../../common/models/datetime.v1.yaml
+    type: string
+    format: date-time
+  lastUploadDate:
+    type: string
+    format: date-time
   outdatedSince:
-    $ref: ../../common/models/datetime.v1.yaml
-  avgGlucose:
-    $ref: ../../data/models/blood/glucose/glucose.v1.yaml
-  glucoseMgmtIndicator:
+    type: string
+    format: date-time
+  totalDays:
     type: number
-  timeInRange:
-    type: number
-  timeAboveRange:
-    type: number
-  timeVeryAboveRange:
-    type: number
-  timeBelowRange:
-    type: number
-  timeVeryBelowRange:
-    type: number
-  timeCGMUse:
-    type: number
+    x-go-type: int
   highGlucoseThreshold:
     type: number
+    x-go-type: float64
+  veryHighGlucoseThreshold:
+    type: number
+    x-go-type: float64
   lowGlucoseThreshold:
     type: number
-required:
-  - userId
+    x-go-type: float64
+  veryLowGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  periods:
+    $ref: ./patientsummaryperiods.v1.yaml

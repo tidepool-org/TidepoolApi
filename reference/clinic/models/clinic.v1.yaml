@@ -50,8 +50,21 @@ properties:
     type: string
     format: date-time
     readOnly: true
-  summary:
-    $ref: ./clinicsummary.v1.yaml
+  tierDescription:
+    type: string
+    minLength: 1
+    example: Free
+    readOnly: true
+  tier:
+    type: string
+    example: tier0100
+    minLength: 1
+    readOnly: true
+  preferredBgUnits:
+    type: string
+    enum:
+      - mg/dL
+      - mmol/L
 required:
   - id
   - name
@@ -59,3 +72,6 @@ required:
   - canMigrate
   - createdTime
   - updatedTime
+  - tierDescription
+  - tier
+  - preferredBgUnits
