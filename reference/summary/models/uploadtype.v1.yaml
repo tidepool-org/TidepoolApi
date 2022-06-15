@@ -1,8 +1,0 @@
-title: Uploaded Data Type
-description: >-
-  The data type that was uploaded.
-type: string
-enum:
-  - smbg
-  - cbg
-example: 'smbg'

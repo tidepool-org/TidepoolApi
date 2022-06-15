@@ -1,58 +1,48 @@
 type: object
+x-stoplight:
+  id: rul58weln9wr3
 title: summaryperiod.v1
 description: ''
 properties:
-  averageGlucose:
-    $ref: ../../data/models/blood/glucose/glucosemmol.v1.yaml
-  glucoseManagementIndicator:
-    type: number
-    x-go-type: float64
-  timeInTargetPercent:
-    type: number
-    x-go-type: float64
+  deviceId:
+    type: string
+  date:
+    type: string
+    format: date-time
+  lastRecordTime:
+    type: string
+    format: date-time
   timeInTargetMinutes:
     type: number
     x-go-type: int
   timeInTargetRecords:
     type: number
     x-go-type: int
-  timeInHighPercent:
-    type: number
-    x-go-type: float64
   timeInHighMinutes:
     type: number
     x-go-type: int
   timeInHighRecords:
     type: number
     x-go-type: int
-  timeInVeryHighPercent:
-    type: number
-    x-go-type: float64
   timeInVeryHighMinutes:
     type: number
     x-go-type: int
   timeInVeryHighRecords:
     type: number
     x-go-type: int
-  timeInLowPercent:
-    type: number
-    x-go-type: float64
   timeInLowMinutes:
     type: number
     x-go-type: int
   timeInLowRecords:
     type: number
     x-go-type: int
-  timeInVeryLowPercent:
-    type: number
-    x-go-type: float64
   timeInVeryLowMinutes:
     type: number
     x-go-type: int
   timeInVeryLowRecords:
     type: number
     x-go-type: int
-  timeCGMUsePercent:
+  totalGlucose:
     type: number
     x-go-type: float64
   timeCGMUseMinutes:
