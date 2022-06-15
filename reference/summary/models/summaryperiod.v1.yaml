@@ -2,7 +2,7 @@ type: object
 title: summaryperiod.v1
 description: ''
 properties:
-  averageGlucose:
+  avgGlucose:
     $ref: ../../data/models/blood/glucose/glucosemmol.v1.yaml
   glucoseManagementIndicator:
     type: number
