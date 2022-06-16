@@ -1,26 +1,19 @@
 openapi: 3.0.0
 info:
-  title: Summary Data
+  title: Data Summary API
   version: '1.0'
-  description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
-    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
-
-    For more information, see the [Getting Started](../docs/quick-start.md) section.
+  description: 'Web service that stores summaries of user data'
   contact:
-    name: API Support
-    url: 'https://support.tidepool.org/'
+    name: Tidepool
+    url: 'https://www.tidepool.org'
     email: support@tidepool.org
-  termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
-    name: 'BSD 2-Clause "Simplified" License'
-    url: 'https://github.com/tidepool-org/summary/blob/master/LICENSE'
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
+    name: BSD-2-Clause
+    url: 'https://github.com/tidepool-org/clinic/blob/master/LICENSE'
+  x-logo:
+    url: 'https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png'
     altText: Tidepool Logo
-  x-tidepool-service: https://github.com/tidepool-org/summary
-
+  x-tidepool-service: 'https://github.com/tidepool-org/clinic/'
 servers:
   - url: 'http://localhost:8080'
     description: local development
@@ -34,95 +27,59 @@ servers:
     description: integration
   - url: 'https://api.tidepool.org'
     description: production
-
-security:
-  - sessionToken: []
-
-tags:
-  - name: Summary
-    description: |-
-      Summary Data
-
-      This service was a prototype for separate service that calculates summary statistics for user accounts.
-      It is replaced by additional APIs exposed by the `data` service, and executed by the `task` service.
-      This documentation is for archival only.
-
 paths:
-  '/v1/users/{userId}/summary':
+  '/v1/summaries/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
-    post:
-      operationId: GetUserSummary
+      - $ref: '#/components/parameters/userId'
+    get:
       summary: Get User Summary
-      description: >-
-        Retrieves summary information for the user specified by `userId`.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: './summary/models/summaryrequest.v1.yaml'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: './summary/models/summary.v1.yaml'
+                $ref: '#/components/schemas/Summary'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: GetSummary
+      description: Retrieve a summary by id
+      x-internal: true
       tags:
-        - Summary
-      deprecated: true
-
-  '/v1/users/{userId}/summaries':
-    parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
-    post:
-      operationId: GetUserSharedSummaries
-      summary: Get User's Shared Summaries
-      description: >-
-        Retrieves summary information for all of the users who have granted access permission to the user specified by `userId`.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: './summary/models/summaryrequest.v1.yaml'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './summary/models/summary.v1.yaml'
-      tags:
-        - Summary
-      deprecated: true
-
-  '/v1/clinics/{clinicId}/summaries':
-    parameters:
-      - $ref: './clinic/parameters/clinicid.v1.yaml'
-    post:
-      operationId: GetClinicPatientSummary
-      summary: Get Clinic Patient Summary
-      description: >-
-        Returns summary information for all patients of a clinic.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: './summary/models/summaryrequest.v1.yaml'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: './summary/models/summary.v1.yaml'
-      tags:
-        - Summary
-      deprecated: true
+        - summary
 
 components:
+  schemas:
+    TidepoolUserId:
+      $ref: ./common/models/tidepooluserid.yaml
+    Summary:
+      $ref: ./summary/models/summary.v1.yaml
+    AverageGlucose:
+        $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
+    SummaryStat:
+      $ref: ./summary/models/summarystat.v1.yaml
+    SummaryPeriods:
+      $ref: ./summary/models/summaryperiods.v1.yaml
+    SummaryPeriod:
+      $ref: ./summary/models/summaryperiod.v1.yaml
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
+    serverToken:
+      $ref: './common/security/tidepoolservertoken.v1.yaml'
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/TidepoolUserId'
+tags:
+  - name: summary
+    description: Tidepool Summary Data
+security:
+  - sessionToken: [ ]

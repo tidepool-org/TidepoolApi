@@ -1,0 +1,6 @@
+type: object
+title: summaryperiods.v1
+description: ''
+properties:
+  14d:
+    $ref: ./summaryperiod.v1.yaml
