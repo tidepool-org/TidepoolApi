@@ -17,7 +17,7 @@ properties:
   outdatedSince:
     type: string
     format: date-time
-  totalDays:
+  totalHours:
     type: number
     x-go-type: int
   highGlucoseThreshold:
@@ -34,3 +34,7 @@ properties:
     x-go-type: float64
   periods:
     $ref: ./patientsummaryperiods.v1.yaml
+  hourlyStats:
+    type: array
+    items:
+      $ref: ./patientsummarystat.v1.yaml

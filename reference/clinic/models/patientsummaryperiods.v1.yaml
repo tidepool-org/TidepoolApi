@@ -4,5 +4,11 @@ x-stoplight:
 title: patientsummaryperiods.v1
 description: ''
 properties:
+  1d:
+    $ref: ./patientsummaryperiod.v1.yaml
+  7d:
+    $ref: ./patientsummaryperiod.v1.yaml
   14d:
+    $ref: ./patientsummaryperiod.v1.yaml
+  30d:
     $ref: ./patientsummaryperiod.v1.yaml
