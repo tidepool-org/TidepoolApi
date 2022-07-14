@@ -2,5 +2,11 @@ type: object
 title: summaryperiods.v1
 description: ''
 properties:
+  1d:
+    $ref: ./summaryperiod.v1.yaml
+  7d:
+    $ref: ./summaryperiod.v1.yaml
   14d:
+    $ref: ./summaryperiod.v1.yaml
+  30d:
     $ref: ./summaryperiod.v1.yaml
