@@ -14,6 +14,8 @@ properties:
   lastUploadDate:
     type: string
     format: date-time
+  hasLastUploadDate:
+    type: boolean
   outdatedSince:
     type: string
     format: date-time
