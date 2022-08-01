@@ -37,7 +37,7 @@ properties:
   attestationSubmitted:
     type: boolean
   summary:
-    $ref: ./patientsummary.v1.yaml
+    $ref: ../../summary/models/summary.v1.yaml
   lastUploadReminderTime:
     type: string
     format: date-time

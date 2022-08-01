@@ -55,17 +55,17 @@ paths:
 components:
   schemas:
     TidepoolUserId:
-      $ref: ./common/models/tidepooluserid.yaml
+      $ref: './common/models/tidepooluserid.yaml'
     Summary:
-      $ref: ./summary/models/summary.v1.yaml
+      $ref: './summary/models/summary.v1.yaml'
     AverageGlucose:
-        $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
+      $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
     SummaryStat:
-      $ref: ./summary/models/summarystat.v1.yaml
+      $ref: './summary/models/summarystat.v1.yaml'
     SummaryPeriods:
-      $ref: ./summary/models/summaryperiods.v1.yaml
+      $ref: './summary/models/summaryperiods.v1.yaml'
     SummaryPeriod:
-      $ref: ./summary/models/summaryperiod.v1.yaml
+      $ref: './summary/models/summaryperiod.v1.yaml'
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'

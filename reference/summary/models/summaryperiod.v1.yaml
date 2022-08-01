@@ -1,67 +1,105 @@
 type: object
 title: summaryperiod.v1
-description: ''
+description: 'Summary of a specific time period (currently: 1d, 7d, 14d, 30d)'
 properties:
-  avgGlucose:
-    $ref: ../../data/models/blood/glucose/glucosemmol.v1.yaml
+  AverageGlucose:
+    $ref: '../../data/models/blood/glucose/glucosemmol.v1.yaml'
   glucoseManagementIndicator:
     type: number
     x-go-type: float64
+    description: 'A derived value which emulates A1C'
+    example: 7.5
   hasGlucoseManagementIndicator:
     type: boolean
   timeInTargetPercent:
+    description: Percentage of time spent in target glucose range
     type: number
+    example: 0.35
     x-go-type: float64
   timeInTargetMinutes:
+    description: Counter of minutes spent in target glucose range
     type: number
+    example: 200
     x-go-type: int
   timeInTargetRecords:
+    description: Counter of records in target glucose range
     type: number
+    example: 10
     x-go-type: int
   timeInHighPercent:
+    description: Percentage of time spent in high glucose range
     type: number
+    example: 0.35
     x-go-type: float64
   timeInHighMinutes:
+    description: Counter of minutes spent in high glucose range
     type: number
+    example: 200
     x-go-type: int
   timeInHighRecords:
+    description: Counter of records in high glucose range
     type: number
+    example: 10
     x-go-type: int
   timeInVeryHighPercent:
+    description: Percentage of time spent in very high glucose range
     type: number
+    example: 0.35
     x-go-type: float64
   timeInVeryHighMinutes:
+    description: Counter of minutes spent in very high glucose range
     type: number
+    example: 200
     x-go-type: int
   timeInVeryHighRecords:
+    description: Counter of records in very high glucose range
     type: number
+    example: 10
     x-go-type: int
   timeInLowPercent:
+    description: Percentage of time spent in low glucose range
     type: number
+    example: 0.35
     x-go-type: float64
   timeInLowMinutes:
+    description: Counter of minutes spent in low glucose range
     type: number
+    example: 200
     x-go-type: int
   timeInLowRecords:
+    description: Counter of records in low glucose range
     type: number
+    example: 10
     x-go-type: int
   timeInVeryLowPercent:
+    description: Percentage of time spent in very low glucose range
     type: number
+    example: 0.35
     x-go-type: float64
   timeInVeryLowMinutes:
+    description: Counter of minutes spent in very low glucose range
     type: number
+    example: 200
     x-go-type: int
   timeInVeryLowRecords:
+    description: Counter of records in very low glucose range
     type: number
+    example: 10
     x-go-type: int
   timeCGMUsePercent:
+    description: Percentage of time spent wearing a cgm
     type: number
+    example: 0.35
     x-go-type: float64
   hasTimeCGMUsePercent:
     type: boolean
   timeCGMUseMinutes:
+    description: Counter of minutes spent wearing a cgm
     type: number
+    example: 200
     x-go-type: int
   timeCGMUseRecords:
+    description: Counter of minutes spent wearing a cgm
     type: number
+    example: 10
     x-go-type: int

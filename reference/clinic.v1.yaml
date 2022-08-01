@@ -1213,15 +1213,15 @@ components:
         attestationSubmitted:
           type: boolean
     PatientSummary:
-      $ref: ./clinic/models/patientsummary.v1.yaml
+      $ref: './summary/models/summary.v1.yaml'
     PatientSummaryStat:
-      $ref: ./clinic/models/patientsummarystat.v1.yaml
+      $ref: './summary/models/summarystat.v1.yaml'
     PatientSummaryPeriods:
-      $ref: ./clinic/models/patientsummaryperiods.v1.yaml
+      $ref: './summary/models/summaryperiods.v1.yaml'
     PatientSummaryPeriod:
-      $ref: ./clinic/models/patientsummaryperiod.v1.yaml
+      $ref: './summary/models/summaryperiod.v1.yaml'
     AverageGlucose:
-      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
+      $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
     UpdateTier:
       title: UpdateTier
       type: object
