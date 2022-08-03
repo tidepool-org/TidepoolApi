@@ -15,6 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
       - name: Setup script environment
         run: |
             make install_tools
