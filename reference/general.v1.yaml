@@ -31,6 +31,9 @@ servers:
     description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: General
     description: >-
       General utility APIs.
@@ -49,6 +52,7 @@ paths:
           $ref: '#/components/responses/ClientVersions'
       tags:
         - General
+        - Internal
       x-tidepool-service: https://github.com/tidepool-org/jellyfish
 
 components:

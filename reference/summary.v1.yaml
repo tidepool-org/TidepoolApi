@@ -34,6 +34,9 @@ security:
   - sessionToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Summary
     description: |-
       Summary Data
@@ -65,6 +68,7 @@ paths:
                 $ref: './summary/models/summary.v1.yaml'
       tags:
         - Summary
+        - Internal
       deprecated: true
 
   '/v1/users/{userId}/summaries':
@@ -89,6 +93,7 @@ paths:
                 $ref: './summary/models/summary.v1.yaml'
       tags:
         - Summary
+        - Internal
       deprecated: true
 
   '/v1/clinics/{clinicId}/summaries':
@@ -115,6 +120,7 @@ paths:
                   $ref: './summary/models/summary.v1.yaml'
       tags:
         - Summary
+        - Internal
       deprecated: true
 
 components:

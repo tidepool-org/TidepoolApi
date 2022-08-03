@@ -30,7 +30,7 @@ paths:
     get:
       summary: List Clinics
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -95,7 +95,7 @@ paths:
       description: Create a new clinic
       x-roles: []
       tags:
-        - clinic
+        - Clinics
       parameters: []
   '/v1/clinics/share_code/{shareCode}':
     parameters:
@@ -108,7 +108,7 @@ paths:
     get:
       summary: Get Clinic by Share Code
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -123,7 +123,8 @@ paths:
       - $ref: '#/components/parameters/clinicId'
     get:
       summary: Get Clinic
-      tags: []
+      tags:
+        - Clinics
       responses:
         '200':
           description: OK
@@ -181,14 +182,15 @@ paths:
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
-      tags: []
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/clinicians':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     get:
       summary: List Clinicians
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -216,14 +218,14 @@ paths:
             schema:
               $ref: '#/components/schemas/Clinician'
       tags:
-        - clinic
+        - Clinics
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     get:
       summary: List Patients
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -254,7 +256,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Patient'
       tags:
-        - clinic
+        - Clinics
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -262,7 +264,7 @@ paths:
     get:
       summary: Get Clinician
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -280,7 +282,7 @@ paths:
           description: OK
       description: Update existing clinician
       tags:
-        - clinic
+        - Clinics
       requestBody:
         content:
           application/json:
@@ -294,7 +296,7 @@ paths:
           description: OK
       description: Removes a clinician from a clinic
       tags:
-        - clinic
+        - Clinics
   '/v1/clinics/{clinicId}/patients/{patientId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -302,7 +304,7 @@ paths:
     get:
       summary: Get Patient
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -324,7 +326,7 @@ paths:
                 $ref: '#/components/schemas/Patient'
       description: Internal endpoint for creating a patient from an existing user
       tags:
-        - clinic
+        - Clinics
       requestBody:
         content:
           application/json:
@@ -347,7 +349,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Patient'
       tags:
-        - clinic
+        - Clinics
     delete:
       summary: Delete Patient
       operationId: DeletePatient
@@ -356,7 +358,7 @@ paths:
           description: No Content
       description: Deletes patient from a clinic. Requires the request to be made by a clinic admin or the currently authenticated user id to match the patient id.
       tags:
-        - clinic
+        - Clinics
   '/v1/clinics/{clinicId}/invites/clinicians':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -377,7 +379,8 @@ paths:
             schema:
               $ref: '#/components/schemas/InviteClinician'
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
   '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -390,7 +393,8 @@ paths:
           description: OK
       description: Resend invite to the email address of the clinician.
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
     delete:
       summary: Delete Invite
       operationId: DeleteInvite
@@ -399,7 +403,8 @@ paths:
           description: OK
       description: Deletes unaccepted invite
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
   '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}/clinician':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -421,7 +426,7 @@ paths:
             schema:
               $ref: '#/components/schemas/AssociateClinicianToUser'
       tags:
-        - clinic
+        - Clinics
     delete:
       summary: Delete Invited Clinician
       operationId: DeleteInvitedClinician
@@ -430,7 +435,7 @@ paths:
           description: OK
       description: Internal endpoint to delete an invited clinician object
       tags:
-        - clinic
+        - Clinics
     get:
       summary: Get Invited Clinician
       operationId: GetInvitedClinician
@@ -443,14 +448,15 @@ paths:
                 $ref: '#/components/schemas/Clinician'
       description: Internal endpoint to retrieve invited clinician.
       tags:
-        - clinic
+        - Clinics
   '/v1/clinics/{clinicId}/invites/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     get:
       summary: Get Patient Invites
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
       responses:
         '200':
           description: OK
@@ -468,7 +474,8 @@ paths:
           description: OK
       description: Accept a pending invite from a user who would like to share their account with the clinic and become a patient.
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -488,7 +495,7 @@ paths:
 
         Only patients can change the permissions.
       tags:
-        - clinic
+        - Clinics
       requestBody:
         content:
           application/json:
@@ -517,7 +524,7 @@ paths:
 
         Only patients can change the permissions.
       tags:
-        - clinic
+        - Clinics
       parameters: []
       responses:
         '204':
@@ -528,7 +535,7 @@ paths:
     get:
       summary: List Clinics for Patient
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -547,7 +554,8 @@ paths:
     get:
       summary: List Clinician Invites
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
       responses:
         '200':
           description: OK
@@ -564,7 +572,8 @@ paths:
         '200':
           description: OK
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
       description: Dismisses an invite sent from a clinic to clinician
     put:
       summary: Accept Clinician Invite
@@ -578,14 +587,15 @@ paths:
                 $ref: '#/components/schemas/Clinician'
       description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
       tags:
-        - confirmation
+        - Clinics
+        - Confirmations
   '/v1/clinicians/{userId}/clinics':
     parameters:
       - $ref: '#/components/parameters/userId'
     get:
       summary: List Clinics for Clinician
       tags:
-        - clinic
+        - Clinics
       responses:
         '200':
           description: OK
@@ -734,17 +744,9 @@ components:
       schema:
         $ref: './common/models/emailaddress.v1.yaml'
 tags:
-  - name: auth
-    description: Tidepool Authentication
-  - name: data
-    description: Tidepool Diabetes Data
-  - name: export
-    description: Tidepool Data Export
-  - name: clinic
-    description: Tidepool Clinic
-  - name: invite
-  - name: confirmation
-  - name: internal
-    description: Internal endpoints for service-to-service communication
+  - name: Clinics
+    description: >-
+      Manage clinics, clinians and patients.
+  - name: Confirmations
 security:
   - sessionToken: []

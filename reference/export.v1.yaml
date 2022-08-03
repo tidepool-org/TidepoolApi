@@ -31,6 +31,9 @@ servers:
     description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Export
     description: >-
       Enable bulk export of diabetes data from user's Tidepool account.
@@ -75,9 +78,9 @@ paths:
       security:
         - sessionToken: []
         - restrictedToken: []
-      x-private: true
       tags:
         - Export
+        - Internal
 
 components:
   securitySchemes:

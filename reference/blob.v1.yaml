@@ -34,6 +34,9 @@ security:
   - sessionToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Blobs
     description: >-
       List, create, and manage binary blobs.
@@ -69,6 +72,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
     post:
       operationId: CreateBlob
       summary: Create New Binary Blob
@@ -99,6 +103,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
     delete:
       operationId: DeleteAllBlobs
       summary: Delete All Binary Blobs
@@ -117,6 +122,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
 
   '/v1/blobs/{blobId}':
     parameters:
@@ -139,6 +145,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
     delete:
       operationId: DeleteBlob
       summary: Delete Binary Blob
@@ -158,6 +165,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
 
   '/v1/blobs/{blobId}/content':
     parameters:
@@ -180,6 +188,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
 
 components:
   securitySchemes:

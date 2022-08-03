@@ -31,10 +31,12 @@ servers:
     description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Authentication
     description: >-
       Login and logout.
-
   - name: Users
     description: >-
       List and manage users.
@@ -217,6 +219,7 @@ paths:
         - serverToken: []
       tags:
         - Users
+        - Internal
 
   '/auth/user/{userId}':
     parameters:
@@ -350,9 +353,9 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '500':
           $ref: '#/components/responses/ServerError'
-      x-private: true
       tags:
         - Authentication
+        - Internal
 
   '/auth/serverlogin':
     post:
@@ -373,9 +376,9 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Authentication
+        - Internal
       security:
         - serverSecret: []
-      x-private: true
 
   '/auth/token':
     get:
@@ -390,9 +393,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
         - Authentication
+        - Internal
       security:
         - sessionToken: []
-      x-private: true
 
   '/auth/token/{token}':
     parameters:
@@ -414,9 +417,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
-      x-private: true
 
   '/v1/device_check/verify':
     get:
@@ -434,6 +437,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
         - Authentication
+        - Internal
       security:
         - sessionToken: []
 
@@ -458,6 +462,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -479,6 +484,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -498,6 +504,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -520,6 +527,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -541,6 +549,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -560,6 +569,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -588,6 +598,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -609,6 +620,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -628,6 +640,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -650,6 +663,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -671,6 +685,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -690,6 +705,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 

@@ -30,6 +30,9 @@ servers:
     description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Metrics
     description: |-
       Record metrics events.
@@ -105,7 +108,7 @@ paths:
         - sessionToken: []
       tags:
         - Metrics
-      x-private: true
+        - Internal
 
 components:
   securitySchemes:

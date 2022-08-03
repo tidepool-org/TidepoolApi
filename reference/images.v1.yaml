@@ -34,6 +34,9 @@ security:
   - sessionToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Images
     description: >-
       List, create, and manage images.
@@ -109,6 +112,7 @@ paths:
                 $ref: './images/models/imagewithmetadata.v1.yaml'
       tags:
         - Images
+        - Internal
 
   '/v1/users/{userId}/images/content/{contentIntent}':
     parameters:
@@ -142,6 +146,7 @@ paths:
                 $ref: './images/models/imagewithcontent.v1.yaml'
       tags:
         - Images
+        - Internal
 
   '/v1/users/{userId}/images':
     parameters:
@@ -189,6 +194,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
     get:
       operationId: ListImages
       summary: List Images
@@ -248,6 +254,7 @@ paths:
                 $ref: './images/models/imagelist.v1.yaml'
       tags:
         - Images
+        - Internal
     delete:
       operationId: DeleteAllImages
       summary: Delete All Images
@@ -257,6 +264,7 @@ paths:
           $ref: './common/responses/nocontent.v1.yaml'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}':
     parameters:
@@ -277,6 +285,7 @@ paths:
           $ref: './common/responses/nocontent.v1.yaml'
       tags:
         - Images
+        - Internal
     get:
       operationId: GetImage
       summary: Get Image
@@ -286,6 +295,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/metadata':
     parameters:
@@ -303,6 +313,7 @@ paths:
                 $ref: './images/models/metadata.v1.yaml'
       tags:
         - Images
+        - Internal
     put:
       operationId: PutImageMetadata
       summary: Put Image Metadata
@@ -327,6 +338,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/content':
     parameters:
@@ -344,6 +356,7 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/content/{suffixOrContentIntent}':
     parameters:
@@ -376,6 +389,7 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal
 
     put:
       operationId: PutImageContent
@@ -408,6 +422,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/rendition/{rendition}.{extension}':
     parameters:
@@ -478,6 +493,7 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/rendition/{rendition}/{suffix}.{extension}':
     parameters:
@@ -504,3 +520,4 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal

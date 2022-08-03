@@ -30,6 +30,9 @@ servers:
     description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Messages
     description: |-
       List, create and manage messages (also known as notes) in the user's account.

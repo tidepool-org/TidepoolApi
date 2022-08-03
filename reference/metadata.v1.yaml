@@ -30,6 +30,9 @@ servers:
     description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Metadata
     description: |-
       Create and update user metadata.
@@ -128,7 +131,7 @@ paths:
     #     - sessionToken: []
     #   tags:
     #     - Metadata
-    #.  x-private: true
+    #     - Internal
 
   '/metadata/{userId}/private/{fieldName}':
     parameters:
@@ -146,7 +149,7 @@ paths:
         - serverToken: []
       tags:
         - Metadata
-      x-private: true
+        - Internal
 
     # delete:
     #   operationId: DeleteUserPrivateMetadataItem
@@ -160,7 +163,7 @@ paths:
     #     - serverToken: []
     #   tags:
     #     - Metadata
-    #   x-private: true
+    #     - Internal
 
   '/metadata/users/{userId}/users':
     parameters:

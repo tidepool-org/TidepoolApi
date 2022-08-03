@@ -33,6 +33,9 @@ security:
   - serverToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Tasks
     description: >-
       List, create and manage generic background tasks.
@@ -63,6 +66,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
     post:
       operationId: CreateTask
@@ -85,6 +89,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
   '/v1/tasks/{taskId}':
     parameters:
@@ -107,6 +112,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
     put:
       operationId: UpdateTask
@@ -131,6 +137,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
     delete:
       operationId: DeleteTask
@@ -150,6 +157,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
 components:
   securitySchemes:
