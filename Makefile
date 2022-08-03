@@ -69,7 +69,7 @@ ifeq ($(PLATFORM),Darwin)
 	brew install jsonnet
 endif
 ifeq ($(PLATFORM),Linux)
-	apt install jsonnet
+	apt-get install jsonnet
 endif
 
 .PHONY: check_env
