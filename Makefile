@@ -60,10 +60,16 @@ clean:
 	-rm -rv $(BUILD_FOLDER)
 
 .PHONY: install_tools
-install_tools:
+install_tools: install_check_tools install_publish_tools
+
+.PHONY: install_check_tools
+install_check_tools:
 	npm install --location=global markdownlint-cli
-	npm install --location=global @stoplight/cli
 	npm install --location=global @stoplight/spectral-cli
+
+.PHONY: install_publish_tools
+install_publish_tools:
+	npm install --location=global @stoplight/cli
 	npm install --location=global openapi-merge-cli
 ifeq ($(PLATFORM),Darwin)
 	brew install jsonnet
@@ -73,8 +79,14 @@ ifeq ($(PLATFORM),Linux)
 endif
 
 .PHONY: check_env
-check_env:
+check_env: check_public_env check_private_env
+
+.PHONY: check_public_env
+check_public_env:
 	test -n "$(PUBLIC_STOPLIGHT_TOKEN)" # PUBLIC_STOPLIGHT_TOKEN
+
+.PHONY: check_private_env
+check_private_env:
 	test -n "$(PRIVATE_STOPLIGHT_TOKEN)" # PRIVATE_STOPLIGHT_TOKEN
 
 .PHONY: check_files
@@ -191,9 +203,9 @@ $(TARGET_PRIVATE_TOC): $(SOURCE_TOC)
 publish: publish_public publish_private
 
 .PHONY: publish_public
-publish_public: check_env prepare_public
+publish_public: check_public_env prepare_public
 	cd $(PUBLIC_FOLDER) && $(PUBLISH_TOOL) --ci-token $(PUBLIC_STOPLIGHT_TOKEN) 
 
 .PHONY: publish_private
-publish_private: check_env prepare_private
+publish_private: check_private_env prepare_private
 	cd $(PRIVATE_FOLDER) && $(PUBLISH_TOOL) --ci-token $(PRIVATE_STOPLIGHT_TOKEN) 

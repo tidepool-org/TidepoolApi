@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check:
+  check_docs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,15 +17,53 @@ jobs:
           go-version: '>=1.17.0'
       - name: Setup script environment
         run: |
-            make install_tools
+            make install_check_tools
       - name: Check the documentation
         run: |
-            make check_files
+            make check_docs
 
-  publish:
+  check_specs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.17.0'
+      - name: Setup script environment
+        run: |
+            make install_check_tools
+      - name: Check the documentation
+        run: |
+            make check_specs
+
+  publish_public:
     runs-on: ubuntu-latest
     env:
       PUBLIC_STOPLIGHT_TOKEN: ${{ secrets.PUBLIC_STOPLIGHT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.17.0'
+      - name: Setup script environment
+        run: |
+            make install_publish_tools
+      - name: Run script self-tests
+        run: |
+            make check_env
+      - name: Publish the documentation
+        run: |
+            make publish_public
+
+  publish_private:
+    runs-on: ubuntu-latest
+    env:
       PRIVATE_STOPLIGHT_TOKEN: ${{ secrets.PRIVATE_STOPLIGHT_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -37,10 +75,10 @@ jobs:
           go-version: '>=1.17.0'
       - name: Setup script environment
         run: |
-            make install_tools
+            make install_publish_tools
       - name: Run script self-tests
         run: |
             make check_env
       - name: Publish the documentation
         run: |
-            make publish
+            make publish_private
