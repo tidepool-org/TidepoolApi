@@ -34,6 +34,7 @@ jobs:
             make --jobs 8 check_specs
 
   publish_public:
+    needs: [ check_docs, check_specs ]
     runs-on: ubuntu-latest
     env:
       PUBLIC_STOPLIGHT_TOKEN: ${{ secrets.PUBLIC_STOPLIGHT_TOKEN }}
@@ -53,6 +54,7 @@ jobs:
             make --jobs 8 publish_public
 
   publish_private:
+    needs: [ check_docs, check_specs ]
     runs-on: ubuntu-latest
     env:
       PRIVATE_STOPLIGHT_TOKEN: ${{ secrets.PRIVATE_STOPLIGHT_TOKEN }}
