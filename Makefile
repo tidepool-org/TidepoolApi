@@ -28,7 +28,7 @@
 #
 
 CHECK_DOC_TOOL = markdownlint
-CHECK_SPEC_TOOL = spectral lint --quiet
+CHECK_SPEC_TOOL = spectral lint --quiet --ignore-unknown-format
 PUBLISH_TOOL = stoplight push
 
 DOC_FOLDER = docs
