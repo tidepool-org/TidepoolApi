@@ -43,11 +43,11 @@ SOURCE_TOC = $(TEMPLATE_FOLDER)/toc.json
 TARGET_PUBLIC_TOC  = $(PUBLIC_FOLDER)/${notdir $(SOURCE_TOC)}
 TARGET_PRIVATE_TOC = $(PRIVATE_FOLDER)/${notdir $(SOURCE_TOC)}
 
-SOURCE_DOCS = ${shell find $(DOC_FOLDER) -type f -iname '*.md'}
+SOURCE_DOCS = ${shell find $(DOC_FOLDER) -type f -iname '*.md' | sort}
 TARGET_PUBLIC_DOCS  = ${addprefix $(PUBLIC_FOLDER)/, $(SOURCE_DOCS)}
 TARGET_PRIVATE_DOCS = ${addprefix $(PRIVATE_FOLDER)/, $(SOURCE_DOCS)}
 
-SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml'}
+SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | sort}
 COMBINED_SPEC = $(SPEC_FOLDER)/combined.v1.yaml
 TARGET_PUBLIC_SPECS  = ${addprefix $(PUBLIC_FOLDER)/, $(SOURCE_SPECS)}
 TARGET_PRIVATE_SPECS = ${addprefix $(PRIVATE_FOLDER)/, $(SOURCE_SPECS)}
