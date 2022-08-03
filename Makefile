@@ -26,6 +26,7 @@
 #   * PRIVATE_STOPLIGHT_TOKEN
 # Do NOT commit plaintext versions of these tokens environment variables into the repository!
 #
+PLATFORM = ${shell uname -s}
 
 CHECK_DOC_TOOL = markdownlint
 CHECK_SPEC_TOOL = spectral lint --quiet --ignore-unknown-format
@@ -59,16 +60,21 @@ clean:
 	-rm -rv $(BUILD_FOLDER)
 
 .PHONY: install_tools
-install_tools:
+install_tools: install_jsonnet
 	npm install --location=global markdownlint-cli
 	npm install --location=global @stoplight/cli
 	npm install --location=global @stoplight/spectral-cli
 	npm install --location=global openapi-merge-cli
-PLATFORM := $(shell uname -s)
+
 ifeq ($(PLATFORM),Darwin)
+.PHONY: install_jsonnet
+install_jsonnet:
 	brew install jsonnet
 endif
+
 ifeq ($(PLATFORM),Linux)
+.PHONY: install_jsonnet
+install_jsonnet:
 	git clone https://github.com/Microsoft/vcpkg.git
 	cd vcpkg
 	./bootstrap-vcpkg.sh
