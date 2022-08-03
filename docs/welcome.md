@@ -1,7 +1,5 @@
 # Welcome
 
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
-
 Welcome to Tidepool's developer documentation
 
 This guide will be your Obi-Wan Kenobi for all things Platform (Tidepool's API platform) and will run you through the how-to's of accessing, fetching and using your Tidepool data. But who is Tidepool? What is API?

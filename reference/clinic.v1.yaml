@@ -10,9 +10,6 @@ info:
   license:
     name: BSD-2-Clause
     url: 'https://github.com/tidepool-org/clinic/blob/master/LICENSE'
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/clinic/
 
 servers:

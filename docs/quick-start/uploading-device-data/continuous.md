@@ -22,7 +22,9 @@
 If you have previously opened a continuous session, [skip ahead](#find-an-existing-continuous-session). Otherwise, issue the following command:
 
 ```shell
-curl -X POST https://int-api.tidepool.org/v1/users/<subject-userid>/data_sets -H 'X-Tidepool-Session-Token: <your-session-token>' --data-binary '{ "client": { "name": "<client-name>", "version": "<client-version>" }, "dataSetType": "continuous", "deduplicator": { "name": "org.tidepool.deduplicator.dataset.delete.origin" } }'
+curl -X POST https://int-api.tidepool.org/v1/users/<subject-userid>/data_sets \
+  -H 'X-Tidepool-Session-Token: <your-session-token>' \
+  --data-binary '{ "client": { "name": "<client-name>", "version": "<client-version>" }, "dataSetType": "continuous", "deduplicator": { "name": "org.tidepool.deduplicator.dataset.delete.origin" } }'
 ```
 
 ```json http

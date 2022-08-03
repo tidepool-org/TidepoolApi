@@ -10,9 +10,6 @@ info:
   termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
     name: BSD 2-Clause "Simplified" License
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
 servers:
   - url: 'http://localhost:3000'
 paths:

@@ -1,7 +1,5 @@
 # Getting Started
 
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
-
 ## Table of Contents
 
 1. [Authentication](#authentication)
