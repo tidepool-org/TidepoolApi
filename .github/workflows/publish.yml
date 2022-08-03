@@ -17,7 +17,7 @@ jobs:
             make install_check_tools
       - name: Check the documentation
         run: |
-            make check_docs
+            make --jobs 8 check_docs
 
   check_specs:
     runs-on: ubuntu-latest
@@ -29,9 +29,9 @@ jobs:
       - name: Setup script environment
         run: |
             make install_check_tools
-      - name: Check the documentation
+      - name: Check the specifications
         run: |
-            make check_specs
+            make --jobs 8 check_specs
 
   publish_public:
     runs-on: ubuntu-latest
@@ -47,10 +47,10 @@ jobs:
           go-version: '>=1.17.0'
       - name: Setup script environment
         run: |
-            make install_publish_tools
+            make --jobs 8 install_publish_tools
       - name: Publish the documentation
         run: |
-            make publish_public
+            make --jobs 8 publish_public
 
   publish_private:
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
           go-version: '>=1.17.0'
       - name: Setup script environment
         run: |
-            make install_publish_tools
+            make --jobs 8 install_publish_tools
       - name: Publish the documentation
         run: |
-            make publish_private
+            make --jobs 8 publish_private

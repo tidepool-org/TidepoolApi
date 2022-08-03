@@ -93,21 +93,20 @@ check_private_env:
 check_files: check_docs check_specs
 
 .PHONY: check_docs
-check_docs:
-	@for file in $(SOURCE_DOCS); \
-	do \
-		echo $(CHECK_DOC_TOOL) $$file; \
-		$(CHECK_DOC_TOOL) $$file; \
-	done
+check_docs: $(SOURCE_DOCS)
+
+# these are not really phony, just designating them as such to force Make to run the check tool
+.PHONY: $(SOURCE_DOCS)
+$(SOURCE_DOCS):
+	$(CHECK_DOC_TOOL) $@
 
 .PHONY: check_specs
-check_specs:
-	@# if we pass *.yaml directly to `spectral` lint, it mixes all the files together, hence the loop
-	@for file in $(SOURCE_SPECS); \
-	do \
-		echo $(CHECK_SPEC_TOOL) $$file; \
-		$(CHECK_SPEC_TOOL) $$file; \
-	done
+check_specs: $(SOURCE_SPECS)
+
+# these are not really phony, just designating them as such to force Make to run the check tool
+.PHONY: $(SOURCE_SPECS)
+$(SOURCE_SPECS):
+	$(CHECK_SPEC_TOOL) $@
 
 .PHONY: list_files
 list_files: list_docs list_specs
