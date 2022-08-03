@@ -60,10 +60,10 @@ clean:
 
 .PHONY: install_tools
 install_tools:
-	npm install -g markdownlint-cli
-	npm install -g @stoplight/cli
-	npm install -g @stoplight/spectral
-	npm install openapi-merge-cli
+	npm install --location=global markdownlint-cli
+	npm install --location=global @stoplight/cli
+	npm install --location=global @stoplight/spectral-cli
+	npm install --location=global openapi-merge-cli
 
 .PHONY: check_env
 check_env:
