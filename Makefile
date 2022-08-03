@@ -64,6 +64,7 @@ install_tools:
 	npm install --location=global @stoplight/cli
 	npm install --location=global @stoplight/spectral-cli
 	npm install --location=global openapi-merge-cli
+	pip install jsonnet
 
 .PHONY: check_env
 check_env:
