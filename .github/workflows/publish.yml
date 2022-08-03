@@ -5,7 +5,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_docs:
+  check:
+    strategy:
+      matrix:
+        target: [ check_docs, check_specs ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,27 +20,13 @@ jobs:
             make install_check_tools
       - name: Check the documentation
         run: |
-            make --jobs 8 check_docs
-
-  check_specs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - name: Setup script environment
-        run: |
-            make install_check_tools
-      - name: Check the specifications
-        run: |
-            make --jobs 8 check_specs
+            make --jobs 16 ${{ matrix.target }}
 
   publish:
     strategy:
       matrix:
         target: [ publish_public, publish_private ]
-    needs: [ check_docs, check_specs ]
+    needs: [ check ]
     runs-on: ubuntu-latest
     env:
       PUBLIC_STOPLIGHT_TOKEN: ${{ secrets.PUBLIC_STOPLIGHT_TOKEN }}
