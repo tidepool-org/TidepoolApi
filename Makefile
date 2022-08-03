@@ -69,7 +69,7 @@ ifeq ($(PLATFORM),Darwin)
 	brew install jsonnet
 endif
 ifeq ($(PLATFORM),Linux)
-	apt-get install jsonnet
+	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
 endif
 
 .PHONY: check_env
