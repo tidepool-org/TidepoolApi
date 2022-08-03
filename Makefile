@@ -60,26 +60,16 @@ clean:
 	-rm -rv $(BUILD_FOLDER)
 
 .PHONY: install_tools
-install_tools: install_jsonnet
+install_tools:
 	npm install --location=global markdownlint-cli
 	npm install --location=global @stoplight/cli
 	npm install --location=global @stoplight/spectral-cli
 	npm install --location=global openapi-merge-cli
-
 ifeq ($(PLATFORM),Darwin)
-.PHONY: install_jsonnet
-install_jsonnet:
 	brew install jsonnet
 endif
-
 ifeq ($(PLATFORM),Linux)
-.PHONY: install_jsonnet
-install_jsonnet:
-	git clone https://github.com/Microsoft/vcpkg.git
-	cd vcpkg
-	./bootstrap-vcpkg.sh
-	./vcpkg integrate install
-	vcpkg install jsonnet
+	apt install jsonnet
 endif
 
 .PHONY: check_env
