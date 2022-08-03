@@ -1,7 +1,0 @@
-title: Basal Suppressed (Abstract)
-oneOf:
-  - $ref: './suppressed/automated.v1.yaml'
-  - $ref: './suppressed/scheduled.v1.yaml'
-  - $ref: './suppressed/temporary.v1.yaml'
-x-tags:
-  - Data

@@ -62,6 +62,8 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/shareCode'
+        - $ref: '#/components/parameters/createdTimeStart'
+        - $ref: '#/components/parameters/createdTimeEnd'
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -199,12 +201,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Clinicians'
       operationId: ListClinicians
-      description: 'Retrieve the list of all clinic members. '
+      description: 'Retrieve the list of clinic members. '
       parameters:
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/email'
+        - $ref: '#/components/parameters/role'
     post:
       summary: Create Clinician
       operationId: CreateClinician
@@ -232,12 +235,67 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patients'
+                $ref: '#/components/schemas/PatientsResponse'
       operationId: ListPatients
       parameters:
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/sort'
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.5'
+          in: query
+          name: summary.periods.14d.timeCGMUsePercent
+          description: Percentage of time of CGM use
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInVeryLowPercent
+          description: Percentage of time below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInLowPercent
+          description: Percentage of time in range 54-70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInTargetPercent
+          description: Percentage of time in range 70-180 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInHighPercent
+          description: Percentage of time in range 180-250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInVeryHighPercent
+          description: Percentage of time above range 250 mg/dL
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: summary.lastUploadDateFrom
+          description: Inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: summary.lastUploadDateTo
+          description: Exclusive
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -391,6 +449,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./confirm/models/confirmation.v1.yaml
       description: Resend invite to the email address of the clinician.
       tags:
         - Clinics
@@ -404,6 +466,19 @@ paths:
       description: Deletes unaccepted invite
       tags:
         - Clinics
+        - Confirmations
+    get:
+      summary: Get Clinician Invite
+      operationId: GetClinicianInvite
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./confirm/models/confirmation.v1.yaml
+      description: Retrieve an invitation sent to clinician to join the clinic
+      tags:
         - Confirmations
   '/v1/clinics/{clinicId}/invites/clinicians/{inviteId}/clinician':
     parameters:
@@ -608,6 +683,258 @@ paths:
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+  '/v1/clinics/{clinicId}/migrations':
+    parameters:
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
+    post:
+      summary: Migrate Legacy Clinician Patients
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migration'
+      operationId: MigrateLegacyClinicianPatients
+      tags:
+        - clinic
+        - internal
+      description: 'Migrate the patients of a legacy clinic account. '
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Migration'
+    get:
+      summary: Retrieve Migration Status
+      operationId: ListMigrations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migrations'
+      description: ListMigrations
+      tags:
+        - clinic
+      x-internal: true
+  '/v1/clinicians/{userId}/migrate':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    post:
+      summary: Enable Clinics
+      tags:
+        - clinic
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/clinic.v1.yaml
+      operationId: EnableNewClinicExperience
+      description: Internal only endpoint to enable new clinic experience for a legacy clinician account. Patients won't be migrated until the clinic details are populated and migration is explicitly kicked-off by blip.
+      x-internal: true
+  '/v1/clinics/{clinicId}/migrate':
+    parameters:
+      - schema:
+          type: string
+        name: clinicId
+        in: path
+        required: true
+    post:
+      summary: Trigger initial migration
+      tags:
+        - clinic
+        - internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migration'
+      operationId: TriggerInitialMigration
+      description: Trigger the initial migration
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerMigration'
+  '/v1/clinics/{clinicId}/migrations/{userId}':
+    parameters:
+      - $ref: ./clinic/parameters/clinicid.v1.yaml
+      - $ref: '#/components/parameters/userId'
+    get:
+      summary: Get Migration
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migration'
+      operationId: GetMigration
+      description: Get a migration by user id
+    patch:
+      summary: Update Migration
+      operationId: UpdateMigration
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migration'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MigrationUpdate'
+      description: Internal endpoint to update the status of a migration
+  '/v1/users/{userId}/clinics':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    delete:
+      summary: ''
+      operationId: DeleteUserFromClinics
+      responses:
+        '200':
+          description: OK
+      tags:
+        - clinic
+      x-internal: true
+      description: |-
+        Internal endpoint that deletes any user associations with clinics they are a patient or a member of. 
+
+        If the user is a patient of a clinic the service will delete the patient-clinic relationship.
+
+        If the user is one of many admins of any clinic the service will delete the clinician-clinic relationship.
+
+        If the user is the only admin of a clinic the service will:
+        - delete the clinician record, leaving the clinic without an admin
+        - delete all non-custodial patient relationships of the clinic
+        - keep all custodian relationships, allowing users to claim custodial accounts with an email
+        - keep all custodian accounts and data even if they can’t be claimed when there isn’t an email address associated with the account
+    post:
+      summary: Update User Details
+      operationId: UpdateClinicUserDetails
+      responses:
+        '204':
+          description: No Content
+      description: Internal endpoint to update clinician details. In the future it may be extended to support patient updates.
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDetails'
+  /v1/clinicians:
+    get:
+      summary: List All Clinicians
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClinicianClinicRelationship'
+      operationId: ListAllClinicians
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/createdTimeStart'
+        - $ref: '#/components/parameters/createdTimeEnd'
+      description: Returns list of all clinician/clinic relationships in the system. Internal endpoint used for reporting purposes.
+      x-internal: true
+  '/v1/patients/{patientId}/summary':
+    parameters:
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: UpdatePatientSummary
+      operationId: UpdatePatientSummary
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Internal endpoint which updates the summary in all patient records which match the user id.
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientSummary'
+            examples:
+              example-1:
+                value:
+                  lastUpdatedDate: '2019-08-24T14:15:22Z'
+                  firstData: '2019-08-24T14:15:22Z'
+                  lastData: '2019-08-24T14:15:22Z'
+                  lastUploadDate: '2019-08-24T14:15:22Z'
+                  outdatedSince: '2019-08-24T14:15:22Z'
+                  averageGlucose:
+                    units: mmol/l
+                    value: 105
+                  glucoseManagementIndicator: 0.06
+                  percentTimeInTarget: 0.7
+                  percentTimeInHigh: 0.1
+                  percentTimeInVeryHigh: 0.1
+                  percentTimeInLow: 0.05
+                  percentTimeInVeryLow: 0.05
+                  percentTimeCGMUse: 0.9
+                  highGlucoseThreshold: 0
+                  lowGlucoseThreshold: 0
+        description: ''
+  '/v1/clinics/{clinicId}/tier':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Update Tier
+      operationId: UpdateTier
+      responses:
+        '200':
+          description: OK
+      description: Internal endpoint to update clinic service tier
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTier'
+  '/v1/clinics/{clinicId}/patients/{patientId}/upload_reminder':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Send Upload Reminder
+      operationId: SendUploadReminder
+      responses:
+        '200':
+          description: OK
+      description: Sends upload reminder to the patient
+      tags:
+        - clinic
 components:
   schemas:
     Error:
@@ -629,11 +956,19 @@ components:
     Patients:
       type: array
       items:
-        $ref: '#/components/schemas/Patient'
+        $ref: ./clinic/models/patient.v1.yaml
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
+    TidepoolUserId:
+      $ref: ./common/models/tidepooluserid.yaml
+    ClinicianRoles:
+      $ref: ./clinic/models/clinicianroles.v1.yaml
+    PhoneNumber:
+      $ref: ./clinic/models/phonenumber.v1.yaml
     PatientPermissions:
       $ref: ./clinic/models/patientpermissions.v1.yaml
+    Id:
+      $ref: ./clinic/models/clinicid.v1.yaml
     PatientClinicRelationship:
       title: PatientClinicRelationship
       type: object
@@ -656,6 +991,12 @@ components:
       properties:
         permissions:
           $ref: ./clinic/models/patientpermissions.v1.yaml
+        isMigrated:
+          type: boolean
+        legacyClinicianId:
+          $ref: '#/components/schemas/TidepoolUserId'
+        attestationSubmitted:
+          type: boolean
     AssociateClinicianToUser:
       title: Associate Clinician
       type: object
@@ -680,9 +1021,99 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ClinicianClinicRelationship'
+    Migration:
+      title: Migration
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The user id of the legacy clinician account that needs to be migrated.
+          minLength: 1
+        status:
+          $ref: ./clinic/models/migrationstatus.v1.yaml
+        createdTime:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedTime:
+          type: string
+          format: date-time
+          readOnly: true
+        attestationTime:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - userId
+        - createdTime
+        - updatedTime
+    Migrations:
+      title: Migrations
+      type: array
+      items:
+        $ref: '#/components/schemas/Migration'
+    MigrationUpdate:
+      title: MigrationUpdate
+      type: object
+      properties:
+        status:
+          $ref: ./clinic/models/migrationstatus.v1.yaml
+      required:
+        - status
+    MigrationStatus:
+      $ref: ./clinic/models/migrationstatus.v1.yaml
+    Meta:
+      title: Meta
+      type: object
+      properties:
+        count:
+          type: integer
+    PatientsResponse:
+      title: PatientsResponse
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Patients'
+        meta:
+          $ref: '#/components/schemas/Meta'
+    UpdateUserDetails:
+      title: UpdateUserDetails
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+    TriggerMigration:
+      title: TriggerMigration
+      type: object
+      properties:
+        attestationSubmitted:
+          type: boolean
+    PatientSummary:
+      $ref: ./clinic/models/patientsummary.v1.yaml
+    PatientSummaryPeriods:
+      $ref: ./clinic/models/patientsummaryperiods.v1.yaml
+    PatientSummaryPeriod:
+      $ref: ./clinic/models/patientsummaryperiod.v1.yaml
+    AverageGlucose:
+      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
+    UpdateTier:
+      title: UpdateTier
+      type: object
+      properties:
+        tier:
+          $ref: '#/components/schemas/Tier'
+      required:
+        - tier
+    Tier:
+      $ref: ./clinic/models/tier.v1.yaml
   securitySchemes:
     sessionToken:
-      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
+      name: x-tidepool-session-token
+      type: apiKey
+      in: header
+      description: A Tidepool session token
   parameters:
     offset:
       name: offset
@@ -702,21 +1133,28 @@ components:
       in: path
       required: true
       schema:
-        $ref: './clinic/models/clinicid.v1.yaml'
+        type: string
+        pattern: '^[a-f0-9]{24}$'
     clinicianId:
       name: clinicianId
       in: path
       required: true
       schema:
-        $ref: './common/models/tidepooluserid.yaml'
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
     patientId:
       name: patientId
       in: path
       required: true
       schema:
-        $ref: './common/models/tidepooluserid.yaml'
+        type: string
+        pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
     userId:
-      $ref: './common/parameters/tidepooluserid.yaml'
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/TidepoolUserId'
     inviteId:
       name: inviteId
       in: path
@@ -742,7 +1180,38 @@ components:
       in: query
       required: false
       schema:
-        $ref: './common/models/emailaddress.v1.yaml'
+        type: string
+        format: email
+    role:
+      name: role
+      in: query
+      required: false
+      schema:
+        type: string
+    sort:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+        pattern: '(?:-|\+)(?:[a-zA-Z]|_)+'
+      description: Sort order and attribute (e.g. +name or -name)
+    createdTimeStart:
+      name: createdTimeStart
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+      description: Return records created after the given date (inclusive)
+    createdTimeEnd:
+      name: createdTimeEnd
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+      description: Return records created before the given date (exclusive)
 tags:
   - name: Clinics
     description: >-

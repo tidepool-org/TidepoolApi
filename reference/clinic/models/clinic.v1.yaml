@@ -1,41 +1,77 @@
 title: Clinic
-description: >-
-  Clinic
+description: Clinic
 type: object
 properties:
   id:
-    $ref: './clinicid.v1.yaml'
+    $ref: ./clinicid.v1.yaml
   address:
-    $ref: './streetaddress.v1.yaml'
+    $ref: ./streetaddress.v1.yaml
   city:
-    $ref: './city.v1.yaml'
+    $ref: ./city.v1.yaml
   postalCode:
-    $ref: './postalcode.v1.yaml'
+    $ref: ./postalcode.v1.yaml
   state:
-    $ref: './state.v1.yaml'
+    $ref: ./state.v1.yaml
   country:
-    $ref: './country.v1.yaml'
+    $ref: ./country.v1.yaml
   phoneNumbers:
-    $ref: './phonenumbers.v1.yaml'
+    $ref: ./phonenumbers.v1.yaml
   clinicType:
     type: string
+    minLength: 1
+    enum:
+      - provider_practice
+      - healthcare_system
+      - veterinary_clinic
+      - other
+      - researcher
   clinicSize:
-    type: integer
-    minimum: 0
-    readOnly: true
+    type: string
+    enum:
+      - 0-249
+      - 250-499
+      - 500-999
+      - 1000+
   name:
-    $ref: './name.v1.yaml'
+    $ref: ./name.v1.yaml
   shareCode:
-    $ref: './sharecode.v1.yaml'
+    $ref: ./sharecode.v1.yaml
+  canMigrate:
+    type: boolean
+    readOnly: true
+  website:
+    type: string
+    format: uri
+  createdTime:
+    type: string
+    format: date-time
+    readOnly: true
+  updatedTime:
+    type: string
+    format: date-time
+    readOnly: true
+  tierDescription:
+    type: string
+    minLength: 1
+    example: Free
+    readOnly: true
+  tier:
+    type: string
+    example: tier0100
+    minLength: 1
+    readOnly: true
+  preferredBgUnits:
+    type: string
+    enum:
+      - mg/dL
+      - mmol/L
 required:
   - id
   - name
-  - address
-  - city
-  - state
-  - postalCode
-  - country
-  - clinicType
-  - clinicSize
-  - phonenumbers
   - shareCode
+  - canMigrate
+  - createdTime
+  - updatedTime
+  - tierDescription
+  - tier
+  - preferredBgUnits

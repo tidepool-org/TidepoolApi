@@ -128,5 +128,6 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 * [Linking Events](./device-data/linking-events.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
 * [Pump Settings](device-data/data-types/pump-settings)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Status](./device-data/data-types/device-event/status.md)
 * [Time Change](./device-data/data-types/device-event/time-change.md)

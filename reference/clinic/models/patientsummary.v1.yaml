@@ -1,0 +1,36 @@
+type: object
+title: patientsummary.v1
+description: ''
+properties:
+  lastUpdatedDate:
+    type: string
+    format: date-time
+  firstData:
+    type: string
+    format: date-time
+  lastData:
+    type: string
+    format: date-time
+  lastUploadDate:
+    type: string
+    format: date-time
+  outdatedSince:
+    type: string
+    format: date-time
+  totalDays:
+    type: number
+    x-go-type: int
+  highGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  veryHighGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  lowGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  veryLowGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  periods:
+    $ref: ./patientsummaryperiods.v1.yaml

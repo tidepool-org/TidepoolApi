@@ -1,0 +1,154 @@
+title: Dosing Decision
+description: A dosing decision
+allOf:
+  - $ref: '../base.v1.yaml'
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - dosingDecision
+      reason:
+        type: string
+        minLength: 1
+        maxLength: 100
+        example: bolus
+      originalFood:
+        type: object
+        properties:
+          time:
+            type: string
+            format: date-time
+          nutrition:
+            $ref: '../../../common/models/nutrition.v1.yaml'
+        required:
+          - nutrition
+      food:
+        type: object
+        properties:
+          time:
+            type: string
+            format: date-time
+          nutrition:
+            $ref: '../../../common/models/nutrition.v1.yaml'
+        required:
+          - nutrition
+      smbg:
+        $ref: './bloodglucose.v1.yaml'
+      carbsOnBoard:
+        type: object
+        properties:
+          time:
+            type: string
+            format: date-time
+          amount:
+            type: number
+            format: double
+            minimum: 0
+            maximum: 1000
+            example: 18
+        required:
+          - amount
+      insulinOnBoard:
+        type: object
+        properties:
+          time:
+            type: string
+            format: date-time
+          amount:
+            type: number
+            format: double
+            minimum: -1000
+            maximum: 1000
+            example: 0.75
+        required:
+          - amount
+      bgTargetSchedule:
+        type: array
+        items:
+          $ref: '../blood/glucose/targetstart.v1.yaml'
+      bgHistorical:
+        type: array
+        items:
+          $ref: './bloodglucose.v1.yaml'
+      bgForecast:
+        type: array
+        items:
+          $ref: './bloodglucose.v1.yaml'
+      recommendedBasal:
+        type: object
+        properties:
+          rate:
+            type: number
+            format: double
+            minimum: 0
+            maximum: 100
+            example: 1.25
+          duration:
+            type: number
+            format: int32
+            minimum: 0
+            maximum: 86400000
+            example: 180000
+        required:
+          - rate
+      recommendedBolus:
+        type: object
+        properties:
+          amount:
+            type: number
+            format: double
+            minimum: 0
+            maximum: 1000
+            example: 2.5
+        required:
+          - amount
+      requestedBolus:
+        type: object
+        properties:
+          amount:
+            type: number
+            format: double
+            minimum: 0
+            maximum: 1000
+            example: 2.0
+        required:
+          - amount
+      warnings:
+        type: array
+        items:
+          $ref: './issue.v1.yaml'
+      errors:
+        type: array
+        items:
+          $ref: './issue.v1.yaml'
+      scheduleTimeZoneOffset:
+        type: number
+        format: int32
+        minimum: -10080
+        maximum: 10080
+        example: -480
+      units:
+        type: object
+        properties:
+          bg:
+            $ref: '../blood/units.v1.yaml'
+          carb:
+            type: string
+            enum:
+              - exchanges
+              - grams
+            example: grams
+          insulin:
+            type: string
+            enum:
+              - Units
+        required:
+          - bg
+          - carb
+          - insulin
+    required:
+      - reason
+      - units
+x-tags:
+  - Data

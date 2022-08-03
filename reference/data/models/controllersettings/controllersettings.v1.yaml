@@ -1,0 +1,16 @@
+title: Controller Settings
+description: Controller settings
+allOf:
+  - $ref: ../base.v1.yaml
+  - type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - controllerSettings
+      device:
+        $ref: ./device.v1.yaml
+      notifications:
+        $ref: ./notifications.v1.yaml
+x-tags:
+  - Data

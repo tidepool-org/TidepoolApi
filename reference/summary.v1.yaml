@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
-  title: Summary Data
+  title: Data Summary API
   version: '1.0'
   description: |-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
   contact:
-    name: API Support
-    url: 'https://support.tidepool.org/'
+    name: Tidepool
+    url: 'https://www.tidepool.org'
     email: support@tidepool.org
   termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
@@ -46,84 +46,53 @@ tags:
       This documentation is for archival only.
 
 paths:
-  '/v1/users/{userId}/summary':
+  '/v1/summaries/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
-    post:
-      operationId: GetUserSummary
+      - $ref: '#/components/parameters/userId'
+    get:
       summary: Get User Summary
-      description: >-
-        Retrieves summary information for the user specified by `userId`.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: './summary/models/summaryrequest.v1.yaml'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: './summary/models/summary.v1.yaml'
+                $ref: '#/components/schemas/Summary'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: GetSummary
+      description: Retrieve a summary by id
+      x-internal: true
       tags:
         - Summary
-        - Internal
-      deprecated: true
-
-  '/v1/users/{userId}/summaries':
-    parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
-    post:
-      operationId: GetUserSharedSummaries
-      summary: Get User's Shared Summaries
-      description: >-
-        Retrieves summary information for all of the users who have granted access permission to the user specified by `userId`.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: './summary/models/summaryrequest.v1.yaml'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './summary/models/summary.v1.yaml'
-      tags:
-        - Summary
-        - Internal
-      deprecated: true
-
-  '/v1/clinics/{clinicId}/summaries':
-    parameters:
-      - $ref: './clinic/parameters/clinicid.v1.yaml'
-    post:
-      operationId: GetClinicPatientSummary
-      summary: Get Clinic Patient Summary
-      description: >-
-        Returns summary information for all patients of a clinic.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: './summary/models/summaryrequest.v1.yaml'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: './summary/models/summary.v1.yaml'
-      tags:
-        - Summary
-        - Internal
-      deprecated: true
 
 components:
+  schemas:
+    TidepoolUserId:
+      $ref: ./common/models/tidepooluserid.yaml
+    Summary:
+      $ref: ./summary/models/summary.v1.yaml
+    AverageGlucose:
+      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
+    SummaryStat:
+      $ref: ./summary/models/summarystat.v1.yaml
+    SummaryPeriods:
+      $ref: ./summary/models/summaryperiods.v1.yaml
+    SummaryPeriod:
+      $ref: ./summary/models/summaryperiod.v1.yaml
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
+    serverToken:
+      $ref: './common/security/tidepoolservertoken.v1.yaml'
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/TidepoolUserId'

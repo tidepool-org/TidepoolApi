@@ -13,6 +13,7 @@ Along with Tidepool's release of ["Bootstrapping to UTC"](./datetime/btutc.md) (
 * [Alarm](./device-data/data-types/device-event/alarm.md)
 * [Calibration](./device-data/data-types/device-event/calibration.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
 * [Time Change](./device-data/data-types/device-event/time-change.md)

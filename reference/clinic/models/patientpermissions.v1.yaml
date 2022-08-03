@@ -3,7 +3,6 @@ title: Patient Permissions
 properties:
   custodian:
     type: object
-    readOnly: true
   view:
     type: object
   note:

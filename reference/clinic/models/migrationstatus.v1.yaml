@@ -1,0 +1,7 @@
+type: string
+title: Migration Status
+enum:
+  - PENDING
+  - RUNNING
+  - COMPLETED
+description: The current status of the migration

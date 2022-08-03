@@ -3,17 +3,22 @@ description: >-
   Data type
 type: string
 enum:
+  - alert
   - basal
   - bloodKetone
   - bolus
   - cbg
   - cgmSettings
+  - controllerSettings
+  - controllerStatus
   - deviceEvent
   - deviceStatus
+  - dosingDecision
   - food
   - insulin
   - physicalActivity
   - pumpSettings
+  - pumpStatus
   - reportedState
   - smbg
   - upload

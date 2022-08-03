@@ -1,8 +1,0 @@
-title: Sample Period
-description: >-
-  The length of the sample period.
-type: string
-enum:
-  - day
-  - week
-example: 'week'

@@ -102,6 +102,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ## Keep Reading
 
+* [Automated Bolus](./device-data/data-types/bolus/automated.md)
 * [Bolus](./device-data/data-types/bolus.md)
 * [Combination Bolus](./device-data/data-types/bolus/combination.md)
 * [Common Fields](./device-data/common-fields.md)
