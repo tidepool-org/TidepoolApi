@@ -701,10 +701,9 @@ paths:
                 $ref: '#/components/schemas/Migration'
       operationId: MigrateLegacyClinicianPatients
       tags:
-        - clinic
-        - internal
+        - Clinics
+        - Internal
       description: 'Migrate the patients of a legacy clinic account. '
-      x-internal: true
       requestBody:
         content:
           application/json:
@@ -722,8 +721,8 @@ paths:
                 $ref: '#/components/schemas/Migrations'
       description: ListMigrations
       tags:
-        - clinic
-      x-internal: true
+        - Clinics
+        - Internal
   '/v1/clinicians/{userId}/migrate':
     parameters:
       - schema:
@@ -734,8 +733,8 @@ paths:
     post:
       summary: Enable Clinics
       tags:
-        - clinic
-        - internal
+        - Clinics
+        - Internal
       responses:
         '200':
           description: OK
@@ -745,7 +744,6 @@ paths:
                 $ref: ./clinic/models/clinic.v1.yaml
       operationId: EnableNewClinicExperience
       description: Internal only endpoint to enable new clinic experience for a legacy clinician account. Patients won't be migrated until the clinic details are populated and migration is explicitly kicked-off by blip.
-      x-internal: true
   '/v1/clinics/{clinicId}/migrate':
     parameters:
       - schema:
@@ -756,8 +754,8 @@ paths:
     post:
       summary: Trigger initial migration
       tags:
-        - clinic
-        - internal
+        - Clinics
+        - Internal
       responses:
         '200':
           description: OK
@@ -767,7 +765,6 @@ paths:
                 $ref: '#/components/schemas/Migration'
       operationId: TriggerInitialMigration
       description: Trigger the initial migration
-      x-internal: true
       requestBody:
         content:
           application/json:
@@ -779,7 +776,9 @@ paths:
       - $ref: '#/components/parameters/userId'
     get:
       summary: Get Migration
-      tags: []
+      tags:
+        - Clinics
+        - Internal
       responses:
         '200':
           description: OK
@@ -805,6 +804,9 @@ paths:
             schema:
               $ref: '#/components/schemas/MigrationUpdate'
       description: Internal endpoint to update the status of a migration
+      tags:
+        - Clinics
+        - Internal
   '/v1/users/{userId}/clinics':
     parameters:
       - $ref: '#/components/parameters/userId'
@@ -815,8 +817,8 @@ paths:
         '200':
           description: OK
       tags:
-        - clinic
-      x-internal: true
+        - Clinics
+        - Internal
       description: |-
         Internal endpoint that deletes any user associations with clinics they are a patient or a member of. 
 
@@ -836,16 +838,20 @@ paths:
         '204':
           description: No Content
       description: Internal endpoint to update clinician details. In the future it may be extended to support patient updates.
-      x-internal: true
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateUserDetails'
+      tags:
+        - Clinics
+        - Internal
   /v1/clinicians:
     get:
       summary: List All Clinicians
-      tags: []
+      tags:
+        - Clinics
+        - Internal
       responses:
         '200':
           description: OK
@@ -862,7 +868,6 @@ paths:
         - $ref: '#/components/parameters/createdTimeStart'
         - $ref: '#/components/parameters/createdTimeEnd'
       description: Returns list of all clinician/clinic relationships in the system. Internal endpoint used for reporting purposes.
-      x-internal: true
   '/v1/patients/{patientId}/summary':
     parameters:
       - $ref: '#/components/parameters/patientId'
@@ -875,9 +880,9 @@ paths:
         '404':
           description: Not Found
       description: Internal endpoint which updates the summary in all patient records which match the user id.
-      x-internal: true
       tags:
-        - clinic
+        - Clinics
+        - Internal
       requestBody:
         content:
           application/json:
@@ -914,9 +919,9 @@ paths:
         '200':
           description: OK
       description: Internal endpoint to update clinic service tier
-      x-internal: true
       tags:
-        - clinic
+        - Clinics
+        - Internal
       requestBody:
         content:
           application/json:
@@ -934,7 +939,7 @@ paths:
           description: OK
       description: Sends upload reminder to the patient
       tags:
-        - clinic
+        - Clinics
 components:
   schemas:
     Error:
@@ -1213,9 +1218,14 @@ components:
         format: date-time
       description: Return records created before the given date (exclusive)
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Clinics
     description: >-
       Manage clinics, clinians and patients.
   - name: Confirmations
+    description: >-
+      Manage confirmations for account creation, sharing invites, etc.
 security:
   - sessionToken: []
