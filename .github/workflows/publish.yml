@@ -5,6 +5,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Setup script environment
+        run: |
+            make install_tools
+      - name: Check the documentation
+        run: |
+            make check_files
+
   publish:
     runs-on: ubuntu-latest
     env:
@@ -15,15 +29,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.9'
       - name: Setup script environment
         run: |
             make install_tools
       - name: Run script self-tests
         run: |
-            make check_env check_files
+            make check_env
       - name: Publish the documentation
         run: |
             make publish

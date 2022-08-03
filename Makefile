@@ -64,7 +64,17 @@ install_tools:
 	npm install --location=global @stoplight/cli
 	npm install --location=global @stoplight/spectral-cli
 	npm install --location=global openapi-merge-cli
-	pip install jsonnet
+PLATFORM := $(shell uname -s)
+ifeq ($(PLATFORM),Darwin)
+	brew install jsonnet
+endif
+ifeq ($(PLATFORM),Linux)
+	git clone https://github.com/Microsoft/vcpkg.git
+	cd vcpkg
+	./bootstrap-vcpkg.sh
+	./vcpkg integrate install
+	vcpkg install jsonnet
+endif
 
 .PHONY: check_env
 check_env:
