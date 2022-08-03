@@ -1,0 +1,26 @@
+name: publish
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_STOPLIGHT_TOKEN: ${{ secrets.PUBLIC_STOPLIGHT_TOKEN }}
+      PRIVATE_STOPLIGHT_TOKEN: ${{ secrets.PRIVATE_STOPLIGHT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Setup script environment
+        run: |
+            make install_tools
+      - name: Run script self-tests
+        run: |
+            make check_env check_files
+      - name: Publish the documentation
+        run: |
+            make publish
