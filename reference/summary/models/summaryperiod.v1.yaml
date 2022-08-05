@@ -4,6 +4,8 @@ description: 'Summary of a specific time period (currently: 1d, 7d, 14d, 30d)'
 properties:
   averageGlucose:
     $ref: '../../data/models/blood/glucose/glucosemmol.v1.yaml'
+  hasAverageGlucose:
+    type: boolean
   glucoseManagementIndicator:
     type: number
     x-go-type: float64
@@ -16,6 +18,8 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  hasTimeInTargetPercent:
+    type: boolean
   timeInTargetMinutes:
     description: Counter of minutes spent in target glucose range
     type: number
@@ -31,6 +35,8 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  hasTimeInHighPercent:
+    type: boolean
   timeInHighMinutes:
     description: Counter of minutes spent in high glucose range
     type: number
@@ -46,6 +52,8 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  hasTimeInVeryHighPercent:
+    type: boolean
   timeInVeryHighMinutes:
     description: Counter of minutes spent in very high glucose range
     type: number
@@ -61,6 +69,8 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  hasTimeInLowPercent:
+    type: boolean
   timeInLowMinutes:
     description: Counter of minutes spent in low glucose range
     type: number
@@ -76,6 +86,8 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  hasTimeInVeryLowPercent:
+    type: boolean
   timeInVeryLowMinutes:
     description: Counter of minutes spent in very low glucose range
     type: number
