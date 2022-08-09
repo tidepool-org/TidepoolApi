@@ -48,7 +48,7 @@ tags:
 paths:
   '/v1/summaries/{userId}':
     parameters:
-      - $ref: '#/components/parameters/userId'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       summary: Get User Summary
       responses:
@@ -66,33 +66,16 @@ paths:
           description: Internal Server Error
       operationId: GetSummary
       description: Retrieve a summary by id
-      x-internal: true
       tags:
         - Summary
+        - Internal
 
 components:
   schemas:
-    TidepoolUserId:
-      $ref: ./common/models/tidepooluserid.yaml
     Summary:
       $ref: ./summary/models/summary.v1.yaml
-    AverageGlucose:
-      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
-    SummaryStat:
-      $ref: ./summary/models/summarystat.v1.yaml
-    SummaryPeriods:
-      $ref: ./summary/models/summaryperiods.v1.yaml
-    SummaryPeriod:
-      $ref: ./summary/models/summaryperiod.v1.yaml
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
     serverToken:
       $ref: './common/security/tidepoolservertoken.v1.yaml'
-  parameters:
-    userId:
-      name: userId
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/TidepoolUserId'
