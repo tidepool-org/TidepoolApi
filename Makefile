@@ -40,7 +40,7 @@ BUILD_FOLDER = build
 PUBLIC_FOLDER  = $(BUILD_FOLDER)/public
 PRIVATE_FOLDER = $(BUILD_FOLDER)/private
 
-SOURCE_TOC = $(TEMPLATE_FOLDER)/toc.json
+SOURCE_TOC = toc.json
 TARGET_PUBLIC_TOC  = $(PUBLIC_FOLDER)/${notdir $(SOURCE_TOC)}
 TARGET_PRIVATE_TOC = $(PRIVATE_FOLDER)/${notdir $(SOURCE_TOC)}
 
@@ -49,7 +49,7 @@ TARGET_PUBLIC_DOCS  = ${addprefix $(PUBLIC_FOLDER)/, $(SOURCE_DOCS)}
 TARGET_PRIVATE_DOCS = ${addprefix $(PRIVATE_FOLDER)/, $(SOURCE_DOCS)}
 
 SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | sort}
-COMBINED_SPEC = $(SPEC_FOLDER)/combined.v1.yaml
+COMBINED_SPEC = combined.v1.yaml
 TARGET_PUBLIC_SPECS  = ${addprefix $(PUBLIC_FOLDER)/, $(SOURCE_SPECS)}
 TARGET_PRIVATE_SPECS = ${addprefix $(PRIVATE_FOLDER)/, $(SOURCE_SPECS)}
 
@@ -158,12 +158,12 @@ $(TARGET_PRIVATE_DOCS):
 public_specs: $(TARGET_PUBLIC_SPECS)
 	@# the sourceFolder and outputFile must be relative to the config file location!
 	jsonnet --ext-str excludeTags="Internal" \
-		--ext-str sourceFolder=$(SPEC_FOLDER)/ \
+		--ext-str sourceFolder=./ \
 		--ext-str outputFile=$(COMBINED_SPEC) \
-		--output-file $(PUBLIC_FOLDER)/openapi-merge.json \
+		--output-file $(PUBLIC_FOLDER)/$(SPEC_FOLDER)/openapi-merge.json \
 		$(TEMPLATE_FOLDER)/openapi-merge.jsonnet
-	cd $(PUBLIC_FOLDER) && npx openapi-merge-cli
-	find $(PUBLIC_FOLDER) -maxdepth 2 \( -iname '*.yaml' -or -iname openapi-merge.json \) -not -ipath '*$(COMBINED_SPEC)*' -delete
+	cd $(PUBLIC_FOLDER)/$(SPEC_FOLDER) && npx openapi-merge-cli
+	@#find $(PUBLIC_FOLDER) -maxdepth 2 \( -iname '*.yaml' -or -iname openapi-merge.json \) -not -ipath '*$(COMBINED_SPEC)*' -delete
 
 $(TARGET_PUBLIC_SPECS):
 	mkdir -p $(@D)
@@ -173,11 +173,11 @@ $(TARGET_PUBLIC_SPECS):
 private_specs: $(TARGET_PRIVATE_SPECS)
 	@# the sourceFolder and outputFile must be relative to the config file location!
 	jsonnet --ext-str excludeTags="" \
-		--ext-str sourceFolder=$(SPEC_FOLDER)/ \
+		--ext-str sourceFolder=./ \
 		--ext-str outputFile=$(COMBINED_SPEC) \
-		--output-file $(PRIVATE_FOLDER)/openapi-merge.json \
+		--output-file $(PRIVATE_FOLDER)/$(SPEC_FOLDER)/openapi-merge.json \
 		$(TEMPLATE_FOLDER)/openapi-merge.jsonnet
-	cd $(PRIVATE_FOLDER) && npx openapi-merge-cli
+	cd $(PRIVATE_FOLDER)/$(SPEC_FOLDER) && npx openapi-merge-cli
 	find $(PRIVATE_FOLDER) -maxdepth 2 \( -iname '*.yaml' -or -iname openapi-merge.json \) -not -ipath '*$(COMBINED_SPEC)*' -delete
 
 $(TARGET_PRIVATE_SPECS):

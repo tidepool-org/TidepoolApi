@@ -3,8 +3,3 @@ default: true
 
 # MD013/line-length - Line length
 MD013: false
-
-# MD051 - Link fragments should be valid
-# some of the intra-document links don't include the `something` texts
-# this warning is not triggered on macOS version of markdownlint...
-MD051: false
