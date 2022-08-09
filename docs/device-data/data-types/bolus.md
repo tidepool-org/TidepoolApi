@@ -46,7 +46,7 @@ The value of expected duration must be greater than or equal to the duration, si
 
 <!-- theme: info -->
 
-> The expected duration can only be equal to the duration in the very rare and special case that the duration is 0. See [duration](#duration) for discussion of the values for this field.
+> The expected duration can only be equal to the duration in the very rare and special case that the duration is 0. See [duration](#duration-duration) for discussion of the values for this field.
 
 ---
 

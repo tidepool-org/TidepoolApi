@@ -9,7 +9,7 @@
 5. [Suppressed Across Schedule Boundaries](#suppressed-across-schedule-boundaries)
 6. [Suppressed: When A Temp Or Suspend Is Edited](#suppressed-when-a-temp-or-suspend-is-edited)
 7. [Nested Suppressed In Suspend Basals](#nested-suppressed-in-suspend-basals)
-8. [Supressed Suspend Basals](#supressed-suspend-basals)
+8. [Suppressed Suspend Basals](#suppressed-suspend-basals)
 9. [Keep Reading](#keep-reading)
 
 ---
@@ -327,13 +327,13 @@ Just as with a single level of suppressed, nested suppressed should be adjusted 
 
 ---
 
-## Supressed Suspend Basals
+## Suppressed Suspend Basals
 
 A suspend basal can embed a scheduled, automatic or temporary suppressed basal, *even if that basal already contains a suppressed basal event*. For example:
 
 * A user's blood glucose is falling and they program a temp basal (which embeds a suppressed scheduled basal) in an attempt to prevent hypoglycemia
 * However, the user's blood glucose continues to fall and the insulin pump suspends insulin delivery (due to the automatic low glucose suspend feauture)
-* This creates a suspend basal that embeds a supressed temp basal, which is still embedding a suppressed scheduled basal
+* This creates a suspend basal that embeds a suppressed temp basal, which is still embedding a suppressed scheduled basal
 
 ---
 
