@@ -29,8 +29,10 @@
 PLATFORM = ${shell uname -s}
 
 CHECK_DOC_TOOL = markdownlint
-CHECK_SPEC_TOOL = spectral lint --quiet --ignore-unknown-format
-PUBLISH_TOOL = stoplight push
+CHECK_SPEC_TOOL = spectral
+JSON_TOOL = jsonnet
+MERGE_SPEC_TOOL = npx openapi-merge-cli
+PUBLISH_TOOL = stoplight
 
 DOC_FOLDER = docs
 SPEC_FOLDER = reference
@@ -80,6 +82,11 @@ endif
 
 .PHONY: check_env
 check_env: check_public_env check_private_env
+	$(CHECK_DOC_TOOL) --version
+	$(CHECK_SPEC_TOOL) --version
+	$(PUBLISH_TOOL) --version
+	$(MERGE_SPEC_TOOL) --version
+	$(JSON_TOOL) --version
 
 .PHONY: check_public_env
 check_public_env:
@@ -106,7 +113,7 @@ check_specs: $(SOURCE_SPECS)
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
 $(SOURCE_SPECS):
-	$(CHECK_SPEC_TOOL) $@
+	$(CHECK_SPEC_TOOL) lint --quiet --ignore-unknown-format $@
 
 .PHONY: list_files
 list_files: list_docs list_specs
@@ -157,13 +164,13 @@ $(TARGET_PRIVATE_DOCS):
 .PHONY: public_specs
 public_specs: $(TARGET_PUBLIC_SPECS)
 	@# the sourceFolder and outputFile must be relative to the config file location!
-	jsonnet --ext-str excludeTags="Internal" \
+	$(JSON_TOOL) --ext-str excludeTags="Internal" \
 		--ext-str sourceFolder=./ \
 		--ext-str outputFile=$(COMBINED_SPEC) \
 		--output-file $(PUBLIC_FOLDER)/$(SPEC_FOLDER)/openapi-merge.json \
 		$(TEMPLATE_FOLDER)/openapi-merge.jsonnet
-	cd $(PUBLIC_FOLDER)/$(SPEC_FOLDER) && npx openapi-merge-cli
-	@#find $(PUBLIC_FOLDER) -maxdepth 2 \( -iname '*.yaml' -or -iname openapi-merge.json \) -not -ipath '*$(COMBINED_SPEC)*' -delete
+	cd $(PUBLIC_FOLDER)/$(SPEC_FOLDER) && $(MERGE_SPEC_TOOL)
+	find $(PUBLIC_FOLDER) -maxdepth 2 \( -iname '*.yaml' -or -iname openapi-merge.json \) -not -ipath '*$(COMBINED_SPEC)*' -delete
 
 $(TARGET_PUBLIC_SPECS):
 	mkdir -p $(@D)
@@ -172,12 +179,12 @@ $(TARGET_PUBLIC_SPECS):
 .PHONY: private_specs
 private_specs: $(TARGET_PRIVATE_SPECS)
 	@# the sourceFolder and outputFile must be relative to the config file location!
-	jsonnet --ext-str excludeTags="" \
+	$(JSON_TOOL) --ext-str excludeTags="" \
 		--ext-str sourceFolder=./ \
 		--ext-str outputFile=$(COMBINED_SPEC) \
 		--output-file $(PRIVATE_FOLDER)/$(SPEC_FOLDER)/openapi-merge.json \
 		$(TEMPLATE_FOLDER)/openapi-merge.jsonnet
-	cd $(PRIVATE_FOLDER)/$(SPEC_FOLDER) && npx openapi-merge-cli
+	cd $(PRIVATE_FOLDER)/$(SPEC_FOLDER) && $(MERGE_SPEC_TOOL)
 	find $(PRIVATE_FOLDER) -maxdepth 2 \( -iname '*.yaml' -or -iname openapi-merge.json \) -not -ipath '*$(COMBINED_SPEC)*' -delete
 
 $(TARGET_PRIVATE_SPECS):
@@ -203,8 +210,8 @@ publish: publish_public publish_private
 
 .PHONY: publish_public
 publish_public: check_public_env prepare_public
-	cd $(PUBLIC_FOLDER) && $(PUBLISH_TOOL) --ci-token $(PUBLIC_STOPLIGHT_TOKEN) 
+	cd $(PUBLIC_FOLDER) && $(PUBLISH_TOOL) push --ci-token $(PUBLIC_STOPLIGHT_TOKEN) 
 
 .PHONY: publish_private
 publish_private: check_private_env prepare_private
-	cd $(PRIVATE_FOLDER) && $(PUBLISH_TOOL) --ci-token $(PRIVATE_STOPLIGHT_TOKEN) 
+	cd $(PRIVATE_FOLDER) && $(PUBLISH_TOOL) push --ci-token $(PRIVATE_STOPLIGHT_TOKEN) 
