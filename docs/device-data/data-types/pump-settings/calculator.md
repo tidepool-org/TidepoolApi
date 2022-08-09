@@ -1,22 +1,20 @@
-# Bolus Calculator Records (`wizard`)
+# Bolus Calculator Records (`wizard`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Type](#type-type)
-3. [Blood Glucose Input](#blood-glucose-input-bloodglucoseinput)
-4. [Bolus](#bolus-bolus)
-5. [Carb Input](#carb-input-carbinput)
-6. [Insulin-To-Carb Ratio](#insulintocarb-ratio-insulintocarbratio)
-7. [Insulin On Board](#insulin-on-board-insulinonboard)
-8. [Recommended](#recommended-recommended)
-    1. [Recommended: carb](#recommended-carb-recommendedcarb)
-    2. [Recommended: correction](#recommended-correction-recommendedcorrection)
-    3. [Recommended: net](#recommended-net-recommendednet)
-9. [Example (client)](#example-client)
-10. [Example (ingestion)](#example-ingestion)
-11. [Example (storage)](#example-storage)
-12. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [Blood Glucose Input (`bgInput`)](#blood-glucose-input-bginput)
+4. [Bolus (`bolus`)](#bolus-bolus)
+5. [Carb Input (`carbInput`)](#carb-input-carbinput)
+6. [Insulin-To-Carb Ratio (`insulinCarbRatio`)](#insulin-to-carb-ratio-insulincarbratio)
+7. [Insulin On Board (`insulinOnBoard`)](#insulin-on-board-insulinonboard)
+8. [Recommended (`recommended`)](#recommended-recommended)
+   1. [Recommeded: carb (`recommended.carb`)](#recommeded-carb-recommendedcarb)
+   2. [Recommended: correction (`recommended.correction`)](#recommended-correction-recommendedcorrection)
+   3. [Recommended: net (`recommended.net`)](#recommended-net-recommendednet)
+9. [Examples](#examples)
+10. [Keep Reading](#keep-reading)
 
 ---
 
@@ -104,9 +102,9 @@ Net is the net number of units of insulin the bolus calculator recommended given
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "wizard",
     "bgInput": 2.109284236597303,
@@ -137,11 +135,7 @@ Net is the net number of units of insulin the bolus calculator recommended given
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "wizard",
     "bgInput": 392,
@@ -182,11 +176,7 @@ Net is the net number of units of insulin the bolus calculator recommended given
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "wizard",
     "bgInput": 16.152676653942503,

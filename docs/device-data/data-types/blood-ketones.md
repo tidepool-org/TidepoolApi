@@ -1,21 +1,18 @@
-# Blood Ketones (`bloodKetone`)
+# Blood Ketones (`bloodKetone`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Type](#type)
-3. [Value](#value)
-4. [Example (client)](#example-client)
-5. [Example (ingestion)](#example-ingestion)
-6. [Example (storage)](#example-storage)
-7. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [Value (`value`)](#value-value)
+4. [Keep Reading](#keep-reading)
 
 ---
 
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../reference/data/models/bloodketone.v1.yaml'
+$ref: '../../../reference/data/models/blood/ketone.v1.yaml'
 ```
 
 ---
@@ -32,9 +29,9 @@ Tidepool has used the most popular blood ketone meter on the American market —
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "bloodKetone",
     "units": "mmol/L",
@@ -51,11 +48,7 @@ Tidepool has used the most popular blood ketone meter on the American market —
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "bloodKetone",
     "units": "mmol/L",
@@ -70,11 +63,7 @@ Tidepool has used the most popular blood ketone meter on the American market —
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "bloodKetone",
     "units": "mmol/L",

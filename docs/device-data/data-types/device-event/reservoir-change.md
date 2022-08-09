@@ -1,14 +1,12 @@
-# Reservoir Change (`reservoirChange`)
+# Reservoir Change (`reservoirChange`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Status](#status-status)
-4. [Example (client)](#example-client)
-5. [Example (ingestion)](#example-ingestion)
-6. [Example (storage)](#example-storage)
-7. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Status (`status`)](#status-status)
+4. [Examples](#examples)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -36,9 +34,9 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "reservoirChange",
@@ -55,11 +53,7 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "reservoirChange",
@@ -91,11 +85,7 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "reservoirChange",

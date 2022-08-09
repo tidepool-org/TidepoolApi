@@ -1,14 +1,12 @@
-# Self-Monitored Blood Glucose (`smbg`)
+# Self-Monitored Blood Glucose (`smbg`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Type](#type-type)
-3. [Sub-Type](#subtype-subtype)
-4. [Example (client)](#example-client)
-5. [Example (ingestion)](#example-ingestion)
-6. [Example (storage)](#example-storage)
-7. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [Sub-Type (`subType`)](#sub-type-subtype)
+4. [Examples](#examples)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -36,9 +34,9 @@ The linked value indicates that the blood glucose value was transferred from a b
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "smbg",
     "subType": "manual",
@@ -56,11 +54,7 @@ The linked value indicates that the blood glucose value was transferred from a b
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "smbg",
     "subType": "manual",
@@ -76,11 +70,7 @@ The linked value indicates that the blood glucose value was transferred from a b
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "smbg",
     "subType": "linked",

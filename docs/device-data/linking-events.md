@@ -1,6 +1,6 @@
-# Linking Events
+# Linking Events <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Overview](#overview)
 2. [Potentially Linked Events](#potentially-linked-events)
@@ -33,7 +33,7 @@ Platform creates GUIDs for the ID of each event. This means that linked events s
 
 The data for ingestion via Platform looks like:
 
-```json
+```json title="Sample Data" lineNumbers=true
 [
   {
     "type": "wizard",
@@ -59,7 +59,7 @@ The data for ingestion via Platform looks like:
 
 The resulting data looks like:
 
-```json
+```json title="Sample Response" lineNumbers=true
 [
   {
     "type": "bolus",

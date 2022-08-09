@@ -1,13 +1,11 @@
-# Combination Bolus (`combination`)
+# Combination Bolus (`combination`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -27,9 +25,9 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "bolus",
     "subType": "dual/square",
@@ -50,11 +48,7 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "bolus",
     "subType": "dual/square",
@@ -73,11 +67,7 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "bolus",
     "subType": "dual/square",

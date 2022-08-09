@@ -1,9 +1,10 @@
-# Annotations
+# Annotations <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Overview](#overview)
 2. [Syntax And Annotation Conventions](#syntax-and-annotation-conventions)
+   1. [Examples](#examples)
 3. [Annotation Duplications And Storage](#annotation-duplications-and-storage)
 4. [Keep Reading](#keep-reading)
 

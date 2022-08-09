@@ -1,13 +1,11 @@
-# Suspend Basals (`suspend`)
+# Suspend Basals (`suspend`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Delivery Type](#delivery-type-deliverytype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -27,9 +25,9 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -53,11 +51,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -79,11 +73,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "suspend",

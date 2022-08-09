@@ -1,19 +1,17 @@
-# Alarm (`alarm`)
+# Alarm (`alarm`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Alarm Types](#alarm-types-alarmtypes)
-4. [Status](#status-status)
-5. [Example (client)](#example-client)
-6. [Example (ingestion)](#example-ingestion)
-7. [Example (storage)](#example-storage)
-8. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Alarm Types (`alarmType`)](#alarm-types-alarmtype)
+4. [Status (`status`)](#status-status)
+5. [Examples](#examples)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## QUick Summary
+## Quick Summary
 
 ```yaml json_schema
 $ref: '../../../../reference/data/models/devicealarm.v1.yaml'
@@ -68,9 +66,9 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "alarm",
@@ -88,11 +86,7 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "alarm",
@@ -107,11 +101,7 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "alarm",

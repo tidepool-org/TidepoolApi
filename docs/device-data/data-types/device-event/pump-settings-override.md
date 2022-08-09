@@ -1,19 +1,19 @@
-# Pump Settings Override (`pumpSettingsOverride`)
+# Pump Settings Override (`pumpSettingsOverride`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-1. [Sub-Type](#subtype-subtype)
-1. [Override Preset](#override-preset-overridepreset)
-1. [Method](#method-method)
-1. [Duration](#duration-duration)
-1. [Expected Duration](#expected-duration-expectedduration)
-1. [Blood Glucose Target](#blood-glucose-target-bgtarget)
-1. [Basal Rate Scale Factor](#basal-rate-scale-factor-basalratescalefactor)
-1. [Carbohydrate Ratio Scale Factor](#carbohydrate-ratio-scale-factor-carbratioscalefactor)
-1. [Insulin Sensitivity Scale Factor](#insulin-sensitivity-scale-factor-insulinsensitivityscalefactor)
-1. [Example](#example)
-1. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Override Type (`overrideType`)](#override-type-overridetype)
+4. [Override Preset (`overridePreset`)](#override-preset-overridepreset)
+5. [Method (`method`)](#method-method)
+6. [Duration (`duration`)](#duration-duration)
+7. [Expected Duration (`expectedDuration`)](#expected-duration-expectedduration)
+8. [Blood Glucose Target (`bgTarget`)](#blood-glucose-target-bgtarget)
+9. [Basal Rate Scale Factor (`basalRateScaleFactor`)](#basal-rate-scale-factor-basalratescalefactor)
+10. [Carbohydrate Ratio Scale Factor (`carbRatioScaleFactor`)](#carbohydrate-ratio-scale-factor-carbratioscalefactor)
+11. [Insulin Sensitivity Scale Factor (`insulinSensitivityScaleFactor`)](#insulin-sensitivity-scale-factor-insulinsensitivityscalefactor)
+12. [Keep Reading](#keep-reading)
 
 ---
 
@@ -99,9 +99,7 @@ The insulin sensitivity scale factor in effect while the override is enabled. Th
 
 ---
 
-## Example
-
-```json
+```json title="Example" lineNumbers=true
 {
   "id": "bfc3e597e16c436a94a03d7fd095a774",
   "time": "2017-02-06T02:37:46Z",

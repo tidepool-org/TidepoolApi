@@ -1,13 +1,11 @@
-# Automated Basals (`automated`)
+# Automated Basals (`automated`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-1. [Quick summary](#quick-summary)
-2. [Delivery Type](#delivery-type-deliverytype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+1. [Quick Summary](#quick-summary)
+2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -25,9 +23,9 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "automated",
@@ -46,11 +44,7 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "automated",
@@ -67,11 +61,7 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "automated",

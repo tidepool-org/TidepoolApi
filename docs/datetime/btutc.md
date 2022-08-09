@@ -1,9 +1,9 @@
-# Bootstrapping to UTC (BtUTC)
+# Bootstrapping to UTC (BtUTC) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Overview](#overview)
-2. [Across-The-Board Timezone Default](#acrosstheboard-timezone-default)
+2. [Across-The-Board Timezone Default](#across-the-board-timezone-default)
 3. [Daylight Savings Time](#daylight-savings-time)
 4. [Keep Reading](#keep-reading)
 

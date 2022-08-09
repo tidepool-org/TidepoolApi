@@ -1,13 +1,11 @@
-# Continuous Blood Glucose (`cbg`)
+# Continuous Blood Glucose (`cbg`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Type](#type-type)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -23,13 +21,13 @@ $ref: '../../../reference/data/models/blood/continuousglucose.v1.yaml'
 
 This is the Tidepool data type for continuous glucose monitor sensor data. "CBG" is an abbreviation of "continuous blood glucose" and contrasts with "SMBG," abbreviating "self-monitored blood glucose." SMBG is the Tidepool data type for traditional fingerstick blood glucose meter data.
 
-The device time field is only optional for *this* data type. This is because Tidepool is now ingesting Dexcom G5 data via integration with Apple's HealthKit, which only stores a UTC-anchored timestamp and does not have "reciever display time" like earlier generations of Dexcom devices.
+The device time field is only optional for *this* data type. This is because Tidepool is now ingesting Dexcom G5 and G6 data via integration with Apple's HealthKit, which only stores a UTC-anchored timestamp and does not have "receiver display time" like earlier generations of Dexcom devices.
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "cbg",
     "units": "mmol/L",
@@ -46,11 +44,7 @@ The device time field is only optional for *this* data type. This is because Tid
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "cbg",
     "units": "mg/dL",
@@ -65,11 +59,7 @@ The device time field is only optional for *this* data type. This is because Tid
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "cbg",
     "units": "mmol/L",

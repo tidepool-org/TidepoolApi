@@ -1,29 +1,28 @@
-# Dosing Decision (`dosingDecision`)
+# Dosing Decision (`dosingDecision`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-1. [Overview](#overview)
-1. [Type](#type-type)
-1. [Reason](#reason-reason)
-1. [Original Food](#original-food-originalfood)
-1. [Food](#food-food)
-1. [Self Monitored Blood Glucose](#self-monitored-blood-glucose-smbg)
-1. [Carbohydrates On Board](#carbohydrates-on-board-carbsonboard)
-1. [Insulin On Board](#insulin-on-board-insulinonboard)
-1. [Blood Glucose Target Schedule](#blood-glucose-target-schedule-bgtargetschedule)
-1. [Blood Glucose Historical](#blood-glucose-historical-bghistorical)
-1. [Blood Glucose Forecast](#blood-glucose-forecast-bgforecast)
-1. [Recommended Basal](#recommended-basal-recommendedbasal)
-1. [Recommended Bolus](#recommended-bolus-recommendedbolus)
-1. [Requested Bolus](#requested-bolus-requestedbolus)
-1. [Warnings](#warnings-warnings)
-1. [Errors](#errors-errors)
-1. [Schedule Time Zone Offset](#schedule-time-zone-offset-scheduletimezoneoffset)
-1. [Units](#units-units)
-1. [Example](#example)
-1. [Keep Reading](#keep-reading)
-
+2. [Overview](#overview)
+3. [Type (`type`)](#type-type)
+4. [Reason (`reason`)](#reason-reason)
+5. [Original Food (`originalFood`)](#original-food-originalfood)
+6. [Food (`food`)](#food-food)
+7. [Self Monitored Blood Glucose (`smbg`)](#self-monitored-blood-glucose-smbg)
+8. [Carbohydrates On Board (`carbsOnBoard`)](#carbohydrates-on-board-carbsonboard)
+9. [Insulin On Board (`insulinOnBoard`)](#insulin-on-board-insulinonboard)
+10. [Blood Glucose Target Schedule (`bgTargetSchedule`)](#blood-glucose-target-schedule-bgtargetschedule)
+11. [Blood Glucose Historical (`bgHistorical`)](#blood-glucose-historical-bghistorical)
+12. [Blood Glucose Forecast (`bgForecast`)](#blood-glucose-forecast-bgforecast)
+13. [Recommended Basal (`recommendedBasal`)](#recommended-basal-recommendedbasal)
+14. [Recommended Bolus (`recommendedBolus`)](#recommended-bolus-recommendedbolus)
+15. [Requested Bolus (`requestedBolus`)](#requested-bolus-requestedbolus)
+16. [Warnings (`warnings`)](#warnings-warnings)
+17. [Errors (`errors`)](#errors-errors)
+18. [Schedule Time Zone Offset (`scheduleTimeZoneOffset`)](#schedule-time-zone-offset-scheduletimezoneoffset)
+19. [Units (`units`)](#units-units)
+20. [Keep Reading](#keep-reading)
+  
 ---
 
 ## Quick Summary
@@ -59,11 +58,11 @@ If the dosing decision is due to an updated carbohydrate entry then this contain
 * Time
 * Nutrition
 
-### Time (`time`) (Original Food)
+### Time (`time`) (Original Food) <!-- omit in toc -->
 
 The time associated with the original, pre-updated food.
 
-### Nutrition (`nutrition`) (Original Food)
+### Nutrition (`nutrition`) (Original Food) <!-- omit in toc -->
 
 The nutrition associated with the original, pre-updated food.
 
@@ -76,11 +75,11 @@ If the dosing decision is due to a new or updated carbohydrate entry then this c
 * Time
 * Nutrition
 
-### Time (`time`) (Food)
+### Time (`time`) (Food) <!-- omit in toc -->
 
 The time associated with the new or post-updated food.
 
-### Nutrition (`nutrition`) (Food)
+### Nutrition (`nutrition`) (Food) <!-- omit in toc -->
 
 The nutrition associated with the new or post-updated food.
 
@@ -93,11 +92,11 @@ If the dosing decision is due to a simple bolus requested by the user and the us
 * Time
 * Value
 
-### Time (`time`) (Self Monitored Blood Glucose)
+### Time (`time`) (Self Monitored Blood Glucose) <!-- omit in toc -->
 
 The time associated with the self monitored blood glucose.
 
-### Value (`value`) (Self Monitored Blood Glucose)
+### Value (`value`) (Self Monitored Blood Glucose) <!-- omit in toc -->
 
 The value of the self monitored blood glucose.
 
@@ -110,11 +109,11 @@ The current carbohydrates on board for the dosing decision. Contains the followi
 * Time
 * Amount
 
-### Time (`time`) (Carbohydrates On Board)
+### Time (`time`) (Carbohydrates On Board) <!-- omit in toc -->
 
 The time associated with the carbohydrates on board.
 
-### Amount (`amount`) (Carbohydrates On Board)
+### Amount (`amount`) (Carbohydrates On Board) <!-- omit in toc -->
 
 The amount of the carbohydrates on board.
 
@@ -127,11 +126,11 @@ The current insulin on board for the dosing decision. Contains the following pro
 * Time
 * Amount
 
-### Time (`time`) (Insulin On Board)
+### Time (`time`) (Insulin On Board) <!-- omit in toc -->
 
 The time associated with the insulin on board.
 
-### Amount (`amount`) (Insulin On Board)
+### Amount (`amount`) (Insulin On Board) <!-- omit in toc -->
 
 The amount of the insulin on board.
 
@@ -150,11 +149,11 @@ An array of historical blood glucose values. The array contain zero to many obje
 * Time
 * Value
 
-### Time (`time`) (Blood Glucose Historical)
+### Time (`time`) (Blood Glucose Historical) <!-- omit in toc -->
 
 The time of this historical blood glucose.
 
-### Value (`value`) (Blood Glucose Historical)
+### Value (`value`) (Blood Glucose Historical) <!-- omit in toc -->
 
 The value of this historical blood glucose.
 
@@ -167,11 +166,11 @@ An array of forecast blood glucose values. The array contain zero to many object
 * Time
 * Value
 
-### Time (`time`) (Blood Glucose Forecast)
+### Time (`time`) (Blood Glucose Forecast) <!-- omit in toc -->
 
 The time of this forecast blood glucose.
 
-### Value (`value`) (Blood Glucose Forecast)
+### Value (`value`) (Blood Glucose Forecast) <!-- omit in toc -->
 
 The value of this forecast blood glucose.
 
@@ -184,11 +183,11 @@ The basal recommended by the client. Contains the following field:
 * Rate
 * Duration
 
-### Rate (`rate`) (Recommended Basal)
+### Rate (`rate`) (Recommended Basal) <!-- omit in toc -->
 
 The rate of basal insulin delivery as recommended by the client.
 
-### Duration (`duration`) (Recommended Basal)
+### Duration (`duration`) (Recommended Basal) <!-- omit in toc -->
 
 The duration of basal insulin delivery as recommended by the client.
 
@@ -200,7 +199,7 @@ The bolus recommended by the client. Contains the following field:
 
 * Amount
 
-### Amount (`amount`) (Recommended Bolus)
+### Amount (`amount`) (Recommended Bolus) <!-- omit in toc -->
 
 The amount of insulin to bolus as recommended by the client.
 
@@ -212,7 +211,7 @@ The actual bolus requested by the user. Contains the following field:
 
 * Amount
 
-### Amount (`amount`) (Requested Bolus)
+### Amount (`amount`) (Requested Bolus) <!-- omit in toc -->
 
 The amount of insulin to bolus as requested by the user.
 
@@ -225,11 +224,11 @@ All warnings that occurred while calculating the dosing decision. The array cont
 * ID
 * Metadata
 
-### ID (`id`) (Warnings)
+### ID (`id`) (Warnings) <!-- omit in toc -->
 
 The identifier of the warning. This is specific to the client making the dosing decision.
 
-### Metadata (`metadata`) (Warnings)
+### Metadata (`metadata`) (Warnings) <!-- omit in toc -->
 
 Any metadata associated with the warning. This is a dictionary with key and value of strings.
 
@@ -242,11 +241,11 @@ All errors that occurred while calculating the dosing decision. The array contai
 * ID
 * Metadata
 
-### ID (`id`) (Errors)
+### ID (`id`) (Errors) <!-- omit in toc -->
 
 The identifier of the error. This is specific to the client making the dosing decision.
 
-### Metadata (`metadata`) (Errors)
+### Metadata (`metadata`) (Errors) <!-- omit in toc -->
 
 Any metadata associated with the error. This is a dictionary with key and value of strings.
 
@@ -266,23 +265,21 @@ The units of the dosing decision. Contains the following fields:
 * Carbohydrate
 * Insulin
 
-### Blood Glucose (`bg`) (Units)
+### Blood Glucose (`bg`) (Units) <!-- omit in toc -->
 
 The blood glucose units of the dosing decision. Can be one of `mg/dL` or `mmol/L`.
 
-### Carbohydrate (`carb`) (Units)
+### Carbohydrate (`carb`) (Units) <!-- omit in toc -->
 
 The carbohydrate units of the dosing decision. Can be one of `grams` or `exchanges`.
 
-### Insulin (`insulin`) (Units)
+### Insulin (`insulin`) (Units) <!-- omit in toc -->
 
 The insulin units of the dosing decision. Can be one of `Units`.
 
 ---
 
-## Example
-
-```json
+```json title="Example Dosing Decision" lineNumbers=true
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

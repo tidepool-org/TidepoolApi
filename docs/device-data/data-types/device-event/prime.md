@@ -1,15 +1,13 @@
-# Prime (`prime`)
+# Prime (`prime`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Prime Target](#prime-target-primetarget)
-4. [Volume](#volume-volume)
-5. [Example (client)](#example-client)
-6. [Example (ingestion)](#example-ingestion)
-7. [Example (storage)](#example-storage)
-8. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Prime Target (`primeTarget`)](#prime-target-primetarget)
+4. [Volume (`volume`)](#volume-volume)
+5. [Examples](#examples)
+6. [Keep Reading](#keep-reading)
 
 ---
 
@@ -50,9 +48,9 @@ Where available in the data, the volume of a priming event should be included to
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "prime",
@@ -70,11 +68,7 @@ Where available in the data, the volume of a priming event should be included to
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "prime",
@@ -90,11 +84,7 @@ Where available in the data, the volume of a priming event should be included to
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "prime",

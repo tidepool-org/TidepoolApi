@@ -1,14 +1,12 @@
-# Time Change (`timeChange`)
+# Time Change (`timeChange`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Change](#change-change)
-4. [Example (client)](#example-client)
-5. [Example (ingestion)](#example-ingestion)
-6. [Example (storage)](#example-storage)
-7. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Change (`change`)](#change-change)
+4. [Examples](#examples)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -42,9 +40,9 @@ The method field on the change object details whether the time change was manual
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "timeChange",
@@ -65,11 +63,7 @@ The method field on the change object details whether the time change was manual
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "timeChange",
@@ -88,11 +82,7 @@ The method field on the change object details whether the time change was manual
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "timeChange",

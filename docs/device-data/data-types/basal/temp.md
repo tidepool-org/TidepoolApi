@@ -1,14 +1,12 @@
-# Temporary Basals (`temp`)
+# Temporary Basals (`temp`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Delivery Type](#delivery-type-deliverytype)
-3. [Percent](#percent-percent)
-4. [Example (client)](#example-client)
-5. [Example (ingestion)](#example-ingestion)
-6. [Example (storage)](#example-storage)
-7. [Keep Reading](#keep-reading)
+2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
+3. [Percent (`percent`)](#percent-percent)
+4. [Examples](#examples)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -39,9 +37,9 @@ Tidepool's data model has standardized on a floating point representation of the
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -67,11 +65,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -95,11 +89,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "temp",

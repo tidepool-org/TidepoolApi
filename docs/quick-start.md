@@ -1,6 +1,6 @@
-# Getting Started
+# Getting Started <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Authentication](#authentication)
 2. [Tracing](#tracing)
@@ -14,7 +14,7 @@
 
 > ### Prerequisites
 >
-> Before you begin, you will need to create a [Tidepool user account](http://int-app.tidepool.org/signup). It's free and should take you less than two minutes. You can also download [curl](http://curl.haxx.se/download.html) or [Postman](http://app.getpostman.com/run-collection/9b665f2fb9a8a483bf30?via=clientlibraries) onto your computer (this isn't strictly required but is strongly encouraged).
+> Before you begin, you will need to create a [Tidepool user account](https://int-app.tidepool.org/signup). It's free and should take you less than two minutes. You can also download [curl](https://curl.haxx.se/download.html) or [Postman](https://app.getpostman.com/run-collection/9b665f2fb9a8a483bf30?via=clientlibraries) onto your computer (this isn't strictly required but is strongly encouraged).
 
 ## Authentication
 
@@ -30,7 +30,7 @@ curl -i -X POST -u [your account email]:[your account password] https://int-api.
   "url": "https://int-api.tidepool.org/auth/login",
   "query": null,
   "headers": {
-    "Authorization": "Basic bGVubmFydEB0aWRlcG9vbC5vcmc6bk1uN3tYTTIoRnokM0pHQ3o2UUx4aHQ=",
+    "Authorization": "Basic {username:password as Base64}",
     "Content-Type": "application/json"
   },
   "body": null
@@ -39,7 +39,7 @@ curl -i -X POST -u [your account email]:[your account password] https://int-api.
 
 This will return an HTTP response that looks like this:
 
-```http
+```http title="Sample Response" lineNumbers=true
 Access-Control-Allow-Headers: Authorization, Content-Type, X-Tidepool-Session-Token
 Access-Control-Allow-Methods: GET, POST, PUT
 X-Tidepool-Session-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkdXIiOjIuNTkyZSswNiwiZXhwIjoxNDcxMTM0MzIzLCJzdnIiOiJubyIsInVzciI6IjU0YzkwZmIzMjUifQ.bbkzG_rwp9IVMI3HVYm_ct8mMW_YTnTALUW12345678
@@ -75,7 +75,7 @@ Tidepool ecosystem:
 
 For example, a request with both headers specified:
 
-```http
+```http title="Sample Request" lineNumbers=true
 GET  /v1/users/a43d25a01f/images HTTP/1.1
 Host: int-api.tidepool.org
 X-Tidepool-Trace-Request: c836ab48d92c4789abb38d759a021b3e
@@ -92,7 +92,7 @@ The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/
 >
 > Some Tidepool legacy APIs return the developer guidance in different UTF-8 JSON format.
 
-```json
+```json title="Sample Error" lineNumbers=true
 {
   'code': 'length-out-of-range',
   'title': 'length is out of range',
@@ -119,17 +119,13 @@ upon the type and location of the error. The most common failure HTTP status cod
 
 The following command returns user information associated with the given user ID. This step is only necessary if you have not previously stored the user IDs you wish to access:
 
-```shell
-curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" 'https://int-api.tidepool.org/metadata/users/<your-userid>/users'
-```
-
 ```json http
 {
   "method": "get",
-  "url": "https://int-api.tidepool.org/metadata/users/{$$.env.userid}/users",
+  "url": "https://int-api.tidepool.org/metadata/users/{userId}/users",
   "query": null,
   "headers": {
-    "X-Tidepool-Session-Token": "{$$.env.x-tidepool-session-token}",
+    "X-Tidepool-Session-Token": "{sessionToken}",
     "Content-Type": "application/json"
   }
 }
@@ -137,17 +133,13 @@ curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-T
 
 From this list, find the user ID of the patient (or study subject) whose data you wish to fetch. Continuing with our example, we would use:
 
-```shell
-curl -s -X GET -H "X-Tidepool-Session-Token: ey...uk" -H "Content-Type: application/json" "https://int-api.tidepool.org/metadata/users/4533925fea/users"
-```
-
 ```json http
 {
   "method": "get",
-  "url": "https://int-api.tidepool.org/metadata/users/{$$.env.userid}/users",
+  "url": "https://int-api.tidepool.org/metadata/users/{userId}/users",
   "query": null,
   "headers": {
-    "X-Tidepool-Session-Token": "{$$.env.x-tidepool-session-token}",
+    "X-Tidepool-Session-Token": "{sessionToken}",
     "Content-Type": "application/json"
   }
 }
@@ -155,7 +147,7 @@ curl -s -X GET -H "X-Tidepool-Session-Token: ey...uk" -H "Content-Type: applicat
 
 This request will return something like this:
 
-```json title="Response" lineNumbers
+```json title="Sample Response" lineNumbers
 [
   {
     "emailVerified": true,
@@ -206,7 +198,6 @@ This request will return something like this:
 As you can see, this example master account has view access for two kinds of user accounts:
 
 1. Jill Jellyfish has a personal account that she has shared with the master account.
-
 2. Marissa Medpumper has a custodial account that was created in-clinic by the master account. Marissa was not invited or has not claimed her personal account, so there is no email associated with the profile.
 
 ---

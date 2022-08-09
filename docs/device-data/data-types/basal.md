@@ -1,12 +1,12 @@
-# Basal Insulin (`basal`)
+# Basal Insulin (`basal`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Overview](#overview)
-2. [Duration](#duration-duration)
-3. [Expected Duration](#expected-duration-expectedduration)
-4. [Rate](#rate-rate)
-5. [Schedule Name](#schedule-name-schedulename)
+2. [Duration (`duration`)](#duration-duration)
+3. [Expected Duration (`expectedDuration`)](#expected-duration-expectedduration)
+4. [Rate (`rate`)](#rate-rate)
+5. [Schedule Name (`scheduleName`)](#schedule-name-schedulename)
 6. [Keep Reading](#keep-reading)
 
 ---

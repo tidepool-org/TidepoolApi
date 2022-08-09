@@ -1,11 +1,11 @@
-# Timezone Offset (`timezoneOffset`)
+# Timezone Offset (`timezoneOffset`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Overview](#overview)
 2. [Time Field Relationships](#time-field-relationships)
 3. [Finding A Timezone Offset](#finding-a-timezone-offset)
-4. [Upper Threshold For Timezone Offset Changes](#upper-threshold-for-timezone-changes)
+4. [Upper Threshold For Timezone Offset Changes](#upper-threshold-for-timezone-offset-changes)
 5. [Timezone Offset Abbreviations](#timezone-offset-abbreviations)
 6. [Keep Reading](#keep-reading)
 

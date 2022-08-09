@@ -1,22 +1,21 @@
-# Upload Metadata (`upload`)
+# Upload Metadata (`upload`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [By User](#by-user-byuser)
-3. [Computer Time](#computer-time-computertime)
-4. [Device Manufacturers](#device-manufacturers-devicemanufacturers)
-5. [Device Model](#device-model-devicemodel)
-6. [Device Serial Number](#device-serial-number)
-7. [Device Tags](#device-tags-devicetags)
-8. [Time Processing](#time-processing-timeprocessing)
-9. [Timezone](#timezone-timezone)
-10. [Upload ID](#upload-id-uploadid)
-11. [Version](#version-version)
-12. [Example (client)](#example-client)
-13. [Example (ingestion)](#example-ingestion)
-14. [Example (storage)](#example-storage)
-15. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [By User (`byUser`)](#by-user-byuser)
+4. [Computer Time (`computerTime`)](#computer-time-computertime)
+5. [Device Manufacturers (`deviceManufacurers`)](#device-manufacturers-devicemanufacurers)
+6. [Device Model (`deviceModel`)](#device-model-devicemodel)
+7. [Device Serial Number (`deviceSerialNumber`)](#device-serial-number-deviceserialnumber)
+8. [Device Tags (`deviceTags`)](#device-tags-devicetags)
+9. [Time Processing (`timeProcessing`)](#time-processing-timeprocessing)
+10. [Timezone (`timezone`)](#timezone-timezone)
+11. [Upload ID (`uploadId`)](#upload-id-uploadid)
+12. [Version (`version`)](#version-version)
+13. [Examples](#examples)
+14. [Keep Reading](#keep-reading)
 
 ---
 
@@ -34,16 +33,20 @@ This is the Tidepool data type most distinct from all others: instead of encodin
 
 The fields under this type are:
 
-* [By User](#by-user-byuser)
-* [Computer time](#computer-time-computertime)
-* [Device manufacturers](#device-manufacturers-devicemanufacturers)
-* [Device model](#device-model-devicemodel)
-* [Device serial number](#device-serial-number-deviceserialnumber)
-* [Device tags](#device-tags-devicetags)
-* [Time processing](#time-processing-timeprocessing)
-* [Timezone](#timezone-timezone)
-* [Upload ID](#upload-id-uploadid)
-* [Version](#version-version)
+1. [Quick Summary](#quick-summary)
+2. [Type (`type`)](#type-type)
+3. [By User (`byUser`)](#by-user-byuser)
+4. [Computer Time (`computerTime`)](#computer-time-computertime)
+5. [Device Manufacturers (`deviceManufacurers`)](#device-manufacturers-devicemanufacurers)
+6. [Device Model (`deviceModel`)](#device-model-devicemodel)
+7. [Device Serial Number (`deviceSerialNumber`)](#device-serial-number-deviceserialnumber)
+8. [Device Tags (`deviceTags`)](#device-tags-devicetags)
+9. [Time Processing (`timeProcessing`)](#time-processing-timeprocessing)
+10. [Timezone (`timezone`)](#timezone-timezone)
+11. [Upload ID (`uploadId`)](#upload-id-uploadid)
+12. [Version (`version`)](#version-version)
+13. [Examples](#examples)
+14. [Keep Reading](#keep-reading)
 
 ---
 
@@ -127,9 +130,9 @@ A string identifying the software version of the uploading client. For Tidepool 
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "upload",
     "byUser": "154bb78230",
@@ -156,11 +159,7 @@ A string identifying the software version of the uploading client. For Tidepool 
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "upload",
     "byUser": "eda1e15c6a",
@@ -185,11 +184,7 @@ A string identifying the software version of the uploading client. For Tidepool 
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "upload",
     "byUser": "e9c6044f37",

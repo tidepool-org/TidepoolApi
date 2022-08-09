@@ -1,21 +1,20 @@
-# Alert (`alert`)
+# Alert (`alert`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-1. [Overview](#overview)
-1. [Type](#type-type)
-1. [Name](#name-name)
-1. [Priority](#priority-priority)
-1. [Trigger](#trigger-trigger)
-1. [Trigger Delay](#trigger-delay-triggerdelay)
-1. [Sound](#sound-sound)
-1. [Sound Name](#sound-name-soundname)
-1. [Issued Time](#issued-time-issuedtime)
-1. [Acknowledged Time](#acknowledged-time-acknowledgedtime)
-1. [Retracted Time](#retracted-time-retractedtime)
-1. [Example](#example)
-1. [Keep Reading](#keep-reading)
+2. [Overview](#overview)
+3. [Type (`type`)](#type-type)
+4. [Name (`name`)](#name-name)
+   1. [Priority (`priority`)](#priority-priority)
+   2. [Trigger (`trigger`)](#trigger-trigger)
+   3. [Trigger Delay (`triggerDelay`)](#trigger-delay-triggerdelay)
+   4. [Sound (`sound`)](#sound-sound)
+   5. [Sound Name (`soundName`)](#sound-name-soundname)
+   6. [Issued Time (`issuedTime`)](#issued-time-issuedtime)
+   7. [Acknowledged Time (`acknowledgedTime`)](#acknowledged-time-acknowledgedtime)
+   8. [Retracted Time (`retracedTime`)](#retracted-time-retracedtime)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -77,9 +76,7 @@ The time the alert was retracted after it was presented.
 
 ---
 
-## Example
-
-```json
+```json title="Example Low Glucose Alert" lineNumbers=true
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

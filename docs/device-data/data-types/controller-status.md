@@ -1,13 +1,12 @@
-# Controller Status (`controllerStatus`)
+# Controller Status (`controllerStatus`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-1. [Overview](#overview)
-1. [Type](#type-type)
-1. [Battery](#battery-battery)
-1. [Example](#example)
-1. [Keep Reading](#keep-reading)
+2. [Overview](#overview)
+3. [Type (`type`)](#type-type)
+4. [Battery (`battery`)](#battery-battery)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -40,27 +39,25 @@ The battery status of the controller, if known. The battery status contains the 
 * [Remaining](#remaining-remaining)
 * [Units](#units-units)
 
-### Time (`time`)
+### Time (`time`) <!-- omit in toc -->
 
 The time of the battery status, if known.
 
-### State (`state`)
+### State (`state`) <!-- omit in toc -->
 
 The state of the battery status, if known. One of `charging`, `full`, or `unplugged`.
 
-### Remaining (`remaining`)
+### Remaining (`remaining`) <!-- omit in toc -->
 
 The remaining amount of battery. For units of `percent`, can be in range of `0.0` (empty) to `1.0` (full).
 
-### Units (`units`)
+### Units (`units`) <!-- omit in toc -->
 
 The units for the remaining amount of battery, if known. One of `percent`.
 
 ---
 
-## Example
-
-```json
+```json title="Example" lineNumbers=true
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

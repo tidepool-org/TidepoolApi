@@ -1,14 +1,14 @@
-# Bolus Insulin (`bolus`)
+# Bolus Insulin (`bolus`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Overview](#overview)
-2. [Duration](#duration-duration)
-3. [Expected Duration](#expected-duration-expectedduration)
-4. [Expected Extended](#expected-extended-expectedextended)
-5. [Expected Normal](#expected-normal-expectednormal)
-6. [Extended](#extended-extended)
-7. [Normal](#normal-normal)
+2. [Duration (`duration`)](#duration-duration)
+3. [Expected Duration (`expectedDuration`)](#expected-duration-expectedduration)
+4. [Expected Extended (`expectedExtended`)](#expected-extended-expectedextended)
+5. [Expected Normal (`expectedNormal`)](#expected-normal-expectednormal)
+6. [Extended (`extended`)](#extended-extended)
+7. [Normal (`normal`)](#normal-normal)
 8. [Keep Reading](#keep-reading)
 
 ---

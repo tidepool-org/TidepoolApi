@@ -1,12 +1,12 @@
-# Uploading Device Data
+# Uploading Device Data <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-1. [Choosing a client name](#choosing-a-client-name)
-2. [Data upload session types](#data-upload-session-types)
-    1. [Normal upload sessions](#normal-upload-sessions-normal)
-    2. [Continuous upload sessions](#continuous-upload-sessions-continuous)
-3. [Upload deduplicators](#upload-deduplicators)
+1. [Choosing A Client Name](#choosing-a-client-name)
+2. [Data Upload Session Types](#data-upload-session-types)
+   1. [Normal Upload Sessions (`normal`)](#normal-upload-sessions-normal)
+   2. [Continuous Upload Sessions (`continuous`)](#continuous-upload-sessions-continuous)
+3. [Upload Deduplicators](#upload-deduplicators)
 4. [Keep Reading](#keep-reading)
 
 ---

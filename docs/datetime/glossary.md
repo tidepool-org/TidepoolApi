@@ -1,6 +1,6 @@
-# Glossary
+# Glossary <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [BtUTC](#btutc)
 2. [Calendar Date](#calendar-date)

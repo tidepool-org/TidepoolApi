@@ -1,17 +1,15 @@
-# Pump Status (`pumpStatus`)
+# Pump Status (`pumpStatus`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-1. [Overview](#overview)
-1. [Type](#type-type)
-1. [Basal Delivery](#basal-delivery-basaldelivery)
-1. [Battery](#battery-battery)
-1. [Bolus Delivery](#bolus-delivery-bolusdelivery)
-1. [Delivery Indeterminant](#delivery-indeterminant-deliveryindeterminant)
-1. [Reservoir](#reservoir-reservoir)
-1. [Example](#example)
-1. [Keep Reading](#keep-reading)
+2. [Overview](#overview)
+3. [Type (`type`)](#type-type)
+4. [Basal Delivery (`basalDelivery`)](#basal-delivery-basaldelivery)
+5. [Battery (`battery`)](#battery-battery)
+6. [Bolus Delivery (`bolusDelivery`)](#bolus-delivery-bolusdelivery)
+7. [Reservoir (`reservoir`)](#reservoir-reservoir)
+8. [Keep Reading](#keep-reading)
 
 ---
 
@@ -43,31 +41,31 @@ The basal delivery status of the pump, if known. The basal delivery status conta
 * Time
 * Dose
 
-### State (`state`) (Basal Delivery)
+### State (`state`) (Basal Delivery) <!-- omit in toc -->
 
 The state of the basal delivery status. One of `cancelingTemporary`, `initiatingTemporary`, `resuming`, `scheduled`, `suspended`, `suspending`, or `temporary`.
 
-### Time (`time`) (Basal Delivery)
+### Time (`time`) (Basal Delivery) <!-- omit in toc -->
 
 The time of the `scheduled` or `suspended` basal delivery status. Only specify if state is `scheduled` or `suspended`.
 
-### Dose (`dose`) (Basal Delivery)
+### Dose (`dose`) (Basal Delivery) <!-- omit in toc -->
 
 The dose of the `temporary` basal delivery status. Only specify if state is `temporary`. Includes the following fields:
 
-#### Start Time (`startTime`) (Basal Delivery Dose)
+#### Start Time (`startTime`) (Basal Delivery Dose) <!-- omit in toc -->
 
 The start time of the temporary basal dose.
 
-#### End Time (`endTime`) (Basal Delivery Dose)
+#### End Time (`endTime`) (Basal Delivery Dose) <!-- omit in toc -->
 
 The end time of the temporary basal dose.
 
-#### Rate (`rate`) (Basal Delivery Dose)
+#### Rate (`rate`) (Basal Delivery Dose) <!-- omit in toc -->
 
 The rate of the temporary basal dose.
 
-#### Amount Delivered (`amountDelivered`) (Basal Delivery Dose)
+#### Amount Delivered (`amountDelivered`) (Basal Delivery Dose) <!-- omit in toc -->
 
 The current amount delivered of the temporary basal dose.
 
@@ -82,19 +80,19 @@ The battery status of the pump, if known. The battery status contains the follow
 * Remaining
 * Units
 
-### Time (`time`) (Battery)
+### Time (`time`) (Battery) <!-- omit in toc -->
 
 The time of the battery status, if known.
 
-### State (`state`) (Battery)
+### State (`state`) (Battery) <!-- omit in toc -->
 
 The state of the battery status, if known. One of `charging`, `full`, or `unplugged`.
 
-### Remaining (`remaining`) (Battery)
+### Remaining (`remaining`) (Battery) <!-- omit in toc -->
 
 The remaining amount of battery. For units of `percent`, can be in range of `0.0` (empty) to `1.0` (full).
 
-### Units (`units`) (Battery)
+### Units (`units`) (Battery) <!-- omit in toc -->
 
 The units for the remaining amount of battery, if known. One of `percent`.
 
@@ -107,23 +105,23 @@ The bolus delivery status of the pump, if known. The bolus delivery status conta
 * State
 * Dose
 
-### State (`state`) (Bolus Delivery)
+### State (`state`) (Bolus Delivery) <!-- omit in toc -->
 
 The state of the bolus delivery status. One of `canceling`, `delivering`, `initiating`, or `none`.
 
-### Dose (`dose`) (Bolus Delivery)
+### Dose (`dose`) (Bolus Delivery) <!-- omit in toc -->
 
 The dose of the `delivering` bolus delivery status. Only specify if state is `delivering`. Includes the following fields:
 
-#### Start Time (`startTime`) (Bolus Delivery Dose)
+#### Start Time (`startTime`) (Bolus Delivery Dose) <!-- omit in toc -->
 
 The start time of the delivering bolus dose.
 
-#### Amount (`amount`) (Bolus Delivery Dose)
+#### Amount (`amount`) (Bolus Delivery Dose) <!-- omit in toc -->
 
 The intended amount of the delivering bolus dose.
 
-#### Amount Delivered (`amountDelivered`) (Bolus Delivery Dose)
+#### Amount Delivered (`amountDelivered`) (Bolus Delivery Dose) <!-- omit in toc -->
 
 The current amount delivered of the delivering bolus dose.
 
@@ -137,23 +135,21 @@ The reservoir status of the pump, if known. The reservoir status contains the fo
 * Remaining
 * Units
 
-### Time (`time`) (Reservoir)
+### Time (`time`) (Reservoir) <!-- omit in toc -->
 
 The time of the reservoir status, if known.
 
-### Remaining (`remaining`) (Reservoir)
+### Remaining (`remaining`) (Reservoir) <!-- omit in toc -->
 
 The remaining amount of insulin in the reservoir.
 
-### Units (`units`) (Reservoir)
+### Units (`units`) (Reservoir) <!-- omit in toc -->
 
 The units for the remaining amount of insulin in the reservoir. One of `Units`.
 
 ---
 
-## Example
-
-```json
+```json title="Example Pump Status" lineNumbers=true
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",
@@ -166,7 +162,7 @@ The units for the remaining amount of insulin in the reservoir. One of `Units`.
         "rate": 1.25,
         "amountDelivered": 0.35
       }
-    }
+    },
     "battery": {
       "time": "2018-05-14T08:17:05.421Z",
       "state": "charging",
@@ -180,7 +176,7 @@ The units for the remaining amount of insulin in the reservoir. One of `Units`.
         "amount": 4.55,
         "amountDelivered": 1.65
       }
-    }
+    },
     "reservoir": {
       "time": "2018-05-14T08:17:03.689Z",
       "remaining": 156,

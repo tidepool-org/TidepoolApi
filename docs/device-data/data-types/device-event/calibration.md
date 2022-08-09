@@ -1,13 +1,11 @@
-# Calibration (`calibration`)
+# Calibration (`calibration`) <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -25,9 +23,9 @@ The calibration sub-type of device event represents a user's manual entry of a s
 
 ---
 
-## Example (ingestion)
+## Examples
 
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "calibration",
@@ -43,11 +41,7 @@ The calibration sub-type of device event represents a user's manual entry of a s
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "calibration",
