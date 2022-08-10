@@ -10,9 +10,6 @@
 6. [Insulin-To-Carb Ratio (`insulinCarbRatio`)](#insulin-to-carb-ratio-insulincarbratio)
 7. [Insulin On Board (`insulinOnBoard`)](#insulin-on-board-insulinonboard)
 8. [Recommended (`recommended`)](#recommended-recommended)
-   1. [Recommeded: carb (`recommended.carb`)](#recommeded-carb-recommendedcarb)
-   2. [Recommended: correction (`recommended.correction`)](#recommended-correction-recommendedcorrection)
-   3. [Recommended: net (`recommended.net`)](#recommended-net-recommendednet)
 9. [Examples](#examples)
 10. [Keep Reading](#keep-reading)
 
@@ -84,19 +81,19 @@ On many pumps, insulin on board is also taken into account for the calculation o
 
 The embedded object recommended encodes an insulin delivery device's recommendations for insulin dosing across three fields:
 
-* [Carb](#recommended-carb-recommendedcarb)
-* [Correction](#recommended-correction-recommendedcorrection)
-* [Net](#recommended-net-recommendednet)
+* [Recommended: carb (`recommended.carb`)](#recommended-carb-recommendedcarb)
+* [Recommended: correction (`recommended.correction`)](#recommended-correction-recommendedcorrection)
+* [Recommended: net (`recommended.net`)](#recommended-net-recommendednet)
 
-### Recommeded: carb (`recommended.carb`)
+### Recommended: carb (`recommended.carb`) <!-- omit in toc -->
 
 Carb encodes the units of insulin recommended by the device to "cover" the total grams of carbohydrate input by the user into the bolus calculator. The value for carb may be > = 0, as not all boluses involve the ingestion of carbohydrates and may not include a recommended insulin dose to cover carbohydrates about to be ingested.
 
-### Recommended: correction (`recommended.correction`)
+### Recommended: correction (`recommended.correction`) <!-- omit in toc -->
 
 Correction encodes the units of insulin recommended by the device to bring the person with diabetes to their target BG given the input blood glucose. On some pumps, or depending on user preference, this value may be negative. A negative recommendation for correction indicates that — given the user's current blood glucose and insulin on board — low blood glucose is predicted and a reduction in insulin dosing (e.g. via a temporary basal rate) may be required in order to bring blood glucose to or within the target.
 
-### Recommended: net (`recommended.net`)
+### Recommended: net (`recommended.net`) <!-- omit in toc -->
 
 Net is the net number of units of insulin the bolus calculator recommended given the user's inputs. Generally, this net recommendation takes recommended carb, recommended correction, and insulin on board into account, but insulin delivery devices perform this calculation differently. Therefore, Tidepool has chosen to store the calculation's result, rather than make this calculation the responsibility of client applications.
 

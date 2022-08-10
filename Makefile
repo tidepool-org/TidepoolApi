@@ -55,7 +55,7 @@ COMBINED_SPEC = combined.v1.yaml
 TARGET_PUBLIC_SPECS  = ${addprefix $(PUBLIC_FOLDER)/, $(SOURCE_SPECS)}
 TARGET_PRIVATE_SPECS = ${addprefix $(PRIVATE_FOLDER)/, $(SOURCE_SPECS)}
 
-all: check_files publish
+all: check_tools check_files publish
 
 .PHONY: clean
 clean:
@@ -80,13 +80,16 @@ ifeq ($(PLATFORM),Linux)
 	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
 endif
 
-.PHONY: check_env
-check_env: check_public_env check_private_env
+.PHONY: check_tools
+check_tools:
 	$(CHECK_DOC_TOOL) --version
 	$(CHECK_SPEC_TOOL) --version
 	$(PUBLISH_TOOL) --version
 	$(MERGE_SPEC_TOOL) --version
 	$(JSON_TOOL) --version
+
+.PHONY: check_env
+check_env: check_public_env check_private_env
 
 .PHONY: check_public_env
 check_public_env:

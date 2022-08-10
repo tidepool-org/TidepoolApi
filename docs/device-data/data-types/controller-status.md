@@ -34,10 +34,10 @@ This is the Tidepool data type to represent the controller status at a given poi
 
 The battery status of the controller, if known. The battery status contains the following fields:
 
-* [Time](#time-time)
-* [State](#state-state)
-* [Remaining](#remaining-remaining)
-* [Units](#units-units)
+* [Time (`time`)](#time-time)
+* [State (`state`)](#state-state)
+* [Remaining (`remaining`)](#remaining-remaining)
+* [Units (`units`)](#units-units)
 
 ### Time (`time`) <!-- omit in toc -->
 

@@ -39,13 +39,13 @@ This is the Tidepool data type to represent controller settings at a given point
 
 The device related settings of the controller, if known. The device settings contain the following fields:
 
-* [Firmware Version](#firmware-version-firmwareversion)
-* [Hardware Version](#hardware-version-hardwareversion)
-* [Manufacturers](#manufacturers-manufacturers)
-* [Model](#model-model)
-* [Name](#name-name)
-* [Serial Number](#serial-number-serialnumber)
-* [Software Version](#software-version-softwareversion)
+* [Firmware Version (`firmwareVersion`)](#firmware-version-firmwareversion)
+* [Hardware Version (`hardwareVersion`)](#hardware-version-hardwareversion)
+* [Manufacturers (`manufacturers`)](#manufacturers-manufacturers)
+* [Model (`model`)](#model-model)
+* [Name (`name`)](#name-name)
+* [Serial Number (`serialNumber`)](#serial-number-serialnumber)
+* [Software Version (`softwareVersion`)](#software-version-softwareversion)
 
 ### Firmware Version (`firmwareVersion`) <!-- omit in toc -->
 
