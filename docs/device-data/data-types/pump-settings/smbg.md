@@ -1,6 +1,6 @@
-# Self-Monitored Blood Glucose (`smbg`) <!-- omit in toc -->
+# Self-Monitored Blood Glucose (`smbg`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)
@@ -20,7 +20,7 @@ $ref: '../../../../reference/data/models/blood/selfmonitoredglucose.v1.yaml'
 
 ## Type (`type`)
 
-This is the Tidepool data type for traditional fingerstick blood glucose meter data. SMBG is an abbreviation of "self-monitored blood glucose" and contrasts with CBG, abbreviating "continuous blood glucose." CBG is the [Tidepool data type for continuous glucose monitor](./device-data/data-types/cgm-settings.md) (CGM) sensor data.
+This is the Tidepool data type for traditional fingerstick blood glucose meter data. SMBG is an abbreviation of "self-monitored blood glucose" and contrasts with CBG, abbreviating "continuous blood glucose." CBG is the [Tidepool data type for continuous glucose monitor](../cgm-settings.md) (CGM) sensor data.
 
 ---
 
@@ -97,10 +97,10 @@ The linked value indicates that the blood glucose value was transferred from a b
 
 ## Keep Reading
 
-* [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Datetime Guide](./datetime.md)
-* [Diabetes Data Types](./device-data/data-types.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Units](./device-data/units.md)
-* [Upload Metadata](./device-data/data-types/pump-settings/upload.md)
+* [Bolus Calculator](./calculator.md)
+* [Common Fields](../../common-fields.md)
+* [Datetime Guide](../../../datetime.md)
+* [Diabetes Data Types](../../data-types.md)
+* [Pump Settings](../pump-settings.md)
+* [Units](../../units.md)
+* [Upload Metadata](./upload.md)

@@ -1,6 +1,6 @@
-# Date/Time Guide <!-- omit in toc -->
+# Date/Time Guide<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)

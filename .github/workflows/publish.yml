@@ -20,7 +20,7 @@ jobs:
             make install_check_tools check_check_tools
       - name: Check the documentation
         run: |
-            make --jobs 16 ${{ matrix.target }}
+            make ${{ matrix.target }}
 
   publish:
     strategy:
@@ -44,4 +44,4 @@ jobs:
             make install_publish_tools check_publish_tools
       - name: Publish the documentation
         run: |
-            make --jobs 8 ${{ matrix.target }}
+            make ${{ matrix.target }}

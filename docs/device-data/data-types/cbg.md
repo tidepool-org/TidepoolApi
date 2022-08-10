@@ -1,6 +1,6 @@
-# Continuous Blood Glucose (`cbg`) <!-- omit in toc -->
+# Continuous Blood Glucose (`cbg`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)
@@ -85,9 +85,9 @@ The device time field is only optional for *this* data type. This is because Tid
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [CGM Settings](./device-data/data-types/cgm-settings.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [CGM Settings](./cgm-settings.md)
+* [Common Fields](../common-fields.md)
+* [Pump Settings](./pump-settings.md)
+* [Self-Monitored Glucose (SMBG)](./pump-settings/smbg.md)
+* [Units](../units.md)

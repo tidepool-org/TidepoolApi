@@ -1,6 +1,6 @@
-# Combination Bolus (`combination`) <!-- omit in toc -->
+# Combination Bolus (`combination`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)
@@ -97,10 +97,10 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 
 ## Keep Reading
 
-* [Automated Bolus](./device-data/data-types/bolus/automated.md)
-* [Bolus](./device-data/data-types/bolus.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Extended Bolus](./device-data/data-types/bolus/extended.md)
-* [Normal Bolus](./device-data/data-types/bolus/normal.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Units](./device-data/units.md)
+* [Bolus](../bolus.md)
+* [Common Fields](../../common-fields.md)
+* [Automated Bolus](./automated.md)
+* [Extended Bolus](./extended.md)
+* [Normal Bolus](./normal.md)
+* [Pump Settings](../pump-settings.md)
+* [Units](../../units.md)

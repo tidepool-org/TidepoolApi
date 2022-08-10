@@ -1,6 +1,6 @@
-# Linking Events <!-- omit in toc -->
+# Linking Events<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Overview](#overview)
 2. [Potentially Linked Events](#potentially-linked-events)
@@ -89,7 +89,7 @@ The resulting data looks like:
 
 * [Alarm](./data-types/device-event/alarm.md)
 * [Bolus](./data-types/bolus.md)
-* [Bolus Calculator](./data-types/pump-settings-calculator.md)
+* [Bolus Calculator](./data-types/pump-settings/calculator.md)
 * [Common Fields](./common-fields.md)
 * [Reservoir Change](./data-types/device-event/reservoir-change.md)
 * [Status](./data-types/device-event/status.md)

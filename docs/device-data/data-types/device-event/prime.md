@@ -1,6 +1,6 @@
-# Prime (`prime`) <!-- omit in toc -->
+# Prime (`prime`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)
@@ -111,11 +111,11 @@ Where available in the data, the volume of a priming event should be included to
 
 ## Keep Reading
 
-* [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Device Event](./device-data/data-types/device-event.md)
-* [Pump Settings](device-data/data-types/pump-settings)
-* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
-* [Status](./device-data/data-types/device-event/status.md)
-* [Time Change](./device-data/data-types/device-event/time-change.md)
+* [Alarm](./alarm.md)
+* [Calibration](./calibration.md)
+* [Common Fields](../../common-fields.md)
+* [Device Event](../device-event.md)
+* [Pump Settings](../pump-settings.md)
+* [Reservoir Change](./reservoir-change.md)
+* [Status](./status.md)
+* [Time Change](./time-change.md)

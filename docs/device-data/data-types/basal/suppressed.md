@@ -1,6 +1,6 @@
-# Suppressed Basals (`suppressed`) <!-- omit in toc -->
+# Suppressed Basals (`suppressed`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary: scheduled](#quick-summary-scheduled)
 2. [Quick Summary: automated](#quick-summary-automated)
@@ -53,7 +53,7 @@ Some insulin pump data protocols let us track various aspects of the basal that 
 
 If the current active basal is a suspend and the suppressed is a temp, then the following temp fields may also be present on the suppressed object:
 
-* [Percent](./device-data/data-types/basal/temp.md#percent-percent)
+* [Percent](./temp.md#percent-percent)
 * [Nested Suppressed Object](#nested-suppressed-in-suspend-basals)
 
 <!-- theme: warning -->
@@ -339,11 +339,11 @@ A suspend basal can embed a scheduled, automatic or temporary suppressed basal, 
 
 ## Keep Reading
 
-* [Automated Basals](./device-data/data-types/basal/automated.md)
-* [Basal](./device-data/data-types/automated.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
-* [Suspend Basals](./device-data/data-types/basal/suspend.md)
-* [Temporary Basals](./device-data/data-types/basal/temp.md)
-* [Units](./device-data/units.md)
+* [Basal](../basal.md)
+* [Common Fields](../../common-fields.md)
+* [Pump Settings](../pump-settings.md)
+* [Automated Basals](./automated.md)
+* [Scheduled Basals](./scheduled.md)
+* [Suspend Basals](./suspend.md)
+* [Temporary Basals](./temp.md)
+* [Units](../../units.md)

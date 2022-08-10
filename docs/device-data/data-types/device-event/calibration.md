@@ -1,6 +1,6 @@
-# Calibration (`calibration`) <!-- omit in toc -->
+# Calibration (`calibration`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)
@@ -68,13 +68,13 @@ The calibration sub-type of device event represents a user's manual entry of a s
 
 ## Keep Reading
 
-* [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Continuous Blood Glucose (CBG)](./device-data/data-types/cbg.md)
-* [Device Event](./device-data/data-types/device-event.md)
-* [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump Settings](device-data/data-types/pump-settings)
-* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
-* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
-* [Status](./device-data/data-types/device-event/status.md)
-* [Time Change](./device-data/data-types/device-event/time-change.md)
+* [Alarm](./alarm.md)
+* [Common Fields](../../common-fields.md)
+* [Continuous Blood Glucose (CBG)](../cbg.md)
+* [Device Event](../device-event.md)
+* [Prime](./prime.md)
+* [Pump Settings](../pump-settings.md)
+* [Pump Settings Override](./pump-settings-override.md)
+* [Reservoir Change](./reservoir-change.md)
+* [Status](./status.md)
+* [Time Change](./time-change.md)

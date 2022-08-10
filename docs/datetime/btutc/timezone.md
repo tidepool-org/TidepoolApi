@@ -1,6 +1,6 @@
-# Timezone Offset (`timezoneOffset`) <!-- omit in toc -->
+# Timezone Offset (`timezoneOffset`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Overview](#overview)
 2. [Time Field Relationships](#time-field-relationships)

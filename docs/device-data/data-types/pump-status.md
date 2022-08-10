@@ -1,6 +1,6 @@
-# Pump Status (`pumpStatus`) <!-- omit in toc -->
+# Pump Status (`pumpStatus`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -41,31 +41,31 @@ The basal delivery status of the pump, if known. The basal delivery status conta
 * Time
 * Dose
 
-### State (`state`) (Basal Delivery) <!-- omit in toc -->
+### State (`state`) (Basal Delivery)<!-- omit in toc -->
 
 The state of the basal delivery status. One of `cancelingTemporary`, `initiatingTemporary`, `resuming`, `scheduled`, `suspended`, `suspending`, or `temporary`.
 
-### Time (`time`) (Basal Delivery) <!-- omit in toc -->
+### Time (`time`) (Basal Delivery)<!-- omit in toc -->
 
 The time of the `scheduled` or `suspended` basal delivery status. Only specify if state is `scheduled` or `suspended`.
 
-### Dose (`dose`) (Basal Delivery) <!-- omit in toc -->
+### Dose (`dose`) (Basal Delivery)<!-- omit in toc -->
 
 The dose of the `temporary` basal delivery status. Only specify if state is `temporary`. Includes the following fields:
 
-#### Start Time (`startTime`) (Basal Delivery Dose) <!-- omit in toc -->
+#### Start Time (`startTime`) (Basal Delivery Dose)<!-- omit in toc -->
 
 The start time of the temporary basal dose.
 
-#### End Time (`endTime`) (Basal Delivery Dose) <!-- omit in toc -->
+#### End Time (`endTime`) (Basal Delivery Dose)<!-- omit in toc -->
 
 The end time of the temporary basal dose.
 
-#### Rate (`rate`) (Basal Delivery Dose) <!-- omit in toc -->
+#### Rate (`rate`) (Basal Delivery Dose)<!-- omit in toc -->
 
 The rate of the temporary basal dose.
 
-#### Amount Delivered (`amountDelivered`) (Basal Delivery Dose) <!-- omit in toc -->
+#### Amount Delivered (`amountDelivered`) (Basal Delivery Dose)<!-- omit in toc -->
 
 The current amount delivered of the temporary basal dose.
 
@@ -80,19 +80,19 @@ The battery status of the pump, if known. The battery status contains the follow
 * Remaining
 * Units
 
-### Time (`time`) (Battery) <!-- omit in toc -->
+### Time (`time`) (Battery)<!-- omit in toc -->
 
 The time of the battery status, if known.
 
-### State (`state`) (Battery) <!-- omit in toc -->
+### State (`state`) (Battery)<!-- omit in toc -->
 
 The state of the battery status, if known. One of `charging`, `full`, or `unplugged`.
 
-### Remaining (`remaining`) (Battery) <!-- omit in toc -->
+### Remaining (`remaining`) (Battery)<!-- omit in toc -->
 
 The remaining amount of battery. For units of `percent`, can be in range of `0.0` (empty) to `1.0` (full).
 
-### Units (`units`) (Battery) <!-- omit in toc -->
+### Units (`units`) (Battery)<!-- omit in toc -->
 
 The units for the remaining amount of battery, if known. One of `percent`.
 
@@ -105,23 +105,23 @@ The bolus delivery status of the pump, if known. The bolus delivery status conta
 * State
 * Dose
 
-### State (`state`) (Bolus Delivery) <!-- omit in toc -->
+### State (`state`) (Bolus Delivery)<!-- omit in toc -->
 
 The state of the bolus delivery status. One of `canceling`, `delivering`, `initiating`, or `none`.
 
-### Dose (`dose`) (Bolus Delivery) <!-- omit in toc -->
+### Dose (`dose`) (Bolus Delivery)<!-- omit in toc -->
 
 The dose of the `delivering` bolus delivery status. Only specify if state is `delivering`. Includes the following fields:
 
-#### Start Time (`startTime`) (Bolus Delivery Dose) <!-- omit in toc -->
+#### Start Time (`startTime`) (Bolus Delivery Dose)<!-- omit in toc -->
 
 The start time of the delivering bolus dose.
 
-#### Amount (`amount`) (Bolus Delivery Dose) <!-- omit in toc -->
+#### Amount (`amount`) (Bolus Delivery Dose)<!-- omit in toc -->
 
 The intended amount of the delivering bolus dose.
 
-#### Amount Delivered (`amountDelivered`) (Bolus Delivery Dose) <!-- omit in toc -->
+#### Amount Delivered (`amountDelivered`) (Bolus Delivery Dose)<!-- omit in toc -->
 
 The current amount delivered of the delivering bolus dose.
 
@@ -135,15 +135,15 @@ The reservoir status of the pump, if known. The reservoir status contains the fo
 * Remaining
 * Units
 
-### Time (`time`) (Reservoir) <!-- omit in toc -->
+### Time (`time`) (Reservoir)<!-- omit in toc -->
 
 The time of the reservoir status, if known.
 
-### Remaining (`remaining`) (Reservoir) <!-- omit in toc -->
+### Remaining (`remaining`) (Reservoir)<!-- omit in toc -->
 
 The remaining amount of insulin in the reservoir.
 
-### Units (`units`) (Reservoir) <!-- omit in toc -->
+### Units (`units`) (Reservoir)<!-- omit in toc -->
 
 The units for the remaining amount of insulin in the reservoir. One of `Units`.
 
@@ -188,7 +188,7 @@ The units for the remaining amount of insulin in the reservoir. One of `Units`.
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Out Of Range Values](./device-data/oor-values.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Common Fields](../common-fields.md)
+* [Out Of Range Values](../oor-values.md)
+* [Units](../units.md)

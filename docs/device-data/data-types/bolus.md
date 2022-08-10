@@ -1,6 +1,6 @@
-# Bolus Insulin (`bolus`) <!-- omit in toc -->
+# Bolus Insulin (`bolus`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Overview](#overview)
 2. [Duration (`duration`)](#duration-duration)
@@ -21,10 +21,10 @@ Insulin pumps provide several strategies for delivering boluses of insulin. Each
 
 This page documents the fields shared by various bolus sub-types. The four sub-types that fall under the larger bolus type are:
 
-* [Automated](./device-data/data-types/bolus/automated.md)
-* [Combination](./device-data/data-types/bolus/combination.md)
-* [Extended](./device-data/data-types/bolus/extended.md)
-* [Normal](./device-data/data-types/bolus/normal.md)
+* [Automated](./bolus/automated.md)
+* [Combination](./bolus/combination.md)
+* [Extended](./bolus/extended.md)
+* [Normal](./bolus/normal.md)
 
 ---
 
@@ -94,11 +94,11 @@ Insulin pumps generally include a maximum bolus setting that a user can customiz
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Automated Bolus](./device-data/data-types/bolus/automated.md)
-* [Combination Bolus](./device-data/data-types/bolus/combination.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Extended Bolus](./device-data/data-types/bolus/extended.md)
-* [Normal Bolus](./device-data/data-types/bolus/normal.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Automated Bolus](./bolus/automated.md)
+* [Combination Bolus](./bolus/combination.md)
+* [Common Fields](../common-fields.md)
+* [Extended Bolus](./bolus/extended.md)
+* [Normal Bolus](./bolus/normal.md)
+* [Pump Settings](./pump-settings.md)
+* [Units](../units.md)

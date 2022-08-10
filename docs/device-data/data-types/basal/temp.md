@@ -1,6 +1,6 @@
-# Temporary Basals (`temp`) <!-- omit in toc -->
+# Temporary Basals (`temp`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
@@ -124,11 +124,11 @@ Tidepool's data model has standardized on a floating point representation of the
 
 ## Keep Reading
 
-* [Automated Basals](./device-data/data-types/basal/automated.md)
-* [Basal](./device-data/data-types/automated.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
-* [Suspend Basals](./device-data/data-types/basal/suspend.md)
-* [Units](./device-data/units.md)
+* [Basal](../basal.md)
+* [Common Fields](../../common-fields.md)
+* [Pump Settings](../pump-settings.md)
+* [Automated Basals](./automated.md)
+* [Scheduled Basals](./scheduled.md)
+* [Suppressed Basals](./suppressed.md)
+* [Suspend Basals](./suspend.md)
+* [Units](../../units.md)

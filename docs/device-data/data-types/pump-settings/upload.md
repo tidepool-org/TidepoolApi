@@ -1,6 +1,6 @@
-# Upload Metadata (`upload`) <!-- omit in toc -->
+# Upload Metadata (`upload`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)
@@ -220,10 +220,10 @@ A string identifying the software version of the uploading client. For Tidepool 
 
 ## Keep Reading
 
-* [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Datetime Guide](./datetime.md)
-* [Diabetes Data Types](./device-data/data-types.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
-* [Units](./device-data/units.md)
+* [Bolus Calculator](./calculator.md)
+* [Common Fields](../../common-fields.md)
+* [Datetime Guide](../../../datetime.md)
+* [Diabetes Data Types](../../data-types.md)
+* [Pump Settings](../pump-settings.md)
+* [Self-Monitored Glucose (SMBG)](./smbg.md)
+* [Units](../../units.md)

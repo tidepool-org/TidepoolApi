@@ -1,6 +1,6 @@
-# Controller Settings (`controllerSettings`) <!-- omit in toc -->
+# Controller Settings (`controllerSettings`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -47,31 +47,31 @@ The device related settings of the controller, if known. The device settings con
 * [Serial Number (`serialNumber`)](#serial-number-serialnumber)
 * [Software Version (`softwareVersion`)](#software-version-softwareversion)
 
-### Firmware Version (`firmwareVersion`) <!-- omit in toc -->
+### Firmware Version (`firmwareVersion`)<!-- omit in toc -->
 
 The firmware version of the controller, if known.
 
-### Hardware Version (`hardwareVersion`) <!-- omit in toc -->
+### Hardware Version (`hardwareVersion`)<!-- omit in toc -->
 
 The hardware version of the controller, if known.
 
-### Manufacturers (`manufacturers`) <!-- omit in toc -->
+### Manufacturers (`manufacturers`)<!-- omit in toc -->
 
 The manufacturer(s) of the controller. An array of strings.
 
-### Model (`model`) <!-- omit in toc -->
+### Model (`model`)<!-- omit in toc -->
 
 The model of the controller, if known.
 
-### Name (`name`) <!-- omit in toc -->
+### Name (`name`)<!-- omit in toc -->
 
 The name of the controller, if known.
 
-### Serial Number (`serialNumber`) <!-- omit in toc -->
+### Serial Number (`serialNumber`)<!-- omit in toc -->
 
 The serial number of the controller, if known.
 
-### Software Version (`softwareVersion`) <!-- omit in toc -->
+### Software Version (`softwareVersion`)<!-- omit in toc -->
 
 The software version of the controller, if known.
 
@@ -91,7 +91,7 @@ The notification related settings of the controller, if known. The notification 
 * [Lock Screen](#lock-screen-lockscreen)
 * [Alert Style](#alert-style-alertstyle)
 
-### Authorization (`authorization`) <!-- omit in toc -->
+### Authorization (`authorization`)<!-- omit in toc -->
 
 Indicates whether notifications are allowed on the controller or not. One of the following:
 
@@ -101,35 +101,35 @@ Indicates whether notifications are allowed on the controller or not. One of the
 * `notDetermined` - Not yet determined if the controller is authorized to schedule or receive user notifications.
 * `provisional` - The controller is provisionally authorized to post noninterruptive user notifications.
 
-### Alert (`alert`) <!-- omit in toc -->
+### Alert (`alert`)<!-- omit in toc -->
 
 Whether a normal alert can be presented as a user notification.
 
-### Critical Alert (`criticalAlert`) <!-- omit in toc -->
+### Critical Alert (`criticalAlert`)<!-- omit in toc -->
 
 Whether a critical alert can be presented as a user notification.
 
-### Badge (`badge`) <!-- omit in toc -->
+### Badge (`badge`)<!-- omit in toc -->
 
 Whether a badge can be added to the controller icon as a user notification.
 
-### Sound (`sound`) <!-- omit in toc -->
+### Sound (`sound`)<!-- omit in toc -->
 
 Whether a sound can be played as part of a user notification.
 
-### Announcement (`announcement`) <!-- omit in toc -->
+### Announcement (`announcement`)<!-- omit in toc -->
 
 Whether an spoken announcement can be presented a part of a user notification.
 
-### Notification Center (`notificationCenter`) <!-- omit in toc -->
+### Notification Center (`notificationCenter`)<!-- omit in toc -->
 
 Whether the central notification center can present a user notification.
 
-### Lock Screen (`lockScreen`) <!-- omit in toc -->
+### Lock Screen (`lockScreen`)<!-- omit in toc -->
 
 Whether a user notification can be preseted on the lock screen of the controller.
 
-### Alert Style (`alertStyle`) <!-- omit in toc -->
+### Alert Style (`alertStyle`)<!-- omit in toc -->
 
 The style of alert when normal alert is presented as a user notification. One of the following:
 
@@ -172,7 +172,7 @@ The style of alert when normal alert is presented as a user notification. One of
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Out Of Range Values](./device-data/oor-values.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Common Fields](../common-fields.md)
+* [Out Of Range Values](../oor-values.md)
+* [Units](../units.md)

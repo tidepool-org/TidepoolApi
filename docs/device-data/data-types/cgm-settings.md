@@ -1,6 +1,6 @@
-# Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`) <!-- omit in toc -->
+# Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -320,8 +320,8 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Continuous Blood Glucose (CBG)](./device-data/data-types/cbg.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Out Of Range Values](./device-data/oor-values.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Continuous Blood Glucose (CBG)](./cbg.md)
+* [Common Fields](../common-fields.md)
+* [Out Of Range Values](../oor-values.md)
+* [Units](../units.md)

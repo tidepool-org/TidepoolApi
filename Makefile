@@ -28,7 +28,8 @@
 #
 PLATFORM = ${shell uname -s}
 
-CHECK_DOC_TOOL = markdownlint
+CHECK_DOC_FORMAT_TOOL = markdownlint
+CHECK_DOC_LINK_TOOL = markdown-link-check
 CHECK_SPEC_TOOL = spectral
 JSON_TOOL = jsonnet
 MERGE_SPEC_TOOL = npx openapi-merge-cli
@@ -67,6 +68,7 @@ install_tools: install_check_tools install_publish_tools
 .PHONY: install_check_tools
 install_check_tools:
 	npm install --location=global markdownlint-cli
+	npm install --location=global markdown-link-check
 	npm install --location=global @stoplight/spectral-cli
 
 .PHONY: install_publish_tools
@@ -85,7 +87,8 @@ check_tools: check_check_tools check_publish_tools
 
 .PHONY: check_check_tools
 check_check_tools:
-	$(CHECK_DOC_TOOL) --version
+	$(CHECK_DOC_FORMAT_TOOL) --version
+	$(CHECK_DOC_LINK_TOOL) --version
 	$(CHECK_SPEC_TOOL) --version
 
 .PHONY: check_publish_tools
@@ -114,7 +117,8 @@ check_docs: $(SOURCE_DOCS)
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_DOCS)
 $(SOURCE_DOCS):
-	$(CHECK_DOC_TOOL) $@
+	$(CHECK_DOC_FORMAT_TOOL) $@
+	$(CHECK_DOC_LINK_TOOL) $@
 
 .PHONY: check_specs
 check_specs: $(SOURCE_SPECS)

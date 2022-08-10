@@ -1,6 +1,6 @@
-# Automated Basals (`automated`) <!-- omit in toc -->
+# Automated Basals (`automated`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
@@ -89,11 +89,11 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 
 ## Keep Reading
 
-* [Basal](./device-data/data-types/automated.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Pump Settings](./device-data/pump-settings.md)
-* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
-* [Suspend Basals](./device-data/data-types/basal/suspend.md)
-* [Temporary Basals](./device-data/data-types/basal/temp.md)
-* [Units](./device-data/units.md)
+* [Basal](../basal.md)
+* [Common Fields](../../common-fields.md)
+* [Pump Settings](../pump-settings.md)
+* [Scheduled Basals](./scheduled.md)
+* [Suppressed Basals](./suppressed.md)
+* [Suspend Basals](./suspend.md)
+* [Temporary Basals](./temp.md)
+* [Units](../../units.md)

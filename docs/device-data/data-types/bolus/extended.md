@@ -1,6 +1,6 @@
-# Extended Bolus (`extended`) <!-- omit in toc -->
+# Extended Bolus (`extended`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)
@@ -92,10 +92,10 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ## Keep Reading
 
-* [Automated Bolus](./device-data/data-types/bolus/automated.md)
-* [Bolus](./device-data/data-types/bolus.md)
-* [Combination Bolus](./device-data/data-types/bolus/combination.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Normal Bolus](./device-data/data-types/bolus/normal.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Units](./device-data/units.md)
+* [Bolus](../bolus.md)
+* [Common Fields](../../common-fields.md)
+* [Automated Bolus](./automated.md)
+* [Combination Bolus](./combination.md)
+* [Normal Bolus](./normal.md)
+* [Pump Settings](../pump-settings.md)
+* [Units](../../units.md)

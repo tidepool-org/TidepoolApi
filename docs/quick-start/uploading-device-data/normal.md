@@ -1,6 +1,6 @@
-# Uploading Data in a Normal Session (`normal`) <!-- omit in toc -->
+# Uploading Data in a Normal Session (`normal`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Open A Normal Session](#open-a-normal-session)
 2. [Upload Device Data To The Open Session](#upload-device-data-to-the-open-session)
@@ -121,7 +121,7 @@ Upload data to Platform in chunks of 1,000 records.
 }
 ```
 
-The body for this HTTP POST should be JSON, and follow the format outlined in the [diabetes data types](./device-data/data-types.md) documentation.
+The body for this HTTP POST should be JSON, and follow the format outlined in the [diabetes data types](../../device-data/data-types.md) documentation.
 
 As an example, uploading a couple of continuous blood glucose (CBG) records might look like this:
 
@@ -188,12 +188,12 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
 
 <!-- theme: error -->
 
-> If you do not close a normal upload session, the data you uploaded will _not_ be returned from Platform [when you fetch data](./device-data/fetching-device-data.md). Make sure to close your normal upload sessions when they're finished.
+> If you do not close a normal upload session, the data you uploaded will _not_ be returned from Platform [when you fetch data](../fetching-device-data.md). Make sure to close your normal upload sessions when they're finished.
 
 ---
 
 ## Keep Reading
 
-* [Diabetes Data Types](./device-data/data-types.md)
-* [Diabetes Device Data Model](./device-data.md)
-* [Using A Continuous Upload Session](./quick-start/uploading-device-data/continuous.md)
+* [Diabetes Data Types](../../device-data/data-types.md)
+* [Diabetes Device Data Model](../../device-data.md)
+* [Using A Continuous Upload Session](./continuous.md)

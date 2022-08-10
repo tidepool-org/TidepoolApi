@@ -1,6 +1,6 @@
-# Getting Started <!-- omit in toc -->
+# Getting Started<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Authentication](#authentication)
 2. [Tracing](#tracing)

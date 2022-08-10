@@ -1,6 +1,6 @@
-# Reservoir Change (`reservoirChange`) <!-- omit in toc -->
+# Reservoir Change (`reservoirChange`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)
@@ -30,7 +30,7 @@ The optional payload object should include device-specific and event-specific in
 
 This event often implies a suspension of insulin delivery. If the device data includes a reservoir change (rewind or deactivation) event but does not include separate indication of insulin delivery suspension, a status event should be uploaded to Platform to record the suspension of insulin delivery. This event should include relevant information from the reservoir change event (e.g. timestamp and log index) and get embedded into the reservoir change event to provide an audit trail of the user's data and to preserve the close connection between the stored events.
 
-See [linking events](./device-data/linking-events.md) for additional details regarding inter-event linking in the Tidepool platform.
+See [linking events](../../linking-events.md) for additional details regarding inter-event linking in the Tidepool platform.
 
 ---
 
@@ -111,13 +111,13 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 
 ## Keep Reading
 
-* [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Device Event](./device-data/data-types/device-event.md)
-* [Linking Events](./device-data/linking-events.md)
-* [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump Settings](device-data/data-types/pump-settings)
-* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
-* [Status](./device-data/data-types/device-event/status.md)
-* [Time Change](./device-data/data-types/device-event/time-change.md)
+* [Alarm](./alarm.md)
+* [Calibration](./calibration.md)
+* [Common Fields](../../common-fields.md)
+* [Device Event](../device-event.md)
+* [Linking Events](../../linking-events.md)
+* [Prime](./prime.md)
+* [Pump Settings](../pump-settings.md)
+* [Pump Settings Override](./pump-settings-override.md)
+* [Status](./status.md)
+* [Time Change](./time-change.md)

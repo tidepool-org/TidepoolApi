@@ -1,6 +1,6 @@
-# Time Change (`timeChange`) <!-- omit in toc -->
+# Time Change (`timeChange`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)
@@ -20,7 +20,7 @@ $ref: '../../../../reference/data/models/devicetimechange.v1.yaml'
 
 ## Sub-Type (`subType`)
 
-A time change event represents an instance when a diabetes device user changed the display date & time settings on the device. An accurate history of time change events is crucial as Platform uses the most recent set of time change events, raw log from a device's records and user's selection of timezone to translate relative (local time) timestamps of device records into UTC timestamps. This is to align all diabetes device timelines. For further information, please see ["Bootstrapping" to UTC](./datetime/btutc.md).
+A time change event represents an instance when a diabetes device user changed the display date & time settings on the device. An accurate history of time change events is crucial as Platform uses the most recent set of time change events, raw log from a device's records and user's selection of timezone to translate relative (local time) timestamps of device records into UTC timestamps. This is to align all diabetes device timelines. For further information, please see ["Bootstrapping" to UTC](../../../datetime/btutc.md).
 
 All the relevant data from the time change event is stored in various fields on an embedded change object.
 
@@ -34,7 +34,7 @@ Contains the following properties:
 * To
 * Method
 
-When a device's date & time is updated, the **to**, **from** and **method** fields should be included within the change embedded object on a time change event. The from field details the date & time the device *is being changed from* (the old date & time). The to field details the date & time the device *is being changed to* (the new date & time). Both the from and to properties are formatted as ISO 8601 timestamps without any offset from UTC specified; this is the exact same "relative" timestamp format used for [device time](./device-data/common-fields.md#device-time-devicetime).
+When a device's date & time is updated, the **to**, **from** and **method** fields should be included within the change embedded object on a time change event. The from field details the date & time the device *is being changed from* (the old date & time). The to field details the date & time the device *is being changed to* (the new date & time). Both the from and to properties are formatted as ISO 8601 timestamps without any offset from UTC specified; this is the exact same "relative" timestamp format used for [device time](../../common-fields.md#device-time-devicetime).
 
 The method field on the change object details whether the time change was manual (user-initiated) or automatic (initiated by the device).
 
@@ -112,13 +112,13 @@ The method field on the change object details whether the time change was manual
 
 ## Keep Reading
 
-* [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Bootstrapping to UTC](./datetime/btutc.md)
-* [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Device Event](./device-data/data-types/device-event.md)
-* [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump Settings](device-data/data-types/pump-settings)
-* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
-* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
-* [Status](./device-data/data-types/device-event/status.md)
+* [Alarm](./alarm.md)
+* [Bootstrapping to UTC](../../../datetime/btutc.md)
+* [Calibration](./calibration.md)
+* [Common Fields](../../common-fields.md)
+* [Device Event](../device-event.md)
+* [Prime](./prime.md)
+* [Pump Settings](../pump-settings.md)
+* [Pump Settings Override](./pump-settings-override.md)
+* [Reservoir Change](./reservoir-change.md)
+* [Status](./status.md)

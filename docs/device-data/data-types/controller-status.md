@@ -1,6 +1,6 @@
-# Controller Status (`controllerStatus`) <!-- omit in toc -->
+# Controller Status (`controllerStatus`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -39,19 +39,19 @@ The battery status of the controller, if known. The battery status contains the 
 * [Remaining (`remaining`)](#remaining-remaining)
 * [Units (`units`)](#units-units)
 
-### Time (`time`) <!-- omit in toc -->
+### Time (`time`)<!-- omit in toc -->
 
 The time of the battery status, if known.
 
-### State (`state`) <!-- omit in toc -->
+### State (`state`)<!-- omit in toc -->
 
 The state of the battery status, if known. One of `charging`, `full`, or `unplugged`.
 
-### Remaining (`remaining`) <!-- omit in toc -->
+### Remaining (`remaining`)<!-- omit in toc -->
 
 The remaining amount of battery. For units of `percent`, can be in range of `0.0` (empty) to `1.0` (full).
 
-### Units (`units`) <!-- omit in toc -->
+### Units (`units`)<!-- omit in toc -->
 
 The units for the remaining amount of battery, if known. One of `percent`.
 
@@ -74,7 +74,7 @@ The units for the remaining amount of battery, if known. One of `percent`.
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Out Of Range Values](./device-data/oor-values.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Common Fields](../common-fields.md)
+* [Out Of Range Values](../oor-values.md)
+* [Units](../units.md)

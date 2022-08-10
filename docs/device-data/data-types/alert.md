@@ -1,6 +1,6 @@
-# Alert (`alert`) <!-- omit in toc -->
+# Alert (`alert`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -96,5 +96,5 @@ The time the alert was retracted after it was presented.
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Common Fields](./device-data/common-fields.md)
+* [Annotations](../annotations.md)
+* [Common Fields](../common-fields.md)

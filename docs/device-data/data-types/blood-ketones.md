@@ -1,11 +1,12 @@
-# Blood Ketones (`bloodKetone`) <!-- omit in toc -->
+# Blood Ketones (`bloodKetone`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)
 3. [Value (`value`)](#value-value)
-4. [Keep Reading](#keep-reading)
+4. [Examples](#examples)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -89,7 +90,7 @@ Tidepool has used the most popular blood ketone meter on the American market —
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Out Of Range Values](./device-data/oor-values.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Common Fields](../common-fields.md)
+* [Out Of Range Values](../oor-values.md)
+* [Units](../units.md)

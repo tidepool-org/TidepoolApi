@@ -1,6 +1,6 @@
-# Usage <!-- omit in toc -->
+# Usage<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Overview](#overview)
    1. [Import The Utility](#import-the-utility)

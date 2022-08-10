@@ -1,6 +1,6 @@
-# Uploading Data in a Continuous Session (`continuous`) <!-- omit in toc -->
+# Uploading Data in a Continuous Session (`continuous`)<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Open A New Continuous Session](#open-a-new-continuous-session)
 2. [Find An Existing Continuous Session](#find-an-existing-continuous-session)
@@ -70,7 +70,7 @@ This will return an HTTP response with a JSON body. You should store **the value
 
 ## Find An Existing Continuous Session
 
-If you have previously opened a continuous session, you can use this request to get the session ID if you haven't cached it somewhere (if you already know your session ID, [skip ahead](#upload-device-data-to-the-openSession)):
+If you have previously opened a continuous session, you can use this request to get the session ID if you haven't cached it somewhere (if you already know your session ID, [skip ahead](#upload-device-data-to-the-open-session)):
 
 ```json http
 {
@@ -195,6 +195,6 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
 
 ## Keep Reading
 
-* [Diabetes Data Types](./device-data/data-types.md)
-* [Diabetes Device Data Model](./device-data.md)
-* [Using A Normal Upload Session](./quick-start/uploading-device-data/normal.md)
+* [Diabetes Data Types](../../device-data/data-types.md)
+* [Diabetes Device Data Model](../../device-data.md)
+* [Using A Normal Upload Session](./normal.md)

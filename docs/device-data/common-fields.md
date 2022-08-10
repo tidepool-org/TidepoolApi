@@ -1,6 +1,6 @@
-# Common Fields <!-- omit in toc -->
+# Common Fields<!-- omit in toc -->
 
-## Table of Contents <!-- omit in toc -->
+## Table of Contents<!-- omit in toc -->
 
 1. [Quick summary](#quick-summary)
 2. [Clock Drift Offset (`clockDriftOffset`)](#clock-drift-offset-clockdriftoffset)
