@@ -17,7 +17,7 @@ jobs:
           node-version: '16'
       - name: Setup script environment
         run: |
-            make install_check_tools check_tools
+            make install_check_tools check_check_tools
       - name: Check the documentation
         run: |
             make --jobs 16 ${{ matrix.target }}
@@ -41,7 +41,7 @@ jobs:
           go-version: '>=1.17.0'
       - name: Setup script environment
         run: |
-            make install_publish_tools check_tools
+            make install_publish_tools check_publish_tools
       - name: Publish the documentation
         run: |
             make --jobs 8 ${{ matrix.target }}

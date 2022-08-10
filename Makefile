@@ -81,12 +81,18 @@ ifeq ($(PLATFORM),Linux)
 endif
 
 .PHONY: check_tools
-check_tools:
+check_tools: check_check_tools check_publish_tools
+
+.PHONY: check_check_tools
+check_check_tools:
 	$(CHECK_DOC_TOOL) --version
 	$(CHECK_SPEC_TOOL) --version
-	$(PUBLISH_TOOL) --version
-	$(MERGE_SPEC_TOOL) --version
+
+.PHONY: check_publish_tools
+check_publish_tools:
 	$(JSON_TOOL) --version
+	$(MERGE_SPEC_TOOL) --version
+	$(PUBLISH_TOOL) --version
 
 .PHONY: check_env
 check_env: check_public_env check_private_env
