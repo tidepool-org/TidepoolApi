@@ -1,0 +1,13 @@
+type: object
+title: Patient Tag
+description: ''
+properties:
+  id:
+    $ref: ../../common/models/objectid.v1.yaml
+  name:
+    type: string
+    description: The tag display name
+    minLength: 1
+required:
+  - id
+  - name

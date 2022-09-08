@@ -14,6 +14,10 @@ properties:
     $ref: ./state.v1.yaml
   country:
     $ref: ./country.v1.yaml
+  patientTags:
+    type: array
+    items:
+      $ref: './patienttag.v1.yaml'
   phoneNumbers:
     $ref: ./phonenumbers.v1.yaml
   clinicType:
