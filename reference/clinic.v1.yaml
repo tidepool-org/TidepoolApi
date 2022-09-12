@@ -318,19 +318,6 @@ paths:
   '/v1/clinics/{clinicId}/patient_tags':
     parameters:
       - $ref: '#/components/parameters/clinicId'
-    get:
-      summary: List Patient Tags
-      tags:
-        - clinic
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PatientTags'
-      operationId: ListPatientTags
-      description: Retrieve the list of clinic patient tags
     post:
       summary: Create Patient Tag
       operationId: CreatePatientTag
