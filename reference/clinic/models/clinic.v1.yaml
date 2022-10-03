@@ -18,6 +18,8 @@ properties:
     type: array
     items:
       $ref: './patienttag.v1.yaml'
+  lastDeletedPatientTag:
+    $ref: './patienttag.v1.yaml'
   phoneNumbers:
     $ref: ./phonenumbers.v1.yaml
   clinicType:

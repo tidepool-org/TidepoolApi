@@ -296,6 +296,16 @@ paths:
           in: query
           name: summary.lastUploadDateTo
           description: Exclusive
+        - schema:
+            type: array
+            items:
+              type: string
+              format: '^[a-f0-9]{24}$'
+          in: query
+          name: tags
+          description: Comma-separated list of patient tag IDs
+          style: form
+          explode: false
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -969,6 +979,20 @@ paths:
         '200':
           description: OK
       description: Sends upload reminder to the patient
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patients/delete_tag/{patientTagId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    post:
+      summary: Delete Patient Tag From Clinic Patients
+      operationId: DeletePatientTagFromClinicPatients
+      responses:
+        '200':
+          description: OK
+      description: Delete a patient tag from all clinic patients
+      x-internal: true
       tags:
         - clinic
 components:
