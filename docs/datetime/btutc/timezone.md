@@ -5,7 +5,7 @@
 1. [Overview](#overview)
 2. [Time Field Relationships](#time-field-relationships)
 3. [Finding A Timezone Offset](#finding-a-timezone-offset)
-4. [Upper Threshold For Timezone Offset Changes](#upper-threshold-for-timezone-changes)
+4. [Upper Threshold For Timezone Offset Changes](#upper-threshold-for-timezone-offset-changes)
 5. [Timezone Offset Abbreviations](#timezone-offset-abbreviations)
 6. [Keep Reading](#keep-reading)
 
@@ -51,7 +51,7 @@ The reverse is also true: Timezone offsets do not map directly to timezones. For
 
 ## Upper Threshold For Timezone Offset Changes
 
-In occasional instances, a user sets the time on the diabetes device to the wrong month or year and must later correct it. We do not interpret such massive changes to the date & time settings as an adjustment to the timezone offset. Rather, whenever a date & time settings change is larger than the maximum difference possible by traveling between timezones (1,560 minutes), we apply this change as an adjustment to the [conversion offset](#conversion-offset).
+In occasional instances, a user sets the time on the diabetes device to the wrong month or year and must later correct it. We do not interpret such massive changes to the date & time settings as an adjustment to the timezone offset. Rather, whenever a date & time settings change is larger than the maximum difference possible by traveling between timezones (1,560 minutes), we apply this change as an adjustment to the [conversion offset](./conversion.md).
 
 ---
 

@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-1. [Sub-Type](#subtype-subtype)
+1. [Sub-Type](#sub-type-subtype)
 1. [Override Preset](#override-preset-overridepreset)
 1. [Method](#method-method)
 1. [Duration](#duration-duration)

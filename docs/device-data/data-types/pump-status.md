@@ -8,7 +8,6 @@
 1. [Basal Delivery](#basal-delivery-basaldelivery)
 1. [Battery](#battery-battery)
 1. [Bolus Delivery](#bolus-delivery-bolusdelivery)
-1. [Delivery Indeterminant](#delivery-indeterminant-deliveryindeterminant)
 1. [Reservoir](#reservoir-reservoir)
 1. [Example](#example)
 1. [Keep Reading](#keep-reading)

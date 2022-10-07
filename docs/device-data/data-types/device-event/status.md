@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
+2. [Sub-Type](#sub-type-subtype)
 3. [Duration](#duration-duration)
 4. [Expected Duration](#expected-duration-expectedduration)
 5. [Reason](#reason-reason)

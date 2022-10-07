@@ -4,10 +4,10 @@
 
 1. [Quick Summary](#quick-summary)
 2. [Type](#type-type)
-3. [Blood Glucose Input](#blood-glucose-input-bloodglucoseinput)
+3. [Blood Glucose Input](#blood-glucose-input-bginput)
 4. [Bolus](#bolus-bolus)
 5. [Carb Input](#carb-input-carbinput)
-6. [Insulin-To-Carb Ratio](#insulintocarb-ratio-insulintocarbratio)
+6. [Insulin-To-Carb Ratio](#insulin-to-carb-ratio-insulincarbratio)
 7. [Insulin On Board](#insulin-on-board-insulinonboard)
 8. [Recommended](#recommended-recommended)
     1. [Recommended: carb](#recommended-carb-recommendedcarb)
@@ -90,7 +90,7 @@ The embedded object recommended encodes an insulin delivery device's recommendat
 * [Correction](#recommended-correction-recommendedcorrection)
 * [Net](#recommended-net-recommendednet)
 
-### Recommeded: carb (`recommended.carb`)
+### Recommended: carb (`recommended.carb`)
 
 Carb encodes the units of insulin recommended by the device to "cover" the total grams of carbohydrate input by the user into the bolus calculator. The value for carb may be > = 0, as not all boluses involve the ingestion of carbohydrates and may not include a recommended insulin dose to cover carbohydrates about to be ingested.
 

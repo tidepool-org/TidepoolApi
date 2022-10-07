@@ -3,8 +3,8 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Alarm Types](#alarm-types-alarmtypes)
+2. [Sub-Type](#sub-type-subtype)
+3. [Alarm Types](#alarm-types-alarmtype)
 4. [Status](#status-status)
 5. [Example (client)](#example-client)
 6. [Example (ingestion)](#example-ingestion)

@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Open A Normal Session](#open-a-normal-session)
-2. [Upload Device Data To The Normal Session](#upload-normal-device-data-to-the-normal-session)
+2. [Upload Device Data To The Open Session](#upload-device-data-to-the-open-session)
 3. [Close The Upload Session](#close-the-upload-session)
 4. [Keep Reading](#keep-reading)
 

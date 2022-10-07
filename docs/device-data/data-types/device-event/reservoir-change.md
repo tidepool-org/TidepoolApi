@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
+2. [Sub-Type](#sub-type-subtype)
 3. [Status](#status-status)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)

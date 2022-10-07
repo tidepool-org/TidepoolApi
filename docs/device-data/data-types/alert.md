@@ -71,7 +71,7 @@ The time the alert was issued (aka created).
 
 The time the alert was first acknowledged by the user after it was presented.
 
-### Retracted Time (`retracedTime`)
+### Retracted Time (`retractedTime`)
 
 The time the alert was retracted after it was presented.
 
