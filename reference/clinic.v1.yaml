@@ -985,7 +985,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/patientTagId'
-    post:
+    delete:
       summary: Delete Patient Tag From Clinic Patients
       operationId: DeletePatientTagFromClinicPatients
       responses:
