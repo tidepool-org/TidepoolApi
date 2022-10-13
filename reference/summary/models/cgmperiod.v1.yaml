@@ -1,6 +1,6 @@
 type: object
-title: summaryperiod.v1
-description: 'Summary of a specific time period (currently: 1d, 7d, 14d, 30d)'
+title: cgmperiod.v1
+description: 'Summary of a specific CGM time period (currently: 1d, 7d, 14d, 30d)'
 properties:
   averageGlucose:
     $ref: '../../data/models/blood/glucose/glucosemmol.v1.yaml'

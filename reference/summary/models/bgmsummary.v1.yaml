@@ -1,0 +1,37 @@
+type: object
+title: bgmsummary.v1
+description: 'A summary of a users recent BGM glucose values'
+properties:
+  lastUpdatedDate:
+    description: Date of the last calculation
+    type: string
+    format: date-time
+  firstData:
+    description: Date of the first included value
+    type: string
+    format: date-time
+  lastData:
+    description: Date of the last calculated value
+    type: string
+    format: date-time
+  lastUploadDate:
+    description: Created date of the last calculated value
+    type: string
+    format: date-time
+  hasLastUploadDate:
+    type: boolean
+  outdatedSince:
+    description: Date of the first user upload after lastData, removed when calculated
+    type: string
+    format: date-time
+  totalHours:
+    description: Total hours represented in the hourly stats
+    type: number
+    x-go-type: int
+  periods:
+    $ref: './bgmperiods.v1.yaml'
+  hourlyStats:
+    type: array
+    description: Rotating list containing the stats for each currently tracked hour in order
+    items:
+      $ref: './bgmstats.v1.yaml'

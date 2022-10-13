@@ -2,52 +2,12 @@ type: object
 title: summary.v1
 description: 'A summary of a users recent glucose values'
 properties:
-  lastUpdatedDate:
-    description: Date of the last calculation
+  userId:
+    description: UserID summary belongs to
     type: string
-    format: date-time
-  firstData:
-    description: Date of the first included value
-    type: string
-    format: date-time
-  lastData:
-    description: Date of the last calculated value
-    type: string
-    format: date-time
-  lastUploadDate:
-    description: Created date of the last calculated value
-    type: string
-    format: date-time
-  hasLastUploadDate:
-    type: boolean
-  outdatedSince:
-    description: Date of the first user upload after lastData, removed when calculated
-    type: string
-    format: date-time
-  totalHours:
-    description: Total hours represented in the houly stats
-    type: number
-    x-go-type: int
-  highGlucoseThreshold:
-    description: Threshold used for determining if a value is high
-    type: number
-    x-go-type: float64
-  veryHighGlucoseThreshold:
-    description: Threshold used for determining if a value is very high
-    type: number
-    x-go-type: float64
-  lowGlucoseThreshold:
-    description: Threshold used for determining if a value is low
-    type: number
-    x-go-type: float64
-  veryLowGlucoseThreshold:
-    description: Threshold used for determining if a value is very low
-    type: number
-    x-go-type: float64
-  periods:
-    $ref: './summaryperiods.v1.yaml'
-  hourlyStats:
-    type: array
-    description: Rotating list containing the stats for each currently tracked hour in order
-    items:
-      $ref: './summarystat.v1.yaml'
+  cgmSummary:
+    $ref: './cgmsummary.v1.yaml'
+  bgmSummary:
+    $ref: './bgmsummary.v1.yaml'
+  config:
+    $ref: './config.v1.yaml'

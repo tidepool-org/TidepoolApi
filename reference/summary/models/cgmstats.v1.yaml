@@ -1,7 +1,5 @@
 type: object
-x-stoplight:
-  id: rul58weln9wr3
-title: summarystat.v1
+title: cgmstats.v1
 description: 'Series of counters which represent one hour of a users data'
 properties:
   date:
