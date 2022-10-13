@@ -3,8 +3,7 @@ title: summary.v1
 description: 'A summary of a users recent glucose values'
 properties:
   userId:
-    description: UserID summary belongs to
-    type: string
+    $ref: '../../common/models/tidepooluserid.yaml'
   cgmSummary:
     $ref: './cgmsummary.v1.yaml'
   bgmSummary:
