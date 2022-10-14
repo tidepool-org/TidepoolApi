@@ -1212,16 +1212,28 @@ components:
       properties:
         attestationSubmitted:
           type: boolean
-    PatientSummary:
-      $ref: './summary/models/summary.v1.yaml'
-    PatientSummaryStat:
-      $ref: './summary/models/summarystat.v1.yaml'
-    PatientSummaryPeriods:
-      $ref: './summary/models/summaryperiods.v1.yaml'
-    PatientSummaryPeriod:
-      $ref: './summary/models/summaryperiod.v1.yaml'
     AverageGlucose:
       $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
+    PatientBGMPeriod:
+      $ref: './summary/models/bgmperiod.v1.yaml'
+    PatientBGMPeriods:
+      $ref: './summary/models/bgmperiods.v1.yaml'
+    PatientBGMStats:
+      $ref: './summary/models/bgmstats.v1.yaml'
+    PatientBGMSummary:
+      $ref: './summary/models/bgmsummary.v1.yaml'
+    PatientCGMPeriod:
+      $ref: './summary/models/cgmperiod.v1.yaml'
+    PatientCGMPeriods:
+      $ref: './summary/models/cgmperiods.v1.yaml'
+    PatientCGMStats:
+      $ref: './summary/models/cgmstats.v1.yaml'
+    PatientCGMSummary:
+      $ref: './summary/models/cgmsummary.v1.yaml'
+    PatientSummary:
+      $ref: './summary/models/summary.v1.yaml'
+    PatientSummaryConfig:
+      $ref: './summary/models/config.v1.yaml'
     UpdateTier:
       title: UpdateTier
       type: object

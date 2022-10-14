@@ -2,8 +2,6 @@ type: object
 title: summary.v1
 description: 'A summary of a users recent glucose values'
 properties:
-  userId:
-    $ref: '../../common/models/tidepooluserid.yaml'
   cgmSummary:
     $ref: './cgmsummary.v1.yaml'
   bgmSummary:
