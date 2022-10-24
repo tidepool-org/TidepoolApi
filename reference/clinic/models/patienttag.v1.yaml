@@ -9,7 +9,7 @@ properties:
     description: The tag display name
     minLength: 1
     maxLength: 20
-    pattern: '^[\x21-\x7E]{1}[\x21-\x7E\s]*$'
+    pattern: '^[\p{L}\p{N}_+><-]{1}[\p{L}\p{N}\s_+><-]*$'
 required:
   - id
   - name
