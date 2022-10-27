@@ -4,7 +4,7 @@
 
 1. [Quick Summary](#quick-summary)
 2. [Type](#type-type)
-3. [Sub-Type](#subtype-subtype)
+3. [Sub-Type](#sub-type-subtype)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
 6. [Example (storage)](#example-storage)

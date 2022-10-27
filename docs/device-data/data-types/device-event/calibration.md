@@ -3,11 +3,10 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Sub-Type](#sub-type-subtype)
+3. [Example (ingestion)](#example-ingestion)
+4. [Example (storage)](#example-storage)
+5. [Keep Reading](#keep-reading)
 
 ---
 
