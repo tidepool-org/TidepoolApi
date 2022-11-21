@@ -49,13 +49,11 @@ properties:
     readOnly: true
   attestationSubmitted:
     type: boolean
-  dexcomConnectState:
-    type: string
-    enum:
-      - pending
-      - connected
-      - disconnected
-      - error
+  dataSources:
+    type: array
+    nullable: true
+    items:
+      $ref: ./datasource.v1.yaml
   summary:
     $ref: ./patientsummary.v1.yaml
   lastUploadReminderTime:

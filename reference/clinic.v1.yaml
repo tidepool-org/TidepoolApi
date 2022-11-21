@@ -950,6 +950,26 @@ paths:
                   highGlucoseThreshold: 0
                   lowGlucoseThreshold: 0
         description: ''
+  '/v1/patients/{userId}/data_sources':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    put:
+      summary: Create or update a data source for a patient
+      operationId: UpdatePatientDataSources
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Internal endpoint to upsert patient data source provider details in all their associated clinic records.
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSources'
   '/v1/clinics/{clinicId}/tier':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1023,6 +1043,12 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PatientTag'
+    DataSource:
+      $ref: ./clinic/models/datasource.v1.yaml
+    DataSources:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:
