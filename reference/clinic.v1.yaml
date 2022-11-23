@@ -1049,6 +1049,8 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/DataSource'
+    RequestedDataSourceConnect:
+      $ref: ./clinic/models/requestedDataSourceConnect.v1.yaml
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:

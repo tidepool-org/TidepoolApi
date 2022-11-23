@@ -56,10 +56,8 @@ properties:
       $ref: ./datasource.v1.yaml
   summary:
     $ref: ./patientsummary.v1.yaml
-  lastRequestDexcomConnectTime:
-    type: string
-    format: date-time
-    readOnly: true
+  lastRequestedDexcomConnect:
+    $ref: ./requestedDataSourceConnect.v1.yaml
   lastUploadReminderTime:
     type: string
     format: date-time
