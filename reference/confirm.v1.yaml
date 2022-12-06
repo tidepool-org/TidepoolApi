@@ -43,7 +43,7 @@ tags:
 paths:
   '/confirm/send/signup/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: '#/components/parameters/userId'
     post:
       operationId: SendAccountSignupConfirmation
       summary: Send Account Signup Confirmation
@@ -67,7 +67,7 @@ paths:
 
   '/confirm/resend/signup/{email}':
     parameters:
-      - $ref: './confirm/parameters/email.v1.yaml'
+      - $ref: '#/components/parameters/email'
     post:
       operationId: ResendAccountSignup
       summary: Resend account signup confirmation email
@@ -87,7 +87,7 @@ paths:
 
   '/confirm/accept/signup/{key}':
     parameters:
-      - $ref: './confirm/parameters/key.v1.yaml'
+      - $ref: '#/components/parameters/key'
     put:
       operationId: ConfirmAccountSignup
       summary: Accept Account Signup
@@ -98,7 +98,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: './confirm/models/acceptance.v1.yaml'
+              $ref: '#/components/schemas/Acceptance'
       responses:
         '200':
           $ref: '#/components/responses/ConfirmationSuccess'
@@ -113,7 +113,7 @@ paths:
 
   '/confirm/dismiss/signup/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: '#/components/parameters/userId'
     put:
       operationId: DismissAccountSignup
       summary: Dismiss Account Signup
@@ -134,7 +134,7 @@ paths:
 
   '/confirm/signup/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: '#/components/parameters/userId'
     get:
       operationId: GetAccountSignupConfirmation
       summary: Get Account Signup Confirmation
@@ -180,7 +180,7 @@ paths:
 
   '/confirm/forgot/{email}':
     parameters:
-      - $ref: './confirm/parameters/email.v1.yaml'
+      - $ref: '#/components/parameters/email'
     post:
       operationId: SendPasswordReset
       summary: Send Password Reset Email
@@ -212,7 +212,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './confirm/models/acceptpassword.v1.yaml'
+              $ref: '#/components/schemas/Password'
       responses:
         '200':
           $ref: '#/components/responses/ConfirmationError'
@@ -227,7 +227,7 @@ paths:
 
   '/confirm/send/invite/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: '#/components/parameters/userId'
     post:
       operationId: SendCareTeamInvite
       summary: Send Invitation to Join Care Team
@@ -254,8 +254,8 @@ paths:
 
   '/confirm/accept/invite/{userId}/{invitedBy}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
-      - $ref: './confirm/parameters/invitedbyuser.v1.yaml'
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/invitedByUser'
     put:
       operationId: AcceptCareTeamInvite
       summary: Accept Invitation to Join Care Team
@@ -279,7 +279,7 @@ paths:
 
   '/confirm/invite/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: '#/components/parameters/userId'
     get:
       operationId: GetSentInvitations
       summary: Get Pending Care Team Invitations
@@ -304,7 +304,7 @@ paths:
 
   '/confirm/invitations/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: '#/components/parameters/userId'
     get:
       operationId: GetReceivedInvitations
       summary: Get Received Care Team Invitations
@@ -325,8 +325,8 @@ paths:
 
   '/confirm/dismiss/invite/{userId}/{invitedBy}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
-      - $ref: './confirm/parameters/invitedbyuser.v1.yaml'
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/invitedByUser'
     put:
       operationId: DismissInvite
       summary: Dismiss Care Team Invitation
@@ -352,8 +352,8 @@ paths:
 
   '/confirm/{userId}/invited/{invitedBy}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
-      - $ref: './confirm/parameters/invitedbyemail.v1.yaml'
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/invitedByEmail'
     put:
       operationId: CancelInvite
       summary: Cancel Care Team Invitation
@@ -374,6 +374,47 @@ paths:
         - sessionToken: []
 
 components:
+  schemas:
+    Acceptance:
+      $ref: './confirm/models/acceptance.v1.yaml'
+
+    TidepoolUserId:
+      $ref: './common/models/tidepooluserid.yaml'
+
+    EmailAddress:
+      $ref: ./common/models/emailaddress.v1.yaml
+
+    DateTime:
+      $ref: ./common/models/datetime.v1.yaml
+
+    Key:
+      $ref: ./confirm/models/key.v1.yaml
+
+    Password:
+      $ref: ./common/models/password.v1.yaml
+
+    Birthday:
+      $ref: './common/models/birthday.v1.yaml'
+
+    Confirmation:
+      $ref: ./confirm/models/confirmation.v1.yaml
+
+  parameters:
+    userId:
+      $ref: './common/parameters/tidepooluserid.yaml'
+
+    email:
+      $ref: './confirm/parameters/email.v1.yaml'
+
+    key:
+      $ref: './confirm/parameters/key.v1.yaml'
+
+    invitedByUser:
+      $ref: './confirm/parameters/invitedbyuser.v1.yaml'
+
+    invitedByEmail:
+      $ref: './confirm/parameters/invitedbyemail.v1.yaml'
+
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
