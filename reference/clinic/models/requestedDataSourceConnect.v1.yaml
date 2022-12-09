@@ -6,5 +6,7 @@ properties:
     type: string
     format: date-time
     readOnly: true
+  resendRequest:
+    type: boolean
   clinicianId:
     $ref: ../../common/models/tidepooluserid.yaml
