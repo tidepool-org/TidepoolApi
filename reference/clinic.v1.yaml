@@ -1001,13 +1001,13 @@ paths:
       description: Sends upload reminder to the patient
       tags:
         - clinic
-  '/v1/clinics/{clinicId}/patients/{patientId}/resend_dexcom_connect':
+  '/v1/clinics/{clinicId}/patients/{patientId}/send_dexcom_connect_request':
     parameters:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/patientId'
     post:
       summary: Resend dexcom connect request email
-      operationId: SendDexcomConnectReminder
+      operationId: SendDexcomConnectRequest
       responses:
         '200':
           description: OK
