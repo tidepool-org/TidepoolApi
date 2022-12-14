@@ -1001,6 +1001,23 @@ paths:
       description: Sends upload reminder to the patient
       tags:
         - clinic
+  '/v1/clinics/{clinicId}/patients/{patientId}/resend_dexcom_connect':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Resend dexcom connect request email
+      operationId: SendDexcomConnectReminder
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Resend dexcom connect request to the email address of the patient
+      tags:
+        - clinic
   '/v1/clinics/{clinicId}/patients/delete_tag/{patientTagId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1049,8 +1066,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/DataSource'
-    RequestedDataSourceConnect:
-      $ref: ./clinic/models/requestedDataSourceConnect.v1.yaml
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:
