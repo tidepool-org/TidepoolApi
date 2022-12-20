@@ -1,0 +1,7 @@
+title: Confirmation Lookup
+type: object
+properties:
+  clinicId:
+    $ref: '../../clinic/models/clinicid.v1.yaml'
+  invitedBy:
+    $ref: '../../common/models/tidepooluserid.yaml'

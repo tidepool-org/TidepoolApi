@@ -49,6 +49,8 @@ paths:
       summary: Send Account Signup Confirmation
       description: >-
         Sends account signup confirmation email.
+      requestBody:
+        $ref: '#/components/requestBodies/ConfirmationUpsert'
       responses:
         '200':
           $ref: '#/components/responses/ConfirmationSuccess'
@@ -139,14 +141,35 @@ paths:
       operationId: GetAccountSignupConfirmation
       summary: Get Account Signup Confirmation
       description: >-
-        This endpoint is provided for completeness.
-        We don't expect to need it in the actual user flow.
+        Fetch latest account signup confirmation for the provided userId
       responses:
         '200':
-          $ref: '#/components/responses/ConfirmationList'
+          $ref: '#/components/responses/Confirmation'
         '400':
           $ref: '#/components/responses/ConfirmationError'
         '401':
+          $ref: '#/components/responses/ConfirmationError'
+        '404':
+          $ref: '#/components/responses/ConfirmationError'
+        '500':
+          $ref: '#/components/responses/ConfirmationError'
+      tags:
+        - Confirm
+      security:
+        - sessionToken: []
+    post:
+      operationId: UpsertAccountSignupConfirmation
+      summary: Upsert Account Signup Confirmation
+      description: >-
+        Add or refresh an account signup confirmation for the provided userId
+      requestBody:
+        $ref: '#/components/requestBodies/ConfirmationUpsert'
+      responses:
+        '200':
+          $ref: '#/components/responses/Confirmation'
+        '400':
+          $ref: '#/components/responses/ConfirmationError'
+        '403':
           $ref: '#/components/responses/ConfirmationError'
         '404':
           $ref: '#/components/responses/ConfirmationError'
@@ -381,6 +404,9 @@ components:
     TidepoolUserId:
       $ref: './common/models/tidepooluserid.yaml'
 
+    ClinicId:
+      $ref: './clinic/models/clinicid.v1.yaml'
+
     EmailAddress:
       $ref: ./common/models/emailaddress.v1.yaml
 
@@ -425,6 +451,12 @@ components:
         'application/json':
           schema:
             $ref: './confirm/models/lookup.v1.yaml'
+
+    ConfirmationUpsert:
+      content:
+        'application/json':
+          schema:
+            $ref: './confirm/models/upsert.v1.yaml'
 
   responses:
     Confirmation:
