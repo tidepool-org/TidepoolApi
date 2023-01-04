@@ -888,6 +888,20 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateUserDetails'
+  '/v1/patients/{userId}/decline_dexcom_connect_request':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    post:
+      summary: Decline a Dexcom Connection Request For User
+      operationId: DeclineDexcomConnectRequest
+      responses:
+        '204':
+          description: No Content
+      description: Internal endpoint to decline a decline a dexcom connection request for all patients matching the user id.
+      x-internal: true
+      tags:
+        - clinic
+        - internal
   /v1/clinicians:
     get:
       summary: List All Clinicians
