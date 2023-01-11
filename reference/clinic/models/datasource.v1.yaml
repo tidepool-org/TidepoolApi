@@ -22,6 +22,8 @@ properties:
     readOnly: true
   modifiedTime:
     $ref: ../../common/models/datetime.v1.yaml
+  expirationTime:
+    $ref: ../../common/models/datetime.v1.yaml
 required:
   - state
   - providerName
