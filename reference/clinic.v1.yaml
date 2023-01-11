@@ -1060,6 +1060,8 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PatientTag'
+    DateTime:
+      $ref: ./common/models/datetime.v1.yaml
     DataSource:
       $ref: ./clinic/models/datasource.v1.yaml
     DataSources:
