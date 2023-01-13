@@ -6,6 +6,7 @@ properties:
     title: Data source connection state
     enum:
       - pending
+      - pendingReconnect
       - connected
       - disconnected
       - error
