@@ -950,6 +950,26 @@ paths:
                   highGlucoseThreshold: 0
                   lowGlucoseThreshold: 0
         description: ''
+  '/v1/patients/{userId}/data_sources':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    put:
+      summary: Create or update a data source for a patient
+      operationId: UpdatePatientDataSources
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Internal endpoint to upsert patient data source provider details in all their associated clinic records.
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSources'
   '/v1/clinics/{clinicId}/tier':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -979,6 +999,23 @@ paths:
         '200':
           description: OK
       description: Sends upload reminder to the patient
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patients/{patientId}/send_dexcom_connect_request':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Resend dexcom connect request email
+      operationId: SendDexcomConnectRequest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Resend dexcom connect request to the email address of the patient
       tags:
         - clinic
   '/v1/clinics/{clinicId}/patients/delete_tag/{patientTagId}':
@@ -1023,6 +1060,14 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PatientTag'
+    DateTime:
+      $ref: ./common/models/datetime.v1.yaml
+    DataSource:
+      $ref: ./clinic/models/datasource.v1.yaml
+    DataSources:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:
