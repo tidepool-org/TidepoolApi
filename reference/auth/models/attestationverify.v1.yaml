@@ -1,0 +1,18 @@
+title: Attestation Verify
+description: Request body for verifying an attestation.
+type: object
+properties:
+  attestation:
+    $ref: '../../common/models/base64.v1.yaml'
+    description: Base64 encoded data received from Apple App Attest API. User must base64 encode the binary data received from Apple.
+  challenge:
+    type: string
+    minLength: 1
+    description: Challenge string returned from the Tidepool platform API.
+  keyId:
+    $ref: './keyid.v1.yaml'
+    description: Base64 encoded key Id received from Apple App Attest API.
+required:
+  - attestation
+  - challenge
+  - keyId

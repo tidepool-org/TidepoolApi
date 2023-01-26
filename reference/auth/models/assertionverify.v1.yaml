@@ -1,0 +1,30 @@
+title: Assertion Verify
+description: Request body for verifying an assertion.
+type: object
+properties:
+  assertion:
+    $ref: '../../common/models/base64.v1.yaml'
+    description: Base64 encoded data received from Apple App Attest API. User must base64 encode the binary data received from Apple.
+  clientData:
+    type: object
+    properties:
+      challenge:
+        type: string
+        minLength: 1
+      partner:
+        description: Code name of partner to retrieve certificate from.
+        type: string
+        minLength: 1
+        enum:
+          - Coastal
+      partnerData:
+        description: Actual data to send to partner API.
+        $ref: './coastaldata.v1.yaml'
+    description: Actual data requested by client. Must include the previously requested challenge.
+  keyId:
+    $ref: './keyid.v1.yaml'
+    description: Base64 encoded key Id received from Apple App Attest API.
+required:
+  - attestation
+  - clientData
+  - keyId
