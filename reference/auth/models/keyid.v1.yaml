@@ -1,0 +1,3 @@
+title: Key Id
+description: Base64 encoded key identifier received from apple. The Key Id is some shortened data, usually a hash, used to identify the longer actual key.
+$ref: '../../common/models/base64.v1.yaml'

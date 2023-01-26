@@ -1,0 +1,24 @@
+title: CoastalData
+description: Data to send to Coastal's API.
+type: object
+properties:
+  rcTypeId:
+    type: string
+  rcInstanceId:
+    type: string
+  rcHWVersions:
+    type: array
+    items:
+      type: string
+  rcSWVersions:
+    type: array
+    items:
+      type: string
+  phdTypeId:
+    type: string
+  phdInstanceId:
+    type: string
+  csr:
+    type: string
+  rcbMac:
+    type: string

@@ -1,0 +1,9 @@
+title: New App Challenge
+description: Information needed when generating an attestation or assertion challenge.
+type: object
+properties:
+  keyId:
+    $ref: '../../common/models/base64.v1.yaml'
+    description: Base64 encoded key Id received from Apple App Attest API.
+required:
+  - keyId
