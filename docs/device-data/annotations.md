@@ -1,10 +1,11 @@
-# Annotations<!-- omit in toc -->
+<!-- omit in toc -->
+# Annotations
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Syntax And Annotation Conventions](#syntax-and-annotation-conventions)
-   1. [Examples](#examples)
 3. [Annotation Duplications And Storage](#annotation-duplications-and-storage)
 4. [Keep Reading](#keep-reading)
 
@@ -22,6 +23,7 @@ In the Tidepool data model, annotations is an optional property that may appear 
 
 An annotation object must have a code property, and the typical construction of this code property is: `[manufacturer]/(datatype)/(description)`. The manufacturer prefix is optional and only present if the reason for annotation is manufacturer-specific. The data type (e.g. basal or bolus) provides another level of annotation namespacing. A descriptive and hyphen-delimited string should come last in the annotation code.
 
+<!-- omit in toc -->
 ### Examples
 
 Manufacturer/device-specific:

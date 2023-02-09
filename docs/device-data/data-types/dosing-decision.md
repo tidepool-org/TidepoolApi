@@ -1,6 +1,8 @@
-# Dosing Decision (`dosingDecision`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Dosing Decision (`dosingDecision`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -58,11 +60,13 @@ If the dosing decision is due to an updated carbohydrate entry then this contain
 * Time
 * Nutrition
 
-### Time (`time`) (Original Food)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`) (Original Food)
 
 The time associated with the original, pre-updated food.
 
-### Nutrition (`nutrition`) (Original Food)<!-- omit in toc -->
+<!-- omit in toc -->
+### Nutrition (`nutrition`) (Original Food)
 
 The nutrition associated with the original, pre-updated food.
 
@@ -75,11 +79,13 @@ If the dosing decision is due to a new or updated carbohydrate entry then this c
 * Time
 * Nutrition
 
-### Time (`time`) (Food)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`) (Food)
 
 The time associated with the new or post-updated food.
 
-### Nutrition (`nutrition`) (Food)<!-- omit in toc -->
+<!-- omit in toc -->
+### Nutrition (`nutrition`) (Food)
 
 The nutrition associated with the new or post-updated food.
 
@@ -92,11 +98,13 @@ If the dosing decision is due to a simple bolus requested by the user and the us
 * Time
 * Value
 
-### Time (`time`) (Self Monitored Blood Glucose)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`) (Self Monitored Blood Glucose)
 
 The time associated with the self monitored blood glucose.
 
-### Value (`value`) (Self Monitored Blood Glucose)<!-- omit in toc -->
+<!-- omit in toc -->
+### Value (`value`) (Self Monitored Blood Glucose)
 
 The value of the self monitored blood glucose.
 
@@ -109,11 +117,13 @@ The current carbohydrates on board for the dosing decision. Contains the followi
 * Time
 * Amount
 
-### Time (`time`) (Carbohydrates On Board)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`) (Carbohydrates On Board)
 
 The time associated with the carbohydrates on board.
 
-### Amount (`amount`) (Carbohydrates On Board)<!-- omit in toc -->
+<!-- omit in toc -->
+### Amount (`amount`) (Carbohydrates On Board)
 
 The amount of the carbohydrates on board.
 
@@ -126,11 +136,13 @@ The current insulin on board for the dosing decision. Contains the following pro
 * Time
 * Amount
 
-### Time (`time`) (Insulin On Board)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`) (Insulin On Board)
 
 The time associated with the insulin on board.
 
-### Amount (`amount`) (Insulin On Board)<!-- omit in toc -->
+<!-- omit in toc -->
+### Amount (`amount`) (Insulin On Board)
 
 The amount of the insulin on board.
 
@@ -149,11 +161,13 @@ An array of historical blood glucose values. The array contain zero to many obje
 * Time
 * Value
 
-### Time (`time`) (Blood Glucose Historical)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`) (Blood Glucose Historical)
 
 The time of this historical blood glucose.
 
-### Value (`value`) (Blood Glucose Historical)<!-- omit in toc -->
+<!-- omit in toc -->
+### Value (`value`) (Blood Glucose Historical)
 
 The value of this historical blood glucose.
 
@@ -166,11 +180,13 @@ An array of forecast blood glucose values. The array contain zero to many object
 * Time
 * Value
 
-### Time (`time`) (Blood Glucose Forecast)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`) (Blood Glucose Forecast)
 
 The time of this forecast blood glucose.
 
-### Value (`value`) (Blood Glucose Forecast)<!-- omit in toc -->
+<!-- omit in toc -->
+### Value (`value`) (Blood Glucose Forecast)
 
 The value of this forecast blood glucose.
 
@@ -183,11 +199,13 @@ The basal recommended by the client. Contains the following field:
 * Rate
 * Duration
 
-### Rate (`rate`) (Recommended Basal)<!-- omit in toc -->
+<!-- omit in toc -->
+### Rate (`rate`) (Recommended Basal)
 
 The rate of basal insulin delivery as recommended by the client.
 
-### Duration (`duration`) (Recommended Basal)<!-- omit in toc -->
+<!-- omit in toc -->
+### Duration (`duration`) (Recommended Basal)
 
 The duration of basal insulin delivery as recommended by the client.
 
@@ -199,7 +217,8 @@ The bolus recommended by the client. Contains the following field:
 
 * Amount
 
-### Amount (`amount`) (Recommended Bolus)<!-- omit in toc -->
+<!-- omit in toc -->
+### Amount (`amount`) (Recommended Bolus)
 
 The amount of insulin to bolus as recommended by the client.
 
@@ -211,7 +230,8 @@ The actual bolus requested by the user. Contains the following field:
 
 * Amount
 
-### Amount (`amount`) (Requested Bolus)<!-- omit in toc -->
+<!-- omit in toc -->
+### Amount (`amount`) (Requested Bolus)
 
 The amount of insulin to bolus as requested by the user.
 
@@ -224,11 +244,13 @@ All warnings that occurred while calculating the dosing decision. The array cont
 * ID
 * Metadata
 
-### ID (`id`) (Warnings)<!-- omit in toc -->
+<!-- omit in toc -->
+### ID (`id`) (Warnings)
 
 The identifier of the warning. This is specific to the client making the dosing decision.
 
-### Metadata (`metadata`) (Warnings)<!-- omit in toc -->
+<!-- omit in toc -->
+### Metadata (`metadata`) (Warnings)
 
 Any metadata associated with the warning. This is a dictionary with key and value of strings.
 
@@ -241,11 +263,13 @@ All errors that occurred while calculating the dosing decision. The array contai
 * ID
 * Metadata
 
-### ID (`id`) (Errors)<!-- omit in toc -->
+<!-- omit in toc -->
+### ID (`id`) (Errors)
 
 The identifier of the error. This is specific to the client making the dosing decision.
 
-### Metadata (`metadata`) (Errors)<!-- omit in toc -->
+<!-- omit in toc -->
+### Metadata (`metadata`) (Errors)
 
 Any metadata associated with the error. This is a dictionary with key and value of strings.
 
@@ -265,15 +289,18 @@ The units of the dosing decision. Contains the following fields:
 * Carbohydrate
 * Insulin
 
-### Blood Glucose (`bg`) (Units)<!-- omit in toc -->
+<!-- omit in toc -->
+### Blood Glucose (`bg`) (Units)
 
 The blood glucose units of the dosing decision. Can be one of `mg/dL` or `mmol/L`.
 
-### Carbohydrate (`carb`) (Units)<!-- omit in toc -->
+<!-- omit in toc -->
+### Carbohydrate (`carb`) (Units)
 
 The carbohydrate units of the dosing decision. Can be one of `grams` or `exchanges`.
 
-### Insulin (`insulin`) (Units)<!-- omit in toc -->
+<!-- omit in toc -->
+### Insulin (`insulin`) (Units)
 
 The insulin units of the dosing decision. Can be one of `Units`.
 

@@ -1,6 +1,8 @@
-# Suppressed Basals (`suppressed`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Suppressed Basals (`suppressed`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary: scheduled](#quick-summary-scheduled)
 2. [Quick Summary: automated](#quick-summary-automated)

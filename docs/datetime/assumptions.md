@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Incorrect Assumptions About Diabetes Device Times
 
 * The display time on a [PwD's](./glossary.md#pwd) device will be accurate to their local time

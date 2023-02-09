@@ -1,6 +1,8 @@
-# Uploading Data in a Normal Session (`normal`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Uploading Data in a Normal Session (`normal`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Open A Normal Session](#open-a-normal-session)
 2. [Upload Device Data To The Open Session](#upload-device-data-to-the-open-session)

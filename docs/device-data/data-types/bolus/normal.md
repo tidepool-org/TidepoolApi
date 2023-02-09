@@ -1,6 +1,8 @@
-# Normal Bolus (`normal`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Normal Bolus (`normal`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)

@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Fetching User Notes
 
 You can fetch user notes by issuing the following command:

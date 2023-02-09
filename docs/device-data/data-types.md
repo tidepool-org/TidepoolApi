@@ -1,19 +1,28 @@
+<!-- omit in toc -->
 # Diabetes Data Types
 
-This documents the diabetes device data types that Platform reads and stores. All events read and stored by Platform use the JSON data interchange format and have a type field identifying the subcategory of event. The semantics of the other fields in each subcategory are generally defined individually per subcategory, but there are some [common fields](./common-fields.md).
+This documents the diabetes device data types that Platform reads and stores. All events read and stored by Platform use the [JSON](https://www.json.org/) data interchange format and have a type field identifying the subcategory of event. The semantics of the other fields in each subcategory are generally defined individually per subcategory, but there are some [common fields](./common-fields.md).
 
 ## Keep Reading
 
+* [Common Fields](./common-fields.md)
+* [Annotations](./annotations.md)
+* [Alerts](./data-types/alert.md)
 * [Basal Insulin](./data-types/basal.md)
-* [Blood Ketones](./data-types/blood-ketones.md)
 * [Bolus Insulin](./data-types/bolus.md)
+* [Blood Ketones](./data-types/blood-ketones.md)
 * [Continuous Blood Glucose (CBG)](./data-types/cbg.md)
 * [CGM Settings](./data-types/cgm-settings.md)
-* [Device Event (Miscellaneous)](./data-types/device-event.md)
+* [Controller Settings](./data-types/controller-settings.md)
+* [Controller Status](./data-types/controller-status.md)
+* [Device Event](./data-types/device-event.md)
+* [Device Status](./data-types/device-status.md)
+* [Dosing Decision](./data-types/dosing-decision.md)
 * [Pump Settings](./data-types/pump-settings.md)
+* [Pump Status](./data-types/pump-status.md)
+* [Bolus Calculator (wizard)](./data-types/pump-settings/calculator.md)
 * [Self-Monitored Blood Glucose (SMBG)](./data-types/pump-settings/smbg.md)
 * [Upload Metadata](./data-types/pump-settings/upload.md)
-* [Bolus Calculator (wizard)](./data-types/pump-settings/calculator.md)
 
 <!-- theme: info -->
 

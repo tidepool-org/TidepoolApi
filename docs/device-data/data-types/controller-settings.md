@@ -1,6 +1,8 @@
-# Controller Settings (`controllerSettings`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Controller Settings (`controllerSettings`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -47,31 +49,38 @@ The device related settings of the controller, if known. The device settings con
 * [Serial Number (`serialNumber`)](#serial-number-serialnumber)
 * [Software Version (`softwareVersion`)](#software-version-softwareversion)
 
-### Firmware Version (`firmwareVersion`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Firmware Version (`firmwareVersion`)
 
 The firmware version of the controller, if known.
 
-### Hardware Version (`hardwareVersion`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Hardware Version (`hardwareVersion`)
 
 The hardware version of the controller, if known.
 
-### Manufacturers (`manufacturers`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Manufacturers (`manufacturers`)
 
 The manufacturer(s) of the controller. An array of strings.
 
-### Model (`model`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Model (`model`)
 
 The model of the controller, if known.
 
-### Name (`name`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Name (`name`)
 
 The name of the controller, if known.
 
-### Serial Number (`serialNumber`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Serial Number (`serialNumber`)
 
 The serial number of the controller, if known.
 
-### Software Version (`softwareVersion`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Software Version (`softwareVersion`)
 
 The software version of the controller, if known.
 
@@ -91,7 +100,8 @@ The notification related settings of the controller, if known. The notification 
 * [Lock Screen](#lock-screen-lockscreen)
 * [Alert Style](#alert-style-alertstyle)
 
-### Authorization (`authorization`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Authorization (`authorization`)
 
 Indicates whether notifications are allowed on the controller or not. One of the following:
 
@@ -101,35 +111,43 @@ Indicates whether notifications are allowed on the controller or not. One of the
 * `notDetermined` - Not yet determined if the controller is authorized to schedule or receive user notifications.
 * `provisional` - The controller is provisionally authorized to post noninterruptive user notifications.
 
-### Alert (`alert`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Alert (`alert`)
 
 Whether a normal alert can be presented as a user notification.
 
-### Critical Alert (`criticalAlert`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Critical Alert (`criticalAlert`)
 
 Whether a critical alert can be presented as a user notification.
 
-### Badge (`badge`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Badge (`badge`)
 
 Whether a badge can be added to the controller icon as a user notification.
 
-### Sound (`sound`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Sound (`sound`)
 
 Whether a sound can be played as part of a user notification.
 
-### Announcement (`announcement`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Announcement (`announcement`)
 
 Whether an spoken announcement can be presented a part of a user notification.
 
-### Notification Center (`notificationCenter`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Notification Center (`notificationCenter`)
 
 Whether the central notification center can present a user notification.
 
-### Lock Screen (`lockScreen`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Lock Screen (`lockScreen`)
 
 Whether a user notification can be preseted on the lock screen of the controller.
 
-### Alert Style (`alertStyle`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Alert Style (`alertStyle`)
 
 The style of alert when normal alert is presented as a user notification. One of the following:
 

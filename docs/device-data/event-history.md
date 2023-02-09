@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Event History
 
 <!-- theme: warning -->

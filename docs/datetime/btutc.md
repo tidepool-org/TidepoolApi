@@ -1,6 +1,8 @@
-# Bootstrapping to UTC (BtUTC)<!-- omit in toc -->
+<!-- omit in toc -->
+# Bootstrapping to UTC (BtUTC)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Across-The-Board Timezone Default](#across-the-board-timezone-default)

@@ -1,6 +1,8 @@
-# Out of Range Values<!-- omit in toc -->
+<!-- omit in toc -->
+# Out of Range Values
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Out Of Range Annotation: Units](#out-of-range-annotation-units)

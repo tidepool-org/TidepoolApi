@@ -1,6 +1,8 @@
-# Uploading Data in a Continuous Session (`continuous`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Uploading Data in a Continuous Session (`continuous`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Open A New Continuous Session](#open-a-new-continuous-session)
 2. [Find An Existing Continuous Session](#find-an-existing-continuous-session)

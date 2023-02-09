@@ -1,6 +1,8 @@
-# Upload Metadata (`upload`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Upload Metadata (`upload`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)

@@ -1,6 +1,8 @@
-# Temporary Basals (`temp`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Temporary Basals (`temp`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)

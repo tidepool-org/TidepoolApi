@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Sensor Event (`sensorEvent`)
 
 ---

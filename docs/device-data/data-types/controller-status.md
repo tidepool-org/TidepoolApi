@@ -1,6 +1,8 @@
-# Controller Status (`controllerStatus`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Controller Status (`controllerStatus`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
@@ -39,19 +41,23 @@ The battery status of the controller, if known. The battery status contains the 
 * [Remaining (`remaining`)](#remaining-remaining)
 * [Units (`units`)](#units-units)
 
-### Time (`time`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Time (`time`)
 
 The time of the battery status, if known.
 
-### State (`state`)<!-- omit in toc -->
+<!-- omit in toc -->
+### State (`state`)
 
 The state of the battery status, if known. One of `charging`, `full`, or `unplugged`.
 
-### Remaining (`remaining`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Remaining (`remaining`)
 
 The remaining amount of battery. For units of `percent`, can be in range of `0.0` (empty) to `1.0` (full).
 
-### Units (`units`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Units (`units`)
 
 The units for the remaining amount of battery, if known. One of `percent`.
 

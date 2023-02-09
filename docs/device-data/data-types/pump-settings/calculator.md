@@ -1,6 +1,8 @@
-# Bolus Calculator Records (`wizard`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Bolus Calculator Records (`wizard`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)
@@ -85,15 +87,18 @@ The embedded object recommended encodes an insulin delivery device's recommendat
 * [Recommended: correction (`recommended.correction`)](#recommended-correction-recommendedcorrection)
 * [Recommended: net (`recommended.net`)](#recommended-net-recommendednet)
 
-### Recommended: carb (`recommended.carb`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Recommended: carb (`recommended.carb`)
 
 Carb encodes the units of insulin recommended by the device to "cover" the total grams of carbohydrate input by the user into the bolus calculator. The value for carb may be > = 0, as not all boluses involve the ingestion of carbohydrates and may not include a recommended insulin dose to cover carbohydrates about to be ingested.
 
-### Recommended: correction (`recommended.correction`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Recommended: correction (`recommended.correction`)
 
 Correction encodes the units of insulin recommended by the device to bring the person with diabetes to their target BG given the input blood glucose. On some pumps, or depending on user preference, this value may be negative. A negative recommendation for correction indicates that — given the user's current blood glucose and insulin on board — low blood glucose is predicted and a reduction in insulin dosing (e.g. via a temporary basal rate) may be required in order to bring blood glucose to or within the target.
 
-### Recommended: net (`recommended.net`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Recommended: net (`recommended.net`)
 
 Net is the net number of units of insulin the bolus calculator recommended given the user's inputs. Generally, this net recommendation takes recommended carb, recommended correction, and insulin on board into account, but insulin delivery devices perform this calculation differently. Therefore, Tidepool has chosen to store the calculation's result, rather than make this calculation the responsibility of client applications.
 

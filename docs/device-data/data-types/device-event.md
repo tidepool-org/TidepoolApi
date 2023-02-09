@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Device Event (`deviceEvent`)
 
 This is the Tidepool data type for a variety of events that can occur on diabetes devices, including both insulin pumps and continuous glucose monitors. As a type, it is essentially a "grab bag" of miscellaneous sub-types, where each sub-type has its own data model that often differs widely from sub-type to sub-type.
@@ -15,5 +16,7 @@ Along with Tidepool's release of ["Bootstrapping to UTC"](../../datetime/btutc.m
 * [Prime](./device-event/prime.md)
 * [Pump Settings Override](./device-event/pump-settings-override.md)
 * [Reservoir Change](./device-event/reservoir-change.md)
+* [Sensor Event](./device-event/sensor-event.md)
+* [Settings Change](./device-event/settings-change.md)
 * [Status](./device-event/status.md)
 * [Time Change](./device-event/time-change.md)

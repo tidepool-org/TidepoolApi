@@ -1,6 +1,8 @@
-# Self-Monitored Blood Glucose (`smbg`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Self-Monitored Blood Glucose (`smbg`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)

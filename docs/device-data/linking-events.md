@@ -1,6 +1,8 @@
-# Linking Events<!-- omit in toc -->
+<!-- omit in toc -->
+# Linking Events
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Potentially Linked Events](#potentially-linked-events)

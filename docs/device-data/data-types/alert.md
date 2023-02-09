@@ -1,20 +1,22 @@
-# Alert (`alert`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Alert (`alert`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
 3. [Type (`type`)](#type-type)
 4. [Name (`name`)](#name-name)
-   1. [Priority (`priority`)](#priority-priority)
-   2. [Trigger (`trigger`)](#trigger-trigger)
-   3. [Trigger Delay (`triggerDelay`)](#trigger-delay-triggerdelay)
-   4. [Sound (`sound`)](#sound-sound)
-   5. [Sound Name (`soundName`)](#sound-name-soundname)
-   6. [Issued Time (`issuedTime`)](#issued-time-issuedtime)
-   7. [Acknowledged Time (`acknowledgedTime`)](#acknowledged-time-acknowledgedtime)
-   8. [Retracted Time (`retracedTime`)](#retracted-time-retracedtime)
-5. [Keep Reading](#keep-reading)
+5. [Priority (`priority`)](#priority-priority)
+6. [Trigger (`trigger`)](#trigger-trigger)
+7. [Trigger Delay (`triggerDelay`)](#trigger-delay-triggerdelay)
+8. [Sound (`sound`)](#sound-sound)
+9. [Sound Name (`soundName`)](#sound-name-soundname)
+10. [Issued Time (`issuedTime`)](#issued-time-issuedtime)
+11. [Acknowledged Time (`acknowledgedTime`)](#acknowledged-time-acknowledgedtime)
+12. [Retracted Time (`retracedTime`)](#retracted-time-retracedtime)
+13. [Keep Reading](#keep-reading)
 
 ---
 
@@ -42,35 +44,35 @@ This is the Tidepool data type to represent ab alert presented to the user from 
 
 The name of the alert, not necessarily human readable. This is not a unique identifier for the alert, but rather a name of the class of alert presented to the user. For example, "CGM.lowGlucose".
 
-### Priority (`priority`)
+## Priority (`priority`)
 
 The priority of the alert. One of `critical`, `normal`, or `timeSensitive`.
 
-### Trigger (`trigger`)
+## Trigger (`trigger`)
 
 The trigger that causes the alert to be presented. One of `delayed`, `immediate`,  or `repeating`.
 
-### Trigger Delay (`triggerDelay`)
+## Trigger Delay (`triggerDelay`)
 
 For a `delayed` or `repeating` trigger alert, the delay, in seconds, before the alert is presented after it is initially issued and, for `repeating` trigger alerts, the delay before re-presenting it after it was previously presented.
 
-### Sound (`sound`)
+## Sound (`sound`)
 
 The sound associated with the alert. One of `name`, `silence`, or `vibrate`.
 
-### Sound Name (`soundName`)
+## Sound Name (`soundName`)
 
 For a `name` sound, then name of the sound played when the alert is presented.
 
-### Issued Time (`issuedTime`)
+## Issued Time (`issuedTime`)
 
 The time the alert was issued (aka created).
 
-### Acknowledged Time (`acknowledgedTime`)
+## Acknowledged Time (`acknowledgedTime`)
 
 The time the alert was first acknowledged by the user after it was presented.
 
-### Retracted Time (`retracedTime`)
+## Retracted Time (`retracedTime`)
 
 The time the alert was retracted after it was presented.
 

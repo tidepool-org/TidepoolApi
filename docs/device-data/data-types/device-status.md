@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Device Status (`deviceStatus`)
 
 ```yaml json_schema

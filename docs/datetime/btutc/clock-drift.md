@@ -1,6 +1,8 @@
-# Clock Drift Offset (`clockDriftOffset`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Clock Drift Offset (`clockDriftOffset`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Adjustments For Clock Drift](#adjustments-for-clock-drift)

@@ -1,6 +1,8 @@
-# Combination Bolus (`combination`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Combination Bolus (`combination`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)

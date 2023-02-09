@@ -1,6 +1,8 @@
-# Automated Basals (`automated`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Automated Basals (`automated`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)

@@ -1,6 +1,8 @@
-# Basal Insulin (`basal`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Basal Insulin (`basal`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Duration (`duration`)](#duration-duration)

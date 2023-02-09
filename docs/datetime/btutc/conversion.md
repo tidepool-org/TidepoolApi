@@ -1,6 +1,8 @@
-# Conversion Offset (`conversionOffset`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Conversion Offset (`conversionOffset`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Keep Reading](#keep-reading)

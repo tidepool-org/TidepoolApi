@@ -1,6 +1,8 @@
-# Scheduled Basals (`scheduled`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Scheduled Basals (`scheduled`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)

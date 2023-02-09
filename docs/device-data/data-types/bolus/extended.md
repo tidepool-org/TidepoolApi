@@ -1,6 +1,8 @@
-# Extended Bolus (`extended`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Extended Bolus (`extended`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Sub-Type (`subType`)](#sub-type-subtype)

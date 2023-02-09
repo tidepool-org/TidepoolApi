@@ -1,6 +1,8 @@
-# Uploading Device Data<!-- omit in toc -->
+<!-- omit in toc -->
+# Uploading Device Data
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Choosing A Client Name](#choosing-a-client-name)
 2. [Data Upload Session Types](#data-upload-session-types)

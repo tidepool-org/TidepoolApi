@@ -1,6 +1,8 @@
-# Pump Settings (`pumpSettings`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Pump Settings (`pumpSettings`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Type (`type`)](#type-type)
@@ -58,7 +60,8 @@ Each basal schedule segment object within each array value contains the followin
 * [Rate](#rate-rate)
 * [Start](#start-start)
 
-### Rate (`rate`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Rate (`rate`)
 
 Different insulin pump manufacturers use different terminology for the set of pre-programmed and timed basal rates — one of which is generally running in the background during normal device operation. Tidepool has adopted the term "schedule" to refer to the rates covering a 24 hour day. There must be at least one rate in a schedule; if the schedule has only one rate, we often call this a "flat-rate" schedule, since the same rate will always be in effect.
 
@@ -66,7 +69,8 @@ The basal schedules object encodes all of a user's programmed basal schedules, w
 
 A basal schedule, in the Tidepool data model, is an array of objects, where each object has a start and a rate. (We sometimes refer to each of these objects that compose a schedule as a "segment" of the schedule.) The rate is a typical basal rate value, in units of insulin per hour.
 
-### Start (`start`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Start (`start`)
 
 The start is an integer value representing the milliseconds into a 24 hour day when the rate should go into effect. Therefore, the first object in the schedule must always have a start of 0 — representing the start of the day at 12:00 am.
 
@@ -188,27 +192,33 @@ Any overrides setup in advance as presets prior to enabling any `pumpSettingsOve
 * [Carbohydrate Ratio Scale Factor](#carbohydrate-ratio-scale-factor-carbratioscalefactor)
 * [Insulin Sensitivity Scale Factor](#insulin-sensitivity-scale-factor-insulinsensitivityscalefactor)
 
-### Abbreviation (`abbreviation`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Abbreviation (`abbreviation`)
 
 An abbreviation for the preset. Commonly set to an emoji.
 
-### Duration (`duration`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Duration (`duration`)
 
 The intended duration of the override when initially enabled. Not specifying this field indicates that the override should be enable indefinitely.
 
-### Blood Glucose Target (Preset) (`bgTarget`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Blood Glucose Target (Preset) (`bgTarget`)
 
 The intended blood glucose target of the override. The blood glucose target range in effect while the override is enabled. Not specified means no change.
 
-### Basal Rate Scale Factor (`basalRateScaleFactor`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Basal Rate Scale Factor (`basalRateScaleFactor`)
 
 The intended basal rate scale factor of the override. The basal rate scale factor in effect while the override is enabled. This is a percentage of the active basal rate found in the basal rate schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
 
-### Carbohydrate Ratio Scale Factor (`carbRatioScaleFactor`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Carbohydrate Ratio Scale Factor (`carbRatioScaleFactor`)
 
 The intended carbohydrate ratio scale factor of the override. The carbohydrate ratio scale factor in effect while the override is enabled. This is a percentage of the active carbohydrate ratio found in the carbohydrate ratio schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
 
-### Insulin Sensitivity Scale Factor (`insulinSensitivityScaleFactor`)<!-- omit in toc -->
+<!-- omit in toc -->
+### Insulin Sensitivity Scale Factor (`insulinSensitivityScaleFactor`)
 
 The intended insulin sensitivity scale factor of the override. The insulin sensitivity scale factor in effect while the override is enabled. This is a percentage of the active insulin sensitivity found in the insulin sensitivity schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
 

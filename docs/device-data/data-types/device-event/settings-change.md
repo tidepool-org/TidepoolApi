@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Device Settings Change (`settingsChange`)
 
 ---

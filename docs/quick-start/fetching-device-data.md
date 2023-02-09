@@ -1,6 +1,8 @@
-# Fetching Device Data<!-- omit in toc -->
+<!-- omit in toc -->
+# Fetching Device Data
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Fetch Device Data](#fetch-device-data)
 2. [Query Parameters](#query-parameters)
@@ -62,7 +64,8 @@ In addition, there are several “special” parameters that have an effect on t
 | Dexcom | Boolean | Return CGM data from *only* the Dexcom API, even if other CGM data exists from other sources. | E.g. `/data/userid?dexcom=true`
 | Medtronic | Boolean | Return CGM, Basal and Bolus data from Medtronic Uploads, provided that data exists after `2017-09-01`. Unless data from a Medtronic device has been uploaded by Loop via HealthKit (`origin.payload.device.manufacturer` is Medtronic), and that data exists after `2017-09-01`. | E.g. `/data/userid?medtronic=true`
 
-### Example<!-- omit in toc -->
+<!-- omit in toc -->
+### Example
 
 To fetch just the pump settings for Jill Jellyfish, use:
 

@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Welcome
 
 Welcome to Tidepool's developer documentation

@@ -1,6 +1,8 @@
-# Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)<!-- omit in toc -->
+<!-- omit in toc -->
+# Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)
 
-## Table of Contents<!-- omit in toc -->
+<!-- omit in toc -->
+## Table of Contents
 
 1. [Quick Summary](#quick-summary)
 2. [Overview](#overview)
