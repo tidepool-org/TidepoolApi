@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
+2. [Sub-Type](#sub-type-subtype)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
@@ -102,6 +102,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ## Keep Reading
 
+* [Automated Bolus](./device-data/data-types/bolus/automated.md)
 * [Bolus](./device-data/data-types/bolus.md)
 * [Combination Bolus](./device-data/data-types/bolus/combination.md)
 * [Common Fields](./device-data/common-fields.md)

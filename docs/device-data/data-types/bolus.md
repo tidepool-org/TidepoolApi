@@ -19,8 +19,9 @@ This is the Tidepool data type for one-time doses of fast-acting insulin program
 
 Insulin pumps provide several strategies for delivering boluses of insulin. Each manufacturer uses different terminology for each strategy, although the strategies are equivalent across insulin pumps.
 
-This page documents the fields shared by various bolus sub-types. The three sub-types that fall under the larger bolus type are:
+This page documents the fields shared by various bolus sub-types. The four sub-types that fall under the larger bolus type are:
 
+* [Automated](./device-data/data-types/bolus/automated.md)
 * [Combination](./device-data/data-types/bolus/combination.md)
 * [Extended](./device-data/data-types/bolus/extended.md)
 * [Normal](./device-data/data-types/bolus/normal.md)
@@ -45,7 +46,7 @@ The value of expected duration must be greater than or equal to the duration, si
 
 <!-- theme: info -->
 
-> The expected duration can only be equal to the duration in the very rare and special case that the duration is 0. See [duration](#duration) for discussion of the values for this field.
+> The expected duration can only be equal to the duration in the very rare and special case that the duration is 0. See [duration](#duration-duration) for discussion of the values for this field.
 
 ---
 
@@ -94,6 +95,7 @@ Insulin pumps generally include a maximum bolus setting that a user can customiz
 ## Keep Reading
 
 * [Annotations](./device-data/annotations.md)
+* [Automated Bolus](./device-data/data-types/bolus/automated.md)
 * [Combination Bolus](./device-data/data-types/bolus/combination.md)
 * [Common Fields](./device-data/common-fields.md)
 * [Extended Bolus](./device-data/data-types/bolus/extended.md)

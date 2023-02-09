@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
+2. [Sub-Type](#sub-type-subtype)
 3. [Status](#status-status)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
@@ -128,5 +128,6 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 * [Linking Events](./device-data/linking-events.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
 * [Pump Settings](device-data/data-types/pump-settings)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Status](./device-data/data-types/device-event/status.md)
 * [Time Change](./device-data/data-types/device-event/time-change.md)

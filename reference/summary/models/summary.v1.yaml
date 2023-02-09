@@ -1,19 +1,40 @@
-title: Summary response
-description: >-
-  A summary of the most recent diabetes data for a set of users.
 type: object
+title: summary.v1
+description: ''
 properties:
-  activity:
+  lastUpdatedDate:
+    type: string
+    format: date-time
+  firstData:
+    type: string
+    format: date-time
+  lastData:
+    type: string
+    format: date-time
+  lastUploadDate:
+    type: string
+    format: date-time
+  outdatedSince:
+    type: string
+    format: date-time
+  totalDays:
+    type: number
+    x-go-type: int
+  highGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  veryHighGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  lowGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  veryLowGlucoseThreshold:
+    type: number
+    x-go-type: float64
+  periods:
+    $ref: ./summaryperiods.v1.yaml
+  dailyStats:
     type: array
     items:
-      $ref: './uploadactivity.v1.yaml'
-  glucose:
-    type: array
-    items:
-      $ref: './glucosesummary.v1.yaml'
-  userid:
-    $ref: '../../common/models/tidepooluserid.yaml'
-required:
-  - activity
-  - glucose
-  - userid
+      $ref: ./summarystat.v1.yaml

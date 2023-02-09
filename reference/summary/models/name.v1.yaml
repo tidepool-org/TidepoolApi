@@ -1,5 +1,0 @@
-title: Quantile Name
-description: >-
-  The name of the quantile.
-type: string
-minLength: 1

@@ -3,8 +3,8 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Type](#type)
-3. [Value](#value)
+2. [Type](#type-type)
+3. [Value](#value-value)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
 6. [Example (storage)](#example-storage)

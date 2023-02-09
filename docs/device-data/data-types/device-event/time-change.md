@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
+2. [Sub-Type](#sub-type-subtype)
 3. [Change](#change-change)
 4. [Example (client)](#example-client)
 5. [Example (ingestion)](#example-ingestion)
@@ -129,5 +129,6 @@ The method field on the change object details whether the time change was manual
 * [Device Event](./device-data/data-types/device-event.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
 * [Pump Settings](device-data/data-types/pump-settings)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)

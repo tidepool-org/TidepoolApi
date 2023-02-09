@@ -1,0 +1,8 @@
+type: string
+title: Clinic Service Tier
+enum:
+  - tier0100
+  - tier0200
+  - tier0300
+  - tier0400
+example: tier0100

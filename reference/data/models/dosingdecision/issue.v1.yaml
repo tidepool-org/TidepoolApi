@@ -1,0 +1,19 @@
+title: Issue for Dosing Decision
+description: An issue for a dosing decision.
+type: object
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 100
+  metadata:
+    type: object
+    additionalProperties: true
+required:
+  - id
+example:
+  id: unknown
+  metadata:
+    extra: information
+x-tags:
+  - Data

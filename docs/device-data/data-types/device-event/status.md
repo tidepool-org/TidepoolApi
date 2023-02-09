@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
+2. [Sub-Type](#sub-type-subtype)
 3. [Duration](#duration-duration)
 4. [Expected Duration](#expected-duration-expectedduration)
 5. [Reason](#reason-reason)
@@ -189,5 +189,6 @@ Platform will only accept a suspended value for the status field.
 * [Linking Events](./device-data/linking-events.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
 * [Pump Settings](device-data/data-types/pump-settings)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Time Change](./device-data/data-types/device-event/time-change.md)

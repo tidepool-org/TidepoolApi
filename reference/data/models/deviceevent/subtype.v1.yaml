@@ -4,6 +4,7 @@ enum:
   - alarm
   - calibration
   - prime
+  - pumpSettingsOverride
   - reservoirChange
   - sensorEvent
   - settingsChange

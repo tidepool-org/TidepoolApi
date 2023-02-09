@@ -1,6 +1,7 @@
 title: Bolus Subtype
 type: string
 enum:
+  - automated
   - dual/square
   - normal
   - square

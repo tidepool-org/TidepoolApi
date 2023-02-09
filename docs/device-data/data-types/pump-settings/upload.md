@@ -7,7 +7,7 @@
 3. [Computer Time](#computer-time-computertime)
 4. [Device Manufacturers](#device-manufacturers-devicemanufacturers)
 5. [Device Model](#device-model-devicemodel)
-6. [Device Serial Number](#device-serial-number)
+6. [Device Serial Number](#device-serial-number-deviceserialnumber)
 7. [Device Tags](#device-tags-devicetags)
 8. [Time Processing](#time-processing-timeprocessing)
 9. [Timezone](#timezone-timezone)
@@ -61,7 +61,7 @@ There are some cases where it is perfectly justified to select a timezone that d
 
 ---
 
-## Device Manufacturers (`deviceManufacurers`)
+## Device Manufacturers (`deviceManufacturers`)
 
 To avoid confusion resulting from referring to a single manufacturer with more than one name — for example, using both "Minimed" and "Medtronic" interchangeably — Tidepool restricts device manufacturer string "tags" to those detailed in the quick summary above and enforces exact string matches (including casing).
 

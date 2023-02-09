@@ -3,7 +3,7 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
+2. [Sub-Type](#sub-type-subtype)
 3. [Example (client)](#example-client)
 4. [Example (ingestion)](#example-ingestion)
 5. [Example (storage)](#example-storage)
@@ -107,6 +107,7 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 
 ## Keep Reading
 
+* [Automated Bolus](./device-data/data-types/bolus/automated.md)
 * [Bolus](./device-data/data-types/bolus.md)
 * [Common Fields](./device-data/common-fields.md)
 * [Extended Bolus](./device-data/data-types/bolus/extended.md)

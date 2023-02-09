@@ -29,5 +29,8 @@ properties:
     minimum: 0
     maximum: 1000
     description: "An integer encoding the PWD's target blood glucose as a single value."
+example:
+  high: 180
+  low: 80
 x-tags:
   - Data

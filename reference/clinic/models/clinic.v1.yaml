@@ -14,11 +14,23 @@ properties:
     $ref: ./state.v1.yaml
   country:
     $ref: ./country.v1.yaml
+  patientTags:
+    type: array
+    items:
+      $ref: './patienttag.v1.yaml'
+  lastDeletedPatientTag:
+    $ref: './patienttag.v1.yaml'
   phoneNumbers:
     $ref: ./phonenumbers.v1.yaml
   clinicType:
     type: string
     minLength: 1
+    enum:
+      - provider_practice
+      - healthcare_system
+      - veterinary_clinic
+      - other
+      - researcher
   clinicSize:
     type: string
     enum:
@@ -44,6 +56,21 @@ properties:
     type: string
     format: date-time
     readOnly: true
+  tierDescription:
+    type: string
+    minLength: 1
+    example: Free
+    readOnly: true
+  tier:
+    type: string
+    example: tier0100
+    minLength: 1
+    readOnly: true
+  preferredBgUnits:
+    type: string
+    enum:
+      - mg/dL
+      - mmol/L
 required:
   - id
   - name
@@ -51,3 +78,6 @@ required:
   - canMigrate
   - createdTime
   - updatedTime
+  - tierDescription
+  - tier
+  - preferredBgUnits

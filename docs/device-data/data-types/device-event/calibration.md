@@ -3,11 +3,10 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Sub-Type](#sub-type-subtype)
+3. [Example (ingestion)](#example-ingestion)
+4. [Example (storage)](#example-storage)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -80,6 +79,7 @@ The calibration sub-type of device event represents a user's manual entry of a s
 * [Device Event](./device-data/data-types/device-event.md)
 * [Prime](./device-data/data-types/device-event/prime.md)
 * [Pump Settings](device-data/data-types/pump-settings)
+* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
 * [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
 * [Status](./device-data/data-types/device-event/status.md)
 * [Time Change](./device-data/data-types/device-event/time-change.md)

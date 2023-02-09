@@ -64,6 +64,8 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/shareCode'
+        - $ref: '#/components/parameters/createdTimeStart'
+        - $ref: '#/components/parameters/createdTimeEnd'
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -199,7 +201,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Clinicians'
       operationId: ListClinicians
-      description: 'Retrieve the list of all clinic members. '
+      description: 'Retrieve the list of clinic members. '
       parameters:
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/offset'
@@ -240,6 +242,70 @@ paths:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/sort'
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.5'
+          in: query
+          name: summary.periods.14d.timeCGMUsePercent
+          description: Percentage of time of CGM use
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInVeryLowPercent
+          description: Percentage of time below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInLowPercent
+          description: Percentage of time in range 54-70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInTargetPercent
+          description: Percentage of time in range 70-180 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInHighPercent
+          description: Percentage of time in range 180-250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: summary.periods.14d.timeInVeryHighPercent
+          description: Percentage of time above range 250 mg/dL
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: summary.lastUploadDateFrom
+          description: Inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: summary.lastUploadDateTo
+          description: Exclusive
+        - schema:
+            type: array
+            items:
+              type: string
+              format: '^[a-f0-9]{24}$'
+          in: query
+          name: tags
+          description: Comma-separated list of patient tag IDs
+          style: form
+          explode: false
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -257,6 +323,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Patient'
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patient_tags':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Create Patient Tag
+      operationId: CreatePatientTag
+      responses:
+        '200':
+          description: OK
+      description: Create a new patient tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientTag'
       tags:
         - clinic
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
@@ -359,6 +442,33 @@ paths:
         '204':
           description: No Content
       description: Deletes patient from a clinic. Requires the request to be made by a clinic admin or the currently authenticated user id to match the patient id.
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patient_tags/{patientTagId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    put:
+      summary: Update Patient Tag
+      operationId: UpdatePatientTag
+      responses:
+        '200':
+          description: OK
+      description: Update existing patient tag
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientTag'
+    delete:
+      summary: Delete Patient Tag
+      operationId: DeletePatientTag
+      responses:
+        '200':
+          description: OK
+      description: Removes a patient tag from a clinic and tagged patients
       tags:
         - clinic
   '/v1/clinics/{clinicId}/invites/clinicians':
@@ -704,6 +814,11 @@ paths:
       operationId: TriggerInitialMigration
       description: Trigger the initial migration
       x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TriggerMigration'
   '/v1/clinics/{clinicId}/migrations/{userId}':
     parameters:
       - $ref: ./clinic/parameters/clinicid.v1.yaml
@@ -749,7 +864,7 @@ paths:
         - clinic
       x-internal: true
       description: |-
-        Internal endpoint that deletes any user associations with clinics they are a patient or a member of. 
+        Internal endpoint that deletes any user associations with clinics they are a patient or a member of.
 
         If the user is a patient of a clinic the service will delete the patient-clinic relationship.
 
@@ -760,6 +875,163 @@ paths:
         - delete all non-custodial patient relationships of the clinic
         - keep all custodian relationships, allowing users to claim custodial accounts with an email
         - keep all custodian accounts and data even if they can’t be claimed when there isn’t an email address associated with the account
+    post:
+      summary: Update User Details
+      operationId: UpdateClinicUserDetails
+      responses:
+        '204':
+          description: No Content
+      description: Internal endpoint to update clinician details. In the future it may be extended to support patient updates.
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDetails'
+  /v1/clinicians:
+    get:
+      summary: List All Clinicians
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClinicianClinicRelationship'
+      operationId: ListAllClinicians
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/createdTimeStart'
+        - $ref: '#/components/parameters/createdTimeEnd'
+      description: Returns list of all clinician/clinic relationships in the system. Internal endpoint used for reporting purposes.
+      x-internal: true
+  '/v1/patients/{patientId}/summary':
+    parameters:
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: UpdatePatientSummary
+      operationId: UpdatePatientSummary
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Internal endpoint which updates the summary in all patient records which match the user id.
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientSummary'
+            examples:
+              example-1:
+                value:
+                  lastUpdatedDate: '2019-08-24T14:15:22Z'
+                  firstData: '2019-08-24T14:15:22Z'
+                  lastData: '2019-08-24T14:15:22Z'
+                  lastUploadDate: '2019-08-24T14:15:22Z'
+                  outdatedSince: '2019-08-24T14:15:22Z'
+                  averageGlucose:
+                    units: mmol/l
+                    value: 105
+                  glucoseManagementIndicator: 0.06
+                  percentTimeInTarget: 0.7
+                  percentTimeInHigh: 0.1
+                  percentTimeInVeryHigh: 0.1
+                  percentTimeInLow: 0.05
+                  percentTimeInVeryLow: 0.05
+                  percentTimeCGMUse: 0.9
+                  highGlucoseThreshold: 0
+                  lowGlucoseThreshold: 0
+        description: ''
+  '/v1/patients/{userId}/data_sources':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    put:
+      summary: Create or update a data source for a patient
+      operationId: UpdatePatientDataSources
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Internal endpoint to upsert patient data source provider details in all their associated clinic records.
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSources'
+  '/v1/clinics/{clinicId}/tier':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Update Tier
+      operationId: UpdateTier
+      responses:
+        '200':
+          description: OK
+      description: Internal endpoint to update clinic service tier
+      x-internal: true
+      tags:
+        - clinic
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTier'
+  '/v1/clinics/{clinicId}/patients/{patientId}/upload_reminder':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Send Upload Reminder
+      operationId: SendUploadReminder
+      responses:
+        '200':
+          description: OK
+      description: Sends upload reminder to the patient
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patients/{patientId}/send_dexcom_connect_request':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Resend dexcom connect request email
+      operationId: SendDexcomConnectRequest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Resend dexcom connect request to the email address of the patient
+      tags:
+        - clinic
+  '/v1/clinics/{clinicId}/patients/delete_tag/{patientTagId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    delete:
+      summary: Delete Patient Tag From Clinic Patients
+      operationId: DeletePatientTagFromClinicPatients
+      responses:
+        '200':
+          description: OK
+      description: Delete a patient tag from all clinic patients
+      x-internal: true
+      tags:
+        - clinic
 components:
   schemas:
     Error:
@@ -782,6 +1054,20 @@ components:
       type: array
       items:
         $ref: ./clinic/models/patient.v1.yaml
+    PatientTag:
+      $ref: ./clinic/models/patienttag.v1.yaml
+    PatientTags:
+      type: array
+      items:
+        $ref: '#/components/schemas/PatientTag'
+    DateTime:
+      $ref: ./common/models/datetime.v1.yaml
+    DataSource:
+      $ref: ./clinic/models/datasource.v1.yaml
+    DataSources:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:
@@ -820,6 +1106,8 @@ components:
           type: boolean
         legacyClinicianId:
           $ref: '#/components/schemas/TidepoolUserId'
+        attestationSubmitted:
+          type: boolean
     AssociateClinicianToUser:
       title: Associate Clinician
       type: object
@@ -862,6 +1150,10 @@ components:
           type: string
           format: date-time
           readOnly: true
+        attestationTime:
+          type: string
+          format: date-time
+          readOnly: true
       required:
         - userId
         - createdTime
@@ -895,6 +1187,38 @@ components:
           $ref: '#/components/schemas/Patients'
         meta:
           $ref: '#/components/schemas/Meta'
+    UpdateUserDetails:
+      title: UpdateUserDetails
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+    TriggerMigration:
+      title: TriggerMigration
+      type: object
+      properties:
+        attestationSubmitted:
+          type: boolean
+    PatientSummary:
+      $ref: ./clinic/models/patientsummary.v1.yaml
+    PatientSummaryPeriods:
+      $ref: ./clinic/models/patientsummaryperiods.v1.yaml
+    PatientSummaryPeriod:
+      $ref: ./clinic/models/patientsummaryperiod.v1.yaml
+    AverageGlucose:
+      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
+    UpdateTier:
+      title: UpdateTier
+      type: object
+      properties:
+        tier:
+          $ref: '#/components/schemas/Tier'
+      required:
+        - tier
+    Tier:
+      $ref: ./clinic/models/tier.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -936,6 +1260,13 @@ components:
       schema:
         type: string
         pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+    patientTagId:
+      name: patientTagId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-f0-9]{24}$'
     userId:
       name: userId
       in: path
@@ -983,6 +1314,22 @@ components:
         type: string
         pattern: '(?:-|\+)(?:[a-zA-Z]|_)+'
       description: Sort order and attribute (e.g. +name or -name)
+    createdTimeStart:
+      name: createdTimeStart
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+      description: Return records created after the given date (inclusive)
+    createdTimeEnd:
+      name: createdTimeEnd
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+      description: Return records created before the given date (exclusive)
 tags:
   - name: auth
     description: Tidepool Authentication

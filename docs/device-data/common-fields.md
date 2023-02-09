@@ -4,7 +4,7 @@
 
 1. [Quick summary](#quick-summary)
 2. [Clock drift offset](#clock-drift-offset-clockdriftoffset)
-3. [Conversion offset](#conversion-offset-conversionoffet)
+3. [Conversion offset](#conversion-offset-conversionoffset)
 4. [Created time](#created-time-createdtime)
 5. [Device ID](#device-id-deviceid)
 6. [Device time](#device-time-devicetime)

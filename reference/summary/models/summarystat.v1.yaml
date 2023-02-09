@@ -1,0 +1,53 @@
+type: object
+x-stoplight:
+  id: rul58weln9wr3
+title: summaryperiod.v1
+description: ''
+properties:
+  deviceId:
+    type: string
+  date:
+    type: string
+    format: date-time
+  lastRecordTime:
+    type: string
+    format: date-time
+  timeInTargetMinutes:
+    type: number
+    x-go-type: int
+  timeInTargetRecords:
+    type: number
+    x-go-type: int
+  timeInHighMinutes:
+    type: number
+    x-go-type: int
+  timeInHighRecords:
+    type: number
+    x-go-type: int
+  timeInVeryHighMinutes:
+    type: number
+    x-go-type: int
+  timeInVeryHighRecords:
+    type: number
+    x-go-type: int
+  timeInLowMinutes:
+    type: number
+    x-go-type: int
+  timeInLowRecords:
+    type: number
+    x-go-type: int
+  timeInVeryLowMinutes:
+    type: number
+    x-go-type: int
+  timeInVeryLowRecords:
+    type: number
+    x-go-type: int
+  totalGlucose:
+    type: number
+    x-go-type: float64
+  timeCGMUseMinutes:
+    type: number
+    x-go-type: int
+  timeCGMUseRecords:
+    type: number
+    x-go-type: int

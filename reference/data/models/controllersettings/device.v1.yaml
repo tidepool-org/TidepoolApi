@@ -1,0 +1,47 @@
+title: Controller Settings Device
+description: The device for the controller settings.
+allOf:
+  - type: object
+    properties:
+      firmwareVersion:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: '1.2'
+      hardwareVersion:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: 2.3r45
+      manufacturers:
+        type: array
+        items:
+          type: string
+          maxLength: 100
+          minLength: 1
+        maxLength: 10
+        minLength: 1
+        example:
+          - Acme
+      model:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: Super Controller
+      name:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: My Controller
+      serialNumber:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: '1234567890'
+      softwareVersion:
+        type: string
+        maxLength: 100
+        minLength: 1
+        example: 3.4.5
+x-tags:
+  - Data

@@ -4,57 +4,128 @@ allOf:
   - $ref: './base.v1.yaml'
   - type: object
     properties:
-      reservoirRemaining:
+      type:
+        type: string
+        enum:
+          - pumpStatus
+      basalDelivery:
         type: object
         properties:
-          startDate:
+          state:
             type: string
-            format: date
-          amount:
-            type: number
-            minimum: 0
-            maximum: 1000
+            enum:
+              - cancelingTemporary
+              - initiatingTemporary
+              - resuming
+              - scheduled
+              - suspended
+              - suspending
+              - temporary
+            example: temporary
+          time:
+            type: string
+            format: date-time
+          dose:
+            type: object
+            properties:
+              startTime:
+                type: string
+                format: date-time
+              endTime:
+                type: string
+                format: date-time
+              rate:
+                type: number
+                format: double
+                minimum: 0
+                maximum: 100
+                example: 1.25
+              amountDelivered:
+                type: number
+                format: double
+                minimum: 0
+                maximum: 1000
+                example: 0
+            required:
+              - rate
         required:
-          - startDate
-          - amount
+          - state
       battery:
         type: object
         properties:
-          unit:
+          time:
             type: string
-          value:
+            format: date-time
+          state:
+            type: string
+            enum:
+              - charging
+              - full
+              - unplugged
+          remaining:
             type: number
-        required:
-          - unit
-          - value
-      basalDeliveryState:
-        type: string
-      bolusState:
-        type: string
-      signalStrength:
+            format: double
+            minimum: 0
+            maximum: 1
+            example: 0.75
+          units:
+            type: string
+            enum:
+              - percent
+      bolusDelivery:
         type: object
         properties:
-          unit:
+          state:
             type: string
-          value:
-            type: number
+            enum:
+              - canceling
+              - delivering
+              - initiating
+              - none
+            example: delivering
+          dose:
+            type: object
+            properties:
+              startTime:
+                type: string
+                format: date-time
+              amount:
+                type: number
+                format: double
+                minimum: 0
+                maximum: 1000
+                example: 4.5
+              amountDelivered:
+                type: number
+                format: double
+                minimum: 0
+                maximum: 1000
+                example: 1.75
+            required:
+              - amount
         required:
-          - unit
-          - value
-      device:
+          - state
+      deliveryIndeterminant:
+        type: boolean
+        example: false
+      reservoir:
         type: object
         properties:
-          deviceId:
-            $ref: './deviceid.v1.yaml'
-          manufacturer:
+          time:
             type: string
-            minLength: 1
-          model:
+            format: date-time
+          remaining:
+            type: number
+            format: double
+            minimum: 0
+            maximum: 10000
+            example: 68
+          units:
             type: string
-            minLength: 1
+            enum:
+              - Units
         required:
-          - deviceId
-          - manufacturer
-          - model
+          - remaining
+          - units
 x-tags:
   - Data
