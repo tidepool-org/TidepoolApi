@@ -55,9 +55,8 @@ paths:
     post:
       operationId: UploadDeviceLogs
       summary: Upload new device logs as binary blobs
-      description: Uploads a new device logs binary blob to the user's account. The `Content-Type` and the `Digest` headers must represent the media type and MD5 hash of the binary blob content, respectively.
+      description: Uploads a new device logs binary blob to the user's account. The `Digest` header must represent the MD5 hash of the binary blob content.
       parameters:
-        - $ref: ./common/parameters/contenttype.v1.yaml
         - $ref: ./common/parameters/digestmd5.v1.yaml
         - schema:
             type: string
@@ -79,7 +78,7 @@ paths:
         description: Binary blob
         required: true
         content:
-          '*/*':
+          'application/json; charset=utf-8':
             schema:
               $ref: ./blob/models/content.v1.yaml
             examples:
