@@ -17,7 +17,6 @@ sequenceDiagram
     link Web: https://app.tidepool.org @ https://app.tidepool.org
     participant Platform as Tidepool Platform
     link Platform: https://api.tidepool.org @ https://api.tidepool.org
-    participant Database as MongoDB Atlas
     actor Careteam as Bob
 
     Careteam->>PWD: Provide email address
@@ -27,7 +26,7 @@ sequenceDiagram
     activate Web
     Web->>Platform: Send invitation
     activate Platform
-    Platform->>Database: Create invitation
+    Platform->>Platform: Create invitation
     Platform->>Careteam: Send invitation email to Bob
     Platform->>Web: OK
     deactivate Platform
@@ -40,8 +39,8 @@ sequenceDiagram
     activate Web
     Web->>Platform: Update invitation
     activate Platform
-    Platform->>Database: Update invitation
-    Platform->>Database: Create permission
+    Platform->>Platform: Update invitation
+    Platform->>Platform: Create permission
     Platform->>Web: OK
     deactivate Platform
     Web->>Careteam: OK
@@ -53,7 +52,7 @@ sequenceDiagram
     activate Web
     Web->>Platform: Delete permission
     activate Platform
-    Platform->>Database: Delete permission
+    Platform->>Platform: Delete permission
     note over Careteam: Bob can no longer access Alice's data
     Platform->>Web: OK
     deactivate Platform

@@ -17,7 +17,6 @@ sequenceDiagram
     link Web: https://app.tidepool.org @ https://app.tidepool.org
     participant Platform as Tidepool Platform
     link Platform: https://api.tidepool.org @ https://api.tidepool.org
-    participant Database as MongoDB Atlas
     actor Clinic as Seastar Endocrinology
 
     Clinic->>PWD: Provide share code
@@ -27,7 +26,7 @@ sequenceDiagram
     activate Web
     Web->>Platform: Send invitation
     activate Platform
-    Platform->>Database: Create invitation
+    Platform->>Platform: Create invitation
     Platform->>Clinic: Send invitation email to clinic staff
     note over Clinic: Pending invitations also appear in TP Web
     Platform->>Web: OK
@@ -45,8 +44,8 @@ sequenceDiagram
     end
     Web->>Platform: Update invitation
     activate Platform
-    Platform->>Database: Update invitation
-    Platform->>Database: Create permission
+    Platform->>Platform: Update invitation
+    Platform->>Platform: Create permission
     Platform->>Web: OK
     deactivate Platform
     Web->>Clinic: OK
@@ -58,7 +57,7 @@ sequenceDiagram
     activate Web
     Web->>Platform: Delete permission
     activate Platform
-    Platform->>Database: Delete permission
+    Platform->>Platform: Delete permission
     note over Clinic: Clinicians can no longer access Alice's data
     Platform->>Web: OK
     deactivate Platform

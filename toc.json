@@ -53,6 +53,27 @@
     },
     {
       "type": "group",
+      "title": "Data Sharing",
+      "items": [
+        {
+          "type": "item",
+          "title": "Overview",
+          "uri": "docs/data-sharing.md"
+        },
+        {
+          "type": "item",
+          "title": "Sharing with People",
+          "uri": "docs/data-sharing/people.md"
+        },
+        {
+          "type": "item",
+          "title": "Sharing with Clinics",
+          "uri": "docs/data-sharing/clinics.md"
+        }
+      ]
+    },
+    {
+      "type": "group",
       "title": "Date/Time Guide",
       "items": [
         {
@@ -288,6 +309,11 @@
               "type": "item",
               "title": "Device Status (`deviceStatus`)",
               "uri": "docs/device-data/data-types/device-status.md"
+            },
+            {
+              "type": "item",
+              "title": "Dosing Decisions (`dosingDecision`)",
+              "uri": "docs/device-data/data-types/dosing-decision.md"
             },
             {
               "type": "group",
