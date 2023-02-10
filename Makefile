@@ -210,7 +210,7 @@ check_specs: $(SOURCE_SPECS)
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
 $(SOURCE_SPECS):
-	@if [ ${dir $@} == $(SPEC_FOLDER)/ ]; then \
+	@if [ "${dir $@}" = "$(SPEC_FOLDER)/" ]; then \
 		$(SWAGGER_TOOL) validate $@; \
 	fi
 	$(CHECK_SPEC_TOOL) lint --quiet --ignore-unknown-format $@
