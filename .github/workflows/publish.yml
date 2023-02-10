@@ -8,7 +8,7 @@ jobs:
   check:
     strategy:
       matrix:
-        target: [ check_docs, check_specs ]
+        target: [ check_docs, check_specs, check_toc ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

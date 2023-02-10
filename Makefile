@@ -113,7 +113,7 @@ $(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVA
 	mkdir -p $@
 
 .PHONY: install_tools
-install_tools: install_check_env install_check_tools install_publish_tools
+install_tools: install_check_env install_check_tools install_prepare_tools install_publish_tools
 
 .PHONY: install_check_env
 install_check_env:
@@ -129,9 +129,8 @@ install_check_tools:
 	npm install --location=global markdown-link-check@3.10.3
 	npm install --location=global @stoplight/spectral-cli@6.6.0
 
-.PHONY: install_publish_tools
-install_publish_tools:
-	npm install --location=global @stoplight/cli@6.0.1280
+.PHONY: install_prepare_tools
+install_prepare_tools:
 	npm install --location=global openapi-merge-cli@1.3.1
 ifeq ($(PLATFORM),Darwin)
 	brew install jsonnet@0.19.1
@@ -139,6 +138,10 @@ endif
 ifeq ($(PLATFORM),Linux)
 	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
 endif
+
+.PHONY: install_publish_tools
+install_publish_tools:
+	npm install --location=global @stoplight/cli@6.0.1280
 
 .PHONY: install_codegen_tools
 install_codegen_tools:
@@ -157,10 +160,13 @@ check_check_tools:
 	$(CHECK_DOC_LINK_TOOL) --version
 	$(CHECK_SPEC_TOOL) --version
 
-.PHONY: check_publish_tools
-check_publish_tools: check_env
+.PHONY: check_prepare_tools
+check_prepare_tools:
 	$(JSON_TOOL) --version
 	$(MERGE_SPEC_TOOL) --version
+
+.PHONY: check_publish_tools
+check_publish_tools: check_env
 	$(PUBLISH_TOOL) --version
 
 .PHONY: check_codegen_tools
