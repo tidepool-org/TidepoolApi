@@ -3,9 +3,7 @@ name: check-and-publish
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      - master
+    branches: [ master, main ]
 
 jobs:
   check:
