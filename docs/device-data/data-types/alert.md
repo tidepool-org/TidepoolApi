@@ -15,7 +15,7 @@
 9. [Sound Name (`soundName`)](#sound-name-soundname)
 10. [Issued Time (`issuedTime`)](#issued-time-issuedtime)
 11. [Acknowledged Time (`acknowledgedTime`)](#acknowledged-time-acknowledgedtime)
-12. [Retracted Time (`retracedTime`)](#retracted-time-retracedtime)
+12. [Retracted Time (`retractedTime`)](#retracted-time-retractedtime)
 13. [Keep Reading](#keep-reading)
 
 ---
@@ -72,7 +72,7 @@ The time the alert was issued (aka created).
 
 The time the alert was first acknowledged by the user after it was presented.
 
-## Retracted Time (`retracedTime`)
+## Retracted Time (`retractedTime`)
 
 The time the alert was retracted after it was presented.
 

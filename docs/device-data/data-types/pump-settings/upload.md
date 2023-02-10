@@ -8,7 +8,7 @@
 2. [Type (`type`)](#type-type)
 3. [By User (`byUser`)](#by-user-byuser)
 4. [Computer Time (`computerTime`)](#computer-time-computertime)
-5. [Device Manufacturers (`deviceManufacurers`)](#device-manufacturers-devicemanufacurers)
+5. [Device Manufacturers (`deviceManufacturers`)](#device-manufacturers-devicemanufacturers)
 6. [Device Model (`deviceModel`)](#device-model-devicemodel)
 7. [Device Serial Number (`deviceSerialNumber`)](#device-serial-number-deviceserialnumber)
 8. [Device Tags (`deviceTags`)](#device-tags-devicetags)
@@ -39,7 +39,7 @@ The fields under this type are:
 2. [Type (`type`)](#type-type)
 3. [By User (`byUser`)](#by-user-byuser)
 4. [Computer Time (`computerTime`)](#computer-time-computertime)
-5. [Device Manufacturers (`deviceManufacurers`)](#device-manufacturers-devicemanufacurers)
+5. [Device Manufacturers (`deviceManufacturers`)](#device-manufacturers-devicemanufacturers)
 6. [Device Model (`deviceModel`)](#device-model-devicemodel)
 7. [Device Serial Number (`deviceSerialNumber`)](#device-serial-number-deviceserialnumber)
 8. [Device Tags (`deviceTags`)](#device-tags-devicetags)
@@ -66,7 +66,7 @@ There are some cases where it is perfectly justified to select a timezone that d
 
 ---
 
-## Device Manufacturers (`deviceManufacurers`)
+## Device Manufacturers (`deviceManufacturers`)
 
 To avoid confusion resulting from referring to a single manufacturer with more than one name — for example, using both "Minimed" and "Medtronic" interchangeably — Tidepool restricts device manufacturer string "tags" to those detailed in the quick summary above and enforces exact string matches (including casing).
 

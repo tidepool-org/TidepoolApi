@@ -296,6 +296,16 @@ paths:
           in: query
           name: summary.lastUploadDateTo
           description: Exclusive
+        - schema:
+            type: array
+            items:
+              type: string
+              format: '^[a-f0-9]{24}$'
+          in: query
+          name: tags
+          description: Comma-separated list of patient tag IDs
+          style: form
+          explode: false
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -313,6 +323,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Patient'
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/patient_tags':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Create Patient Tag
+      operationId: CreatePatientTag
+      responses:
+        '200':
+          description: OK
+      description: Create a new patient tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientTag'
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
@@ -415,6 +442,33 @@ paths:
         '204':
           description: No Content
       description: Deletes patient from a clinic. Requires the request to be made by a clinic admin or the currently authenticated user id to match the patient id.
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/patient_tags/{patientTagId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    put:
+      summary: Update Patient Tag
+      operationId: UpdatePatientTag
+      responses:
+        '200':
+          description: OK
+      description: Update existing patient tag
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientTag'
+    delete:
+      summary: Delete Patient Tag
+      operationId: DeletePatientTag
+      responses:
+        '200':
+          description: OK
+      description: Removes a patient tag from a clinic and tagged patients
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/invites/clinicians':
@@ -820,7 +874,7 @@ paths:
         - Clinics
         - Internal
       description: |-
-        Internal endpoint that deletes any user associations with clinics they are a patient or a member of. 
+        Internal endpoint that deletes any user associations with clinics they are a patient or a member of.
 
         If the user is a patient of a clinic the service will delete the patient-clinic relationship.
 
@@ -909,6 +963,26 @@ paths:
                   highGlucoseThreshold: 0
                   lowGlucoseThreshold: 0
         description: ''
+  '/v1/patients/{userId}/data_sources':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    put:
+      summary: Create or update a data source for a patient
+      operationId: UpdatePatientDataSources
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      description: Internal endpoint to upsert patient data source provider details in all their associated clinic records.
+      tags:
+        - Clinics
+        - Internal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataSources'
   '/v1/clinics/{clinicId}/tier':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -940,6 +1014,37 @@ paths:
       description: Sends upload reminder to the patient
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/patients/{patientId}/send_dexcom_connect_request':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Resend Dexcom connect request email
+      operationId: SendDexcomConnectRequest
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+      description: Resend Dexcom connect request to the email address of the patient
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/patients/delete_tag/{patientTagId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    delete:
+      summary: Delete Patient Tag From Clinic Patients
+      operationId: DeletePatientTagFromClinicPatients
+      responses:
+        '200':
+          description: OK
+      description: Delete a patient tag from all clinic patients
+      tags:
+        - Clinics
+        - Internal
 components:
   schemas:
     Error:
@@ -962,6 +1067,20 @@ components:
       type: array
       items:
         $ref: ./clinic/models/patient.v1.yaml
+    PatientTag:
+      $ref: ./clinic/models/patienttag.v1.yaml
+    PatientTags:
+      type: array
+      items:
+        $ref: '#/components/schemas/PatientTag'
+    DateTime:
+      $ref: ./common/models/datetime.v1.yaml
+    DataSource:
+      $ref: ./clinic/models/datasource.v1.yaml
+    DataSources:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
     InviteClinician:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:
@@ -1154,6 +1273,13 @@ components:
       schema:
         type: string
         pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
+    patientTagId:
+      name: patientTagId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-f0-9]{24}$'
     userId:
       name: userId
       in: path
