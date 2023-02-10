@@ -27,7 +27,9 @@
 # Do NOT commit plaintext versions of these tokens environment variables into the repository!
 #
 
+#
 # import .env file, if one exists in the same folder
+#
 -include .env
 
 PLATFORM = ${shell uname -s}
@@ -47,10 +49,10 @@ DOC_FOLDER = docs
 SPEC_FOLDER = reference
 TEMPLATE_FOLDER = templates
 SOURCE_TOC = toc.json
-SOURCE_TOC_DOCS = ${shell awk '/"uri":.+\.md/ { print $$2 }' $(SOURCE_TOC) | tr '\n"' ' '}
+SOURCE_TOC_DOCS = ${shell awk '/"uri":.+\.md/ { print $$2 }' $(SOURCE_TOC) | tr '\n"' ' ' | sort}
 SOURCE_DOCS = ${shell find $(DOC_FOLDER) -type f -iname '*.md' | sort}
 SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | sort}
-SOURCE_SPECS_TOP_LEVEL = ${notdir ${shell find $(SPEC_FOLDER) \( -type d -or -iname '*.yaml' \) -mindepth 1 -maxdepth 1 | sort}}
+SOURCE_SPECS_TOP_LEVEL = ${shell find $(SPEC_FOLDER) -mindepth 1 -maxdepth 1 \( -type d -or -iname '*.yaml' \) | sort}
 MERGE_CONFIG_TEMPLATE = $(TEMPLATE_FOLDER)/openapi-merge.jsonnet
 MERGE_CONFIG = openapi-merge.json
 MERGED_SPEC = combined.v1.yaml
@@ -66,7 +68,7 @@ CLIENT_CODEGEN_FOLDER = $(BUILD_FOLDER)/client
 PUBLIC_DOC_FOLDER   = $(PUBLIC_FOLDER)/$(DOC_FOLDER)
 PUBLIC_SPEC_FOLDER  = $(PUBLIC_FOLDER)/$(SPEC_FOLDER)
 PUBLIC_TOC          = $(PUBLIC_FOLDER)/$(SOURCE_TOC)
-PUBLIC_SPECS        = ${addprefix $(PUBLIC_SPEC_FOLDER)/,$(SOURCE_SPECS_TOP_LEVEL)}
+PUBLIC_SPECS        = ${subst $(SPEC_FOLDER),$(PUBLIC_SPEC_FOLDER),$(SOURCE_SPECS_TOP_LEVEL)}
 PUBLIC_MERGE_CONFIG = $(PUBLIC_SPEC_FOLDER)/$(MERGE_CONFIG)
 PUBLIC_MERGED_SPEC  = $(PUBLIC_SPEC_FOLDER)/$(MERGED_SPEC)
 
@@ -74,9 +76,13 @@ PUBLIC_MERGED_SPEC  = $(PUBLIC_SPEC_FOLDER)/$(MERGED_SPEC)
 PRIVATE_DOC_FOLDER   = $(PRIVATE_FOLDER)/$(DOC_FOLDER)
 PRIVATE_SPEC_FOLDER  = $(PRIVATE_FOLDER)/$(SPEC_FOLDER)
 PRIVATE_TOC          = $(PRIVATE_FOLDER)/$(SOURCE_TOC)
-PRIVATE_SPECS        = ${addprefix $(PRIVATE_SPEC_FOLDER)/,$(SOURCE_SPECS_TOP_LEVEL)}
+PRIVATE_SPECS        = ${subst $(SPEC_FOLDER),$(PRIVATE_SPEC_FOLDER),$(SOURCE_SPECS_TOP_LEVEL)}
 PRIVATE_MERGE_CONFIG = $(PRIVATE_SPEC_FOLDER)/$(MERGE_CONFIG)
 PRIVATE_MERGED_SPEC  = $(PRIVATE_SPEC_FOLDER)/$(MERGED_SPEC)
+
+#############################################################################
+# functions
+#############################################################################
 
 # Check that given variables are set and all have non-empty values,
 # die with an error otherwise.
@@ -204,18 +210,21 @@ check_specs: $(SOURCE_SPECS)
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
 $(SOURCE_SPECS):
+	@if [ ${dir $@} == $(SPEC_FOLDER)/ ]; then \
+		$(SWAGGER_TOOL) validate $@; \
+	fi
 	$(CHECK_SPEC_TOOL) lint --quiet --ignore-unknown-format $@
 
 .PHONY: check_toc
 check_toc: $(SOURCE_TOC)
 	@echo ===============================================================
-	@echo Check that all files listed in \'$(SOURCE_TOC)\' exist
+	@echo Check that all ${words $(SOURCE_TOC_DOCS)} files listed in \'$(SOURCE_TOC)\' exist
 	@echo ===============================================================
-	@echo $(SOURCE_TOC_DOCS) | xargs -I% sh -c '[[ -f % ]] && echo % || echo % -- FILE NOT FOUND'
+	@ls -1 $(SOURCE_TOC_DOCS)
 	@echo ===============================================================
 	@echo Differences between \'$(SOURCE_TOC)\' and documentation files in \'$(DOC_FOLDER)\'
 	@echo ===============================================================
-	@echo $(SOURCE_DOCS) $(SOURCE_TOC_DOCS) | tr ' ' '\n' | sort | uniq -u | xargs -I% sh -c 'echo %; exit 1'
+	@echo $(SOURCE_TOC_DOCS) $(SOURCE_DOCS) | tr ' ' '\n' | sort | uniq -u | grep . && exit 1 || echo no differences detected
 
 .PHONY: list_files
 list_files: list_docs list_specs
@@ -225,14 +234,14 @@ list_docs:
 	@echo ===============================================================
 	@echo Documentation Files \(${words $(SOURCE_DOCS)}\)
 	@echo ===============================================================
-	@echo $(SOURCE_DOCS) | xargs -n1
+	@ls -1 $(SOURCE_DOCS)
 
 .PHONY: list_specs
 list_specs:
 	@echo ===============================================================
 	@echo API Specification Files \(${words $(SOURCE_SPECS)}\)
 	@echo ===============================================================
-	@echo $(SOURCE_SPECS) | xargs -n1
+	@ls -1 $(SOURCE_SPECS)
 
 .PHONY: prepare
 prepare: prepare_public prepare_private
@@ -270,7 +279,7 @@ public_specs: $(PUBLIC_MERGED_SPEC)
 $(PUBLIC_MERGED_SPEC): $(PUBLIC_MERGE_CONFIG) $(PUBLIC_SPECS)
 	cd $(PUBLIC_SPEC_FOLDER) && $(MERGE_SPEC_TOOL)
 
-$(PUBLIC_MERGE_CONFIG): $(MERGE_CONFIG_TEMPLATE) | ${dir $(PUBLIC_MERGE_CONFIG)}
+$(PUBLIC_MERGE_CONFIG): $(MERGE_CONFIG_TEMPLATE) | $(PUBLIC_SPEC_FOLDER)
 	$(JSON_TOOL) --ext-str excludeTags="Internal" \
 		--ext-str sourceFolder=./ \
 		--ext-str outputFile=${notdir $(PUBLIC_MERGED_SPEC)} \
@@ -286,7 +295,7 @@ private_specs: $(PRIVATE_MERGED_SPEC)
 $(PRIVATE_MERGED_SPEC): $(PRIVATE_MERGE_CONFIG) $(PRIVATE_SPECS)
 	cd $(PRIVATE_SPEC_FOLDER) && $(MERGE_SPEC_TOOL)
 
-$(PRIVATE_MERGE_CONFIG): $(MERGE_CONFIG_TEMPLATE) | ${dir $(PRIVATE_MERGE_CONFIG)}
+$(PRIVATE_MERGE_CONFIG): $(MERGE_CONFIG_TEMPLATE) | $(PRIVATE_SPEC_FOLDER)
 	$(JSON_TOOL) --ext-str excludeTags="" \
 		--ext-str sourceFolder=./ \
 		--ext-str outputFile=${notdir $(PRIVATE_MERGED_SPEC)} \

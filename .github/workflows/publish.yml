@@ -1,32 +1,18 @@
 name: publish
 
 on:
-  push:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
-  check:
-    strategy:
-      matrix:
-        target: [ check_docs, check_specs, check_toc ]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - name: Setup script environment
-        run: |
-            make install_check_tools check_check_tools
-      - name: Check the documentation
-        run: |
-            make ${{ matrix.target }}
-
   publish:
     strategy:
       matrix:
         target: [ publish_public, publish_private ]
-    needs: [ check ]
+    uses: ./.github/workflows/check.yml
     runs-on: ubuntu-latest
     env:
       PUBLIC_STOPLIGHT_TOKEN: ${{ secrets.PUBLIC_STOPLIGHT_TOKEN }}
@@ -42,6 +28,6 @@ jobs:
       - name: Setup script environment
         run: |
             make install_publish_tools check_publish_tools
-      - name: Publish the documentation
+      - name: Run ${{ matrix.target }}
         run: |
             make ${{ matrix.target }}
