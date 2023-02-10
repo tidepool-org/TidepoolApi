@@ -7,7 +7,9 @@ on:
 jobs:
   check:
     uses: ./.github/workflows/check.yml
+    secrets: inherit
 
   publish:
     needs: [ check ]
     uses: ./.github/workflows/publish.yml
+    secrets: inherit
