@@ -119,7 +119,7 @@ $(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVA
 	mkdir -p $@
 
 .PHONY: install_tools
-install_tools: install_check_env install_check_tools install_prepare_tools install_publish_tools
+install_tools: install_check_env install_tools
 
 .PHONY: install_check_env
 install_check_env:
@@ -129,55 +129,33 @@ ifeq ($(PLATFORM),Darwin)
 	brew --version
 endif
 
-.PHONY: install_check_tools
-install_check_tools:
+.PHONY: install_tools
+install_tools:
 	npm install --location=global markdownlint-cli@0.33.0
 	npm install --location=global markdown-link-check@3.10.3
 	npm install --location=global @stoplight/spectral-cli@6.6.0
-
-.PHONY: install_prepare_tools
-install_prepare_tools:
+	npm install --location=global @stoplight/cli@6.0.1280
+	npm install --location=global @apidevtools/swagger-cli@4.0.4
 	npm install --location=global openapi-merge-cli@1.3.1
 ifeq ($(PLATFORM),Darwin)
 	brew install jsonnet@0.19.1
-endif
-ifeq ($(PLATFORM),Linux)
+else ifeq ($(PLATFORM),Linux)
 	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
 endif
-
-.PHONY: install_publish_tools
-install_publish_tools:
-	npm install --location=global @stoplight/cli@6.0.1280
-
-.PHONY: install_codegen_tools
-install_codegen_tools:
-	npm install --location=global @apidevtools/swagger-cli@4.0.4
 	go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
 
 .PHONY: check
 check: check_tools check_files check_toc
 
 .PHONY: check_tools
-check_tools: check_check_tools check_publish_tools check_codegen_tools
-
-.PHONY: check_check_tools
-check_check_tools:
+check_tools:
 	$(CHECK_DOC_FORMAT_TOOL) --version
 	$(CHECK_DOC_LINK_TOOL) --version
 	$(CHECK_SPEC_TOOL) --version
-
-.PHONY: check_prepare_tools
-check_prepare_tools:
+	$(SWAGGER_TOOL) --version
 	$(JSON_TOOL) --version
 	$(MERGE_SPEC_TOOL) --version
-
-.PHONY: check_publish_tools
-check_publish_tools: check_env
 	$(PUBLISH_TOOL) --version
-
-.PHONY: check_codegen_tools
-check_codegen_tools:
-	$(SWAGGER_TOOL) --version
 	$(CODEGEN_TOOL) --version
 
 .PHONY: check_env
