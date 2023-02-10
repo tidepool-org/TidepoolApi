@@ -137,13 +137,13 @@ ifeq ($(PLATFORM),Darwin)
 	brew install jsonnet@0.19.1
 endif
 ifeq ($(PLATFORM),Linux)
-	go install github.com/google/go-jsonnet/cmd/jsonnet@0.19.1
+	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
 endif
 
 .PHONY: install_codegen_tools
 install_codegen_tools:
 	npm install --location=global @apidevtools/swagger-cli@4.0.4
-	go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@1.11.0
+	go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
 
 .PHONY: check
 check: check_tools check_files check_toc
