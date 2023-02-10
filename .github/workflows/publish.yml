@@ -2,17 +2,13 @@ name: publish
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-      - master
+  workflow_call:
 
 jobs:
   publish:
     strategy:
       matrix:
         target: [ publish_public, publish_private ]
-    uses: ./.github/workflows/check.yml
     runs-on: ubuntu-latest
     env:
       PUBLIC_STOPLIGHT_TOKEN: ${{ secrets.PUBLIC_STOPLIGHT_TOKEN }}

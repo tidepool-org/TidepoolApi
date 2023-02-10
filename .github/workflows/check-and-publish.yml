@@ -1,0 +1,16 @@
+name: check-and-publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  check:
+    uses: ./.github/workflows/check.yml
+
+  publish:
+    needs: [ check ]
+    uses: ./.github/workflows/publish.yml
