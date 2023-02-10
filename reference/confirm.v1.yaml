@@ -174,7 +174,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
 
@@ -399,17 +399,11 @@ components:
     Acceptance:
       $ref: './confirm/models/acceptance.v1.yaml'
 
-    TidepoolUserId:
-      $ref: './common/models/tidepooluserid.yaml'
-
     ClinicId:
       $ref: './clinic/models/clinicid.v1.yaml'
 
     EmailAddress:
       $ref: ./common/models/emailaddress.v1.yaml
-
-    DateTime:
-      $ref: ./common/models/datetime.v1.yaml
 
     Key:
       $ref: ./confirm/models/key.v1.yaml
