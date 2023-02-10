@@ -1,0 +1,23 @@
+name: check
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  check:
+    strategy:
+      matrix:
+        target: [ check_docs, check_specs, check_toc ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Setup script environment
+        run: |
+            make install_check_tools check_check_tools
+      - name: Run ${{ matrix.target }}
+        run: |
+            make ${{ matrix.target }}
