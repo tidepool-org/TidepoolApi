@@ -18,7 +18,7 @@ jobs:
           node-version: '16'
       - name: Setup script environment
         run: |
-            make install_check_tools check_check_tools
+            make install_tools check_tools
       - name: Run ${{ matrix.target }}
         run: |
             make ${{ matrix.target }}

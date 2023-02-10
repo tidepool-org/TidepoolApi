@@ -23,7 +23,7 @@ jobs:
           go-version: '>=1.17.0'
       - name: Setup script environment
         run: |
-            make install_publish_tools check_publish_tools
+            make install_tools check_tools
       - name: Run ${{ matrix.target }}
         run: |
             make ${{ matrix.target }}
