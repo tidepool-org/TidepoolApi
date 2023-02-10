@@ -211,11 +211,11 @@ check_toc: $(SOURCE_TOC)
 	@echo ===============================================================
 	@echo Check that all files listed in \'$(SOURCE_TOC)\' exist
 	@echo ===============================================================
-	@echo $(SOURCE_TOC_DOCS) | xargs -n1 -I% sh -c '[[ -f % ]] && echo % || echo % -- FILE NOT FOUND'
+	@echo $(SOURCE_TOC_DOCS) | xargs -I% sh -c '[[ -f % ]] && echo % || echo % -- FILE NOT FOUND'
 	@echo ===============================================================
 	@echo Differences between \'$(SOURCE_TOC)\' and documentation files in \'$(DOC_FOLDER)\'
 	@echo ===============================================================
-	@echo $(SOURCE_DOCS) $(SOURCE_TOC_DOCS) | tr ' ' '\n' | sort | uniq -u | xargs -n1 -I% sh -c 'echo %; exit 1'
+	@echo $(SOURCE_DOCS) $(SOURCE_TOC_DOCS) | tr ' ' '\n' | sort | uniq -u | xargs -I% sh -c 'echo %; exit 1'
 
 .PHONY: list_files
 list_files: list_docs list_specs
@@ -255,13 +255,13 @@ prepare_private: private_docs private_toc private_specs
 .PHONY: public_docs
 public_docs: $(PUBLIC_DOC_FOLDER)
 
-$(PUBLIC_DOC_FOLDER): | ${dir $(PUBLIC_DOC_FOLDER)}
+$(PUBLIC_DOC_FOLDER): | $(PUBLIC_FOLDER)
 	ln -sf ${abspath $(DOC_FOLDER)} $(@D)
 
 .PHONY: private_docs
 private_docs: $(PRIVATE_DOC_FOLDER)
 
-$(PRIVATE_DOC_FOLDER): | ${dir $(PRIVATE_DOC_FOLDER)}
+$(PRIVATE_DOC_FOLDER): | $(PRIVATE_FOLDER)
 	ln -sf ${abspath $(DOC_FOLDER)} $(@D)
 
 .PHONY: public_specs
