@@ -3,8 +3,6 @@ info:
   title: Confirmation API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
@@ -16,9 +14,6 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/hydrophone/blob/master/LICENSE
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/hydrophone
 
 servers:
@@ -36,7 +31,10 @@ servers:
     description: production
 
 tags:
-  - name: Confirm
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
+  - name: Confirmations
     description: >-
       Manage confirmations for account creation, sharing invites, etc.
 
@@ -63,7 +61,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
 
@@ -85,7 +83,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/accept/signup/{key}':
     parameters:
@@ -111,7 +109,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/dismiss/signup/{userId}':
     parameters:
@@ -132,7 +130,7 @@ paths:
         '404':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/signup/{userId}':
     parameters:
@@ -154,7 +152,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
     post:
@@ -176,7 +174,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
 
@@ -199,7 +197,7 @@ paths:
         '404':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/forgot/{email}':
     parameters:
@@ -221,7 +219,7 @@ paths:
         '400':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/accept/forgot':
     put:
@@ -246,7 +244,7 @@ paths:
         '404':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/send/invite/{userId}':
     parameters:
@@ -273,7 +271,7 @@ paths:
       security:
         - sessionToken: []
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/accept/invite/{userId}/{invitedBy}':
     parameters:
@@ -298,7 +296,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
 
   '/confirm/invite/{userId}':
     parameters:
@@ -321,7 +319,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
 
@@ -342,7 +340,7 @@ paths:
         '401':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
 
@@ -369,7 +367,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
 
@@ -392,7 +390,7 @@ paths:
         '500':
           $ref: '#/components/responses/ConfirmationError'
       tags:
-        - Confirm
+        - Confirmations
       security:
         - sessionToken: []
 
@@ -401,17 +399,11 @@ components:
     Acceptance:
       $ref: './confirm/models/acceptance.v1.yaml'
 
-    TidepoolUserId:
-      $ref: './common/models/tidepooluserid.yaml'
-
     ClinicId:
       $ref: './clinic/models/clinicid.v1.yaml'
 
     EmailAddress:
       $ref: ./common/models/emailaddress.v1.yaml
-
-    DateTime:
-      $ref: ./common/models/datetime.v1.yaml
 
     Key:
       $ref: ./confirm/models/key.v1.yaml

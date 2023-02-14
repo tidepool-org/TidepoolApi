@@ -1,21 +1,22 @@
+<!-- omit in toc -->
 # Alert (`alert`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-1. [Overview](#overview)
-1. [Type](#type-type)
-1. [Name](#name-name)
-1. [Priority](#priority-priority)
-1. [Trigger](#trigger-trigger)
-1. [Trigger Delay](#trigger-delay-triggerdelay)
-1. [Sound](#sound-sound)
-1. [Sound Name](#sound-name-soundname)
-1. [Issued Time](#issued-time-issuedtime)
-1. [Acknowledged Time](#acknowledged-time-acknowledgedtime)
-1. [Retracted Time](#retracted-time-retractedtime)
-1. [Example](#example)
-1. [Keep Reading](#keep-reading)
+2. [Overview](#overview)
+3. [Type (`type`)](#type-type)
+4. [Name (`name`)](#name-name)
+5. [Priority (`priority`)](#priority-priority)
+6. [Trigger (`trigger`)](#trigger-trigger)
+7. [Trigger Delay (`triggerDelay`)](#trigger-delay-triggerdelay)
+8. [Sound (`sound`)](#sound-sound)
+9. [Sound Name (`soundName`)](#sound-name-soundname)
+10. [Issued Time (`issuedTime`)](#issued-time-issuedtime)
+11. [Acknowledged Time (`acknowledgedTime`)](#acknowledged-time-acknowledgedtime)
+12. [Retracted Time (`retractedTime`)](#retracted-time-retractedtime)
+13. [Keep Reading](#keep-reading)
 
 ---
 
@@ -43,43 +44,41 @@ This is the Tidepool data type to represent ab alert presented to the user from 
 
 The name of the alert, not necessarily human readable. This is not a unique identifier for the alert, but rather a name of the class of alert presented to the user. For example, "CGM.lowGlucose".
 
-### Priority (`priority`)
+## Priority (`priority`)
 
 The priority of the alert. One of `critical`, `normal`, or `timeSensitive`.
 
-### Trigger (`trigger`)
+## Trigger (`trigger`)
 
 The trigger that causes the alert to be presented. One of `delayed`, `immediate`,  or `repeating`.
 
-### Trigger Delay (`triggerDelay`)
+## Trigger Delay (`triggerDelay`)
 
 For a `delayed` or `repeating` trigger alert, the delay, in seconds, before the alert is presented after it is initially issued and, for `repeating` trigger alerts, the delay before re-presenting it after it was previously presented.
 
-### Sound (`sound`)
+## Sound (`sound`)
 
 The sound associated with the alert. One of `name`, `silence`, or `vibrate`.
 
-### Sound Name (`soundName`)
+## Sound Name (`soundName`)
 
 For a `name` sound, then name of the sound played when the alert is presented.
 
-### Issued Time (`issuedTime`)
+## Issued Time (`issuedTime`)
 
 The time the alert was issued (aka created).
 
-### Acknowledged Time (`acknowledgedTime`)
+## Acknowledged Time (`acknowledgedTime`)
 
 The time the alert was first acknowledged by the user after it was presented.
 
-### Retracted Time (`retractedTime`)
+## Retracted Time (`retractedTime`)
 
 The time the alert was retracted after it was presented.
 
 ---
 
-## Example
-
-```json
+```json title="Example Low Glucose Alert" lineNumbers=true
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",
@@ -99,5 +98,5 @@ The time the alert was retracted after it was presented.
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Common Fields](./device-data/common-fields.md)
+* [Annotations](../annotations.md)
+* [Common Fields](../common-fields.md)

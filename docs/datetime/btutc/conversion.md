@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Conversion Offset (`conversionOffset`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)

@@ -1,22 +1,19 @@
+<!-- omit in toc -->
 # Bolus Calculator Records (`wizard`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Type](#type-type)
-3. [Blood Glucose Input](#blood-glucose-input-bginput)
-4. [Bolus](#bolus-bolus)
-5. [Carb Input](#carb-input-carbinput)
-6. [Insulin-To-Carb Ratio](#insulin-to-carb-ratio-insulincarbratio)
-7. [Insulin On Board](#insulin-on-board-insulinonboard)
-8. [Recommended](#recommended-recommended)
-    1. [Recommended: carb](#recommended-carb-recommendedcarb)
-    2. [Recommended: correction](#recommended-correction-recommendedcorrection)
-    3. [Recommended: net](#recommended-net-recommendednet)
-9. [Example (client)](#example-client)
-10. [Example (ingestion)](#example-ingestion)
-11. [Example (storage)](#example-storage)
-12. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [Blood Glucose Input (`bgInput`)](#blood-glucose-input-bginput)
+4. [Bolus (`bolus`)](#bolus-bolus)
+5. [Carb Input (`carbInput`)](#carb-input-carbinput)
+6. [Insulin-To-Carb Ratio (`insulinCarbRatio`)](#insulin-to-carb-ratio-insulincarbratio)
+7. [Insulin On Board (`insulinOnBoard`)](#insulin-on-board-insulinonboard)
+8. [Recommended (`recommended`)](#recommended-recommended)
+9. [Examples](#examples)
+10. [Keep Reading](#keep-reading)
 
 ---
 
@@ -36,7 +33,7 @@ $ref: '../../../../reference/data/models/calculator.v1.yaml'
 
 The Tidepool bolus calculator event models user interactions with a bolus calculator. The bolus calculator event is intended to contain the values that were input into the `wizard`, as well as any recommendations that the calculator may have made. (This event does not automatically record whether the recommendations made were followed.)
 
-Some insulin pumps record every user interaction with the bolus calculator, regardless of whether a bolus resulted from the interaction or not. However, only user interactions with the bolus calculator *that result in a bolus event* should be uploaded to Platform, to avoid noise in the data. The resulting bolus should also be included on the bolus calculator event — see [linking events](./device-data/linking-events.md) for details.
+Some insulin pumps record every user interaction with the bolus calculator, regardless of whether a bolus resulted from the interaction or not. However, only user interactions with the bolus calculator *that result in a bolus event* should be uploaded to Platform, to avoid noise in the data. The resulting bolus should also be included on the bolus calculator event — see [linking events](../../linking-events.md) for details.
 
 ---
 
@@ -50,7 +47,7 @@ Like all blood glucose-related fields, the BG input should be uploaded in either
 
 Only bolus calculator events that result in a bolus should be uploaded to Platform. When uploading through Platform, the bolus should only be submitted embedded within the appropriate bolus calculator event.
 
-See [linking events](./device-data/linking-events.md) for more details on how events of different types are linked in Platform.
+See [linking events](../../linking-events.md) for more details on how events of different types are linked in Platform.
 
 ---
 
@@ -68,7 +65,7 @@ Some devices have a separate field to enter a carbohydrate value on their bolus 
 
 ## Insulin-To-Carb Ratio (`insulinCarbRatio`)
 
-The insulin-to-carb (I:C) ratio is part of an insulin pump's settings. A user may program one I:C ratio to be used across-the-board, or particular ratios on a schedule per each 24-hour day. For more information on these persistent I:C ratios, see [carb ratios](./device-data/data-types/pump-settings.md#carb-ratio-carbratio).
+The insulin-to-carb (I:C) ratio is part of an insulin pump's settings. A user may program one I:C ratio to be used across-the-board, or particular ratios on a schedule per each 24-hour day. For more information on these persistent I:C ratios, see [carb ratios](../pump-settings.md#carb-ratio-carbratio).
 
 Most pumps make it possible to change the I:C for the bolus *currently being calculated*, without also changing the pump settings. Therefore, the insulin-to-carb ratio value on a bolus calculation may not always match the expected ratio given the user's insulin pump settings at the time of the calculation.
 
@@ -86,27 +83,30 @@ On many pumps, insulin on board is also taken into account for the calculation o
 
 The embedded object recommended encodes an insulin delivery device's recommendations for insulin dosing across three fields:
 
-* [Carb](#recommended-carb-recommendedcarb)
-* [Correction](#recommended-correction-recommendedcorrection)
-* [Net](#recommended-net-recommendednet)
+* [Recommended: carb (`recommended.carb`)](#recommended-carb-recommendedcarb)
+* [Recommended: correction (`recommended.correction`)](#recommended-correction-recommendedcorrection)
+* [Recommended: net (`recommended.net`)](#recommended-net-recommendednet)
 
+<!-- omit in toc -->
 ### Recommended: carb (`recommended.carb`)
 
 Carb encodes the units of insulin recommended by the device to "cover" the total grams of carbohydrate input by the user into the bolus calculator. The value for carb may be > = 0, as not all boluses involve the ingestion of carbohydrates and may not include a recommended insulin dose to cover carbohydrates about to be ingested.
 
+<!-- omit in toc -->
 ### Recommended: correction (`recommended.correction`)
 
 Correction encodes the units of insulin recommended by the device to bring the person with diabetes to their target BG given the input blood glucose. On some pumps, or depending on user preference, this value may be negative. A negative recommendation for correction indicates that — given the user's current blood glucose and insulin on board — low blood glucose is predicted and a reduction in insulin dosing (e.g. via a temporary basal rate) may be required in order to bring blood glucose to or within the target.
 
+<!-- omit in toc -->
 ### Recommended: net (`recommended.net`)
 
 Net is the net number of units of insulin the bolus calculator recommended given the user's inputs. Generally, this net recommendation takes recommended carb, recommended correction, and insulin on board into account, but insulin delivery devices perform this calculation differently. Therefore, Tidepool has chosen to store the calculation's result, rather than make this calculation the responsibility of client applications.
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "wizard",
     "bgInput": 2.109284236597303,
@@ -137,11 +137,7 @@ Net is the net number of units of insulin the bolus calculator recommended given
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "wizard",
     "bgInput": 392,
@@ -182,11 +178,7 @@ Net is the net number of units of insulin the bolus calculator recommended given
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "wizard",
     "bgInput": 16.152676653942503,
@@ -226,10 +218,10 @@ Net is the net number of units of insulin the bolus calculator recommended given
 
 ## Keep Reading
 
-* [Common Fields](./device-data/common-fields.md)
-* [Datetime Guide](./datetime.md)
-* [Diabetes Data Types](./device-data/data-types.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
-* [Units](./device-data/units.md)
-* [Upload Metadata](./device-data/data-types/pump-settings/upload.md)
+* [Common Fields](../../common-fields.md)
+* [Datetime Guide](../../../datetime.md)
+* [Diabetes Data Types](../../data-types.md)
+* [Pump Settings](../pump-settings.md)
+* [Self-Monitored Glucose (SMBG)](./smbg.md)
+* [Units](../../units.md)
+* [Upload Metadata](./upload.md)

@@ -1,13 +1,13 @@
+<!-- omit in toc -->
 # Suspend Basals (`suspend`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Delivery Type](#delivery-type-deliverytype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -21,15 +21,15 @@ $ref: '../../../../reference/data/models/basal/suspend.v1.yaml'
 
 ## Delivery Type (`deliveryType`)
 
-This is the sub-type of basal event representing the total suspension of insulin delivery on a pump within the stream of basal events — which should be without gaps or overlaps. The user's inputs to suspend (and later resume) insulin delivery are part of Tidepool's [device event](./device-data/data-types/device-event.md) data type. We represent suspend intervals as a suspend basal to maintain a continuous stream of basal data, making the calculation of statistics (e.g. total basal dose per day) easier.
+This is the sub-type of basal event representing the total suspension of insulin delivery on a pump within the stream of basal events — which should be without gaps or overlaps. The user's inputs to suspend (and later resume) insulin delivery are part of Tidepool's [device event](../device-event.md) data type. We represent suspend intervals as a suspend basal to maintain a continuous stream of basal data, making the calculation of statistics (e.g. total basal dose per day) easier.
 
 No rate field appears on suspend basal events. The rate is always zero, so this is redundant information.
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -53,11 +53,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -79,11 +75,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -116,11 +108,11 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 
 ## Keep Reading
 
-* [Automated Basals](./device-data/data-types/basal/automated.md)
-* [Basal](./device-data/data-types/automated.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
-* [Temporary Basals](./device-data/data-types/basal/temp.md)
-* [Units](./device-data/units.md)
+* [Basal](../basal.md)
+* [Common Fields](../../common-fields.md)
+* [Pump Settings](../pump-settings.md)
+* [Automated Basals](./automated.md)
+* [Scheduled Basals](./scheduled.md)
+* [Suppressed Basals](./suppressed.md)
+* [Temporary Basals](./temp.md)
+* [Units](../../units.md)

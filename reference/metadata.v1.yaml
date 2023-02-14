@@ -3,8 +3,6 @@ info:
   title: Metadata API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
@@ -15,9 +13,6 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/seagull/blob/master/LICENSE
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/seagull
 
 servers:
@@ -35,6 +30,9 @@ servers:
     description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Metadata
     description: |-
       Create and update user metadata.
@@ -133,7 +131,7 @@ paths:
     #     - sessionToken: []
     #   tags:
     #     - Metadata
-    #.  x-private: true
+    #     - Internal
 
   '/metadata/{userId}/private/{fieldName}':
     parameters:
@@ -151,7 +149,7 @@ paths:
         - serverToken: []
       tags:
         - Metadata
-      x-private: true
+        - Internal
 
     # delete:
     #   operationId: DeleteUserPrivateMetadataItem
@@ -165,7 +163,7 @@ paths:
     #     - serverToken: []
     #   tags:
     #     - Metadata
-    #   x-private: true
+    #     - Internal
 
   '/metadata/users/{userId}/users':
     parameters:

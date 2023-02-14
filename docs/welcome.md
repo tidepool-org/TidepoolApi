@@ -1,6 +1,5 @@
+<!-- omit in toc -->
 # Welcome
-
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
 
 Welcome to Tidepool's developer documentation
 
@@ -11,6 +10,6 @@ We're so glad you asked.
 Tidepool is a nonprofit organization committed to providing free software for the diabetes community to get the most out of their diabetes devices.
 An API, or application programming interface, is a tool that allows you to communicate with other applications, i.e. access your diabetes data by talking to your devices.
 
-For more information on who we are and what we do, click the pretty blue link: [tidepool.org](http://www.tidepool.org)
+For more information on who we are and what we do, click the pretty blue link: [tidepool.org](https://www.tidepool.org)
 
 Awesome. Now that we're all caught up, [let's jump right in!](./quick-start.md)

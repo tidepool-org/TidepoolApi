@@ -10,17 +10,35 @@ info:
   termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
     name: BSD 2-Clause "Simplified" License
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
+
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:8080'
+    description: local development
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+
+tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
+  - name: Prescriptions
+    description: >-
+      Manage prescriptions for Tidepool Loop
+
 paths:
   '/v1/clinics/{clinicId}/prescriptions':
     get:
       summary: List Prescriptions
       tags:
-        - prescription
+        - Prescriptions
       responses:
         '200':
           description: OK
@@ -134,7 +152,7 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       description: Create a new prescription
       tags:
-        - prescription
+        - Prescriptions
       requestBody:
         content:
           application/json:
@@ -162,7 +180,7 @@ paths:
     get:
       summary: Get Prescription
       tags:
-        - prescription
+        - Prescriptions
       responses:
         '200':
           description: OK
@@ -220,10 +238,10 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/errorresponse.v1.yaml
-      description: |
-        Clinician only endpoint to delete a prescription. Works only when the prescription has status `draft`
+      description: >-
+        Clinician only endpoint to delete a prescription. Works only when the prescription has status `draft`.
       tags:
-        - prescription
+        - Prescriptions
   '/v1/clinics/{clinicId}/prescriptions/{prescriptionId}/revisions':
     parameters:
       - schema:
@@ -278,7 +296,7 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       description: Add a new revision to a prescription which is still a draft.
       tags:
-        - prescription
+        - Prescriptions
       requestBody:
         content:
           application/json:
@@ -327,7 +345,7 @@ paths:
               schema:
                 $ref: ./platform/models/errorresponse.v1.yaml
       tags:
-        - prescription
+        - Prescriptions
       description: Claim a submitted prescription using an access code and date of birth.
       requestBody:
         content:
@@ -348,7 +366,7 @@ paths:
           description: OK
       description: Retrieve a list of prescription that the user has claimed
       tags:
-        - prescription
+        - Prescriptions
   '/v1/patients/{userId}/prescriptions/{prescriptionId}':
     parameters:
       - schema:
@@ -364,7 +382,7 @@ paths:
     get:
       summary: Get Prescription for User
       tags:
-        - prescription
+        - Prescriptions
       responses:
         '200':
           description: OK
@@ -386,11 +404,8 @@ paths:
                 $ref: ./prescription/models/prescription.v1.yaml
       description: Update prescription state
       tags:
-        - prescription
+        - Prescriptions
 components:
   schemas: {}
   securitySchemes: {}
   parameters: {}
-tags:
-  - name: prescription
-    description: Tidepool Prescription

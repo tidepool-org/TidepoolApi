@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Units
 
 Platform does not mutate data. Rather, data is read from diabetes devices and stored in near original form while still translating into the standardized Tidepool data model.

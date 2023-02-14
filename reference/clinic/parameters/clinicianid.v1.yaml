@@ -1,0 +1,7 @@
+description: >-
+    Clinician ID
+name: clinicianId
+in: path
+required: true
+schema:
+  $ref: '../../common/models/tidepooluserid.yaml'

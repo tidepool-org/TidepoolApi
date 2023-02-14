@@ -1,8 +1,5 @@
-![Tidepool Logo](assets/images/Tidepool_Logo_Light_Large.png)
-
-[![Build Status](https://travis-ci.com/tidepool-org/TidepoolApi.svg?branch=master)](https://travis-ci.com/tidepool-org/TidepoolApi)
-
 # TidepoolApi
+![publish](https://github.com/tidepool-org/TidepoolApi/actions/workflows/publish.yml/badge.svg)
 
 This repository contains Tidepool Platform API documentation in [OpenAPI v3](https://www.openapis.org/) format with additional narrative content in [Stoplight-flavored](https://meta.stoplight.io/docs/studio/docs/Documentation/03a-stoplight-flavored-markdown.md) [CommonMark](https://commonmark.org/) format which in turn is a less ambiguous formal definition of [Markdown](https://www.markdownguide.org/).
 These API definitions can be used to generate stub code for either server or client side.
