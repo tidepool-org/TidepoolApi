@@ -47,7 +47,7 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
     ```shell
     git add {file(s)}
     git commit -m "{description}"
-    git push -u origin {branch}
+    git push -u origin HEAD
     ```
 
 6. Post a pull request (PR) to review the changes
