@@ -83,9 +83,6 @@ paths:
               type: array
               items:
                 $ref: ./blob/models/device-log-content.v1.yaml
-            examples:
-              example-1:
-                value: string
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'

@@ -3,7 +3,8 @@ description: >-
   Device log entry.
 type: object
 properties:
-  type: string
+  type:
+    type: string
   managerIdentifier:
     type: string
   deviceIdentifier:
