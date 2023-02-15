@@ -241,13 +241,6 @@ paths:
         - Blobs
 
 components:
-  schemas:
-    DeviceLog:
-      $ref: ./blob/models/device-log-content.v1.yaml
-    DeviceLogs:
-      type: array
-      items:
-        $ref: '#/components/schemas/DeviceLog'
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
