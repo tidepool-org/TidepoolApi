@@ -1,4 +1,4 @@
-title: Device logs blob list
+title: Device logs json list
 type: array
 readOnly: true
 minItems: 0

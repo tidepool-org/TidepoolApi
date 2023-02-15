@@ -1,0 +1,15 @@
+title: Device log content
+description: >-
+  Device log entry.
+type: object
+properties:
+  type: string
+  managerIdentifier:
+    type: string
+  deviceIdentifier:
+    type: string
+  message:
+    type: string
+  timestamp:
+    $ref: "../../common/models/datetime.v1.yaml"
+readOnly: true

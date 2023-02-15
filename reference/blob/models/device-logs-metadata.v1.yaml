@@ -1,4 +1,4 @@
-title: Device logs blob metadata
+title: Device logs json metadata
 type: object
 readOnly: true
 properties:
