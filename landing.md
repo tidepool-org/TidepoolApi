@@ -16,7 +16,7 @@ You can learn more about Tidepool here:
 
 We strongly believe in transparency and all of our products are open source with either [BSD-2](https://spdx.org/licenses/BSD-2-Clause.html) or [MIT](https://spdx.org/licenses/MIT.html) license. To that end, this site hosts two views of the Tidepool API:
 
-* [Public API](https://tidepool.stoplight.io/docs/tidepool-api) shows the Tidepool APIs that are available to everyone. These are the APIs used by Tidepool's own customer-facing products.
+* [(Public) API](https://tidepool.stoplight.io/docs/tidepool-api) shows the Tidepool APIs that are available to everyone. These are the APIs used by Tidepool's own customer-facing products.
 * [Full API](https://tidepool.stoplight.io/docs/tidepool-full-api) shows all of Tidepool's APIs. This includes APIs that are only available between services within our AWS VPC, or require privileged access levels, or simply are not really useful for anyone outside of Tidepool. They are included here both for internal reference, but also because anyone with the time and energy can see them in our open-source software.
 
 # Deprecation Warning: Authentication APIs

@@ -68,9 +68,11 @@ The tokens are configured as secrets for the GitHub Actions and can be found her
 
 The contents in Tidepool's organization [home page](https://tidepool.stoplight.io/) in Stoplight comes from a file in this repository. To update it:
 
-1. Edit the [landing.md](./landing.md) file.
-2. Commit the changes & push to GitHub for posterity.
-3. Copy & paste the file's contents into the [settings page](https://tidepool.stoplight.io/admin/settings). This requires admin permissions in Stoplight.
+1. Edit the [landing.md](./landing.md) Markdown file.
+2. Commit the changes & push to GitHub, for posterity.
+3. Copy & paste the file's Markdown contents into the [Settings](https://tidepool.stoplight.io/admin/settings) page. This requires admin permissions in Stoplight.
+
+![Updating Landing Page](./assets/images/updating-landing-page.png)
 
 ## Editing Tools
 
