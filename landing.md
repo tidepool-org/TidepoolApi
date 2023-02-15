@@ -29,7 +29,7 @@ We expect to fully remove the current authentication APIs by the end of 2023.
 
 If you plan to develop software that uses Tidepool APIs, please send us an [email](mailto:info@tidepool.org) or join our [public #opensource Slack Channel](http://public-chat.tidepool.org). You will need to request a client identifier for your application in order to use the new authentication APIs. Make sure we know who you are so that we can keep you updated on our progress and any other upcoming API changes!
 
-## Development (`localhost`, `dev`, `qa1`, `qa2`)
+## Development (`dev`, `qa1`, `qa2`)
 
 The development environments are for Tidepool's internal development use only. **Do not use them at all**, as they are in constant state of change and testing. There are no guarantees for privacy or stability of accounts or data.
 
