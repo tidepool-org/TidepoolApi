@@ -55,6 +55,15 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
 
 It is also possible to publish your work branch to Stoplight from your local folder. You will need the API tokens for Stoplight stored in 
 
+## Publishing Tokens
+
+To publish documentation and API specifications locally, you will need the corresponding API token from Stoplight. Those API tokens are not directly found in the Stoplight project settings UI, but they are documented [here](https://docs.stoplight.io/docs/platform/f76c84240244f-publish-with-the-stoplight-cli) or if that link no longer works, [Google for it](https://www.google.com/search?q=Publish+with+Stoplight+CLI).
+
+The tokens are configured as secrets for the GitHub Actions and can be found here:
+
+* Token for [Public API](https://tidepool.stoplight.io/settings/tidepool-api/automation)
+* Token for [Full API](https://tidepool.stoplight.io/settings/tidepool-full-api/automation)
+
 ## Landing Page
 
 The contents in Tidepool's organization [home page](https://tidepool.stoplight.io/) in Stoplight comes from a file in this repository. To update it:
