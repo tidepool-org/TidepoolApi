@@ -17,18 +17,16 @@ info:
   x-tidepool-service: https://github.com/tidepool-org/shoreline
 
 servers:
-  - url: 'http://localhost:8080'
-    description: local development
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
   - url: 'https://dev1.dev.tidepool.org'
     description: dev1
   - url: 'https://qa1.development.tidepool.org'
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-  - url: 'https://external.integration.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
 
 tags:
   - name: Internal
@@ -47,6 +45,8 @@ paths:
       operationId: CreateSessionToken
       summary: Create New Session Token
       description: >-
+        **This API is deprecated and will be removed by end of 2023.**
+
         Creates a new session token.
       responses:
         '200':
@@ -63,11 +63,14 @@ paths:
         - basicAuth: []
       tags:
         - Authentication
+      deprecated: true
     get:
       operationId: RefreshSessionToken
       summary: Refresh Session Token
       description: >-
-        Refreshes an existing session token.
+        **This API is deprecated and will be removed by end of 2023.**
+
+        Refreshes an existing session token.        
       responses:
         '200':
           $ref: '#/components/responses/TokenData'
@@ -83,12 +86,15 @@ paths:
         - sessionToken: []
       tags:
         - Authentication
+      deprecated: true
 
   '/auth/logout':
     post:
       operationId: Logout
       summary: Logout
       description: >-
+        **This API is deprecated and will be removed by end of 2023.**
+
         Removes an existing session token.
         Returns success even if the session token does not exist.
       responses:
@@ -96,6 +102,7 @@ paths:
           description: 'Success'
       tags:
         - Authentication
+      deprecated: true
 
   '/auth/user':
     get:
@@ -120,7 +127,9 @@ paths:
       operationId: CreateNewUser
       summary: Create New User Account
       description: >-
-        Creates a new user account
+        **This API is deprecated and will be removed by end of 2023.**
+
+        Creates a new user account.
       requestBody:
         content:
           'application/json':
@@ -141,6 +150,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Users
+      deprecated: true
     put:
       operationId: UpdateCurrentUser
       summary: Update Current User Account

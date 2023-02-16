@@ -119,18 +119,12 @@ $(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVA
 	mkdir -p $@
 
 .PHONY: install_tools
-install_tools: install_check_env install_tools
-
-.PHONY: install_check_env
-install_check_env:
+install_tools:
 	npm --version
 	go version
 ifeq ($(PLATFORM),Darwin)
 	brew --version
 endif
-
-.PHONY: install_tools
-install_tools:
 	npm install --location=global markdownlint-cli@0.33.0
 	npm install --location=global markdown-link-check@3.10.3
 	npm install --location=global @stoplight/spectral-cli@6.6.0
@@ -139,7 +133,8 @@ install_tools:
 	npm install --location=global openapi-merge-cli@1.3.1
 ifeq ($(PLATFORM),Darwin)
 	brew install jsonnet@0.19.1
-else ifeq ($(PLATFORM),Linux)
+endif
+ifeq ($(PLATFORM),Linux)
 	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
 endif
 	go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
