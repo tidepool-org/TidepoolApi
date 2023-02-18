@@ -32,44 +32,27 @@
 #
 -include .env
 
-PLATFORM = ${shell uname -s}
-
-# tools
-CHECK_DOC_FORMAT_TOOL = markdownlint
-CHECK_DOC_LINK_TOOL = markdown-link-check
-CHECK_SPEC_TOOL = spectral
-JSON_TOOL = jsonnet
-MERGE_SPEC_TOOL = openapi-merge-cli
-PUBLISH_TOOL = stoplight
-SWAGGER_TOOL = swagger-cli
-CODEGEN_TOOL = oapi-codegen --old-config-style
-
 # source folders & files
 DOC_FOLDER = docs
 SPEC_FOLDER = reference
-TEMPLATE_FOLDER = templates
 SOURCE_TOC = toc.json
 SOURCE_TOC_DOCS = ${shell awk '/"uri":.+\.md/ { print $$2 }' $(SOURCE_TOC) | tr '\n"' ' ' | sort}
 SOURCE_DOCS = ${shell find $(DOC_FOLDER) -type f -iname '*.md' | sort}
 SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | sort}
 SOURCE_SPECS_TOP_LEVEL = ${shell find $(SPEC_FOLDER) -mindepth 1 -maxdepth 1 \( -type d -or -iname '*.yaml' \) | sort}
-MERGE_CONFIG_TEMPLATE = $(TEMPLATE_FOLDER)/openapi-merge.jsonnet
-MERGE_CONFIG = openapi-merge.json
 MERGED_SPEC = combined.v1.yaml
 
 # output folders
 BUILD_FOLDER = build
 PUBLIC_FOLDER  = $(BUILD_FOLDER)/public
 PRIVATE_FOLDER = $(BUILD_FOLDER)/private
-SERVER_CODEGEN_FOLDER = $(BUILD_FOLDER)/server
-CLIENT_CODEGEN_FOLDER = $(BUILD_FOLDER)/client
+CODEGEN_FOLDER = $(BUILD_FOLDER)/generated
 
 # public targets
 PUBLIC_DOC_FOLDER   = $(PUBLIC_FOLDER)/$(DOC_FOLDER)
 PUBLIC_SPEC_FOLDER  = $(PUBLIC_FOLDER)/$(SPEC_FOLDER)
 PUBLIC_TOC          = $(PUBLIC_FOLDER)/$(SOURCE_TOC)
 PUBLIC_SPECS        = ${subst $(SPEC_FOLDER),$(PUBLIC_SPEC_FOLDER),$(SOURCE_SPECS_TOP_LEVEL)}
-PUBLIC_MERGE_CONFIG = $(PUBLIC_SPEC_FOLDER)/$(MERGE_CONFIG)
 PUBLIC_MERGED_SPEC  = $(PUBLIC_SPEC_FOLDER)/$(MERGED_SPEC)
 
 # private targets
@@ -77,7 +60,6 @@ PRIVATE_DOC_FOLDER   = $(PRIVATE_FOLDER)/$(DOC_FOLDER)
 PRIVATE_SPEC_FOLDER  = $(PRIVATE_FOLDER)/$(SPEC_FOLDER)
 PRIVATE_TOC          = $(PRIVATE_FOLDER)/$(SOURCE_TOC)
 PRIVATE_SPECS        = ${subst $(SPEC_FOLDER),$(PRIVATE_SPEC_FOLDER),$(SOURCE_SPECS_TOP_LEVEL)}
-PRIVATE_MERGE_CONFIG = $(PRIVATE_SPEC_FOLDER)/$(MERGE_CONFIG)
 PRIVATE_MERGED_SPEC  = $(PRIVATE_SPEC_FOLDER)/$(MERGED_SPEC)
 
 #############################################################################
@@ -106,7 +88,7 @@ all: list_targets
 .PHONY: list_targets
 list_targets:
 	@echo TARGETS
-	@egrep '^\w+:' $(MAKEFILE_LIST) | sort | sed -E 's/^(Makefile:)?/\t/'
+	@awk '/^[a-z_]+:/ { print "    ",$$1 }' $(MAKEFILE_LIST) | sort
 
 .PHONY: clean
 clean:
@@ -115,43 +97,27 @@ clean:
 .PHONY: clobber
 clobber: clean
 
-$(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVATE_SPEC_FOLDER) $(SERVER_CODEGEN_FOLDER) $(CLIENT_CODEGEN_FOLDER):
+$(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVATE_SPEC_FOLDER) $(CODEGEN_FOLDER):
 	mkdir -p $@
 
 .PHONY: install_tools
 install_tools:
-	npm --version
-	go version
-ifeq ($(PLATFORM),Darwin)
-	brew --version
-endif
-	npm install --location=global markdownlint-cli@0.33.0
-	npm install --location=global markdown-link-check@3.10.3
-	npm install --location=global @stoplight/spectral-cli@6.6.0
-	npm install --location=global @stoplight/cli@6.0.1280
-	npm install --location=global @apidevtools/swagger-cli@4.0.4
-	npm install --location=global openapi-merge-cli@1.3.1
-ifeq ($(PLATFORM),Darwin)
-	brew install jsonnet@0.19.1
-endif
-ifeq ($(PLATFORM),Linux)
-	go install github.com/google/go-jsonnet/cmd/jsonnet@latest
-endif
-	go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
+	./scripts/check_doc.sh --install
+	./scripts/check_spec.sh --install
+	./scripts/merge_specs.sh --install
+	./scripts/publish.sh --install
+	./scripts/generate.sh --install
 
 .PHONY: check
 check: check_tools check_files check_toc
 
 .PHONY: check_tools
 check_tools:
-	$(CHECK_DOC_FORMAT_TOOL) --version
-	$(CHECK_DOC_LINK_TOOL) --version
-	$(CHECK_SPEC_TOOL) --version
-	$(SWAGGER_TOOL) --version
-	$(JSON_TOOL) --version
-	$(MERGE_SPEC_TOOL) --version
-	$(PUBLISH_TOOL) --version
-	$(CODEGEN_TOOL) --version
+	./scripts/check_doc.sh --self-check
+	./scripts/check_spec.sh --self-check
+	./scripts/merge_specs.sh --self-check
+	./scripts/publish.sh --self-check
+	./scripts/generate.sh --self-check
 
 .PHONY: check_env
 check_env: check_public_env check_private_env
@@ -174,8 +140,7 @@ check_docs: $(SOURCE_DOCS)
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_DOCS)
 $(SOURCE_DOCS):
-	$(CHECK_DOC_FORMAT_TOOL) $@
-	$(CHECK_DOC_LINK_TOOL) $@
+	./scripts/check_doc.sh $@
 
 .PHONY: check_specs
 check_specs: $(SOURCE_SPECS)
@@ -183,10 +148,7 @@ check_specs: $(SOURCE_SPECS)
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
 $(SOURCE_SPECS):
-	@if [ "${dir $@}" = "$(SPEC_FOLDER)/" ]; then \
-		$(SWAGGER_TOOL) validate $@; \
-	fi
-	$(CHECK_SPEC_TOOL) lint --quiet --ignore-unknown-format $@
+	./scripts/check_spec.sh $@
 
 .PHONY: check_toc
 check_toc: $(SOURCE_TOC)
@@ -249,15 +211,8 @@ $(PRIVATE_DOC_FOLDER): | $(PRIVATE_FOLDER)
 .PHONY: public_specs
 public_specs: $(PUBLIC_MERGED_SPEC)
 
-$(PUBLIC_MERGED_SPEC): $(PUBLIC_MERGE_CONFIG) $(PUBLIC_SPECS)
-	cd $(PUBLIC_SPEC_FOLDER) && $(MERGE_SPEC_TOOL)
-
-$(PUBLIC_MERGE_CONFIG): $(MERGE_CONFIG_TEMPLATE) | $(PUBLIC_SPEC_FOLDER)
-	$(JSON_TOOL) --ext-str excludeTags="Internal" \
-		--ext-str sourceFolder=./ \
-		--ext-str outputFile=${notdir $(PUBLIC_MERGED_SPEC)} \
-		--output-file $@ \
-		$(MERGE_CONFIG_TEMPLATE)
+$(PUBLIC_MERGED_SPEC): $(PUBLIC_SPECS) | $(PUBLIC_SPEC_FOLDER)
+	./scripts/merge_specs.sh $@ Internal
 
 $(PUBLIC_SPECS): | $(PUBLIC_SPEC_FOLDER)
 	ln -sf ${abspath ${subst $(PUBLIC_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
@@ -265,15 +220,8 @@ $(PUBLIC_SPECS): | $(PUBLIC_SPEC_FOLDER)
 .PHONY: private_specs
 private_specs: $(PRIVATE_MERGED_SPEC)
 
-$(PRIVATE_MERGED_SPEC): $(PRIVATE_MERGE_CONFIG) $(PRIVATE_SPECS)
-	cd $(PRIVATE_SPEC_FOLDER) && $(MERGE_SPEC_TOOL)
-
-$(PRIVATE_MERGE_CONFIG): $(MERGE_CONFIG_TEMPLATE) | $(PRIVATE_SPEC_FOLDER)
-	$(JSON_TOOL) --ext-str excludeTags="" \
-		--ext-str sourceFolder=./ \
-		--ext-str outputFile=${notdir $(PRIVATE_MERGED_SPEC)} \
-		--output-file $@ \
-		$(MERGE_CONFIG_TEMPLATE)
+$(PRIVATE_MERGED_SPEC): $(PRIVATE_SPECS) | $(PRIVATE_SPEC_FOLDER)
+	./scripts/merge_specs.sh $@
 
 $(PRIVATE_SPECS): | $(PRIVATE_SPEC_FOLDER)
 	ln -sf ${abspath ${subst $(PRIVATE_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
@@ -295,31 +243,18 @@ publish: publish_public publish_private
 
 .PHONY: publish_public
 publish_public: check_public_env prepare_public | $(PUBLIC_FOLDER)
-	find $(PUBLIC_SPEC_FOLDER) -maxdepth 1 \( \( -type l -and -iname '*.yaml' \) -or -iname $(MERGE_CONFIG) \) -print -delete
-	$(PUBLISH_TOOL) push --ci-token $(PUBLIC_STOPLIGHT_TOKEN) --directory $(PUBLIC_FOLDER)
+	./scripts/publish.sh $(PUBLIC_FOLDER) $(PUBLIC_STOPLIGHT_TOKEN)
 
 .PHONY: publish_private
 publish_private: check_private_env prepare_private | $(PRIVATE_FOLDER)
-	find $(PRIVATE_SPEC_FOLDER) -maxdepth 1 \( \( -type l -and -iname '*.yaml' \) -or -iname $(MERGE_CONFIG) \) -print -delete
-	$(PUBLISH_TOOL) push --ci-token $(PRIVATE_STOPLIGHT_TOKEN) --directory $(PRIVATE_FOLDER)
+	./scripts/publish.sh $(PRIVATE_FOLDER) $(PRIVATE_STOPLIGHT_TOKEN)
 
 ##############################################################################################
 # adapted from https://github.com/tidepool-org/clinic/blob/master/Makefile
 ##############################################################################################
 
 .PHONY: generate_clinic_service
-generate_clinic_service: generate_clinic_server generate_clinic_client
+generate_clinic_service: $(CODEGEN_FOLDER)/clinic/clinic.v1.yaml
 
-$(BUILD_FOLDER)/clinic.v1.yaml: $(SPEC_FOLDER)/clinic.v1.yaml | $(BUILD_FOLDER)
-	$(SWAGGER_TOOL) bundle $< -o $@ -t yaml
-
-.PHONY: generate_clinic_server
-generate_clinic_server: $(BUILD_FOLDER)/clinic.v1.yaml | $(SERVER_CODEGEN_FOLDER)
-	$(CODEGEN_TOOL) --exclude-tags=Confirmations --package=api --generate=server $< > $(SERVER_CODEGEN_FOLDER)/gen_server.go
-	$(CODEGEN_TOOL) --exclude-tags=Confirmations --package=api --generate=spec $< > $(SERVER_CODEGEN_FOLDER)/gen_spec.go
-	$(CODEGEN_TOOL) --exclude-tags=Confirmations --package=api --generate=types $< > $(SERVER_CODEGEN_FOLDER)/gen_types.go
-
-.PHONY: generate_clinic_client
-generate_clinic_client: $(BUILD_FOLDER)/clinic.v1.yaml | $(CLIENT_CODEGEN_FOLDER)
-	$(CODEGEN_TOOL) --exclude-tags=Confirmations --package=api --generate=types $< > $(CLIENT_CODEGEN_FOLDER)/types.go
-	$(CODEGEN_TOOL) --exclude-tags=Confirmations --package=api --generate=client $< > $(CLIENT_CODEGEN_FOLDER)/client.go
+$(CODEGEN_FOLDER)/clinic/clinic.v1.yaml: $(SPEC_FOLDER)/clinic.v1.yaml | $(CODEGEN_FOLDER)
+	./scripts/generate_clinic.sh $< $@

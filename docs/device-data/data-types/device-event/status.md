@@ -18,7 +18,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicedeliverystatus.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/deliverystatus.v1.yaml'
 ```
 
 ---
