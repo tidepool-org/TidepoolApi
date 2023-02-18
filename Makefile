@@ -106,7 +106,7 @@ install_tools:
 	./scripts/check_spec.sh --install
 	./scripts/merge_specs.sh --install
 	./scripts/publish.sh --install
-	./scripts/generate.sh --install
+	./scripts/generate_clinic.sh --install
 
 .PHONY: check
 check: check_tools check_files check_toc
@@ -117,7 +117,7 @@ check_tools:
 	./scripts/check_spec.sh --self-check
 	./scripts/merge_specs.sh --self-check
 	./scripts/publish.sh --self-check
-	./scripts/generate.sh --self-check
+	./scripts/generate_clinic.sh --self-check
 
 .PHONY: check_env
 check_env: check_public_env check_private_env
@@ -142,8 +142,9 @@ check_docs: $(SOURCE_DOCS)
 $(SOURCE_DOCS):
 	./scripts/check_doc.sh $@
 
+# check spec files, plus try to generate code from them
 .PHONY: check_specs
-check_specs: $(SOURCE_SPECS)
+check_specs: $(SOURCE_SPECS) generate_clinic_service
 
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
