@@ -1,0 +1,270 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 6p2grl3da45x4
+info:
+  title: Authentication API
+  version: '2.0'
+  description: An OpenID Connect and OAuth2 compliant authentication API.
+  contact:
+    url: 'https://support.tidepool.org/'
+    email: support@tidepool.org
+    name: API Support
+  termsOfService: 'https://developer.tidepool.org/terms-of-use'
+servers:
+  - url: 'https://auth.dev.tidepool.org'
+  - description: ''
+    url: 'https://auth.qa2.tidepool.org'
+  - url: 'https://auth.external.tidepool.org'
+    description: ''
+  - url: 'https://auth.tidepool.org'
+    description: ''
+paths:
+  '/realms/{realm}/protocol/openid-connect/token':
+    parameters:
+      - $ref: '#/components/parameters/realm'
+    post:
+      summary: Obtain Token
+      operationId: ObtainToken
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenErrorResponse'
+              examples:
+                Token Exchange - Duplicate Email Address:
+                  value:
+                    error: invalid_token
+                    error_description: User already exists
+                Token Exchange - Invalid Token:
+                  value:
+                    error: invalid_token
+                    error_description: invalid token
+      description: |-
+        Obtain an access, id and refresh token(s) by presenting an authorization grant or a valid refresh token.
+
+        If the access token request is valid and authorized, the authorization server issues an access token and optional refresh token. If the request client authentication failed or is invalid, the authorization server returns an error response.
+
+        ### Token Exchange Flow
+
+        Trusted partners can use the token exchange flow to provision new users in Tidepool using an access or an ID token. The token exchange flow requires `grant_type` to be set to `urn:ietf:params:oauth:grant-type:token-exchange`. 
+
+        The email address of the newly registered user will be obtained from the `subject_token` parameter. If an account with a duplicate email already exists the endpoint will return an error with `"error_description": "User already exists"` in the response body.
+
+        An already existing user can be linked to the external identity provider by going through the standard authorization code flow by redirecting the user in a browser to the authorization endpoint. The external identity provider can be pre-selected by setting `kc_idp_hint` query parameter of the authorization request.
+
+        A fresh access and/or refresh token can be issued for users which have an existing link to the external identity provider or were provisioned by this flow.
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+            examples:
+              Token Exchange Request:
+                value:
+                  client_id: cgm-monitor
+                  client_secret: c50e6502-131c-47f0-b439-a43acb3b83d0
+                  grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange'
+                  subject_issuer: acme-clinic
+                  subject_token: eyJhbGciOiJ...
+                  subject_token_type: 'urn:ietf:params:oauth:token-type:access_token'
+                  requested_token_type: 'urn:ietf:params:oauth:token-type:refresh_token'
+        description: ''
+  '/realms/{realm}/protocol/openid-connect/auth':
+    parameters:
+      - $ref: '#/components/parameters/realm'
+    get:
+      summary: Authorize
+      tags: []
+      responses: {}
+      operationId: Authorize
+      description: |
+        The starting point for browser-based OpenID Connect flows. This endpoint authenticates the user and returns an authorization grant or an access token to callback endpoint at the specified `redirect_uri`.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: client_id
+          description: Client Identifier valid at the Authorization Server
+          required: true
+        - schema:
+            type: array
+            enum:
+              - openid
+              - email
+          in: query
+          name: scope
+          required: true
+          style: spaceDelimited
+          description: OpenID Connect requests MUST contain the `openid` scope value
+        - schema:
+            type: string
+            enum:
+              - code
+          in: query
+          name: respone_type
+          required: true
+          description: 'Response Type value that determines the authorization processing flow to be used, including what parameters are returned from the endpoints used. When using the Authorization Code Flow, this value is `code`.'
+        - schema:
+            type: string
+          in: query
+          name: redirect_uri
+          required: true
+          description: ' Redirection URI to which the response will be sent. This URI MUST exactly match one of the Redirection URI values for the Client pre-registered at the OpenID Provider'
+        - schema:
+            type: string
+          in: query
+          name: login_hint
+          description: Hint to the Authorization Server about the login identifier the End-User might use to log in
+        - schema:
+            type: string
+          in: query
+          name: kc_idp_hint
+          description: OIDC applications can bypass the login page by hinting at the identity provider they want to use
+        - schema:
+            type: string
+            enum:
+              - none
+              - login
+          in: query
+          name: prompt
+          description: Specifies whether the Authorization Server prompts the End-User for reauthentication and consent
+components:
+  schemas:
+    TokenRequest:
+      title: Token Request
+      x-stoplight:
+        id: 4097e58bd9c0a
+      type: object
+      examples:
+        - client_id: cgm-monitor
+          client_secret: c50e6502-131c-47f0-b439-a43acb3b83d0
+          grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange'
+          subject_issuer: acme-clinic
+          subject_token: eyJhbGciOiJ...
+          subject_token_type: 'urn:ietf:params:oauth:token-type:access_token'
+          requested_token_type: 'urn:ietf:params:oauth:token-type:refresh_token'
+      properties:
+        code:
+          type: string
+          description: An authorization code obtained from authorization flow. Required if `grant_type` is `authorization_code`.
+        code_verifier:
+          type: string
+        grant_type:
+          type: string
+          enum:
+            - authorization_code
+            - refresh_token
+            - 'urn:ietf:params:oauth:grant-type:token-exchange'
+          description: |-
+            The mechanism used for authorizing requests for obtaining tokens.
+
+            `authorization_code` - used in the authorization code flow
+            `refresh_token` - used for refreshing expired access tokens with an active refresh token
+            `urn:ietf:params:oauth:grant-type:token-exchange` - used in the token exchange flow
+        client_id:
+          type: string
+          description: The client id
+        client_secret:
+          type: string
+          description: The client secret if the client is confidential or it was issued credentials.
+        subject_token:
+          type: string
+          description: 'The subject token used in the token exchange flow. `REQUIRED` when `grant_type` is `urn:ietf:params:oauth:grant-type:token-exchange`'
+        subject_token_type:
+          type: string
+          enum:
+            - 'urn:ietf:params:oauth:token-type:access_token'
+            - 'urn:ietf:params:oauth:token-type:jwt'
+          description: |-
+            The type of the subject token.
+
+            If the type is `urn:ietf:params:oauth:token-type:access_token` you must specify the `subject_issuer` parameter and it must be the alias of the configured identity provider. If the type is `urn:ietf:params:oauth:token-type:jwt`, the provider will be matched via the issuer claim within the JWT which must be the alias of the provider, or a registered issuer within the providers configuration.
+
+            For validation, if the token is an access token, the provider’s user info service will be invoked to validate the token. A successful call will mean that the access token is valid. If the subject token is a JWT and if the provider has signature validation enabled, that will be attempted, otherwise, it will default to also invoking on the user info service to validate the token.
+        requested_token_type:
+          type: string
+          description: The type of token that will be issued in the token exhange flow.
+          enum:
+            - 'urn:ietf:params:oauth:token-type:access_token'
+            - 'urn:ietf:params:oauth:token-type:refresh_token'
+        subject_issuer:
+          type: string
+          description: 'The issuer of `subject_token`. It must be a registered identity provider. `REQUIRED` when `subject_token_type` is `urn:ietf:params:oauth:token-type:access_token`'
+      required:
+        - grant_type
+        - client_id
+      description: ''
+    TokenResponse:
+      title: Token Response
+      x-stoplight:
+        id: assvu0xc9w7be
+      type: object
+      description: A successful token response
+      properties:
+        access_token:
+          type: string
+          description: |
+            A short-lived access token for the currently authenticated subject. 
+        expires_in:
+          type: integer
+          description: The number of seconds the access token expires in
+        refresh_expires_in:
+          type: string
+          description: The number of seconds the refresh token expires in
+        refresh_token:
+          type: string
+          description: The refresh token that can be used to obtain a new access token for the subject after the previous one had expired.
+        scope:
+          type: string
+          description: The authorized scopes
+        id_token:
+          type: string
+          description: An ID token associated with the authenticated session. The value will only be returned if the `openid` scope was requested.
+      examples:
+        - access_token: the-access-token-value
+          expires_in: 60
+          refresh_expires_in: 7200
+          refresh_token: the-refresh-token-value
+          scope: openid email
+          id_token: the-id-token-value
+    TokenErrorResponse:
+      title: TokenErrorResponse
+      x-stoplight:
+        id: 4mxi6mxyc82rx
+      type: object
+      properties:
+        error:
+          type: string
+          description: The error identifier
+        error_description:
+          type: string
+          description: Description of the error that occurred
+      examples:
+        - error: invalid_token
+          error_description: invalid token
+        - error: invalid_token
+          error_description: User already exists
+  securitySchemes: {}
+  requestBodies: {}
+  parameters:
+    realm:
+      name: realm
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - dev1
+          - qa1
+          - qa2
+          - intergration
+          - tidepool
+      description: The authentication realm
