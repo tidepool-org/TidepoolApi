@@ -104,6 +104,15 @@ paths:
       tags:
         - Authentication
   '/realms/{realm}/protocol/openid-connect/auth':
+    servers:
+      - url: 'https://auth.dev.tidepool.org'
+        description: Development
+      - url: 'https://auth.qa2.tidepool.org'
+        description: QA
+      - url: 'https://auth.external.tidepool.org'
+        description: External
+      - url: 'https://auth.tidepool.org'
+        description: Production
     parameters:
       - $ref: '#/components/parameters/realm'
     get:
