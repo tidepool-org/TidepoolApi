@@ -102,7 +102,7 @@ paths:
                   requested_token_type: 'urn:ietf:params:oauth:token-type:refresh_token'
         description: ''
       tags:
-        - Authentication
+        - Authentication v2
   '/realms/{realm}/protocol/openid-connect/auth':
     servers:
       - url: 'https://auth.dev.tidepool.org'
@@ -118,8 +118,6 @@ paths:
     get:
       security: [ ]
       summary: Authorize
-      tags:
-        - Authentication
       responses:
         '301':
           description: Both successful and error responses result in a browser redirect to the callback endpoint
@@ -179,6 +177,8 @@ paths:
           in: query
           name: prompt
           description: Specifies whether the Authorization Server prompts the End-User for reauthentication and consent
+      tags:
+        - Authentication v2
 components:
   schemas:
     TokenRequest:
@@ -312,4 +312,4 @@ components:
           - tidepool
       description: 'The authentication realm. '
 tags:
-  - name: Authentication
+  - name: Authentication v2
