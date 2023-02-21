@@ -4,7 +4,18 @@ x-stoplight:
 info:
   title: Authentication API
   version: '2.0'
-  description: An OpenID Connect and OAuth2 compliant authentication API.
+  description: |
+    An OpenID Connect and OAuth2 compliant authentication API.
+
+    The authentication endpoints have a required realm `realm`  parameter. The following is the list of all available realms and the servers they are available on:
+
+    | Realm       | Server      |
+    | ----------- | ----------- |
+    | dev1        | Development |
+    | qa1         | QA          |
+    | qa2         | QA          |
+    | integration | External    |
+    | tidepool    | Production  |
   contact:
     url: 'https://support.tidepool.org/'
     email: support@tidepool.org
@@ -12,12 +23,13 @@ info:
   termsOfService: 'https://developer.tidepool.org/terms-of-use'
 servers:
   - url: 'https://auth.dev.tidepool.org'
-  - description: ''
+    description: Development
+  - description: QA
     url: 'https://auth.qa2.tidepool.org'
   - url: 'https://auth.external.tidepool.org'
-    description: ''
+    description: External
   - url: 'https://auth.tidepool.org'
-    description: ''
+    description: Production
 paths:
   '/realms/{realm}/protocol/openid-connect/token':
     parameters:
@@ -77,13 +89,20 @@ paths:
                   subject_token_type: 'urn:ietf:params:oauth:token-type:access_token'
                   requested_token_type: 'urn:ietf:params:oauth:token-type:refresh_token'
         description: ''
+      tags:
+        - Authentication
   '/realms/{realm}/protocol/openid-connect/auth':
     parameters:
       - $ref: '#/components/parameters/realm'
     get:
       summary: Authorize
-      tags: []
-      responses: {}
+      tags:
+        - Authentication
+      responses:
+        '301':
+          description: Both successful and error responses result in a browser redirect to the callback endpoint
+        '400':
+          description: A `Bad Request` response is returned if there are missing or invalid query parameters.
       operationId: Authorize
       description: |
         The starting point for browser-based OpenID Connect flows. This endpoint authenticates the user and returns an authorization grant or an access token to callback endpoint at the specified `redirect_uri`.
@@ -96,9 +115,11 @@ paths:
           required: true
         - schema:
             type: array
-            enum:
-              - openid
-              - email
+            items:
+              type: string
+              enum:
+                - openid
+                - email
           in: query
           name: scope
           required: true
@@ -109,7 +130,7 @@ paths:
             enum:
               - code
           in: query
-          name: respone_type
+          name: response_type
           required: true
           description: 'Response Type value that determines the authorization processing flow to be used, including what parameters are returned from the endpoints used. When using the Authorization Code Flow, this value is `code`.'
         - schema:
@@ -117,7 +138,7 @@ paths:
           in: query
           name: redirect_uri
           required: true
-          description: ' Redirection URI to which the response will be sent. This URI MUST exactly match one of the Redirection URI values for the Client pre-registered at the OpenID Provider'
+          description: Redirection URI to which the response will be sent. This URI MUST exactly match one of the Redirection URI values for the Client pre-registered at the OpenID Provider
         - schema:
             type: string
           in: query
@@ -267,4 +288,6 @@ components:
           - qa2
           - intergration
           - tidepool
-      description: The authentication realm
+      description: 'The authentication realm. '
+tags:
+  - name: Authentication
