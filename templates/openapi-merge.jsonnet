@@ -27,6 +27,15 @@
       }
     },
     {
+      "inputFile": std.extVar('sourceFolder') + "auth.v2.yaml",
+      "dispute": {
+        "suffix": "_auth"
+      },
+      "operationSelection": {
+        "excludeTags": [ std.extVar('excludeTags') ]
+      }
+    },
+    {
       "inputFile": std.extVar('sourceFolder') + "access.v1.yaml",
       "dispute": {
         "suffix": "_access"
