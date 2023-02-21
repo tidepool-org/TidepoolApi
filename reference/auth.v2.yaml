@@ -22,19 +22,31 @@ info:
     name: API Support
   termsOfService: 'https://developer.tidepool.org/terms-of-use'
 servers:
-  - url: 'https://auth.dev.tidepool.org'
-    description: Development
-  - description: QA
-    url: 'https://auth.qa2.tidepool.org'
-  - url: 'https://auth.external.tidepool.org'
-    description: External
-  - url: 'https://auth.tidepool.org'
-    description: Production
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
 paths:
   '/realms/{realm}/protocol/openid-connect/token':
+    servers:
+      - url: 'https://auth.dev.tidepool.org'
+        description: Development
+      - url: 'https://auth.qa2.tidepool.org'
+        description: QA
+      - url: 'https://auth.external.tidepool.org'
+        description: External
+      - url: 'https://auth.tidepool.org'
+        description: Production
     parameters:
       - $ref: '#/components/parameters/realm'
     post:
+      security: [ ]
       summary: Obtain Token
       operationId: ObtainToken
       responses:
@@ -95,6 +107,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/realm'
     get:
+      security: [ ]
       summary: Authorize
       tags:
         - Authentication
@@ -286,7 +299,7 @@ components:
           - dev1
           - qa1
           - qa2
-          - intergration
+          - integration
           - tidepool
       description: 'The authentication realm. '
 tags:
