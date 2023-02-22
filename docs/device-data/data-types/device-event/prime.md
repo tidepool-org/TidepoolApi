@@ -16,7 +16,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/deviceprimeevent.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/prime.v1.yaml'
 ```
 
 ---

@@ -14,7 +14,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicecalibration.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/calibration.v1.yaml'
 ```
 
 ---

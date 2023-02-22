@@ -15,7 +15,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicetimechange.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/timechange.v1.yaml'
 ```
 
 ---

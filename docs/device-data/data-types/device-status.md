@@ -2,7 +2,7 @@
 # Device Status (`deviceStatus`)
 
 ```yaml json_schema
-$ref: '../../../reference/data/models/devicestatus.v1.yaml'
+$ref: '../../../reference/data/models/deviceevent/status.v1.yaml'
 ```
 
 This type is used to convey the status of a device.

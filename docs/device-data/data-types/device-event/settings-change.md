@@ -6,7 +6,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicesettingschange.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/settingschange.v1.yaml'
 ```
 
 An event that occurs when a device has switched to a different setting.
