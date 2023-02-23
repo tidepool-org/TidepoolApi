@@ -16,7 +16,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicealarm.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/alarm.v1.yaml'
 ```
 
 ---

@@ -20,7 +20,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/calculator.v1.yaml'
+$ref: '../../../../reference/data/models/bolus/calculator.v1.yaml'
 ```
 
 ---
