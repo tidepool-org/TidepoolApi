@@ -7,8 +7,8 @@
 1. [Overview](#overview)
 2. [Calculation](#calculation)
    1. [Threshold Values](#threshold-values)
-   2. [Buckets](#buckets)
-   3. [Periods](#periods)
+   2. [Bucket Fields](#bucket-fields)
+   3. [Period Fields](#period-fields)
    4. [Handling Multiple Data Sources](#handling-multiple-data-sources)
 
 ---
@@ -21,35 +21,57 @@ The following diagram illustrates how the overall process works using Tidepool U
 
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor PWD as Alice
-    participant Uploader as Tidepool Uploader
-    participant Platform as Tidepool Platform
-    link Platform: https://api.tidepool.org @ https://api.tidepool.org
-    actor Clinic as Seastar Endocrinology
+   autonumber
+   actor PWD as Alice
+   participant Uploader as Tidepool Uploader
+   participant Platform as Tidepool Platform
+   link Platform: https://api.tidepool.org @ https://api.tidepool.org
+   actor Clinic as Seastar Endocrinology
 
-    PWD->>Uploader: Connect CGM or BGM device
-    activate Uploader
-    Uploader->>Platform: Upload diabetes data
-    activate Platform
-    note right of Platform: If cbg or smbg data
-    Platform->>Platform: Mark account summary as stale
-    Platform->>Uploader: OK
-    deactivate Platform
-    Uploader->>PWD: OK
-    deactivate Uploader
+   PWD->>Uploader: Connect CGM or BGM device
+   activate Uploader
+   Uploader->>Platform: Upload diabetes data
+   activate Platform
+   note right of Platform: If cbg or smbg data
+   Platform->>Platform: Mark account summary as stale
+   Platform->>Uploader: OK
+   deactivate Platform
+   Uploader->>PWD: OK
+   deactivate Uploader
 
-    rect rgb(128, 128, 128)
-    note over Platform: Background task (within 5 minutes)
-    Platform->>Platform: Re-calculate summary data
-    Platform->>Platform: Store summary data
-    end
-    Platform->>Clinic: Summary available via patient list
+   loop Every 5 minutes
+      Platform->>Platform: Re-calculate summary data
+      Platform->>Platform: Store summary data
+   end
+   Platform->>Clinic: Summary available via patient list
 ```
 
 # Calculation
 
-The summary calculation is done in batches of 500 user accounts at a time. Each user's data is first summarized into a set of 1-hour buckets separated by type (`cbg` or `smbg`) over the last 30 days, for a maximum of 720 buckets. It is important to note that the 30 day window is backwards from the last date when the user uploaded data. The window may be shorter than 30 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
+The summary calculation is done in batches of 500 user accounts at a time. The calculation for each user proceeds as shown in the diagram below:
+
+```mermaid
+sequenceDiagram
+   title Calculation Overview
+   autonumber
+   participant Device as Device
+   participant Samples as Samples
+   participant Buckets as Buckets
+   participant Periods as Periods
+
+   Device->>Samples: Upload cbg and/or smbg samples
+   Samples->>Buckets: Summarize by type into 1-hour buckets
+   Buckets->>Periods: Summarize by type into 1, 7, 14, 30 day periods
+```
+
+Each user's data is first summarized into a set of 1-hour buckets separated by type (`cbg` or `smbg`) over the last 30 days, for a maximum of 720 buckets. The 30 day window is backwards from the date of the last uploaded data for each user, not the present day. The window may be shorter than 30 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
+
+The 1-hour buckets are then further summarized by type into a set of 1, 7, 14, and 30 day periods. Thus, in the end a user who has both CGM and BGM data will have:
+
+* Up to 1,440 1-hour buckets: `[ CGM, BGM ] x (30 * 24)`
+* Up to 8 period records: `[ CGM, BGM ] x [ 1d, 7d, 14d, 30d ]`
+
+All of the data is stored within each user account to enable quick sorting and filtering in each clinic's patient list. If a user is a patient of multiple clinics, all clinics share the same summary data.
 
 ## Threshold Values
 
@@ -62,9 +84,9 @@ The summary calculation currently uses the same standard threshold values for al
 | `HighBloodGlucose`     | >= 10.0 | mmol/L |
 | `VeryHighBloodGlucose` | >= 13.9 | mmol/L |
 
-## Buckets
+## Bucket Fields
 
-The data is first summarized in 1-hour buckets that vary by the type of source data:
+The data fields in buckets vary by the type of source data:
 
 |  `cbg`   |  `smbg`  | Field             | Type      | Unit    |
 | :------: | :------: | :---------------- | :-------- | :------ |
@@ -82,9 +104,9 @@ The data is first summarized in 1-hour buckets that vary by the type of source d
 | &#10004; |          | `TotalMinutes`    | `int`     | minutes |
 | &#10004; | &#10004; | `TotalRecords`    | `int`     |         |
 
-## Periods
+## Period Fields
 
-The 1-hour buckets are then further summarized for period records of 1, 7, 14 and 30 days, again varying by the type of source data:
+The data fields in periods vary by the type of source data:
 
 |  `cgm`   |  `smbg`  | Field                           | Type      | Unit    | Notes                         |
 | :------: | :------: | :------------------------------ | :-------- | :------ | :---------------------------- |
@@ -117,13 +139,6 @@ The 1-hour buckets are then further summarized for period records of 1, 7, 14 an
 | &#10004; | &#10004; | `TimeInVeryHighPercent`         | `float64` | %       | footnote 2                    |
 | &#10004; |          | `TimeInVeryHighMinutes`         | `int`     | minutes | footnote 2                    |
 | &#10004; | &#10004; | `TimeInVeryHighRecords`         | `int`     |         | footnote 2                    |
-
-A user who has both CGM and BGM data will have:
-
-* Up to 1,440 1-hour buckets: `[ CGM, BGM ] x (30 * 24)`
-* Up to 8 period records: `[ CGM, BGM ] x [ 1d, 7d, 14d, 30d ]`
-
-The summaries are stored within each user account to enable quick sorting and filtering in each clinic's patient list.
 
 Footnotes
 
