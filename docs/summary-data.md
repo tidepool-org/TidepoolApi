@@ -52,7 +52,6 @@ The summary calculation is done in batches of 500 user accounts at a time. The c
 
 ```mermaid
 sequenceDiagram
-   title Calculation Overview
    autonumber
    participant Device as Device
    participant Samples as Samples
