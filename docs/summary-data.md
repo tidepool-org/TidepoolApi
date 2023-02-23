@@ -49,7 +49,7 @@ The summary calculation is currently done in batches of 500 accounts at a time. 
 
 <!-- theme: warning -->
 
-> ## TODO
+> ## TODO 1
 >
 > Double-check these details with Alex.
 
@@ -124,6 +124,6 @@ Notes on the fields in the period summaries:
 
 <!-- theme: warning -->
 
-> ## TODO
+> ## TODO 2
 >
 > Double-check the GMI formula, source & unit with Alex. The first terms match Jaeb, the latter part is extra.
