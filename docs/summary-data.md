@@ -153,10 +153,3 @@ In the following example there is a series of data samples in the current 1-hour
 | ...        | ...       | ...                                                                   |
 
 The blackout windows are defined as 15 minutes for Abbott FreeStyle Libre devices, and 5 minutes for all other devices.
-
-
-<!-- theme: warning -->
-
-> ## TODO 2
->
-> Double-check the GMI formula, source & unit with Alex. The first terms match Jaeb, the latter part is extra.
