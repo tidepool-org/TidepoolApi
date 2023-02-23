@@ -33,6 +33,8 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
 2. Create a *work branch* for your edits:
 
     ```shell
+    git checkout master
+    git pull
     git checkout master -b {branch}
     ```
 
@@ -49,6 +51,10 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
     ```shell
     git add {file(s)}
     git commit -m "{description}"
+    git checkout master
+    git pull
+    git checkout {branch}
+    git merge --no-ff master
     git push -u origin HEAD
     ```
 
