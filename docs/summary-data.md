@@ -64,55 +64,55 @@ The summary calculation uses the same standard threshold values for all users to
 
 Using these threshold values, the summary data is accummulated into 1-hour buckets over the last 30 days, for a total of 720 buckets. It is important to note that the 30 day window is backwards from the last date when the user uploaded data. The data in each bucket varies on the type of data:
 
-|       `cbg`        |       `smbg`       | Field             | Type      | Unit    |
-| :----------------: | :----------------: | ----------------- | --------- | ------- |
-| :heavy_check_mark: |                    | `VeryLowMinutes`  | `int`     | minutes |
-| :heavy_check_mark: | :heavy_check_mark: | `VeryLowRecords`  | `int`     |         |
-| :heavy_check_mark: |                    | `LowMinutes`      | `int`     | minutes |
-| :heavy_check_mark: | :heavy_check_mark: | `LowRecords`      | `int`     |         |
-| :heavy_check_mark: |                    | `TargetMinutes`   | `int`     | minutes |
-| :heavy_check_mark: | :heavy_check_mark: | `TargetRecords`   | `int`     |         |
-| :heavy_check_mark: |                    | `HighMinutes`     | `int`     | minutes |
-| :heavy_check_mark: | :heavy_check_mark: | `HighRecords`     | `int`     |         |
-| :heavy_check_mark: |                    | `VeryHighMinutes` | `int`     | minutes |
-| :heavy_check_mark: | :heavy_check_mark: | `VeryHighRecords` | `int`     |         |
-| :heavy_check_mark: | :heavy_check_mark: | `TotalGlucose`    | `float64` | mmol/L  |
-| :heavy_check_mark: |                    | `TotalMinutes`    | `int`     | minutes |
-| :heavy_check_mark: | :heavy_check_mark: | `TotalRecords`    | `int`     |         |
+|  `cbg`   |  `smbg`  | Field             | Type      | Unit    |
+| :------: | :------: | ----------------- | --------- | ------- |
+| &#10004; |          | `VeryLowMinutes`  | `int`     | minutes |
+| &#10004; | &#10004; | `VeryLowRecords`  | `int`     |         |
+| &#10004; |          | `LowMinutes`      | `int`     | minutes |
+| &#10004; | &#10004; | `LowRecords`      | `int`     |         |
+| &#10004; |          | `TargetMinutes`   | `int`     | minutes |
+| &#10004; | &#10004; | `TargetRecords`   | `int`     |         |
+| &#10004; |          | `HighMinutes`     | `int`     | minutes |
+| &#10004; | &#10004; | `HighRecords`     | `int`     |         |
+| &#10004; |          | `VeryHighMinutes` | `int`     | minutes |
+| &#10004; | &#10004; | `VeryHighRecords` | `int`     |         |
+| &#10004; | &#10004; | `TotalGlucose`    | `float64` | mmol/L  |
+| &#10004; |          | `TotalMinutes`    | `int`     | minutes |
+| &#10004; | &#10004; | `TotalRecords`    | `int`     |         |
 
 These 1-hour buckets are then further summarized for periods of 1, 7, 14 and 30 days to produce the following values:
 
-|       `cgm`        |       `smbg`       | Field                           | Type      | Unit     |
-| :----------------: | :----------------: | ------------------------------- | --------- | -------- |
-| :heavy_check_mark: | :heavy_check_mark: | `HasAverageGlucose`             | `bool`    |          |
-| :heavy_check_mark: |                    | `HasGlucoseManagementIndicator` | `bool`    |          |
-| :heavy_check_mark: |                    | `HasTimeCGMUsePercent`          | `bool`    |          |
-| :heavy_check_mark: | :heavy_check_mark: | `HasTimeInLowPercent`           | `bool`    |          |
-| :heavy_check_mark: | :heavy_check_mark: | `HasTimeInVeryLowPercent`       | `bool`    |          |
-| :heavy_check_mark: | :heavy_check_mark: | `HasTimeInTargetPercent`        | `bool`    |          |
-| :heavy_check_mark: | :heavy_check_mark: | `HasTimeInHighPercent`          | `bool`    |          |
-| :heavy_check_mark: | :heavy_check_mark: | `HasTimeInVeryHighPercent`      | `bool`    |          |
-| :heavy_check_mark: |                    | `TimeCGMUsePercent`             | `float64` | %        |
-| :heavy_check_mark: |                    | `TimeCGMUseMinutes`             | `int`     | minutes  |
-| :heavy_check_mark: |                    | `TimeCGMUseRecords`             | `int`     |          |
-| :heavy_check_mark: | :heavy_check_mark: | `AverageGlucose`                | `float64` | mmol/L   |
-|                    | :heavy_check_mark: | `TotalRecords`                  | `int`     |          |
-| :heavy_check_mark: |                    | `GlucoseManagementIndicator`    | `float64` | mmol/mol |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInVeryLowPercent`          | `float64` | %        |
-| :heavy_check_mark: |                    | `TimeInVeryLowMinutes`          | `int`     | minutes  |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInVeryLowRecords`          | `int`     |          |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInLowPercent`              | `float64` | %        |
-| :heavy_check_mark: |                    | `TimeInLowMinutes`              | `int`     | minutes  |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInLowRecords`              | `int`     |          |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInTargetPercent`           | `float64` | %        |
-| :heavy_check_mark: |                    | `TimeInTargetMinutes`           | `int`     | minutes  |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInTargetRecords`           | `int`     |          |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInHighPercent`             | `float64` | %        |
-| :heavy_check_mark: |                    | `TimeInHighMinutes`             | `int`     | minutes  |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInHighRecords`             | `int`     |          |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInVeryHighPercent`         | `float64` | %        |
-| :heavy_check_mark: |                    | `TimeInVeryHighMinutes`         | `int`     | minutes  |
-| :heavy_check_mark: | :heavy_check_mark: | `TimeInVeryHighRecords`         | `int`     |          |
+|  `cgm`   |  `smbg`  | Field                           | Type      | Unit     |
+| :------: | :------: | ------------------------------- | --------- | -------- |
+| &#10004; | &#10004; | `HasAverageGlucose`             | `bool`    |          |
+| &#10004; |          | `HasGlucoseManagementIndicator` | `bool`    |          |
+| &#10004; |          | `HasTimeCGMUsePercent`          | `bool`    |          |
+| &#10004; | &#10004; | `HasTimeInLowPercent`           | `bool`    |          |
+| &#10004; | &#10004; | `HasTimeInVeryLowPercent`       | `bool`    |          |
+| &#10004; | &#10004; | `HasTimeInTargetPercent`        | `bool`    |          |
+| &#10004; | &#10004; | `HasTimeInHighPercent`          | `bool`    |          |
+| &#10004; | &#10004; | `HasTimeInVeryHighPercent`      | `bool`    |          |
+| &#10004; |          | `TimeCGMUsePercent`             | `float64` | %        |
+| &#10004; |          | `TimeCGMUseMinutes`             | `int`     | minutes  |
+| &#10004; |          | `TimeCGMUseRecords`             | `int`     |          |
+| &#10004; | &#10004; | `AverageGlucose`                | `float64` | mmol/L   |
+|          | &#10004; | `TotalRecords`                  | `int`     |          |
+| &#10004; |          | `GlucoseManagementIndicator`    | `float64` | mmol/mol |
+| &#10004; | &#10004; | `TimeInVeryLowPercent`          | `float64` | %        |
+| &#10004; |          | `TimeInVeryLowMinutes`          | `int`     | minutes  |
+| &#10004; | &#10004; | `TimeInVeryLowRecords`          | `int`     |          |
+| &#10004; | &#10004; | `TimeInLowPercent`              | `float64` | %        |
+| &#10004; |          | `TimeInLowMinutes`              | `int`     | minutes  |
+| &#10004; | &#10004; | `TimeInLowRecords`              | `int`     |          |
+| &#10004; | &#10004; | `TimeInTargetPercent`           | `float64` | %        |
+| &#10004; |          | `TimeInTargetMinutes`           | `int`     | minutes  |
+| &#10004; | &#10004; | `TimeInTargetRecords`           | `int`     |          |
+| &#10004; | &#10004; | `TimeInHighPercent`             | `float64` | %        |
+| &#10004; |          | `TimeInHighMinutes`             | `int`     | minutes  |
+| &#10004; | &#10004; | `TimeInHighRecords`             | `int`     |          |
+| &#10004; | &#10004; | `TimeInVeryHighPercent`         | `float64` | %        |
+| &#10004; |          | `TimeInVeryHighMinutes`         | `int`     | minutes  |
+| &#10004; | &#10004; | `TimeInVeryHighRecords`         | `int`     |          |
 
 Notes on the fields in the period summaries:
 
