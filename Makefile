@@ -132,7 +132,11 @@ check_private_env:
 	@:${call check_defined, PRIVATE_STOPLIGHT_TOKEN}
 
 .PHONY: check_files
-check_files: check_docs check_specs
+check_files: check_docs check_specs check_todo
+
+.PHONY: check_todo
+check_todo:
+	-grep -nR TODO docs/* reference/*
 
 .PHONY: check_docs
 check_docs: $(SOURCE_DOCS)
