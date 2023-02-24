@@ -74,14 +74,15 @@ All of the data is stored within each user account to enable quick sorting and f
 
 ## Threshold Values
 
-The summary calculation currently uses the same standard threshold values for all users to characterize each `cbg` or `smbg` glucose value as very low, low, target, high, or very high value. This means the summary calculations are not personalized based on either the user's or the clinic's preferences. The threshold values are:
+The summary calculation uses the same standard [AACE glycemic target](https://pro.aace.com/cgm/toolkit/faqs) threshold values for all users to characterize each `cbg` or `smbg` glucose value as one of very low, low, target, high, or very high. Therefore the summary calculations are currently not personalized based on either the user's or the clinic's preferences. The threshold values are:
 
-| Threshold              |   Value | Unit   |
-| :--------------------- | ------: | :----- |
-| `VeryLowBloodGlucose`  |  <= 3.0 | mmol/L |
-| `LowBloodGlucose`      |  <= 3.9 | mmol/L |
-| `HighBloodGlucose`     | >= 10.0 | mmol/L |
-| `VeryHighBloodGlucose` | >= 13.9 | mmol/L |
+<!-- Tidepool stores values in mmol/L with conversion factor of 18.01559 -->
+| Threshold              |          Value | AACE Reference |
+| :--------------------- | -------------: | -------------: |
+| `VeryLowBloodGlucose`  |  <= 3.0 mmol/L |       54 mg/dL |
+| `LowBloodGlucose`      |  <= 3.9 mmol/L |       70 mg/dL |
+| `HighBloodGlucose`     | >= 10.0 mmol/L |      180 mg/dL |
+| `VeryHighBloodGlucose` | >= 13.9 mmol/L |      250 mg/dL |
 
 ## Bucket Fields
 
