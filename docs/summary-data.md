@@ -74,15 +74,13 @@ All of the data is stored within each user account to enable quick sorting and f
 
 ## Threshold Values
 
-The summary calculation uses the same standard [AACE glycemic target](https://pro.aace.com/cgm/toolkit/faqs) threshold values for all users to characterize each `cbg` or `smbg` glucose value as one of very low, low, target, high, or very high. Therefore the summary calculations are currently not personalized based on either the user's or the clinic's preferences. The threshold values are:
+The summary calculation uses the same standard [AACE](https://pro.aace.com/) glycemic targets [[paper](https://doi.org/10.1016/j.eprac.2022.08.002), [table](https://www.endocrinepractice.org/article/S1530-891X(22)00576-6/fulltext#tbl6)] for all users to characterize each `cbg` or `smbg` glucose value as one of very low, low, in range, high, or very high. Therefore the summary calculations are currently not personalized based on either the user's or the clinic's preferences, or the user's diagnosis type. The target ranges are:
 
 <!-- Tidepool stores values in mmol/L with conversion factor of 18.01559 -->
-| Threshold              |          Value | AACE Reference |
-| :--------------------- | -------------: | -------------: |
-| `VeryLowBloodGlucose`  |  <= 3.0 mmol/L |       54 mg/dL |
-| `LowBloodGlucose`      |  <= 3.9 mmol/L |       70 mg/dL |
-| `HighBloodGlucose`     | >= 10.0 mmol/L |      180 mg/dL |
-| `VeryHighBloodGlucose` | >= 13.9 mmol/L |      250 mg/dL |
+|       Unit |    Very Low |                Low |             In Range |                 High |    Very High |
+| ---------: | ----------: | -----------------: | -------------------: | -------------------: | -----------: |
+| **mmol/L** | value < 3.0 | 3.0 <= value < 3.9 | 3.9 <= value <= 10.0 | 10.0 < value <= 13.9 | value > 13.9 |
+|  **mg/dL** |  value < 54 |   54 <= value < 70 |   70 <= value <= 180 |   180 < value <= 250 |  value > 250 |
 
 ## Bucket Fields
 
