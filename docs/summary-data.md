@@ -33,13 +33,13 @@ sequenceDiagram
    Uploader->>Platform: Upload diabetes data
    activate Platform
    note right of Platform: If cbg or smbg data
-   Platform->>Platform: Mark account summary as stale
+   Platform->>Platform: Mark account summary as out-of-date
    Platform->>Uploader: OK
    deactivate Platform
    Uploader->>PWD: OK
    deactivate Uploader
 
-   loop Every 5 minutes
+   loop Every 3 minutes
       Platform->>Platform: Re-calculate summary data
       Platform->>Platform: Store summary data
    end
@@ -48,7 +48,7 @@ sequenceDiagram
 
 # Calculation
 
-The summary calculation is done in batches of 500 user accounts at a time. The calculation for each user proceeds as shown in the diagram below:
+The summary calculation is done in batches of 500 most out-of-date user accounts at a time, every 3 minutes. The calculation for each user proceeds as shown in the diagram below:
 
 ```mermaid
 sequenceDiagram
@@ -74,7 +74,7 @@ All of the data is stored within each user account to enable quick sorting and f
 
 ## Threshold Values
 
-The summary calculation uses the same standard [AACE](https://pro.aace.com/) glycemic targets [[paper](https://doi.org/10.1016/j.eprac.2022.08.002), [table](https://www.endocrinepractice.org/article/S1530-891X(22)00576-6/fulltext#tbl6)] for all users to characterize each `cbg` or `smbg` glucose value as one of very low, low, in range, high, or very high. Therefore the summary calculations are currently not personalized based on either the user's or the clinic's preferences, or the user's diagnosis type. The target ranges are:
+The summary calculation uses the glycemic targets established by [ADA](https://diabetes.org/) [[standards of care](https://diabetesjournals.org/care/issue/46/Supplement_1)] and [AACE](https://pro.aace.com/) [[paper](https://doi.org/10.1016/j.eprac.2022.08.002), [table](https://www.endocrinepractice.org/article/S1530-891X(22)00576-6/fulltext#tbl6)] to characterize each `cbg` or `smbg` glucose value as one of very low, low, in range, high, or very high. The same target ranges are currently used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are:
 
 <!-- Tidepool stores values in mmol/L with conversion factor of 18.01559 -->
 |       Unit |    Very Low |                Low |             In Range |                 High |    Very High |
