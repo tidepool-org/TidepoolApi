@@ -36,12 +36,12 @@ properties:
     readOnly: true
   attestationSubmitted:
     type: boolean
-  summary:
-    $ref: ../../summary/models/summary.v1.yaml
   lastUploadReminderTime:
     type: string
     format: date-time
     readOnly: true
+  summary:
+    $ref: ./summaries/patientsummary.v1.yaml
 required:
   - id
   - fullName

@@ -58,26 +58,30 @@ components:
       $ref: './common/models/tidepooluserid.yaml'
     AverageGlucose:
       $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
+    BGMBucketData:
+      $ref: './summary/models/bgmbucketdata.v1.yaml'
     BGMPeriod:
       $ref: './summary/models/bgmperiod.v1.yaml'
     BGMPeriods:
       $ref: './summary/models/bgmperiods.v1.yaml'
     BGMStats:
       $ref: './summary/models/bgmstats.v1.yaml'
-    BGMSummary:
-      $ref: './summary/models/bgmsummary.v1.yaml'
+    CGMBucketData:
+      $ref: './summary/models/cgmbucketdata.v1.yaml'
     CGMPeriod:
       $ref: './summary/models/cgmperiod.v1.yaml'
     CGMPeriods:
       $ref: './summary/models/cgmperiods.v1.yaml'
     CGMStats:
       $ref: './summary/models/cgmstats.v1.yaml'
-    CGMSummary:
-      $ref: './summary/models/cgmsummary.v1.yaml'
-    Summary:
-      $ref: './summary/models/summary.v1.yaml'
+    Bucket:
+      $ref: './summary/models/bucket.v1.yaml'
     Config:
       $ref: './summary/models/config.v1.yaml'
+    Dates:
+      $ref: './summary/models/dates.v1.yaml'
+    Summary:
+      $ref: './summary/models/summary.v1.yaml'
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'

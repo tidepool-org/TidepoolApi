@@ -1,6 +1,6 @@
 type: object
-title: cgmsummary.v1
-description: 'A summary of a users recent CGM glucose values'
+title: dates.v1
+description: 'dates tracked for summary calculation'
 properties:
   lastUpdatedDate:
     description: Date of the last calculation
@@ -24,14 +24,3 @@ properties:
     description: Date of the first user upload after lastData, removed when calculated
     type: string
     format: date-time
-  totalHours:
-    description: Total hours represented in the hourly stats
-    type: number
-    x-go-type: int
-  periods:
-    $ref: './cgmperiods.v1.yaml'
-  hourlyStats:
-    type: array
-    description: Rotating list containing the stats for each currently tracked hour in order
-    items:
-      $ref: './cgmstats.v1.yaml'

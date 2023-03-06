@@ -244,187 +244,111 @@ paths:
         - $ref: '#/components/parameters/sort'
         - schema:
             type: string
+            pattern: ^(1d|7d|14d|30d)$
+            example: '7d'
+          in: query
+          name: period
+          description: Time Period to filter
+        - schema:
+            type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.5'
           in: query
-          name: summary.periods.1d.timeCGMUsePercent
+          name: cgm.timeCGMUsePercent
           description: Percentage of time of CGM use
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.periods.1d.timeInVeryLowPercent
+          name: cgm.timeInVeryLowPercent
           description: Percentage of time below 54 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.periods.1d.timeInLowPercent
+          name: cgm.timeInLowPercent
           description: Percentage of time in range 54-70 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.periods.1d.timeInTargetPercent
+          name: cgm.timeInTargetPercent
           description: Percentage of time in range 70-180 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.periods.1d.timeInHighPercent
+          name: cgm.timeInHighPercent
           description: Percentage of time in range 180-250 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
-          name: summary.periods.1d.timeInVeryHighPercent
+          name: cgm.timeInVeryHighPercent
           description: Percentage of time above range 250 mg/dL
-
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.5'
-          in: query
-          name: summary.periods.7d.timeCGMUsePercent
-          description: Percentage of time of CGM use
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.7d.timeInVeryLowPercent
-          description: Percentage of time below 54 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.7d.timeInLowPercent
-          description: Percentage of time in range 54-70 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.7d.timeInTargetPercent
-          description: Percentage of time in range 70-180 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.7d.timeInHighPercent
-          description: Percentage of time in range 180-250 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.7d.timeInVeryHighPercent
-          description: Percentage of time above range 250 mg/dL
-
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.5'
-          in: query
-          name: summary.periods.14d.timeCGMUsePercent
-          description: Percentage of time of CGM use
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.14d.timeInVeryLowPercent
-          description: Percentage of time below 54 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.14d.timeInLowPercent
-          description: Percentage of time in range 54-70 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.14d.timeInTargetPercent
-          description: Percentage of time in range 70-180 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.14d.timeInHighPercent
-          description: Percentage of time in range 180-250 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.14d.timeInVeryHighPercent
-          description: Percentage of time above range 250 mg/dL
-
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.5'
-          in: query
-          name: summary.periods.30d.timeCGMUsePercent
-          description: Percentage of time of CGM use
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.30d.timeInVeryLowPercent
-          description: Percentage of time below 54 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.30d.timeInLowPercent
-          description: Percentage of time in range 54-70 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.30d.timeInTargetPercent
-          description: Percentage of time in range 70-180 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.30d.timeInHighPercent
-          description: Percentage of time in range 180-250 mg/dL
-        - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
-          in: query
-          name: summary.periods.30d.timeInVeryHighPercent
-          description: Percentage of time above range 250 mg/dL
-
         - schema:
             type: string
             format: date-time
           in: query
-          name: summary.lastUploadDateFrom
+          name: cgm.lastUploadDateFrom
           description: Inclusive
         - schema:
             type: string
             format: date-time
           in: query
-          name: summary.lastUploadDateTo
+          name: cgm.lastUploadDateTo
+          description: Exclusive
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: bgm.timeInVeryLowPercent
+          description: Percentage of time below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: bgm.timeInLowPercent
+          description: Percentage of time in range 54-70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: bgm.timeInTargetPercent
+          description: Percentage of time in range 70-180 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: bgm.timeInHighPercent
+          description: Percentage of time in range 180-250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: bgm.timeInVeryHighPercent
+          description: Percentage of time above range 250 mg/dL
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: bgm.lastUploadDateFrom
+          description: Inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: bgm.lastUploadDateTo
           description: Exclusive
       description: Retrieve a list of patients of a clinic
     post:
@@ -1217,23 +1141,21 @@ components:
     PatientBGMPeriod:
       $ref: './summary/models/bgmperiod.v1.yaml'
     PatientBGMPeriods:
-      $ref: './summary/models/bgmperiods.v1.yaml'
+      $ref: './clinic/models/summaries/bgmperiods.v1.yaml'
     PatientBGMStats:
-      $ref: './summary/models/bgmstats.v1.yaml'
-    PatientBGMSummary:
-      $ref: './summary/models/bgmsummary.v1.yaml'
+      $ref: './clinic/models/summaries/bgmstats.v1.yaml'
     PatientCGMPeriod:
       $ref: './summary/models/cgmperiod.v1.yaml'
     PatientCGMPeriods:
-      $ref: './summary/models/cgmperiods.v1.yaml'
+      $ref: './clinic/models/summaries/cgmperiods.v1.yaml'
     PatientCGMStats:
-      $ref: './summary/models/cgmstats.v1.yaml'
-    PatientCGMSummary:
-      $ref: './summary/models/cgmsummary.v1.yaml'
-    PatientSummary:
-      $ref: './summary/models/summary.v1.yaml'
+      $ref: './clinic/models/summaries/cgmstats.v1.yaml'
     PatientSummaryConfig:
       $ref: './summary/models/config.v1.yaml'
+    PatientSummaryDates:
+      $ref: './summary/models/dates.v1.yaml'
+    PatientSummary:
+      $ref: './clinic/models/summaries/patientsummary.v1.yaml'
     UpdateTier:
       title: UpdateTier
       type: object

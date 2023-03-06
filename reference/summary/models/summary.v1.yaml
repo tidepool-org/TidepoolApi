@@ -1,10 +1,17 @@
 type: object
 title: summary.v1
-description: 'A summary of a users recent glucose values'
+description: 'A summary of a users recent data'
 properties:
-  cgmSummary:
-    $ref: './cgmsummary.v1.yaml'
-  bgmSummary:
-    $ref: './bgmsummary.v1.yaml'
+  type:
+    type: string
+    enum: ['cgm', 'bgm']
+  userId:
+    $ref: '../../common/models/tidepooluserid.yaml'
   config:
     $ref: './config.v1.yaml'
+  dates:
+    $ref: './dates.v1.yaml'
+  stats:
+    oneOf:
+      - $ref: './cgmstats.v1.yaml'
+      - $ref: './bgmstats.v1.yaml'

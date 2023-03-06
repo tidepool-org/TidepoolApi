@@ -1,0 +1,12 @@
+type: object
+title: cgmperiods.v1
+description: 'A map to each supported CGM summary period'
+properties:
+  1d:
+    $ref: '../../../summary/models/cgmperiod.v1.yaml'
+  7d:
+    $ref: '../../../summary/models/cgmperiod.v1.yaml'
+  14d:
+    $ref: '../../../summary/models/cgmperiod.v1.yaml'
+  30d:
+    $ref: '../../../summary/models/cgmperiod.v1.yaml'
