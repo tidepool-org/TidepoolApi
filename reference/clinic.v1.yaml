@@ -184,7 +184,7 @@ paths:
       tags:
         - Clinics
     delete:
-      summary: ''
+      summary: Delete Clinic
       operationId: DeleteClinic
       responses:
         '204':
