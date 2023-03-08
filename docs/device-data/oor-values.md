@@ -116,4 +116,4 @@ In this instance, because the threshold was unknown, we used a value that we kne
 * [Blood Ketones](./data-types/blood-ketones.md)
 * [Continuous Blood Glucose (CBG)](./data-types/cbg.md)
 * [CGM Settings](./data-types/cgm-settings.md)
-* [Self-Monitored Glucose (SMBG)](./data-types/pump-settings/smbg.md)
+* [Self-Monitored Glucose (SMBG)](./data-types/smbg.md)

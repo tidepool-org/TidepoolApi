@@ -75,7 +75,7 @@ _.each(data, function(datum) {
 
 ## Tracking The Time Generation Method
 
-Each instance of the Timezone Offset Utility keeps track of which method for generating the time field is being employed — BtUTC or [across-the-board application](../btutc.md#acrosstheboard-timezone-default) of a timezone. The method of time generation is publicly available through the type property on the instance (i.e. `cfg.tzoUtil.type`) and must be retrieved and provided as the time processing field of [upload metadata](../../device-data/data-types/pump-settings/upload.md).
+Each instance of the Timezone Offset Utility keeps track of which method for generating the time field is being employed — BtUTC or [across-the-board application](../btutc.md#acrosstheboard-timezone-default) of a timezone. The method of time generation is publicly available through the type property on the instance (i.e. `cfg.tzoUtil.type`) and must be retrieved and provided as the time processing field of [upload metadata](../../device-data/data-types/upload.md).
 
 ---
 

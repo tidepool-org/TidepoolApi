@@ -199,6 +199,11 @@
               "uri": "docs/device-data/data-types/blood-ketones.md"
             },
             {
+              "type": "item",
+              "title": "Bolus Calculator Records (`wizard`)",
+              "uri": "docs/device-data/data-types/calculator.md"
+            },
+            {
               "type": "group",
               "title": "Bolus Insulin (`bolus`)",
               "items": [
@@ -233,6 +238,11 @@
               "type": "item",
               "title": "Continuous Blood Glucose (`cbg`)",
               "uri": "docs/device-data/data-types/cbg.md"
+            },
+            {
+              "type": "item",
+              "title": "Self-Monitored Blood Glucose (`smbg`)",
+              "uri": "docs/device-data/data-types/smbg.md"
             },
             {
               "type": "item",
@@ -316,35 +326,19 @@
               "uri": "docs/device-data/data-types/dosing-decision.md"
             },
             {
-              "type": "group",
+              "type": "item",
               "title": "Pump Settings (`pumpSettings`)",
-              "items": [
-                {
-                  "type": "item",
-                  "title": "Overview",
-                  "uri": "docs/device-data/data-types/pump-settings.md"
-                },
-                {
-                  "type": "item",
-                  "title": "Bolus Calculator Records (`wizard`)",
-                  "uri": "docs/device-data/data-types/pump-settings/calculator.md"
-                },
-                {
-                  "type": "item",
-                  "title": "Self-Monitored Blood Glucose (`smbg`)",
-                  "uri": "docs/device-data/data-types/pump-settings/smbg.md"
-                },
-                {
-                  "type": "item",
-                  "title": "Upload Metadata (`upload`)",
-                  "uri": "docs/device-data/data-types/pump-settings/upload.md"
-                }
-              ]
+              "uri": "docs/device-data/data-types/pump-settings.md"
             },
             {
               "type": "item",
               "title": "Pump Status (`pumpStatus`)",
               "uri": "docs/device-data/data-types/pump-status.md"
+            },
+            {
+              "type": "item",
+              "title": "Upload Metadata (`upload`)",
+              "uri": "docs/device-data/data-types/upload.md"
             }
           ]
         },

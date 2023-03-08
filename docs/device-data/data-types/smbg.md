@@ -15,14 +15,14 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/blood/selfmonitoredglucose.v1.yaml'
+$ref: '../../../reference/data/models/blood/selfmonitoredglucose.v1.yaml'
 ```
 
 ---
 
 ## Type (`type`)
 
-This is the Tidepool data type for traditional fingerstick blood glucose meter data. SMBG is an abbreviation of "self-monitored blood glucose" and contrasts with CBG, abbreviating "continuous blood glucose." CBG is the [Tidepool data type for continuous glucose monitor](../cgm-settings.md) (CGM) sensor data.
+This is the Tidepool data type for traditional fingerstick blood glucose meter data. SMBG is an abbreviation of "self-monitored blood glucose" and contrasts with CBG, abbreviating "continuous blood glucose." CBG is the [Tidepool data type for continuous glucose monitor](./cgm-settings.md) (CGM) sensor data.
 
 ---
 
@@ -100,9 +100,9 @@ The linked value indicates that the blood glucose value was transferred from a b
 ## Keep Reading
 
 * [Bolus Calculator](./calculator.md)
-* [Common Fields](../../common-fields.md)
-* [Datetime Guide](../../../datetime.md)
-* [Diabetes Data Types](../../data-types.md)
-* [Pump Settings](../pump-settings.md)
-* [Units](../../units.md)
+* [Common Fields](../common-fields.md)
+* [Datetime Guide](../../datetime.md)
+* [Diabetes Data Types](../data-types.md)
+* [Pump Settings](./pump-settings.md)
+* [Units](../units.md)
 * [Upload Metadata](./upload.md)
