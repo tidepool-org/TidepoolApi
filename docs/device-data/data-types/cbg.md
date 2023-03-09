@@ -91,5 +91,5 @@ The device time field is only optional for *this* data type. This is because Tid
 * [CGM Settings](./cgm-settings.md)
 * [Common Fields](../common-fields.md)
 * [Pump Settings](./pump-settings.md)
-* [Self-Monitored Glucose (SMBG)](./pump-settings/smbg.md)
+* [Self-Monitored Glucose (SMBG)](./smbg.md)
 * [Units](../units.md)

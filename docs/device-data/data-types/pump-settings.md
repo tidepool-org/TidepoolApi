@@ -613,11 +613,11 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 
 ## Keep Reading
 
-* [Bolus Calculator](./pump-settings/calculator.md)
+* [Bolus Calculator](./calculator.md)
 * [Pump Settings Override](./device-event/pump-settings-override.md)
 * [Common Fields](../common-fields.md)
 * [Datetime Guide](../../datetime.md)
 * [Diabetes Data Types](../data-types.md)
-* [Self-Monitored Glucose (SMBG)](./pump-settings/smbg.md)
+* [Self-Monitored Glucose (SMBG)](./smbg.md)
 * [Units](../units.md)
-* [Upload Metadata](./pump-settings/upload.md)
+* [Upload Metadata](./upload.md)

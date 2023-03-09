@@ -20,7 +20,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/bolus/calculator.v1.yaml'
+$ref: '../../../reference/data/models/bolus/calculator.v1.yaml'
 ```
 
 ---
@@ -33,7 +33,7 @@ $ref: '../../../../reference/data/models/bolus/calculator.v1.yaml'
 
 The Tidepool bolus calculator event models user interactions with a bolus calculator. The bolus calculator event is intended to contain the values that were input into the `wizard`, as well as any recommendations that the calculator may have made. (This event does not automatically record whether the recommendations made were followed.)
 
-Some insulin pumps record every user interaction with the bolus calculator, regardless of whether a bolus resulted from the interaction or not. However, only user interactions with the bolus calculator *that result in a bolus event* should be uploaded to Platform, to avoid noise in the data. The resulting bolus should also be included on the bolus calculator event — see [linking events](../../linking-events.md) for details.
+Some insulin pumps record every user interaction with the bolus calculator, regardless of whether a bolus resulted from the interaction or not. However, only user interactions with the bolus calculator *that result in a bolus event* should be uploaded to Platform, to avoid noise in the data. The resulting bolus should also be included on the bolus calculator event — see [linking events](../linking-events.md) for details.
 
 ---
 
@@ -47,7 +47,7 @@ Like all blood glucose-related fields, the BG input should be uploaded in either
 
 Only bolus calculator events that result in a bolus should be uploaded to Platform. When uploading through Platform, the bolus should only be submitted embedded within the appropriate bolus calculator event.
 
-See [linking events](../../linking-events.md) for more details on how events of different types are linked in Platform.
+See [linking events](../linking-events.md) for more details on how events of different types are linked in Platform.
 
 ---
 
@@ -65,7 +65,7 @@ Some devices have a separate field to enter a carbohydrate value on their bolus 
 
 ## Insulin-To-Carb Ratio (`insulinCarbRatio`)
 
-The insulin-to-carb (I:C) ratio is part of an insulin pump's settings. A user may program one I:C ratio to be used across-the-board, or particular ratios on a schedule per each 24-hour day. For more information on these persistent I:C ratios, see [carb ratios](../pump-settings.md#carb-ratio-carbratio).
+The insulin-to-carb (I:C) ratio is part of an insulin pump's settings. A user may program one I:C ratio to be used across-the-board, or particular ratios on a schedule per each 24-hour day. For more information on these persistent I:C ratios, see [carb ratios](./pump-settings.md#carb-ratio-carbratio).
 
 Most pumps make it possible to change the I:C for the bolus *currently being calculated*, without also changing the pump settings. Therefore, the insulin-to-carb ratio value on a bolus calculation may not always match the expected ratio given the user's insulin pump settings at the time of the calculation.
 
@@ -218,10 +218,10 @@ Net is the net number of units of insulin the bolus calculator recommended given
 
 ## Keep Reading
 
-* [Common Fields](../../common-fields.md)
-* [Datetime Guide](../../../datetime.md)
-* [Diabetes Data Types](../../data-types.md)
-* [Pump Settings](../pump-settings.md)
+* [Common Fields](../common-fields.md)
+* [Datetime Guide](../../datetime.md)
+* [Diabetes Data Types](../data-types.md)
+* [Pump Settings](./pump-settings.md)
 * [Self-Monitored Glucose (SMBG)](./smbg.md)
-* [Units](../../units.md)
+* [Units](../units.md)
 * [Upload Metadata](./upload.md)

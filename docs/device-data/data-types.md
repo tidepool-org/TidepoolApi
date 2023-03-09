@@ -11,7 +11,9 @@ This documents the diabetes device data types that Platform reads and stores. Al
 * [Basal Insulin](./data-types/basal.md)
 * [Bolus Insulin](./data-types/bolus.md)
 * [Blood Ketones](./data-types/blood-ketones.md)
+* [Bolus Calculator (wizard)](./data-types/calculator.md)
 * [Continuous Blood Glucose (CBG)](./data-types/cbg.md)
+* [Self-Monitored Blood Glucose (SMBG)](./data-types/smbg.md)
 * [CGM Settings](./data-types/cgm-settings.md)
 * [Controller Settings](./data-types/controller-settings.md)
 * [Controller Status](./data-types/controller-status.md)
@@ -20,9 +22,7 @@ This documents the diabetes device data types that Platform reads and stores. Al
 * [Dosing Decision](./data-types/dosing-decision.md)
 * [Pump Settings](./data-types/pump-settings.md)
 * [Pump Status](./data-types/pump-status.md)
-* [Bolus Calculator (wizard)](./data-types/pump-settings/calculator.md)
-* [Self-Monitored Blood Glucose (SMBG)](./data-types/pump-settings/smbg.md)
-* [Upload Metadata](./data-types/pump-settings/upload.md)
+* [Upload Metadata](./data-types/upload.md)
 
 <!-- theme: info -->
 

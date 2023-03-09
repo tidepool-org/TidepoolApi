@@ -24,7 +24,7 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/upload.v1.yaml'
+$ref: '../../../reference/data/models/upload.v1.yaml'
 ```
 
 ---
@@ -223,9 +223,9 @@ A string identifying the software version of the uploading client. For Tidepool 
 ## Keep Reading
 
 * [Bolus Calculator](./calculator.md)
-* [Common Fields](../../common-fields.md)
-* [Datetime Guide](../../../datetime.md)
-* [Diabetes Data Types](../../data-types.md)
-* [Pump Settings](../pump-settings.md)
+* [Common Fields](../common-fields.md)
+* [Datetime Guide](../../datetime.md)
+* [Diabetes Data Types](../data-types.md)
+* [Pump Settings](./pump-settings.md)
 * [Self-Monitored Glucose (SMBG)](./smbg.md)
-* [Units](../../units.md)
+* [Units](../units.md)

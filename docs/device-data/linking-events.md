@@ -91,7 +91,7 @@ The resulting data looks like:
 
 * [Alarm](./data-types/device-event/alarm.md)
 * [Bolus](./data-types/bolus.md)
-* [Bolus Calculator](./data-types/pump-settings/calculator.md)
+* [Bolus Calculator](./data-types/calculator.md)
 * [Common Fields](./common-fields.md)
 * [Reservoir Change](./data-types/device-event/reservoir-change.md)
 * [Status](./data-types/device-event/status.md)
