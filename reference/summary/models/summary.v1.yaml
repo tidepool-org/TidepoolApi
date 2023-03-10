@@ -3,8 +3,7 @@ title: summary.v1
 description: 'A summary of a users recent data'
 properties:
   type:
-    type: string
-    enum: ['cgm', 'bgm']
+    $ref: './summarytype.v1.yaml'
   userId:
     $ref: '../../common/models/tidepooluserid.yaml'
   config:

@@ -28,9 +28,10 @@ servers:
   - url: 'https://api.tidepool.org'
     description: production
 paths:
-  '/v1/summaries/{userId}':
+  '/v1/summaries/{userId}/{summaryType}':
     parameters:
       - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/summaryType'
     get:
       summary: Get User Summary
       responses:
@@ -47,7 +48,7 @@ paths:
         '500':
           description: Internal Server Error
       operationId: GetSummary
-      description: Retrieve a summary by id
+      description: Retrieve a summary by user id
       x-internal: true
       tags:
         - summary
@@ -56,6 +57,8 @@ components:
   schemas:
     TidepoolUserId:
       $ref: './common/models/tidepooluserid.yaml'
+    SummaryType:
+      $ref: './summary/models/summarytype.v1.yaml'
     AverageGlucose:
       $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
     BGMBucketData:
@@ -94,6 +97,12 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/TidepoolUserId'
+    summaryType:
+      name: summaryType
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/SummaryType'
 tags:
   - name: summary
     description: Tidepool Summary Data

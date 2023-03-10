@@ -244,6 +244,13 @@ paths:
         - $ref: '#/components/parameters/sort'
         - schema:
             type: string
+            pattern: ^(cgm|bgm)$
+            example: 'cgm'
+          in: query
+          name: sortType
+          description: Summary type to sort by
+        - schema:
+            type: string
             pattern: ^(1d|7d|14d|30d)$
             example: '7d'
           in: query
