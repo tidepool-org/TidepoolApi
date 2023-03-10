@@ -252,6 +252,13 @@ paths:
         - schema:
             type: string
             pattern: ^(1d|7d|14d|30d)$
+            example: '14d'
+          in: query
+          name: sortPeriod
+          description: Time Period to sort
+        - schema:
+            type: string
+            pattern: ^(1d|7d|14d|30d)$
             example: '7d'
           in: query
           name: period
