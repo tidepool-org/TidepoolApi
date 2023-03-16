@@ -125,6 +125,11 @@
       ]
     },
     {
+      "type": "item",
+      "title": "Summary Statistics",
+      "uri": "docs/summary-data.md"
+    },
+    {
       "type": "group",
       "title": "Diabetes Device Data Model",
       "items": [
