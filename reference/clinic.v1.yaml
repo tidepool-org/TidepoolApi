@@ -10,8 +10,7 @@ info:
   license:
     name: BSD-2-Clause
     url: 'https://github.com/tidepool-org/clinic/blob/master/LICENSE'
-  x-tidepool-service: https://github.com/tidepool-org/clinic/
-
+  x-tidepool-service: 'https://github.com/tidepool-org/clinic/'
 servers:
   - url: 'https://external.integration.tidepool.org'
     description: integration
@@ -182,6 +181,15 @@ paths:
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
+      tags:
+        - Clinics
+    delete:
+      summary: Delete Clinic
+      operationId: DeleteClinic
+      responses:
+        '204':
+          description: No Content
+      description: Deletes a clinic if there are no connected patient accounts (besides demo accounts).
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/clinicians':
@@ -1343,13 +1351,10 @@ components:
       description: Return records created before the given date (exclusive)
 tags:
   - name: Internal
-    description: >-
-      APIs intended for internal use by Tidepool.
+    description: APIs intended for internal use by Tidepool.
   - name: Clinics
-    description: >-
-      Manage clinics, clinians and patients.
+    description: 'Manage clinics, clinians and patients.'
   - name: Confirmations
-    description: >-
-      Manage confirmations for account creation, sharing invites, etc.
+    description: 'Manage confirmations for account creation, sharing invites, etc.'
 security:
   - sessionToken: []
