@@ -22,6 +22,9 @@ This documents the diabetes device data types that Platform reads and stores. Al
 * [Dosing Decision](./data-types/dosing-decision.md)
 * [Pump Settings](./data-types/pump-settings.md)
 * [Pump Status](./data-types/pump-status.md)
+* [Food](./data-types/food.md)
+* [Water](./data-types/water.md)
+* [Physical Activity](./data-types/activity-physical.md)
 * [Upload Metadata](./data-types/upload.md)
 
 <!-- theme: info -->

@@ -37,6 +37,6 @@ oneOf:
   - $ref: './state/reportedstate.v1.yaml'
   - $ref: './settings.v1.yaml'
   - $ref: './upload.v1.yaml'
-  - $ref: './water/consumption.v1.yaml'
+  - $ref: './water/water.v1.yaml'
 x-tags:
   - Data

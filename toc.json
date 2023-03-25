@@ -342,6 +342,21 @@
             },
             {
               "type": "item",
+              "title": "Food Consumption (`food`)",
+              "uri": "docs/device-data/data-types/food.md"
+            },
+            {
+              "type": "item",
+              "title": "Water Consumption (`water`)",
+              "uri": "docs/device-data/data-types/water.md"
+            },
+            {
+              "type": "item",
+              "title": "Physical Activity (`physicalActivity`)",
+              "uri": "docs/device-data/data-types/activity-physical.md"
+            },
+            {
+              "type": "item",
               "title": "Upload Metadata (`upload`)",
               "uri": "docs/device-data/data-types/upload.md"
             }
