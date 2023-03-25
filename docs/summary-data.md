@@ -142,7 +142,7 @@ Footnotes
 
 1. `GlucoseManagementIndicator` value is only calculated if `TimeCGMUsePercent` for the period is >70%. It is calculated as follows:
    1. `12.71 + 4.70587 * AverageGlucose` per the [Jaeb formula](https://www.jaeb.org/gmi/) to produce a GMI value in mmol/mol
-   2. `GMI * 0.09148 + 2.152` per the [NGSP formula](http://www.ngsp.org/ifcc.asp) to produce a %HbA1c value
+   2. `GMI * 0.09148 + 2.152` per the [NGSP formula](https://ngsp.org/ifcc.asp) to produce a %HbA1c value
    3. Round the result to one decimal point
 2. The `TimeInXXX` values are only calculated if `TimeCGMUsePercent` is >70% for periods <= 1 day, and only if `TotalMinutes` is >1440 minutes (=24 hours) for periods > 1 day.
 
