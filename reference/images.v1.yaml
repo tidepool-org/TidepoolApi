@@ -3,8 +3,6 @@ info:
   title: Images API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
@@ -16,29 +14,27 @@ info:
   license:
     name: BSD 2-Clause 'Simplified' License
     url: https://github.com/tidepool-org/platform/blob/master/LICENSE
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/platform/image
 
 servers:
-  - url: 'http://localhost:8080'
-    description: local development
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
   - url: 'https://dev1.dev.tidepool.org'
     description: dev1
   - url: 'https://qa1.development.tidepool.org'
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-  - url: 'https://external.integration.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
 
 security:
   - sessionToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Images
     description: >-
       List, create, and manage images.
@@ -114,6 +110,7 @@ paths:
                 $ref: './images/models/imagewithmetadata.v1.yaml'
       tags:
         - Images
+        - Internal
 
   '/v1/users/{userId}/images/content/{contentIntent}':
     parameters:
@@ -147,6 +144,7 @@ paths:
                 $ref: './images/models/imagewithcontent.v1.yaml'
       tags:
         - Images
+        - Internal
 
   '/v1/users/{userId}/images':
     parameters:
@@ -194,6 +192,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
     get:
       operationId: ListImages
       summary: List Images
@@ -253,6 +252,7 @@ paths:
                 $ref: './images/models/imagelist.v1.yaml'
       tags:
         - Images
+        - Internal
     delete:
       operationId: DeleteAllImages
       summary: Delete All Images
@@ -262,6 +262,7 @@ paths:
           $ref: './common/responses/nocontent.v1.yaml'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}':
     parameters:
@@ -282,6 +283,7 @@ paths:
           $ref: './common/responses/nocontent.v1.yaml'
       tags:
         - Images
+        - Internal
     get:
       operationId: GetImage
       summary: Get Image
@@ -291,6 +293,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/metadata':
     parameters:
@@ -308,6 +311,7 @@ paths:
                 $ref: './images/models/metadata.v1.yaml'
       tags:
         - Images
+        - Internal
     put:
       operationId: PutImageMetadata
       summary: Put Image Metadata
@@ -332,6 +336,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/content':
     parameters:
@@ -349,6 +354,7 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/content/{suffixOrContentIntent}':
     parameters:
@@ -381,6 +387,7 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal
 
     put:
       operationId: PutImageContent
@@ -413,6 +420,7 @@ paths:
           $ref: '#/components/responses/Image'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/rendition/{rendition}.{extension}':
     parameters:
@@ -483,6 +491,7 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal
 
   '/v1/images/{imageId}/rendition/{rendition}/{suffix}.{extension}':
     parameters:
@@ -509,3 +518,4 @@ paths:
           $ref: '#/components/responses/ImageContent'
       tags:
         - Images
+        - Internal

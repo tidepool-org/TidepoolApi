@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Timezone Offset (`timezoneOffset`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)

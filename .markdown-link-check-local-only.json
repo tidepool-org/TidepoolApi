@@ -1,0 +1,11 @@
+{
+    "ignorePatterns": [
+        {
+            "pattern": "^https?://"
+        },
+        {
+            "pattern": "^#"
+        }
+    ],
+    "retryOn429": true
+}

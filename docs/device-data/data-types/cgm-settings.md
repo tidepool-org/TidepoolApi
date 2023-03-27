@@ -1,27 +1,27 @@
+<!-- omit in toc -->
 # Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-1. [Overview](#overview)
-1. [Type](#type-type)
-1. [Firmware Version](#firmware-version-firmwareversion)
-1. [Hardware Version](#hardware-version-hardwareversion)
-1. [High Alerts](#high-alerts-highalerts)
-1. [Low Alerts](#low-alerts-lowalerts)
-1. [Manufacturers](#manufacturers-manufacturers)
-1. [Model](#model-model)
-1. [Name](#name-name)
-1. [Out Of Range Alerts](#out-of-range-alerts-outofrangealerts)
-1. [Rate Of Change Alerts](#rate-of-change-alerts-rateofchangealerts)
-1. [Serial Number](#serial-number-serialnumber)
-1. [Software Version](#software-version-softwareversion)
-1. [Transmitter ID](#transmitter-id-transmitterid)
-1. [Units](#units-units)
-1. [Example (client)](#example-client)
-1. [Example (ingestion)](#example-ingestion)
-1. [Example (storage)](#example-storage)
-1. [Keep Reading](#keep-reading)
+2. [Overview](#overview)
+3. [Type (`type`)](#type-type)
+4. [Firmware Version (`firmwareVersion`)](#firmware-version-firmwareversion)
+5. [Hardware Version (`hardwareVersion`)](#hardware-version-hardwareversion)
+6. [High Alerts (`highAlerts`)](#high-alerts-highalerts)
+7. [Low Alerts (`lowAlerts`)](#low-alerts-lowalerts)
+8. [Manufacturers (`manufacturers`)](#manufacturers-manufacturers)
+9. [Model (`model`)](#model-model)
+10. [Name (`name`)](#name-name)
+11. [Out Of Range Alerts (`outOfRangeAlerts`)](#out-of-range-alerts-outofrangealerts)
+12. [Rate Of Change Alerts (`rateOfChangeAlerts`)](#rate-of-change-alerts-rateofchangealerts)
+13. [Serial Number (`serialNumber`)](#serial-number-serialnumber)
+14. [Software Version (`softwareVersion`)](#software-version-softwareversion)
+15. [Transmitter ID (`transmitterId`)](#transmitter-id-transmitterid)
+16. [Units (`units`)](#units-units)
+17. [Examples](#examples)
+18. [Keep Reading](#keep-reading)
 
 ---
 
@@ -163,9 +163,9 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "cgmSettings",
     "firmwareVersion": "1.2",
@@ -215,11 +215,7 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "cgmSettings",
     "firmwareVersion": "1.2",
@@ -267,11 +263,7 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "cgmSettings",
     "firmwareVersion": "1.2",
@@ -330,8 +322,8 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Continuous Blood Glucose (CBG)](./device-data/data-types/cbg.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Out Of Range Values](./device-data/oor-values.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Continuous Blood Glucose (CBG)](./cbg.md)
+* [Common Fields](../common-fields.md)
+* [Out Of Range Values](../oor-values.md)
+* [Units](../units.md)

@@ -1,27 +1,27 @@
+<!-- omit in toc -->
 # Pump Settings (`pumpSettings`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-1. [Type](#type-type)
-1. [Active Schedule](#active-schedule-activeschedule)
-1. [Basal Schedules](#basal-schedules-basalschedules)
-1. [Blood Glucose Target](#blood-glucose-target-bgtarget)
-1. [Carb Ratio](#carb-ratio-carbratio)
-1. [Firmware Version](#firmware-version-firmwareversion)
-1. [Hardware Version](#hardware-version-hardwareversion)
-1. [Insulin Sensitivity](#insulin-sensitivity-insulinsensitivity)
-1. [Manufacturers](#manufacturers-manufacturers)
-1. [Model](#model-model)
-1. [Name](#name-name)
-1. [Override Presets](#override-presets-overridepresets)
-1. [Serial Number](#serial-number-serialnumber)
-1. [Software Version](#software-version-softwareversion)
-1. [Units](#units-units)
-1. [Example (client)](#example-client)
-1. [Example (ingestion)](#example-ingestion)
-1. [Example (storage)](#example-storage)
-1. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [Active Schedule (`activeSchedule`)](#active-schedule-activeschedule)
+4. [Basal Schedules (`basalSchedules`)](#basal-schedules-basalschedules)
+5. [Blood Glucose Target (`bgTarget`)](#blood-glucose-target-bgtarget)
+6. [Carb Ratio (`carbRatio`)](#carb-ratio-carbratio)
+7. [Firmware Version (`firmwareVersion`)](#firmware-version-firmwareversion)
+8. [Hardware Version (`hardwareVersion`)](#hardware-version-hardwareversion)
+9. [Insulin Sensitivity (`insulinSensitivity`)](#insulin-sensitivity-insulinsensitivity)
+10. [Manufacturers (`manufacturers`)](#manufacturers-manufacturers)
+11. [Model (`model`)](#model-model)
+12. [Name (`name`)](#name-name)
+13. [Override Presets (`overridePresets`)](#override-presets-overridepresets)
+14. [Serial Number (`serialNumber`)](#serial-number-serialnumber)
+15. [Software Version (`softwareVersion`)](#software-version-softwareversion)
+16. [Units (`units`)](#units-units)
+17. [Examples](#examples)
+18. [Keep Reading](#keep-reading)
 
 ---
 
@@ -60,6 +60,7 @@ Each basal schedule segment object within each array value contains the followin
 * [Rate](#rate-rate)
 * [Start](#start-start)
 
+<!-- omit in toc -->
 ### Rate (`rate`)
 
 Different insulin pump manufacturers use different terminology for the set of pre-programmed and timed basal rates — one of which is generally running in the background during normal device operation. Tidepool has adopted the term "schedule" to refer to the rates covering a 24 hour day. There must be at least one rate in a schedule; if the schedule has only one rate, we often call this a "flat-rate" schedule, since the same rate will always be in effect.
@@ -68,6 +69,7 @@ The basal schedules object encodes all of a user's programmed basal schedules, w
 
 A basal schedule, in the Tidepool data model, is an array of objects, where each object has a start and a rate. (We sometimes refer to each of these objects that compose a schedule as a "segment" of the schedule.) The rate is a typical basal rate value, in units of insulin per hour.
 
+<!-- omit in toc -->
 ### Start (`start`)
 
 The start is an integer value representing the milliseconds into a 24 hour day when the rate should go into effect. Therefore, the first object in the schedule must always have a start of 0 — representing the start of the day at 12:00 am.
@@ -190,26 +192,32 @@ Any overrides setup in advance as presets prior to enabling any `pumpSettingsOve
 * [Carbohydrate Ratio Scale Factor](#carbohydrate-ratio-scale-factor-carbratioscalefactor)
 * [Insulin Sensitivity Scale Factor](#insulin-sensitivity-scale-factor-insulinsensitivityscalefactor)
 
+<!-- omit in toc -->
 ### Abbreviation (`abbreviation`)
 
 An abbreviation for the preset. Commonly set to an emoji.
 
+<!-- omit in toc -->
 ### Duration (`duration`)
 
 The intended duration of the override when initially enabled. Not specifying this field indicates that the override should be enable indefinitely.
 
+<!-- omit in toc -->
 ### Blood Glucose Target (Preset) (`bgTarget`)
 
 The intended blood glucose target of the override. The blood glucose target range in effect while the override is enabled. Not specified means no change.
 
+<!-- omit in toc -->
 ### Basal Rate Scale Factor (`basalRateScaleFactor`)
 
 The intended basal rate scale factor of the override. The basal rate scale factor in effect while the override is enabled. This is a percentage of the active basal rate found in the basal rate schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
 
+<!-- omit in toc -->
 ### Carbohydrate Ratio Scale Factor (`carbRatioScaleFactor`)
 
 The intended carbohydrate ratio scale factor of the override. The carbohydrate ratio scale factor in effect while the override is enabled. This is a percentage of the active carbohydrate ratio found in the carbohydrate ratio schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
 
+<!-- omit in toc -->
 ### Insulin Sensitivity Scale Factor (`insulinSensitivityScaleFactor`)
 
 The intended insulin sensitivity scale factor of the override. The insulin sensitivity scale factor in effect while the override is enabled. This is a percentage of the active insulin sensitivity found in the insulin sensitivity schedule. A value of 1.0 means 100% (i.e. unchanged). Not specified means no change.
@@ -241,13 +249,13 @@ For carbs, there are currently two allowed values: grams and exchange.
 
 Grams is a self-explanitory value and is generally the preferred unit of measurement used in newer insulin pumps. However, Tidepool also offers support for the now-outdated "exchange" scheme for counting carbohydrates — where one exchange is ~10g or ~15g of carbohydrate. Users can upload carbohydrates in exchanges, however this will be converted to grams upon ingestion to Platform.
 
-The blood glucose value may be mg/dL or mmol/L, but Platform will convert all blood glucose and related values to mmol/L upon ingestion. (See [units](./device-data/units.md) for further explanation of blood glucose units.)
+The blood glucose value may be mg/dL or mmol/L, but Platform will convert all blood glucose and related values to mmol/L upon ingestion. (See [units](../units.md) for further explanation of blood glucose units.)
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -357,11 +365,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -478,11 +482,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -613,11 +613,11 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 
 ## Keep Reading
 
-* [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
-* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Datetime Guide](./datetime.md)
-* [Diabetes Data Types](./device-data/data-types.md)
-* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
-* [Units](./device-data/units.md)
-* [Upload Metadata](./device-data/data-types/pump-settings/upload.md)
+* [Bolus Calculator](./calculator.md)
+* [Pump Settings Override](./device-event/pump-settings-override.md)
+* [Common Fields](../common-fields.md)
+* [Datetime Guide](../../datetime.md)
+* [Diabetes Data Types](../data-types.md)
+* [Self-Monitored Glucose (SMBG)](./smbg.md)
+* [Units](../units.md)
+* [Upload Metadata](./upload.md)

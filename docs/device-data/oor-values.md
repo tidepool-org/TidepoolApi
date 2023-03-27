@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Out of Range Values
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -15,7 +17,7 @@ Blood glucose meters, ketone meters and continuous glucose monitors have a range
 
 For example, for a low CGM reading for a device that displays in mg/dL with a low threshold of 40 mg/dL:
 
-```json
+```json title="Sample Low CGM Reading" lineNumbers=true
 {
   "type": "cbg",
   "units": "mg/dL",
@@ -49,7 +51,7 @@ For blood ketone readings, the threshold should be a value measured in mmol/L. W
 
 For example, for a high CGM reading for a device that displays in mmol/L with a high threshold of 23.0 mmol/L:
 
-```json
+```json title="Sample High CGM Reading" lineNumbers=true
 {
   "type": "cbg",
   "units": "mmol/L",
@@ -79,7 +81,7 @@ For example, for a high CGM reading for a device that displays in mmol/L with a 
 
 If the device (or manufacturer) does not provide the exact threshold levels, then the threshold field should *not* be provided, and an additional `[datatype]/unknown-value` annotation should be provided. This is the case in our current Abbott Precision Xtra driver for ketone readings:
 
-```json
+```json title="Sample Unknown Value" lineNumbers=true
 {
   "type": "bloodKetone",
   "units": "mmol/L",
@@ -114,4 +116,4 @@ In this instance, because the threshold was unknown, we used a value that we kne
 * [Blood Ketones](./data-types/blood-ketones.md)
 * [Continuous Blood Glucose (CBG)](./data-types/cbg.md)
 * [CGM Settings](./data-types/cgm-settings.md)
-* [Self-Monitored Glucose (SMBG)](./data-types/pump-settings/smbg.md)
+* [Self-Monitored Glucose (SMBG)](./data-types/smbg.md)

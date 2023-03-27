@@ -1,22 +1,22 @@
+<!-- omit in toc -->
 # Alarm (`alarm`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#sub-type-subtype)
-3. [Alarm Types](#alarm-types-alarmtype)
-4. [Status](#status-status)
-5. [Example (client)](#example-client)
-6. [Example (ingestion)](#example-ingestion)
-7. [Example (storage)](#example-storage)
-8. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Alarm Types (`alarmType`)](#alarm-types-alarmtype)
+4. [Status (`status`)](#status-status)
+5. [Examples](#examples)
+6. [Keep Reading](#keep-reading)
 
 ---
 
-## QUick Summary
+## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicealarm.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/alarm.v1.yaml'
 ```
 
 ---
@@ -64,13 +64,13 @@ Some alarm types are correlated with a stoppage of insulin delivery. Tidepool as
 
 Some insulin pumps include indication of this stoppage both in the alarm event and elsewhere in their data protocols. Other insulin pumps, however, do not separately indicate the change in the pump's insulin delivery status. For such devices, a status event should be fabricated using the relevant information from the alarm event (timestamp, log index, etc.) and then embedded in the originating alarm to preserve the close connection between events. This also provides an audit trail of the user's processed and standardized data.
 
-See [linking events](./device-data/linking-events.md) for additional details regarding inter-event linking in the Tidepool platform.
+See [linking events](../../linking-events.md) for additional details regarding inter-event linking in the Tidepool platform.
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "alarm",
@@ -88,11 +88,7 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "alarm",
@@ -107,11 +103,7 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "alarm",
@@ -137,13 +129,13 @@ See [linking events](./device-data/linking-events.md) for additional details reg
 
 ## Keep Reading
 
-* [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Device Event](./device-data/data-types/device-event.md)
-* [Linking Events](./device-data/linking-events.md)
-* [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump Settings](device-data/data-types/pump-settings)
-* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
-* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
-* [Status](./device-data/data-types/device-event/status.md)
-* [Time Change](./device-data/data-types/device-event/time-change.md)
+* [Calibration](./calibration.md)
+* [Common Fields](../../common-fields.md)
+* [Device Event](../device-event.md)
+* [Linking Events](../../linking-events.md)
+* [Prime](./prime.md)
+* [Pump Settings](../pump-settings.md)
+* [Pump Settings Override](./pump-settings-override.md)
+* [Reservoir Change](./reservoir-change.md)
+* [Status](./status.md)
+* [Time Change](./time-change.md)

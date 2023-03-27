@@ -1,13 +1,13 @@
+<!-- omit in toc -->
 # Extended Bolus (`extended`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#sub-type-subtype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -25,9 +25,9 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "bolus",
     "subType": "square",
@@ -47,11 +47,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "bolus",
     "subType": "square",
@@ -69,11 +65,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "bolus",
     "subType": "square",
@@ -102,10 +94,10 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ## Keep Reading
 
-* [Automated Bolus](./device-data/data-types/bolus/automated.md)
-* [Bolus](./device-data/data-types/bolus.md)
-* [Combination Bolus](./device-data/data-types/bolus/combination.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Normal Bolus](./device-data/data-types/bolus/normal.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Units](./device-data/units.md)
+* [Bolus](../bolus.md)
+* [Common Fields](../../common-fields.md)
+* [Automated Bolus](./automated.md)
+* [Combination Bolus](./combination.md)
+* [Normal Bolus](./normal.md)
+* [Pump Settings](../pump-settings.md)
+* [Units](../../units.md)

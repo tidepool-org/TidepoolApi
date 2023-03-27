@@ -3,8 +3,6 @@ info:
   title: Authorization API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
@@ -16,29 +14,27 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/gatekeeper/blob/develop/LICENSE
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/gatekeeper
 
 servers:
-  - url: 'http://localhost:8080'
-    description: local development
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
   - url: 'https://dev1.dev.tidepool.org'
     description: dev1
   - url: 'https://qa1.development.tidepool.org'
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-  - url: 'https://external.integration.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
 
 security:
   - sessionToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Authorization
     description: >-
       List, create and manage authorizations that grant access to another user's diabetes data.

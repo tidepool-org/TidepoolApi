@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Annotations
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -17,10 +19,11 @@ Tidepool strives for complete accuracy in the data uploaded to Platform. In some
 
 ## Syntax And Annotation Conventions
 
-In the Tidepool data model, annotations is an optional property that may appear on any type in the data model, with the exception of [upload](./device-data/data-types/pump-settings/upload.md) (which is more of a metadata container). Annotations itself is an array of objects, where each object represents an individual annotation.
+In the Tidepool data model, annotations is an optional property that may appear on any type in the data model, with the exception of [upload](./data-types/upload.md) (which is more of a metadata container). Annotations itself is an array of objects, where each object represents an individual annotation.
 
 An annotation object must have a code property, and the typical construction of this code property is: `[manufacturer]/(datatype)/(description)`. The manufacturer prefix is optional and only present if the reason for annotation is manufacturer-specific. The data type (e.g. basal or bolus) provides another level of annotation namespacing. A descriptive and hyphen-delimited string should come last in the annotation code.
 
+<!-- omit in toc -->
 ### Examples
 
 Manufacturer/device-specific:

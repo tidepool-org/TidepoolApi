@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Glossary
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [BtUTC](#btutc)
@@ -20,7 +22,7 @@
 
 ## BtUTC
 
-[Bootstrapping to UTC](./datetime/btutc.md) (BtUTC) is the algorithm Tidepool uses to translate local device time to [UTC](#utc) datetimes.
+[Bootstrapping to UTC](./btutc.md) (BtUTC) is the algorithm Tidepool uses to translate local device time to [UTC](#utc) datetimes.
 
 ---
 

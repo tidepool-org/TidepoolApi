@@ -40,5 +40,9 @@ allOf:
           - food
 required:
   - type
+  - brand
+  - code
+  - meal
+  - name
 x-tags:
   - Data

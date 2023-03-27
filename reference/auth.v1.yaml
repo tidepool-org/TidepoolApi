@@ -3,8 +3,6 @@ info:
   title: Authentication API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
@@ -16,30 +14,27 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/shoreline/blob/master/LICENSE
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/shoreline
 
 servers:
-  - url: 'http://localhost:8080'
-    description: local development
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
   - url: 'https://dev1.dev.tidepool.org'
     description: dev1
   - url: 'https://qa1.development.tidepool.org'
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-  - url: 'https://external.integration.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Authentication
     description: >-
       Login and logout.
-
   - name: Users
     description: >-
       List and manage users.
@@ -50,6 +45,8 @@ paths:
       operationId: CreateSessionToken
       summary: Create New Session Token
       description: >-
+        **This API is deprecated and will be removed by end of 2023.**
+
         Creates a new session token.
       responses:
         '200':
@@ -66,11 +63,14 @@ paths:
         - basicAuth: []
       tags:
         - Authentication
+      deprecated: true
     get:
       operationId: RefreshSessionToken
       summary: Refresh Session Token
       description: >-
-        Refreshes an existing session token.
+        **This API is deprecated and will be removed by end of 2023.**
+
+        Refreshes an existing session token.        
       responses:
         '200':
           $ref: '#/components/responses/TokenData'
@@ -86,12 +86,15 @@ paths:
         - sessionToken: []
       tags:
         - Authentication
+      deprecated: true
 
   '/auth/logout':
     post:
       operationId: Logout
       summary: Logout
       description: >-
+        **This API is deprecated and will be removed by end of 2023.**
+
         Removes an existing session token.
         Returns success even if the session token does not exist.
       responses:
@@ -99,6 +102,7 @@ paths:
           description: 'Success'
       tags:
         - Authentication
+      deprecated: true
 
   '/auth/user':
     get:
@@ -123,7 +127,9 @@ paths:
       operationId: CreateNewUser
       summary: Create New User Account
       description: >-
-        Creates a new user account
+        **This API is deprecated and will be removed by end of 2023.**
+
+        Creates a new user account.
       requestBody:
         content:
           'application/json':
@@ -144,6 +150,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Users
+      deprecated: true
     put:
       operationId: UpdateCurrentUser
       summary: Update Current User Account
@@ -222,6 +229,7 @@ paths:
         - serverToken: []
       tags:
         - Users
+        - Internal
 
   '/auth/user/{userId}':
     parameters:
@@ -355,9 +363,9 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '500':
           $ref: '#/components/responses/ServerError'
-      x-private: true
       tags:
         - Authentication
+        - Internal
 
   '/auth/serverlogin':
     post:
@@ -378,9 +386,9 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Authentication
+        - Internal
       security:
         - serverSecret: []
-      x-private: true
 
   '/auth/token':
     get:
@@ -395,9 +403,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
         - Authentication
+        - Internal
       security:
         - sessionToken: []
-      x-private: true
 
   '/auth/token/{token}':
     parameters:
@@ -419,9 +427,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
-      x-private: true
 
   '/v1/device_check/verify':
     get:
@@ -439,6 +447,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
       tags:
         - Authentication
+        - Internal
       security:
         - sessionToken: []
 
@@ -463,6 +472,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -484,6 +494,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -503,6 +514,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -525,6 +537,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -546,6 +559,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -565,6 +579,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -593,6 +608,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -614,6 +630,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -633,6 +650,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -655,6 +673,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -676,6 +695,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
@@ -695,6 +715,7 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Authentication
+        - Internal
       security:
         - serverToken: []
 
