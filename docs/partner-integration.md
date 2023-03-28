@@ -61,7 +61,6 @@ Tidepool would like to receive at minimum the following data fields with each CG
 | Value            | Glucose measurement value, in units      | `value`                   | `120`          |
 | Trend            | Text representation of the trend         | `trend`                   | `moderateRise` |
 | Trend Rate       | Numerical representation of the trend    | `trendRate`               | `75`           |
-| Trend Rate Units | `mg/dL` or `mmol/L`, unless same as Unit | `trendRate`               | `75`           |
 
 ### Insulin Delivery Devices (Pumps, Pens)
 
