@@ -20,7 +20,7 @@
 
 ## Overview
 
-Tidepool Data Platform supports direct import of data from over [70 different types of devices](https://www.tidepool.org/devices). In addition, it has an existing integration with [Dexcom Clarity](https://clarity.dexcom.com/) as a passive upload *data source*. Users can continue to upload data to their Dexcom Clarity account. When they connect their Tidepool account to Dexcom Clarity, Tidepool will automatically [fetch data from Dexcom Clarity](https://developer.dexcom.com/) into the user's Tidepool account, without the user having to upload it to both Dexcom and Tidepool separately.
+Tidepool Data Platform supports direct import of data from over [70 different types of devices](https://www.tidepool.org/devices). In addition, it has an existing integration with [Dexcom Clarity](https://clarity.dexcom.com/) as a passive and automatic *data source*. Users can continue to upload data to their Dexcom Clarity account. When they connect their Tidepool account to Dexcom Clarity, Tidepool will automatically [fetch data from Dexcom Clarity](https://developer.dexcom.com/) into the user's Tidepool account, without the user having to upload it to both Dexcom and Tidepool separately. Tidepool expects to add other cloud-connected devices as passive, automatic data sources, including other CGM and insulin delivery devices (pumps and pens) via cloud-to-cloud API connection.
 
 ![Dexcom Clarity connection](../assets/images/data-sources.png)
 
@@ -35,46 +35,52 @@ For brevity, this guide assumes familiarity with OAuth technology but is not a c
 
 ## Device Data Model
 
-Tidepool will do the work of mapping from the partner's specific data model into the Tidepool data model, but here is the core set of data elements that the partner site should expose via its API.
+Tidepool will do the work of mapping from the partner's specific data model into the Tidepool data model, but here is the core set of data elements that Tidepool expects the partner site to expose via its API.
 
 ### Common Fields
 
-Tidepool would like to receive the following data fields for each uploaded device:
+Tidepool expects to receive the following data fields for each uploaded device:
 
-| Description              | Notes                                                                         | Tidepool Data Model Field | Example                    |
-| ------------------------ | ----------------------------------------------------------------------------- | ------------------------- | -------------------------- |
-| Device Identifier        | Globally unique to this device type and repeatable/immutable with each upload | `deviceId`                | `DexG4RecwitShaSM62228608` |
-| Device Model Name        |                                                                               | `deviceModel`             | `DexcomG6`                 |
-| Device Manufacturer Name |                                                                               | `deviceManufacturer`      | `Dexcom`                   |
-| Device Display Name      | If not provided, combine Device Manufacturer and Model Names                  | `deviceName`              | `Dexcom G6`                |
-| Device Serial Number     |                                                                               | `deviceSerialNumber`      | `1234567890`               |
-| Device System Time       | Current device time when data was recorded                                    | `deviceTime`              | `2023-03-28T20:53:00Z`     |
-| Device Time Zone         |                                                                               | `timezone`                | `America/Los_Angeles`      |
+| Description              | Notes                                                                         | Tidepool Data Model Field | Example(s)                                 |
+| ------------------------ | ----------------------------------------------------------------------------- | ------------------------- | ------------------------------------------ |
+| Device Identifier        | Globally unique to this device type and repeatable/immutable with each upload | `deviceId`                | `DexG4RecwitShaSM62228608`, `ACMEPumpCo`   |
+| Device Model Name        |                                                                               | `deviceModel`             | `DexcomG6`, `ACMEPumpModel123`             |
+| Device Manufacturer Name |                                                                               | `deviceManufacturer`      | `Dexcom`, `ACME`                           |
+| Device Display Name      | If not provided, combine Device Manufacturer and Model Names                  | `deviceName`              | `Dexcom G6`, `ACMEPumpCo ACMEPumpModel123` |
+| Device Serial Number     |                                                                               | `deviceSerialNumber`      | `1234567890`                               |
+| Device System Time       | Current device time when data was recorded, in ISO 8601 format                | `deviceTime`              | `2023-03-28T20:53:00Z`                     |
+| Device Time Zone         |                                                                               | `timezone`                | `America/Los_Angeles`                      |
 
 ### CGM Devices
 
-Tidepool would like to receive at minimum the following data fields with each CGM data sample:
+In addition to the common data fields listed above, Tidepool expects to receive at minimum the following data fields with each CGM data sample:
 
-| Description      | Notes                                    | Tidepool Data Model Field | Example        |
-| ---------------- | ---------------------------------------- | ------------------------- | -------------- |
-| Unit             | `mg/dL` or `mmol/L`                      | `units`                   | `mg/dL`        |
-| Value            | Glucose measurement value, in units      | `value`                   | `120`          |
-| Trend            | Text representation of the trend         | `trend`                   | `moderateRise` |
-| Trend Rate       | Numerical representation of the trend    | `trendRate`               | `75`           |
+| Description | Notes                               | Tidepool Data Model Field | Example(s) |
+| ----------- | ----------------------------------- | ------------------------- | ---------- |
+| Unit        | `mg/dL` or `mmol/L`                 | `units`                   | `mg/dL`    |
+| Value       | Glucose measurement value, in units | `value`                   | `120`      |
+
+CGM API can optionally also provide Trend information, such as:
+
+| Description     | Notes                                                             | Tidepool Data Model Field | Example(s)     |
+| --------------- | ----------------------------------------------------------------- | ------------------------- | -------------- |
+| Trend           | Text representation of the trend                                  | `trend`                   | `moderateRise` |
+| Trend Rate      | Numerical representation of the trend rate                        | `trendRate`               | `2`            |
+| Trend Rate Unit | Unit for the trend rate; default is sample value unit per minutes | `trendRateUnit`           | `mg/dL/min`    |
 
 ### Insulin Delivery Devices (Pumps, Pens)
 
-Tidepool would like to receive at minimum the following data fields with each insulin delivery event:
+In addition to the common data fields listed above, Tidepool expects to receive at minimum the following data fields with each insulin delivery event:
 
 #### Basal Insulin
 
-| Description       | Notes                                        | Tidepool Data Model Field | Example     |
-| ----------------- | -------------------------------------------- | ------------------------- | ----------- |
-| Type              | `basal`                                      | `type`                    | `basal`     |
-| Delivery Type     | Typically automated, manual, etc.            | `deliveryType`            | `automated` |
-| Duration          | Actual duration, in msec                     | `duration`                | `2700`      |
-| Expected Duration | Expected duration, in msec                   | `expectedDuration`        | `3000`      |
-| Rate              | Basal rate of insulin delivered, in units/hr | `rate`                    | `1.5`       |
+| Description       | Notes                                          | Tidepool Data Model Field | Example(s)  |
+| ----------------- | ---------------------------------------------- | ------------------------- | ----------- |
+| Type              | `basal`                                        | `type`                    | `basal`     |
+| Delivery Type     | Typically automated, manual, etc.              | `deliveryType`            | `automated` |
+| Duration          | Actual duration, in msec                       | `duration`                | `2700`      |
+| Expected Duration | Expected duration, in msec                     | `expectedDuration`        | `3000`      |
+| Rate              | Basal rate of insulin delivered, in Units/hour | `rate`                    | `1.5`       |
 
 #### Bolus Insulin
 
@@ -84,9 +90,9 @@ Tidepool would like to receive at minimum the following data fields with each in
 | Delivery Type      | Typically automated, manual, etc.           | `deliveryType`            | `automated` |
 | Duration           | Actual duration, in msec                    | `duration`                | `2700`      |
 | Expected Duration  | Expected duration, in msec                  | `expectedDuration`        | `3000`      |
-| Normal or Extended | Bolus amount of insulin delivered, in units | `normal` or `extended`    | `2.3`       |
+| Normal or Extended | Bolus amount of insulin delivered, in Units | `normal` or `extended`    | `2.3`       |
 
-Tidepool Data Platform can import and visualize a wide variety of additional device data, including but limited to:
+In addition to the insulin delivery events described above, the Tidepool Data Platform can import and visualize a wide variety of additional device data, including but limited to:
 
 * Combinations of events (e.g. combination bolus)
 * Additional metadata such as:
@@ -97,7 +103,7 @@ Tidepool Data Platform can import and visualize a wide variety of additional dev
   * Bolus calculator or dosing decision records
   * Activity modes from AID systems such as [Tandem Control-IQ](https://www.tandemdiabetes.com/products/t-slim-x2-insulin-pump/control-iq)
 
-A more comprehensive description of these can be found in our [API documentation](https://tidepool.stoplight.io).
+A more comprehensive description of these can be found in our [API and data model documentation](https://tidepool.stoplight.io). Tidepool expects to receive and visualize all insulin delivery events and device settings that may be helpful to the healthcare provider and person with diabetes.
 
 ## Setup
 
@@ -110,7 +116,7 @@ Before Tidepool Data Platform can fetch user's data from a partner cloud service
     * token lifetime restrictions
     * how frequently Tidepool Data Platform may call the partner APIs
     * how much user data may be requested in each batch
-    * service blackout or maintenance windows, if any
+    * regular service blackout or maintenance windows, if any, when Tidepool should avoid making API requests
 3. Tidepool provides the URL(s) to where user's browser should be redirected after partner authentication and authorization flow completes.
 4. Partner provides service credentials that enable Tidepool Data Platform to make service-to-service API requests on behalf of users. For OAuth flow, this typically includes a `client_id` and a `client_secret`.
 
@@ -170,7 +176,7 @@ sequenceDiagram
     Tidepool->>User: report status
 ```
 
-1. The clinician initiates the request to connect patient to a partner site byg clicking on a button in the patient list.
+1. The clinician initiates the request to connect patient to a partner site by clicking on a button in the patient list.
 2. Tidepool sends an email to the patient to request them to connect their Tidepool account to the partner account.
 3. The patient initiates the request to connect to a partner site by clicking on a button in their account profile page in Tidepool Web.
 4. Tidepool responds with a redirection request to the partner site.
