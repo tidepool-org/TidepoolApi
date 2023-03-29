@@ -39,9 +39,8 @@ tags:
     description: |-
       Summary Data
 
-      This service was a prototype for separate service that calculates summary statistics for user accounts.
-      It is replaced by additional APIs exposed by the `data` service, and executed by the `task` service.
-      This documentation is for archival only.
+      This API is for a component within the `data` service that calculates summary statistics for user accounts.
+      These routes are mostly executed by the `task` and `clinic-worker` services.
 
 paths:
   '/v1/summaries/{userId}/{summaryType}':
@@ -120,8 +119,3 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/SummaryType'
-tags:
-  - name: summary
-    description: Tidepool Summary Data
-security:
-  - sessionToken: [ ]
