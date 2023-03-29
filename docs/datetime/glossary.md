@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Glossary
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [BtUTC](#btutc)
@@ -20,7 +22,7 @@
 
 ## BtUTC
 
-[Bootstrapping to UTC](./datetime/btutc.md) (BtUTC) is the algorithm Tidepool uses to translate local device time to [UTC](#utc) datetimes.
+[Bootstrapping to UTC](./btutc.md) (BtUTC) is the algorithm Tidepool uses to translate local device time to [UTC](#utc) datetimes.
 
 ---
 
@@ -97,7 +99,7 @@ Examples:
 * 0 is the hammertime representing 12:00 am, 1st January 1970
 * 1495759428000 is the hammertime representing the time this documentation was written
 
-Currently, there are no examples of hammertimes in the data Tidepool stores. However, new front-end data visualization code parses each [ISO-formatted](#ISO-8601) timestamp into a hammertime during the data preprocessing.
+Currently, there are no examples of hammertimes in the data Tidepool stores. However, new front-end data visualization code parses each [ISO-formatted](#iso-8601) timestamp into a hammertime during the data preprocessing.
 
 ---
 

@@ -1,5 +1,7 @@
+<!-- omit in toc -->
 # Linking Events
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -33,7 +35,7 @@ Platform creates GUIDs for the ID of each event. This means that linked events s
 
 The data for ingestion via Platform looks like:
 
-```json
+```json title="Sample Data" lineNumbers=true
 [
   {
     "type": "wizard",
@@ -59,7 +61,7 @@ The data for ingestion via Platform looks like:
 
 The resulting data looks like:
 
-```json
+```json title="Sample Response" lineNumbers=true
 [
   {
     "type": "bolus",
@@ -89,7 +91,7 @@ The resulting data looks like:
 
 * [Alarm](./data-types/device-event/alarm.md)
 * [Bolus](./data-types/bolus.md)
-* [Bolus Calculator](./data-types/pump-settings-calculator.md)
+* [Bolus Calculator](./data-types/calculator.md)
 * [Common Fields](./common-fields.md)
 * [Reservoir Change](./data-types/device-event/reservoir-change.md)
 * [Status](./data-types/device-event/status.md)

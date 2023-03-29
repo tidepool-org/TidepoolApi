@@ -1,9 +1,11 @@
+<!-- omit in toc -->
 # Bootstrapping to UTC (BtUTC)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Across-The-Board Timezone Default](#acrosstheboard-timezone-default)
+2. [Across-The-Board Timezone Default](#across-the-board-timezone-default)
 3. [Daylight Savings Time](#daylight-savings-time)
 4. [Keep Reading](#keep-reading)
 
@@ -11,7 +13,7 @@
 
 ## Overview
 
-[Bootstrapping to UTC](https://github.com/tidepool-org/uploader/blob/develop/lib/TimezoneOffsetUtil.js) (BtUTC) is Tidepool's method of creating an absolute scale of time to track time-related data ingested through Platform. This is an important tool as it can help us define why, for example, an insulin pump's display time is inaccurate. Is it due to Daylight Savings, travel across a different timezone, user error, clock drift, or something else?
+[Bootstrapping to UTC](https://github.com/tidepool-org/uploader/blob/master/lib/TimezoneOffsetUtil.js) (BtUTC) is Tidepool's method of creating an absolute scale of time to track time-related data ingested through Platform. This is an important tool as it can help us define why, for example, an insulin pump's display time is inaccurate. Is it due to Daylight Savings, travel across a different timezone, user error, clock drift, or something else?
 
 This page contains a breakdown of each offset and additional information on this extensive subject. In essence, however, BtUTC is the process of converting local device time into UTC Zulu time. To ensure accuracy,  Platform cross-references the time from three sources of information:
 

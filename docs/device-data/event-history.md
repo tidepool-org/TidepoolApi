@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Event History
 
 <!-- theme: warning -->
@@ -6,7 +7,7 @@
 
 ## Proposal
 
-* Use [JSON Patch](http://jsonpatch.com/) to keep event history
+* Use [JSON Patch](https://jsonpatch.com/) to keep event history
 * It can be applied to any of Tidepool's data base data models
 * It's up to the server to reject invalid event patch requests
 
@@ -14,7 +15,7 @@
 
 Here is an example of a carb event that was initially a carb entry of 40g, that was changed to 60g 15 minutes later:
 
-```json
+```json title="Sample Modified Quantity" lineNumbers=true
 {
   "id": "77d722a44fa0055b20c9b988c078766f",
   "name": "🍞🧀",
@@ -47,7 +48,7 @@ Here is an example of a carb event that was initially a carb entry of 40g, that 
 
 Here is an example of a carbohydrate event that was deleted 4 minutes after initial entry:
 
-```json
+```json title="Sample Deleted Event" lineNumbers=true
 {
   "id": "77d722a44fa0055b20c9b988c078766f",
   "name": "🍞🧀",
@@ -79,7 +80,7 @@ Here is an example of a carbohydrate event that was deleted 4 minutes after init
 
 Here is an example of a carb event that was initially a carb entry of 40g, that was changed to occur at an earlier time 5 minutes after originally being entered:
 
-```json
+```json title="Sample Modified Time" lineNumbers=true
 {
   "id": "77d722a44fa0055b20c9b988c078766f",
   "name": "🍞🧀",

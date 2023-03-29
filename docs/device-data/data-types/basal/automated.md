@@ -1,13 +1,13 @@
+<!-- omit in toc -->
 # Automated Basals (`automated`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
-1. [Quick summary](#quick-summary)
-2. [Delivery Type](#delivery-type-deliverytype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+1. [Quick Summary](#quick-summary)
+2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
@@ -25,9 +25,9 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "automated",
@@ -46,11 +46,7 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "automated",
@@ -67,11 +63,7 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "automated",
@@ -99,11 +91,11 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 
 ## Keep Reading
 
-* [Basal](./device-data/data-types/automated.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Pump Settings](./device-data/pump-settings.md)
-* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
-* [Suspend Basals](./device-data/data-types/basal/suspend.md)
-* [Temporary Basals](./device-data/data-types/basal/temp.md)
-* [Units](./device-data/units.md)
+* [Basal](../basal.md)
+* [Common Fields](../../common-fields.md)
+* [Pump Settings](../pump-settings.md)
+* [Scheduled Basals](./scheduled.md)
+* [Suppressed Basals](./suppressed.md)
+* [Suspend Basals](./suspend.md)
+* [Temporary Basals](./temp.md)
+* [Units](../../units.md)

@@ -20,6 +20,19 @@ properties:
     type: string
     description: The medical record number of the patient
     minLength: 1
+  tags:
+    type: array
+    nullable: true
+    uniqueItems: true
+    items:
+      title: Patient Tag ID
+      description: >-
+        Patient Tag identifier.
+      type: string
+      minLength: 24
+      maxLength: 24
+      pattern: '^[a-f0-9]{24}$'
+      readOnly: true
   targetDevices:
     type: array
     items:
@@ -36,6 +49,15 @@ properties:
     readOnly: true
   attestationSubmitted:
     type: boolean
+  dataSources:
+    type: array
+    nullable: true
+    items:
+      $ref: ./datasource.v1.yaml
+  lastRequestedDexcomConnectTime:
+    type: string
+    format: date-time
+    readOnly: true
   lastUploadReminderTime:
     type: string
     format: date-time

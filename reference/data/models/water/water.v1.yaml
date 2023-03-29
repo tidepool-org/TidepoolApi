@@ -9,12 +9,14 @@ allOf:
         type: string
         enum:
           - water
+      amount:
+        oneOf:
+          - $ref: './gallons.v1.yaml'
+          - $ref: './ounces.v1.yaml'
+          - $ref: './liters.v1.yaml'
+          - $ref: './milliliters.v1.yaml'
     required:
       - type
-  - oneOf:
-    - $ref: './gallons.v1.yaml'
-    - $ref: './ounces.v1.yaml'
-    - $ref: './liters.v1.yaml'
-    - $ref: './milliliters.v1.yaml'
+      - amount
 x-tags:
   - Data

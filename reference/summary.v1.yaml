@@ -2,31 +2,47 @@ openapi: 3.0.0
 info:
   title: Data Summary API
   version: '1.0'
-  description: 'Web service that stores summaries of user data'
+  description: |-
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
   contact:
     name: Tidepool
     url: 'https://www.tidepool.org'
     email: support@tidepool.org
+  termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
-    name: BSD-2-Clause
-    url: 'https://github.com/tidepool-org/clinic/blob/master/LICENSE'
-  x-logo:
-    url: 'https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png'
-    altText: Tidepool Logo
-  x-tidepool-service: 'https://github.com/tidepool-org/clinic/'
+    name: 'BSD 2-Clause "Simplified" License'
+    url: 'https://github.com/tidepool-org/summary/blob/master/LICENSE'
+  x-tidepool-service: https://github.com/tidepool-org/summary
+
 servers:
-  - url: 'http://localhost:8080'
-    description: local development
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
   - url: 'https://dev1.dev.tidepool.org'
     description: dev1
   - url: 'https://qa1.development.tidepool.org'
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-  - url: 'https://external.integration.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
+
+security:
+  - sessionToken: []
+
+tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
+  - name: Summary
+    description: |-
+      Summary Data
+
+      This service was a prototype for separate service that calculates summary statistics for user accounts.
+      It is replaced by additional APIs exposed by the `data` service, and executed by the `task` service.
+      This documentation is for archival only.
+
 paths:
   '/v1/summaries/{userId}/{summaryType}':
     parameters:
@@ -51,7 +67,8 @@ paths:
       description: Retrieve a summary by user id
       x-internal: true
       tags:
-        - summary
+        - Summary
+        - Internal
 
 components:
   schemas:

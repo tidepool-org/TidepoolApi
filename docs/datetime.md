@@ -1,16 +1,16 @@
+<!-- omit in toc -->
 # Date/Time Guide
 
-![Tidepool Logo](../assets/images/Tidepool_Logo_Light_Large.png)
-
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Handling Diabetes Data](#handling-diabetes-data)
-    1. [Handling Datetimes On Ingestion](#handling-datetimes-on-ingestion)
-    2. [Handling Datetimes In The Api Client](#handling-datetimes-in-the-api-client)
-4. [Handling Browser-Local Datetimes "Now"](#handling-browserlocal-datetimes-now)
-5. [Handling User-significant Dates](#handling-usersignificant-dates)
+   1. [Handling Datetimes On Ingestion](#handling-datetimes-on-ingestion)
+   2. [Handling Datetimes In The API Client](#handling-datetimes-in-the-api-client)
+4. [Handling Browser-Local Datetimes "Now"](#handling-browser-local-datetimes-now)
+5. [Handling User-Significant Dates](#handling-user-significant-dates)
 6. [Keep Reading](#keep-reading)
 
 ---

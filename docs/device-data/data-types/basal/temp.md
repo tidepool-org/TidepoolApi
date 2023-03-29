@@ -1,14 +1,14 @@
+<!-- omit in toc -->
 # Temporary Basals (`temp`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Delivery Type](#delivery-type-deliverytype)
-3. [Percent](#percent-percent)
-4. [Example (client)](#example-client)
-5. [Example (ingestion)](#example-ingestion)
-6. [Example (storage)](#example-storage)
-7. [Keep Reading](#keep-reading)
+2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
+3. [Percent (`percent`)](#percent-percent)
+4. [Examples](#examples)
+5. [Keep Reading](#keep-reading)
 
 ---
 
@@ -39,9 +39,9 @@ Tidepool's data model has standardized on a floating point representation of the
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -67,11 +67,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -95,11 +91,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -134,11 +126,11 @@ Tidepool's data model has standardized on a floating point representation of the
 
 ## Keep Reading
 
-* [Automated Basals](./device-data/data-types/basal/automated.md)
-* [Basal](./device-data/data-types/automated.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Scheduled Basals](./device-data/data-types/basal/scheduled.md)
-* [Suppressed Basals](./device-data/data-types/basal/suppressed.md)
-* [Suspend Basals](./device-data/data-types/basal/suspend.md)
-* [Units](./device-data/units.md)
+* [Basal](../basal.md)
+* [Common Fields](../../common-fields.md)
+* [Pump Settings](../pump-settings.md)
+* [Automated Basals](./automated.md)
+* [Scheduled Basals](./scheduled.md)
+* [Suppressed Basals](./suppressed.md)
+* [Suspend Basals](./suspend.md)
+* [Units](../../units.md)

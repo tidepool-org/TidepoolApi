@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Sensor Event (`sensorEvent`)
 
 ---
@@ -5,14 +6,12 @@
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicesensorevent.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/sensor.v1.yaml'
 ```
 
 ---
 
-## Example
-
-```json
+```json title="Example" lineNumbers=true
 {
   "type": "deviceEvent",
   "subType": "sensorEvent",

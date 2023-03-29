@@ -3,8 +3,6 @@ info:
   title: Task API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
@@ -15,29 +13,27 @@ info:
   license:
     name: BSD-2-Clause
     url: https://github.com/tidepool-org/platform/blob/master/LICENSE
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/platform/task
 
 servers:
-  - url: 'http://localhost:8080'
-    description: local development
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
   - url: 'https://dev1.dev.tidepool.org'
     description: dev1
   - url: 'https://qa1.development.tidepool.org'
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-  - url: 'https://external.integration.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
 
 security:
   - serverToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Tasks
     description: >-
       List, create and manage generic background tasks.
@@ -68,6 +64,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
     post:
       operationId: CreateTask
@@ -90,6 +87,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
   '/v1/tasks/{taskId}':
     parameters:
@@ -112,6 +110,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
     put:
       operationId: UpdateTask
@@ -136,6 +135,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
     delete:
       operationId: DeleteTask
@@ -155,6 +155,7 @@ paths:
           $ref: '#/components/responses/ServerError'
       tags:
         - Tasks
+        - Internal
 
 components:
   securitySchemes:

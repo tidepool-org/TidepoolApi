@@ -1,19 +1,20 @@
+<!-- omit in toc -->
 # Common Fields
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick summary](#quick-summary)
-2. [Clock drift offset](#clock-drift-offset-clockdriftoffset)
-3. [Conversion offset](#conversion-offset-conversionoffet)
-4. [Created time](#created-time-createdtime)
-5. [Device ID](#device-id-deviceid)
-6. [Device time](#device-time-devicetime)
-7. [GUID](#guid-guid)
-8. [ID](#id-id)
-9. [Time](#time-time)
-10. [Timezone offset](#timezone-offset-timezoneoffset)
-11. [Upload ID](#upload-id-uploadid)
-12. [Example (all possible fields)](#example-all-possible-fields)
+2. [Clock Drift Offset (`clockDriftOffset`)](#clock-drift-offset-clockdriftoffset)
+3. [Conversion Offset (`conversionOffset`)](#conversion-offset-conversionoffset)
+4. [Created Time (`createdTime`)](#created-time-createdtime)
+5. [Device ID (`deviceId`)](#device-id-deviceid)
+6. [Device Time (`deviceTime`)](#device-time-devicetime)
+7. [GUID (`guid`)](#guid-guid)
+8. [ID (`id`)](#id-id)
+9. [Time (`time`)](#time-time)
+10. [Timezone Offset (`timezoneOffset`)](#timezone-offset-timezoneoffset)
+11. [Upload ID (`uploadId`)](#upload-id-uploadid)
 
 ---
 
@@ -72,7 +73,7 @@ Example:
 
 An [RFC 4122](https://www.ietf.org/rfc/rfc4122.txt) version 4 UUID (universally unique identifier), generated using the [node-uuid](https://github.com/broofa/node-uuid) library in [Tidepool Uploader](https://github.com/tidepool-org/uploader) or, if the data is being ingested through Platform, added upon ingestion by the service itself.
 
-See [here](http://github.com/tidepool-org/uploader/blob/master/lib/core/api.js) for Tidepool Uploader implementation and `app/uuid.go` for Platform ingestion implementation.
+See [here](https://github.com/tidepool-org/uploader/blob/master/lib/core/api.js) for Tidepool Uploader implementation and `app/uuid.go` for Platform ingestion implementation.
 
 Example:
 
@@ -129,9 +130,7 @@ An upload identifier. This field should be the upload ID of the corresponding up
 
 ---
 
-## Example (All Possible Fields)
-
-```json
+```json title="Example of All Possible Fields" lineNumbers=true
 {
     "_active": true,
     "_groupId": "abcdef",

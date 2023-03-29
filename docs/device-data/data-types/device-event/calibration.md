@@ -1,20 +1,20 @@
+<!-- omit in toc -->
 # Calibration (`calibration`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Example (client)](#example-client)
-4. [Example (ingestion)](#example-ingestion)
-5. [Example (storage)](#example-storage)
-6. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Examples](#examples)
+4. [Keep Reading](#keep-reading)
 
 ---
 
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicecalibration.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/calibration.v1.yaml'
 ```
 
 ---
@@ -25,9 +25,9 @@ The calibration sub-type of device event represents a user's manual entry of a s
 
 ---
 
-## Example (ingestion)
+## Examples
 
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "calibration",
@@ -43,11 +43,7 @@ The calibration sub-type of device event represents a user's manual entry of a s
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "calibration",
@@ -74,13 +70,13 @@ The calibration sub-type of device event represents a user's manual entry of a s
 
 ## Keep Reading
 
-* [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Continuous Blood Glucose (CBG)](./device-data/data-types/cbg.md)
-* [Device Event](./device-data/data-types/device-event.md)
-* [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump Settings](device-data/data-types/pump-settings)
-* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
-* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
-* [Status](./device-data/data-types/device-event/status.md)
-* [Time Change](./device-data/data-types/device-event/time-change.md)
+* [Alarm](./alarm.md)
+* [Common Fields](../../common-fields.md)
+* [Continuous Blood Glucose (CBG)](../cbg.md)
+* [Device Event](../device-event.md)
+* [Prime](./prime.md)
+* [Pump Settings](../pump-settings.md)
+* [Pump Settings Override](./pump-settings-override.md)
+* [Reservoir Change](./reservoir-change.md)
+* [Status](./status.md)
+* [Time Change](./time-change.md)

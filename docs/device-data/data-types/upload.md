@@ -1,29 +1,30 @@
+<!-- omit in toc -->
 # Upload Metadata (`upload`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [By User](#by-user-byuser)
-3. [Computer Time](#computer-time-computertime)
-4. [Device Manufacturers](#device-manufacturers-devicemanufacturers)
-5. [Device Model](#device-model-devicemodel)
-6. [Device Serial Number](#device-serial-number)
-7. [Device Tags](#device-tags-devicetags)
-8. [Time Processing](#time-processing-timeprocessing)
-9. [Timezone](#timezone-timezone)
-10. [Upload ID](#upload-id-uploadid)
-11. [Version](#version-version)
-12. [Example (client)](#example-client)
-13. [Example (ingestion)](#example-ingestion)
-14. [Example (storage)](#example-storage)
-15. [Keep Reading](#keep-reading)
+2. [Type (`type`)](#type-type)
+3. [By User (`byUser`)](#by-user-byuser)
+4. [Computer Time (`computerTime`)](#computer-time-computertime)
+5. [Device Manufacturers (`deviceManufacturers`)](#device-manufacturers-devicemanufacturers)
+6. [Device Model (`deviceModel`)](#device-model-devicemodel)
+7. [Device Serial Number (`deviceSerialNumber`)](#device-serial-number-deviceserialnumber)
+8. [Device Tags (`deviceTags`)](#device-tags-devicetags)
+9. [Time Processing (`timeProcessing`)](#time-processing-timeprocessing)
+10. [Timezone (`timezone`)](#timezone-timezone)
+11. [Upload ID (`uploadId`)](#upload-id-uploadid)
+12. [Version (`version`)](#version-version)
+13. [Examples](#examples)
+14. [Keep Reading](#keep-reading)
 
 ---
 
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/upload.v1.yaml'
+$ref: '../../../reference/data/models/upload.v1.yaml'
 ```
 
 ---
@@ -34,16 +35,20 @@ This is the Tidepool data type most distinct from all others: instead of encodin
 
 The fields under this type are:
 
-* [By User](#by-user-byuser)
-* [Computer time](#computer-time-computertime)
-* [Device manufacturers](#device-manufacturers-devicemanufacturers)
-* [Device model](#device-model-devicemodel)
-* [Device serial number](#device-serial-number-deviceserialnumber)
-* [Device tags](#device-tags-devicetags)
-* [Time processing](#time-processing-timeprocessing)
-* [Timezone](#timezone-timezone)
-* [Upload ID](#upload-id-uploadid)
-* [Version](#version-version)
+1. [Quick Summary](#quick-summary)
+2. [Type (`type`)](#type-type)
+3. [By User (`byUser`)](#by-user-byuser)
+4. [Computer Time (`computerTime`)](#computer-time-computertime)
+5. [Device Manufacturers (`deviceManufacturers`)](#device-manufacturers-devicemanufacturers)
+6. [Device Model (`deviceModel`)](#device-model-devicemodel)
+7. [Device Serial Number (`deviceSerialNumber`)](#device-serial-number-deviceserialnumber)
+8. [Device Tags (`deviceTags`)](#device-tags-devicetags)
+9. [Time Processing (`timeProcessing`)](#time-processing-timeprocessing)
+10. [Timezone (`timezone`)](#timezone-timezone)
+11. [Upload ID (`uploadId`)](#upload-id-uploadid)
+12. [Version (`version`)](#version-version)
+13. [Examples](#examples)
+14. [Keep Reading](#keep-reading)
 
 ---
 
@@ -61,7 +66,7 @@ There are some cases where it is perfectly justified to select a timezone that d
 
 ---
 
-## Device Manufacturers (`deviceManufacurers`)
+## Device Manufacturers (`deviceManufacturers`)
 
 To avoid confusion resulting from referring to a single manufacturer with more than one name — for example, using both "Minimed" and "Medtronic" interchangeably — Tidepool restricts device manufacturer string "tags" to those detailed in the quick summary above and enforces exact string matches (including casing).
 
@@ -127,9 +132,9 @@ A string identifying the software version of the uploading client. For Tidepool 
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "upload",
     "byUser": "154bb78230",
@@ -156,11 +161,7 @@ A string identifying the software version of the uploading client. For Tidepool 
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "upload",
     "byUser": "eda1e15c6a",
@@ -185,11 +186,7 @@ A string identifying the software version of the uploading client. For Tidepool 
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "upload",
     "byUser": "e9c6044f37",
@@ -225,10 +222,10 @@ A string identifying the software version of the uploading client. For Tidepool 
 
 ## Keep Reading
 
-* [Bolus Calculator](./device-data/data-types/pump-settings/calculator.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Datetime Guide](./datetime.md)
-* [Diabetes Data Types](./device-data/data-types.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Self-Monitored Glucose (SMBG)](./device-data/data-types/pump-settings/smbg.md)
-* [Units](./device-data/units.md)
+* [Bolus Calculator](./calculator.md)
+* [Common Fields](../common-fields.md)
+* [Datetime Guide](../../datetime.md)
+* [Diabetes Data Types](../data-types.md)
+* [Pump Settings](./pump-settings.md)
+* [Self-Monitored Glucose (SMBG)](./smbg.md)
+* [Units](../units.md)

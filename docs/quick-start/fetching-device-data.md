@@ -1,10 +1,12 @@
+<!-- omit in toc -->
 # Fetching Device Data
 
+<!-- omit in toc -->
 ## Table of Contents
 
-1. [Fetch device data](#fetch-device-data)
-2. [Query parameters](#query-parameters)
-3. [Fetch Dexcom CGM data](#fetch-dexcom-cgm-data)
+1. [Fetch Device Data](#fetch-device-data)
+2. [Query Parameters](#query-parameters)
+3. [Fetch Dexcom CGM Data](#fetch-dexcom-cgm-data)
 4. [Keep Reading](#keep-reading)
 
 ---
@@ -21,16 +23,12 @@
 
 To fetch data for authorized accounts, issue the following command:
 
-```shell
-curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/data/<subject-userid>"
-```
-
 ```json http
 {
   "method": "get",
-  "url": "https://int-api.tidepool.org/data/<{$$.env.subject-userid}>",
+  "url": "https://int-api.tidepool.org/data/{userId}",
   "headers": {
-    "X-Tidepool-Session-Token": "{$$.env.x-tidepool-session-token}",
+    "X-Tidepool-Session-Token": "{sessionToken}",
     "Content-Type": "application/json"
   },
 }
@@ -42,7 +40,7 @@ Subject user ID is the Tidepool user ID of the user whose data you want to view.
 
 ## Query Parameters
 
-You can narrow the fetch query by specifying a type, sub-type and/or date query parameter to Platform's URL. Comma-separated lists will return data matching any of the specified types (see [GitHub](http://github.com/tidepool-org/tide-whisperer/blob/master/tide-whisperer.go#L193) comments for more detail):
+You can narrow the fetch query by specifying a type, sub-type and/or date query parameter to Platform's URL. Comma-separated lists will return data matching any of the specified types (see [GitHub](https://github.com/tidepool-org/tide-whisperer/blob/master/tide-whisperer.go#L193) comments for more detail):
 
 <!-- title: Query Parameters -->
 
@@ -66,23 +64,20 @@ In addition, there are several “special” parameters that have an effect on t
 | Dexcom | Boolean | Return CGM data from *only* the Dexcom API, even if other CGM data exists from other sources. | E.g. `/data/userid?dexcom=true`
 | Medtronic | Boolean | Return CGM, Basal and Bolus data from Medtronic Uploads, provided that data exists after `2017-09-01`. Unless data from a Medtronic device has been uploaded by Loop via HealthKit (`origin.payload.device.manufacturer` is Medtronic), and that data exists after `2017-09-01`. | E.g. `/data/userid?medtronic=true`
 
+<!-- omit in toc -->
 ### Example
 
 To fetch just the pump settings for Jill Jellyfish, use:
 
-```shell
-curl -s -X GET -H "X-Tidepool-Session-Token: <your-session-token>" -H "Content-Type: application/json" "https://int-api.tidepool.org/data/5d509deb6b?type=pumpSettings"
-```
-
 ```json http
 {
   "method": "get",
-  "url": "https://int-api.tidepool.org/data/{$$.env.subject-userid}",
+  "url": "https://int-api.tidepool.org/data/5d509deb6b",
   "query": {
     "type": "pumpSettings"
   },
   "headers": {
-    "X-Tidepool-Session-Token": "{$$.env.x-tidepool-session-token}",
+    "X-Tidepool-Session-Token": "{sessionToken}",
     "Content-Type": "application/json"
   },
   "body": null
@@ -117,7 +112,7 @@ However, if you use the standard GET data Tidepool API, but add the dexcom true 
 
 ## Keep Reading
 
-* [Command Line Data Tools](http://github.com/tidepool-org/command-line-data-tools)
-* [Diabetes Device Data Model](./device-data)
-* [Fetching User Notes](./quick-start/notes.md)
-* [Uploading Device Data](./quick-start/uploading-device-data.md)
+* [Command Line Data Tools](https://github.com/tidepool-org/command-line-data-tools)
+* [Diabetes Device Data Model](../device-data.md)
+* [Fetching User Notes](./notes.md)
+* [Uploading Device Data](./uploading-device-data.md)

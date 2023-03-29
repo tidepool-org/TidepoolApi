@@ -1,14 +1,16 @@
+<!-- omit in toc -->
 # Bolus Insulin (`bolus`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Duration](#duration-duration)
-3. [Expected Duration](#expected-duration-expectedduration)
-4. [Expected Extended](#expected-extended-expectedextended)
-5. [Expected Normal](#expected-normal-expectednormal)
-6. [Extended](#extended-extended)
-7. [Normal](#normal-normal)
+2. [Duration (`duration`)](#duration-duration)
+3. [Expected Duration (`expectedDuration`)](#expected-duration-expectedduration)
+4. [Expected Extended (`expectedExtended`)](#expected-extended-expectedextended)
+5. [Expected Normal (`expectedNormal`)](#expected-normal-expectednormal)
+6. [Extended (`extended`)](#extended-extended)
+7. [Normal (`normal`)](#normal-normal)
 8. [Keep Reading](#keep-reading)
 
 ---
@@ -21,10 +23,10 @@ Insulin pumps provide several strategies for delivering boluses of insulin. Each
 
 This page documents the fields shared by various bolus sub-types. The four sub-types that fall under the larger bolus type are:
 
-* [Automated](./device-data/data-types/bolus/automated.md)
-* [Combination](./device-data/data-types/bolus/combination.md)
-* [Extended](./device-data/data-types/bolus/extended.md)
-* [Normal](./device-data/data-types/bolus/normal.md)
+* [Automated](./bolus/automated.md)
+* [Combination](./bolus/combination.md)
+* [Extended](./bolus/extended.md)
+* [Normal](./bolus/normal.md)
 
 ---
 
@@ -46,7 +48,7 @@ The value of expected duration must be greater than or equal to the duration, si
 
 <!-- theme: info -->
 
-> The expected duration can only be equal to the duration in the very rare and special case that the duration is 0. See [duration](#duration) for discussion of the values for this field.
+> The expected duration can only be equal to the duration in the very rare and special case that the duration is 0. See [duration](#duration-duration) for discussion of the values for this field.
 
 ---
 
@@ -94,11 +96,11 @@ Insulin pumps generally include a maximum bolus setting that a user can customiz
 
 ## Keep Reading
 
-* [Annotations](./device-data/annotations.md)
-* [Automated Bolus](./device-data/data-types/bolus/automated.md)
-* [Combination Bolus](./device-data/data-types/bolus/combination.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Extended Bolus](./device-data/data-types/bolus/extended.md)
-* [Normal Bolus](./device-data/data-types/bolus/normal.md)
-* [Pump Settings](./device-data/data-types/pump-settings.md)
-* [Units](./device-data/units.md)
+* [Annotations](../annotations.md)
+* [Automated Bolus](./bolus/automated.md)
+* [Combination Bolus](./bolus/combination.md)
+* [Common Fields](../common-fields.md)
+* [Extended Bolus](./bolus/extended.md)
+* [Normal Bolus](./bolus/normal.md)
+* [Pump Settings](./pump-settings.md)
+* [Units](../units.md)

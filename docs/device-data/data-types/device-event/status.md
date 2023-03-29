@@ -1,24 +1,24 @@
+<!-- omit in toc -->
 # Device Delivery Status (`status`)
 
+<!-- omit in toc -->
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Sub-Type](#subtype-subtype)
-3. [Duration](#duration-duration)
-4. [Expected Duration](#expected-duration-expectedduration)
-5. [Reason](#reason-reason)
-6. [Status](#status-status)
-7. [Example (client)](#example-client)
-8. [Example (ingestion)](#example-ingestion)
-9. [Example (storage)](#example-storage)
-10. [Keep Reading](#keep-reading)
+2. [Sub-Type (`subType`)](#sub-type-subtype)
+3. [Duration (`duration`)](#duration-duration)
+4. [Expected duration (`expectedDuration`)](#expected-duration-expectedduration)
+5. [Reason (`reason`)](#reason-reason)
+6. [Status (`status`)](#status-status)
+7. [Examples](#examples)
+8. [Keep Reading](#keep-reading)
 
 ---
 
 ## Quick Summary
 
 ```yaml json_schema
-$ref: '../../../../reference/data/models/devicedeliverystatus.v1.yaml'
+$ref: '../../../../reference/data/models/deviceevent/deliverystatus.v1.yaml'
 ```
 
 ---
@@ -61,11 +61,11 @@ We define manual suspension or resumption as any user-initiated method of effect
 
 We also include more device-specific information about the cause of suspensions and resumptions, if available, in the optional payload embedded object on the event.
 
-For example, in the case of the Medtronic 530G insulin pumps with the LGS feature, there is a distinction in circumstances when determing whether or not a temp basal that was in effect *before* the automatic suspension is resumed. If the user *did not* interact with any of the alerts during the automatic suspension, the temp basal does not resume. If the user *did* acknowledge the automatic suspension, a temp basal is resumed at the conclusion of two hours of suspension. This is explained on pages 124–125 of the [Medtronic 530G user manual](http://www.accessdata.fda.gov/cdrh_docs/pdf12/p120010c.pdf).
+For example, in the case of the Medtronic 530G insulin pumps with the LGS feature, there is a distinction in circumstances when determing whether or not a temp basal that was in effect *before* the automatic suspension is resumed. If the user *did not* interact with any of the alerts during the automatic suspension, the temp basal does not resume. If the user *did* acknowledge the automatic suspension, a temp basal is resumed at the conclusion of two hours of suspension. This is explained on pages 124–125 of the [Medtronic 530G user manual](https://www.accessdata.fda.gov/cdrh_docs/pdf12/p120010c.pdf).
 
 We represent this distinction on the event in the payload as follows (specifically in the user intervention key under resumed):
 
-```json
+```json lineNumbers=true
 {
     ...
     "reason": {
@@ -96,9 +96,9 @@ Platform will only accept a suspended value for the status field.
 
 ---
 
-## Example (client)
+## Examples
 
-```json
+```json title="Example (client)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "status",
@@ -121,11 +121,7 @@ Platform will only accept a suspended value for the status field.
 }
 ```
 
----
-
-## Example (ingestion)
-
-```json
+```json title="Example (ingestion)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "status",
@@ -146,11 +142,7 @@ Platform will only accept a suspended value for the status field.
 }
 ```
 
----
-
-## Example (storage)
-
-```json
+```json title="Example (storage)" lineNumbers=true
 {
     "type": "deviceEvent",
     "subType": "status",
@@ -182,13 +174,13 @@ Platform will only accept a suspended value for the status field.
 
 ## Keep Reading
 
-* [Alarm](./device-data/data-types/device-event/alarm.md)
-* [Calibration](./device-data/data-types/device-event/calibration.md)
-* [Common Fields](./device-data/common-fields.md)
-* [Device Event](./device-data/data-types/device-event.md)
-* [Linking Events](./device-data/linking-events.md)
-* [Prime](./device-data/data-types/device-event/prime.md)
-* [Pump Settings](device-data/data-types/pump-settings)
-* [Pump Settings Override](./device-data/data-types/device-event/pump-settings-override.md)
-* [Reservoir Change](./device-data/data-types/device-event/reservoir-change.md)
-* [Time Change](./device-data/data-types/device-event/time-change.md)
+* [Alarm](./alarm.md)
+* [Calibration](./calibration.md)
+* [Common Fields](../../common-fields.md)
+* [Device Event](../device-event.md)
+* [Linking Events](../../linking-events.md)
+* [Prime](./prime.md)
+* [Pump Settings](../pump-settings.md)
+* [Pump Settings Override](./pump-settings-override.md)
+* [Reservoir Change](./reservoir-change.md)
+* [Time Change](./time-change.md)

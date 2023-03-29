@@ -3,8 +3,6 @@ info:
   title: Blob API
   version: '1.0'
   description: |-
-    ![Tidepool Logo](https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png)
-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
@@ -16,29 +14,27 @@ info:
   license:
     name: BSD-2-Clause
     url: 'https://github.com/tidepool-org/platform/blob/master/LICENSE'
-  x-logo: # ReDoc extension
-    url: https://github.com/tidepool-org/TidepoolApi/blob/master/assets/images/Tidepool_Logo_Light_Large.png
-    altText: Tidepool Logo
   x-tidepool-service: https://github.com/tidepool-org/platform/blob
 
 servers:
-  - url: 'http://localhost:8080'
-    description: local development
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
   - url: 'https://dev1.dev.tidepool.org'
     description: dev1
   - url: 'https://qa1.development.tidepool.org'
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-  - url: 'https://external.integration.tidepool.org'
-    description: integration
-  - url: 'https://api.tidepool.org'
-    description: production
 
 security:
   - sessionToken: []
 
 tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
   - name: Blobs
     description: >-
       List, create, and manage binary blobs.
@@ -74,6 +70,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
     post:
       operationId: CreateBlob
       summary: Create New Binary Blob
@@ -104,6 +101,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
     delete:
       operationId: DeleteAllBlobs
       summary: Delete All Binary Blobs
@@ -122,6 +120,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
 
   '/v1/blobs/{blobId}':
     parameters:
@@ -144,6 +143,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
     delete:
       operationId: DeleteBlob
       summary: Delete Binary Blob
@@ -163,6 +163,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
 
   '/v1/blobs/{blobId}/content':
     parameters:
@@ -185,6 +186,7 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
+        - Internal
 
 components:
   securitySchemes:

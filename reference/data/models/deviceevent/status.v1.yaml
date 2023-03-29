@@ -1,0 +1,34 @@
+title: 'DeviceStatusEvent'
+description: >-
+  A device status event.
+allOf:
+  - $ref: './event.v1.yaml'
+  - type: object
+    properties:
+      subType:
+        type: string
+        enum:
+          - status
+      duration:
+        type: number
+        format: integer
+        minimum: 0
+      expectedDuration:
+        type: number
+        format: integer
+        minimum: 0
+      status:
+        type: string
+        enum:
+          - suspended
+          - resumed
+      reason:
+        $ref: '../metadata.v1.yaml'
+    required:
+      - subType
+      - duration
+      - expectedDuration
+      - status
+      - reason
+x-tags:
+  - Data
