@@ -258,7 +258,7 @@ paths:
             pattern: ^(1d|7d|14d|30d)$
             example: '7d'
           in: query
-          name: period
+          name: filterPeriod
           description: Time Period to filter
         - schema:
             type: string
