@@ -73,6 +73,11 @@
       ]
     },
     {
+      "type": "item",
+      "title": "Partner Integration",
+      "uri": "docs/partner-integration.md"
+    },
+    {
       "type": "group",
       "title": "Date/Time Guide",
       "items": [
