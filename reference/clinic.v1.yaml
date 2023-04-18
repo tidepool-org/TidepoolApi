@@ -301,7 +301,63 @@ paths:
             example: '>=0.7'
           in: query
           name: cgm.timeInVeryHighPercent
-          description: Percentage of time above range 250 mg/dL
+          description: Percentage of time above 250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.timeCGMUseRecords
+          description: Records of CGM use
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.timeInVeryLowRecords
+          description: Records below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.timeInLowRecords
+          description: Records in range 54-70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.timeInTargetRecords
+          description: Records in range 70-180 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.timeInHighRecords
+          description: Records in range 180-250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.timeInVeryHighRecords
+          description: Records above 250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.averageDailyRecords
+          description: Average records per day
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: cgm.totalRecords
+          description: Total records in period
         - schema:
             type: string
             format: date-time
@@ -348,7 +404,56 @@ paths:
             example: '>=0.7'
           in: query
           name: bgm.timeInVeryHighPercent
-          description: Percentage of time above range 250 mg/dL
+          description: Percentage of time above 250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: bgm.timeInVeryLowRecords
+          description: Records below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: bgm.timeInLowRecords
+          description: Records in range 54-70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: bgm.timeInTargetRecords
+          description: Records in range 70-180 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: bgm.timeInHighRecords
+          description: Records in range 180-250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: bgm.timeInVeryHighRecords
+          description: Records above 250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: bgm.averageDailyRecords
+          description: Average records per day
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=42'
+          in: query
+          name: bgm.totalRecords
+          description: Total records in period
         - schema:
             type: string
             format: date-time

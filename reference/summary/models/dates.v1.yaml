@@ -6,19 +6,29 @@ properties:
     description: Date of the last calculation
     type: string
     format: date-time
+
+  hasFirstData:
+    type: boolean
   firstData:
     description: Date of the first included value
     type: string
     format: date-time
+
+  hasLastData:
+    type: boolean
   lastData:
     description: Date of the last calculated value
     type: string
     format: date-time
+
+  hasLastUploadDate:
+    type: boolean
   lastUploadDate:
     description: Created date of the last calculated value
     type: string
     format: date-time
-  hasLastUploadDate:
+
+  hasOutdatedSince:
     type: boolean
   outdatedSince:
     description: Date of the first user upload after lastData, removed when calculated
