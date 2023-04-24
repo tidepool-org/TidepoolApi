@@ -58,6 +58,7 @@ paths:
             type: string
             format: date-time
             example: '2017-02-06T02:37:46Z'
+            $ref: './common/models/datetime.v1.yaml'
           in: header
           name: X-Logs-Start-At-Time
           description: Starting time of device logs inside the uploaded json log
@@ -66,6 +67,7 @@ paths:
             type: string
             format: date-time
             example: '2017-02-06T02:37:46Z'
+            $ref: './common/models/datetime.v1.yaml'
           in: header
           name: X-Logs-End-At-Time
           description: End time of device logs inside the uploaded json log
