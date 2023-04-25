@@ -5,7 +5,6 @@ type: object
 properties:
   type:
     type: string
-    required: true
     enum:
       - send
       - recieve
@@ -14,18 +13,19 @@ properties:
       - delegateResponse
       - connection
   managerIdentifier:
-    type: string
-    required: true
     $ref: "../../data/models/devicemodelname.v1.yaml"
   deviceIdentifier:
-    type: string
-    required: true
     $ref: "../../data/models/deviceid.v1.yaml"
   message:
     type: string
-    required: true
-    
+    minLength: 1
   timestamp:
     $ref: "../../common/models/datetime.v1.yaml"
-    required: true
+  required:
+  - type
+  - managerIdentifier
+  - deviceIdentifier
+  - message
+  - timestamp
 readOnly: true
+
