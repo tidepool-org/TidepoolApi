@@ -54,24 +54,8 @@ paths:
       description: Uploads a new device logs json to the user's account. The `Digest` header must represent the MD5 hash of the json data content.
       parameters:
         - $ref: ./common/parameters/digestmd5.v1.yaml
-        - schema:
-            type: string
-            format: date-time
-            example: '2017-02-06T02:37:46Z'
-            $ref: './common/models/datetime.v1.yaml'
-          in: header
-          name: X-Logs-Start-At-Time
-          description: Starting time of device logs inside the uploaded json log
-          required: true
-        - schema:
-            type: string
-            format: date-time
-            example: '2017-02-06T02:37:46Z'
-            $ref: './common/models/datetime.v1.yaml'
-          in: header
-          name: X-Logs-End-At-Time
-          description: End time of device logs inside the uploaded json log
-          required: true
+        - $ref: ./blob/parameters/logs-start-at.v1.yaml
+        - $ref: ./blob/parameters/logs-end-at.v1.yaml
       requestBody:
         description: array of JSON data
         required: true
@@ -80,7 +64,7 @@ paths:
             schema:
               type: array
               items:
-                $ref: ./blob/models/device-log-content.v1.yaml
+                $ref: './blob/models/device-log-content.v1.yaml'
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'

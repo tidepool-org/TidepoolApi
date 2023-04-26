@@ -14,7 +14,7 @@ case $1 in
 		case $(uname -s) in
 			Darwin)
                 trace brew --version
-        		trace brew install jsonnet@0.19.1
+        		trace brew install jsonnet
                 ;;
 			Linux)
                 trace go version
