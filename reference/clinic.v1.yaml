@@ -1070,7 +1070,7 @@ paths:
         - Internal
   '/v1/clinics/{clinicId}/membership_restrictions':
     parameters:
-      - $ref: ./clinic/parameters/clinicid.v1.yaml
+      - $ref: '#/components/parameters/clinicId'
     get:
       summary: List Membership Restrictions
       tags:
