@@ -1,0 +1,13 @@
+title: Membership Restriction
+x-stoplight:
+  id: lkeikldmhqso2
+type: object
+description: A user joining a clinic must match all of the defined restrictions
+properties:
+  emailDomain:
+    type: string
+    format: hostname
+    description: 'If this attribute is set, at the time of joining the clinic, the user  must have an email address with a matching domain'
+  requiredIdp:
+    type: string
+    description: 'If this attribute is set, at the time of joining the clinic the user must be authenticated against this identity provider'

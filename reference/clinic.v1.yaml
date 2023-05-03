@@ -1068,6 +1068,45 @@ paths:
       tags:
         - Clinics
         - Internal
+  '/v1/clinics/{clinicId}/membership_restrictions':
+    parameters:
+      - $ref: ./clinic/parameters/clinicid.v1.yaml
+    get:
+      summary: List Membership Restrictions
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipRestrictions'
+      operationId: ListMemebershipRestrictions
+      description: |-
+        Returns a list of the membership restrictions that will be evaluated when a user joins a clinic.
+
+        Only clinic admins can access this endpoint.
+    put:
+      summary: Update Membership Restrictions
+      operationId: UpdateMembershipRestrictions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipRestrictions'
+      description: An internal endpoint to update clinic membership restrictions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MembershipRestrictions'
+      x-internal: true
+      tags:
+        - Clinics
+        - Internal
 components:
   schemas:
     Error:
@@ -1265,6 +1304,10 @@ components:
         - suppressedNotifications
     SuppressedNotifications:
       $ref: ./clinic/models/suppressedNotifications.v1.yaml
+    MembershipRestriction:
+      $ref: ./clinic/models/membershiprestriction.v1.yaml
+    MembershipRestrictions:
+      $ref: ./clinic/models/membershiprestrictions.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
