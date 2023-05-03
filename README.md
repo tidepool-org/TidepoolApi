@@ -33,6 +33,8 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
 2. Create a *work branch* for your edits:
 
     ```shell
+    git checkout master
+    git pull
     git checkout master -b {branch}
     ```
 
@@ -49,6 +51,10 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
     ```shell
     git add {file(s)}
     git commit -m "{description}"
+    git checkout master
+    git pull
+    git checkout {branch}
+    git merge --no-ff master
     git push -u origin HEAD
     ```
 
@@ -56,6 +62,10 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
 7. Once the PR is approved, merge to master which will again automatically update the master branch in the Stoplight site.
 
 It is also possible to publish your work branch to Stoplight from your local folder. You will need the API tokens for Stoplight stored in 
+
+### Adding New Specification Files
+
+If you add a brand new top-level OpenAPI 3.0 specification file, it needs to be added to the [`templates/openapi-merge.jsonnet`](./templates/openapi-merge.jsonnet) template file so that it gets included in the combined specification file that is published in Stoplight.
 
 ## Publishing Tokens
 
@@ -81,3 +91,29 @@ The contents in Tidepool's organization [home page](https://tidepool.stoplight.i
 1. Free [Stoplight Studio](https://stoplight.io/studio/). This is the recommended tool since it is the closest rendering to the publishing site.
 2. Free Microsoft [Visual Studio Code](https://code.visualstudio.com/), with plug-ins for validating and rendering OpenAPI v3 specifications and Markdown documentation.
 3. Many other IDEs offer similar plug-ins.
+
+## Other Tools
+
+The [Makefile](./Makefile) makes use of several tools to check, prepare, and publish the documentation and specifications.
+You can install the tools by executing the following command:
+
+```shell
+make install_tools
+```
+
+You can check if you have all the tools installed by executing the following command:
+
+```shell
+make check_tools
+```
+
+| Tool | Description |
+|------|-------------|
+| [markdownlint](https://www.npmjs.com/package/markdownlint) | Validates Markdown files. |
+| [markdown-link-check](https://www.npmjs.com/package/markdown-link-check) | Validates hyperlinks in Markdown files. |
+| [spectral](https://www.npmjs.com/package/@stoplight/spectral) | Validates OpenAPI 3.0 specification files. |
+| [swagger-cli](https://www.npmjs.com/package/swagger-cli) | Validates OpenAPI 3.0 specification files. Also bundles multiple OAS3 files into a single file, that is required by some downstream use-cases. |
+| [jsonnet](https://jsonnet.org/) | Data templating tool. Used here to generate the configuration file for `openapi-merge-cli`. |
+| [openapi-merge-cli](https://www.npmjs.com/package/openapi-merge-cli) | Merges OpenAPI 3.0 specification files into single file. |
+| [stoplight](https://www.npmjs.com/package/@stoplight/cli) | Publishes OpenAPI 3.0 specifications and documentation in Markdown format to Stoplight's web site. |
+| [oapi-codegen](https://github.com/deepmap/oapi-codegen) | Generates server and client stub code from OpenAPI 3.0 specifications. Used currently to generate the [`clinic`](https://github.com/tidepool-org/clinic) service code. |
