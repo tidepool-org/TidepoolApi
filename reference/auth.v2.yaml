@@ -1,6 +1,4 @@
 openapi: 3.1.0
-x-stoplight:
-  id: 6p2grl3da45x4
 info:
   title: Authentication API
   version: '2.0'

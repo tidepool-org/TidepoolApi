@@ -35,12 +35,14 @@
 # source folders & files
 DOC_FOLDER = docs
 SPEC_FOLDER = reference
+ASSET_FOLDER = assets
 SOURCE_TOC = toc.json
 SOURCE_TOC_DOCS = ${shell awk '/"uri":.+\.md/ { print $$2 }' $(SOURCE_TOC) | tr '\n"' ' ' | sort}
 SOURCE_DOCS = ${shell find $(DOC_FOLDER) -type f -iname '*.md' | sort}
 SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | sort}
 SOURCE_SPECS_TOP_LEVEL = ${shell find $(SPEC_FOLDER) -mindepth 1 -maxdepth 1 \( -type d -or -iname '*.yaml' \) | sort}
 MERGED_SPEC = combined.v1.yaml
+SOURCE_ASSETS = ${shell find $(ASSET_FOLDER) -type f -iname '*.png' | sort}
 
 # output folders
 BUILD_FOLDER = build
@@ -51,6 +53,7 @@ CODEGEN_FOLDER = $(BUILD_FOLDER)/generated
 # public targets
 PUBLIC_DOC_FOLDER   = $(PUBLIC_FOLDER)/$(DOC_FOLDER)
 PUBLIC_SPEC_FOLDER  = $(PUBLIC_FOLDER)/$(SPEC_FOLDER)
+PUBLIC_ASSET_FOLDER = $(PUBLIC_FOLDER)/$(ASSET_FOLDER)
 PUBLIC_TOC          = $(PUBLIC_FOLDER)/$(SOURCE_TOC)
 PUBLIC_SPECS        = ${subst $(SPEC_FOLDER),$(PUBLIC_SPEC_FOLDER),$(SOURCE_SPECS_TOP_LEVEL)}
 PUBLIC_MERGED_SPEC  = $(PUBLIC_SPEC_FOLDER)/$(MERGED_SPEC)
@@ -58,6 +61,7 @@ PUBLIC_MERGED_SPEC  = $(PUBLIC_SPEC_FOLDER)/$(MERGED_SPEC)
 # private targets
 PRIVATE_DOC_FOLDER   = $(PRIVATE_FOLDER)/$(DOC_FOLDER)
 PRIVATE_SPEC_FOLDER  = $(PRIVATE_FOLDER)/$(SPEC_FOLDER)
+PRIVATE_ASSET_FOLDER = $(PRIVATE_FOLDER)/$(ASSET_FOLDER)
 PRIVATE_TOC          = $(PRIVATE_FOLDER)/$(SOURCE_TOC)
 PRIVATE_SPECS        = ${subst $(SPEC_FOLDER),$(PRIVATE_SPEC_FOLDER),$(SOURCE_SPECS_TOP_LEVEL)}
 PRIVATE_MERGED_SPEC  = $(PRIVATE_SPEC_FOLDER)/$(MERGED_SPEC)
@@ -132,7 +136,11 @@ check_private_env:
 	@:${call check_defined, PRIVATE_STOPLIGHT_TOKEN}
 
 .PHONY: check_files
-check_files: check_docs check_specs
+check_files: check_docs check_specs check_todo
+
+.PHONY: check_todo
+check_todo:
+	-grep -nR TODO docs/* reference/*
 
 .PHONY: check_docs
 check_docs: $(SOURCE_DOCS)
@@ -163,7 +171,7 @@ check_toc: $(SOURCE_TOC)
 	@echo $(SOURCE_TOC_DOCS) $(SOURCE_DOCS) | tr ' ' '\n' | sort | uniq -u | grep . && exit 1 || echo no differences detected
 
 .PHONY: list_files
-list_files: list_docs list_specs
+list_files: list_docs list_specs list_assets
 
 .PHONY: list_docs
 list_docs:
@@ -179,6 +187,13 @@ list_specs:
 	@echo ===============================================================
 	@ls -1 $(SOURCE_SPECS)
 
+.PHONY: list_assets
+list_assets:
+	@echo ===============================================================
+	@echo Asset Files \(${words $(SOURCE_ASSETS)}\)
+	@echo ===============================================================
+	@ls -1 $(SOURCE_ASSETS)
+
 .PHONY: prepare
 prepare: prepare_public prepare_private
 
@@ -192,10 +207,10 @@ prepare_toc: public_toc private_toc
 prepare_specs: public_specs private_specs
 
 .PHONY: prepare_public
-prepare_public: public_docs public_toc public_specs
+prepare_public: public_docs public_toc public_specs public_assets
 
 .PHONY: prepare_private
-prepare_private: private_docs private_toc private_specs
+prepare_private: private_docs private_toc private_specs private_assets
 
 .PHONY: public_docs
 public_docs: $(PUBLIC_DOC_FOLDER)
@@ -226,6 +241,18 @@ $(PRIVATE_MERGED_SPEC): $(PRIVATE_SPECS) | $(PRIVATE_SPEC_FOLDER)
 
 $(PRIVATE_SPECS): | $(PRIVATE_SPEC_FOLDER)
 	ln -sf ${abspath ${subst $(PRIVATE_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
+
+.PHONY: public_assets
+public_assets: $(PUBLIC_ASSET_FOLDER)
+
+$(PUBLIC_ASSET_FOLDER): | $(PUBLIC_FOLDER)
+	ln -sf ${abspath $(ASSET_FOLDER)} $(@D)
+
+.PHONY: private_assets
+private_assets: $(PRIVATE_ASSET_FOLDER)
+
+$(PRIVATE_ASSET_FOLDER): | $(PRIVATE_FOLDER)
+	ln -sf ${abspath $(ASSET_FOLDER)} $(@D)
 
 .PHONY: public_toc
 public_toc: $(PUBLIC_TOC)
