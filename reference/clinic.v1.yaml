@@ -249,17 +249,10 @@ paths:
         - schema:
             type: string
             pattern: ^(1d|7d|14d|30d)$
-            example: '14d'
-          in: query
-          name: sortPeriod
-          description: Time Period to sort
-        - schema:
-            type: string
-            pattern: ^(1d|7d|14d|30d)$
             example: '7d'
           in: query
-          name: filterPeriod
-          description: Time Period to filter
+          name: period
+          description: Time Period to display, filter, and sort
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
