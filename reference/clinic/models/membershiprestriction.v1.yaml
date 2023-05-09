@@ -7,7 +7,9 @@ properties:
   emailDomain:
     type: string
     format: hostname
-    description: 'If this attribute is set, at the time of joining the clinic, the user  must have an email address with a matching domain'
+    description: The restriction applies only if the user has an email address with a matching domain
   requiredIdp:
     type: string
     description: 'If this attribute is set, at the time of joining the clinic the user must be authenticated against this identity provider'
+required:
+  - emailDomain

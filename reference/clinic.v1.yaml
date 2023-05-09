@@ -1082,7 +1082,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MembershipRestrictions'
-      operationId: ListMemebershipRestrictions
+      operationId: ListMembershipRestrictions
       description: |-
         Returns a list of the membership restrictions that will be evaluated when a user joins a clinic.
 
