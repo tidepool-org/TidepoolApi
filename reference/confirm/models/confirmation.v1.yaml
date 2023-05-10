@@ -5,6 +5,8 @@ properties:
     $ref: './key.v1.yaml'
   type:
     $ref: './type.v1.yaml'
+  status:
+    $ref: './status.v1.yaml'
   email:
     $ref: '../../common/models/emailaddress.v1.yaml'
   creatorId:
@@ -20,6 +22,7 @@ properties:
 required:
   - key
   - type
+  - status
   - email
   - creatorId
   - created
