@@ -25,6 +25,6 @@ case $1 in
 
     *)
         trace markdownlint $1
-        trace markdown-link-check $1
+        trace markdown-link-check $1 --config .markdown-link-check.json
         trace $(dirname $0)/check_ref_links.sh $1
 esac
