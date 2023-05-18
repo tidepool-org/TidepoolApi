@@ -1007,6 +1007,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTier'
+  '/v1/clinics/{clinicId}/suppressed_notifications':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Update Suppressed Notifications
+      operationId: UpdateSuppressedNotifications
+      responses:
+        '200':
+          description: OK
+      description: Endpoint to update clinic suppressed notifications
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSuppressedNotifications'
   '/v1/clinics/{clinicId}/patients/{patientId}/upload_reminder':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1238,6 +1255,16 @@ components:
         - tier
     Tier:
       $ref: ./clinic/models/tier.v1.yaml
+    UpdateSuppressedNotifications:
+      title: UpdateSuppressedNotifications
+      type: object
+      properties:
+        suppressedNotifications:
+          $ref: '#/components/schemas/SuppressedNotifications'
+      required:
+        - suppressedNotifications
+    SuppressedNotifications:
+      $ref: ./clinic/models/suppressedNotifications.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token

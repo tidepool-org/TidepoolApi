@@ -71,6 +71,8 @@ properties:
     enum:
       - mg/dL
       - mmol/L
+  suppressedNotifications:
+    $ref: ./suppressedNotifications.v1.yaml
 required:
   - id
   - name
