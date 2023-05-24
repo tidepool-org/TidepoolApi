@@ -1,0 +1,9 @@
+title: Report endpoint dates
+description: Start and end dates in hammertime format
+type: array
+minItems: 2
+maxItems: 2
+items:
+  type: interger
+  format: hammertime
+  description: unix-time in milliseconds instead of seconds

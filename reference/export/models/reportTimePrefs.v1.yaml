@@ -1,0 +1,8 @@
+title: Report Time Preferences
+type: object
+properties:
+  timezoneAware:
+    type: boolean
+  timezoneName:
+    type: string
+    example: "NZ"

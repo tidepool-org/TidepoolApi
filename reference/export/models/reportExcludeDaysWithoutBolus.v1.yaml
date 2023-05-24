@@ -1,0 +1,3 @@
+title: exclude days without bolus?
+type: bool
+default: false

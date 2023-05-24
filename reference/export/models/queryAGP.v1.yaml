@@ -1,0 +1,36 @@
+title: AGP Report Query
+type: object
+properties:
+  endpoints:
+    - $ref: "./reportEndpoints.v1.yaml"
+  aggregationsByDate:
+    type: string
+    value: 'dataByDate, statsByDate'
+  bgPrefs:
+    - $ref: "./reportBGPrefs.v1.yaml"
+  bgSource:
+    - $ref: "./reportBGSource.v1.yaml"
+  excludedDevices:
+    - $ref: "./reportExcludedDevices.v1.yaml"
+  timePrefs:
+    - $ref: "./reportTimePrefs.v1.yaml"
+  metaData:
+    - $ref: "./reportMetaData.v1.yaml"
+  types:
+    - $ref: "./reportTypes.v1.yaml"
+      value: { cbg }
+  stats:
+    - $ref: "./reportStats.v1.yaml"
+      value:
+      [
+        "timeInRange",
+        "averageGlucose",
+        "sensorUsage",
+        "glucoseManagementIndicator",
+        "coefficientOfVariation",
+      ]
+required:
+  - endpoints
+  - timePrefs
+  - bgPrefs
+  - bgSource

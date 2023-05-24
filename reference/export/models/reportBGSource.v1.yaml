@@ -1,0 +1,7 @@
+title: BG source type
+type: string
+enum:
+  - smbg
+  - cbg
+default: cbg
+example: cbg

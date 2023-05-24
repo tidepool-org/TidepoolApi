@@ -1,0 +1,39 @@
+title: Daily Charts Report Query
+type: object
+properties:
+  endpoints:
+    - $ref: "./reportEndpoints.v1.yaml"
+  aggregationsByDate:
+    type: string
+    value: "dataByDate, statsByDate"
+  bgPrefs:
+    - $ref: "./reportBGPrefs.v1.yaml"
+  bgSource:
+    - $ref: "./reportBGSource.v1.yaml"
+  stats:
+    - $ref: "./reportStats.v1.yaml"
+      value:
+      [
+        "timeInRange",
+        "averageGlucose",
+        "totalInsulin",
+        "timeInAuto",
+        "timeInOverride",
+        "carbs",
+        "standardDev",
+        "coefficientOfVariation",
+      ]
+  excludedDevices:
+    - $ref: "./reportExcludedDevices.v1.yaml"
+  metaData:
+    - $ref: "./reportMetaData.v1.yaml"
+  timePrefs:
+    - $ref: "./reportTimePrefs.v1.yaml"
+  types:
+    - $ref: "./reportTypes.v1.yaml"
+      value: { basal, bolus, cbg, deviceEvent, food, message, smbg, wizard }
+required:
+  - endpoints
+  - bgPrefs
+  - timePrefs
+  - bgSource

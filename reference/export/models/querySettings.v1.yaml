@@ -1,0 +1,14 @@
+title: Settings Report Query
+type: object
+properties:
+  bgPrefs:
+    - $ref: "./reportBGPrefs.v1.yaml"
+  timePrefs:
+    - $ref: "./reportTimePrefs.v1.yaml"
+  excludedDevices:
+    - $ref: "./reportExcludedDevices.v1.yaml"
+  metaData:
+    - $ref: "./reportMetaData.v1.yaml"
+required:
+  - bgPrefs
+  - timePrefs
