@@ -183,6 +183,15 @@ paths:
         - CLINIC_ADMIN
       tags:
         - Clinics
+    delete:
+      summary: Delete Clinic
+      operationId: DeleteClinic
+      responses:
+        '204':
+          description: No Content
+      description: Deletes a clinic if there are no connected patient accounts (besides demo accounts).
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/clinicians':
     parameters:
       - $ref: '#/components/parameters/clinicId'
