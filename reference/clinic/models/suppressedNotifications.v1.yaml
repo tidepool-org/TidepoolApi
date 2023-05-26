@@ -1,0 +1,6 @@
+title: Suppressed Notifications
+type: object
+properties:
+  patientClinicInvitation:
+    type: boolean
+additionalProperties: false
