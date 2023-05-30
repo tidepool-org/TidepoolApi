@@ -1,52 +1,11 @@
 title: Report BG Preferences
 type: object
 properties:
-  # bgBounds:
-  #   type: object
-  #   properties:
-  #     clampThreshold:
-  #       type: number
-  #     targetLowerBound:
-  #       type: number
-  #     targetUpperBound:
-  #       type: number
-  #     veryHighThreshold:
-  #       type: number
-  #     veryLowThreshold:
-  #       type: number
-  # bgClasses:
-  #   type: object
-  #   properties:
-  #     high:
-  #       type: object
-  #       properties:
-  #         boundary:
-  #           type: number
-  #           example: 13.9
-  #     low:
-  #       type: object
-  #       properties:
-  #         boundary:
-  #           type: number
-  #           example: 3.9
-  #     target:
-  #       type: object
-  #       properties:
-  #         boundary:
-  #           type: number
-  #           example: 10
-  #     very-low:
-  #       type: object
-  #       properties:
-  #         boundary:
-  #           type: number
-  #           example: 3
   units:
-    - $ref: "./glucoseunits.v1.yaml"
+    $ref: "./glucoseunits.v1.yaml"
   source:
-    - type: string
-      enum:
-        - smbg
-        - cbg
-      default: cbg
-      example: cbg
+    type: string
+    enum:
+      - smbg
+      - cbg
+    default: cbg

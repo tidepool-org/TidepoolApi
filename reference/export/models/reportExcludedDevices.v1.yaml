@@ -1,5 +1,0 @@
-title: Excluded devices
-type: array
-items:
-  type: string
-default: []

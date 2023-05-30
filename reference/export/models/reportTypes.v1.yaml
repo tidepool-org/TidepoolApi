@@ -1,28 +1,13 @@
-title: Report data types
-type: object
-minProperties: 1
-properties:
-  basal:
-    type: object
-    default: {}
-  bolus:
-    type: object
-    default: {}
-  cbg:
-    type: object
-    default: {}
-  deviceEvent:
-    type: object
-    default: {}
-  food:
-    type: object
-    default: {}
-  message:
-    type: object
-    default: {}
-  smbg:
-    type: object
-    default: {}
-  wizard:
-    type: object
-    default: {}
+title: Reports types
+type: array
+minItems: 1
+maxItems: 5
+items:
+  type: string
+  enum:
+    - daily
+    - bgLog
+    - basics
+    - agp
+    - settings
+example: [daily, agp]
