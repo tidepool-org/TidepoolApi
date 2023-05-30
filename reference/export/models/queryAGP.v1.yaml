@@ -5,7 +5,7 @@ properties:
     - $ref: "./reportEndpoints.v1.yaml"
   aggregationsByDate:
     type: string
-    value: 'dataByDate, statsByDate'
+    value: "dataByDate, statsByDate"
   bgPrefs:
     - $ref: "./reportBGPrefs.v1.yaml"
   bgSource:
@@ -22,13 +22,11 @@ properties:
   stats:
     - $ref: "./reportStats.v1.yaml"
       value:
-      [
-        "timeInRange",
-        "averageGlucose",
-        "sensorUsage",
-        "glucoseManagementIndicator",
-        "coefficientOfVariation",
-      ]
+        - "timeInRange"
+        - "averageGlucose"
+        - "sensorUsage"
+        - "glucoseManagementIndicator"
+        - "coefficientOfVariation"
 required:
   - endpoints
   - timePrefs

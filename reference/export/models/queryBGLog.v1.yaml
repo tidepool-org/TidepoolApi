@@ -5,9 +5,9 @@ properties:
     - $ref: "./reportEndpoints.v1.yaml"
   aggregationsByDate:
     type: string
-    value: 'basals, boluses, fingersticks, siteChanges'
+    value: "basals, boluses, fingersticks, siteChanges"
   bgSource:
-    - $ref: './reportBGSource.v1.yaml'
+    - $ref: "./reportBGSource.v1.yaml"
       value: smbg
   bgPrefs:
     - $ref: "./reportBGPrefs.v1.yaml"
@@ -16,12 +16,10 @@ properties:
   stats:
     - $ref: "./reportStats.v1.yaml"
       value:
-      [
-        "readingsInRange",
-        "averageGlucose",
-        "standardDev",
-        "coefficientOfVariation",
-      ]
+        - "readingsInRange"
+        - "averageGlucose"
+        - "standardDev"
+        - "coefficientOfVariation"
   excludedDevices:
     - $ref: "./reportExcludedDevices.v1.yaml"
   metaData:

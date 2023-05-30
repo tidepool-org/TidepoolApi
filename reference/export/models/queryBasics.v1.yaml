@@ -13,20 +13,18 @@ properties:
   stats:
     - $ref: "./reportStats.v1.yaml"
       value:
-      [
-        "timeInRange",
-        "averageGlucose",
-        "sensorUsage",
-        "totalInsulin",
-        "timeInAuto",
-        "timeInOverride",
-        "carbs",
-        "averageDailyDose",
-        "glucoseManagementIndicator",
-        "standardDev",
-        "coefficientOfVariation",
-        "bgExtents",
-      ]
+        - "timeInRange"
+        - "averageGlucose"
+        - "sensorUsage"
+        - "totalInsulin"
+        - "timeInAuto"
+        - "timeInOverride"
+        - "carbs"
+        - "averageDailyDose"
+        - "glucoseManagementIndicator"
+        - "standardDev"
+        - "coefficientOfVariation"
+        - "bgExtents"
   timePrefs:
     - $ref: "./reportTimePrefs.v1.yaml"
   excludeDaysWithoutBolus:

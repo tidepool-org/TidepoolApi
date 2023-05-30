@@ -13,16 +13,14 @@ properties:
   stats:
     - $ref: "./reportStats.v1.yaml"
       value:
-      [
-        "timeInRange",
-        "averageGlucose",
-        "totalInsulin",
-        "timeInAuto",
-        "timeInOverride",
-        "carbs",
-        "standardDev",
-        "coefficientOfVariation",
-      ]
+        - "timeInRange"
+        - "averageGlucose"
+        - "totalInsulin"
+        - "timeInAuto"
+        - "timeInOverride"
+        - "carbs"
+        - "standardDev"
+        - "coefficientOfVariation"
   excludedDevices:
     - $ref: "./reportExcludedDevices.v1.yaml"
   metaData:

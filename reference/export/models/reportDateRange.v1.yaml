@@ -4,6 +4,6 @@ type: array
 minItems: 2
 maxItems: 2
 items:
-  type: interger
+  type: integer
   format: hammertime
   description: unix-time in milliseconds instead of seconds

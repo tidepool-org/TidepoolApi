@@ -1,0 +1,23 @@
+title: New Report
+description: >-
+  User report
+type: object
+required: [reports, dateRange, timePrefs]
+properties:
+  reports:
+    $ref: "./reports.v1.yaml"
+  dateRange:
+    $ref: "./reportDateRange.v1.yaml"
+  timePrefs:
+    $ref: "./reportTimePrefs.v1.yaml"
+  bgPrefs:
+    $ref: "./reportBGPrefs.v1.yaml"
+example:
+  reports: [agp, basics, daily]
+  dateRange: [1684272720, 1685482320]
+  timePrefs:
+    timezoneAware: true
+    timezoneName: "NZ"
+  bgPrefs: 
+    source: cbg
+    units: mmol/L
