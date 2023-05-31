@@ -16,11 +16,11 @@ properties:
           - delegateResponse
           - connection
       managerIdentifier:
-        $ref: '../../data/models/devicemodelname.v1.yaml'
+        $ref: "../../data/models/devicemodelname.v1.yaml"
       deviceIdentifier:
-        $ref: '../../data/models/deviceid.v1.yaml'
+        $ref: "../../data/models/deviceid.v1.yaml"
       timestamp:
-        $ref: '../../common/models/datetime.v1.yaml'
+        $ref: "../../common/models/datetime.v1.yaml"
       message:
         type: string
         minLength: 1
@@ -30,3 +30,10 @@ properties:
       - deviceIdentifier
       - timestamp
       - message
+example:
+  message:
+    type: send
+    managerIdentifier: "Devicey McDeviceface"
+    deviceIdentifier: "MMT-1711:12345678"
+    timestamp: "2017-02-06T02:37:46Z"
+    message: "sent something ..."
