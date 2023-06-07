@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Export API
-  version: "1.0"
+  version: '1.0'
   description: |-
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
@@ -17,15 +17,15 @@ info:
   x-tidepool-service: https://github.com/tidepool-org/export
 
 servers:
-  - url: "https://external.integration.tidepool.org"
+  - url: 'https://external.integration.tidepool.org'
     description: integration
-  - url: "https://api.tidepool.org"
+  - url: 'https://api.tidepool.org'
     description: production
-  - url: "https://dev1.dev.tidepool.org"
+  - url: 'https://dev1.dev.tidepool.org'
     description: dev1
-  - url: "https://qa1.development.tidepool.org"
+  - url: 'https://qa1.development.tidepool.org'
     description: qa1
-  - url: "https://qa2.development.tidepool.org"
+  - url: 'https://qa2.development.tidepool.org'
     description: qa2
 
 tags:
@@ -37,9 +37,9 @@ tags:
       Enable bulk export of diabetes data from user's Tidepool account.
 
 paths:
-  "/export/{userId}":
+  '/export/{userId}':
     parameters:
-      - $ref: "./common/parameters/tidepooluserid.yaml"
+      - $ref: './common/parameters/tidepooluserid.yaml'
     get:
       operationId: ExportUserData
       summary: Export user data
@@ -47,41 +47,42 @@ paths:
         Exports the diabetes data from user identified by `userId`, from `startDate` to `endDate`, in the requested `format`.
         Either a Tidepool session token, or a restricted token must be supplied.
       parameters:
-        - $ref: "./export/parameters/startdate.v1.yaml"
-        - $ref: "./export/parameters/enddate.v1.yaml"
-        - $ref: "./export/parameters/format.v1.yaml"
-        - $ref: "./export/parameters/glucoseunits.v1.yaml"
+        - $ref: './export/parameters/startdate.v1.yaml'
+        - $ref: './export/parameters/enddate.v1.yaml'
+        - $ref: './export/parameters/format.v1.yaml'
+        - $ref: './export/parameters/glucoseunits.v1.yaml'
       responses:
-        "200":
+        '200':
           description: >-
             User data exported in the requested `format`.
           headers:
             Content-Disposition:
-              $ref: "./common/headers/contentdisposition.v1.yaml"
+              $ref: './common/headers/contentdisposition.v1.yaml'
           content:
-            "application/json":
+            'application/json':
               schema:
-                $ref: "./export/models/json.v1.yaml"
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+                $ref: './export/models/json.v1.yaml'
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
               schema:
-                $ref: "./export/models/excel.v1.yaml"
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/ServerError"
+                $ref: './export/models/excel.v1.yaml'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '500':
+          $ref: './common/responses/servererror.v1.yaml'
+
       security:
         - sessionToken: []
         - restrictedToken: []
       tags:
         - Export
         - Internal
-  "/export/report/{userId}":
+  '/export/report/{userId}':
     parameters:
-      - $ref: "./common/parameters/tidepooluserid.yaml"
+      - $ref: './common/parameters/tidepooluserid.yaml'
     post:
       operationId: ExportUserReport
       summary: Export user report
@@ -91,23 +92,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "./export/models/reportRequest.v1.yaml"
+              $ref: './export/models/reportRequest.v1.yaml'
       responses:
-        "200":
+        '200':
           description: A PDF report for the given user
           content:
             application/pdf:
               schema:
                 type: string
                 format: binary
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/ServerError"
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '500':
+          $ref: './common/responses/servererror.v1.yaml'
       security:
         - sessionToken: []
         - restrictedToken: []
@@ -117,20 +118,7 @@ paths:
 components:
   securitySchemes:
     sessionToken:
-      $ref: "./common/security/tidepoolsessiontoken.v1.yaml"
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
 
     restrictedToken:
-      $ref: "./common/security/tidepoolrestrictedtoken.v1.yaml"
-
-  responses:
-    BadRequest:
-      description: "Bad Request"
-
-    Unauthorized:
-      description: "Unauthorized"
-
-    Forbidden:
-      description: "Forbidden"
-
-    ServerError:
-      description: "Server Error"
+      $ref: './common/security/tidepoolrestrictedtoken.v1.yaml'

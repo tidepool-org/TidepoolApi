@@ -5,4 +5,4 @@ properties:
     type: boolean
   timezoneName:
     type: string
-    example: "NZ"
+    example: 'NZ'
