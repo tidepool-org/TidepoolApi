@@ -2,24 +2,29 @@ title: Confirmation
 type: object
 properties:
   key:
-    $ref: './key.v1.yaml'
-  type:
+    $ref: ./key.v1.yaml
+  type: 
     $ref: './type.v1.yaml'
+  status:
+    $ref: './status.v1.yaml'
   email:
-    $ref: '../../common/models/emailaddress.v1.yaml'
+    $ref: ../../common/models/emailaddress.v1.yaml
   creatorId:
-    $ref: '../../common/models/tidepooluserid.yaml'
+    $ref: ../../common/models/tidepooluserid.yaml
   created:
-    $ref: '../../common/models/datetime.v1.yaml'
+    $ref: ../../common/models/datetime.v1.yaml
   modified:
-    $ref: '../../common/models/datetime.v1.yaml'
+    $ref: ../../common/models/datetime.v1.yaml
   creator:
-    $ref: './creator.v1.yaml'
+    $ref: ./creator.v1.yaml
   context:
     type: string
+  restrictions:
+    $ref: ./restrictions.v1.yaml
 required:
   - key
   - type
+  - status
   - email
   - creatorId
   - created

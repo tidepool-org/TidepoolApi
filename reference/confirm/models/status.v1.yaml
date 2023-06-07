@@ -1,0 +1,7 @@
+title: Confirmation Status
+type: string
+enum:
+  - pending
+  - completed
+  - canceled
+  - declined

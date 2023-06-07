@@ -1,0 +1,10 @@
+title: Membership Restrictions
+x-stoplight:
+  id: j8zuck3me7f8s
+type: object
+description: A user joining a clinic must match at least one of the specified membership restrictions
+properties:
+  restrictions:
+    type: array
+    items:
+      $ref: ./membershiprestriction.v1.yaml

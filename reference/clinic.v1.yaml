@@ -1173,6 +1173,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTier'
+  '/v1/clinics/{clinicId}/suppressed_notifications':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Update Suppressed Notifications
+      operationId: UpdateSuppressedNotifications
+      responses:
+        '200':
+          description: OK
+      description: Endpoint to update clinic suppressed notifications
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSuppressedNotifications'
   '/v1/clinics/{clinicId}/patients/{patientId}/upload_reminder':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1214,6 +1231,45 @@ paths:
         '200':
           description: OK
       description: Delete a patient tag from all clinic patients
+      tags:
+        - Clinics
+        - Internal
+  '/v1/clinics/{clinicId}/membership_restrictions':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: List Membership Restrictions
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipRestrictions'
+      operationId: ListMembershipRestrictions
+      description: |-
+        Returns a list of the membership restrictions that will be evaluated when a user joins a clinic.
+
+        Only clinic admins can access this endpoint.
+    put:
+      summary: Update Membership Restrictions
+      operationId: UpdateMembershipRestrictions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipRestrictions'
+      description: An internal endpoint to update clinic membership restrictions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MembershipRestrictions'
+      x-internal: true
       tags:
         - Clinics
         - Internal
@@ -1416,6 +1472,20 @@ components:
         - tier
     Tier:
       $ref: ./clinic/models/tier.v1.yaml
+    UpdateSuppressedNotifications:
+      title: UpdateSuppressedNotifications
+      type: object
+      properties:
+        suppressedNotifications:
+          $ref: '#/components/schemas/SuppressedNotifications'
+      required:
+        - suppressedNotifications
+    SuppressedNotifications:
+      $ref: ./clinic/models/suppressedNotifications.v1.yaml
+    MembershipRestriction:
+      $ref: ./clinic/models/membershiprestriction.v1.yaml
+    MembershipRestrictions:
+      $ref: ./clinic/models/membershiprestrictions.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
