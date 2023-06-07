@@ -3,5 +3,6 @@ type: string
 enum:
   - password_reset
   - careteam_invitation
+  - clinician_invitation
   - signup_confirmation
   - no_account

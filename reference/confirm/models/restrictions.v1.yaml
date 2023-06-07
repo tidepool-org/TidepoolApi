@@ -1,0 +1,13 @@
+title: Acceptance restrictions
+x-stoplight:
+  id: ywnkw0w7xn8b4
+type: object
+properties:
+  canAccept:
+    type: boolean
+    description: Whether the invite can be accepted by the current user
+  requiredIdp:
+    type: string
+    description: Set if the user must be authenticated against a specific identity provider before they are able to accept the invite
+required:
+  - canAccept
