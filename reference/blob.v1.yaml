@@ -98,6 +98,14 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '404':
+          $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Device Logs
     get:
@@ -110,8 +118,17 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/DeviceLogsMetadataList'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '404':
+          $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Device Logs
+        
   '/v1/users/{userId}/blobs':
     parameters:
       - $ref: ./common/parameters/tidepooluserid.yaml
