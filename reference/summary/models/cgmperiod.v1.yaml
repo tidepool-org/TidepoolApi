@@ -1,0 +1,176 @@
+type: object
+title: cgmperiod.v1
+description: 'Summary of a specific CGM time period (currently: 1d, 7d, 14d, 30d)'
+properties:
+  hasAverageGlucose:
+    type: boolean
+  averageGlucose:
+    $ref: '../../data/models/blood/glucose/glucosemmol.v1.yaml'
+
+  hasGlucoseManagementIndicator:
+    type: boolean
+  glucoseManagementIndicator:
+    type: number
+    x-go-type: float64
+    description: 'A derived value which emulates A1C'
+    example: 7.5
+
+  hasTimeInTargetPercent:
+    type: boolean
+  timeInTargetPercent:
+    description: Percentage of time spent in target glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+
+  hasTimeInTargetMinutes:
+    type: boolean
+  timeInTargetMinutes:
+    description: Counter of minutes spent in target glucose range
+    type: number
+    example: 200
+    x-go-type: int
+
+  hasTimeInTargetRecords:
+    type: boolean
+  timeInTargetRecords:
+    description: Counter of records in target glucose range
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasTimeInHighPercent:
+    type: boolean
+  timeInHighPercent:
+    description: Percentage of time spent in high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+
+  hasTimeInHighMinutes:
+    type: boolean
+  timeInHighMinutes:
+    description: Counter of minutes spent in high glucose range
+    type: number
+    example: 200
+    x-go-type: int
+
+  hasTimeInHighRecords:
+    type: boolean
+  timeInHighRecords:
+    description: Counter of records in high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasTimeInVeryHighPercent:
+    type: boolean
+  timeInVeryHighPercent:
+    description: Percentage of time spent in very high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+
+  hasTimeInVeryHighMinutes:
+    type: boolean
+  timeInVeryHighMinutes:
+    description: Counter of minutes spent in very high glucose range
+    type: number
+    example: 200
+    x-go-type: int
+
+  hasTimeInVeryHighRecords:
+    type: boolean
+  timeInVeryHighRecords:
+    description: Counter of records in very high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasTimeInLowPercent:
+    type: boolean
+  timeInLowPercent:
+    description: Percentage of time spent in low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+
+  hasTimeInLowMinutes:
+    type: boolean
+  timeInLowMinutes:
+    description: Counter of minutes spent in low glucose range
+    type: number
+    example: 200
+    x-go-type: int
+
+  hasTimeInLowRecords:
+    type: boolean
+  timeInLowRecords:
+    description: Counter of records in low glucose range
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasTimeInVeryLowPercent:
+    type: boolean
+  timeInVeryLowPercent:
+    description: Percentage of time spent in very low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+
+  hasTimeInVeryLowMinutes:
+    type: boolean
+  timeInVeryLowMinutes:
+    description: Counter of minutes spent in very low glucose range
+    type: number
+    example: 200
+    x-go-type: int
+
+  hasTimeInVeryLowRecords:
+    type: boolean
+  timeInVeryLowRecords:
+    description: Counter of records in very low glucose range
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasTimeCGMUsePercent:
+    type: boolean
+  timeCGMUsePercent:
+    description: Percentage of time spent wearing a cgm
+    type: number
+    example: 0.35
+    x-go-type: float64
+
+  hasTimeCGMUseMinutes:
+    type: boolean
+  timeCGMUseMinutes:
+    description: Counter of minutes spent wearing a cgm
+    type: number
+    example: 200
+    x-go-type: int
+
+  hasTimeCGMUseRecords:
+    type: boolean
+  timeCGMUseRecords:
+    description: Counter of minutes spent wearing a cgm
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasTotalRecords:
+    type: boolean
+  totalRecords:
+    description: Counter of records
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasAverageDailyRecords:
+    type: boolean
+  averageDailyRecords:
+    description: Average daily readings
+    type: number
+    example: 3.5
+    x-go-type: float64

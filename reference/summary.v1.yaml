@@ -39,14 +39,14 @@ tags:
     description: |-
       Summary Data
 
-      This service was a prototype for separate service that calculates summary statistics for user accounts.
-      It is replaced by additional APIs exposed by the `data` service, and executed by the `task` service.
-      This documentation is for archival only.
+      This API is for a component within the `data` service that calculates summary statistics for user accounts.
+      These routes are mostly executed by the `task` and `clinic-worker` services.
 
 paths:
-  '/v1/summaries/{userId}':
+  '/v1/summaries/{userId}/{summaryType}':
     parameters:
-      - $ref: ./common/parameters/tidepooluserid.yaml
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/summaryType'
     get:
       summary: Get User Summary
       responses:
@@ -63,17 +63,59 @@ paths:
         '500':
           description: Internal Server Error
       operationId: GetSummary
-      description: Retrieve a summary by id
+      description: Retrieve a summary by user id
+      x-internal: true
       tags:
         - Summary
         - Internal
 
 components:
   schemas:
+    TidepoolUserId:
+      $ref: './common/models/tidepooluserid.yaml'
+    SummaryType:
+      $ref: './summary/models/summarytype.v1.yaml'
+    AverageGlucose:
+      $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
+    BGMBucketData:
+      $ref: './summary/models/bgmbucketdata.v1.yaml'
+    BGMPeriod:
+      $ref: './summary/models/bgmperiod.v1.yaml'
+    BGMPeriods:
+      $ref: './summary/models/bgmperiods.v1.yaml'
+    BGMStats:
+      $ref: './summary/models/bgmstats.v1.yaml'
+    CGMBucketData:
+      $ref: './summary/models/cgmbucketdata.v1.yaml'
+    CGMPeriod:
+      $ref: './summary/models/cgmperiod.v1.yaml'
+    CGMPeriods:
+      $ref: './summary/models/cgmperiods.v1.yaml'
+    CGMStats:
+      $ref: './summary/models/cgmstats.v1.yaml'
+    Bucket:
+      $ref: './summary/models/bucket.v1.yaml'
+    Config:
+      $ref: './summary/models/config.v1.yaml'
+    Dates:
+      $ref: './summary/models/dates.v1.yaml'
     Summary:
-      $ref: ./summary/models/summary.v1.yaml
+      $ref: './summary/models/summary.v1.yaml'
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
     serverToken:
       $ref: './common/security/tidepoolservertoken.v1.yaml'
+  parameters:
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/TidepoolUserId'
+    summaryType:
+      name: summaryType
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/SummaryType'
