@@ -1,40 +1,16 @@
 type: object
 title: summary.v1
-description: ''
+description: 'A summary of a users recent data'
 properties:
-  lastUpdatedDate:
-    type: string
-    format: date-time
-  firstData:
-    type: string
-    format: date-time
-  lastData:
-    type: string
-    format: date-time
-  lastUploadDate:
-    type: string
-    format: date-time
-  outdatedSince:
-    type: string
-    format: date-time
-  totalDays:
-    type: number
-    x-go-type: int
-  highGlucoseThreshold:
-    type: number
-    x-go-type: float64
-  veryHighGlucoseThreshold:
-    type: number
-    x-go-type: float64
-  lowGlucoseThreshold:
-    type: number
-    x-go-type: float64
-  veryLowGlucoseThreshold:
-    type: number
-    x-go-type: float64
-  periods:
-    $ref: ./summaryperiods.v1.yaml
-  dailyStats:
-    type: array
-    items:
-      $ref: ./summarystat.v1.yaml
+  type:
+    $ref: './summarytype.v1.yaml'
+  userId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  config:
+    $ref: './config.v1.yaml'
+  dates:
+    $ref: './dates.v1.yaml'
+  stats:
+    oneOf:
+      - $ref: './cgmstats.v1.yaml'
+      - $ref: './bgmstats.v1.yaml'

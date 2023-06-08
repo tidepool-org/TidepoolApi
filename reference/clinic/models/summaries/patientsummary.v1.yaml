@@ -1,0 +1,8 @@
+type: object
+title: patientsummary.v1
+description: 'A summary of a patients recent data'
+properties:
+  cgmStats:
+      $ref: './cgmstats.v1.yaml'
+  bgmStats:
+      $ref: './bgmstats.v1.yaml'
