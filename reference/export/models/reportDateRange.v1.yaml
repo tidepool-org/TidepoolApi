@@ -1,12 +1,10 @@
 title: Report endpoint dates
-description: Start and end dates in hammertime format
+description: Start and end dates
 type: object
 properties:
   startDate:
-    type: integer
-    format: hammertime
-    description: unix-time in milliseconds instead of seconds
+    $ref: ../../common/models/datetime.v1.yaml
+    description: startDate cannot be more than 90 days before the endDate
   endDate:
-    type: integer
-    format: hammertime
-    description: unix-time in milliseconds instead of seconds
+    $ref: ../../common/models/datetime.v1.yaml
+    description: endDate cannot be in the future

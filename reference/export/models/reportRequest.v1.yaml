@@ -5,18 +5,18 @@ type: object
 required: [reports, dateRange, timePrefs, bgPrefs]
 properties:
   reports:
-    $ref: './reportTypes.v1.yaml'
+    $ref: './reporttypes.v1.yaml'
   dateRange:
-    $ref: './reportDateRange.v1.yaml'
+    $ref: './reportdaterange.v1.yaml'
   timePrefs:
-    $ref: './reportTimePrefs.v1.yaml'
+    $ref: './reporttimeprefs.v1.yaml'
   bgPrefs:
-    $ref: './reportBGPrefs.v1.yaml'
+    $ref: './reportbgprefs.v1.yaml'
 example:
   reports: [agp, basics, daily]
   dateRange:
-    startDate: 1684272720
-    endDate: 1685482320
+    startDate: '2023-04-01T02:37:46Z'
+    endDate: '2023-04-30T02:37:46Z'
   timePrefs:
     timezoneAware: true
     timezoneName: 'NZ'
