@@ -71,30 +71,30 @@ paths:
                 $ref: ./blob/models/device-log-content.v1.yaml
             example:
               - type: send
-                managerIdentifier: "Devicey McDeviceface"
-                deviceIdentifier: "MMT-1711:12345678"
-                timestamp: "2017-02-06T02:37:46Z"
-                message: "sent something ..."
+                managerIdentifier: 'Devicey McDeviceface'
+                deviceIdentifier: 'MMT-1711:12345678'
+                timestamp: '2017-02-06T02:37:46Z'
+                message: 'sent something ...'
               - type: recieve
-                managerIdentifier: "Devicey McDeviceface"
-                deviceIdentifier: "MMT-1711:12345678"
-                timestamp: "2017-02-06T02:38:46Z"
-                message: "recieves something ..."
+                managerIdentifier: 'Devicey McDeviceface'
+                deviceIdentifier: 'MMT-1711:12345678'
+                timestamp: '2017-02-06T02:38:46Z'
+                message: 'recieves something ...'
               - type: error
-                managerIdentifier: "Devicey McDeviceface"
-                deviceIdentifier: "MMT-1711:12345678"
-                timestamp: "2017-02-06T02:39:46Z"
-                message: "an error occured ..."
+                managerIdentifier: 'Devicey McDeviceface'
+                deviceIdentifier: 'MMT-1711:12345678'
+                timestamp: '2017-02-06T02:39:46Z'
+                message: 'an error occured ...'
               - type: delegate
-                managerIdentifier: "Devicey McDeviceface"
-                deviceIdentifier: "MMT-1711:12345678"
-                timestamp: "2017-02-06T02:39:46Z"
-                message: "delegated something ..."
+                managerIdentifier: 'Devicey McDeviceface'
+                deviceIdentifier: 'MMT-1711:12345678'
+                timestamp: '2017-02-06T02:39:46Z'
+                message: 'delegated something ...'
               - type: delegateResponse
-                managerIdentifier: "Devicey McDeviceface"
-                deviceIdentifier: "MMT-1711:12345678"
-                timestamp: "2017-02-06T02:39:46Z"
-                message: "got response from delegate ..."
+                managerIdentifier: 'Devicey McDeviceface'
+                deviceIdentifier: 'MMT-1711:12345678'
+                timestamp: '2017-02-06T02:39:46Z'
+                message: 'got response from delegate ...'
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'
@@ -128,7 +128,7 @@ paths:
           $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Device Logs
-        
+
   '/v1/users/{userId}/blobs':
     parameters:
       - $ref: ./common/parameters/tidepooluserid.yaml
@@ -336,4 +336,3 @@ components:
               createdTime: '2017-02-06T02:35:46Z'
               startAt: '2017-02-06T02:35:46Z'
               endAt: '2017-02-06T02:36:46Z'
-    
