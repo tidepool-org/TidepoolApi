@@ -92,7 +92,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './export/models/reportRequest.v1.yaml'
+              $ref: './export/models/reportrequest.v1.yaml'
       responses:
         '200':
           description: A PDF report for the given user
