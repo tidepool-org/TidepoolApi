@@ -50,7 +50,7 @@ paths:
         - $ref: './export/parameters/startdate.v1.yaml'
         - $ref: './export/parameters/enddate.v1.yaml'
         - $ref: './export/parameters/format.v1.yaml'
-        - $ref: './data/models/blood/units.v1.yaml'
+        - $ref: './export/parameters/glucoseunits.v1.yaml'
       responses:
         '200':
           description: >-
