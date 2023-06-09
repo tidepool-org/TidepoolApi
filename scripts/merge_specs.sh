@@ -37,6 +37,6 @@ case $1 in
 			--ext-str outputFile=$(basename $1) \
 			--output-file $(dirname $1)/openapi-merge.json \
 			./templates/openapi-merge.jsonnet
-        cd $(dirname $1)
+        trace cd $(dirname $1)
         trace openapi-merge-cli
 esac
