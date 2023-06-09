@@ -21,5 +21,5 @@ case $1 in
         ;;
 
     *)
-		trace swagger-cli bundle --type yaml $1 --outfile $2
+		trace swagger-cli bundle --type yaml --dereference $1 --outfile $2
 esac
