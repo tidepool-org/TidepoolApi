@@ -38,5 +38,5 @@ case $1 in
 			--output-file $(dirname $1)/openapi-merge.json \
 			./templates/openapi-merge.jsonnet
         trace cd $(dirname $1)
-        trace openapi-merge-cli
+        trace openapi-merge-cli 2>&1 | awk '{ print $0 } /exception/ { exit 1 }'
 esac

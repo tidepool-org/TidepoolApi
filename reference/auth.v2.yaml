@@ -18,6 +18,9 @@ info:
     url: 'https://support.tidepool.org/'
     email: support@tidepool.org
     name: API Support
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/shoreline/blob/master/LICENSE
   termsOfService: 'https://developer.tidepool.org/terms-of-use'
 servers:
   - url: 'https://external.integration.tidepool.org'
@@ -44,7 +47,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/realm'
     post:
-      security: [ ]
+      security: []
       summary: Obtain Token
       operationId: ObtainToken
       responses:
@@ -114,7 +117,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/realm'
     get:
-      security: [ ]
+      security: []
       summary: Authorize
       responses:
         '301':
@@ -311,3 +314,5 @@ components:
       description: 'The authentication realm. '
 tags:
   - name: Authentication v2
+    description: >-
+      Authentication APIs version 2.

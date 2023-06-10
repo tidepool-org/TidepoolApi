@@ -80,6 +80,7 @@ paths:
           $ref: '#/components/responses/ConfirmationError'
         '500':
           $ref: '#/components/responses/ConfirmationError'
+      security: []
       tags:
         - Confirmations
 
@@ -106,6 +107,7 @@ paths:
           $ref: '#/components/responses/ConfirmationError'
         '500':
           $ref: '#/components/responses/ConfirmationError'
+      security: []
       tags:
         - Confirmations
 
@@ -127,6 +129,7 @@ paths:
           $ref: '#/components/responses/ConfirmationError'
         '404':
           $ref: '#/components/responses/ConfirmationError'
+      security: []
       tags:
         - Confirmations
 
@@ -194,6 +197,7 @@ paths:
           $ref: '#/components/responses/ConfirmationError'
         '404':
           $ref: '#/components/responses/ConfirmationError'
+      security: []
       tags:
         - Confirmations
 
@@ -216,6 +220,7 @@ paths:
           $ref: '#/components/responses/ConfirmationSuccess'
         '400':
           $ref: '#/components/responses/ConfirmationError'
+      security: []
       tags:
         - Confirmations
 
@@ -241,6 +246,7 @@ paths:
           $ref: '#/components/responses/ConfirmationError'
         '404':
           $ref: '#/components/responses/ConfirmationError'
+      security: []
       tags:
         - Confirmations
 
@@ -293,6 +299,8 @@ paths:
           $ref: '#/components/responses/ConfirmationError'
         '500':
           $ref: '#/components/responses/ConfirmationError'
+      security:
+        - sessionToken: []
       tags:
         - Confirmations
 

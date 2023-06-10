@@ -48,6 +48,7 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ClientVersions'
+      security: []
       tags:
         - General
         - Internal

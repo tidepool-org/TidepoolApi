@@ -11,15 +11,15 @@ case $1 in
 		;;
 
     -i | --install)
-        trace npm install --location=global @apidevtools/swagger-cli@4.0.4
+        trace npm install --location=global @redocly/cli@1.0.0-beta.128
         exit 0
         ;;
 
     -c | --self-check)
-        trace swagger-cli --version
+        trace redocly --version
         exit 0
         ;;
 
     *)
-		trace swagger-cli bundle --type yaml --dereference $1 --outfile $2
+		trace redocly bundle $1 --output $2
 esac

@@ -154,7 +154,7 @@ $(SOURCE_DOCS):
 
 # check spec files, plus try to generate code from them
 .PHONY: check_specs
-check_specs: $(SOURCE_SPECS) generate_clinic_service
+check_specs: $(SOURCE_SPECS_TOP_LEVEL) generate_clinic_service
 
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
