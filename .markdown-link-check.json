@@ -1,0 +1,10 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https://www.endocrinepractice.org"
+    },
+    {
+      "pattern": "^https://www.accessdata.fda.gov"
+    }
+  ]
+}
