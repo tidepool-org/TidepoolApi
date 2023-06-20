@@ -1,0 +1,12 @@
+title: Date Range
+description: >-
+  start and end datetime
+type: object
+properties:
+  startDate:
+    $ref: './datetime.v1.yaml'
+  endDate:
+    $ref: './datetime.v1.yaml'
+required:
+  - startDate
+  - endDate

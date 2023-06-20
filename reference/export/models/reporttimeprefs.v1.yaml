@@ -3,6 +3,9 @@ type: object
 properties:
   timezoneAware:
     type: boolean
+    default: true
   timezoneName:
     type: string
     example: 'NZ'
+required:
+  - timezoneName

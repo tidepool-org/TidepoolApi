@@ -17,6 +17,9 @@ example:
   dateRange:
     startDate: '2023-04-01T02:37:46Z'
     endDate: '2023-04-30T02:37:46Z'
+    agp:
+      startDate: '2023-04-01T02:37:46Z'
+      endDate: '2023-04-15T02:37:46Z'
   timePrefs:
     timezoneAware: true
     timezoneName: 'NZ'

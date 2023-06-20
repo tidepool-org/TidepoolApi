@@ -10,4 +10,6 @@ items:
     - basics
     - agp
     - settings
+    - all
 example: [daily, agp]
+default: [all]

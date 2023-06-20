@@ -9,3 +9,5 @@ properties:
       - smbg
       - cbg
     default: cbg
+required:
+  - units
