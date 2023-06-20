@@ -5,7 +5,7 @@ properties:
     type: boolean
     default: true
   timezoneName:
-    type: string
+    $ref: ../../data/models/timezonename.v1.yaml
     example: 'NZ'
 required:
   - timezoneName
