@@ -7,7 +7,7 @@ properties:
     type: string
     enum:
       - send
-      - recieve
+      - receive
       - error
       - delegate
       - delegateResponse

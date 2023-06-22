@@ -69,32 +69,6 @@ paths:
               type: array
               items:
                 $ref: ./blob/models/device-log-content.v1.yaml
-            example:
-              - type: send
-                managerIdentifier: 'Devicey McDeviceface'
-                deviceIdentifier: 'MMT-1711:12345678'
-                timestamp: '2017-02-06T02:37:46Z'
-                message: 'sent something ...'
-              - type: recieve
-                managerIdentifier: 'Devicey McDeviceface'
-                deviceIdentifier: 'MMT-1711:12345678'
-                timestamp: '2017-02-06T02:38:46Z'
-                message: 'recieves something ...'
-              - type: error
-                managerIdentifier: 'Devicey McDeviceface'
-                deviceIdentifier: 'MMT-1711:12345678'
-                timestamp: '2017-02-06T02:39:46Z'
-                message: 'an error occured ...'
-              - type: delegate
-                managerIdentifier: 'Devicey McDeviceface'
-                deviceIdentifier: 'MMT-1711:12345678'
-                timestamp: '2017-02-06T02:39:46Z'
-                message: 'delegated something ...'
-              - type: delegateResponse
-                managerIdentifier: 'Devicey McDeviceface'
-                deviceIdentifier: 'MMT-1711:12345678'
-                timestamp: '2017-02-06T02:39:46Z'
-                message: 'got response from delegate ...'
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'
@@ -312,27 +286,9 @@ components:
         application/json:
           schema:
             $ref: ./blob/models/device-logs-metadata.v1.yaml
-          example:
-            id: 97a9fae8a19b4da58bb48dc90c9562c9
-            userId: 4d94a5fb-642e-48f1-89b9-c6a3e6145342
-            digestMD5: NGQ1MDgzMjg3N2Q3ZWU3MTEyZGFmMTU5MzNlNDc0N2MK
-            mediaType: application/octet-stream
-            size: 1024
-            createdTime: '2017-02-06T02:35:46Z'
-            startAt: '2017-02-06T02:35:46Z'
-            endAt: '2017-02-06T02:36:46Z'
     DeviceLogsMetadataList:
       description: List of device logs metadata
       content:
         application/json:
           schema:
             $ref: ./blob/models/device-logs-metadatalist.v1.yaml
-          example:
-            - id: 97a9fae8a19b4da58bb48dc90c9562c9
-              userId: 4d94a5fb-642e-48f1-89b9-c6a3e6145342
-              digestMD5: NGQ1MDgzMjg3N2Q3ZWU3MTEyZGFmMTU5MzNlNDc0N2MK
-              mediaType: application/octet-stream
-              size: 1024
-              createdTime: '2017-02-06T02:35:46Z'
-              startAt: '2017-02-06T02:35:46Z'
-              endAt: '2017-02-06T02:36:46Z'
