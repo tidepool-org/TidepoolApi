@@ -21,7 +21,7 @@ case $1 in
 				trace go install github.com/google/go-jsonnet/cmd/jsonnet@latest
                 ;;
 		esac
-        trace npm install --location=global openapi-merge-cli@1.3.1
+        trace npm install -g openapi-merge-cli@1.3.1
         exit 0
         ;;
 

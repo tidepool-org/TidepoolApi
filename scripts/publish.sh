@@ -12,7 +12,7 @@ case $1 in
 
     --install)
 		trace npm --version
-		trace npm install --location=global @stoplight/cli@6.0.1280
+		trace npm install -g @stoplight/cli@6.0.1280
         exit 0
         ;;
 
