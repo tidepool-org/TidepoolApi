@@ -5,23 +5,24 @@
 ## Table of Contents
 
 1. [Quick Summary](#quick-summary)
-2. [Type (`type`)](#type-type)
-3. [Active Schedule (`activeSchedule`)](#active-schedule-activeschedule)
-4. [Basal Schedules (`basalSchedules`)](#basal-schedules-basalschedules)
-5. [Blood Glucose Target (`bgTarget`)](#blood-glucose-target-bgtarget)
-6. [Carb Ratio (`carbRatio`)](#carb-ratio-carbratio)
-7. [Firmware Version (`firmwareVersion`)](#firmware-version-firmwareversion)
-8. [Hardware Version (`hardwareVersion`)](#hardware-version-hardwareversion)
-9. [Insulin Sensitivity (`insulinSensitivity`)](#insulin-sensitivity-insulinsensitivity)
-10. [Manufacturers (`manufacturers`)](#manufacturers-manufacturers)
-11. [Model (`model`)](#model-model)
-12. [Name (`name`)](#name-name)
-13. [Override Presets (`overridePresets`)](#override-presets-overridepresets)
-14. [Serial Number (`serialNumber`)](#serial-number-serialnumber)
-15. [Software Version (`softwareVersion`)](#software-version-softwareversion)
-16. [Units (`units`)](#units-units)
-17. [Examples](#examples)
-18. [Keep Reading](#keep-reading)
+1. [Type (`type`)](#type-type)
+1. [Active Schedule (`activeSchedule`)](#active-schedule-activeschedule)
+1. [Basal Schedules (`basalSchedules`)](#basal-schedules-basalschedules)
+1. [Blood Glucose Target (`bgTarget`)](#blood-glucose-target-bgtarget)
+1. [Carb Ratio (`carbRatio`)](#carb-ratio-carbratio)
+1. [Firmware Version (`firmwareVersion`)](#firmware-version-firmwareversion)
+1. [Hardware Version (`hardwareVersion`)](#hardware-version-hardwareversion)
+1. [Insulin Sensitivity (`insulinSensitivity`)](#insulin-sensitivity-insulinsensitivity)
+1. [Manufacturers (`manufacturers`)](#manufacturers-manufacturers)
+1. [Model (`model`)](#model-model)
+1. [Name (`name`)](#name-name)
+1. [Override Presets (`overridePresets`)](#override-presets-overridepresets)
+1. [Serial Number (`serialNumber`)](#serial-number-serialnumber)
+1. [Sleep Schedules (`sleepSchedules`)](#sleep-schedules-sleepschedules)
+1. [Software Version (`softwareVersion`)](#software-version-softwareversion)
+1. [Units (`units`)](#units-units)
+1. [Examples](#examples)
+1. [Keep Reading](#keep-reading)
 
 ---
 
@@ -230,6 +231,21 @@ The serial number of the pump, if known.
 
 ---
 
+## Sleep Schedules (`sleepSchedules`)
+
+One or more sleep schedules can have the following properties:
+
+* Enabled
+* Days
+* Start
+* End
+
+Each enabled schedule has unique days on which it is running, with a start and end time (seconds in 24 hours) on those days.
+
+If enabled is true, the other properties are required, otherwise they are optional.
+
+---
+
 ## Software Version (`softwareVersion`)
 
 The software version of the pump, if known.
@@ -247,7 +263,7 @@ The units object on a pump settings event represents all relevant units for the 
 
 For carbs, there are currently two allowed values: grams and exchange.
 
-Grams is a self-explanitory value and is generally the preferred unit of measurement used in newer insulin pumps. However, Tidepool also offers support for the now-outdated "exchange" scheme for counting carbohydrates — where one exchange is ~10g or ~15g of carbohydrate. Users can upload carbohydrates in exchanges, however this will be converted to grams upon ingestion to Platform.
+Grams is a self-explanatory value and is generally the preferred unit of measurement used in newer insulin pumps. However, Tidepool also offers support for the now-outdated "exchange" scheme for counting carbohydrates — where one exchange is ~10g or ~15g of carbohydrate. Users can upload carbohydrates in exchanges, however this will be converted to grams upon ingestion to Platform.
 
 The blood glucose value may be mg/dL or mmol/L, but Platform will convert all blood glucose and related values to mmol/L upon ingestion. (See [units](../units.md) for further explanation of blood glucose units.)
 
@@ -348,6 +364,20 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
         }
     },
     "serialNumber": "1234567890",
+    "sleepSchedules": [
+      {
+        enabled: false,
+        days: ["Tuesday", "Wednesday", "Sunday"],
+        start: 81900,
+        end: 24600
+      },
+      {
+        enabled: true,
+        days: ["Wednesday"],
+        start: 82800,
+        end: 25200
+      }
+    ],
     "softwareVersion": "3.4.5",
     "units": {
         "carbs": "grams",
@@ -467,6 +497,20 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
         }
     },
     "serialNumber": "1234567890",
+    "sleepSchedules": [
+      {
+        enabled: false,
+        days: ["Tuesday", "Wednesday", "Sunday"],
+        start: 81900,
+        end: 24600
+      },
+      {
+        enabled: true,
+        days: ["Wednesday"],
+        start: 82800,
+        end: 25200
+      }
+    ],
     "softwareVersion": "3.4.5",
     "units": {
         "carbs": "grams",
@@ -587,6 +631,20 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
         }
     },
     "serialNumber": "1234567890",
+    "sleepSchedules": [
+      {
+        enabled: false,
+        days: ["Tuesday", "Wednesday", "Sunday"],
+        start: 81900,
+        end: 24600
+      },
+      {
+        enabled: true,
+        days: ["Wednesday"],
+        start: 82800,
+        end: 25200
+      }
+    ],
     "softwareVersion": "3.4.5",
     "units": {
         "carbs": "grams",

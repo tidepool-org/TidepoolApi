@@ -150,6 +150,44 @@ allOf:
         type: string
         minLength: 1
         maxLength: 100
+      sleepSchedules:
+        type: array
+        minItems: 0
+        maxItems: 10
+        items:
+          type: object 
+          properties:
+            enabled: 
+              type: boolean
+            days:
+              type: array
+              uniqueItems: true
+              minItems: 1
+              maxItems: 7
+              items:
+                type: string
+                enum:
+                - Sunday
+                - Monday
+                - Tuesday
+                - Wednesday
+                - Thursday
+                - Friday
+                - Saturday
+            start:
+              type: number
+              format: integer
+              minimum: 0
+              maximum: 86400
+              description: Start time in seconds, offset from midnight (e.g. 11pm is 82800)
+            end:
+              type: number
+              format: integer
+              minimum: 0
+              maximum: 86400
+              description: end time in seconds, offset from midnight (e.g. 7am is 25200)
+          required:
+              - enabled
       softwareVersion:
         type: string
         minLength: 1
