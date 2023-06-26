@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Document": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ID"
+      ]
+    },
+    "FileType": {
+      "type": "string"
+    },
+    "Data": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "Meta",
+    "Document",
+    "FileType",
+    "Data"
+  ]
+}

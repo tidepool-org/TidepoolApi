@@ -1,0 +1,153 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Patients:
+    type: array
+    items:
+      type: object
+      properties:
+        Identifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              ID:
+                type: string
+              IDType:
+                type: string
+            required:
+              - ID
+              - IDType
+        Organization:
+          type: object
+          properties:
+            Name:
+              type: string
+              nullable: true
+            Aliases:
+              type: array
+              items: {}
+            Identifiers:
+              type: array
+              items:
+                type: object
+                properties:
+                  ID:
+                    type: string
+                    nullable: true
+                  IDType:
+                    type: string
+                    nullable: true
+            Contacts:
+              type: array
+              items:
+                type: object
+                properties:
+                  Purpose:
+                    type: string
+                    nullable: true
+                  Name:
+                    type: string
+                    nullable: true
+                  EmailAddresses:
+                    type: array
+                    items: {}
+                  PhoneNumber:
+                    type: object
+                    properties:
+                      Home:
+                        type: string
+                        nullable: true
+                      Work:
+                        type: string
+                        nullable: true
+                      Mobile:
+                        type: string
+                        nullable: true
+            Address:
+              type: object
+              properties:
+                StreetAddress:
+                  type: string
+                  nullable: true
+                City:
+                  type: string
+                  nullable: true
+                State:
+                  type: string
+                  nullable: true
+                ZIP:
+                  type: string
+                  nullable: true
+                County:
+                  type: string
+                  nullable: true
+                Country:
+                  type: string
+                  nullable: true
+      required:
+        - Identifiers
+required:
+  - Meta
+  - Patients

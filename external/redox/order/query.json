@@ -1,0 +1,189 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Patients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Identifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "IDType": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "VisitNumbers": {
+      "type": "array",
+      "items": {}
+    },
+    "StartDateTime": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "EndDateTime": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "OrderIDs": {
+      "type": "array",
+      "items": {}
+    },
+    "Procedures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Codeset": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "Meta"
+  ]
+}

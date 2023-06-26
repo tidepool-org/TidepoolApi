@@ -1,0 +1,207 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Patient": {
+            "type": "object",
+            "properties": {
+              "Identifiers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ID": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "IDType": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Visit": {
+            "type": "object",
+            "properties": {
+              "VisitNumber": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "ContentType": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "FileContents": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "FileName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "DocumentType": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "DocumentID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ServiceDateTime": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "DocumentationDateTime": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "Meta"
+  ]
+}

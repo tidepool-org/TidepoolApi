@@ -1,0 +1,646 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Providers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Identifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": "string"
+                },
+                "IDType": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "ID"
+              ]
+            }
+          },
+          "Demographics": {
+            "type": "object",
+            "properties": {
+              "FirstName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "LastName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "MiddleName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Credentials": {
+                "type": "array",
+                "items": {}
+              },
+              "Addresses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Use": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "StreetAddress": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "City": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "State": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "ZIP": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "County": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Country": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              },
+              "EmailAddresses": {
+                "type": "array",
+                "items": {}
+              },
+              "PhoneNumber": {
+                "type": "object",
+                "properties": {
+                  "Home": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "Office": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "Mobile": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "Sex": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "DOB": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Languages": {
+                "type": "array",
+                "items": {}
+              }
+            }
+          },
+          "Qualifications": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Identifiers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "IDType": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Code": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Codeset": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Description": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "StartDate": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "EndDate": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "Roles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Identifiers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "IDType": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Organization": {
+                  "type": "object",
+                  "properties": {
+                    "Identifiers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ID": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "IDType": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "IsActive": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Address": {
+                      "type": "object",
+                      "properties": {
+                        "StreetAddress": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "City": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "State": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "ZIP": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "County": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "Country": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "Specialties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Codeset": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Locations": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Identifiers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "ID": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "IDType": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "Status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Address": {
+                        "type": "object",
+                        "properties": {
+                          "StreetAddress": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "City": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "State": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "ZIP": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "County": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "Country": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      },
+                      "EmailAddresses": {
+                        "type": "array",
+                        "items": {}
+                      },
+                      "PhoneNumber": {
+                        "type": "object",
+                        "properties": {
+                          "Office": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Services": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Identifiers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "ID": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "IDType": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      },
+                      "Type": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "PhoneNumber": {
+                        "type": "object",
+                        "properties": {
+                          "Office": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Availability": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Days": {
+                        "type": "array",
+                        "items": {}
+                      },
+                      "AvailableStartTime": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "AvailableEndTime": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Identifiers"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Meta",
+    "Providers"
+  ]
+}

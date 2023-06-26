@@ -1,0 +1,244 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Transaction": {
+      "type": "object",
+      "properties": {
+        "VendorID": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "Task": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": "string"
+            },
+            "Status": {
+              "type": "string"
+            },
+            "Message": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "ID",
+            "Status"
+          ]
+        }
+      },
+      "required": [
+        "VendorID",
+        "ID",
+        "Task"
+      ]
+    },
+    "Entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Text": {
+            "type": "object",
+            "properties": {
+              "Contents": {
+                "type": "string"
+              },
+              "Position": {
+                "type": "object",
+                "properties": {
+                  "BeginOffset": {
+                    "type": "number"
+                  },
+                  "EndOffset": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "BeginOffset",
+                  "EndOffset"
+                ]
+              }
+            },
+            "required": [
+              "Contents",
+              "Position"
+            ]
+          },
+          "Category": {
+            "type": "object",
+            "properties": {
+              "Name": {
+                "type": "string"
+              },
+              "CertaintyScore": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "Name",
+              "CertaintyScore"
+            ]
+          },
+          "Concept": {
+            "type": "object",
+            "properties": {
+              "Code": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Codeset": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "CertaintyScore": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "CertaintyScore"
+            ]
+          }
+        },
+        "required": [
+          "Text",
+          "Category",
+          "Concept"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Meta",
+    "Transaction",
+    "Entries"
+  ]
+}

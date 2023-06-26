@@ -1,0 +1,179 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Directory:
+    type: string
+  Organizations:
+    type: array
+    items:
+      type: object
+      properties:
+        Active:
+          type: boolean
+        Name:
+          type: string
+        Aliases:
+          type: array
+          items: {}
+        Identifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              ID:
+                type: string
+                nullable: true
+              IDType:
+                type: string
+                nullable: true
+        Type:
+          type: object
+          properties:
+            System:
+              type: string
+              nullable: true
+            Value:
+              type: string
+              nullable: true
+        PartOf:
+          type: object
+          properties:
+            Identifier:
+              type: object
+              properties:
+                Type:
+                  type: string
+                  nullable: true
+                System:
+                  type: string
+                  nullable: true
+                Value:
+                  type: string
+                  nullable: true
+        Contacts:
+          type: array
+          items:
+            type: object
+            properties:
+              Purpose:
+                type: string
+                nullable: true
+              Name:
+                type: string
+                nullable: true
+              EmailAddresses:
+                type: array
+                items: {}
+              PhoneNumber:
+                type: object
+                properties:
+                  Home:
+                    type: string
+                    nullable: true
+                  Work:
+                    type: string
+                    nullable: true
+                  Mobile:
+                    type: string
+                    nullable: true
+        Address:
+          type: object
+          properties:
+            StreetAddress:
+              type: string
+              nullable: true
+            City:
+              type: string
+              nullable: true
+            State:
+              type: string
+              nullable: true
+            ZIP:
+              type: string
+              nullable: true
+            County:
+              type: string
+              nullable: true
+            Country:
+              type: string
+              nullable: true
+        ManagingOrg:
+          type: string
+          nullable: true
+      required:
+        - Active
+        - Name
+  Paging:
+    type: object
+    properties:
+      Count:
+        type: number
+        nullable: true
+      Index:
+        type: number
+        nullable: true
+required:
+  - Meta
+  - Directory
+  - Organizations

@@ -1,0 +1,203 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Entries:
+    type: array
+    items:
+      type: object
+      properties:
+        Category:
+          type: string
+        Status:
+          type: string
+        Transaction:
+          type: object
+          properties:
+            VendorID:
+              type: string
+            ID:
+              type: string
+          required:
+            - VendorID
+            - ID
+        Submitted:
+          type: object
+          properties:
+            Category:
+              type: string
+            EntryID:
+              type: string
+              nullable: true
+            Code:
+              type: string
+              nullable: true
+            Codeset:
+              type: string
+              nullable: true
+            Description:
+              type: string
+              nullable: true
+          required:
+            - Category
+        Normalization:
+          type: array
+          items:
+            type: object
+            properties:
+              LexicalReference:
+                type: object
+                properties:
+                  Code:
+                    type: string
+                    nullable: true
+                  Name:
+                    type: string
+                    nullable: true
+                  DefaultCode:
+                    type: string
+                    nullable: true
+                  DefaultName:
+                    type: string
+                    nullable: true
+              Score:
+                type: object
+                properties:
+                  Value:
+                    type: number
+                    nullable: true
+                  Description:
+                    type: string
+                    nullable: true
+              Matches:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Codeset:
+                      type: string
+                      nullable: true
+                    Status:
+                      type: string
+                      nullable: true
+                    Codes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Code:
+                            type: string
+                            nullable: true
+                          MatchPriority:
+                            type: string
+                            nullable: true
+                          Variants:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                Title:
+                                  type: string
+                                  nullable: true
+                                TitleStatus:
+                                  type: string
+                                  nullable: true
+                                TitleType:
+                                  type: string
+                                  nullable: true
+                                ExtendedProperties:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      Category:
+                                        type: string
+                                        nullable: true
+                                      Properties:
+                                        type: array
+                                        items:
+                                          type: object
+                                          properties:
+                                            Property:
+                                              type: string
+                                              nullable: true
+                                            Value:
+                                              type: string
+                                              nullable: true
+        Error:
+          type: object
+          properties:
+            Code:
+              type: string
+              nullable: true
+            Message:
+              type: string
+              nullable: true
+      required:
+        - Category
+        - Status
+        - Transaction
+        - Submitted
+required:
+  - Meta
+  - Entries

@@ -1,0 +1,280 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Identifiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": "string"
+                },
+                "IDType": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ID",
+                "IDType"
+              ]
+            }
+          },
+          "Description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Quantity": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "Type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Units": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Procedure": {
+            "type": "object",
+            "properties": {
+              "Code": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Codeset": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Modifier": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "Notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Vendor": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "CatalogNumber": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "Status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "IsChargeable": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "ContainsLatex": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "Price": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "Location": {
+            "type": "object",
+            "properties": {
+              "Facility": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Department": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Bin": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "Identifiers"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Meta",
+    "Items"
+  ]
+}
