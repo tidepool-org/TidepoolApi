@@ -1,0 +1,152 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Items:
+    type: array
+    items:
+      type: object
+      properties:
+        Identifiers:
+          type: array
+          items:
+            type: object
+            properties:
+              ID:
+                type: string
+              IDType:
+                type: string
+            required:
+              - ID
+              - IDType
+        Description:
+          type: string
+          nullable: true
+        Quantity:
+          type: number
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        Units:
+          type: string
+          nullable: true
+        Procedure:
+          type: object
+          properties:
+            Code:
+              type: string
+              nullable: true
+            Codeset:
+              type: string
+              nullable: true
+            Modifier:
+              type: string
+              nullable: true
+        Notes:
+          type: string
+          nullable: true
+        Vendor:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+            CatalogNumber:
+              type: string
+              nullable: true
+        Status:
+          type: string
+          nullable: true
+        IsChargeable:
+          type: boolean
+          nullable: true
+        ContainsLatex:
+          type: boolean
+          nullable: true
+        Price:
+          type: number
+          nullable: true
+        Location:
+          type: object
+          properties:
+            Facility:
+              type: string
+              nullable: true
+            Department:
+              type: string
+              nullable: true
+            ID:
+              type: string
+              nullable: true
+            Bin:
+              type: string
+              nullable: true
+      required:
+        - Identifiers
+required:
+  - Meta
+  - Items

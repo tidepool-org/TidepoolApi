@@ -1,0 +1,389 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "SessionID": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "SessionBaseURL": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Subject": {
+      "type": "string"
+    },
+    "Expiration": {
+      "type": "string"
+    },
+    "IssuedAt": {
+      "type": "string"
+    },
+    "UserId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "FirstName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "LastName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "MiddleName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "EmailAddress": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "NPI": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ProviderSpecialty": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "TimeZone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Locale": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "PhoneNumber": {
+      "type": "object",
+      "properties": {
+        "Office": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "Patient": {
+      "type": "object",
+      "properties": {
+        "Identifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "IDType": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Demographics": {
+          "type": "object",
+          "properties": {
+            "FirstName": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "LastName": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "MiddleName": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "DOB": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Sex": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "PhoneNumber": {
+              "type": "object",
+              "properties": {
+                "Home": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Office": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Mobile": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "Address": {
+              "type": "object",
+              "properties": {
+                "StreetAddress": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "City": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "State": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "ZIP": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "County": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Country": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Visit": {
+      "type": "object",
+      "properties": {
+        "VisitNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Location": {
+          "type": "object",
+          "properties": {
+            "Type": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Facility": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "FacilityIdentifiers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ID": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "IDType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "Department": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "DepartmentIdentifiers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ID": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "IDType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "Room": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "Meta",
+    "Subject",
+    "Expiration",
+    "IssuedAt"
+  ]
+}
