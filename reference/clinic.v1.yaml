@@ -1228,7 +1228,7 @@ paths:
       summary: Assign Patient Tag To Clinic Patients
       operationId: AssignPatientTagToClinicPatients
       requestBody:
-        description: Pass an array of patient IDs to target a subset of the clinic patients. Omit request body to target all clinic patients.
+        description: Array of clinic patient user IDs to target for tag assignment.
         content:
           application/json:
             schema:
@@ -1236,7 +1236,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Assign a patient tag to all or a subset of clinic patients
+      description: Assign a patient tag to a subset of clinic patients
       tags:
         - Clinics
         - Internal
