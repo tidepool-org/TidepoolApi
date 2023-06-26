@@ -5,17 +5,22 @@ info:
   title: Redox
   version: '1.0'
   description: |-
-    This spec is used for generating models for incomming Redox messages. In the future it may also be used for generating an SDK library for pushing results to Redox.
+    This spec is used for generating models for incoming Redox messages. In the future it may also be used for generating an SDK library for pushing results to Redox.
 
     To enable code generation for a specific model you should reference it in the request body `/endpoint` API endpoint.
+  contact:
+    name: N/A
 servers:
   - url: 'https://api.redoxengine.com/endpoint'
 paths:
   /endpoint:
     post:
       summary: Send Data
-      tags: []
-      responses: {}
+      tags:
+        - Redox
+      responses:
+        '200':
+          description: OK
       operationId: SendData
       requestBody:
         content:
@@ -33,3 +38,5 @@ components:
     NewOrder:
       $ref: ./redox/order/new.yaml
   securitySchemes: {}
+tags:
+  - name: Redox
