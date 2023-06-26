@@ -366,16 +366,16 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
     "serialNumber": "1234567890",
     "sleepSchedules": [
       {
-        enabled: false,
-        days: ["Tuesday", "Wednesday", "Sunday"],
-        start: 81900,
-        end: 24600
+        "enabled": false,
+        "days": ["Tuesday", "Wednesday", "Sunday"],
+        "start": 81900,
+        "end": 24600
       },
       {
-        enabled: true,
-        days: ["Wednesday"],
-        start: 82800,
-        end: 25200
+        "enabled": true,
+        "days": ["Wednesday"],
+        "start": 82800,
+        "end": 25200
       }
     ],
     "softwareVersion": "3.4.5",
@@ -499,16 +499,16 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
     "serialNumber": "1234567890",
     "sleepSchedules": [
       {
-        enabled: false,
-        days: ["Tuesday", "Wednesday", "Sunday"],
-        start: 81900,
-        end: 24600
+        "enabled": false,
+        "days": ["Tuesday", "Wednesday", "Sunday"],
+        "start": 81900,
+        "end": 24600
       },
       {
-        enabled: true,
-        days: ["Wednesday"],
-        start: 82800,
-        end: 25200
+        "enabled": true,
+        "days": ["Wednesday"],
+        "start": 82800,
+        "end": 25200
       }
     ],
     "softwareVersion": "3.4.5",
@@ -633,16 +633,16 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
     "serialNumber": "1234567890",
     "sleepSchedules": [
       {
-        enabled: false,
-        days: ["Tuesday", "Wednesday", "Sunday"],
-        start: 81900,
-        end: 24600
+        "enabled": false,
+        "days": ["Tuesday", "Wednesday", "Sunday"],
+        "start": 81900,
+        "end": 24600
       },
       {
-        enabled: true,
-        days: ["Wednesday"],
-        start: 82800,
-        end: 25200
+        "enabled": true,
+        "days": ["Wednesday"],
+        "start": 82800,
+        "end": 25200
       }
     ],
     "softwareVersion": "3.4.5",
