@@ -1,0 +1,38 @@
+title: Device logs json metadata
+type: object
+readOnly: true
+properties:
+  id:
+    $ref: './id.v1.yaml'
+  userId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  digestMD5:
+    $ref: '../../common/models/digestmd5.v1.yaml'
+  mediaType:
+    $ref: '../../common/models/mediatype.v1.yaml'
+  size:
+    $ref: './size.v1.yaml'
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  startAtTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  endAtTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+required:
+  - id
+  - userId
+  - digestMD5
+  - mediaType
+  - size
+  - createdTime
+  - startAt
+  - endAt
+example:
+  id: 97a9fae8a19b4da58bb48dc90c9562c9
+  userId: 4d94a5fb-642e-48f1-89b9-c6a3e6145342
+  digestMD5: NGQ1MDgzMjg3N2Q3ZWU3MTEyZGFmMTU5MzNlNDc0N2MK
+  mediaType: application/octet-stream
+  size: 1024
+  createdTime: '2017-02-06T02:35:46Z'
+  startAt: '2017-02-06T02:35:46Z'
+  endAt: '2017-02-06T02:36:46Z'
