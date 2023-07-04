@@ -155,9 +155,9 @@ allOf:
         minItems: 0
         maxItems: 10
         items:
-          type: object 
+          type: object
           properties:
-            enabled: 
+            enabled:
               type: boolean
             days:
               type: array
@@ -167,13 +167,13 @@ allOf:
               items:
                 type: string
                 enum:
-                - Sunday
-                - Monday
-                - Tuesday
-                - Wednesday
-                - Thursday
-                - Friday
-                - Saturday
+                  - Sunday
+                  - Monday
+                  - Tuesday
+                  - Wednesday
+                  - Thursday
+                  - Friday
+                  - Saturday
             start:
               type: number
               format: integer
@@ -187,7 +187,17 @@ allOf:
               maximum: 86400
               description: end time in seconds, offset from midnight (e.g. 7am is 25200)
           required:
-              - enabled
+            - enabled 
+          oneOf:
+            - properties:
+                enabled:
+                  const: false
+              required: enabled
+            - properties:
+                enabled:
+                  const: true
+              required: [enabled, start, end, days]
+
       softwareVersion:
         type: string
         minLength: 1
