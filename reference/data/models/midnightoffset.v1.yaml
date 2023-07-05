@@ -1,0 +1,5 @@
+title: midnightoffset.v1
+type: number
+format: integer
+minimum: 0
+maximum: 86400
