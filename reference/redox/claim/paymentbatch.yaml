@@ -1,0 +1,445 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Transactions:
+    type: array
+    items:
+      type: object
+      properties:
+        ID:
+          type: string
+          nullable: true
+        IDType:
+          type: string
+          nullable: true
+        Type:
+          type: string
+          nullable: true
+        TotalPaymentAmount:
+          type: string
+          nullable: true
+        CreditOrDebit:
+          type: string
+          nullable: true
+        PaymentMethod:
+          type: string
+          nullable: true
+        PaymentDateTime:
+          type: string
+          nullable: true
+        TrackingNumber:
+          type: string
+          nullable: true
+        Submitter:
+          type: object
+          properties:
+            Identifiers:
+              type: array
+              items:
+                type: object
+                properties:
+                  ID:
+                    type: string
+                    nullable: true
+                  IDType:
+                    type: string
+                    nullable: true
+            Name:
+              type: string
+              nullable: true
+            Address:
+              type: object
+              properties:
+                StreetAddress:
+                  type: string
+                  nullable: true
+                City:
+                  type: string
+                  nullable: true
+                State:
+                  type: string
+                  nullable: true
+                ZIP:
+                  type: string
+                  nullable: true
+                County:
+                  type: string
+                  nullable: true
+                Country:
+                  type: string
+                  nullable: true
+            EmailAddress:
+              type: string
+              nullable: true
+            PhoneNumber:
+              type: object
+              properties:
+                Office:
+                  type: string
+                  nullable: true
+                Fax:
+                  type: string
+                  nullable: true
+        Receiver:
+          type: object
+          properties:
+            Identifiers:
+              type: array
+              items:
+                type: object
+                properties:
+                  ID:
+                    type: string
+                    nullable: true
+                  IDType:
+                    type: string
+                    nullable: true
+            Name:
+              type: string
+              nullable: true
+            Address:
+              type: object
+              properties:
+                StreetAddress:
+                  type: string
+                  nullable: true
+                City:
+                  type: string
+                  nullable: true
+                State:
+                  type: string
+                  nullable: true
+                ZIP:
+                  type: string
+                  nullable: true
+                County:
+                  type: string
+                  nullable: true
+                Country:
+                  type: string
+                  nullable: true
+            EmailAddress:
+              type: string
+              nullable: true
+            PhoneNumber:
+              type: object
+              properties:
+                Office:
+                  type: string
+                  nullable: true
+                Fax:
+                  type: string
+                  nullable: true
+        Payments:
+          type: array
+          items:
+            type: object
+            properties:
+              DateTime:
+                type: string
+                nullable: true
+              Patient:
+                type: object
+                properties:
+                  Identifiers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ID:
+                          type: string
+                          nullable: true
+                        IDType:
+                          type: string
+                          nullable: true
+                  Demographics:
+                    type: object
+                    properties:
+                      FirstName:
+                        type: string
+                        nullable: true
+                      MiddleName:
+                        type: string
+                        nullable: true
+                      LastName:
+                        type: string
+                        nullable: true
+                      DOB:
+                        type: string
+                        nullable: true
+                      SSN:
+                        type: string
+                        nullable: true
+                      Sex:
+                        type: string
+                        nullable: true
+                      Race:
+                        type: string
+                        nullable: true
+                      IsHispanic:
+                        type: boolean
+                        nullable: true
+                      Religion:
+                        type: string
+                        nullable: true
+                      MaritalStatus:
+                        type: string
+                        nullable: true
+                      IsDeceased:
+                        type: boolean
+                        nullable: true
+                      DeathDateTime:
+                        type: string
+                        nullable: true
+                      PhoneNumber:
+                        type: object
+                        properties:
+                          Home:
+                            type: string
+                            nullable: true
+                          Office:
+                            type: string
+                            nullable: true
+                          Mobile:
+                            type: string
+                            nullable: true
+                      EmailAddresses:
+                        type: array
+                        items: {}
+                      Language:
+                        type: string
+                        nullable: true
+                      Citizenship:
+                        type: array
+                        items: {}
+                      Address:
+                        type: object
+                        properties:
+                          StreetAddress:
+                            type: string
+                            nullable: true
+                          City:
+                            type: string
+                            nullable: true
+                          State:
+                            type: string
+                            nullable: true
+                          ZIP:
+                            type: string
+                            nullable: true
+                          County:
+                            type: string
+                            nullable: true
+                          Country:
+                            type: string
+                            nullable: true
+                  Notes:
+                    type: array
+                    items: {}
+              Claims:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    ControlNumber:
+                      type: string
+                      nullable: true
+                    SubmissionNumber:
+                      type: string
+                      nullable: true
+                    ReceivedDate:
+                      type: string
+                      nullable: true
+                    StartDateTime:
+                      type: string
+                      nullable: true
+                    EndDateTime:
+                      type: string
+                      nullable: true
+                    Status:
+                      type: string
+                      nullable: true
+                    ChargedAmount:
+                      type: string
+                      nullable: true
+                    PaymentAmount:
+                      type: string
+                      nullable: true
+                    PatientResponsibilityAmount:
+                      type: string
+                      nullable: true
+                    ReferenceNumbers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          ID:
+                            type: string
+                            nullable: true
+                          IDType:
+                            type: string
+                            nullable: true
+                    Adjustments:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Amount:
+                            type: string
+                            nullable: true
+                          Quantity:
+                            type: string
+                            nullable: true
+                          Type:
+                            type: string
+                            nullable: true
+                          Reason:
+                            type: string
+                            nullable: true
+                    Services:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          ChargedAmount:
+                            type: string
+                            nullable: true
+                          PaymentAmount:
+                            type: string
+                            nullable: true
+                          ChargedUnits:
+                            type: string
+                            nullable: true
+                          PaymentUnits:
+                            type: string
+                            nullable: true
+                          AllowedAmount:
+                            type: string
+                            nullable: true
+                          SubmittedService:
+                            type: object
+                            properties:
+                              Code:
+                                type: string
+                                nullable: true
+                              Codeset:
+                                type: string
+                                nullable: true
+                              Description:
+                                type: string
+                                nullable: true
+                              Modifiers:
+                                type: array
+                                items: {}
+                          AdjudicatedService:
+                            type: object
+                            properties:
+                              Code:
+                                type: string
+                                nullable: true
+                              Codeset:
+                                type: string
+                                nullable: true
+                              Description:
+                                type: string
+                                nullable: true
+                              Modifiers:
+                                type: array
+                                items: {}
+                          Adjustments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                Amount:
+                                  type: string
+                                  nullable: true
+                                Quantity:
+                                  type: string
+                                  nullable: true
+                                Type:
+                                  type: string
+                                  nullable: true
+                                Reason:
+                                  type: string
+                                  nullable: true
+                          StartDateTime:
+                            type: string
+                            nullable: true
+                          EndDateTime:
+                            type: string
+                            nullable: true
+                          ReferenceNumbers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                ID:
+                                  type: string
+                                  nullable: true
+                                IDType:
+                                  type: string
+                                  nullable: true
+required:
+  - Meta

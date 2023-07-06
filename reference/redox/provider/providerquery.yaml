@@ -1,0 +1,104 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Provider:
+    type: object
+    properties:
+      Identifiers:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            IDType:
+              type: string
+              nullable: true
+      Demographics:
+        type: object
+        properties:
+          FirstName:
+            type: string
+            nullable: true
+          LastName:
+            type: string
+            nullable: true
+          MiddleName:
+            type: string
+            nullable: true
+          Address:
+            type: object
+            properties:
+              City:
+                type: string
+                nullable: true
+              State:
+                type: string
+                nullable: true
+              ZIP:
+                type: string
+                nullable: true
+required:
+  - Meta

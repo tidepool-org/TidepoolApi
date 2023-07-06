@@ -37,17 +37,75 @@ tags:
       APIs intended for internal use by Tidepool.
   - name: Blobs
     description: >-
+
       List, create, and manage binary blobs.
 
       The content format may be anything, because the blobs are treated as opaque data by the service.
       Each blob has a `status`.
       If a blob is created without content, then its status is `created`.
       If the blob is created with content or has been updated to include content then its status is `available`.
+  - name: Device Logs
+    description: >-
+      Create and list device logs.
 
 paths:
+  '/v1/users/{userId}/device-logs':
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.yaml
+    post:
+      operationId: UploadDeviceLogs
+      summary: Upload new device logs as json
+      description: Uploads a new device logs json to the user's account. The `Digest` header must represent the MD5 hash of the json data content.
+      parameters:
+        - $ref: ./common/parameters/digestmd5.v1.yaml
+        - $ref: ./blob/parameters/logs-start-at.v1.yaml
+        - $ref: ./blob/parameters/logs-end-at.v1.yaml
+      requestBody:
+        description: array of JSON data
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: ./blob/models/device-log-content.v1.yaml
+      responses:
+        '201':
+          $ref: '#/components/responses/DeviceLogsMetadata'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '404':
+          $ref: './common/responses/notfound.v1.yaml'
+      tags:
+        - Device Logs
+    get:
+      operationId: ListDeviceLogs
+      summary: List device logs metadata
+      description: List previously uploaded device logs json data in the user's account. The list must be filtered with startAt and endAt parameters
+      parameters:
+        - $ref: ./blob/parameters/start-at.v1.yaml
+        - $ref: ./blob/parameters/end-at.v1.yaml
+      responses:
+        '200':
+          $ref: '#/components/responses/DeviceLogsMetadataList'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '404':
+          $ref: './common/responses/notfound.v1.yaml'
+      tags:
+        - Device Logs
+
   '/v1/users/{userId}/blobs':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: ListBlobs
       summary: List Binary Blobs
@@ -70,7 +128,6 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
-        - Internal
     post:
       operationId: CreateBlob
       summary: Create New Binary Blob
@@ -101,7 +158,6 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
-        - Internal
     delete:
       operationId: DeleteAllBlobs
       summary: Delete All Binary Blobs
@@ -120,7 +176,6 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
-        - Internal
 
   '/v1/blobs/{blobId}':
     parameters:
@@ -143,7 +198,6 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
-        - Internal
     delete:
       operationId: DeleteBlob
       summary: Delete Binary Blob
@@ -163,7 +217,6 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
-        - Internal
 
   '/v1/blobs/{blobId}/content':
     parameters:
@@ -186,7 +239,6 @@ paths:
         #   $ref: './common/responses/notfound.v1.yaml'
       tags:
         - Blobs
-        - Internal
 
 components:
   securitySchemes:
@@ -200,7 +252,6 @@ components:
         'application/json':
           schema:
             $ref: './blob/models/metadatalist.v1.yaml'
-
     BlobMetadata:
       description: Binary blob metadata
       content:
@@ -220,7 +271,6 @@ components:
           operationId: GetBlobContent
           parameters:
             blobId: '$response.body#/id'
-
     BlobContent:
       description: Binary blob content
       headers:
@@ -230,3 +280,15 @@ components:
         '*/*':
           schema:
             $ref: './blob/models/content.v1.yaml'
+    DeviceLogsMetadata:
+      description: Device logs metadata
+      content:
+        application/json:
+          schema:
+            $ref: ./blob/models/device-logs-metadata.v1.yaml
+    DeviceLogsMetadataList:
+      description: List of device logs metadata
+      content:
+        application/json:
+          schema:
+            $ref: ./blob/models/device-logs-metadatalist.v1.yaml

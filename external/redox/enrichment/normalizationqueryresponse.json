@@ -1,0 +1,363 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Category": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          },
+          "Transaction": {
+            "type": "object",
+            "properties": {
+              "VendorID": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "VendorID",
+              "ID"
+            ]
+          },
+          "Submitted": {
+            "type": "object",
+            "properties": {
+              "Category": {
+                "type": "string"
+              },
+              "EntryID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Code": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Codeset": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "Category"
+            ]
+          },
+          "Normalization": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "LexicalReference": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "DefaultCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "DefaultName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "Score": {
+                  "type": "object",
+                  "properties": {
+                    "Value": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "Description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "Matches": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Codeset": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Status": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Codes": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Code": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "MatchPriority": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "Variants": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "Title": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "TitleStatus": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "TitleType": {
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "ExtendedProperties": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "Category": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "Properties": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "Property": {
+                                                "type": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              },
+                                              "Value": {
+                                                "type": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Error": {
+            "type": "object",
+            "properties": {
+              "Code": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Message": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "Category",
+          "Status",
+          "Transaction",
+          "Submitted"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Meta",
+    "Entries"
+  ]
+}

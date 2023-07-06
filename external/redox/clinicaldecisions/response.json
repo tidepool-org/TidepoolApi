@@ -1,0 +1,341 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Advisories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ShowAlert": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "Session": {
+            "type": "string"
+          },
+          "RemovableUnsignedOrders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "IDType": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "AdditionalUnsignedOrders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "IDType": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Questions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Codeset": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Answers": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Code": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "Codeset": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "Description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "Comment": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Notes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Text": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Display": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "AdditionalInfo": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "DecisionSupport": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Codeset": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                },
+                "Link": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          },
+          "Errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Code": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Codeset": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Description": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "Session"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Meta",
+    "Advisories"
+  ]
+}

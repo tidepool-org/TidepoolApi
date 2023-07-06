@@ -1,0 +1,186 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Advisories:
+    type: array
+    items:
+      type: object
+      properties:
+        ShowAlert:
+          type: boolean
+          nullable: true
+        Session:
+          type: string
+        RemovableUnsignedOrders:
+          type: array
+          items:
+            type: object
+            properties:
+              ID:
+                type: string
+                nullable: true
+              IDType:
+                type: string
+                nullable: true
+              Title:
+                type: string
+                nullable: true
+        AdditionalUnsignedOrders:
+          type: array
+          items:
+            type: object
+            properties:
+              ID:
+                type: string
+                nullable: true
+              IDType:
+                type: string
+                nullable: true
+              Title:
+                type: string
+                nullable: true
+              Questions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Code:
+                      type: string
+                      nullable: true
+                    Codeset:
+                      type: string
+                      nullable: true
+                    Description:
+                      type: string
+                      nullable: true
+                    Answers:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Code:
+                            type: string
+                            nullable: true
+                          Codeset:
+                            type: string
+                            nullable: true
+                          Description:
+                            type: string
+                            nullable: true
+                          Comment:
+                            type: string
+                            nullable: true
+        Description:
+          type: string
+          nullable: true
+        Notes:
+          type: array
+          items:
+            type: object
+            properties:
+              Text:
+                type: string
+                nullable: true
+              Display:
+                type: string
+                nullable: true
+        AdditionalInfo:
+          type: array
+          items:
+            type: object
+            properties:
+              DecisionSupport:
+                type: object
+                properties:
+                  Code:
+                    type: string
+                    nullable: true
+                  Codeset:
+                    type: string
+                    nullable: true
+                  Description:
+                    type: string
+                    nullable: true
+              Link:
+                type: string
+                nullable: true
+        Errors:
+          type: array
+          items:
+            type: object
+            properties:
+              Code:
+                type: string
+                nullable: true
+              Codeset:
+                type: string
+                nullable: true
+              Description:
+                type: string
+                nullable: true
+      required:
+        - Session
+required:
+  - Meta
+  - Advisories
