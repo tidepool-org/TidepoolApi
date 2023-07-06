@@ -2,16 +2,16 @@ title: New Report
 description: >-
   User report
 type: object
-required: [reports, dateRange, timePrefs, bgPrefs]
+required: [reports]
 properties:
   reports:
-    $ref: './reporttypes.v1.yaml'
+    $ref: './reporttype.v1.yaml'
   dateRange:
-    $ref: './reportdaterange.v1.yaml'
-  timePrefs:
-    $ref: './reporttimeprefs.v1.yaml'
-  bgPrefs:
-    $ref: './reportbgprefs.v1.yaml'
+    $ref: ./reportdaterange.v1.yaml'
+  tzName:
+    $ref: ../../data/models/timezonename.v1.yaml
+  bgUnits:
+    $ref: ../../data/models/blood/units.v1.yaml
 example:
   reports: [agp, basics, daily]
   dateRange:
@@ -20,9 +20,6 @@ example:
     agp:
       startDate: '2023-04-01T02:37:46Z'
       endDate: '2023-04-15T02:37:46Z'
-  timePrefs:
-    timezoneAware: true
-    timezoneName: 'NZ'
-  bgPrefs:
-    source: cbg
-    units: mmol/L
+  tzName: 'NZ'
+  bgUnits: mmol/L
+

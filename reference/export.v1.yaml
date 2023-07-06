@@ -83,16 +83,16 @@ paths:
   '/export/report/{userId}':
     parameters:
       - $ref: './common/parameters/tidepooluserid.yaml'
-    post:
+    get:
       operationId: ExportUserReport
       summary: Export user report
       description: >-
         User report exported in with the requested options.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: './export/models/reportrequest.v1.yaml'
+        Either a Tidepool session token, or a restricted token must be supplied.
+      parameters:
+        - $ref: './export/parameters/reports.v1.yaml'
+        - $ref: './export/parameters/timezonename.v1.yaml'
+        - $ref: './export/parameters/glucoseunits.v1.yaml'
       responses:
         '200':
           description: A PDF report for the given user

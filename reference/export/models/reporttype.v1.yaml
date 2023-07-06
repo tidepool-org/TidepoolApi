@@ -1,4 +1,4 @@
-title: Reports types
+title: Reports type
 type: array
 minItems: 1
 maxItems: 5
@@ -11,5 +11,3 @@ items:
     - agp
     - settings
     - all
-example: [daily, agp]
-default: [all]
