@@ -91,6 +91,8 @@ paths:
         Either a Tidepool session token, or a restricted token must be supplied.
       parameters:
         - $ref: './export/parameters/reports.v1.yaml'
+        - $ref: './export/parameters/birthday.v1.yaml'
+        - $ref: './export/parameters/fullname.v1.yaml'
         - $ref: './export/parameters/timezonename.v1.yaml'
         - $ref: './export/parameters/glucoseunits.v1.yaml'
       responses:

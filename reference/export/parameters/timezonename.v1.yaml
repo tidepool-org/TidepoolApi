@@ -1,5 +1,5 @@
 description: >-
-  Timezone name used for report production
+  Timezone name
 name: tzName
 in: query
 required: false
