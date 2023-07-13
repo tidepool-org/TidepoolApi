@@ -1,0 +1,29 @@
+title: Report details
+description: >-
+  Report details
+type: object
+required: [fullName, mrn, dob]
+properties:
+  reports:
+    type: array
+    minItems: 1
+    maxItems: 5
+    items:
+      $ref: ./reporttype.v1.yaml
+    default: [all]
+  tzName:
+    $ref: ../../data/models/timezonename.v1.yaml
+    default: UTC
+  bgUnits:
+    $ref: ../../data/models/blood/units.v1.yaml
+    default: mmol/L
+  startDate:
+    $ref: ../../common/models/datetime.v1.yaml
+  endDate:
+    $ref: ../../common/models/datetime.v1.yaml
+example:
+  reports: [all]
+  tzName: 'NZ'
+  bgUnits: mmol/L
+  startDate: '2022-02-06T02:37:46Z'
+  endDate: '2022-03-06T02:37:46Z'

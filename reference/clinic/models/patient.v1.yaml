@@ -17,9 +17,7 @@ properties:
     format: date
     example: '2012-08-30'
   mrn:
-    type: string
-    description: The medical record number of the patient
-    minLength: 1
+    $ref: ../../metadata/models/mrn.v1.yaml
   tags:
     type: array
     nullable: true
