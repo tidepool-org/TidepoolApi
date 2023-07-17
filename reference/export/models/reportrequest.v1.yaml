@@ -2,7 +2,7 @@ title: New Report
 description: >-
   User report
 type: object
-required: [reportDetails, userDetails]
+required: [userDetails]
 properties:
   reportDetails:
     $ref: ./reportdetail.v1.yaml

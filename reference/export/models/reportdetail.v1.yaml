@@ -2,15 +2,11 @@ title: Report details
 description: >-
   Report details
 type: object
-required: [fullName, mrn, dob]
 properties:
   reports:
-    type: array
-    minItems: 1
-    maxItems: 5
-    items:
-      $ref: ./reporttype.v1.yaml
-    default: [all]
+    $ref: ./reporttype.v1.yaml
+    default:
+      - all
   tzName:
     $ref: ../../data/models/timezonename.v1.yaml
     default: UTC
@@ -22,7 +18,10 @@ properties:
   endDate:
     $ref: ../../common/models/datetime.v1.yaml
 example:
-  reports: [all]
+  reports:
+    - daily
+    - basics
+    - settings
   tzName: 'NZ'
   bgUnits: mmol/L
   startDate: '2022-02-06T02:37:46Z'
