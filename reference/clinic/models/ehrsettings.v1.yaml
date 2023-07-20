@@ -1,0 +1,15 @@
+title: EHR Settings
+x-stoplight:
+  id: m0iw4p0mf24nb
+type: object
+properties:
+  enabled:
+    type: boolean
+    description: Enable or disabled the EHR integration
+  facility:
+    $ref: ./ehrfacility.v1.yaml
+  sourceId:
+    type: string
+required:
+  - enabled
+  - sourceId

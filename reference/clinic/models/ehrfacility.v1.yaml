@@ -1,0 +1,10 @@
+title: Facility
+x-stoplight:
+  id: 0lyqf8tfdtnu0
+type: object
+properties:
+  name:
+    type: string
+    description: 'Ordering Facility Name '
+required:
+  - name
