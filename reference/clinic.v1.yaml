@@ -1689,6 +1689,8 @@ components:
         - sourceId
     MRNSettings:
       $ref: ./clinic/models/mrnsettings.v1.yaml
+    EHRDestinations:
+      $ref: ./clinic/models/ehrdestinations.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token

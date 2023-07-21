@@ -10,6 +10,9 @@ properties:
     $ref: ./ehrfacility.v1.yaml
   sourceId:
     type: string
+  destinationIds:
+    $ref: ./ehrdestinations.v1.yaml
 required:
   - enabled
   - sourceId
+  - destinationIds
