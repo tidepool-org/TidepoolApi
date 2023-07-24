@@ -9,6 +9,9 @@ jobs:
     strategy:
       matrix:
         target: [ publish_public, publish_private ]
+      # it seems like the Stoplight CLI may choke on parallel pushes, so force these to run sequentially
+      max-parallel: 1
+      fail-fast: true
     runs-on: ubuntu-latest
     env:
       PUBLIC_STOPLIGHT_TOKEN: ${{ secrets.PUBLIC_STOPLIGHT_TOKEN }}
