@@ -11,7 +11,7 @@ case $1 in
 		;;
 
     -i | --install)
-        trace npm install --location=global @redocly/cli@1.0.0-beta.128
+        trace npm install -g @redocly/cli@1.0.0-rc.3
         exit 0
         ;;
 

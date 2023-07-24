@@ -12,9 +12,9 @@ case $1 in
 
     -i | --install)
         trace npm --version
-        trace npm install --location=global @stoplight/spectral-cli@6.6.0
-        trace npm install --location=global @apidevtools/swagger-cli@4.0.4
-        trace npm install --location=global @redocly/cli@1.0.0-beta.128
+        trace npm install -g @stoplight/spectral-cli@6.8.0
+        trace npm install -g @apidevtools/swagger-cli@4.0.4
+        trace npm install -g @redocly/cli@1.0.0-rc.3
         exit 0
         ;;
 

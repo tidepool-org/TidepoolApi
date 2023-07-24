@@ -405,23 +405,8 @@ components:
     Acceptance:
       $ref: './confirm/models/acceptance.v1.yaml'
 
-    ClinicId:
-      $ref: './clinic/models/clinicid.v1.yaml'
-
-    EmailAddress:
-      $ref: ./common/models/emailaddress.v1.yaml
-
-    Key:
-      $ref: ./confirm/models/key.v1.yaml
-
     Password:
       $ref: ./common/models/password.v1.yaml
-
-    Birthday:
-      $ref: './common/models/birthday.v1.yaml'
-
-    Confirmation:
-      $ref: ./confirm/models/confirmation.v1.yaml
 
   parameters:
     userId:

@@ -63,15 +63,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TokenErrorResponse'
-              examples:
-                Token Exchange - Duplicate Email Address:
-                  value:
-                    error: invalid_token
-                    error_description: User already exists
-                Token Exchange - Invalid Token:
-                  value:
-                    error: invalid_token
-                    error_description: invalid token
       description: |-
         Obtain an access, id and refresh token(s) by presenting an authorization grant or a valid refresh token.
 
@@ -91,16 +82,6 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/TokenRequest'
-            examples:
-              Token Exchange Request:
-                value:
-                  client_id: cgm-monitor
-                  client_secret: c50e6502-131c-47f0-b439-a43acb3b83d0
-                  grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange'
-                  subject_issuer: acme-clinic
-                  subject_token: eyJhbGciOiJ...
-                  subject_token_type: 'urn:ietf:params:oauth:token-type:access_token'
-                  requested_token_type: 'urn:ietf:params:oauth:token-type:refresh_token'
         description: ''
       tags:
         - Authentication v2
@@ -184,17 +165,7 @@ components:
   schemas:
     TokenRequest:
       title: Token Request
-      x-stoplight:
-        id: 4097e58bd9c0a
       type: object
-      examples:
-        - client_id: cgm-monitor
-          client_secret: c50e6502-131c-47f0-b439-a43acb3b83d0
-          grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange'
-          subject_issuer: acme-clinic
-          subject_token: eyJhbGciOiJ...
-          subject_token_type: 'urn:ietf:params:oauth:token-type:access_token'
-          requested_token_type: 'urn:ietf:params:oauth:token-type:refresh_token'
       properties:
         code:
           type: string
@@ -213,15 +184,19 @@ components:
             `authorization_code` - used in the authorization code flow
             `refresh_token` - used for refreshing expired access tokens with an active refresh token
             `urn:ietf:params:oauth:grant-type:token-exchange` - used in the token exchange flow
+          example: 'urn:ietf:params:oauth:grant-type:token-exchange'
         client_id:
           type: string
-          description: The client id
+          description: The client ID
+          example: cgm-monitor
         client_secret:
           type: string
           description: The client secret if the client is confidential or it was issued credentials.
+          example: c50e6502-131c-47f0-b439-a43acb3b83d0
         subject_token:
           type: string
           description: 'The subject token used in the token exchange flow. `REQUIRED` when `grant_type` is `urn:ietf:params:oauth:grant-type:token-exchange`'
+          example: eyJhbGciOiJ...
         subject_token_type:
           type: string
           enum:
@@ -233,23 +208,24 @@ components:
             If the type is `urn:ietf:params:oauth:token-type:access_token` you must specify the `subject_issuer` parameter and it must be the alias of the configured identity provider. If the type is `urn:ietf:params:oauth:token-type:jwt`, the provider will be matched via the issuer claim within the JWT which must be the alias of the provider, or a registered issuer within the providers configuration.
 
             For validation, if the token is an access token, the provider’s user info service will be invoked to validate the token. A successful call will mean that the access token is valid. If the subject token is a JWT and if the provider has signature validation enabled, that will be attempted, otherwise, it will default to also invoking on the user info service to validate the token.
+          example: 'urn:ietf:params:oauth:token-type:access_token'
         requested_token_type:
           type: string
           description: The type of token that will be issued in the token exhange flow.
           enum:
             - 'urn:ietf:params:oauth:token-type:access_token'
             - 'urn:ietf:params:oauth:token-type:refresh_token'
+          example: 'urn:ietf:params:oauth:token-type:refresh_token'
         subject_issuer:
           type: string
           description: 'The issuer of `subject_token`. It must be a registered identity provider. `REQUIRED` when `subject_token_type` is `urn:ietf:params:oauth:token-type:access_token`'
+          example: acme-clinic
       required:
         - grant_type
         - client_id
       description: ''
     TokenResponse:
       title: Token Response
-      x-stoplight:
-        id: assvu0xc9w7be
       type: object
       description: A successful token response
       properties:
@@ -257,45 +233,39 @@ components:
           type: string
           description: |
             A short-lived access token for the currently authenticated subject. 
+          example: ODBkOTY5NWUtN2I0Mi00ODQwLWI0ZTEtZDdmYjcwMjhhZWIyCg==
         expires_in:
           type: integer
           description: The number of seconds the access token expires in
+          example: 60
         refresh_expires_in:
-          type: string
+          type: integer
           description: The number of seconds the refresh token expires in
+          example: 7200
         refresh_token:
           type: string
           description: The refresh token that can be used to obtain a new access token for the subject after the previous one had expired.
+          example: ZWM0MGZjYzctMWExZC00NmM4LTlhOTgtOTVjOTYyNGFiNWZhCg==
         scope:
           type: string
           description: The authorized scopes
+          example: openid email
         id_token:
           type: string
           description: An ID token associated with the authenticated session. The value will only be returned if the `openid` scope was requested.
-      examples:
-        - access_token: the-access-token-value
-          expires_in: 60
-          refresh_expires_in: 7200
-          refresh_token: the-refresh-token-value
-          scope: openid email
-          id_token: the-id-token-value
+          example: MDY3YzJmMjctOTliMi00N2ZjLWFkMGUtMzY3NzliMmJiNGI1Cg==
     TokenErrorResponse:
       title: TokenErrorResponse
-      x-stoplight:
-        id: 4mxi6mxyc82rx
       type: object
       properties:
         error:
           type: string
           description: The error identifier
+          example: invalid_token
         error_description:
           type: string
           description: Description of the error that occurred
-      examples:
-        - error: invalid_token
-          error_description: invalid token
-        - error: invalid_token
-          error_description: User already exists
+          example: User already exists
   securitySchemes: {}
   requestBodies: {}
   parameters:
