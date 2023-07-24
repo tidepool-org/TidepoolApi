@@ -9,6 +9,7 @@ properties:
     type: object
     properties:
       challenge:
+        description: The previously returned assertion challenge.
         type: string
         minLength: 1
       partner:

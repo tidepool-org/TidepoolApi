@@ -8,7 +8,7 @@ properties:
   challenge:
     type: string
     minLength: 1
-    description: Challenge string returned from the Tidepool platform API.
+    description: The previously returned attestation challenge.
   keyId:
     $ref: './keyid.v1.yaml'
     description: Base64 encoded key Id received from Apple App Attest API.
