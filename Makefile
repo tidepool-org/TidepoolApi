@@ -40,7 +40,7 @@ SOURCE_TOC = toc.json
 SOURCE_TOC_DOCS = ${shell awk '/"uri":.+\.md/ { print $$2 }' $(SOURCE_TOC) | tr '\n"' ' ' | sort}
 SOURCE_DOCS = ${shell find $(DOC_FOLDER) -type f -iname '*.md' | sort}
 SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | sort}
-SOURCE_SPECS_TOP_LEVEL = ${shell find $(SPEC_FOLDER) -mindepth 1 -maxdepth 1 \( -type d -or -iname '*.yaml' \) | sort}
+SOURCE_SPECS_TOP_LEVEL = ${shell find $(SPEC_FOLDER) -maxdepth 1 -type f -iname '*.yaml' | sort}
 MERGED_SPEC = combined.v1.yaml
 SOURCE_ASSETS = ${shell find $(ASSET_FOLDER) -type f -iname '*.png' | sort}
 
@@ -108,6 +108,7 @@ $(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVA
 install_tools:
 	./scripts/check_doc.sh --install
 	./scripts/check_spec.sh --install
+	./scripts/bundle_spec.sh --install
 	./scripts/merge_specs.sh --install
 	./scripts/publish.sh --install
 	./scripts/generate_clinic.sh --install
@@ -119,6 +120,7 @@ check: check_tools check_files check_toc
 check_tools:
 	./scripts/check_doc.sh --self-check
 	./scripts/check_spec.sh --self-check
+	./scripts/bundle_spec.sh --self-check
 	./scripts/merge_specs.sh --self-check
 	./scripts/publish.sh --self-check
 	./scripts/generate_clinic.sh --self-check
@@ -152,7 +154,7 @@ $(SOURCE_DOCS):
 
 # check spec files, plus try to generate code from them
 .PHONY: check_specs
-check_specs: $(SOURCE_SPECS) generate_clinic_service
+check_specs: $(SOURCE_SPECS_TOP_LEVEL) generate_clinic_service
 
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
@@ -231,7 +233,7 @@ $(PUBLIC_MERGED_SPEC): $(PUBLIC_SPECS) | $(PUBLIC_SPEC_FOLDER)
 	./scripts/merge_specs.sh $@ Internal
 
 $(PUBLIC_SPECS): | $(PUBLIC_SPEC_FOLDER)
-	ln -sf ${abspath ${subst $(PUBLIC_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
+	./scripts/bundle_spec.sh ${abspath ${subst $(PUBLIC_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
 
 .PHONY: private_specs
 private_specs: $(PRIVATE_MERGED_SPEC)
@@ -240,7 +242,7 @@ $(PRIVATE_MERGED_SPEC): $(PRIVATE_SPECS) | $(PRIVATE_SPEC_FOLDER)
 	./scripts/merge_specs.sh $@
 
 $(PRIVATE_SPECS): | $(PRIVATE_SPEC_FOLDER)
-	ln -sf ${abspath ${subst $(PRIVATE_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
+	./scripts/bundle_spec.sh ${abspath ${subst $(PRIVATE_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
 
 .PHONY: public_assets
 public_assets: $(PUBLIC_ASSET_FOLDER)

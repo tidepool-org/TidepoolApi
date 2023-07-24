@@ -12,7 +12,7 @@ case $1 in
 
     -i | --install)
 		trace npm --version
-		trace npm install --location=global @apidevtools/swagger-cli@4.0.4
+		trace npm install -g @apidevtools/swagger-cli@4.0.4
 		trace go version
 		trace go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
         exit 0

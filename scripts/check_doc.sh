@@ -12,8 +12,8 @@ case $1 in
 
     -i | --install)
         trace npm --version
-        trace npm install --location=global markdownlint-cli@0.33.0
-        trace npm install --location=global markdown-link-check@3.10.3
+        trace npm install -g markdownlint-cli@0.33.0
+        trace npm install -g markdown-link-check@3.10.3
         exit 0
         ;;
 
