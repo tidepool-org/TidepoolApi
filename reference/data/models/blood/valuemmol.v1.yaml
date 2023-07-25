@@ -4,7 +4,6 @@ description: >-
 type: number
 format: float
 minimum: 0
-maximum: 55
 example: 5.5
 x-tags:
   - Data

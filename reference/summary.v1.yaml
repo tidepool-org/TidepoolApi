@@ -43,7 +43,7 @@ tags:
       These routes are mostly executed by the `task` and `clinic-worker` services.
 
 paths:
-  '/v1/summaries/{userId}/{summaryType}':
+  '/v1/summaries/{summaryType}/{userId}':
     parameters:
       - $ref: '#/components/parameters/userId'
       - $ref: '#/components/parameters/summaryType'
