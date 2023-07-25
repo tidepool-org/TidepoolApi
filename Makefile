@@ -284,10 +284,7 @@ publish_private: check_private_env prepare_private | $(PRIVATE_FOLDER)
 ##############################################################################################
 
 .PHONY: generate_clinic_service
-generate_clinic_service: $(CODEGEN_FOLDER)/clinic/clinic.v1.yaml $(CODEGEN_FOLDER)/redox/redox.v1.yaml
+generate_clinic_service: $(CODEGEN_FOLDER)/clinic/clinic.v1.yaml
 
 $(CODEGEN_FOLDER)/clinic/clinic.v1.yaml: $(SPEC_FOLDER)/clinic.v1.yaml | $(CODEGEN_FOLDER)
-	./scripts/generate_clinic.sh $< $@
-
-$(CODEGEN_FOLDER)/redox/redox.v1.yaml: $(SPEC_FOLDER)/redox.v1.yaml | $(CODEGEN_FOLDER)
 	./scripts/generate_clinic.sh $< $@

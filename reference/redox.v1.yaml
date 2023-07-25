@@ -10,9 +10,6 @@ info:
     To enable code generation for a specific model you should reference it in the request body `/endpoint` API endpoint.
   contact:
     name: N/A
-  license:
-    name: BSD 2-Clause "Simplified" License
-    url: https://github.com/tidepool-org/clinic-worker/master/LICENSE
 servers:
   - url: 'https://api.redoxengine.com/endpoint'
 paths:
@@ -21,8 +18,6 @@ paths:
       summary: Send Data
       tags:
         - Redox
-      security:
-        - RedoxEndpointToken: []
       responses:
         '200':
           description: OK
@@ -42,16 +37,6 @@ components:
   schemas:
     NewOrder:
       $ref: ./redox/order/new.yaml
-  securitySchemes:
-    # https://docs.redoxengine.com/basics/data-exchange-with-redox/configuring-your-system-to-receive-and-respond/
-    RedoxVerificationToken:
-      type: apiKey
-      in: header
-      name: verification-token
-    RedoxEndpointToken:
-      type: http
-      scheme: bearer
-
+  securitySchemes: {}
 tags:
   - name: Redox
-    description: Redox integration
