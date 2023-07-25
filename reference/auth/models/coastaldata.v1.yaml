@@ -4,8 +4,10 @@ type: object
 properties:
   rcTypeId:
     type: string
+    minLength: 1
   rcInstanceId:
     type: string
+    minLength: 1
   rcHWVersions:
     type: array
     items:
@@ -16,9 +18,15 @@ properties:
       type: string
   phdTypeId:
     type: string
+    minLength: 1
   phdInstanceId:
     type: string
+    minLength: 1
   csr:
-    type: string
+    $ref: '../../common/models/base64.v1.yaml'
+    description: Base64 encoded string of the PEM formatted certificate signing request to the partner API.
+    minLength: 1
   rcbMac:
     type: string
+    description: Deprecated field that will be removed in the future but currently required by partner. Value can be any non empty string.
+    minLength: 1
