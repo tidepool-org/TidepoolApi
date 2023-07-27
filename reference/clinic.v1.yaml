@@ -1647,14 +1647,11 @@ components:
           $ref: '#/components/schemas/Clinic'
         patients:
           $ref: '#/components/schemas/Patients'
-        facility:
-          $ref: '#/components/schemas/EHRFacility'
-        sourceId:
-          type: string
+        settings:
+          $ref: '#/components/schemas/EHRSettings'
       required:
         - clinic
-        - facility
-        - sourceId
+        - settings
     EHRMatchPatientRequest:
       title: EHRMatchPatientRequest
       x-stoplight:
@@ -1689,7 +1686,7 @@ components:
         - sourceId
     MRNSettings:
       $ref: ./clinic/models/mrnsettings.v1.yaml
-    EHRDestinations:
+    EHRDestinationIds:
       $ref: ./clinic/models/ehrdestinations.v1.yaml
   securitySchemes:
     sessionToken:
