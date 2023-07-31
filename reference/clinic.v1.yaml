@@ -251,17 +251,17 @@ paths:
         - schema:
             type: string
             pattern: ^(cgm|bgm)$
-            example: 'cgm'
+            example: cgm
           in: query
           name: sortType
           description: Summary type to sort by
         - schema:
             type: string
             pattern: ^(1d|7d|14d|30d)$
-            example: '7d'
+            example: 7d
           in: query
           name: period
-          description: Time Period to display, filter, and sort
+          description: 'Time Period to display, filter, and sort'
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
@@ -670,7 +670,7 @@ paths:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/inviteId'
     patch:
-      summary: ''
+      summary: 'Resend Clinician Invite'
       operationId: ResendInvite
       responses:
         '200':
@@ -1037,7 +1037,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/userId'
     delete:
-      summary: ''
+      summary: 'Remove User from Clinics'
       operationId: DeleteUserFromClinics
       responses:
         '200':
@@ -1114,26 +1114,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PatientSummary'
-            examples:
-              example-1:
-                value:
-                  lastUpdatedDate: '2019-08-24T14:15:22Z'
-                  firstData: '2019-08-24T14:15:22Z'
-                  lastData: '2019-08-24T14:15:22Z'
-                  lastUploadDate: '2019-08-24T14:15:22Z'
-                  outdatedSince: '2019-08-24T14:15:22Z'
-                  averageGlucose:
-                    units: mmol/l
-                    value: 105
-                  glucoseManagementIndicator: 0.06
-                  percentTimeInTarget: 0.7
-                  percentTimeInHigh: 0.1
-                  percentTimeInVeryHigh: 0.1
-                  percentTimeInLow: 0.05
-                  percentTimeInVeryLow: 0.05
-                  percentTimeCGMUse: 0.9
-                  highGlucoseThreshold: 0
-                  lowGlucoseThreshold: 0
         description: ''
   '/v1/patients/{userId}/data_sources':
     parameters:
@@ -1220,17 +1200,43 @@ paths:
       description: Resend Dexcom connect request to the email address of the patient
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/patients/assign_tag/{patientTagId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    post:
+      summary: Assign Patient Tag To Clinic Patients
+      operationId: AssignPatientTagToClinicPatients
+      requestBody:
+        description: Array of clinic patient user IDs to target for tag assignment.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TidepoolUserIds'
+      responses:
+        '200':
+          description: OK
+      description: Assign a patient tag to a subset of clinic patients
+      tags:
+        - Clinics
+        - Internal
   '/v1/clinics/{clinicId}/patients/delete_tag/{patientTagId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/patientTagId'
-    delete:
+    post:
       summary: Delete Patient Tag From Clinic Patients
       operationId: DeletePatientTagFromClinicPatients
+      requestBody:
+        description: Pass an array of patient IDs to target a subset of the clinic patients. Omit request body to target all clinic patients.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TidepoolUserIds'
       responses:
         '200':
           description: OK
-      description: Delete a patient tag from all clinic patients
+      description: Delete a patient tag from all or a subset of clinic patients
       tags:
         - Clinics
         - Internal
@@ -1313,6 +1319,14 @@ components:
       $ref: ./clinic/models/inviteclinician.v1.yaml
     TidepoolUserId:
       $ref: ./common/models/tidepooluserid.yaml
+    TidepoolUserIds:
+      type: array
+      description: Array of Tidepool User IDs
+      items:
+        $ref: '#/components/schemas/TidepoolUserId'
+      minItems: 1
+      maxItems: 1000
+      uniqueItems: true
     ClinicianRoles:
       $ref: ./clinic/models/clinicianroles.v1.yaml
     PhoneNumber:
@@ -1443,25 +1457,25 @@ components:
         attestationSubmitted:
           type: boolean
     AverageGlucose:
-      $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
+      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
     PatientBGMPeriod:
-      $ref: './summary/models/bgmperiod.v1.yaml'
+      $ref: ./summary/models/bgmperiod.v1.yaml
     PatientBGMPeriods:
-      $ref: './clinic/models/summaries/bgmperiods.v1.yaml'
+      $ref: ./clinic/models/summaries/bgmperiods.v1.yaml
     PatientBGMStats:
-      $ref: './clinic/models/summaries/bgmstats.v1.yaml'
+      $ref: ./clinic/models/summaries/bgmstats.v1.yaml
     PatientCGMPeriod:
-      $ref: './summary/models/cgmperiod.v1.yaml'
+      $ref: ./summary/models/cgmperiod.v1.yaml
     PatientCGMPeriods:
-      $ref: './clinic/models/summaries/cgmperiods.v1.yaml'
+      $ref: ./clinic/models/summaries/cgmperiods.v1.yaml
     PatientCGMStats:
-      $ref: './clinic/models/summaries/cgmstats.v1.yaml'
+      $ref: ./clinic/models/summaries/cgmstats.v1.yaml
     PatientSummaryConfig:
-      $ref: './summary/models/config.v1.yaml'
+      $ref: ./summary/models/config.v1.yaml
     PatientSummaryDates:
-      $ref: './summary/models/dates.v1.yaml'
+      $ref: ./summary/models/dates.v1.yaml
     PatientSummary:
-      $ref: './clinic/models/summaries/patientsummary.v1.yaml'
+      $ref: ./clinic/models/summaries/patientsummary.v1.yaml
     UpdateTier:
       title: UpdateTier
       type: object

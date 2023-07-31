@@ -1,8 +1,6 @@
 title: Tidepool Loop Prescription
 type: object
 description: Object describing a Tidepool Loop Prescription
-x-examples:
-  example-1: {}
 properties:
   id:
     $ref: ../../common/models/objectid.v1.yaml
@@ -29,8 +27,7 @@ properties:
   latestRevision:
     $ref: ./revision.v1.yaml
   clinicId:
-    type: string
-    description: A string represation of a Tidepool Clinic Id
+    $ref: '../../clinic/models/clinicid.v1.yaml'
 required:
   - id
   - state

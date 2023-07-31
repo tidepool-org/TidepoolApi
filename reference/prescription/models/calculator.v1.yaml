@@ -1,7 +1,5 @@
 title: calculator.v1
 type: object
-x-examples:
-  example-1: {}
 description: ''
 properties:
   method:
