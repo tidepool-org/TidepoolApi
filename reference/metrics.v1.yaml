@@ -58,6 +58,8 @@ paths:
           description: >-
             Success
       operationId: RecordMetricsEventForNamedUser
+      security:
+        - sessionToken: []
       tags:
         - Metrics
 

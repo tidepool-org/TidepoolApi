@@ -1,0 +1,111 @@
+type: object
+properties:
+  Meta:
+    type: object
+    properties:
+      DataModel:
+        type: string
+      EventType:
+        type: string
+      EventDateTime:
+        type: string
+        nullable: true
+      Test:
+        type: boolean
+        nullable: true
+      Source:
+        type: object
+        properties:
+          ID:
+            type: string
+            nullable: true
+          Name:
+            type: string
+            nullable: true
+      Destinations:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            Name:
+              type: string
+              nullable: true
+      Logs:
+        type: array
+        items:
+          type: object
+          properties:
+            ID:
+              type: string
+              nullable: true
+            AttemptID:
+              type: string
+              nullable: true
+      Message:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      Transmission:
+        type: object
+        properties:
+          ID:
+            type: number
+            nullable: true
+      FacilityCode:
+        type: string
+        nullable: true
+    required:
+      - DataModel
+      - EventType
+  Directory:
+    type: string
+  Identifier:
+    type: object
+    properties:
+      ID:
+        type: string
+        nullable: true
+      IDType:
+        type: string
+        nullable: true
+  NameSearch:
+    type: object
+    properties:
+      SearchType:
+        type: string
+        nullable: true
+      Value:
+        type: string
+        nullable: true
+  State:
+    type: string
+    nullable: true
+  RadiusSearch:
+    type: object
+    properties:
+      ZipCode:
+        type: string
+        nullable: true
+      Radius:
+        type: string
+        nullable: true
+  LastUpdated:
+    type: string
+    nullable: true
+  Index:
+    type: string
+    nullable: true
+  Limit:
+    type: string
+    nullable: true
+  Active:
+    type: boolean
+    nullable: true
+required:
+  - Meta
+  - Directory

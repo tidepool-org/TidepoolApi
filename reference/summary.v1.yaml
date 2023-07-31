@@ -43,10 +43,10 @@ tags:
       These routes are mostly executed by the `task` and `clinic-worker` services.
 
 paths:
-  '/v1/summaries/{userId}/{summaryType}':
+  '/v1/summaries/{summaryType}/{userId}':
     parameters:
-      - $ref: '#/components/parameters/userId'
       - $ref: '#/components/parameters/summaryType'
+      - $ref: '#/components/parameters/userId'
     get:
       summary: Get User Summary
       responses:
@@ -73,7 +73,7 @@ components:
   schemas:
     TidepoolUserId:
       $ref: './common/models/tidepooluserid.yaml'
-    SummaryType:
+    SummaryTypeSchema:
       $ref: './summary/models/summarytype.v1.yaml'
     AverageGlucose:
       $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
@@ -107,15 +107,16 @@ components:
     serverToken:
       $ref: './common/security/tidepoolservertoken.v1.yaml'
   parameters:
+    summaryType:
+      name: summaryType
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/SummaryTypeSchema'
     userId:
       name: userId
       in: path
       required: true
       schema:
         $ref: '#/components/schemas/TidepoolUserId'
-    summaryType:
-      name: summaryType
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/SummaryType'
+

@@ -10,6 +10,7 @@ info:
   termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   license:
     name: BSD 2-Clause "Simplified" License
+    url: https://github.com/tidepool-org/platform/master/LICENSE
 
 servers:
   - url: 'https://external.integration.tidepool.org'
@@ -35,6 +36,8 @@ paths:
   '/v1/clinics/{clinicId}/prescriptions':
     get:
       summary: List Prescriptions
+      security:
+        - sessionToken: []
       tags:
         - Prescriptions
       responses:
@@ -151,6 +154,8 @@ paths:
       description: Create a new prescription
       tags:
         - Prescriptions
+      security:
+        - sessionToken: []
       requestBody:
         content:
           application/json:
@@ -206,6 +211,8 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       operationId: GetPrescriptionById
       description: Retrieve a prescription by id
+      security:
+        - sessionToken: []
     delete:
       summary: Delete Prescription
       operationId: DeletePrescription
@@ -238,6 +245,8 @@ paths:
                 $ref: ./platform/models/errorresponse.v1.yaml
       description: >-
         Clinician only endpoint to delete a prescription. Works only when the prescription has status `draft`.
+      security:
+        - sessionToken: []
       tags:
         - Prescriptions
   '/v1/clinics/{clinicId}/prescriptions/{prescriptionId}/revisions':
@@ -293,6 +302,8 @@ paths:
               schema:
                 $ref: ./platform/models/errorresponse.v1.yaml
       description: Add a new revision to a prescription which is still a draft.
+      security:
+        - sessionToken: []
       tags:
         - Prescriptions
       requestBody:
@@ -342,6 +353,8 @@ paths:
             application/json:
               schema:
                 $ref: ./platform/models/errorresponse.v1.yaml
+      security:
+        - sessionToken: []
       tags:
         - Prescriptions
       description: Claim a submitted prescription using an access code and date of birth.
@@ -363,6 +376,8 @@ paths:
         '200':
           description: OK
       description: Retrieve a list of prescription that the user has claimed
+      security:
+        - sessionToken: []
       tags:
         - Prescriptions
   '/v1/patients/{userId}/prescriptions/{prescriptionId}':
@@ -390,6 +405,8 @@ paths:
                 $ref: ./prescription/models/prescription.v1.yaml
       operationId: GetPrescriptionForUser
       description: Retrieve a prescription by id
+      security:
+        - sessionToken: []
     patch:
       summary: Update Prescription State
       operationId: UpdatePrescriptionState
@@ -403,7 +420,11 @@ paths:
       description: Update prescription state
       tags:
         - Prescriptions
+      security:
+        - sessionToken: []
 components:
   schemas: {}
-  securitySchemes: {}
+  securitySchemes:
+    sessionToken:
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
   parameters: {}

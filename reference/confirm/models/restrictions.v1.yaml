@@ -1,6 +1,4 @@
 title: Acceptance restrictions
-x-stoplight:
-  id: ywnkw0w7xn8b4
 type: object
 properties:
   canAccept:

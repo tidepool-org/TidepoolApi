@@ -1,0 +1,42 @@
+openapi: 3.0.0
+x-stoplight:
+  id: gpm2ktdetzht7
+info:
+  title: Redox
+  version: '1.0'
+  description: |-
+    This spec is used for generating models for incoming Redox messages. In the future it may also be used for generating an SDK library for pushing results to Redox.
+
+    To enable code generation for a specific model you should reference it in the request body `/endpoint` API endpoint.
+  contact:
+    name: N/A
+servers:
+  - url: 'https://api.redoxengine.com/endpoint'
+paths:
+  /endpoint:
+    post:
+      summary: Send Data
+      tags:
+        - Redox
+      responses:
+        '200':
+          description: OK
+      operationId: SendData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              anyOf:
+                - $ref: '#/components/schemas/NewOrder'
+      description: |-
+        Currently, this endpoint's only purpose is to reference Redox models so we can use them for code generation. The code generation tool emits models only if they are referenced in the API portion of the spec.
+
+        In the future we may use this for sending data to Redox as well.
+    parameters: []
+components:
+  schemas:
+    NewOrder:
+      $ref: ./redox/order/new.yaml
+  securitySchemes: {}
+tags:
+  - name: Redox

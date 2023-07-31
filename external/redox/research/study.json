@@ -1,0 +1,864 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "DataModel": {
+          "type": "string"
+        },
+        "EventType": {
+          "type": "string"
+        },
+        "EventDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Test": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "Source": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Destinations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Logs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AttemptID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Message": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Transmission": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "FacilityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "DataModel",
+        "EventType"
+      ]
+    },
+    "Study": {
+      "type": "object",
+      "properties": {
+        "Identifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "IDType": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Sponsor": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "PrincipalInvestigator": {
+          "type": "object",
+          "properties": {
+            "ID": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "IDType": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "FirstName": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "LastName": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Credentials": {
+              "type": "array",
+              "items": {}
+            },
+            "Address": {
+              "type": "object",
+              "properties": {
+                "StreetAddress": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "City": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "State": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "ZIP": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "County": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Country": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "EmailAddresses": {
+              "type": "array",
+              "items": {}
+            },
+            "PhoneNumber": {
+              "type": "object",
+              "properties": {
+                "Office": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            },
+            "Location": {
+              "type": "object",
+              "properties": {
+                "Type": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Facility": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "FacilityIdentifiers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "IDType": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Department": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "DepartmentIdentifiers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "IDType": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Room": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "Coordinators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "IDType": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "FirstName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "LastName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Credentials": {
+                "type": "array",
+                "items": {}
+              },
+              "Address": {
+                "type": "object",
+                "properties": {
+                  "StreetAddress": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "City": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "State": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "ZIP": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "County": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "Country": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "EmailAddresses": {
+                "type": "array",
+                "items": {}
+              },
+              "PhoneNumber": {
+                "type": "object",
+                "properties": {
+                  "Office": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              },
+              "Location": {
+                "type": "object",
+                "properties": {
+                  "Type": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "Facility": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "FacilityIdentifiers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "ID": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "IDType": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "Department": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "DepartmentIdentifiers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "ID": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "IDType": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "Room": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "StartDateTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Code": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "CodeSystem": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "CodeSystemName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "AltCodes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "Code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "CodeSystem": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "CodeSystemName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Design": {
+          "type": "object",
+          "properties": {
+            "Purpose": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Phase": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "Eligibility": {
+          "type": "object",
+          "properties": {
+            "Gender": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "MinimumAge": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "MaximumAge": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        },
+        "Location": {
+          "type": "object",
+          "properties": {
+            "Type": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Facility": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "FacilityIdentifiers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ID": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "IDType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "Department": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "DepartmentIdentifiers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ID": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "IDType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "Room": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "Address": {
+              "type": "object",
+              "properties": {
+                "StreetAddress": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "City": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "State": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "ZIP": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "County": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Country": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Protocols": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "IDType": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Cycles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "ID": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "IDType": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Description": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "StartDate": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "EndDate": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Days": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ID": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "IDType": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "ActivityDateTime": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "EarliestDateTime": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "LatestDateTime": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Procedures": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Code": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "CodeSet": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "Description": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "Modifiers": {
+                              "type": "array",
+                              "items": {}
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "Meta"
+  ]
+}

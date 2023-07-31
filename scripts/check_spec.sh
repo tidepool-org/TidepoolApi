@@ -12,22 +12,21 @@ case $1 in
 
     -i | --install)
         trace npm --version
-        trace npm install -g @stoplight/spectral-cli@6.6.0
+        trace npm install -g @stoplight/spectral-cli@6.8.0
         trace npm install -g @apidevtools/swagger-cli@4.0.4
+        trace npm install -g @redocly/cli@1.0.0-rc.3
         exit 0
         ;;
 
     -c | --self-check)
         trace spectral --version
         trace swagger-cli --version
+        trace redocly --version
         exit 0
         ;;
 
     *)
-        if [ "$(dirname $1)" = "$(dirname $1 | cut -d/ -f1)" ]; then
-            trace swagger-cli validate $1
-            trace spectral lint --quiet $1
-        else
-            trace spectral lint --quiet --ignore-unknown-format $1
-        fi
+        trace swagger-cli validate $1
+        trace spectral lint --quiet $1
+        trace redocly lint --format=codeframe $1
 esac

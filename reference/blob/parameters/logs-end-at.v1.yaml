@@ -1,0 +1,7 @@
+description: >-
+  End time of device logs inside the uploaded json log
+name: X-Logs-End-At-Time
+in: header
+required: true
+schema:
+  $ref: '../../common/models/datetime.v1.yaml'

@@ -94,7 +94,7 @@ The contents in Tidepool's organization [home page](https://tidepool.stoplight.i
 
 ## Other Tools
 
-The [Makefile](./Makefile) makes use of several tools to check, prepare, and publish the documentation and specifications.
+The [Makefile](./Makefile) makes use of several CLI tools to check, prepare, and publish the documentation and specifications.
 You can install the tools by executing the following command:
 
 ```shell
@@ -113,6 +113,7 @@ make check_tools
 | [markdown-link-check](https://www.npmjs.com/package/markdown-link-check) | Validates hyperlinks in Markdown files. |
 | [spectral](https://www.npmjs.com/package/@stoplight/spectral) | Validates OpenAPI 3.0 specification files. |
 | [swagger-cli](https://www.npmjs.com/package/swagger-cli) | Validates OpenAPI 3.0 specification files. Also bundles multiple OAS3 files into a single file, that is required by some downstream use-cases. |
+| [redocly](https://github.com/Redocly/redocly-cli) | Validates OpenAPI 3.0 specification files. Also bundles multiple OAS3 files into a single file, that is required by some downstream use-cases. |
 | [jsonnet](https://jsonnet.org/) | Data templating tool. Used here to generate the configuration file for `openapi-merge-cli`. |
 | [openapi-merge-cli](https://www.npmjs.com/package/openapi-merge-cli) | Merges OpenAPI 3.0 specification files into single file. |
 | [stoplight](https://www.npmjs.com/package/@stoplight/cli) | Publishes OpenAPI 3.0 specifications and documentation in Markdown format to Stoplight's web site. |

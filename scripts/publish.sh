@@ -22,6 +22,6 @@ case $1 in
         ;;
 
     *)
-		find $1 -maxdepth 1 \( \( -type l -and -iname '*.yaml' \) -or -iname 'openapi*.json' \) -print -delete
-		trace stoplight push --directory $1 --ci-token $2
+		# find $1 -maxdepth 1 \( \( -type l -and -iname '*.yaml' \) -or -iname 'openapi*.json' \) -print -delete
+		trace stoplight push --verbose --directory $1 --ci-token $2
 esac

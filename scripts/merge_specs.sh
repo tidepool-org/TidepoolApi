@@ -14,7 +14,7 @@ case $1 in
 		case $(uname -s) in
 			Darwin)
                 trace brew --version
-        		trace brew install jsonnet@0.19.1
+        		trace brew install jsonnet
                 ;;
 			Linux)
                 trace go version
@@ -37,6 +37,6 @@ case $1 in
 			--ext-str outputFile=$(basename $1) \
 			--output-file $(dirname $1)/openapi-merge.json \
 			./templates/openapi-merge.jsonnet
-        cd $(dirname $1)
-        trace openapi-merge-cli
+        trace cd $(dirname $1)
+        trace openapi-merge-cli 2>&1 | awk '{ print $0 } /exception/ { exit 1 }'
 esac

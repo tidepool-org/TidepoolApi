@@ -1,6 +1,4 @@
 title: Membership Restriction
-x-stoplight:
-  id: lkeikldmhqso2
 type: object
 description: A user joining a clinic must match all of the defined restrictions
 properties:
