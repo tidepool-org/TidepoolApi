@@ -1,8 +1,0 @@
-title: Bolus Source Type
-type: string
-enum:
-  - pumpUI
-  - quick
-  - algorithm
-  - remote
-

@@ -12,8 +12,8 @@ allOf:
         $ref: ./subtype.v1.yaml
       insulinFormulation:
         $ref: ../insulin/formulation.v1.yaml
-      sourceType:
-        $ref: ./sourcetype.v1.yaml
+      deliveryContext:
+        $ref: ./deliverycontext.v1.yaml
 required:
   - type
   - subType
