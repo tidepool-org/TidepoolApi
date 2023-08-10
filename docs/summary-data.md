@@ -7,8 +7,9 @@
 1. [Overview](#overview)
 2. [Calculation](#calculation)
    1. [Threshold Values](#threshold-values)
-   2. [Bucket Fields](#bucket-fields)
-   3. [Period Fields](#period-fields)
+   2. [Hourly Bucket Data Fields](#hourly-bucket-data-fields)
+   3. [Period Data Fields](#period-data-fields)
+      1. [Footnotes](#footnotes)
    4. [Handling Multiple Data Sources](#handling-multiple-data-sources)
 
 ---
@@ -60,15 +61,38 @@ sequenceDiagram
 
    Device->>Samples: Upload cbg and/or smbg samples
    Samples->>Buckets: Summarize by type into 1-hour buckets
-   Buckets->>Periods: Summarize by type into 1, 7, 14, 30 day periods
+   Buckets->>Periods: Summarize by type into 1, 7, 14, 30 day current periods
+   Buckets->>Periods: Summarize by type into 1, 7, 14, 30 day previous periods
 ```
 
-Each user's data is first summarized into a set of 1-hour buckets separated by type (`cbg` or `smbg`) over the last 30 days, for a maximum of 720 buckets. The 30 day window is backwards from the date of the last uploaded data for each user, not the present day. The window may be shorter than 30 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
+Each user's data is first summarized into a set of 1-hour buckets separated by type (`cbg` or `smbg`) over the last 60 days, for a maximum of 1,440 buckets. The 60 day window is backwards from the date of the last uploaded data for each user, not the present day. The window may be shorter than 60 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
 
-The 1-hour buckets are then further summarized by type into a set of 1, 7, 14, and 30 day periods. Thus, in the end a user who has both CGM and BGM data will have:
+The 1-hour buckets are then further summarized by type into two sets of current and previous 1, 7, 14, and 30 day periods. One set is for the _current periods_ based on the date of last upload. The second set is for the _previous periods_, that is based relative to the end of each _current_ period: 1 day for the 1 day period, 7 days for the 7 day period, and so on. This enables period-over-period comparisons to support advanced dashboards such as [Stanford Timely Interventions for Diabetes Excellence (TIDE)](https://surf.stanford.edu/tide/). The following diagram illustrates the layout of the periods.
 
-* Up to 1,440 1-hour buckets: `[ CGM, BGM ] x (30 * 24)`
-* Up to 8 period records: `[ CGM, BGM ] x [ 1d, 7d, 14d, 30d ]`
+```mermaid
+gantt
+   title Current and Previous Periods
+   dateFormat DD
+   axisFormat %b %d
+   todayMarker off
+   tickInterval 1week
+   last upload     :crit, milestone, 2023-08-31
+   section Current Periods
+      current 1d   :active, 2023-08-31, 1d
+      current 7d   :active, 2023-08-25, 7d
+      current 14d  :active, 2023-08-18, 14d
+      current 30d  :active, 2023-08-02, 30d
+   section Previous Periods
+      previous 1d  :2023-08-30, 1d
+      previous 7d  :2023-08-18, 7d
+      previous 14d :2023-08-04, 14d
+      previous 30d :2023-07-03, 30d
+```
+
+Thus, in the end a user who has both CGM and BGM data will have:
+
+* Up to 2,880 1-hour buckets: `[ CGM, BGM ] x (30 * 24) x 2`
+* Up to 16 period records: `[ CGM, BGM ] x [ 1d, 7d, 14d, 30d ] x 2`
 
 All of the data is stored within each user account to enable quick sorting and filtering in each clinic's patient list. If a user is a patient of multiple clinics, all clinics share the same summary data.
 
@@ -82,9 +106,9 @@ The summary calculation uses the glycemic targets established by [ADA](https://d
 | **mmol/L** | value < 3.0 | 3.0 <= value < 3.9 | 3.9 <= value <= 10.0 | 10.0 < value <= 13.9 | value > 13.9 |
 |  **mg/dL** |  value < 54 |   54 <= value < 70 |   70 <= value <= 180 |   180 < value <= 250 |  value > 250 |
 
-## Bucket Fields
+## Hourly Bucket Data Fields
 
-The data fields in buckets vary by the type of source data:
+The data fields in each hourly bucket varies by the type of source data:
 
 |  `cbg`   |  `smbg`  | Field             | Type      | Unit    |
 | :------: | :------: | :---------------- | :-------- | :------ |
@@ -102,9 +126,9 @@ The data fields in buckets vary by the type of source data:
 | &#10004; |          | `TotalMinutes`    | `int`     | minutes |
 | &#10004; | &#10004; | `TotalRecords`    | `int`     |         |
 
-## Period Fields
+## Period Data Fields
 
-The data fields in periods vary by the type of source data:
+The data fields in each period varies by the type of source data, as shown in the table below. Each data field is also accompanied by a `Delta` field that shows the change between each previous and current period. For example, each `TotalRecords` field has a `TotalRecordsDelta` that shows the delta between previous period's `TotalRecords` field and the current period's `TotalRecords` field.
 
 |  `cgm`   |  `smbg`  | Field                           | Type      | Unit    | Notes                         |
 | :------: | :------: | :------------------------------ | :-------- | :------ | :---------------------------- |
@@ -138,7 +162,7 @@ The data fields in periods vary by the type of source data:
 | &#10004; |          | `TimeInVeryHighMinutes`         | `int`     | minutes | footnote 2                    |
 | &#10004; | &#10004; | `TimeInVeryHighRecords`         | `int`     |         | footnote 2                    |
 
-Footnotes
+### Footnotes
 
 1. `GlucoseManagementIndicator` value is only calculated if `TimeCGMUsePercent` for the period is >70%. It is calculated as follows:
    1. `12.71 + 4.70587 * AverageGlucose` per the [Jaeb formula](https://www.jaeb.org/gmi/) to produce a GMI value in mmol/mol
