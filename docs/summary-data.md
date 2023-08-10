@@ -67,7 +67,7 @@ sequenceDiagram
 
 Each user's data is first summarized into a set of 1-hour buckets separated by type (`cbg` or `smbg`) over the last 60 days, for a maximum of 1,440 buckets. The 60 day window is backwards from the date of the last uploaded data for each user, not the present day. The window may be shorter than 60 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
 
-The 1-hour buckets are then further summarized by type into two sets of current and previous 1, 7, 14, and 30 day periods. One set is for the _current periods_ based on the date of last upload. The second set is for the _previous periods_, that is based relative to the end of each _current_ period: 1 day for the 1 day period, 7 days for the 7 day period, and so on. This enables period-over-period comparisons to support advanced dashboards such as [Stanford Timely Interventions for Diabetes Excellence (TIDE)](https://surf.stanford.edu/tide/). The following diagram illustrates the layout of the periods.
+The 1-hour buckets are then further summarized by type into two sets of current and previous 1, 7, 14, and 30 day periods. One set is for the _current periods_ based on the date of last upload. The second set is for the _previous periods_, that is relative to the earliest date of each _current_ period: 1 day for the 1 day period, 7 days for the 7 day period, and so on. This enables period-over-period comparisons to support advanced dashboards such as [Stanford Timely Interventions for Diabetes Excellence (TIDE)](https://surf.stanford.edu/tide/). The following diagram illustrates the layout of the periods.
 
 ```mermaid
 gantt
