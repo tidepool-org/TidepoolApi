@@ -128,39 +128,44 @@ The data fields in each hourly bucket varies by the type of source data:
 
 ## Period Data Fields
 
-The data fields in each period varies by the type of source data, as shown in the table below. Each data field is also accompanied by a `Delta` field that shows the change between each previous and current period. For example, each `TotalRecords` field has a `TotalRecordsDelta` that shows the delta between previous period's `TotalRecords` field and the current period's `TotalRecords` field.
+The data fields in each period record varies by the type of source data, as shown in the table below. Each numerical data field is also accompanied by a corresponding delta field that shows the change between each current and previous period, or vice versa. For example:
 
-|  `cgm`   |  `smbg`  | Field                           | Type      | Unit    | Notes                         |
-| :------: | :------: | :------------------------------ | :-------- | :------ | :---------------------------- |
-| &#10004; | &#10004; | `HasAverageGlucose`             | `bool`    |         |                               |
-| &#10004; |          | `HasGlucoseManagementIndicator` | `bool`    |         |                               |
-| &#10004; |          | `HasTimeCGMUsePercent`          | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInLowPercent`           | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInVeryLowPercent`       | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInTargetPercent`        | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInHighPercent`          | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInVeryHighPercent`      | `bool`    |         |                               |
-| &#10004; |          | `TimeCGMUsePercent`             | `float64` | %       |                               |
-| &#10004; |          | `TimeCGMUseMinutes`             | `int`     | minutes |                               |
-| &#10004; |          | `TimeCGMUseRecords`             | `int`     |         |                               |
-| &#10004; | &#10004; | `AverageGlucose`                | `float64` | mmol/L  | `TotalGlucose / TotalRecords` |
-|          | &#10004; | `TotalRecords`                  | `int`     |         |                               |
-| &#10004; |          | `GlucoseManagementIndicator`    | `float64` | %Hb1A1c | footnote 1                    |
-| &#10004; | &#10004; | `TimeInVeryLowPercent`          | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInVeryLowMinutes`          | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInVeryLowRecords`          | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInLowPercent`              | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInLowMinutes`              | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInLowRecords`              | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInTargetPercent`           | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInTargetMinutes`           | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInTargetRecords`           | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInHighPercent`             | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInHighMinutes`             | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInHighRecords`             | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInVeryHighPercent`         | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInVeryHighMinutes`         | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInVeryHighRecords`         | `int`     |         | footnote 2                    |
+* Each `TotalRecords` field has a corresponding `TotalRecordsDelta` field
+  * In each _current_ period record, `current.TotalRecordsDelta = current.TotalRecords - previous.TotalRecords`
+  * In each _previous_ period record, `previous.TotalRecordsDelta = previous.TotalRecords - current.TotalRecords`
+
+|  `cgm`   |  `smbg`  | Field                                                           | Type      | Unit    | Notes                         |
+| :------: | :------: | :-------------------------------------------------------------- | :-------- | :------ | :---------------------------- |
+| &#10004; | &#10004; | `HasAverageGlucose`                                             | `bool`    |         |                               |
+| &#10004; |          | `HasGlucoseManagementIndicator`                                 | `bool`    |         |                               |
+| &#10004; |          | `HasTimeCGMUsePercent`                                          | `bool`    |         |                               |
+| &#10004; | &#10004; | `HasTimeInLowPercent`                                           | `bool`    |         |                               |
+| &#10004; | &#10004; | `HasTimeInVeryLowPercent`                                       | `bool`    |         |                               |
+| &#10004; | &#10004; | `HasTimeInTargetPercent`                                        | `bool`    |         |                               |
+| &#10004; | &#10004; | `HasTimeInHighPercent`                                          | `bool`    |         |                               |
+| &#10004; | &#10004; | `HasTimeInVeryHighPercent`                                      | `bool`    |         |                               |
+| &#10004; |          | `TimeCGMUsePercent`                                             | `float64` | %       |                               |
+| &#10004; |          | `TimeCGMUsePercentDelta`                                        | `float64` | %       |                               |
+| &#10004; |          | `TimeCGMUseMinutes`, `TimeCGMUseMinutesDelta`                   | `int`     | minutes |                               |
+| &#10004; |          | `TimeCGMUseRecords`, `TimeCGMUseRecordsDelta`                   | `int`     |         |                               |
+| &#10004; | &#10004; | `AverageGlucose`, `AverageGlucoseDelta`                         | `float64` | mmol/L  | `TotalGlucose / TotalRecords` |
+|          | &#10004; | `TotalRecords`, `TotalRecordsDelta`                             | `int`     |         |                               |
+| &#10004; |          | `GlucoseManagementIndicator`, `GlucoseManagementIndicatorDelta` | `float64` | %Hb1A1c | footnote 1                    |
+| &#10004; | &#10004; | `TimeInVeryLowPercent`, `TimeInVeryLowPercentDelta`             | `float64` | %       | footnote 2                    |
+| &#10004; |          | `TimeInVeryLowMinutes`, `TimeInVeryLowMinutesDelta`             | `int`     | minutes | footnote 2                    |
+| &#10004; | &#10004; | `TimeInVeryLowRecords`, `TimeInVeryLowRecordsDelta`             | `int`     |         | footnote 2                    |
+| &#10004; | &#10004; | `TimeInLowPercent`, `TimeInLowPercentDelta`                     | `float64` | %       | footnote 2                    |
+| &#10004; |          | `TimeInLowMinutes`, `TimeInLowMinutesDelta`                     | `int`     | minutes | footnote 2                    |
+| &#10004; | &#10004; | `TimeInLowRecords`, `TimeInLowRecordsDelta`                     | `int`     |         | footnote 2                    |
+| &#10004; | &#10004; | `TimeInTargetPercent`, `TimeInTargetPercentDelta`               | `float64` | %       | footnote 2                    |
+| &#10004; |          | `TimeInTargetMinutes`, `TimeInTargetMinutesDelta`               | `int`     | minutes | footnote 2                    |
+| &#10004; | &#10004; | `TimeInTargetRecords`, `TimeInTargetRecordsDelta`               | `int`     |         | footnote 2                    |
+| &#10004; | &#10004; | `TimeInHighPercent`, `TimeInHighPercentDelta`                   | `float64` | %       | footnote 2                    |
+| &#10004; |          | `TimeInHighMinutes`, `TimeInHighMinutesDelta`                   | `int`     | minutes | footnote 2                    |
+| &#10004; | &#10004; | `TimeInHighRecords`, `TimeInHighRecordsDelta`                   | `int`     |         | footnote 2                    |
+| &#10004; | &#10004; | `TimeInVeryHighPercent`, `TimeInVeryHighPercentDelta`           | `float64` | %       | footnote 2                    |
+| &#10004; |          | `TimeInVeryHighMinutes`, `TimeInVeryHighMinutesDelta`           | `int`     | minutes | footnote 2                    |
+| &#10004; | &#10004; | `TimeInVeryHighRecords`, `TimeInVeryHighRecordsDelta`           | `int`     |         | footnote 2                    |
 
 ### Footnotes
 
