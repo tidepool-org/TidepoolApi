@@ -16,9 +16,9 @@
 
 # Overview
 
-Tidepool Platform automatically calculates several summary statistics for each user as they upload diabetes data into their account. Currently supported data types are CGM (`cbg`) and BGM (`smbg`). Our plan is to add insulin pump summaries as well in the future.
+Tidepool Platform automatically calculates several summary statistics for each user as they upload diabetes data into their account. Currently supported data types are CGM and BGM, from [Continuous Glucose Monitors](https://diabetes.org/get-involved/advocacy/continuous-glucose-monitors) and [Blood Glucose Meters](https://en.wikipedia.org/wiki/Glucose_meter), respectively. Our plan is to add insulin delivery summaries as well in the future.
 
-The following diagram illustrates how the overall process works using Tidepool Uploader as an example. The same process applies regardless of how the data appears in the user's account. Other examples are uploading using Tidepool Mobile, or automatically via import from Dexcom Clarity, or even 3rd party applications such as xDrip.
+The following diagram illustrates how the overall process works using [Tidepool Uploader](https://www.tidepool.org/download) as an example. The same process applies regardless of how the data appears in the user's account. Other examples are uploading using [Tidepool Mobile](https://www.tidepool.org/download), or automatically via import from [Dexcom Clarity](https://clarity.dexcom.com/), or even 3rd party applications such as [xDrip](https://github.com/NightscoutFoundation/xDrip).
 
 ```mermaid
 sequenceDiagram
@@ -33,7 +33,7 @@ sequenceDiagram
    activate Uploader
    Uploader->>Platform: Upload diabetes data
    activate Platform
-   note right of Platform: If cbg or smbg data
+   note right of Platform: If CGM or BGM data
    Platform->>Platform: Mark account summary as out-of-date
    Platform->>Uploader: OK
    deactivate Platform
@@ -59,13 +59,13 @@ sequenceDiagram
    participant Buckets as Buckets
    participant Periods as Periods
 
-   Device->>Samples: Upload cbg and/or smbg samples
+   Device->>Samples: Upload CGM and/or BGM samples
    Samples->>Buckets: Summarize by type into 1-hour buckets
    Buckets->>Periods: Summarize by type into 1, 7, 14, 30 day current periods
    Buckets->>Periods: Summarize by type into 1, 7, 14, 30 day previous periods
 ```
 
-Each user's data is first summarized into a set of 1-hour buckets separated by type (`cbg` or `smbg`) over the last 60 days, for a maximum of 1,440 buckets. The 60 day window is backwards from the date of the last uploaded data for each user, not the present day. The window may be shorter than 60 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
+Each user's data is first summarized into a set of 1-hour buckets separated by type (CGM or BGM) over the last 60 days, for a maximum of 1,440 buckets. The 60 day window is backwards from the date of the last uploaded data for each user, not the present day. The window may be shorter than 60 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
 
 The 1-hour buckets are then further summarized by type into two sets of current and previous 1, 7, 14, and 30 day periods. One set is for the _current periods_ based on the date of last upload. The second set is for the _previous periods_, that is relative to the earliest date of each _current_ period: 1 day for the 1 day period, 7 days for the 7 day period, and so on. This enables period-over-period comparisons to support advanced dashboards such as [Stanford Timely Interventions for Diabetes Excellence (TIDE)](https://surf.stanford.edu/tide/). The following diagram illustrates the layout of the periods.
 
@@ -98,7 +98,7 @@ All of the data is stored within each user account to enable quick sorting and f
 
 ## Threshold Values
 
-The summary calculation uses the glycemic targets established by [ADA](https://diabetes.org/) [[standards of care](https://diabetesjournals.org/care/issue/46/Supplement_1)] and [AACE](https://pro.aace.com/) [[paper](https://doi.org/10.1016/j.eprac.2022.08.002), [table](https://www.endocrinepractice.org/article/S1530-891X(22)00576-6/fulltext#tbl6)] to characterize each `cbg` or `smbg` glucose value as one of very low, low, in range, high, or very high. The same target ranges are currently used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are:
+The summary calculation uses the glycemic targets established by [ADA](https://diabetes.org/) [[standards of care](https://diabetesjournals.org/care/issue/46/Supplement_1)] and [AACE](https://pro.aace.com/) [[paper](https://doi.org/10.1016/j.eprac.2022.08.002), [table](https://www.endocrinepractice.org/article/S1530-891X(22)00576-6/fulltext#tbl6)] to characterize each CGM or BGM glucose value as one of very low, low, in range, high, or very high. The same target ranges are currently used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are:
 
 <!-- Tidepool stores values in mmol/L with conversion factor of 18.01559 -->
 |       Unit |    Very Low |                Low |             In Range |                 High |    Very High |
@@ -110,7 +110,7 @@ The summary calculation uses the glycemic targets established by [ADA](https://d
 
 The data fields in each hourly bucket varies by the type of source data:
 
-|  `cbg`   |  `smbg`  | Field             | Type      | Unit    |
+|  CGM     |  BGM     | Field             | Type      | Unit    |
 | :------: | :------: | :---------------- | :-------- | :------ |
 | &#10004; |          | `VeryLowMinutes`  | `int`     | minutes |
 | &#10004; | &#10004; | `VeryLowRecords`  | `int`     |         |
@@ -134,7 +134,7 @@ The data fields in each period record varies by the type of source data, as show
   * In each _current_ period record, `current.TotalRecordsDelta = current.TotalRecords - previous.TotalRecords`
   * In each _previous_ period record, `previous.TotalRecordsDelta = previous.TotalRecords - current.TotalRecords`
 
-|  `cgm`   |  `smbg`  | Field                                                           | Type      | Unit    | Notes                         |
+|  CGM     |  BGM     | Field                                                           | Type      | Unit    | Notes                         |
 | :------: | :------: | :-------------------------------------------------------------- | :-------- | :------ | :---------------------------- |
 | &#10004; | &#10004; | `HasAverageGlucose`                                             | `bool`    |         |                               |
 | &#10004; |          | `HasGlucoseManagementIndicator`                                 | `bool`    |         |                               |
