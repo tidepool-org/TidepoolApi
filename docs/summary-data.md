@@ -72,21 +72,21 @@ The 1-hour buckets are then further summarized by type into two sets of current 
 ```mermaid
 gantt
    title Current and Previous Periods
-   dateFormat DD
+   dateFormat YYYY-MM-DD
    axisFormat %b %d
    todayMarker off
    tickInterval 1week
-   last upload     :crit, milestone, 2023-08-31
+   last upload     :crit, milestone, 2023-08-31, 0d
    section Current Periods
-      current 1d   :active, 2023-08-31, 1d
-      current 7d   :active, 2023-08-25, 7d
-      current 14d  :active, 2023-08-18, 14d
-      current 30d  :active, 2023-08-02, 30d
+      current 1d   :active, 2023-08-30, 1d
+      current 7d   :active, 2023-08-24, 7d
+      current 14d  :active, 2023-08-17, 14d
+      current 30d  :active, 2023-08-01, 30d
    section Previous Periods
-      previous 1d  :2023-08-30, 1d
-      previous 7d  :2023-08-18, 7d
-      previous 14d :2023-08-04, 14d
-      previous 30d :2023-07-03, 30d
+      previous 1d  :2023-08-29, 1d
+      previous 7d  :2023-08-17, 7d
+      previous 14d :2023-08-03, 14d
+      previous 30d :2023-07-02, 30d
 ```
 
 Thus, in the end a user who has both CGM and BGM data will have:
