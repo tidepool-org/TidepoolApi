@@ -11,6 +11,6 @@ properties:
     type: number
     x-go-type: int
   periods:
-    $ref: './cgmperiods.v1.yaml'
+    $ref: '../../../summary/models/cgmperiods.v1.yaml'
   offsetPeriods:
-    $ref: './cgmperiods.v1.yaml'
+    $ref: '../../../summary/models/cgmperiods.v1.yaml'

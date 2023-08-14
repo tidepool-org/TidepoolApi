@@ -2,11 +2,14 @@ type: object
 title: cgmperiod.v1
 description: 'Summary of a specific CGM time period (currently: 1d, 7d, 14d, 30d)'
 properties:
-  hasAverageGlucose:
+  hasAverageGlucoseMmol:
     type: boolean
-  averageGlucose:
-    $ref: '../../data/models/blood/glucose/glucosemmol.v1.yaml'
-  averageGlucoseDelta:
+  averageGlucoseMmol:
+    description: Average Glucose of records in this period
+    type: number
+    example: 5.5
+    x-go-type: float64
+  averageGlucoseMmolDelta:
     description: Difference between the averageGlucose in this period and the other offset version
     type: number
     example: 2.5

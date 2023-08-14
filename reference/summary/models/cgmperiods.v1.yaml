@@ -1,12 +1,10 @@
 type: object
 title: cgmperiods.v1
 description: 'A map to each supported CGM summary period'
-properties:
-  1d:
-    $ref: './cgmperiod.v1.yaml'
-  7d:
-    $ref: './cgmperiod.v1.yaml'
-  14d:
-    $ref: './cgmperiod.v1.yaml'
-  30d:
-    $ref: './cgmperiod.v1.yaml'
+required:
+  - 1d
+  - 7d
+  - 14d
+  - 30d
+additionalProperties:
+  $ref: './cgmperiod.v1.yaml'
