@@ -1498,11 +1498,7 @@ components:
     Tide:
       $ref: ./clinic/models/tide.v1.yaml
     TideResponse:
-      title: TideResponse
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Tide'
+      $ref: '#/components/schemas/Tide'
     UpdateUserDetails:
       title: UpdateUserDetails
       type: object
@@ -1523,6 +1519,8 @@ components:
       $ref: ./clinic/models/tide/config.v1.yaml
     TideFilters:
       $ref: ./clinic/models/tide/filters.v1.yaml
+    TidePatient:
+      $ref: ./clinic/models/tide/patient.v1.yaml
     TideResultPatient:
       $ref: ./clinic/models/tide/resultpatient.v1.yaml
     TideResults:

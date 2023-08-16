@@ -53,15 +53,4 @@ properties:
     example: 200
     x-go-type: int
   patient:
-    id:
-      $ref: ../../../common/models/tidepooluserid.yaml
-    email:
-      type: string
-      x-go-type: string
-      format: email
-    fullName:
-      type: string
-      description: The full name of the patient
-      minLength: 1
-    tags:
-      $ref: ../patienttagids.v1.yaml
+    $ref: ./patient.v1.yaml

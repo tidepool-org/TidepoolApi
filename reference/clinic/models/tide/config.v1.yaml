@@ -8,8 +8,6 @@ properties:
     x-go-type: int
   clinicId:
     $ref: ../clinicid.v1.yaml
-  clinicianId:
-    $ref: ../../../common/models/tidepooluserid.yaml
   period:
     type: string
     pattern: ^(1d|7d|14d|30d)$
