@@ -1,0 +1,24 @@
+type: object
+title: tidefilters.v1
+description: ''
+properties:
+  timeInVeryLowPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeInLowPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  dropInTimeInTargetPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeInTargetPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeCGMUsePercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'

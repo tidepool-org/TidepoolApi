@@ -1,0 +1,34 @@
+type: object
+title: tideresults.v1
+description: ''
+properties:
+  timeInVeryLowPercent:
+    type: array
+    nullable: true
+    items:
+      $ref: ./resultpatient.v1.yaml
+  timeInLowPercent:
+    type: array
+    nullable: true
+    items:
+      $ref: ./resultpatient.v1.yaml
+  dropInTimeInTargetPercent:
+    type: array
+    nullable: true
+    items:
+      $ref: ./resultpatient.v1.yaml
+  timeInTargetPercent:
+    type: array
+    nullable: true
+    items:
+      $ref: ./resultpatient.v1.yaml
+  timeCGMUsePercent:
+    type: array
+    nullable: true
+    items:
+      $ref: ./resultpatient.v1.yaml
+  meetingTargets:
+    type: array
+    nullable: true
+    items:
+      $ref: ./resultpatient.v1.yaml
