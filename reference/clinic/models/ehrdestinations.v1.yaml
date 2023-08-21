@@ -3,10 +3,6 @@ x-stoplight:
   id: z6cjrz20e5mvu
 type: object
 properties:
-  default:
-    type: string
-    description: The default Redox destination ID
-    minLength: 1
   flowsheet:
     type: string
     description: Destination ID override for Flowsheets
@@ -20,4 +16,6 @@ properties:
     description: Destination ID override for Notes
     minLength: 1
 required:
-  - default
+  - flowsheet
+  - results
+  - notes

@@ -1,0 +1,14 @@
+title: EHR Procedure Codes Map
+x-stoplight:
+  id: gy7do1thlm3g5
+type: object
+properties:
+  enableSummaryReports:
+    type: string
+    minLength: 1
+    description: Procedure Code for Summary Statistics and PDF Reports subscription
+  disableSummaryReports:
+    type: string
+required:
+  - enableSummaryReports
+  - disableSummaryReports

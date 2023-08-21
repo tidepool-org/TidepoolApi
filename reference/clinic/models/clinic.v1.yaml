@@ -17,9 +17,9 @@ properties:
   patientTags:
     type: array
     items:
-      $ref: './patienttag.v1.yaml'
+      $ref: ./patienttag.v1.yaml
   lastDeletedPatientTag:
-    $ref: './patienttag.v1.yaml'
+    $ref: ./patienttag.v1.yaml
   phoneNumbers:
     $ref: ./phonenumbers.v1.yaml
   clinicType:
@@ -73,6 +73,8 @@ properties:
       - mmol/L
   suppressedNotifications:
     $ref: ./suppressedNotifications.v1.yaml
+  timezone:
+    $ref: ./clinictimezone.v1.yaml
 required:
   - id
   - name

@@ -12,7 +12,10 @@ properties:
     type: string
   destinationIds:
     $ref: ./ehrdestinations.v1.yaml
+  procedureCodes:
+    $ref: ./ehrprocedures.v1.yaml
 required:
   - enabled
   - sourceId
   - destinationIds
+  - procedureCodes

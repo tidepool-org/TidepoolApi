@@ -61,6 +61,7 @@ paths:
         - $ref: '#/components/parameters/shareCode'
         - $ref: '#/components/parameters/createdTimeStart'
         - $ref: '#/components/parameters/createdTimeEnd'
+        - $ref: '#/components/parameters/ehrEnabled'
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -670,7 +671,7 @@ paths:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/inviteId'
     patch:
-      summary: 'Resend Clinician Invite'
+      summary: Resend Clinician Invite
       operationId: ResendInvite
       responses:
         '200':
@@ -1037,7 +1038,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/userId'
     delete:
-      summary: 'Remove User from Clinics'
+      summary: Remove User from Clinics
       operationId: DeleteUserFromClinics
       responses:
         '200':
@@ -1306,7 +1307,7 @@ paths:
         - Redox
         - Internal
       x-internal: true
-      description: Internal endpoint for Redox chanallenge verification
+      description: Internal endpoint for Redox challenge verification
   '/v1/clinics/{clinicId}/settings/ehr':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1357,7 +1358,7 @@ paths:
       tags:
         - Clinics
         - Internal
-      description: |-
+      description: |
         An internal endpoint used for matching an EHR request (e.g. NewOrder) to a clinic and patient.
 
         If a clinic with the provided details cannot be found, the service will return `404 Not Found` and will not attempt to match patients to the provided details.
@@ -1365,8 +1366,6 @@ paths:
         Due to lack of uniqueness constraints on the MRN and DOB fields it's possible that multiple patient records match the provided attributes. All results will be returned in the response and it's the calling services responsiblity to determine how to handle duplicates records.
 
         If a unique match is found, the patient matching criteria will be added to the patient record for future use (e.g. pushing data on a schedule).
-
-        First name and last name will not be used for matching patients until those are stored in the database as separate attributes instead of a single `fullName` attribute. 
       requestBody:
         content:
           application/json:
@@ -1405,6 +1404,24 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MRNSettings'
+  '/v1/clinics/{clinicId}/ehr/sync':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Sync EHR Data
+      operationId: SyncEHRData
+      responses:
+        '202':
+          description: Accepted
+      description: |-
+        An internal endpoint which will push the latest patient summary statistics and PDF reports for all patients who have an active subscription. The actual data is pushed asynchronously. A successful response means that an asynchronous task has been scheduled for each patient of the clinic with an active subscription.
+
+        Will return 404 Not Found if the clinic does not have an active EHR connection.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      parameters: []
 components:
   schemas:
     Error:
@@ -1447,7 +1464,6 @@ components:
       $ref: ./common/models/tidepooluserid.yaml
     TidepoolUserIds:
       type: array
-      nullable: true
       description: Array of Tidepool User IDs
       items:
         $ref: '#/components/schemas/TidepoolUserId'
@@ -1636,22 +1652,10 @@ components:
       x-stoplight:
         id: nq0mlm5dqdfw0
       type: object
+      x-examples: {}
       properties:
-        clinic:
-          $ref: '#/components/schemas/EHRMatchClinicRequest'
-        patient:
-          $ref: '#/components/schemas/EHRMatchPatientRequest'
-      required:
-        - clinic
-      x-examples:
-        Example 1:
-          clinic:
-            facilityName: ACME Clinic
-          patient:
-            firstName: John
-            lastName: Doe
-            mrn: BG1234567890
-            birthDate: '1984-03-22'
+        messageRef:
+          $ref: '#/components/schemas/EHRMatchMessageRef'
     EHRMatchResponse:
       title: EHRMatchResponse
       x-stoplight:
@@ -1667,42 +1671,32 @@ components:
       required:
         - clinic
         - settings
-    EHRMatchPatientRequest:
-      title: EHRMatchPatientRequest
-      x-stoplight:
-        id: pypm1wrq7qljz
-      type: object
-      x-examples: {}
-      properties:
-        firstName:
-          type: string
-        middleName:
-          type: string
-        lastName:
-          type: string
-        mrn:
-          type: string
-        dateOfBirth:
-          type: string
-      required:
-        - mrn
-        - dateOfBirth
-    EHRMatchClinicRequest:
-      title: EHRMatchClinicRequest
-      x-stoplight:
-        id: k8zoii2rrerf4
-      type: object
-      properties:
-        facilityName:
-          type: string
-        sourceId:
-          type: string
-      required:
-        - sourceId
     MRNSettings:
       $ref: ./clinic/models/mrnsettings.v1.yaml
     EHRDestinationIds:
       $ref: ./clinic/models/ehrdestinations.v1.yaml
+    EHRProcedureCodes:
+      $ref: ./clinic/models/ehrprocedures.v1.yaml
+    EHRMatchMessageRef:
+      title: EHRMatchMessageRef
+      x-stoplight:
+        id: a1215t5vip3tr
+      type: object
+      properties:
+        dataModel:
+          type: string
+          enum:
+            - Order
+        eventType:
+          type: string
+          enum:
+            - New
+        documentId:
+          type: string
+      required:
+        - dataModel
+        - eventType
+        - documentId
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -1814,10 +1808,21 @@ components:
         type: string
         format: date-time
       description: Return records created before the given date (exclusive)
+    ehrEnabled:
+      name: ehrEnabled
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Retrieve clinics with enabled EHR integration
 tags:
   - name: Clinics
+    description: 'Manage clinics, clinians and patients.'
   - name: Confirmations
+    description: 'Manage confirmations for account creation, sharing invites, etc.'
   - name: Internal
+    description: APIs intended for internal use by Tidepool.
   - name: Redox
+    description: Public endpoints invoked by Redox.
 security:
   - sessionToken: []
