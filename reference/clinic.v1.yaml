@@ -1390,7 +1390,7 @@ paths:
       x-internal: true
       description: Retrieve MRN settings
     put:
-      summary: ''
+      summary: Update MRN Settings
       operationId: UpdateMRNSettings
       responses:
         '200':
