@@ -1,30 +1,31 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+TOOLS_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
+NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
+PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo + $*
-    $*
+    echo "${PS4}$*"
+    "$@"
 }
 
 case $1 in
-	-h | --help)
-		echo "usage: $(basename $0) [-h | --help] | [-i | --install] | [-c | --self-check] | {doc-filename}"
-		;;
-
-    -i | --install)
-        trace npm --version
-        trace npm install -g markdownlint-cli@0.33.0
-        trace npm install -g markdown-link-check@3.10.3
-        exit 0
-        ;;
+    -h | --help)
+	echo "usage: $(basename "$0") [-h | --help] | [-c | --self-check] | {doc-filename}"
+	;;
 
     -c | --self-check)
-        trace markdownlint --version
-        trace markdown-link-check --version
-        exit 0
-        ;;
+	trace markdownlint --version
+	trace markdown-link-check --version
+	exit 0
+	;;
 
     *)
-        trace markdownlint $1
-        trace markdown-link-check $1 --config .markdown-link-check.json
-        trace $(dirname $0)/check_ref_links.sh $1
+	doc="${1?:doc-filename is required}"
+	trace markdownlint "$doc"
+	trace markdown-link-check "${doc}" --config .markdown-link-check.json
+	trace "$(dirname "$0")/check_ref_links.sh" "$doc"
 esac
