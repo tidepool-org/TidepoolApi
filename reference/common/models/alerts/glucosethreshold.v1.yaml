@@ -1,0 +1,7 @@
+# intended as a mix-in to build complete alert specs
+type: object
+properties:
+  threshold:
+    $ref: '../../../data/models/blood/glucose/glucose.v1.yaml'
+required:
+  - threshold
