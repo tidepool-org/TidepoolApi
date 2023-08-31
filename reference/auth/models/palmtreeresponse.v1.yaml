@@ -1,0 +1,28 @@
+title: Palm Tree Response
+description: Data retrieved from Palm Tree's API.
+type: object
+properties:
+  type:
+    type: string
+  Enrolment:
+    type: object
+    properties:
+      body:
+        type: string
+        description: PEM encoded certificate.
+      id:
+        type: string
+      issuerName:
+        type: string
+      serialNumber:
+        type: string
+      subjectName:
+        type: string
+      id:
+        type: string
+      serialNumber:
+        type: string
+      status:
+        type: string
+      validityPeriod:
+        type: string

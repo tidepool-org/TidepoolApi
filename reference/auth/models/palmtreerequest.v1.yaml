@@ -1,0 +1,5 @@
+title: Palm Tree Request Data
+description: Data to send to Palm Tree's API.
+type: object
+properties:
+- name: csr
