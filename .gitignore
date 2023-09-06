@@ -2,3 +2,5 @@
 dist
 build
 .idea/
+/node_modules/
+/tools/

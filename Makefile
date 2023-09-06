@@ -32,6 +32,8 @@
 #
 -include .env
 
+SHELL = /bin/sh
+
 # source folders & files
 DOC_FOLDER = docs
 SPEC_FOLDER = reference
@@ -43,6 +45,8 @@ SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | fgrep -v -f
 SOURCE_SPECS_TOP_LEVEL = ${shell find $(SPEC_FOLDER) -maxdepth 1 -type f -iname '*.yaml' | sort}
 MERGED_SPEC = combined.v1.yaml
 SOURCE_ASSETS = ${shell find $(ASSET_FOLDER) -type f -iname '*.png' | sort}
+TOOLS_BIN = tools/bin
+NPM_BIN = node_modules/.bin
 
 # output folders
 BUILD_FOLDER = build
@@ -96,22 +100,55 @@ list_targets:
 
 .PHONY: clean
 clean:
-	-rm -rv $(BUILD_FOLDER)
+	-rm -rv $(BUILD_FOLDER) tools node_modules
 
 .PHONY: clobber
 clobber: clean
 
-$(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVATE_SPEC_FOLDER) $(CODEGEN_FOLDER):
+$(BUILD_FOLDER) $(PUBLIC_FOLDER) $(PUBLIC_SPEC_FOLDER) $(PRIVATE_FOLDER) $(PRIVATE_SPEC_FOLDER) $(CODEGEN_FOLDER) $(TOOLS_BIN):
 	mkdir -p $@
 
+GO_TOOLS = \
+	$(TOOLS_BIN)/jsonnet \
+	$(TOOLS_BIN)/oapi-codegen
+
+$(TOOLS_BIN)/jsonnet: $(TOOLS_BIN)
+	GOBIN=$(shell pwd)/$(TOOLS_BIN) go install github.com/google/go-jsonnet/cmd/jsonnet@v0.20.0
+
+$(TOOLS_BIN)/oapi-codegen: $(TOOLS_BIN)
+	GOBIN=$(shell pwd)/$(TOOLS_BIN) go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.13.4
+
+$(NPM_BIN)/%:
+	$(MAKE) install_npm_pkgs
+
+NPM_TOOLS = \
+	$(NPM_BIN)/markdown-link-check \
+	$(NPM_BIN)/markdownlint \
+	$(NPM_BIN)/openapi-merge-cli \
+	$(NPM_BIN)/redocly \
+	$(NPM_BIN)/spectral \
+	$(NPM_BIN)/stoplight \
+	$(NPM_BIN)/swagger-cli
+
+NPM_PKG_SPECS = \
+	@apidevtools/swagger-cli@^4.0.4 \
+	@openapi-contrib/json-schema-to-openapi-schema@^2.2.5 \
+	@redocly/cli@^1.0.0-rc.3 \
+	@stoplight/cli@^6.0.1280 \
+	@stoplight/spectral-cli@^6.8.0 \
+	markdown-link-check@^3.10.3 \
+	markdownlint-cli@^0.33.0 \
+	openapi-merge-cli@1.3.1
+
+.PHONY: install_npm_pkgs
+install_npm_pkgs:
+# When using --no-save, any dependencies not included will be deleted, so one
+# has to install all the packages all at the same time. But it saves us from
+# having to muck with packages.json.
+	npm i --no-save --local $(NPM_PKG_SPECS)
+
 .PHONY: install_tools
-install_tools:
-	./scripts/check_doc.sh --install
-	./scripts/check_spec.sh --install
-	./scripts/bundle_spec.sh --install
-	./scripts/merge_specs.sh --install
-	./scripts/publish.sh --install
-	./scripts/generate_clinic.sh --install
+install_tools: $(GO_TOOLS) $(NPM_TOOLS)
 
 .PHONY: check
 check: check_tools check_files check_toc
