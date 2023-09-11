@@ -1464,6 +1464,7 @@ components:
       $ref: ./common/models/tidepooluserid.yaml
     TidepoolUserIds:
       type: array
+      nullable: true
       description: Array of Tidepool User IDs
       items:
         $ref: '#/components/schemas/TidepoolUserId'
