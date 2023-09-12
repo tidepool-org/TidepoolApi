@@ -746,6 +746,8 @@ paths:
           $ref: './common/responses/unauthorized.v1.yaml'
         '403':
           $ref: './common/responses/forbidden.v1.yaml'
+      security:
+        - sessionToken: []
       tags:
         - Attestation
 
@@ -769,6 +771,8 @@ paths:
           $ref: './common/responses/unauthorized.v1.yaml'
         '403':
           $ref: './common/responses/forbidden.v1.yaml'
+      security:
+        - sessionToken: []
       tags:
         - Attestation
 
@@ -792,6 +796,8 @@ paths:
           $ref: './common/responses/unauthorized.v1.yaml'
         '403':
           $ref: './common/responses/forbidden.v1.yaml'
+      security:
+        - sessionToken: []
       tags:
         - Attestation
 
@@ -815,6 +821,8 @@ paths:
           $ref: './common/responses/unauthorized.v1.yaml'
         '403':
           $ref: './common/responses/forbidden.v1.yaml'
+      security:
+        - sessionToken: []
       tags:
         - Attestation
 
