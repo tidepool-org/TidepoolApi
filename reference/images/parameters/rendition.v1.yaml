@@ -1,8 +1,0 @@
-description: >-
-  Image Rendition.
-  Rendition parameters, described in the API description.
-name: rendition
-in: path
-required: true
-schema:
-  type: string

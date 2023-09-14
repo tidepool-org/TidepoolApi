@@ -1,5 +1,0 @@
-title: Image Content
-description: >-
-  The raw bytes of the content of the image.
-type: string
-format: binary
