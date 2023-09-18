@@ -247,6 +247,13 @@ paths:
       parameters:
         - schema:
             type: string
+            pattern: '(?:[a-zA-Z]|_)+'
+            example: timeInTargetPercent
+          in: query
+          name: category
+          description: 'Specific category to limit results to'
+        - schema:
+            type: string
             pattern: ^(1d|7d|14d|30d)$
             example: 7d
           in: query
@@ -274,6 +281,8 @@ paths:
           in: query
           name: cgm.lastUploadDateTo
           description: Exclusive
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1519,6 +1528,8 @@ components:
       $ref: ./clinic/models/tide/config.v1.yaml
     TideFilters:
       $ref: ./clinic/models/tide/filters.v1.yaml
+    TideFilter:
+      $ref: ./clinic/models/tide/filter.v1.yaml
     TidePatient:
       $ref: ./clinic/models/tide/patient.v1.yaml
     TideResultPatient:

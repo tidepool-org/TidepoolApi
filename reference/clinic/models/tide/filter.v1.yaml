@@ -1,0 +1,25 @@
+type: object
+title: tidefilter.v1
+description: ''
+properties:
+  id:
+    type: string
+    readOnly: true
+    format: byte
+    x-go-json-ignore: true
+  field:
+    description: Name of the field to check
+    type: string
+    x-go-type: string
+    example: timeInTargetPercentDelta
+  comp:
+    description: Boolean comparison used when checking
+    type: string
+    x-go-type: string
+    x-go-name: Comparison
+    example: '>='
+  value:
+    description: Value used in comparison
+    type: number
+    x-go-type: float64
+    example: 0.5
