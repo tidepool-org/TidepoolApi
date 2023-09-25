@@ -1,0 +1,21 @@
+title: Default Redox destination ID and per-model overrides
+x-stoplight:
+  id: z6cjrz20e5mvu
+type: object
+properties:
+  flowsheet:
+    type: string
+    description: Destination ID override for Flowsheets
+    minLength: 1
+  results:
+    type: string
+    description: Destination ID override for Results
+    minLength: 1
+  notes:
+    type: string
+    description: Destination ID override for Notes
+    minLength: 1
+required:
+  - flowsheet
+  - results
+  - notes

@@ -1,0 +1,8 @@
+title: Bolus Delivery Context
+type: string
+enum:
+  - device
+  - algorithm
+  - remote
+  - undetermined
+  
