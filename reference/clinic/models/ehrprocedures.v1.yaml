@@ -9,6 +9,10 @@ properties:
     description: Procedure Code for Summary Statistics and PDF Reports subscription
   disableSummaryReports:
     type: string
+    minLength: 1
+  createAccount:
+    type: string
+    minLength: 1
 required:
   - enableSummaryReports
   - disableSummaryReports
