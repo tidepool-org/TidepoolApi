@@ -1,8 +1,0 @@
-description: >-
-  Image ID.
-  The id of an image.
-name: imageId
-in: path
-required: true
-schema:
-  $ref: '../models/id.v1.yaml'

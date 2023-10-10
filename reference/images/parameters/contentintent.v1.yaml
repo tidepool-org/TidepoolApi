@@ -1,8 +1,0 @@
-description: >-
-  Image Content Intent.
-  The intent for the content of an image.
-name: contentIntent
-in: path
-required: true
-schema:
-  $ref: '../models/contentintent.v1.yaml'

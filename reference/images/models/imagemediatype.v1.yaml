@@ -1,8 +1,0 @@
-title: MediaType
-description: The media type of an image.
-type: string
-pattern: '^\w+/[-+.\w]+$'
-enum:
-  - image/jpeg
-  - image/png
-example: 'image/jpeg'

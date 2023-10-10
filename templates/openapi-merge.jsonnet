@@ -90,15 +90,6 @@
       }
     },
     {
-      "inputFile": std.extVar('sourceFolder') + "images.v1.yaml",
-      "dispute": {
-        "suffix": "_images"
-      },
-      "operationSelection": {
-        "excludeTags": [ std.extVar('excludeTags') ]
-      }
-    },
-    {
       "inputFile": std.extVar('sourceFolder') + "message.v1.yaml",
       "dispute": {
         "suffix": "_message"

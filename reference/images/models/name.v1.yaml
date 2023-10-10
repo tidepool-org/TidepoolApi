@@ -1,7 +1,0 @@
-title: Image Name
-description: >-
-  A name for the image.
-type: string
-minLength: 1
-maxLength: 100
-example: 'Rover being funny!'
