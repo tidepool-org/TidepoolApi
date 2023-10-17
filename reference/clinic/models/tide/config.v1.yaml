@@ -1,0 +1,40 @@
+type: object
+title: tideconfig.v1
+description: ''
+properties:
+  schemaVersion:
+    description: TIDE schema version
+    type: number
+    x-go-type: int
+  clinicId:
+    $ref: ../clinicid.v1.yaml
+  period:
+    type: string
+    pattern: ^(1d|7d|14d|30d)$
+    example: 7d
+  lastUploadDateFrom:
+    type: string
+    format: date-time
+  lastUploadDateTo:
+    type: string
+    format: date-time
+  highGlucoseThreshold:
+    description: Threshold used for determining if a value is high
+    type: number
+    x-go-type: float64
+  veryHighGlucoseThreshold:
+    description: Threshold used for determining if a value is very high
+    type: number
+    x-go-type: float64
+  lowGlucoseThreshold:
+    description: Threshold used for determining if a value is low
+    type: number
+    x-go-type: float64
+  veryLowGlucoseThreshold:
+    description: Threshold used for determining if a value is very low
+    type: number
+    x-go-type: float64
+  tags:
+    $ref: ../patienttagids.v1.yaml
+  filters:
+    $ref: ./filters.v1.yaml

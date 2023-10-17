@@ -229,6 +229,52 @@ paths:
               $ref: '#/components/schemas/Clinician'
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/tide_report':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: View TIDE Report
+      description: Retrieve a report of patients with tags by TIDE categories
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TideResponse'
+      operationId: TideReport
+      parameters:
+        - schema:
+            type: string
+            pattern: ^(1d|7d|14d|30d)$
+            example: 7d
+          in: query
+          name: period
+          description: 'Time Period to display'
+        - schema:
+            type: array
+            items:
+              type: string
+              format: '^[a-f0-9]{24}$'
+          in: query
+          name: tags
+          description: Comma-separated list of patient tag IDs
+          style: form
+          explode: false
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: cgm.lastUploadDateFrom
+          description: Inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: cgm.lastUploadDateTo
+          description: Exclusive
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -263,6 +309,12 @@ paths:
           in: query
           name: period
           description: 'Time Period to display, filter, and sort'
+        - schema:
+            type: boolean
+          in: query
+          name: offsetPeriods
+          required: false
+          description: 'If we should display, filter, and sort based on the offset periods or default periods'
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
@@ -1586,6 +1638,10 @@ components:
           $ref: '#/components/schemas/Patients'
         meta:
           $ref: '#/components/schemas/Meta'
+    Tide:
+      $ref: ./clinic/models/tide.v1.yaml
+    TideResponse:
+      $ref: '#/components/schemas/Tide'
     UpdateUserDetails:
       title: UpdateUserDetails
       type: object
@@ -1600,18 +1656,28 @@ components:
       properties:
         attestationSubmitted:
           type: boolean
-    AverageGlucose:
-      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
+    PatientTagIds:
+      $ref: ./clinic/models/patienttagids.v1.yaml
+    TideConfig:
+      $ref: ./clinic/models/tide/config.v1.yaml
+    TideFilters:
+      $ref: ./clinic/models/tide/filters.v1.yaml
+    TidePatient:
+      $ref: ./clinic/models/tide/patient.v1.yaml
+    TideResultPatient:
+      $ref: ./clinic/models/tide/resultpatient.v1.yaml
+    TideResults:
+      $ref: ./clinic/models/tide/results.v1.yaml
     PatientBGMPeriod:
       $ref: ./summary/models/bgmperiod.v1.yaml
     PatientBGMPeriods:
-      $ref: ./clinic/models/summaries/bgmperiods.v1.yaml
+      $ref: ./summary/models/bgmperiods.v1.yaml
     PatientBGMStats:
       $ref: ./clinic/models/summaries/bgmstats.v1.yaml
     PatientCGMPeriod:
       $ref: ./summary/models/cgmperiod.v1.yaml
     PatientCGMPeriods:
-      $ref: ./clinic/models/summaries/cgmperiods.v1.yaml
+      $ref: ./summary/models/cgmperiods.v1.yaml
     PatientCGMStats:
       $ref: ./clinic/models/summaries/cgmstats.v1.yaml
     PatientSummaryConfig:

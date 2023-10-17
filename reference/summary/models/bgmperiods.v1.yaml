@@ -1,12 +1,5 @@
 type: object
 title: bgmperiods.v1
 description: 'A map to each supported BGM summary period'
-properties:
-  1d:
-    $ref: './bgmperiod.v1.yaml'
-  7d:
-    $ref: './bgmperiod.v1.yaml'
-  14d:
-    $ref: './bgmperiod.v1.yaml'
-  30d:
-    $ref: './bgmperiod.v1.yaml'
+additionalProperties:
+  $ref: './bgmperiod.v1.yaml'

@@ -11,4 +11,6 @@ properties:
     type: number
     x-go-type: int
   periods:
-    $ref: './bgmperiods.v1.yaml'
+    $ref: '../../../summary/models/bgmperiods.v1.yaml'
+  offsetPeriods:
+    $ref: '../../../summary/models/bgmperiods.v1.yaml'

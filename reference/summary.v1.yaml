@@ -75,8 +75,6 @@ components:
       $ref: './common/models/tidepooluserid.yaml'
     SummaryTypeSchema:
       $ref: './summary/models/summarytype.v1.yaml'
-    AverageGlucose:
-      $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
     BGMBucketData:
       $ref: './summary/models/bgmbucketdata.v1.yaml'
     BGMPeriod:

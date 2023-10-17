@@ -1,0 +1,15 @@
+type: object
+title: tideresults.v1
+description: ''
+required:
+  - timeInVeryLowPercent
+  - timeInLowPercent
+  - dropInTimeInTargetPercent
+  - timeInTargetPercent
+  - timeCGMUsePercent
+  - meetingTargets
+additionalProperties:
+  type: array
+  nullable: true
+  items:
+    $ref: ./resultpatient.v1.yaml

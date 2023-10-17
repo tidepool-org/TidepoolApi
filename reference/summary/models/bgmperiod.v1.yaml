@@ -2,10 +2,18 @@ type: object
 title: bgmperiod.v1
 description: 'Summary of a specific BGM time period (currently: 1d, 7d, 14d, 30d)'
 properties:
-  hasAverageGlucose:
+  hasAverageGlucoseMmol:
     type: boolean
-  averageGlucose:
-    $ref: '../../data/models/blood/glucose/glucosemmol.v1.yaml'
+  averageGlucoseMmol:
+    description: Average Glucose of records in this period
+    type: number
+    example: 5.5
+    x-go-type: float64
+  averageGlucoseMmolDelta:
+    description: Difference between the averageGlucose in this period and the other offset version
+    type: number
+    example: 2.5
+    x-go-type: float64
 
   hasTimeInTargetPercent:
     type: boolean
@@ -13,6 +21,11 @@ properties:
     description: Percentage of time spent in target glucose range
     type: number
     example: 0.35
+    x-go-type: float64
+  timeInTargetPercentDelta:
+    description: Difference between the timeInTargetPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
     x-go-type: float64
 
   hasTimeInTargetRecords:
@@ -22,6 +35,11 @@ properties:
     type: number
     example: 10
     x-go-type: int
+  timeInTargetRecordsDelta:
+    description: Difference between the timeInTargetRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
 
   hasTimeInHighPercent:
     type: boolean
@@ -29,6 +47,11 @@ properties:
     description: Percentage of time spent in high glucose range
     type: number
     example: 0.35
+    x-go-type: float64
+  timeInHighPercentDelta:
+    description: Difference between the timeInHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
     x-go-type: float64
 
   hasTimeInHighRecords:
@@ -38,6 +61,11 @@ properties:
     type: number
     example: 10
     x-go-type: int
+  timeInHighRecordsDelta:
+    description: Difference between the timeInHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
 
   hasTimeInVeryHighPercent:
     type: boolean
@@ -45,6 +73,11 @@ properties:
     description: Percentage of time spent in very high glucose range
     type: number
     example: 0.35
+    x-go-type: float64
+  timeInVeryHighPercentDelta:
+    description: Difference between the timeInVeryHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
     x-go-type: float64
 
   hasTimeInVeryHighRecords:
@@ -54,6 +87,11 @@ properties:
     type: number
     example: 10
     x-go-type: int
+  timeInVeryHighRecordsDelta:
+    description: Difference between the timeInVeryHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
 
   hasTimeInLowPercent:
     type: boolean
@@ -61,6 +99,11 @@ properties:
     description: Percentage of time spent in low glucose range
     type: number
     example: 0.35
+    x-go-type: float64
+  timeInLowPercentDelta:
+    description: Difference between the timeInLowPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
     x-go-type: float64
 
   hasTimeInLowRecords:
@@ -70,6 +113,11 @@ properties:
     type: number
     example: 10
     x-go-type: int
+  timeInLowRecordsDelta:
+    description: Difference between the timeInLowRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
 
   hasTimeInVeryLowPercent:
     type: boolean
@@ -77,6 +125,11 @@ properties:
     description: Percentage of time spent in very low glucose range
     type: number
     example: 0.35
+    x-go-type: float64
+  timeInVeryLowPercentDelta:
+    description: Difference between the timeInVeryLowPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
     x-go-type: float64
 
   hasTimeInVeryLowRecords:
@@ -86,11 +139,21 @@ properties:
     type: number
     example: 10
     x-go-type: int
+  timeInVeryLowRecordsDelta:
+    description: Difference between the timeInVeryLowRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
 
   hasTotalRecords:
     type: boolean
   totalRecords:
     description: Counter of records
+    type: number
+    example: 10
+    x-go-type: int
+  totalRecordsDelta:
+    description: Difference between the totalRecords in this period and version in the opposite offset
     type: number
     example: 10
     x-go-type: int
@@ -101,4 +164,9 @@ properties:
     description: Average daily readings
     type: number
     example: 3.5
+    x-go-type: float64
+  averageDailyRecordsDelta:
+    description: Difference between the averageDailyRecords in this period and version in the opposite offset
+    type: number
+    example: 2.5
     x-go-type: float64

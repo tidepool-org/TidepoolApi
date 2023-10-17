@@ -1,0 +1,56 @@
+type: object
+title: tideresultpatient.v1
+description: ''
+properties:
+  averageGlucoseMmol:
+    description: Average Glucose of records in this period
+    type: number
+    example: 5.5
+    x-go-type: float64
+  glucoseManagementIndicator:
+    type: number
+    x-go-type: float64
+    description: A derived value which emulates A1C
+    example: 7.5
+  timeInVeryLowPercent:
+    description: Percentage of time spent in very low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInLowPercent:
+    description: Percentage of time spent in low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInTargetPercentDelta:
+    description: Difference between the timeInTargetPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+  timeInHighPercent:
+    description: Percentage of time spent in high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInVeryHighPercent:
+    description: Percentage of time spent in very high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInTargetPercent:
+    description: Percentage of time spent in target glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeCGMUsePercent:
+    description: Percentage of time spent wearing a cgm
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeCGMUseMinutes:
+    description: Counter of minutes spent wearing a cgm
+    type: number
+    example: 200
+    x-go-type: int
+  patient:
+    $ref: ./patient.v1.yaml
