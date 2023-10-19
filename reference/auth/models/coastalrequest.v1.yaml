@@ -5,14 +5,10 @@ properties:
   rcInstanceId:
     type: string
     minLength: 1
-  rcHWVersions:
-    type: array
-    items:
-      type: string
-  rcSWVersions:
-    type: array
-    items:
-      type: string
+  rcHWVersion:
+    type: string
+  rcSWVersion:
+    type: string
   phdTypeId:
     type: string
     minLength: 1
