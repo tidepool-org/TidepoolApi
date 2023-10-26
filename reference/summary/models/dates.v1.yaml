@@ -7,6 +7,12 @@ properties:
     type: string
     format: date-time
 
+  lastUpdatedReason:
+    description: List of reasons the summary was updated for
+    type: array
+    items:
+      type: string
+
   hasFirstData:
     type: boolean
   firstData:
@@ -34,3 +40,14 @@ properties:
     description: Date of the first user upload after lastData, removed when calculated
     type: string
     format: date-time
+
+  outdatedSinceLimit:
+      description: Upper limit of the OutdatedSince value to prevent infinite queue duration
+      type: string
+      format: date-time
+
+  outdatedReason:
+    description: List of reasons the summary was marked outdated for
+    type: array
+    items:
+      type: string
