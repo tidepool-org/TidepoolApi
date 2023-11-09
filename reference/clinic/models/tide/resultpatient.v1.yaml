@@ -17,6 +17,11 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  timeInAnyLowPercent:
+    description: Percentage of time spent in any low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
   timeInLowPercent:
     description: Percentage of time spent in low glucose range
     type: number
@@ -37,6 +42,11 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  timeInAnyHighPercent:
+    description: Percentage of time spent in any high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
   timeInTargetPercent:
     description: Percentage of time spent in target glucose range
     type: number
@@ -54,3 +64,6 @@ properties:
     x-go-type: int
   patient:
     $ref: ./patient.v1.yaml
+
+required:
+  - patient

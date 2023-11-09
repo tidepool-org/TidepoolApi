@@ -222,3 +222,22 @@ properties:
     type: number
     example: 2.5
     x-go-type: float64
+
+required:
+  - hasAverageGlucoseMmol
+  - hasTimeInTargetPercent
+  - hasTimeInTargetRecords
+  - hasTimeInHighPercent
+  - hasTimeInHighRecords
+  - hasTimeInVeryHighPercent
+  - hasTimeInVeryHighRecords
+  - hasTimeInLowPercent
+  - hasTimeInLowRecords
+  - hasTimeInVeryLowPercent
+  - hasTimeInVeryLowRecords
+  - hasTimeInAnyLowPercent
+  - hasTimeInAnyLowRecords
+  - hasTimeInAnyHighPercent
+  - hasTimeInAnyHighRecords
+  - hasTotalRecords
+  - hasAverageDailyRecords

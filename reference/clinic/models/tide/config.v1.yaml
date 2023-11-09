@@ -38,3 +38,16 @@ properties:
     $ref: ../patienttagids.v1.yaml
   filters:
     $ref: ./filters.v1.yaml
+
+required:
+  - schemaVersion
+  - clinicId
+  - period
+  - lastUploadDateFrom
+  - lastUploadDateTo
+  - highGlucoseThreshold
+  - veryHighGlucoseThreshold
+  - lowGlucoseThreshold
+  - veryLowGlucoseThreshold
+  - tags
+  - filters

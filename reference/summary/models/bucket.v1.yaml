@@ -12,3 +12,7 @@ properties:
     oneOf:
       - $ref: './bgmbucketdata.v1.yaml'
       - $ref: './cgmbucketdata.v1.yaml'
+
+required:
+  - date
+  - lateRecordTime

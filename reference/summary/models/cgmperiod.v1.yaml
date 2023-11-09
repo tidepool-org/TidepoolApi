@@ -365,3 +365,33 @@ properties:
     type: number
     example: 2.5
     x-go-type: float64
+
+required:
+  - hasAverageGlucoseMmol
+  - hasGlucoseManagementIndicator
+  - hasTimeInTargetPercent
+  - hasTimeInTargetMinutes
+  - hasTimeInTargetRecords
+  - hasTimeInHighPercent
+  - hasTimeInHighMinutes
+  - hasTimeInHighRecords
+  - hasTimeInVeryHighPercent
+  - hasTimeInVeryHighMinutes
+  - hasTimeInVeryHighRecords
+  - hasTimeInLowPercent
+  - hasTimeInLowMinutes
+  - hasTimeInLowRecords
+  - hasTimeInVeryLowPercent
+  - hasTimeInVeryLowMinutes
+  - hasTimeInVeryLowRecords
+  - hasTimeInAnyLowPercent
+  - hasTimeInAnyLowMinutes
+  - hasTimeInAnyLowRecords
+  - hasTimeInAnyHighPercent
+  - hasTimeInAnyHighMinutes
+  - hasTimeInAnyHighRecords
+  - hasTimeCGMUsePercent
+  - hasTimeCGMUseMinutes
+  - hasTimeCGMUseRecords
+  - hasTotalRecords
+  - hasAverageDailyRecords

@@ -10,6 +10,5 @@ required:
   - meetingTargets
 additionalProperties:
   type: array
-  nullable: true
   items:
     $ref: ./resultpatient.v1.yaml

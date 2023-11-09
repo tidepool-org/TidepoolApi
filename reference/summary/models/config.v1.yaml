@@ -1,5 +1,6 @@
 type: object
 title: config.v1
+x-go-type-skip-optional-pointer: true
 description: 'Summary schema version and calculation configuration'
 properties:
   schemaVersion:
@@ -22,3 +23,10 @@ properties:
     description: Threshold used for determining if a value is very low
     type: number
     x-go-type: float64
+
+required:
+  - schemaVersion
+  - highGlucoseThreshold
+  - veryHighGlucoseThreshold
+  - lowGlucoseThreshold
+  - veryLowGlucoseThreshold

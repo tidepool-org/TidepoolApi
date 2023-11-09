@@ -2,9 +2,6 @@ type: object
 title: bgmbucketdata.v1
 description: 'Series of counters which represent one hour of a users data'
 properties:
-  date:
-    type: string
-    format: date-time
   lastRecordTime:
     type: string
     format: date-time
@@ -38,3 +35,11 @@ properties:
     x-go-type: float64
     description: Total value of all glucose records
     example: 1234.56
+
+required:
+  - targetRecords
+  - highRecords
+  - veryHighRecords
+  - lowRecords
+  - veryLowRecords
+  - totalGlucose

@@ -1,6 +1,5 @@
 type: array
 title: Patient Tag ID List
-nullable: true
 uniqueItems: true
 items:
   title: Patient Tag ID
