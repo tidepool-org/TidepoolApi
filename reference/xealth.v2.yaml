@@ -13518,11 +13518,11 @@ paths:
                             creation:
                               type: string
                               format: date-time
-                              example: 2020-07-29T21:02:04.000Z
+                              example: '2020-07-29T21:02:04.000Z'
                     date:
                       type: string
                       format: date-time
-                      example: 2020-07-29T21:02:04.000Z
+                      example: '2020-07-29T21:02:04.000Z'
                     context:
                       type: object
                       related:
@@ -13624,7 +13624,7 @@ paths:
                               creation:
                                 type: string
                                 format: date-time
-                                example: 2020-07-29T21:02:04.000Z
+                                example: '2020-07-29T21:02:04.000Z'
                     date:
                       type: string
                       example: '2021-06-11T04:44:16Z'
@@ -24331,6 +24331,7 @@ components:
                 - body
       required:
         - message
+      title: ''
     PartnerCreateOrderRequest:
       type: object
       properties:
@@ -31143,11 +31144,11 @@ components:
                 creation:
                   type: string
                   format: date-time
-                  example: 2020-07-29T21:02:04.000Z
+                  example: '2020-07-29T21:02:04.000Z'
         date:
           type: string
           format: date-time
-          example: 2020-07-29T21:02:04.000Z
+          example: '2020-07-29T21:02:04.000Z'
         context:
           type: object
           related:
@@ -31249,10 +31250,169 @@ components:
                   creation:
                     type: string
                     format: date-time
-                    example: 2020-07-29T21:02:04.000Z
+                    example: '2020-07-29T21:02:04.000Z'
         date:
           type: string
           example: '2021-06-11T04:44:16Z'
+    PreorderFormRequest:
+      title: PreorderFormRequest
+      x-stoplight:
+        id: xzd2lkszpfpr3
+      type: object
+      oneOf:
+        - type: object
+          title: Initial Preorder Call
+          properties:
+            eventType:
+              type: string
+              enum:
+                - preorder
+              description: Indicates the type of event related to the notification
+              example: preorder
+            eventContext:
+              type: string
+              enum:
+                - initial
+              description: Indicates the reason for the event notification
+              example: initial
+            deployment:
+              type: string
+              description: The Xealth-defined ID of the Health System
+              example: healthsystem_001
+            programId:
+              type: string
+              description: Xealth-generated value that identifies the digital content
+              example: awesome_program_001
+            patientIdentity:
+              $ref: '#/components/schemas/PatientIdentity'
+            datasets:
+              $ref: '#/components/schemas/GeneralDatasets'
+          required:
+            - patientIdentity
+            - eventType
+            - eventContext
+            - deployment
+            - programId
+        - type: object
+          title: Subsequent Preorder Call
+          properties:
+            eventType:
+              type: string
+              enum:
+                - preorder
+              description: Indicates the type of event related to the notification
+              example: preorder
+            eventContext:
+              type: string
+              enum:
+                - subsequent
+              description: Indicates the reason for the event notification
+              example: subsequent
+            deployment:
+              type: string
+              description: The Xealth-defined ID of the Health System
+              example: healthsystem_001
+            programId:
+              type: string
+              description: Xealth-generated value that identifies the digital content
+              example: awesome_program_001
+            patientIdentity:
+              $ref: '#/components/schemas/PatientIdentity'
+            datasets:
+              $ref: '#/components/schemas/GeneralDatasets'
+            formData:
+              description: Detail information related to user interaction with preorder form
+              type: object
+              properties:
+                dataTrackingId:
+                  type: string
+                  description: Subscriber-supplied unique identifier used in preorder workflow
+                  example: 84487b5c-4569-4b51-a5a0-73150bb2be58
+                formId:
+                  type: string
+                  description: Subscriber-supplied value identifying preorder form
+                  example: form_verify_patient_email
+                canceled:
+                  type: boolean
+                  description: Indicates preorder workflow was canceled by the user
+                  example: true
+                userInput:
+                  type: object
+                  description: User-entered values for preorder form fields
+                  example:
+                    email: bob2@company.com
+                    firstName: Bob
+              required:
+                - dataTrackingId
+          required:
+            - patientIdentity
+            - eventType
+            - eventContext
+            - deployment
+            - programId
+            - formData
+      x-tags:
+        - Webhooks
+    PreorderFormResponse:
+      title: PreorderFormResponse
+      x-stoplight:
+        id: 5je371i5auoqg
+      type: object
+      oneOf:
+        - type: object
+          title: Form Response
+          properties:
+            dataTrackingId:
+              type: string
+              description: Subscriber-supplied unique identifier used in preorder workflow
+              example: 84487b5c-4569-4b51-a5a0-73150bb2be58
+            notOrderable:
+              type: boolean
+              description: 'If true, removes submit button from preorder form and prevents user from continuing preorder workflow'
+              example: true
+            preorderFormInfo:
+              description: 'Subscriber-defined preorder form based on [React Json Schema Forms](https://github.com/rjsf-team/react-jsonschema-form). Subscribers can build and test forms [here](https://rjsf-team.github.io/react-jsonschema-form/)'
+              type: object
+              properties:
+                formId:
+                  type: string
+                  description: Subscriber-supplied value identifying preorder form
+                  example: form_verify_patient_email
+                formSchema:
+                  type: object
+                  description: JSON schema of preorder form
+                  example:
+                    title: Verify Patient Contact Info
+                    description: A simple preorder form for capturing email address and first name
+                    type: object
+                    required:
+                      - email
+                    properties:
+                      email:
+                        type: string
+                        title: email
+                      firstName:
+                        type: string
+                        title: first name
+                uiSchema:
+                  type: object
+                  description: Used to add more customization to the form's look and feel
+                  example: {}
+                formData:
+                  type: object
+                  description: Used to prefill a form with existing data
+                  example:
+                    email: bob@company.com
+              required:
+                - formSchema
+          required:
+            - dataTrackingId
+            - preorderFormInfo
+        - type: object
+          title: Done Response
+          example: {}
+      x-tags:
+        - Webhooks
   parameters:
     deployment:
       description: The Xealth-defined ID of the Health System
@@ -31575,21 +31735,21 @@ components:
                 creation:
                   type: string
                   format: date-time
-                  example: 2020-07-29T21:02:04.000Z
+                  example: '2020-07-29T21:02:04.000Z'
         date:
           type: string
           format: date-time
-          example: 2020-07-29T21:02:04.000Z
+          example: '2020-07-29T21:02:04.000Z'
         context:
           type: object
           related:
             reference:
               - ServiceRequest/652d1aaa-b9c2-4c29-aa68-a5487f8b78f3
-# This can be added to the base openapi file once openapi tools are compatible with v3.1.0
 webhooks:
   eventNotification:
     post:
-      tags: [Event Notification]
+      tags:
+        - Event Notification
       description: |
         <img src="xealth_api_2.0_event_notification.svg"/>
 
@@ -31601,13 +31761,15 @@ webhooks:
       requestBody:
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/EventNotification'}
+            schema:
+              $ref: '#/components/schemas/EventNotification'
       responses:
-        200:
+        '200':
           description: Return a 200 status to indicate that the data was received successfully
   preorder:
     post:
-      tags: [Digital Care]
+      tags:
+        - Digital Care
       description: |
         The Preorder endpoint can be invoked when a care provider attempts to place an order manually within the EHR. Subscribers can use Preorder Forms to present additional information to, or receive input from, a care provider before an order can be placed. Preorder Forms can also be implemented so as to prevent an order from being placed entirely.
         <br><br>
@@ -31773,22 +31935,63 @@ webhooks:
                 - type: object
                   title: Initial Preorder Call
                   properties:
-                    eventType: {type: string, enum: [preorder], description: Indicates the type of event related to the notification, example: preorder}
-                    eventContext: {type: string, enum: [initial], description: Indicates the reason for the event notification, example: initial}
-                    deployment: {type: string, description: The Xealth-defined ID of the Health System, example: healthsystem_001}
-                    programId: {type: string, description: Xealth-generated value that identifies the digital content, example: awesome_program_001}
-                    patientIdentity: {$ref: '#/components/schemas/PatientIdentity'}
-                    datasets: {$ref: '#/components/schemas/GeneralDatasets'}
-                  required: [patientIdentity, eventType, eventContext, deployment, programId]
+                    eventType:
+                      type: string
+                      enum:
+                        - preorder
+                      description: Indicates the type of event related to the notification
+                      example: preorder
+                    eventContext:
+                      type: string
+                      enum:
+                        - initial
+                      description: Indicates the reason for the event notification
+                      example: initial
+                    deployment:
+                      type: string
+                      description: The Xealth-defined ID of the Health System
+                      example: healthsystem_001
+                    programId:
+                      type: string
+                      description: Xealth-generated value that identifies the digital content
+                      example: awesome_program_001
+                    patientIdentity:
+                      $ref: '#/components/schemas/PatientIdentity'
+                    datasets:
+                      $ref: '#/components/schemas/GeneralDatasets'
+                  required:
+                    - patientIdentity
+                    - eventType
+                    - eventContext
+                    - deployment
+                    - programId
                 - type: object
                   title: Subsequent Preorder Call
                   properties:
-                    eventType: {type: string, enum: [preorder], description: Indicates the type of event related to the notification, example: preorder}
-                    eventContext: {type: string, enum: [subsequent], description: Indicates the reason for the event notification, example: subsequent}
-                    deployment: {type: string, description: The Xealth-defined ID of the Health System, example: healthsystem_001}
-                    programId: {type: string, description: Xealth-generated value that identifies the digital content, example: awesome_program_001}
-                    patientIdentity: {$ref: '#/components/schemas/PatientIdentity'}
-                    datasets: {$ref: '#/components/schemas/GeneralDatasets'}
+                    eventType:
+                      type: string
+                      enum:
+                        - preorder
+                      description: Indicates the type of event related to the notification
+                      example: preorder
+                    eventContext:
+                      type: string
+                      enum:
+                        - subsequent
+                      description: Indicates the reason for the event notification
+                      example: subsequent
+                    deployment:
+                      type: string
+                      description: The Xealth-defined ID of the Health System
+                      example: healthsystem_001
+                    programId:
+                      type: string
+                      description: Xealth-generated value that identifies the digital content
+                      example: awesome_program_001
+                    patientIdentity:
+                      $ref: '#/components/schemas/PatientIdentity'
+                    datasets:
+                      $ref: '#/components/schemas/GeneralDatasets'
                     formData:
                       description: Detail information related to user interaction with preorder form
                       type: object
@@ -31811,10 +32014,17 @@ webhooks:
                           example:
                             email: bob2@company.com
                             firstName: Bob
-                      required: [dataTrackingId]
-                  required: [patientIdentity, eventType, eventContext, deployment, programId, formData]
+                      required:
+                        - dataTrackingId
+                  required:
+                    - patientIdentity
+                    - eventType
+                    - eventContext
+                    - deployment
+                    - programId
+                    - formData
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
@@ -31828,10 +32038,10 @@ webhooks:
                         example: 84487b5c-4569-4b51-a5a0-73150bb2be58
                       notOrderable:
                         type: boolean
-                        description: If true, removes submit button from preorder form and prevents user from continuing preorder workflow
+                        description: 'If true, removes submit button from preorder form and prevents user from continuing preorder workflow'
                         example: true
                       preorderFormInfo:
-                        description: Subscriber-defined preorder form based on [React Json Schema Forms](https://github.com/rjsf-team/react-jsonschema-form). Subscribers can build and test forms [here](https://rjsf-team.github.io/react-jsonschema-form/)
+                        description: 'Subscriber-defined preorder form based on [React Json Schema Forms](https://github.com/rjsf-team/react-jsonschema-form). Subscribers can build and test forms [here](https://rjsf-team.github.io/react-jsonschema-form/)'
                         type: object
                         properties:
                           formId:
@@ -31845,7 +32055,8 @@ webhooks:
                               title: Verify Patient Contact Info
                               description: A simple preorder form for capturing email address and first name
                               type: object
-                              required: [email]
+                              required:
+                                - email
                               properties:
                                 email:
                                   type: string
@@ -31862,14 +32073,18 @@ webhooks:
                             description: Used to prefill a form with existing data
                             example:
                               email: bob@company.com
-                        required: [formSchema]
-                    required: [dataTrackingId, preorderFormInfo]
+                        required:
+                          - formSchema
+                    required:
+                      - dataTrackingId
+                      - preorderFormInfo
                   - type: object
                     title: Done Response
                     example: {}
   getPrograms:
     put:
-      tags: [Digital Care]
+      tags:
+        - Digital Care
       description: |
         The GetPrograms endpoint can be invoked when a care provider navigates to the Monitor View inside of Digital Care for a given patient. The Monitor View side to Digital Care allows for care providers to review the patient’s current state of enrollment within the programs that have been ordered from a Subscriber.
         The GetPrograms request is made by Xealth to discover if the Subscriber has any data available for a given patient. The call occurs whenever Monitor View is accessed and if either of the following has occurred:
@@ -31916,15 +32131,41 @@ webhooks:
               type: object
               description: Detail information related to notification event
               properties:
-                eventType: {type: string, enum: [getPrograms], description: Indicates the type of event related to the notification, example: getPrograms}
-                eventContext: {type: string, enum: [initial], description: Indicates the reason for the event notification, example: initial}
-                deployment: {type: string, description: The Xealth-defined ID of the Health System, example: healthsystem_001}
-                patientIdentity: {$ref: '#/components/schemas/PatientIdentity'}
-                ehrView: {type: string, enum: [encounter, other], description: Indicates how the workflow is accessed by the EHR, example: encounter}
-                datasets: {$ref: '#/components/schemas/GeneralDatasets'}
-              required: [patientIdentity, eventType, eventContext, deployment, ehrView]
+                eventType:
+                  type: string
+                  enum:
+                    - getPrograms
+                  description: Indicates the type of event related to the notification
+                  example: getPrograms
+                eventContext:
+                  type: string
+                  enum:
+                    - initial
+                  description: Indicates the reason for the event notification
+                  example: initial
+                deployment:
+                  type: string
+                  description: The Xealth-defined ID of the Health System
+                  example: healthsystem_001
+                patientIdentity:
+                  $ref: '#/components/schemas/PatientIdentity'
+                ehrView:
+                  type: string
+                  enum:
+                    - encounter
+                    - other
+                  description: Indicates how the workflow is accessed by the EHR
+                  example: encounter
+                datasets:
+                  $ref: '#/components/schemas/GeneralDatasets'
+              required:
+                - patientIdentity
+                - eventType
+                - eventContext
+                - deployment
+                - ehrView
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
@@ -31945,7 +32186,7 @@ webhooks:
                             programId:
                               type: string
                               description: Subscriber-defined identifier for the program
-                              example: "100"
+                              example: '100'
                             status:
                               type: string
                               description: Patient's current enrollment status in the program
@@ -31953,7 +32194,7 @@ webhooks:
                             enrolledDate:
                               type: string
                               description: Date when the patient was enrolled into this program. (Format is YYYY-MM-DD)
-                              example: 2021-10-31
+                              example: '2021-10-31'
                             title:
                               type: string
                               description: Title of the enrolled program
@@ -31964,14 +32205,18 @@ webhooks:
                               example: Screening tool for various forms of cancer
                             has_alert:
                               type: boolean
-                              description: Indicates if new information is available for this patient. If true, Xealth will highlight the program in Monitor view to alert the user
+                              description: 'Indicates if new information is available for this patient. If true, Xealth will highlight the program in Monitor view to alert the user'
                               example: false
                             hasStatusView:
                               type: boolean
                               description: Indicates whether or not a subscriber dashboard exists for this patient. Setting this field to false will disable the ability for getProgramUrl request to be made for this program
                               example: true
-                        required: [enrolledDate, title]
-                    required: [present, programs]
+                        required:
+                          - enrolledDate
+                          - title
+                    required:
+                      - present
+                      - programs
                   - type: object
                     title: Programs Not Present
                     properties:
@@ -31979,10 +32224,12 @@ webhooks:
                         type: boolean
                         description: Indicates if any programs are present for the patient
                         default: false
-                    required: [present]
+                    required:
+                      - present
   getProgramUrl:
     put:
-      tags: [Digital Care]
+      tags:
+        - Digital Care
       description: |
         Xealth will call the GetProgramUrl endpoint for Subscribers whose patients have a dashboard and will display the content within an iFrame based on the URL provided by the Subscriber. The GetProgramUrl endpoint can be invoked only from within a GetPrograms Tile within the Monitor View section inside of Digital Care.
         <br><br>
@@ -32020,16 +32267,46 @@ webhooks:
               type: object
               description: Detail information related to notification event
               properties:
-                eventType: {type: string, enum: [getProgramUrl], description: Indicates the type of event related to the notification, example: getProgramUrl}
-                eventContext: {type: string, enum: [initial], description: Indicates the reason for the event notification, example: initial}
-                deployment: {type: string, description: The Xealth-defined ID of the Health System, example: healthsystem_001}
-                patientIdentity: {$ref: '#/components/schemas/PatientIdentity'}
-                ehrView: {type: string, enum: [encounter, other], description: Indicates how the workflow is accessed by the EHR, example: encounter}
-                datasets: {$ref: '#/components/schemas/GeneralDatasets'}
-                programId: {type: string, description: Subscriber-defined identifier for the program, example: "100"}
-              required: [patientIdentity, eventType, eventContext, deployment, ehrView, programId]
+                eventType:
+                  type: string
+                  enum:
+                    - getProgramUrl
+                  description: Indicates the type of event related to the notification
+                  example: getProgramUrl
+                eventContext:
+                  type: string
+                  enum:
+                    - initial
+                  description: Indicates the reason for the event notification
+                  example: initial
+                deployment:
+                  type: string
+                  description: The Xealth-defined ID of the Health System
+                  example: healthsystem_001
+                patientIdentity:
+                  $ref: '#/components/schemas/PatientIdentity'
+                ehrView:
+                  type: string
+                  enum:
+                    - encounter
+                    - other
+                  description: Indicates how the workflow is accessed by the EHR
+                  example: encounter
+                datasets:
+                  $ref: '#/components/schemas/GeneralDatasets'
+                programId:
+                  type: string
+                  description: Subscriber-defined identifier for the program
+                  example: '100'
+              required:
+                - patientIdentity
+                - eventType
+                - eventContext
+                - deployment
+                - ehrView
+                - programId
       responses:
-        200:
+        '200':
           content:
             application/json:
               schema:
@@ -32038,5 +32315,6 @@ webhooks:
                   url:
                     type: string
                     description: The URL that will be displayed in the EHR to render the patient's dashboard and/or digital content
-                    example: https://go.here.com
-                required: [url]
+                    example: 'https://go.here.com'
+                required:
+                  - url
