@@ -1584,6 +1584,29 @@ paths:
         The Preorder endpoint can be invoked when a care provider attempts to place an order manually within the EHR. Subscribers can use Preorder Forms to present additional information to, or receive input from, a care provider before an order can be placed. Preorder Forms can also be implemented so as to prevent an order from being placed entirely.
 
         https://sandbox.xealth.io/app/api-docs#tag/Digital-Care/paths/preorder/post
+  /v1/xealth/programs:
+    put:
+      summary: Get Programs
+      operationId: XealthGetPrograms
+      responses:
+        '200':
+          description: OK
+  /v1/xealth/program:
+    put:
+      summary: Get Program Url
+      operationId: XelathGetProgramUrl
+      responses:
+        '200':
+          description: OK
+      description: ''
+  /v1/xealth/notification:
+    post:
+      summary: Notification Webhook
+      operationId: XealthNotification
+      responses:
+        '200':
+          description: OK
+      description: ''
 components:
   schemas:
     Error:
