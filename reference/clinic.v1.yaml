@@ -1530,6 +1530,44 @@ paths:
         - Internal
       x-internal: true
       parameters: []
+  /v1/patients:
+    get:
+      summary: Find Patients
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientClinicRelationships'
+      operationId: FindPatients
+      description: Returns all patients to which the clinician has access to
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: mrn
+        - schema:
+            type: string
+          in: query
+          name: birthDate
+        - schema:
+            type: string
+          in: query
+          name: workspaceId
+          description: The identifier of the workspace
+        - schema:
+            type: string
+            enum:
+              - clinicId
+              - ehrSourceId
+          in: query
+          name: workspaceIdType
+          description: The type of the workspace identifier
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
 components:
   schemas:
     Error:
