@@ -14,3 +14,9 @@ properties:
     minLength: 1
   tags:
     $ref: ../patienttagids.v1.yaml
+
+required:
+  - id
+  - email
+  - fullName
+  - tags

@@ -14,3 +14,10 @@ properties:
     oneOf:
       - $ref: './cgmstats.v1.yaml'
       - $ref: './bgmstats.v1.yaml'
+  updateWithoutChangeCount:
+    type: number
+    example: 5
+    x-go-type: int
+
+required:
+  - updateWithoutChangeCount

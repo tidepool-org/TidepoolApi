@@ -14,3 +14,6 @@ properties:
     $ref: '../../../summary/models/cgmperiods.v1.yaml'
   offsetPeriods:
     $ref: '../../../summary/models/cgmperiods.v1.yaml'
+
+required:
+  - totalHours

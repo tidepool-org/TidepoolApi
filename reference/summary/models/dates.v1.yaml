@@ -1,5 +1,6 @@
 type: object
 title: dates.v1
+x-go-type-skip-optional-pointer: true
 description: 'dates tracked for summary calculation'
 properties:
   lastUpdatedDate:
@@ -51,3 +52,9 @@ properties:
     type: array
     items:
       type: string
+
+required:
+  - hasFirstData
+  - hasLastData
+  - hasLastUploadDate
+  - hasOutdatedSince

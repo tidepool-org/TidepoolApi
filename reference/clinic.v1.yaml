@@ -334,6 +334,13 @@ paths:
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
+          name: cgm.timeInAnyLowPercent
+          description: Percentage of time below 70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
           name: cgm.timeInLowPercent
           description: Percentage of time in range 54-70 mg/dL
         - schema:
@@ -359,6 +366,13 @@ paths:
           description: Percentage of time above 250 mg/dL
         - schema:
             type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: cgm.timeInAnyHighPercent
+          description: Percentage of time above 180 mg/dL
+        - schema:
+            type: string
             pattern: ^(>=|>|<=|<)\d+$
             example: '>=42'
           in: query
@@ -371,6 +385,13 @@ paths:
           in: query
           name: cgm.timeInVeryLowRecords
           description: Records below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d+$
+            example: '>=42'
+          in: query
+          name: cgm.timeInAnyLowRecords
+          description: Records below 70 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d+$
@@ -399,6 +420,13 @@ paths:
           in: query
           name: cgm.timeInVeryHighRecords
           description: Records above 250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d+$
+            example: '>=42'
+          in: query
+          name: cgm.timeInAnyHighRecords
+          description: Records above 180 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d+$
@@ -437,6 +465,13 @@ paths:
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
+          name: bgm.timeInAnyLowPercent
+          description: Percentage of time below 70 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
           name: bgm.timeInLowPercent
           description: Percentage of time in range 54-70 mg/dL
         - schema:
@@ -462,11 +497,25 @@ paths:
           description: Percentage of time above 250 mg/dL
         - schema:
             type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=0.7'
+          in: query
+          name: bgm.timeInAnyHighPercent
+          description: Percentage of time above 180 mg/dL
+        - schema:
+            type: string
             pattern: ^(>=|>|<=|<)\d+$
             example: '>=42'
           in: query
           name: bgm.timeInVeryLowRecords
           description: Records below 54 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d+$
+            example: '>=42'
+          in: query
+          name: bgm.timeInAnyLowRecords
+          description: Records below 70 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d+$
@@ -495,6 +544,13 @@ paths:
           in: query
           name: bgm.timeInVeryHighRecords
           description: Records above 250 mg/dL
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d+$
+            example: '>=42'
+          in: query
+          name: bgm.timeInAnyHighRecords
+          description: Records above 180 mg/dL
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d+$

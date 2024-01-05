@@ -2,52 +2,52 @@ type: object
 title: cgmbucketdata.v1
 description: 'Series of counters which represent one hour of a users data'
 properties:
-  timeInTargetMinutes:
+  targetMinutes:
     description: Counter of minutes spent in target glucose range
     type: number
     example: 200
     x-go-type: int
-  timeInTargetRecords:
+  targetRecords:
     description: Counter of records in target glucose range
     type: number
     example: 10
     x-go-type: int
-  timeInHighMinutes:
+  highMinutes:
     description: Counter of minutes spent in high glucose range
     type: number
     example: 200
     x-go-type: int
-  timeInHighRecords:
+  highRecords:
     description: Counter of records in high glucose range
     type: number
     example: 10
     x-go-type: int
-  timeInVeryHighMinutes:
+  veryHighMinutes:
     description: Counter of minutes spent in very high glucose range
     type: number
     example: 200
     x-go-type: int
-  timeInVeryHighRecords:
+  veryHighRecords:
     description: Counter of records in very high glucose range
     type: number
     example: 10
     x-go-type: int
-  timeInLowMinutes:
+  lowMinutes:
     description: Counter of minutes spent in low glucose range
     type: number
     example: 200
     x-go-type: int
-  timeInLowRecords:
+  lowRecords:
     description: Counter of records in low glucose range
     type: number
     example: 10
     x-go-type: int
-  timeInVeryLowMinutes:
+  veryLowMinutes:
     description: Counter of minutes spent in very low glucose range
     type: number
     example: 200
     x-go-type: int
-  timeInVeryLowRecords:
+  veryLowRecords:
     description: Counter of records in very low glucose range
     type: number
     example: 10
@@ -57,13 +57,28 @@ properties:
     x-go-type: float64
     description: Total value of all glucose records
     example: 1234.56
-  timeCGMUseMinutes:
+  totalMinutes:
     description: Counter of minutes using a cgm
     type: number
     example: 200
     x-go-type: int
-  timeCGMUseRecords:
-    description: Counter of records wearing a cgm
+  totalRecords:
+    description: Counter of records using a cgm
     type: number
     example: 10
     x-go-type: int
+
+required:
+  - targetMinutes
+  - targetRecords
+  - highMinutes
+  - highRecords
+  - highMinutes
+  - highRecords
+  - lowMinutes
+  - lowRecords
+  - veryLowMinutes
+  - veryLowRecords
+  - totalGlucose
+  - totalMinutes
+  - totalRecords

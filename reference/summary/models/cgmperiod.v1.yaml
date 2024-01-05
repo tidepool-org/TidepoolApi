@@ -145,6 +145,45 @@ properties:
     example: 5
     x-go-type: int
 
+  hasTimeInAnyHighPercent:
+    type: boolean
+  timeInAnyHighPercent:
+    description: Percentage of time spent in Any high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInAnyHighPercentDelta:
+    description: Difference between the timeInAnyHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInAnyHighMinutes:
+    type: boolean
+  timeInAnyHighMinutes:
+    description: Counter of minutes spent in Any high glucose range
+    type: number
+    example: 200
+    x-go-type: int
+  timeInAnyHighMinutesDelta:
+    description: Difference between the timeInAnyHighMinutes in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInAnyHighRecords:
+    type: boolean
+  timeInAnyHighRecords:
+    description: Counter of records in Any high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInAnyHighRecordsDelta:
+    description: Difference between the timeInAnyHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
   hasTimeInLowPercent:
     type: boolean
   timeInLowPercent:
@@ -222,6 +261,45 @@ properties:
     type: number
     example: 5
     x-go-type: int
+    
+  hasTimeInAnyLowPercent:
+    type: boolean
+  timeInAnyLowPercent:
+    description: Percentage of time spent in Any low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInAnyLowPercentDelta:
+    description: Difference between the timeInAnyLowPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInAnyLowMinutes:
+    type: boolean
+  timeInAnyLowMinutes:
+    description: Counter of minutes spent in Any low glucose range
+    type: number
+    example: 200
+    x-go-type: int
+  timeInAnyLowMinutesDelta:
+    description: Difference between the timeInAnyLowMinutes in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInAnyLowRecords:
+    type: boolean
+  timeInAnyLowRecords:
+    description: Counter of records in Any low glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInAnyLowRecordsDelta:
+    description: Difference between the timeInAnyLowRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
 
   hasTimeCGMUsePercent:
     type: boolean
@@ -287,3 +365,33 @@ properties:
     type: number
     example: 2.5
     x-go-type: float64
+
+required:
+  - hasAverageGlucoseMmol
+  - hasGlucoseManagementIndicator
+  - hasTimeInTargetPercent
+  - hasTimeInTargetMinutes
+  - hasTimeInTargetRecords
+  - hasTimeInHighPercent
+  - hasTimeInHighMinutes
+  - hasTimeInHighRecords
+  - hasTimeInVeryHighPercent
+  - hasTimeInVeryHighMinutes
+  - hasTimeInVeryHighRecords
+  - hasTimeInLowPercent
+  - hasTimeInLowMinutes
+  - hasTimeInLowRecords
+  - hasTimeInVeryLowPercent
+  - hasTimeInVeryLowMinutes
+  - hasTimeInVeryLowRecords
+  - hasTimeInAnyLowPercent
+  - hasTimeInAnyLowMinutes
+  - hasTimeInAnyLowRecords
+  - hasTimeInAnyHighPercent
+  - hasTimeInAnyHighMinutes
+  - hasTimeInAnyHighRecords
+  - hasTimeCGMUsePercent
+  - hasTimeCGMUseMinutes
+  - hasTimeCGMUseRecords
+  - hasTotalRecords
+  - hasAverageDailyRecords
