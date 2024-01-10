@@ -73,8 +73,8 @@ required:
   - targetRecords
   - highMinutes
   - highRecords
-  - highMinutes
-  - highRecords
+  - veryHighMinutes
+  - veryHighRecords
   - lowMinutes
   - lowRecords
   - veryLowMinutes
