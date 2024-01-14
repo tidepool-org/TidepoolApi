@@ -1560,21 +1560,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientCount'
-    put:
-      operationId: UpdatePatientCount
-      summary: Update Patient Count
-      description: Update Patient Count
-      tags:
-        - Clinics
-        - Internal
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatientCount'
-      responses:
-        '200':
-          description: OK
   '/v1/clinics/{clinicId}/ehr/sync':
     parameters:
       - $ref: '#/components/parameters/clinicId'
