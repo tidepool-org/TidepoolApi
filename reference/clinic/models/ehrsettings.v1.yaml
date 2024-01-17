@@ -14,8 +14,21 @@ properties:
     $ref: ./ehrdestinations.v1.yaml
   procedureCodes:
     $ref: ./ehrprocedures.v1.yaml
+  mrnIdType:
+    type: string
+    x-stoplight:
+      id: x74orwp43yu91
+    minLength: 1
+  provider:
+    type: string
+    x-stoplight:
+      id: z31vhe9hbaqrn
+    enum:
+      - xealth
+      - redox
 required:
   - enabled
   - sourceId
-  - destinationIds
   - procedureCodes
+  - mrnIdType
+  - provider

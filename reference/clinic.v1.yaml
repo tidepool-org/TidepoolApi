@@ -1594,7 +1594,7 @@ paths:
   /v1/xealth/program:
     put:
       summary: Get Program Url
-      operationId: XelathGetProgramUrl
+      operationId: XealthGetProgramUrl
       responses:
         '200':
           description: OK
