@@ -722,6 +722,28 @@ paths:
       security:
         - serverToken: []
 
+  '/auth/v1/users/{userId}/device_tokens':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.yaml'
+    post:
+      operationId: CreateDeviceTokenForUser
+      summary: Post Device Token
+      description: >-
+        Stores a token used to send notifications to a device such as a mobile phone.
+      requestBody:
+        $ref: '#/components/requestBodies/DeviceToken'
+      responses:
+        '200':
+          description: 200 OK
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+      security:
+        - sessionToken: []
+      tags:
+        - Internal
+
 components:
   securitySchemes:
     basicAuth:
@@ -784,6 +806,14 @@ components:
         'application/json':
           schema:
             $ref: './auth/models/providers/updatesession.v1.yaml'
+
+    DeviceToken:
+      description: 'Device token used for sending push notifications to a mobile device.'
+      content:
+        'application/json':
+          schema:
+            oneOf:
+              - $ref: './auth/models/devicetoken-apple.v1.yaml'
 
   responses:
     User:
