@@ -722,7 +722,7 @@ paths:
       security:
         - serverToken: []
 
-  '/auth/v1/users/{userId}/device_tokens':
+  '/v1/users/{userId}/device_tokens':
     parameters:
       - $ref: './common/parameters/tidepooluserid.yaml'
     post:
