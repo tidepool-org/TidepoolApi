@@ -886,6 +886,11 @@ paths:
       tags:
         - Clinics
         - Confirmations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcceptPatientInvitation'
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1716,6 +1721,20 @@ components:
           $ref: '#/components/schemas/TidepoolUserId'
         attestationSubmitted:
           type: boolean
+        fullName:
+          type: string
+          description: The full name of the patient
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        tags:
+          $ref: '#/components/schemas/PatientTagIds'
     AssociateClinicianToUser:
       title: Associate Clinician
       type: object
@@ -1921,6 +1940,26 @@ components:
         - dataModel
         - eventType
         - documentId
+    AcceptPatientInvitation:
+      title: AcceptPatientInvitation
+      x-stoplight:
+        id: vo0jck92hztsj
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: The full name of the patient
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        tags:
+          $ref: '#/components/schemas/PatientTagIds'
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
