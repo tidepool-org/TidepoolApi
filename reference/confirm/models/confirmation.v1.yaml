@@ -21,6 +21,8 @@ properties:
     type: string
   restrictions:
     $ref: ./restrictions.v1.yaml
+  expiresAt:
+    $ref: ./expiresAt.v1.yaml
 required:
   - key
   - type
