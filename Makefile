@@ -137,7 +137,7 @@ NPM_PKG_SPECS = \
 	@apidevtools/swagger-cli@^4.0.4 \
 	@openapi-contrib/json-schema-to-openapi-schema@^2.2.5 \
 	@redocly/cli@^1.0.0-rc.3 \
-	@stoplight/cli@^6.0.1280 \
+	@stoplight/cli@^6.0.2101 \
 	@stoplight/spectral-cli@^6.8.0 \
 	markdown-link-check@3.11.x \
 	markdownlint-cli@^0.33.0 \
