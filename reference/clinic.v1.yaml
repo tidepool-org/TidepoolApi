@@ -1616,7 +1616,9 @@ paths:
     get:
       summary: View PDF Report
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: ViewPDFReport
       description: View PDF report for a given patient of a clinic
       parameters:
