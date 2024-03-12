@@ -26,5 +26,5 @@ case $1 in
 	dir=${1?:directory is required}
 	token=${2?:token is required}
 	# find $1 -maxdepth 1 \( \( -type l -and -iname '*.yaml' \) -or -iname 'openapi*.json' \) -print -delete
-	trace stoplight push --verbose --directory "$dir" --ci-token "$token"
+	trace stoplight push --directory "$dir" --ci-token "$token"
 esac
