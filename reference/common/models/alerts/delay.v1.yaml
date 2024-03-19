@@ -1,0 +1,10 @@
+# intended as a mix-in to build complete alert specs
+type: object
+properties:
+  delay:
+    type: integer
+    default: 0
+    minimum: 0
+    maximum: 120
+    description: >-
+      Duration in minutes to wait before alerting.

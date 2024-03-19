@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: Alerts API
+  version: '1.0'
+  description: |-
+    The Tidepool API is an HTTP REST API used by Tidepool clients to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
+  termsOfService: https://developer.tidepool.org/terms-of-use/
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/hydrophone/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/hydrophone
+
+servers:
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+
+security:
+  - sessionToken: []
+
+tags:
+  - name: Alerts
+    description: >-
+      Endpoints related to alert configuration and management.
+
+paths:
+  /v1/users/{userId}/followers/{followerUserId}/alerts:
+    parameters:
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/followerUserId'
+
+    delete:
+      summary: Delete an alerts configuration
+      description: >-
+        Delete an existing alerts configuration.
+      operationId: DeleteAlertsConfiguration
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Alerts
+
+    get:
+      summary: Get an alerts configuration
+      description: >-
+        Retrieve an existing alerts configuration.
+      operationId: GetAlertsConfiguration
+      responses:
+        '200':
+          $ref: '#/components/responses/AlertsConfig'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Alerts
+
+    post:
+      summary: Create or update an alerts configuration
+      description: >-
+        Create or update an alerts configuration.
+
+        If no alerts configuration exists, it will be created.
+      operationId: UpsertAlertsConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './common/models/alertsconfig.v1.yaml'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Alerts
+
+
+components:
+  securitySchemes:
+    sessionToken:
+      $ref: ./common/security/tidepoolsessiontoken.v1.yaml
+
+  responses:
+    OK:
+      description: 'OK'
+
+    BadRequest:
+      description: 'Bad Request'
+
+    Unauthorized:
+      description: 'Unauthorized'
+
+    Forbidden:
+      description: 'Forbidden'
+
+    NotFound:
+      description: 'Not Found'
+
+    ServerError:
+      description: 'Server Error'
+
+    AlertsConfig:
+      description: Alerts Config
+      content:
+        'application/json':
+          schema:
+            $ref: './common/models/alertsconfig.v1.yaml'
+
+  parameters:
+    userId:
+      name: userId
+      description: >-
+        Tidepool User ID of the user who granted follow access.
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/tidepoolUserId'
+
+
+    followerUserId:
+      name: followerUserId
+      description: >-
+        Tidepool User ID of the care partner to receive alerts.
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/tidepoolUserId'
+
+  schemas:
+    tidepoolUserId:
+      $ref: './common/models/tidepooluserid.yaml'
