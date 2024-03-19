@@ -1,0 +1,9 @@
+title: Patient Count Settings
+type: object
+properties:
+  hardLimit:
+    description: The hard limit for the clinic patient count where new patients cannot be created
+    $ref: './patientcountlimit.v1.yaml'
+  softLimit:
+    description: The soft limit for the clinic patient count where new patients may still be created
+    $ref: './patientcountlimit.v1.yaml'

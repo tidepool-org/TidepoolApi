@@ -1,0 +1,9 @@
+title: Patient Count
+type: object
+properties:
+  patientCount:
+    description: The patient count for a clinic
+    type: integer
+    minimum: 0
+required:
+  - patientCount
