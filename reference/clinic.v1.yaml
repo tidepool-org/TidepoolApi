@@ -252,7 +252,7 @@ paths:
             example: 7d
           in: query
           name: period
-          description: 'Time Period to display'
+          description: Time Period to display
         - schema:
             type: array
             items:
@@ -886,6 +886,11 @@ paths:
       tags:
         - Clinics
         - Confirmations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcceptPatientInvitation'
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1616,6 +1621,71 @@ paths:
           description: The type of the workspace identifier
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+  /v1/xealth/preorder:
+    parameters: []
+    post:
+      summary: Preorder Form Webhook
+      operationId: XealthPreorder
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      description: |-
+        The Preorder endpoint can be invoked when a care provider attempts to place an order manually within the EHR. Subscribers can use Preorder Forms to present additional information to, or receive input from, a care provider before an order can be placed. Preorder Forms can also be implemented so as to prevent an order from being placed entirely.
+
+        https://sandbox.xealth.io/app/api-docs#tag/Digital-Care/paths/preorder/post
+  /v1/xealth/programs:
+    put:
+      summary: Get Programs
+      operationId: XealthGetPrograms
+      responses:
+        '200':
+          description: OK
+  /v1/xealth/program:
+    put:
+      summary: Get Program Url
+      operationId: XealthGetProgramUrl
+      responses:
+        '200':
+          description: OK
+      description: ''
+  /v1/xealth/notification:
+    post:
+      summary: Notification Webhook
+      operationId: XealthNotification
+      responses:
+        '200':
+          description: OK
+      description: ''
+  /v1/xealth/report/web/viewer.html:
+    get:
+      summary: View PDF Report
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: ViewPDFReport
+      description: View PDF report for a given patient of a clinic
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: clinicId
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: patientId
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: restricted_token
+          required: true
+    parameters: []
 components:
   schemas:
     Error:
@@ -1701,6 +1771,20 @@ components:
           $ref: '#/components/schemas/TidepoolUserId'
         attestationSubmitted:
           type: boolean
+        fullName:
+          type: string
+          description: The full name of the patient
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        tags:
+          $ref: '#/components/schemas/PatientTagIds'
     AssociateClinicianToUser:
       title: Associate Clinician
       type: object
@@ -1912,6 +1996,26 @@ components:
         - dataModel
         - eventType
         - documentId
+    AcceptPatientInvitation:
+      title: AcceptPatientInvitation
+      x-stoplight:
+        id: vo0jck92hztsj
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: The full name of the patient
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        tags:
+          $ref: '#/components/schemas/PatientTagIds'
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token

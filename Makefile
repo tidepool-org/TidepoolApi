@@ -130,13 +130,16 @@ NPM_TOOLS = \
 	$(NPM_BIN)/stoplight \
 	$(NPM_BIN)/swagger-cli
 
+# TODO: update markdown-link-check version. Right now there's a bug in
+# 3.12.x. 3.11.2 is the latest version before 3.12.x. See
+# https://github.com/tcort/markdown-link-check/issues/304
 NPM_PKG_SPECS = \
 	@apidevtools/swagger-cli@^4.0.4 \
 	@openapi-contrib/json-schema-to-openapi-schema@^2.2.5 \
 	@redocly/cli@^1.0.0-rc.3 \
 	@stoplight/cli@^6.0.1280 \
 	@stoplight/spectral-cli@^6.8.0 \
-	markdown-link-check@^3.10.3 \
+	markdown-link-check@3.11.x \
 	markdownlint-cli@^0.33.0 \
 	openapi-merge-cli@1.3.1
 

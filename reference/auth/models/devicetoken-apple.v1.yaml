@@ -1,0 +1,25 @@
+title: Apple Device Token
+description: >-
+  An opaque token used to send push notifications to an Apple-branded device.
+type: object
+required:
+  - apple
+properties:
+  apple:
+    type: object
+    properties:
+      token:
+        description: >-
+          Base64-encoded opaque blob of data, as received from Apple.
+        type: string
+        maxLength: 8192
+      environment:
+        description: >-
+          The Apple-defined environment determines which server URLs to communicate with.
+        type: string
+        enum:
+          - production
+          - sandbox
+    required:
+      - token
+      - environment
