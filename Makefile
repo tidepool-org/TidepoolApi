@@ -139,7 +139,7 @@ NPM_PKG_SPECS = \
 	@redocly/cli@^1.0.0-rc.3 \
 	@stoplight/cli@^6.0.1280 \
 	@stoplight/spectral-cli@^6.8.0 \
-	markdown-link-check@3.11.x \
+	markdown-link-check@3.11.2 \
 	markdownlint-cli@^0.33.0 \
 	openapi-merge-cli@1.3.1
 
