@@ -1,30 +1,16 @@
 name: check-and-publish
 
 on:
-  workflow_dispatch:
   push:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - closed
+    branches:
+      - master
 
 jobs:
   check:
     uses: ./.github/workflows/check.yml
     secrets: inherit
 
-  publish_preview:
-    if: github.event_name == 'pull_request'
-    needs: [ check ]
-    uses: ./.github/workflows/publish_preview.yml
-    secrets: inherit
-    with:
-      original_event_name: ${{ github.event_name }} 
-      original_event_action: ${{ github.event.action }} 
-
   publish:
     needs: [ check ]
-    uses: ./.github/workflows/publish.yml
+    uses: ./.github/workflows/deploy.yml
     secrets: inherit
