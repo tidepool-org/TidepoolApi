@@ -1,0 +1,34 @@
+# .github/workflows/publish_preview.yml
+name: Deploy PR previews
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '>=16'
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.19'
+      - name: Build docs
+        if: github.event.action != 'closed' # Skip build if the PR has been closed
+        run: |
+            make install_tools check_tools public_static_docs
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          custom-url: developer.tidepool.org
+          source-dir: ./build/public/reference/docs/
