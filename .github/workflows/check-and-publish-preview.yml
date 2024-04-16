@@ -10,6 +10,7 @@ on:
 
 jobs:
   check:
+    if: github.event.action != 'closed' # Skip if closing the PR
     uses: ./.github/workflows/check.yml
     secrets: inherit
 

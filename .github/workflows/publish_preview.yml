@@ -1,5 +1,5 @@
 # .github/workflows/publish_preview.yml
-name: publish_preview
+name: preview
 
 on:
   workflow_call:
@@ -14,7 +14,7 @@ on:
 concurrency: preview-${{ github.ref }}
 
 jobs:
-  deploy-preview:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
