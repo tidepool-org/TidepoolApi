@@ -268,6 +268,7 @@ $(PRIVATE_DOC_FOLDER): | $(PRIVATE_FOLDER)
 
 .PHONY: public_specs
 public_specs: $(PUBLIC_MERGED_SPEC)
+	find $(PUBLIC_SPEC_FOLDER) ! -name '$(MERGED_SPEC)' -type f -exec rm -f {} +
 
 $(PUBLIC_MERGED_SPEC): $(PUBLIC_SPECS) | $(PUBLIC_SPEC_FOLDER)
 	./scripts/merge_specs.sh $@ Internal
@@ -277,6 +278,7 @@ $(PUBLIC_SPECS): | $(PUBLIC_SPEC_FOLDER)
 
 .PHONY: private_specs
 private_specs: $(PRIVATE_MERGED_SPEC)
+	find $(PRIVATE_SPEC_FOLDER) ! -name '$(MERGED_SPEC)' -type f -exec rm -f {} +
 
 $(PRIVATE_MERGED_SPEC): $(PRIVATE_SPECS) | $(PRIVATE_SPEC_FOLDER)
 	./scripts/merge_specs.sh $@
