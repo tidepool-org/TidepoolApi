@@ -76,6 +76,17 @@ paths:
         username=user@example.com
         ```
 
+        ### Refresh Token
+
+        Access tokens are short-lived and are valid for up to 10 minutes. You should use the refresh token obtained previously and exchange it for a new access and refresh token pair. Always use the most recently obtained refresh token when making the request. 
+
+        ```
+        client_id=cgm-monitor
+        client_secret=c50e6502-131c-47f0-b439-a43acb3b83d0
+        grant_type=refresh_token
+        refresh_token=eyJhbGciOiJ...
+        ```
+
         ### Token Exchange Flow
 
         Trusted partners can use the token exchange flow to provision new users in Tidepool using an access or an ID token. The token exchange flow requires `grant_type` to be set to `urn:ietf:params:oauth:grant-type:token-exchange`. 
