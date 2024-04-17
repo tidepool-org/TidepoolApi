@@ -142,7 +142,9 @@ paths:
       security: []
       tags:
         - Users
+        - Internal
       deprecated: true
+      x-internal: true
     put:
       operationId: UpdateCurrentUser
       summary: Update Current User Account

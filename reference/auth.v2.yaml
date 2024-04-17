@@ -3,20 +3,7 @@ info:
   title: Authentication API
   version: '2.0'
   description: |
-    An OpenID Connect and OAuth2 compliant authentication API.
-
-    The authentication endpoints have a required realm `realm`  parameter. The following is the list of all available realms and the servers they are available on:
-
-    | Realm       | Server      |
-    | ----------- | ----------- |
-    | dev1        | Development |
-    | qa1         | QA          |
-    | qa2         | QA          |
-    | qa3         | QA          |
-    | qa4         | QA          |
-    | qa5         | QA          |
-    | integration | External    |
-    | tidepool    | Production  |
+    See the 'Authentication' for description of this API
   contact:
     url: 'https://support.tidepool.org/'
     email: support@tidepool.org
@@ -81,6 +68,13 @@ paths:
 
         This capability is not available to the general public - Tidepool's recommendation is to use the "Authorization Code" flow, which will authenticate the user in a browser session. When this is not feasible (e.g. for programmatic access) it is possible to use the "Password Credentials" grant which allows obtaining access and refresh tokens by providing a valid username and password to the `/token` endpoint. This functionality is enabled only for trusted partners.
 
+        ```
+        client_id=cgm-monitor
+        client_secret=c50e6502-131c-47f0-b439-a43acb3b83d0
+        grant_type=password
+        password=qwertyuiop1234
+        username=user@example.com
+        ```
 
         ### Token Exchange Flow
 
@@ -91,6 +85,16 @@ paths:
         An already existing user can be linked to the external identity provider by going through the standard authorization code flow by redirecting the user in a browser to the authorization endpoint. The external identity provider can be pre-selected by setting `kc_idp_hint` query parameter of the authorization request.
 
         A fresh access and/or refresh token can be issued for users which have an existing link to the external identity provider or were provisioned by this flow.
+
+        ```
+        client_id=cgm-monitor
+        client_secret=c50e6502-131c-47f0-b439-a43acb3b83d0
+        grant_type=urn:ietf:params:oauth:grant-type:token-exchange
+        requested_token_type=urn:ietf:params:oauth:token-type:access_token
+        subject_issuer=acme-clinic
+        subject_token=eyJhbGciOiJ...
+        subject_token_type=urn:ietf:params:oauth:token-type:access_token
+        ```
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -112,9 +116,9 @@ paths:
                   requested_token_type: 'urn:ietf:params:oauth:token-type:access_token'
                   subject_issuer: acme-clinic
                   subject_token: eyJhbGciOiJ...
-                  subject_token_type: urn:ietf:params:oauth:token-type:access_token
+                  subject_token_type: 'urn:ietf:params:oauth:token-type:access_token'
       tags:
-        - Authentication v2
+        - Authentication
   '/realms/{realm}/protocol/openid-connect/auth':
     servers:
       - url: 'https://auth.dev.tidepool.org'
@@ -190,7 +194,7 @@ paths:
           name: prompt
           description: Specifies whether the Authorization Server prompts the End-User for reauthentication and consent
       tags:
-        - Authentication v2
+        - Authentication
 components:
   schemas:
     TokenRequest:
@@ -337,6 +341,21 @@ components:
           - integration
           - tidepool
       description: 'The authentication realm. '
+  examples: {}
 tags:
   - name: Authentication
-    description: Login and Logout
+    description: |
+      An OpenID Connect and OAuth2 compliant authentication API.
+
+      The authentication endpoints have a required realm `realm`  parameter. The following is the list of all available realms and the servers they are available on:
+
+      | Realm       | Server      |
+      | ----------- | ----------- |
+      | dev1        | Development |
+      | qa1         | QA          |
+      | qa2         | QA          |
+      | qa3         | QA          |
+      | qa4         | QA          |
+      | qa5         | QA          |
+      | integration | External    |
+      | tidepool    | Production  |
