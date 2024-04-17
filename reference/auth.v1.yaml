@@ -6,16 +6,15 @@ info:
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
-  termsOfService: https://developer.tidepool.org/terms-of-use
+  termsOfService: 'https://developer.tidepool.org/terms-of-use'
   contact:
     name: API Support
-    url: https://support.tidepool.org/
+    url: 'https://support.tidepool.org/'
     email: support@tidepool.org
   license:
     name: BSD-2-Clause
-    url: https://github.com/tidepool-org/shoreline/blob/master/LICENSE
-  x-tidepool-service: https://github.com/tidepool-org/shoreline
-
+    url: 'https://github.com/tidepool-org/shoreline/blob/master/LICENSE'
+  x-tidepool-service: 'https://github.com/tidepool-org/shoreline'
 servers:
   - url: 'https://external.integration.tidepool.org'
     description: integration
@@ -27,26 +26,18 @@ servers:
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-
 tags:
   - name: Internal
-    description: >-
-      APIs intended for internal use by Tidepool.
-  - name: Authentication
-    description: >-
-      Login and logout.
+    description: APIs intended for internal use by Tidepool.
   - name: Users
-    description: >-
-      List and manage users.
-
+    description: List and manage users.
 paths:
-  '/auth/login':
+  /auth/login:
     post:
       operationId: CreateSessionToken
       summary: Create New Session Token
-      description: >-
+      description: |-
         **This API is deprecated and will be removed by end of 2023.**
-
         Creates a new session token.
       responses:
         '200':
@@ -63,13 +54,14 @@ paths:
         - basicAuth: []
       tags:
         - Authentication
+        - Internal
       deprecated: true
+      x-internal: true
     get:
       operationId: RefreshSessionToken
       summary: Refresh Session Token
-      description: >-
+      description: |-
         **This API is deprecated and will be removed by end of 2023.**
-
         Refreshes an existing session token.        
       responses:
         '200':
@@ -86,31 +78,30 @@ paths:
         - sessionToken: []
       tags:
         - Authentication
+        - Internal
       deprecated: true
-
-  '/auth/logout':
+      x-internal: true
+  /auth/logout:
     post:
       operationId: Logout
       summary: Logout
-      description: >-
+      description: |-
         **This API is deprecated and will be removed by end of 2023.**
-
-        Removes an existing session token.
-        Returns success even if the session token does not exist.
+        Removes an existing session token. Returns success even if the session token does not exist.
       responses:
         '200':
-          description: 'Success'
+          description: Success
       security: []
       tags:
         - Authentication
+        - Internal
       deprecated: true
-
-  '/auth/user':
+      x-internal: true
+  /auth/user:
     get:
       operationId: GetCurrentUserInfo
       summary: Get Current User
-      description: >-
-        Returns user account information for the logger-in user.
+      description: Returns user account information for the logger-in user.
       responses:
         '200':
           $ref: '#/components/responses/User'
@@ -127,15 +118,14 @@ paths:
     post:
       operationId: CreateNewUser
       summary: Create New User Account
-      description: >-
+      description: |-
         **This API is deprecated and will be removed by end of 2023.**
-
         Creates a new user account.
       requestBody:
         content:
-          'application/json':
+          application/json:
             schema:
-              $ref: './auth/models/newuser.v1.yaml'
+              $ref: ./auth/models/newuser.v1.yaml
       responses:
         '201':
           $ref: '#/components/responses/UserWithToken'
@@ -152,12 +142,13 @@ paths:
       security: []
       tags:
         - Users
+        - Internal
       deprecated: true
+      x-internal: true
     put:
       operationId: UpdateCurrentUser
       summary: Update Current User Account
-      description: >-
-        Updates user account details of the logged-in user.
+      description: Updates user account details of the logged-in user.
       requestBody:
         $ref: '#/components/requestBodies/UpdateUser'
       responses:
@@ -177,43 +168,39 @@ paths:
         - sessionToken: []
       tags:
         - Users
-
-  '/auth/users':
+  /auth/users:
     get:
       operationId: GetUsers
       summary: Get Users
-      description: >-
-        Returns user accounts that match either the `role` or one of the Tidepool User IDs listed in the `id` list.
-        The `role` and `id` parameters are mutually exclusive, and cannot be used together.
-        The `role` parameter can be optionally combined with the `createdFrom` and/or `createdTo` parameters to limit the results to user accounts created within those dates.
+      description: 'Returns user accounts that match either the `role` or one of the Tidepool User IDs listed in the `id` list. The `role` and `id` parameters are mutually exclusive, and cannot be used together. The `role` parameter can be optionally combined with the `createdFrom` and/or `createdTo` parameters to limit the results to user accounts created within those dates.'
       parameters:
         - name: role
           in: query
-          description: 'Filter users with the specific role'
+          description: Filter users with the specific role
           schema:
-            $ref: './auth/models/role.v1.yaml'
+            $ref: ./auth/models/role.v1.yaml
         - name: id
           in: query
-          description: 'Filter users with one or more Tidepool User IDs'
+          description: Filter users with one or more Tidepool User IDs
           style: form
           explode: false
           schema:
             type: array
             items:
-              $ref: './common/models/tidepooluserid.yaml'
+              $ref: ./common/models/tidepooluserid.yaml
             minItems: 1
             maxItems: 200
             uniqueItems: true
         - name: createdFrom
           in: query
-          description: 'Filter users created since specified date (inclusive)'
+          description: Filter users created since specified date (inclusive)
           schema:
-            $ref: './auth/models/date.v1.yaml'
+            $ref: ./auth/models/date.v1.yaml
         - name: createdTo
           in: query
-          description: 'Filter users created until specified date (inclusive)'
+          description: Filter users created until specified date (inclusive)
           schema:
-            $ref: './auth/models/date.v1.yaml'
+            $ref: ./auth/models/date.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/Users'
@@ -232,15 +219,13 @@ paths:
       tags:
         - Users
         - Internal
-
   '/auth/user/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: GetUserInfo
       summary: Get User
-      description: >-
-        Get information for the user identified by `userId`.
+      description: Get information for the user identified by `userId`.
       responses:
         '200':
           $ref: '#/components/responses/User'
@@ -259,8 +244,7 @@ paths:
     put:
       operationId: UpdateUser
       summary: Update User
-      description: >-
-        Updates the user identified by `userId`.
+      description: Updates the user identified by `userId`.
       requestBody:
         $ref: '#/components/requestBodies/UpdateUser'
       responses:
@@ -285,18 +269,15 @@ paths:
     delete:
       operationId: DeleteUser
       summary: Delete User
-      description: >-
-        Deletes the user identified by `userId`.
-        The request body must provide the current password of the account to be deleted,
-        unless the session token is a server token, or the account being deleted is a custodial account managed by the authenticated user.
+      description: 'Deletes the user identified by `userId`. The request body must provide the current password of the account to be deleted, unless the session token is a server token, or the account being deleted is a custodial account managed by the authenticated user.'
       requestBody:
         content:
-          'application/json':
+          application/json:
             schema:
-              $ref: './auth/models/deleteuser.v1.yaml'
+              $ref: ./auth/models/deleteuser.v1.yaml
       responses:
         '202':
-          description: 'Success'
+          description: Success
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -310,22 +291,18 @@ paths:
         - serverToken: []
       tags:
         - Users
-
   '/auth/user/{userId}/user':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     post:
       operationId: CreateCustodialUser
       summary: Create Custodial User
-      description: >-
-        Creates a custodial user, that is, a user that has no independent login (no username, no password).
-        The user identified by `userId` will be the `custodian` of this new custodial account.
-        It will be granted the `custodial` permission on the new custodial user account.
+      description: 'Creates a custodial user, that is, a user that has no independent login (no username, no password). The user identified by `userId` will be the `custodian` of this new custodial account. It will be granted the `custodial` permission on the new custodial user account.'
       requestBody:
         content:
-          'application/json':
+          application/json:
             schema:
-              $ref: './auth/models/newcustodialuser.v1.yaml'
+              $ref: ./auth/models/newcustodialuser.v1.yaml
       responses:
         '201':
           $ref: '#/components/responses/User'
@@ -341,7 +318,6 @@ paths:
         - sessionToken: []
       tags:
         - Users
-
   '/auth/login/{longtermkey}':
     parameters:
       - name: longtermkey
@@ -352,8 +328,7 @@ paths:
     post:
       operationId: LongTermLogin
       summary: Login with a long term key
-      description: >-
-        Creates a long-lived session token.
+      description: Creates a long-lived session token.
       responses:
         '200':
           $ref: '#/components/responses/UserWithToken'
@@ -369,15 +344,13 @@ paths:
       tags:
         - Authentication
         - Internal
-
-  '/auth/serverlogin':
+  /auth/serverlogin:
     post:
       operationId: ServerLogin
       summary: Server to Server Login
-      description: >-
-        Server-to-server login
+      description: Server-to-server login
       parameters:
-        - $ref: './auth/parameters/tidepoolservername.v1.yaml'
+        - $ref: ./auth/parameters/tidepoolservername.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/ServerToken'
@@ -392,13 +365,11 @@ paths:
         - Internal
       security:
         - serverSecret: []
-
-  '/auth/token':
+  /auth/token:
     get:
       operationId: CheckSessionToken
       summary: Check Session Token
-      description: >-
-        Checks the validity of a session token.
+      description: Checks the validity of a session token.
       responses:
         '200':
           $ref: '#/components/responses/TokenData'
@@ -409,20 +380,17 @@ paths:
         - Internal
       security:
         - sessionToken: []
-
   '/auth/token/{token}':
     parameters:
       - name: token
         in: path
         required: true
         schema:
-          $ref: './common/models/tidepoolsessiontoken.v1.yaml'
+          $ref: ./common/models/tidepoolsessiontoken.v1.yaml
     get:
       operationId: ServerCheckToken
       summary: Server Check Token
-      description: >-
-        Checks the validity of a server token, provided via the `X-Tidepool-Session-Token` header,
-        and then checks the validity of the session token provided via the `token` path parameter.
+      description: 'Checks the validity of a server token, provided via the `X-Tidepool-Session-Token` header, and then checks the validity of the session token provided via the `token` path parameter.'
       responses:
         '200':
           $ref: '#/components/responses/TokenData'
@@ -433,14 +401,11 @@ paths:
         - Internal
       security:
         - serverToken: []
-
-  '/v1/device_check/verify':
+  /v1/device_check/verify:
     get:
       operationId: VerifyDeviceToken
       summary: Verify Device Token
-      description: >-
-        Checks the validity of Apple's DeviceCheck token by calling Apple's server to verify it.
-        For more details, see Apple's [developer documentation](https://developer.apple.com/documentation/devicecheck).
+      description: 'Checks the validity of Apple''s DeviceCheck token by calling Apple''s server to verify it. For more details, see Apple''s [developer documentation](https://developer.apple.com/documentation/devicecheck).'
       requestBody:
         $ref: '#/components/requestBodies/VerifyDeviceToken'
       responses:
@@ -453,19 +418,16 @@ paths:
         - Internal
       security:
         - sessionToken: []
-
   '/v1/users/{userId}/restricted_tokens':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: ListUserRestrictedTokens
       summary: List All Restricted Tokens
-      description: >-
-        Lists all restricted tokens associated with the user `userId`.
-        The list can be optionally paginated.
+      description: Lists all restricted tokens associated with the user `userId`. The list can be optionally paginated.
       parameters:
-        - $ref: './common/parameters/paginationpage.v1.yaml'
-        - $ref: './common/parameters/paginationsize.v1.yaml'
+        - $ref: ./common/parameters/paginationpage.v1.yaml
+        - $ref: ./common/parameters/paginationsize.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/RestrictedTokens'
@@ -478,12 +440,10 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     post:
       operationId: CreateUserRestrictedToken
       summary: Create New Restricted Token
-      description: >-
-        Creates a new restricted token associated with the user `userId`.
+      description: Creates a new restricted token associated with the user `userId`.
       requestBody:
         $ref: '#/components/requestBodies/NewRestrictedToken'
       responses:
@@ -500,15 +460,13 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     delete:
       operationId: DeleteAllUserRestrictedTokens
       summary: Delete All Restricted Tokens
-      description: >-
-        Deletes all restricted tokens associated with the user `userId`.
+      description: Deletes all restricted tokens associated with the user `userId`.
       responses:
         '204':
-          description: 'Success'
+          description: Success
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -520,15 +478,13 @@ paths:
         - Internal
       security:
         - serverToken: []
-
   '/v1/restricted_tokens/{tokenId}':
     parameters:
-      - $ref: './auth/parameters/restricted/tokenid.v1.yaml'
+      - $ref: ./auth/parameters/restricted/tokenid.v1.yaml
     get:
       operationId: GetRestrictedToken
       summary: Get Restricted Token
-      description: >-
-        Returns the restricted token specified by the `tokenId`.
+      description: Returns the restricted token specified by the `tokenId`.
       responses:
         '200':
           $ref: '#/components/responses/RestrictedToken'
@@ -543,12 +499,10 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     put:
       operationId: UpdateRestrictedToken
       summary: Update Restricted Token
-      description: >-
-        Updates the restricted token specified by the `tokenId`.
+      description: Updates the restricted token specified by the `tokenId`.
       requestBody:
         $ref: '#/components/requestBodies/UpdateRestrictedToken'
       responses:
@@ -565,15 +519,13 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     delete:
       operationId: DeleteRestrictedToken
       summary: Delete Restricted Token
-      description: >-
-        Delete the restricted token specified by `tokenId`.
+      description: Delete the restricted token specified by `tokenId`.
       responses:
         '200':
-          description: 'Success'
+          description: Success
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -585,21 +537,18 @@ paths:
         - Internal
       security:
         - serverToken: []
-
   '/auth/v1/users/{userId}/provider_sessions':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: ListUserDataProviderSessions
       summary: List Data Provider Sessions
-      description: >-
-        Lists all data provider sessions associated with the user `userId`.
-        The list can be optionally paginated, and filtered by provider name and/or type.
+      description: 'Lists all data provider sessions associated with the user `userId`. The list can be optionally paginated, and filtered by provider name and/or type.'
       parameters:
-        - $ref: './common/parameters/paginationpage.v1.yaml'
-        - $ref: './common/parameters/paginationsize.v1.yaml'
-        - $ref: './auth/parameters/providers/name.v1.yaml'
-        - $ref: './auth/parameters/providers/type.v1.yaml'
+        - $ref: ./common/parameters/paginationpage.v1.yaml
+        - $ref: ./common/parameters/paginationsize.v1.yaml
+        - $ref: ./auth/parameters/providers/name.v1.yaml
+        - $ref: ./auth/parameters/providers/type.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/ProviderSessions'
@@ -614,12 +563,10 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     post:
       operationId: CreateUserDataProviderSession
       summary: Create New Data Provider Sessions
-      description: >-
-        Creates a new data provider session associated with the user `userId`.
+      description: Creates a new data provider session associated with the user `userId`.
       requestBody:
         $ref: '#/components/requestBodies/NewProviderSession'
       responses:
@@ -636,15 +583,13 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     delete:
       operationId: DeleteAllUserDataProviderSessions
       summary: Delete All Data Provider Sessions
-      description: >-
-        Deletes all data provider sessions associated with the user `userId`.
+      description: Deletes all data provider sessions associated with the user `userId`.
       responses:
         '204':
-          description: 'Success'
+          description: Success
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -656,15 +601,13 @@ paths:
         - Internal
       security:
         - serverToken: []
-
   '/auth/v1/provider_sessions/{sessionId}':
     parameters:
-      - $ref: './auth/parameters/providers/sessionid.v1.yaml'
+      - $ref: ./auth/parameters/providers/sessionid.v1.yaml
     get:
       operationId: GetUserDataProviderSession
       summary: Get Data Provider Session
-      description: >-
-        Returns the data provider session specified by the `sessionId`.
+      description: Returns the data provider session specified by the `sessionId`.
       responses:
         '200':
           $ref: '#/components/responses/ProviderSession'
@@ -679,12 +622,10 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     put:
       operationId: UpdateUserDataProviderSession
       summary: Update Data Provider Session
-      description: >-
-        Updates the data provider session specified by the `sessionId`.
+      description: Updates the data provider session specified by the `sessionId`.
       requestBody:
         $ref: '#/components/requestBodies/UpdateProviderSession'
       responses:
@@ -701,15 +642,13 @@ paths:
         - Internal
       security:
         - serverToken: []
-
     delete:
       operationId: DeleteUserDataProviderSession
       summary: Delete Data Provider Session
-      description: >-
-        Delete the data provider session specified by `sessionId`.
+      description: Delete the data provider session specified by `sessionId`.
       responses:
         '200':
-          description: 'Success'
+          description: Success
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -721,55 +660,47 @@ paths:
         - Internal
       security:
         - serverToken: []
-
   '/v1/users/{userId}/device_tokens':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     post:
       operationId: CreateDeviceTokenForUser
       summary: Post Device Token
-      description: >-
-        Stores a token used to send notifications to a device such as a mobile phone.
+      description: Stores a token used to send notifications to a device such as a mobile phone.
       requestBody:
         $ref: '#/components/requestBodies/DeviceToken'
       responses:
         '200':
           description: 200 OK
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
       security:
         - sessionToken: []
       tags:
         - Internal
-
 components:
   securitySchemes:
     basicAuth:
-      $ref: './common/security/basicauth.v1.yaml'
-
+      $ref: ./common/security/basicauth.v1.yaml
     sessionToken:
-      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
-
+      $ref: ./common/security/tidepoolsessiontoken.v1.yaml
     serverToken:
-      $ref: './common/security/tidepoolservertoken.v1.yaml'
-
+      $ref: ./common/security/tidepoolservertoken.v1.yaml
     serverSecret:
-      $ref: './common/security/tidepoolserversecret.v1.yaml'
-
+      $ref: ./common/security/tidepoolserversecret.v1.yaml
   requestBodies:
     UpdateUser:
-      description: 'Updated user details'
+      description: Updated user details
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/updateuser.v1.yaml'
-
+            $ref: ./auth/models/updateuser.v1.yaml
     VerifyDeviceToken:
-      description: 'Verify device token'
+      description: Verify device token
       content:
-        'application/json':
+        application/json:
           schema:
             type: object
             properties:
@@ -778,88 +709,77 @@ components:
                 minLength: 1
             required:
               - device_token
-
     NewRestrictedToken:
-      description: 'New restricted token'
+      description: New restricted token
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/restricted/newtoken.v1.yaml'
-
+            $ref: ./auth/models/restricted/newtoken.v1.yaml
     UpdateRestrictedToken:
-      description: 'Updated restricted token'
+      description: Updated restricted token
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/restricted/updatetoken.v1.yaml'
-
+            $ref: ./auth/models/restricted/updatetoken.v1.yaml
     NewProviderSession:
-      description: 'New provider session'
+      description: New provider session
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/providers/newsession.v1.yaml'
-
+            $ref: ./auth/models/providers/newsession.v1.yaml
     UpdateProviderSession:
-      description: 'Updated provider session'
+      description: Updated provider session
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/providers/updatesession.v1.yaml'
-
+            $ref: ./auth/models/providers/updatesession.v1.yaml
     DeviceToken:
-      description: 'Device token used for sending push notifications to a mobile device.'
+      description: Device token used for sending push notifications to a mobile device.
       content:
-        'application/json':
+        application/json:
           schema:
             oneOf:
-              - $ref: './auth/models/devicetoken-apple.v1.yaml'
-
+              - $ref: ./auth/models/devicetoken-apple.v1.yaml
   responses:
     User:
-      description: 'Tidepool User Account'
+      description: Tidepool User Account
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/user.v1.yaml'
-
+            $ref: ./auth/models/user.v1.yaml
     Users:
-      description: 'Tidepool User Accounts'
+      description: Tidepool User Accounts
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/users.v1.yaml'
-
+            $ref: ./auth/models/users.v1.yaml
     UserWithToken:
-      description: 'Tidepool User Account with Token'
+      description: Tidepool User Account with Token
       headers:
-        'X-Tidepool-Session-Token':
-          $ref: './common/headers/tidepoolsessiontoken.v1.yaml'
+        X-Tidepool-Session-Token:
+          $ref: ./common/headers/tidepoolsessiontoken.v1.yaml
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/user.v1.yaml'
-
+            $ref: ./auth/models/user.v1.yaml
     TokenData:
-      description: 'Token Data'
+      description: Token Data
       headers:
-        'X-Tidepool-Session-Token':
-          $ref: './common/headers/tidepoolsessiontoken.v1.yaml'
+        X-Tidepool-Session-Token:
+          $ref: ./common/headers/tidepoolsessiontoken.v1.yaml
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/tokendata.v1.yaml'
-
+            $ref: ./auth/models/tokendata.v1.yaml
     ServerToken:
-      description: 'Server Token'
+      description: Server Token
       headers:
-        'X-Tidepool-Session-Token':
-          $ref: './common/headers/tidepoolsessiontoken.v1.yaml'
-
+        X-Tidepool-Session-Token:
+          $ref: ./common/headers/tidepoolsessiontoken.v1.yaml
     DeviceTokenVerification:
-      description: 'Device token verification response'
+      description: Device token verification response
       content:
-        'application/json':
+        application/json:
           schema:
             type: object
             properties:
@@ -867,42 +787,37 @@ components:
                 type: boolean
             required:
               - valid
-
     RestrictedToken:
-      description: 'Restricted Token'
+      description: Restricted Token
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/restricted/token.v1.yaml'
-
+            $ref: ./auth/models/restricted/token.v1.yaml
     RestrictedTokens:
-      description: 'Restricted Tokens'
+      description: Restricted Tokens
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/restricted/tokens.v1.yaml'
-
+            $ref: ./auth/models/restricted/tokens.v1.yaml
     ProviderSession:
-      description: 'Provider Session'
+      description: Provider Session
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/providers/session.v1.yaml'
-
+            $ref: ./auth/models/providers/session.v1.yaml
     ProviderSessions:
-      description: 'Provider Sessions'
+      description: Provider Sessions
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './auth/models/providers/sessions.v1.yaml'
-
+            $ref: ./auth/models/providers/sessions.v1.yaml
     Unauthorized:
-      description: 'Unauthorized'
+      description: Unauthorized
       content:
-        'application/json':
+        application/json:
           schema:
             allOf:
-              - $ref: './auth/models/error.v1.yaml'
+              - $ref: ./auth/models/error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -920,14 +835,13 @@ components:
                 required:
                   - code
                   - reason
-
     BadRequest:
-      description: 'Bad Request'
+      description: Bad Request
       content:
-        'application/json':
+        application/json:
           schema:
             allOf:
-              - $ref: './auth/models/error.v1.yaml'
+              - $ref: ./auth/models/error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -944,14 +858,13 @@ components:
                 required:
                   - code
                   - reason
-
     Forbidden:
-      description: 'Forbidden'
+      description: Forbidden
       content:
-        'application/json':
+        application/json:
           schema:
             allOf:
-              - $ref: './auth/models/error.v1.yaml'
+              - $ref: ./auth/models/error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -965,14 +878,13 @@ components:
                 required:
                   - code
                   - reason
-
     NotFound:
-      description: 'Not Found'
+      description: Not Found
       content:
-        'application/json':
+        application/json:
           schema:
             allOf:
-              - $ref: './auth/models/error.v1.yaml'
+              - $ref: ./auth/models/error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -986,14 +898,13 @@ components:
                 required:
                   - code
                   - reason
-
     Conflict:
-      description: 'Conflict'
+      description: Conflict
       content:
-        'application/json':
+        application/json:
           schema:
             allOf:
-              - $ref: './auth/models/error.v1.yaml'
+              - $ref: ./auth/models/error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -1007,14 +918,13 @@ components:
                 required:
                   - code
                   - reason
-
     ServerError:
-      description: 'Server Error'
+      description: Server Error
       content:
-        'application/json':
+        application/json:
           schema:
             allOf:
-              - $ref: './auth/models/error.v1.yaml'
+              - $ref: ./auth/models/error.v1.yaml
               - type: object
                 properties:
                   code:
