@@ -96,7 +96,23 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/TokenRequest'
-        description: ''
+            examples:
+              Password Credentials Grant:
+                value:
+                  client_id: cgm-monitor
+                  client_secret: c50e6502-131c-47f0-b439-a43acb3b83d0
+                  grant_type: password
+                  password: qwertyuiop1234
+                  username: user@example.com
+              Token Exchange:
+                value:
+                  client_id: cgm-monitor
+                  client_secret: c50e6502-131c-47f0-b439-a43acb3b83d0
+                  grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange'
+                  requested_token_type: 'urn:ietf:params:oauth:token-type:access_token'
+                  subject_issuer: acme-clinic
+                  subject_token: eyJhbGciOiJ...
+                  subject_token_type: urn:ietf:params:oauth:token-type:access_token
       tags:
         - Authentication v2
   '/realms/{realm}/protocol/openid-connect/auth':
@@ -259,7 +275,7 @@ components:
           requested_token_type: 'urn:ietf:params:oauth:token-type:access_token'
           subject_issuer: acme-clinic
           subject_token: eyJhbGciOiJ...
-          subject_token_type: urn:ietf:params:oauth:token-type:access_token
+          subject_token_type: 'urn:ietf:params:oauth:token-type:access_token'
     TokenResponse:
       title: Token Response
       type: object
@@ -315,8 +331,12 @@ components:
           - dev1
           - qa1
           - qa2
+          - qa3
+          - qa4
+          - qa5
           - integration
           - tidepool
       description: 'The authentication realm. '
 tags:
   - name: Authentication
+    description: Login and Logout

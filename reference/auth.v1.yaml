@@ -29,8 +29,6 @@ servers:
 tags:
   - name: Internal
     description: APIs intended for internal use by Tidepool.
-  - name: Authentication
-    description: Login and logout.
   - name: Users
     description: List and manage users.
 paths:
