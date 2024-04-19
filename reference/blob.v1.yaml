@@ -49,7 +49,7 @@ tags:
       Create and list device logs.
 
 paths:
-  '/v1/users/{userId}/device-logs':
+  '/v1/users/{userId}/device_logs':
     parameters:
       - $ref: ./common/parameters/tidepooluserid.yaml
     post:
