@@ -1522,6 +1522,54 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MRNSettings'
+  '/v1/clinics/{clinicId}/settings/patient_count':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      operationId: GetPatientCountSettings
+      summary: Get Patient Count Settings
+      description: Get Patient Count settings
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientCountSettings'
+      x-internal: true
+    put:
+      operationId: UpdatePatientCountSettings
+      summary: Update Patient Count Settings
+      description: Update Patient Count Settings
+      tags:
+        - Clinics
+        - Internal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientCountSettings'
+      responses:
+        '200':
+          description: OK
+  '/v1/clinics/{clinicId}/patient_count':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      operationId: GetPatientCount
+      summary: Get Patient Count
+      description: Get Patient Count
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientCount'
   '/v1/clinics/{clinicId}/ehr/sync':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1938,6 +1986,12 @@ components:
         - settings
     MRNSettings:
       $ref: ./clinic/models/mrnsettings.v1.yaml
+    PatientCount:
+      $ref: ./clinic/models/patientcount.v1.yaml
+    PatientCountLimit:
+      $ref: ./clinic/models/patientcountlimit.v1.yaml
+    PatientCountSettings:
+      $ref: ./clinic/models/patientcountsettings.v1.yaml
     EHRDestinationIds:
       $ref: ./clinic/models/ehrdestinations.v1.yaml
     EHRProcedureCodes:
