@@ -44,6 +44,7 @@ SOURCE_DOCS = ${shell find $(DOC_FOLDER) -type f -iname '*.md' | sort}
 SOURCE_SPECS = ${shell find $(SPEC_FOLDER) -type f -iname '*.yaml' | fgrep -v -f .exclude_specs | sort}
 SOURCE_SPECS_TOP_LEVEL = ${shell find $(SPEC_FOLDER) -maxdepth 1 -type f -iname '*.yaml' | sort}
 MERGED_SPEC = combined.v1.yaml
+STATIC_DOCS = docs/index.html
 SOURCE_ASSETS = ${shell find $(ASSET_FOLDER) -type f -iname '*.png' | sort}
 TOOLS_BIN = tools/bin
 NPM_BIN = node_modules/.bin
@@ -61,6 +62,7 @@ PUBLIC_ASSET_FOLDER = $(PUBLIC_FOLDER)/$(ASSET_FOLDER)
 PUBLIC_TOC          = $(PUBLIC_FOLDER)/$(SOURCE_TOC)
 PUBLIC_SPECS        = ${subst $(SPEC_FOLDER),$(PUBLIC_SPEC_FOLDER),$(SOURCE_SPECS_TOP_LEVEL)}
 PUBLIC_MERGED_SPEC  = $(PUBLIC_SPEC_FOLDER)/$(MERGED_SPEC)
+PUBLIC_STATIC_DOCS  = $(PUBLIC_SPEC_FOLDER)/$(STATIC_DOCS)
 
 # private targets
 PRIVATE_DOC_FOLDER   = $(PRIVATE_FOLDER)/$(DOC_FOLDER)
@@ -139,7 +141,7 @@ NPM_PKG_SPECS = \
 	@redocly/cli@^1.0.0-rc.3 \
 	@stoplight/cli@^6.0.1280 \
 	@stoplight/spectral-cli@^6.8.0 \
-	markdown-link-check@3.11.x \
+	markdown-link-check@3.11.2 \
 	markdownlint-cli@^0.33.0 \
 	openapi-merge-cli@1.3.1
 
@@ -164,6 +166,7 @@ check_tools:
 	./scripts/merge_specs.sh --self-check
 	./scripts/publish.sh --self-check
 	./scripts/generate_clinic.sh --self-check
+	./scripts/generate_docs.sh --self-check
 
 .PHONY: check_env
 check_env: check_public_env check_private_env
@@ -283,6 +286,12 @@ $(PRIVATE_MERGED_SPEC): $(PRIVATE_SPECS) | $(PRIVATE_SPEC_FOLDER)
 
 $(PRIVATE_SPECS): | $(PRIVATE_SPEC_FOLDER)
 	./scripts/bundle_spec.sh ${abspath ${subst $(PRIVATE_SPEC_FOLDER),$(SPEC_FOLDER),$@}} $@
+
+.PHONY: public_static_docs
+public_static_docs: $(PUBLIC_STATIC_DOCS)
+
+$(PUBLIC_STATIC_DOCS): public_specs
+	./scripts/generate_docs.sh $(PUBLIC_MERGED_SPEC) $@
 
 .PHONY: public_assets
 public_assets: $(PUBLIC_ASSET_FOLDER)
