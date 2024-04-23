@@ -1658,6 +1658,24 @@ paths:
           required: true
       x-internal: true
     parameters: []
+  '/v1/clinics/{clinicId}/reports/merge':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Generate Clinic Merge Report
+      operationId: GenerateMergeReport
+      responses:
+        '200':
+          description: OK
+      description: Generates a spreadsheet report for merging two clinics
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateMergeReport'
+        description: ''
 components:
   schemas:
     Error:
@@ -1982,6 +2000,16 @@ components:
           minLength: 1
         tags:
           $ref: '#/components/schemas/PatientTagIds'
+    GenerateMergeReport:
+      title: GenerateMergeReport
+      x-stoplight:
+        id: 3oq18sasrzo0o
+      type: object
+      properties:
+        sourceId:
+          $ref: ./clinic/models/clinicid.v1.yaml
+      required:
+        - sourceId
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
