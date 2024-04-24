@@ -1706,6 +1706,25 @@ paths:
           required: true
       x-internal: true
     parameters: []
+  '/v1/clinics/{clinicId}/service_accounts':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Add Service Account
+      operationId: AddServiceAccount
+      responses:
+        '200':
+          description: OK
+      description: Adds authentication client's service account as a new clinician member.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddServiceAccount'
 components:
   schemas:
     Error:
@@ -2036,6 +2055,31 @@ components:
           minLength: 1
         tags:
           $ref: '#/components/schemas/PatientTagIds'
+    AddServiceAccount:
+      title: AddServiceAccount
+      x-stoplight:
+        id: 3c7ko800mld31
+      type: object
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: 3333gszyq3x79
+          minLength: 1
+        client_id:
+          type: string
+          x-stoplight:
+            id: kgfyaapmfjies
+          minLength: 1
+        client_secret:
+          type: string
+          x-stoplight:
+            id: 8jdosn0tlbqp5
+          minLength: 1
+      required:
+        - name
+        - client_id
+        - client_secret
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
