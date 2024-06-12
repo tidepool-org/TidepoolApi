@@ -1915,15 +1915,15 @@ components:
     TideResults:
       $ref: ./clinic/models/tide/results.v1.yaml
     PatientBGMPeriod:
-      $ref: ./summary/models/bgmperiod.v1.yaml
+      $ref: ./summary/models/bgm/bgmperiod.v1.yaml
     PatientBGMPeriods:
-      $ref: ./summary/models/bgmperiods.v1.yaml
+      $ref: ./summary/models/bgm/bgmperiods.v1.yaml
     PatientBGMStats:
       $ref: ./clinic/models/summaries/bgmstats.v1.yaml
     PatientCGMPeriod:
-      $ref: ./summary/models/cgmperiod.v1.yaml
+      $ref: ./summary/models/cgm/cgmperiod.v1.yaml
     PatientCGMPeriods:
-      $ref: ./summary/models/cgmperiods.v1.yaml
+      $ref: ./summary/models/cgm/cgmperiods.v1.yaml
     PatientCGMStats:
       $ref: ./clinic/models/summaries/cgmstats.v1.yaml
     PatientSummaryConfig:

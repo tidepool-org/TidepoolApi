@@ -11,9 +11,9 @@ properties:
     type: number
     x-go-type: int
   periods:
-    $ref: '../../../summary/models/bgmperiods.v1.yaml'
+    $ref: '../../../summary/models/bgm/bgmperiods.v1.yaml'
   offsetPeriods:
-    $ref: '../../../summary/models/bgmperiods.v1.yaml'
+    $ref: '../../../summary/models/bgm/bgmperiods.v1.yaml'
 
 required:
   - totalHours
