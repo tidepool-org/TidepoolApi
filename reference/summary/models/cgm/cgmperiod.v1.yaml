@@ -144,6 +144,45 @@ properties:
     type: number
     example: 5
     x-go-type: int
+  
+  hasTimeInExtremeHighPercent:
+    type: boolean
+  timeInExtremeHighPercent:
+    description: Percentage of time spent in extreme high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInExtremeHighPercentDelta:
+    description: Difference between the timeInExtremeHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInExtremeHighMinutes:
+    type: boolean
+  timeInExtremeHighMinutes:
+    description: Counter of minutes spent in extreme high glucose range
+    type: number
+    example: 200
+    x-go-type: int
+  timeInExtremeHighMinutesDelta:
+    description: Difference between the timeInExtremeHighMinutes in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInExtremeHighRecords:
+    type: boolean
+  timeInExtremeHighRecords:
+    description: Counter of records in extreme high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInExtremeHighRecordsDelta:
+    description: Difference between the timeInExtremeHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
 
   hasTimeInAnyHighPercent:
     type: boolean
@@ -366,6 +405,42 @@ properties:
     example: 2.5
     x-go-type: float64
 
+  standardDeviation:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  standardDeviationDelta:
+    type: number
+    example: 2.5
+    x-go-type: float64
+
+  coefficientOfVariation:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  coefficientOfVariationDelta:
+    type: number
+    example: 2.5
+    x-go-type: float64
+
+  hoursWithData:
+    type: number
+    example: 2
+    x-go-type: int
+  hoursWithDataDelta:
+    type: number
+    example: 2
+    x-go-type: int
+
+  daysWithData:
+    type: number
+    example: 2
+    x-go-type: int
+  daysWithDataDelta:
+    type: number
+    example: 2
+    x-go-type: int
+
 required:
   - hasAverageGlucoseMmol
   - hasGlucoseManagementIndicator
@@ -378,6 +453,9 @@ required:
   - hasTimeInVeryHighPercent
   - hasTimeInVeryHighMinutes
   - hasTimeInVeryHighRecords
+  - hasTimeInExtremeHighPercent
+  - hasTimeInExtremeHighMinutes
+  - hasTimeInExtremeHighRecords
   - hasTimeInLowPercent
   - hasTimeInLowMinutes
   - hasTimeInLowRecords
@@ -395,3 +473,11 @@ required:
   - hasTimeCGMUseRecords
   - hasTotalRecords
   - hasAverageDailyRecords
+  - standardDeviation
+  - standardDeviationDelta
+  - coefficientOfVariation
+  - coefficientOfVariationDelta
+  - hoursWithData
+  - hoursWithDataDelta
+  - daysWithData
+  - daysWithDataDelta
