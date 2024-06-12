@@ -1,8 +1,9 @@
 name: check-and-publish
 
 on:
-  workflow_dispatch:
   push:
+    branches:
+      - master
 
 jobs:
   check:
@@ -11,5 +12,5 @@ jobs:
 
   publish:
     needs: [ check ]
-    uses: ./.github/workflows/publish.yml
+    uses: ./.github/workflows/deploy.yml
     secrets: inherit

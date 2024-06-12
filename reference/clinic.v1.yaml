@@ -1401,7 +1401,9 @@ paths:
         '200':
           description: OK
       tags:
+        - Internal
         - Redox
+        - Clinics
       description: An endpoint for incoming Redox messages
       requestBody:
         content:
@@ -1409,6 +1411,7 @@ paths:
             schema:
               type: object
               properties: {}
+      x-internal: true
   /v1/redox/verify:
     post:
       summary: Redox Verify Endpoint
@@ -1417,8 +1420,9 @@ paths:
         '200':
           description: OK
       tags:
-        - Redox
         - Internal
+        - Redox
+        - Clinics
       x-internal: true
       description: Internal endpoint for Redox challenge verification
   '/v1/clinics/{clinicId}/settings/ehr':
@@ -1484,6 +1488,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/EHRMatchRequest'
+      x-internal: true
   '/v1/clinics/{clinicId}/settings/mrn':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1517,6 +1522,54 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MRNSettings'
+  '/v1/clinics/{clinicId}/settings/patient_count':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      operationId: GetPatientCountSettings
+      summary: Get Patient Count Settings
+      description: Get Patient Count settings
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientCountSettings'
+      x-internal: true
+    put:
+      operationId: UpdatePatientCountSettings
+      summary: Update Patient Count Settings
+      description: Update Patient Count Settings
+      tags:
+        - Clinics
+        - Internal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatientCountSettings'
+      responses:
+        '200':
+          description: OK
+  '/v1/clinics/{clinicId}/patient_count':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      operationId: GetPatientCount
+      summary: Get Patient Count
+      description: Get Patient Count
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientCount'
   '/v1/clinics/{clinicId}/ehr/sync':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1573,6 +1626,86 @@ paths:
           description: The type of the workspace identifier
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+  /v1/xealth/preorder:
+    parameters: []
+    post:
+      summary: Preorder Form Webhook
+      operationId: XealthPreorder
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      description: |-
+        The Preorder endpoint can be invoked when a care provider attempts to place an order manually within the EHR. Subscribers can use Preorder Forms to present additional information to, or receive input from, a care provider before an order can be placed. Preorder Forms can also be implemented so as to prevent an order from being placed entirely.
+
+        https://sandbox.xealth.io/app/api-docs#tag/Digital-Care/paths/preorder/post
+  /v1/xealth/programs:
+    put:
+      summary: Get Programs
+      operationId: XealthGetPrograms
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  /v1/xealth/program:
+    put:
+      summary: Get Program Url
+      operationId: XealthGetProgramUrl
+      responses:
+        '200':
+          description: OK
+      description: ''
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  /v1/xealth/notification:
+    post:
+      summary: Notification Webhook
+      operationId: XealthNotification
+      responses:
+        '200':
+          description: OK
+      description: ''
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  /v1/xealth/report/web/viewer.html:
+    get:
+      summary: View PDF Report
+      tags:
+        - Clinics
+        - Internal
+      responses:
+        '200':
+          description: OK
+      operationId: ViewPDFReport
+      description: View PDF report for a given patient of a clinic
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: clinicId
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: patientId
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: restricted_token
+          required: true
+      x-internal: true
+    parameters: []
 components:
   schemas:
     Error:
@@ -1853,6 +1986,12 @@ components:
         - settings
     MRNSettings:
       $ref: ./clinic/models/mrnsettings.v1.yaml
+    PatientCount:
+      $ref: ./clinic/models/patientcount.v1.yaml
+    PatientCountLimit:
+      $ref: ./clinic/models/patientcountlimit.v1.yaml
+    PatientCountSettings:
+      $ref: ./clinic/models/patientcountsettings.v1.yaml
     EHRDestinationIds:
       $ref: ./clinic/models/ehrdestinations.v1.yaml
     EHRProcedureCodes:

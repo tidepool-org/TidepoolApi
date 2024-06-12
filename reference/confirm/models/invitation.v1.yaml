@@ -16,6 +16,13 @@ properties:
       note: { }
       upload: { }
       view: { }
+  nickname:
+    description: A user-friendly name for the recipient of the invitation.
+    type: string
+    example: "Julia"
+  alertsConfig:
+    $ref: '../../common/models/alertsconfig.v1.yaml'
+
 required:
   - email
   - permissions

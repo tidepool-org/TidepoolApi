@@ -13,6 +13,7 @@ properties:
   createAccount:
     type: string
     minLength: 1
-required:
-  - enableSummaryReports
-  - disableSummaryReports
+  createAccountAndEnableReports:
+    type: string
+    x-stoplight:
+      id: nb3o2a7kkebar
