@@ -318,6 +318,20 @@ paths:
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=5'
+          in: query
+          name: cgm.averageGlucoseMmol
+          description: Average glucose value of records
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=6'
+          in: query
+          name: cgm.glucoseManagementIndicator
+          description: Glucose management Indicator of records
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.5'
           in: query
           name: cgm.timeCGMUsePercent
@@ -542,6 +556,13 @@ paths:
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=5'
+          in: query
+          name: bgm.averageGlucoseMmol
+          description: Average glucose value of records
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
             example: '>=0.7'
           in: query
           name: bgm.timeInVeryLowPercent
@@ -659,6 +680,20 @@ paths:
           name: bgm.totalRecords
           description: Total records in period
 
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=5'
+          in: query
+          name: cgm.averageGlucoseMmolDelta
+          description: Average glucose value of records
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=6'
+          in: query
+          name: cgm.glucoseManagementIndicatorDelta
+          description: Glucose management Indicator of records
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
@@ -896,6 +931,13 @@ paths:
           name: cgm.lastUploadDateTo
           description: Exclusive
 
+        - schema:
+            type: string
+            pattern: ^(>=|>|<=|<)\d\.\d\d?$
+            example: '>=5'
+          in: query
+          name: bgm.averageGlucoseMmolDelta
+          description: Average glucose value of records
         - schema:
             type: string
             pattern: ^(>=|>|<=|<)\d\.\d\d?$
