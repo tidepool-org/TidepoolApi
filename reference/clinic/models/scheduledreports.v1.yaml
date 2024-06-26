@@ -4,11 +4,19 @@ x-stoplight:
 type: object
 description: Scheduled Report Settings
 properties:
-  onUpload:
+  onUploadEnabled:
     type: boolean
     x-stoplight:
       id: ij8d2vhz49f0u
     description: |
       Send a PDF Report and a Flowsheet to Redox after a dataset is uploaded.
+  onUploadNoteEventType:
+    type: string
+    x-stoplight:
+      id: h02b819r2xdy0
+    enum:
+      - New
+      - Replace
+    default: New
 required:
-  - onUpload
+  - onUploadEnabled
