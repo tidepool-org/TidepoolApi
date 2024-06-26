@@ -31,6 +31,7 @@ paths:
                 - $ref: '#/components/schemas/NewFlowsheet'
                 - $ref: '#/components/schemas/NewNotes'
                 - $ref: '#/components/schemas/NewResults'
+                - $ref: '#/components/schemas/ReplaceNotes'
       description: |-
         Currently, this endpoint's only purpose is to reference Redox models so we can use them for code generation. The code generation tool emits models only if they are referenced in the API portion of the spec.
 
@@ -46,6 +47,8 @@ components:
       $ref: ./redox/notes/new.yaml
     NewResults:
       $ref: ./redox/results/new.yaml
+    ReplaceNotes:
+      $ref: ./redox/notes/replace.yaml
   securitySchemes: {}
 tags:
   - name: Redox
