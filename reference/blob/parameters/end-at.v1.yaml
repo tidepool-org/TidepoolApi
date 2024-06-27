@@ -2,6 +2,6 @@ description: >-
   End At Datetime
 name: endAtTime
 in: query
-required: true
+required: false
 schema:
   $ref: '../../common/models/datetime.v1.yaml'

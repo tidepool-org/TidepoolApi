@@ -89,6 +89,8 @@ paths:
       parameters:
         - $ref: ./blob/parameters/start-at.v1.yaml
         - $ref: ./blob/parameters/end-at.v1.yaml
+        - $ref: ./common/parameters/paginationpage.v1.yaml
+        - $ref: ./common/parameters/paginationsize.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/DeviceLogsMetadataList'
