@@ -4,3 +4,5 @@ build
 .idea/
 /node_modules/
 /tools/
+.DS_Store
+Session.vim
