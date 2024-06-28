@@ -105,14 +105,14 @@ paths:
       tags:
         - Device Logs
 
-  '/v1/device_logs/{deviceLogId}/contents':
+  '/v1/device_logs/{deviceLogId}/content':
     parameters:
       - $ref: './blob/parameters/device-log-id.v1.yaml'
     get:
-      operationId: GetDeviceLogContents
-      summary: Get the contents of a single device log.
+      operationId: GetDeviceLogContent
+      summary: Get the content of a single device log.
       description: >-
-        Retrieves the contents of the device log.
+        Retrieves the content of the device log.
       responses:
         '200':
           $ref: '#/components/responses/DeviceLogContents'
@@ -304,8 +304,8 @@ components:
         '*/*':
           schema:
             $ref: './blob/models/content.v1.yaml'
-    DeviceLogContents:
-      description: Device log contents.
+    DeviceLogContent:
+      description: Device log content.
       content:
         application/json:
           schema:
