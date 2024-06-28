@@ -115,7 +115,7 @@ paths:
         Retrieves the content of the device log.
       responses:
         '200':
-          $ref: '#/components/responses/DeviceLogContents'
+          $ref: '#/components/responses/DeviceLogContent'
         '400':
           $ref: './common/responses/badrequest.v1.yaml'
         '401':
@@ -309,7 +309,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: ./blob/models/device-log-contents.v1.yaml
+            $ref: ./blob/models/device-log-content-list.v1.yaml
     DeviceLogsMetadata:
       description: Device logs metadata
       content:
