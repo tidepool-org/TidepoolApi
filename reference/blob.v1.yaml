@@ -89,9 +89,33 @@ paths:
       parameters:
         - $ref: ./blob/parameters/start-at.v1.yaml
         - $ref: ./blob/parameters/end-at.v1.yaml
+        - $ref: ./common/parameters/paginationpage.v1.yaml
+        - $ref: ./common/parameters/paginationsize.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/DeviceLogsMetadataList'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '404':
+          $ref: './common/responses/notfound.v1.yaml'
+      tags:
+        - Device Logs
+
+  '/v1/device_logs/{deviceLogId}/content':
+    parameters:
+      - $ref: './blob/parameters/device-log-id.v1.yaml'
+    get:
+      operationId: GetDeviceLogContent
+      summary: Get the content of a single device log.
+      description: >-
+        Retrieves the content of the device log.
+      responses:
+        '200':
+          $ref: '#/components/responses/DeviceLogContent'
         '400':
           $ref: './common/responses/badrequest.v1.yaml'
         '401':
@@ -280,6 +304,12 @@ components:
         '*/*':
           schema:
             $ref: './blob/models/content.v1.yaml'
+    DeviceLogContent:
+      description: Device log content.
+      content:
+        application/json:
+          schema:
+            $ref: ./blob/models/device-log-content-list.v1.yaml
     DeviceLogsMetadata:
       description: Device logs metadata
       content:

@@ -2,6 +2,6 @@ description: >-
   Start At Datetime
 name: startAtTime
 in: query
-required: true
+required: false
 schema:
   $ref: '../../common/models/datetime.v1.yaml'
