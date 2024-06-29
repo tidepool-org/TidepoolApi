@@ -1,0 +1,24 @@
+type: object
+title: continuousbucketdata.v1
+description: 'Series of counters which represent one hour of a users data'
+properties:
+  totalRecords:
+    description: Counter of records from continuous uploads
+    type: number
+    example: 10
+    x-go-type: int
+  realtimeRecords:
+    description: Counter of records uploaded within 24 hours of their timestamp
+    type: number
+    example: 10
+    x-go-type: int
+  deferredRecords:
+    description: Counter of records uploaded later than 24 hours of their timestamp
+    type: number
+    example: 10
+    x-go-type: int
+
+required:
+  - totalRecords
+  - realtimeRecords
+  - deferredRecords

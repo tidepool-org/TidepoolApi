@@ -10,8 +10,9 @@ properties:
     format: date-time
   data:
     oneOf:
-      - $ref: './bgmbucketdata.v1.yaml'
-      - $ref: './cgmbucketdata.v1.yaml'
+      - $ref: './bgm/bgmbucketdata.v1.yaml'
+      - $ref: './cgm/cgmbucketdata.v1.yaml'
+      - $ref: './continuous/continuousbucketdata.v1.yaml'
 
 required:
   - date

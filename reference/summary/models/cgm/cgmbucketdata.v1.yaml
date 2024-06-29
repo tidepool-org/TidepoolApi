@@ -67,6 +67,11 @@ properties:
     type: number
     example: 10
     x-go-type: int
+  totalVariance:
+    type: number
+    x-go-type: float64
+    description: Total variance of all glucose records
+    example: 1234.56
 
 required:
   - targetMinutes
@@ -82,3 +87,4 @@ required:
   - totalGlucose
   - totalMinutes
   - totalRecords
+  - totalVariance

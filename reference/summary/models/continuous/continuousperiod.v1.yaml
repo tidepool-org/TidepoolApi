@@ -1,0 +1,39 @@
+type: object
+title: continuousperiod.v1
+description: 'Summary of a specific continuous upload time period (currently: 1d, 7d, 14d, 30d)'
+properties:
+  totalRecords:
+    type: number
+    example: 5
+    x-go-type: int
+
+  averageDailyRecords:
+    type: number
+    example: 12.3
+    x-go-type: float64
+
+  realtimeRecords:
+    type: number
+    example: 5
+    x-go-type: int
+  realtimePercent:
+    type: number
+    example: 0.5
+    x-go-type: float64
+
+  deferredRecords:
+    type: number
+    example: 5
+    x-go-type: int
+  deferredPercent:
+    type: number
+    example: 0.5
+    x-go-type: float64
+
+required:
+  - totalRecords
+  - averageDailyRecords
+  - realtimeRecords
+  - realtimePercent
+  - deferredRecords
+  - deferredPercent

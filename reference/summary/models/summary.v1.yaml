@@ -12,8 +12,9 @@ properties:
     $ref: './dates.v1.yaml'
   stats:
     oneOf:
-      - $ref: './cgmstats.v1.yaml'
-      - $ref: './bgmstats.v1.yaml'
+      - $ref: './cgm/cgmstats.v1.yaml'
+      - $ref: './bgm/bgmstats.v1.yaml'
+      - $ref: './continuous/continuousstats.v1.yaml'
   updateWithoutChangeCount:
     type: number
     example: 5
