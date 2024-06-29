@@ -2199,6 +2199,42 @@ paths:
           required: true
       x-internal: true
     parameters: []
+  '/v1/clinics/{clinicId}/service_accounts':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Add Service Account
+      operationId: AddServiceAccount
+      responses:
+        '200':
+          description: OK
+      description: Adds authentication client's service account as a new clinician member.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddServiceAccount'
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  '/v1/patients/{patientId}/ehr/sync':
+    parameters:
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Sync EHR Data for Patient
+      operationId: SyncEHRDataForPatient
+      responses:
+        '202':
+          description: Accepted
+      description: |-
+        An internal endpoint which will push the latest patient summary statistics and PDF reports to all EHR enabled clinics for which the patient has an active subscription. The actual data is pushed asynchronously. A successful response means that an asynchronous task has been scheduled.
+
+        A 404 response will be returned if no active subscriptions can be found for given patient.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
 components:
   schemas:
     Error:
@@ -2529,6 +2565,33 @@ components:
           minLength: 1
         tags:
           $ref: '#/components/schemas/PatientTagIds'
+    AddServiceAccount:
+      title: AddServiceAccount
+      x-stoplight:
+        id: 3c7ko800mld31
+      type: object
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: 3333gszyq3x79
+          minLength: 1
+        client_id:
+          type: string
+          x-stoplight:
+            id: kgfyaapmfjies
+          minLength: 1
+        client_secret:
+          type: string
+          x-stoplight:
+            id: 8jdosn0tlbqp5
+          minLength: 1
+      required:
+        - name
+        - client_id
+        - client_secret
+    ScheduledReports:
+      $ref: ./clinic/models/scheduledreports.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token

@@ -26,9 +26,15 @@ properties:
     enum:
       - xealth
       - redox
+  scheduledReports:
+    $ref: ./scheduledreports.v1.yaml
+    x-stoplight:
+      id: lgfrpsps4x37a
+    description: Scheduled Report Settings
 required:
   - enabled
   - sourceId
   - procedureCodes
   - mrnIdType
   - provider
+  - scheduledReports
