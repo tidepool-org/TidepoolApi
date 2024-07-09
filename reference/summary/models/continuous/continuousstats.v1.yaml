@@ -1,6 +1,6 @@
 type: object
 title: continuousstats.v1
-description: 'A summary of a users recent CGM glucose values'
+description: A summary of a user's recent CGM glucose values
 properties:
   totalHours:
     description: Total hours represented in the hourly stats
