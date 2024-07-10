@@ -92,7 +92,33 @@ properties:
     type: number
     example: 5
     x-go-type: int
-    
+
+  hasTimeInExtremeHighPercent:
+    type: boolean
+  timeInExtremeHighPercent:
+    description: Percentage of time spent in extreme high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInExtremeHighPercentDelta:
+    description: Difference between the timeInExtremeHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInExtremeHighRecords:
+    type: boolean
+  timeInExtremeHighRecords:
+    description: Counter of records in extreme high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInExtremeHighRecordsDelta:
+    description: Difference between the timeInExtremeHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
   hasTimeInAnyHighPercent:
     type: boolean
   timeInAnyHighPercent:
@@ -231,6 +257,8 @@ required:
   - hasTimeInHighRecords
   - hasTimeInVeryHighPercent
   - hasTimeInVeryHighRecords
+  - hasTimeInExtremeHighPercent
+  - hasTimeInExtremeHighRecords
   - hasTimeInLowPercent
   - hasTimeInLowRecords
   - hasTimeInVeryLowPercent

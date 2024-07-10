@@ -11,9 +11,9 @@ properties:
     type: number
     x-go-type: int
   periods:
-    $ref: '../../../summary/models/cgmperiods.v1.yaml'
+    $ref: '../../../summary/models/cgm/cgmperiods.v1.yaml'
   offsetPeriods:
-    $ref: '../../../summary/models/cgmperiods.v1.yaml'
+    $ref: '../../../summary/models/cgm/cgmperiods.v1.yaml'
 
 required:
   - totalHours

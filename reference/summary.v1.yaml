@@ -76,21 +76,29 @@ components:
     SummaryTypeSchema:
       $ref: './summary/models/summarytype.v1.yaml'
     BGMBucketData:
-      $ref: './summary/models/bgmbucketdata.v1.yaml'
+      $ref: './summary/models/bgm/bgmbucketdata.v1.yaml'
     BGMPeriod:
-      $ref: './summary/models/bgmperiod.v1.yaml'
+      $ref: './summary/models/bgm/bgmperiod.v1.yaml'
     BGMPeriods:
-      $ref: './summary/models/bgmperiods.v1.yaml'
+      $ref: './summary/models/bgm/bgmperiods.v1.yaml'
     BGMStats:
-      $ref: './summary/models/bgmstats.v1.yaml'
+      $ref: './summary/models/bgm/bgmstats.v1.yaml'
     CGMBucketData:
-      $ref: './summary/models/cgmbucketdata.v1.yaml'
+      $ref: './summary/models/cgm/cgmbucketdata.v1.yaml'
     CGMPeriod:
-      $ref: './summary/models/cgmperiod.v1.yaml'
+      $ref: './summary/models/cgm/cgmperiod.v1.yaml'
     CGMPeriods:
-      $ref: './summary/models/cgmperiods.v1.yaml'
+      $ref: './summary/models/cgm/cgmperiods.v1.yaml'
     CGMStats:
-      $ref: './summary/models/cgmstats.v1.yaml'
+      $ref: './summary/models/cgm/cgmstats.v1.yaml'
+    ContinuousBucketData:
+      $ref: './summary/models/continuous/continuousbucketdata.v1.yaml'
+    ContinuousPeriod:
+      $ref: './summary/models/continuous/continuousperiod.v1.yaml'
+    ContinuousPeriods:
+      $ref: './summary/models/continuous/continuousperiods.v1.yaml'
+    ContinuousStats:
+      $ref: './summary/models/continuous/continuousstats.v1.yaml'
     Bucket:
       $ref: './summary/models/bucket.v1.yaml'
     Config:

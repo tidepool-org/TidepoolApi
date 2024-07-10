@@ -316,131 +316,436 @@ paths:
           required: false
           description: 'If we should display, filter, and sort based on the offset periods or default periods'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.5'
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.averageGlucoseMmol
+          description: Average glucose value of records in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.glucoseManagementIndicator
+          description: Glucose management Indicator of records
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeCGMUsePercent
-          description: Percentage of time of CGM use
+          description: Percentage of time [0.0-1.0]  of CGM use
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryLowPercent
-          description: Percentage of time below 54 mg/dL
+          description: Percentage of time [0.0-1.0]  below 54 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInAnyLowPercent
-          description: Percentage of time below 70 mg/dL
+          description: Percentage of time [0.0-1.0]  below 70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInLowPercent
-          description: Percentage of time in range 54-70 mg/dL
+          description: Percentage of time [0.0-1.0]  in range 54-70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInTargetPercent
-          description: Percentage of time in range 70-180 mg/dL
+          description: Percentage of time [0.0-1.0]  in range 70-180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInHighPercent
-          description: Percentage of time in range 180-250 mg/dL
+          description: Percentage of time [0.0-1.0]  in range 180-250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryHighPercent
-          description: Percentage of time above 250 mg/dL
+          description: Percentage of time [0.0-1.0]  above 250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInExtremeHighPercent
+          description: Percentage of time [0.0-1.0]  above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInAnyHighPercent
-          description: Percentage of time above 180 mg/dL
+          description: Percentage of time [0.0-1.0]  above 180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeCGMUseMinutes
+          description: Minutes of CGM use
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryLowMinutes
+          description: Minutes below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyLowMinutes
+          description: Minutes below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInLowMinutes
+          description: Minutes in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInTargetMinutes
+          description: Minutes in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInHighMinutes
+          description: Minutes in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryHighMinutes
+          description: Minutes above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInExtremeHighMinutes
+          description: Minutes above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyHighMinutes
+          description: Minutes above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeCGMUseRecords
           description: Records of CGM use
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInVeryLowRecords
           description: Records below 54 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInAnyLowRecords
           description: Records below 70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInLowRecords
           description: Records in range 54-70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInTargetRecords
           description: Records in range 70-180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInHighRecords
           description: Records in range 180-250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInVeryHighRecords
           description: Records above 250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInAnyHighRecords
           description: Records above 180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.averageDailyRecords
           description: Average records per day
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.totalRecords
           description: Total records in period
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.hoursWithData
+          description: Total hours with data in period
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.daysWithData
+          description: Total days with data in period
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.standardDeviation
+          description: Standard deviation of glucose values in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.coefficientOfVariation
+          description: Coefficient Of Variation of glucose values in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.averageGlucoseMmol
+          description: Average glucose value of records in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInVeryLowPercent
+          description: Percentage of time [0.0-1.0]  below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInAnyLowPercent
+          description: Percentage of time [0.0-1.0]  below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInLowPercent
+          description: Percentage of time [0.0-1.0]  in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInTargetPercent
+          description: Percentage of time [0.0-1.0]  in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInHighPercent
+          description: Percentage of time [0.0-1.0]  in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInVeryHighPercent
+          description: Percentage of time [0.0-1.0]  above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInExtremeHighPercent
+          description: Percentage of time [0.0-1.0]  above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInAnyHighPercent
+          description: Percentage of time [0.0-1.0]  above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInVeryLowRecords
+          description: Records below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInAnyLowRecords
+          description: Records below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInLowRecords
+          description: Records in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInTargetRecords
+          description: Records in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInHighRecords
+          description: Records in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInVeryHighRecords
+          description: Records above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInAnyHighRecords
+          description: Records above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.averageDailyRecords
+          description: Average records per day
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.totalRecords
+          description: Total records in period
+
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.averageGlucoseMmolDelta
+          description: Delta of average glucose value in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.glucoseManagementIndicatorDelta
+          description: Glucose management Indicator of records
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeCGMUsePercentDelta
+          description: Delta of time of CGM use
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInVeryLowPercentDelta
+          description: Delta of time below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInAnyLowPercentDelta
+          description: Delta of time below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInLowPercentDelta
+          description: Delta of time in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInTargetPercentDelta
+          description: Delta of time in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInHighPercentDelta
+          description: Delta of time in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInVeryHighPercentDelta
+          description: Delta of time above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInExtremeHighPercentDelta
+          description: Delta of time above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInAnyHighPercentDelta
+          description: Delta of time above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeCGMUseMinutesDelta
+          description: Delta of minutes of CGM use
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryLowMinutesDelta
+          description: Delta of minutes below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyLowMinutesDelta
+          description: Delta of minutes below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInLowMinutesDelta
+          description: Delta of minutes in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInTargetMinutesDelta
+          description: Delta of minutes in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInHighMinutesDelta
+          description: Delta of minutes in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryHighMinutesDelta
+          description: Delta of minutes above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInExtremeHighMinutesDelta
+          description: Delta of minutes above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyHighMinutesDelta
+          description: Delta of minutes above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeCGMUseRecordsDelta
+          description: Delta of records count
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryLowRecordsDelta
+          description: Delta of records below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyLowRecordsDelta
+          description: Delta of records below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInLowRecordsDelta
+          description: Delta of records in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInTargetRecordsDelta
+          description: Delta of records in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInHighRecordsDelta
+          description: Delta of records in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryHighRecordsDelta
+          description: Delta of records above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyHighRecordsDelta
+          description: Delta of records above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.averageDailyRecordsDelta
+          description: Delta of average records per day
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.totalRecordsDelta
+          description: Delta of total records
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.hoursWithDataDelta
+          description: Delta of total hours with data
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.daysWithDataDelta
+          description: Delta of total days with data
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.standardDeviationDelta
+          description: Delta of the standard deviation of glucose values in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.coefficientOfVariationDelta
+          description: Delta of the coefficient of glucose values in Mmol/L
         - schema:
             type: string
             format: date-time
@@ -453,118 +758,98 @@ paths:
           in: query
           name: cgm.lastUploadDateTo
           description: Exclusive
+
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInVeryLowPercent
-          description: Percentage of time below 54 mg/dL
+          name: bgm.averageGlucoseMmolDelta
+          description: Delta of the average glucose values in Mmol/L
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInAnyLowPercent
-          description: Percentage of time below 70 mg/dL
+          name: bgm.timeInVeryLowPercentDelta
+          description: Delta of time below 54 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInLowPercent
-          description: Percentage of time in range 54-70 mg/dL
+          name: bgm.timeInAnyLowPercentDelta
+          description: Delta of time below 70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInTargetPercent
-          description: Percentage of time in range 70-180 mg/dL
+          name: bgm.timeInLowPercentDelta
+          description: Delta of time in range 54-70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInHighPercent
-          description: Percentage of time in range 180-250 mg/dL
+          name: bgm.timeInTargetPercentDelta
+          description: Delta of time in range 70-180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInVeryHighPercent
-          description: Percentage of time above 250 mg/dL
+          name: bgm.timeInHighPercentDelta
+          description: Delta of time in range 180-250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInAnyHighPercent
-          description: Percentage of time above 180 mg/dL
+          name: bgm.timeInVeryHighPercentDelta
+          description: Delta of time above 250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInVeryLowRecords
-          description: Records below 54 mg/dL
+          name: bgm.timeInExtremeHighPercentDelta
+          description: Delta of time above 350 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInAnyLowRecords
-          description: Records below 70 mg/dL
+          name: bgm.timeInAnyHighPercentDelta
+          description: Delta of time above 180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: bgm.timeInLowRecords
-          description: Records in range 54-70 mg/dL
+          name: bgm.timeInVeryLowRecordsDelta
+          description: Delta of records below 54 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: bgm.timeInTargetRecords
-          description: Records in range 70-180 mg/dL
+          name: bgm.timeInAnyLowRecordsDelta
+          description: Delta of records below 70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: bgm.timeInHighRecords
-          description: Records in range 180-250 mg/dL
+          name: bgm.timeInLowRecordsDelta
+          description: Delta of records in range 54-70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: bgm.timeInVeryHighRecords
-          description: Records above 250 mg/dL
+          name: bgm.timeInTargetRecordsDelta
+          description: Delta of records in range 70-180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: bgm.timeInAnyHighRecords
-          description: Records above 180 mg/dL
+          name: bgm.timeInHighRecordsDelta
+          description: Delta of records in range 180-250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: bgm.averageDailyRecords
-          description: Average records per day
+          name: bgm.timeInVeryHighRecordsDelta
+          description: Delta of records above 250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: bgm.totalRecords
-          description: Total records in period
+          name: bgm.timeInAnyHighRecordsDelta
+          description: Delta of records above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.averageDailyRecordsDelta
+          description: Delta of average records per day
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.totalRecordsDelta
+          description: Delta of total record count
+          
         - schema:
             type: string
             format: date-time
@@ -1951,15 +2236,15 @@ components:
     TideResults:
       $ref: ./clinic/models/tide/results.v1.yaml
     PatientBGMPeriod:
-      $ref: ./summary/models/bgmperiod.v1.yaml
+      $ref: ./summary/models/bgm/bgmperiod.v1.yaml
     PatientBGMPeriods:
-      $ref: ./summary/models/bgmperiods.v1.yaml
+      $ref: ./summary/models/bgm/bgmperiods.v1.yaml
     PatientBGMStats:
       $ref: ./clinic/models/summaries/bgmstats.v1.yaml
     PatientCGMPeriod:
-      $ref: ./summary/models/cgmperiod.v1.yaml
+      $ref: ./summary/models/cgm/cgmperiod.v1.yaml
     PatientCGMPeriods:
-      $ref: ./summary/models/cgmperiods.v1.yaml
+      $ref: ./summary/models/cgm/cgmperiods.v1.yaml
     PatientCGMStats:
       $ref: ./clinic/models/summaries/cgmstats.v1.yaml
     PatientSummaryConfig:
@@ -1968,6 +2253,14 @@ components:
       $ref: ./summary/models/dates.v1.yaml
     PatientSummary:
       $ref: ./clinic/models/summaries/patientsummary.v1.yaml
+    FloatFilter:
+      type: string
+      pattern: ^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$
+      example: '>=5.5'
+    IntFilter:
+      type: string
+      pattern: ^(>=|>|<=|<)[+-]?\d+$
+      example: '>=7'
     UpdateTier:
       title: UpdateTier
       type: object
