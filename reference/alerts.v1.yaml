@@ -143,7 +143,9 @@ components:
       content:
         'application/json':
           schema:
-            $ref: './common/models/alertsconfig.v1.yaml'
+            allOf:
+              - $ref: '#/components/schemas/alertsConfigReadOnly'
+              - $ref: './common/models/alertsconfig.v1.yaml'
 
   parameters:
     userId:
@@ -167,3 +169,13 @@ components:
   schemas:
     tidepoolUserId:
       $ref: './common/models/tidepooluserid.yaml'
+
+    alertsConfigReadOnly:
+      type: object
+      properties:
+        uploadId:
+          $ref: './data/models/uploadid.v1.yaml'
+        userId:
+          $ref: './common/models/tidepooluserid.yaml'
+        followedUserId:
+          $ref: './common/models/tidepooluserid.yaml'
