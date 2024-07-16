@@ -1,0 +1,9 @@
+type: object
+title: lastreviewed.v1
+description: A summary of a patients recent data
+properties:
+  clinicianId:
+    $ref: ../../common/models/tidepooluserid.yaml
+  time:
+    type: string
+    format: date-time

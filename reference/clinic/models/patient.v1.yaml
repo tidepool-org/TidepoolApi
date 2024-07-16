@@ -53,6 +53,10 @@ properties:
     readOnly: true
   summary:
     $ref: ./summaries/patientsummary.v1.yaml
+  lastReviewed:
+    $ref: "./patientlastreviewed.v1.yaml"
+  previousLastReviewed:
+    $ref: "./patientlastreviewed.v1.yaml"
 required:
   - id
   - fullName
