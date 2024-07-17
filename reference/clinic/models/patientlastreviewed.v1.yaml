@@ -3,7 +3,10 @@ title: lastreviewed.v1
 description: A summary of a patients recent data
 properties:
   clinicianId:
-    $ref: ../../common/models/tidepooluserid.yaml
+    type: string
   time:
     type: string
     format: date-time
+required:
+  - clinicianId
+  - time

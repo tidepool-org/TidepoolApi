@@ -1189,7 +1189,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientLastReviewed'
+                $ref: '#/components/schemas/PatientLastReviewedDetails'
       description: |-
         Update the patient's last reviewed date and clinician ID
       tags:
@@ -1203,7 +1203,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientLastReviewed'
+                $ref: '#/components/schemas/PatientLastReviewedDetails'
         '409':
           description: Cannot revert a different clinician's review
         '424':
@@ -2291,6 +2291,14 @@ components:
       $ref: ./clinic/models/summaries/patientsummary.v1.yaml
     PatientLastReviewed:
       $ref: "./clinic/models/patientlastreviewed.v1.yaml"
+    PatientLastReviewedDetails:
+      title: PatientLastReviewedDetails
+      type: object
+      properties:
+        lastReviewed:
+          $ref: "#/components/schemas/PatientLastReviewed"
+        previousLastReviewed:
+          $ref: "#/components/schemas/PatientLastReviewed"
     FloatFilter:
       type: string
       pattern: ^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$
