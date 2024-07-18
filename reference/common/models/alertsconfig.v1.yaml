@@ -11,6 +11,7 @@ properties:
     allOf:
       - $ref: './alerts/base.v1.yaml'
       - $ref: './alerts/delay.v1.yaml'
+      - $ref: './alerts/repeat.v1.yaml'
       - $ref: './alerts/glucosethreshold.v1.yaml'
       - type: object
         description: >-
@@ -19,6 +20,7 @@ properties:
     allOf:
       - $ref: './alerts/base.v1.yaml'
       - $ref: './alerts/delay.v1.yaml'
+      - $ref: './alerts/repeat.v1.yaml'
       - $ref: './alerts/glucosethreshold.v1.yaml'
       - type: object
         description: >-

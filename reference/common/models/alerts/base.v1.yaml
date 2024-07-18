@@ -6,12 +6,3 @@ properties:
     default: false
     description: >-
       A toggle for disabling the alert.
-  repeat:
-    type: integer
-    default: 0
-    minimum: 0
-    maximum: 240
-    description: >-
-      Duration in minutes, after which an alert will be repeated.
-
-      A value of 0 disables the repeat functionality.
