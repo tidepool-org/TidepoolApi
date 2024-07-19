@@ -316,6 +316,12 @@ paths:
           required: false
           description: 'If we should display, filter, and sort based on the offset periods or default periods'
         - schema:
+            type: string
+            format: date-time
+          in: query
+          name: lastReviewed
+          description: Inclusive
+        - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.averageGlucoseMmol
