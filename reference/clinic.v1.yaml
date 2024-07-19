@@ -1176,38 +1176,38 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AcceptPatientInvitation'
-  '/v1/clinics/{clinicId}/patients/{patientId}/last_reviewed':
+  '/v1/clinics/{clinicId}/patients/{patientId}/reviews':
     parameters:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/patientId'
     put:
-      summary: Update Patient LastReviewed
-      operationId: UpdatePatientLastReviewed
+      summary: Update Patient Reviews
+      operationId: UpdatePatientReviews
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientLastReviewedDetails'
+                $ref: '#/components/schemas/PatientReviews'
       description: |-
         Update the patient's last reviewed date and clinician ID
       tags:
         - Clinics
     delete:
-      summary: Revert Patient LastReviewed
-      operationId: RevertPatientLastReviewed
+      summary: Delete Patient Reviews
+      operationId: DeletePatientReviews
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientLastReviewedDetails'
+                $ref: '#/components/schemas/PatientReviews'
         '409':
           description: Cannot revert a different clinician's review
-        '424':
-          description: No previous review to revert to
+        '404':
+          description: No review to delete
       description: |-
         Revert the patient's last reviewed date to the previous set
       tags:
@@ -1225,7 +1225,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientLastReviewed'
+                $ref: '#/components/schemas/PatientReviews'
       description: |-
         Update permissions that a clinic has over a patient account. If all permissions are revoked as a result of the update, the patient profile will be removed from the clinic.
 
@@ -2289,16 +2289,12 @@ components:
       $ref: ./summary/models/dates.v1.yaml
     PatientSummary:
       $ref: ./clinic/models/summaries/patientsummary.v1.yaml
-    PatientLastReviewed:
-      $ref: "./clinic/models/patientlastreviewed.v1.yaml"
-    PatientLastReviewedDetails:
-      title: PatientLastReviewedDetails
-      type: object
-      properties:
-        lastReviewed:
-          $ref: "#/components/schemas/PatientLastReviewed"
-        previousLastReviewed:
-          $ref: "#/components/schemas/PatientLastReviewed"
+    PatientReview:
+      $ref: "./clinic/models/patientreview.v1.yaml"
+    PatientReviews:
+      type: array
+      items:
+        $ref: "#/components/schemas/PatientReview"
     FloatFilter:
       type: string
       pattern: ^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$

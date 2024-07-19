@@ -1,5 +1,5 @@
 type: object
-title: lastreviewed.v1
+title: patientreview.v1
 description: A summary of a patients recent data
 properties:
   clinicianId:
