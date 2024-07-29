@@ -1,0 +1,12 @@
+type: object
+title: patientreview.v1
+description: A summary of a patients recent data
+properties:
+  clinicianId:
+    type: string
+  time:
+    type: string
+    format: date-time
+required:
+  - clinicianId
+  - time

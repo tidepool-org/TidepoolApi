@@ -316,6 +316,12 @@ paths:
           required: false
           description: 'If we should display, filter, and sort based on the offset periods or default periods'
         - schema:
+            type: string
+            format: date-time
+          in: query
+          name: lastReviewed
+          description: Inclusive
+        - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.averageGlucoseMmol
@@ -1176,6 +1182,42 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AcceptPatientInvitation'
+  '/v1/clinics/{clinicId}/patients/{patientId}/reviews':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    put:
+      summary: Update Patient Reviews
+      operationId: UpdatePatientReviews
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientReviews'
+      description: |-
+        Update the patient's last reviewed date and clinician ID
+      tags:
+        - Clinics
+    delete:
+      summary: Delete Patient Reviews
+      operationId: DeletePatientReviews
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientReviews'
+        '409':
+          description: Cannot revert a different clinician's review
+        '404':
+          description: No review to delete
+      description: |-
+        Revert the patient's last reviewed date to the previous set
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1189,7 +1231,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientPermissions'
+                $ref: '#/components/schemas/PatientReviews'
       description: |-
         Update permissions that a clinic has over a patient account. If all permissions are revoked as a result of the update, the patient profile will be removed from the clinic.
 
@@ -2253,6 +2295,12 @@ components:
       $ref: ./summary/models/dates.v1.yaml
     PatientSummary:
       $ref: ./clinic/models/summaries/patientsummary.v1.yaml
+    PatientReview:
+      $ref: "./clinic/models/patientreview.v1.yaml"
+    PatientReviews:
+      type: array
+      items:
+        $ref: "#/components/schemas/PatientReview"
     FloatFilter:
       type: string
       pattern: ^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$

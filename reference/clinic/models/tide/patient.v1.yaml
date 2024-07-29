@@ -14,6 +14,12 @@ properties:
     minLength: 1
   tags:
     $ref: ../patienttagids.v1.yaml
+  reviews:
+    type: array
+    nullable: true
+    x-go-type-skip-optional-pointer: true
+    items:
+      $ref: "../patientreview.v1.yaml"
 
 required:
   - id
