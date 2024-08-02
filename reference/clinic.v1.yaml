@@ -855,7 +855,7 @@ paths:
           in: query
           name: bgm.totalRecordsDelta
           description: Delta of total record count
-          
+
         - schema:
             type: string
             format: date-time
@@ -2069,6 +2069,24 @@ paths:
         - Clinics
         - Internal
       x-internal: true
+  '/v1/clinics/{clinicId}/reports/merge':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Generate Clinic Merge Report
+      operationId: GenerateMergeReport
+      responses:
+        '200':
+          description: OK
+      description: Generates a spreadsheet report for merging two clinics
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateMergeReport'
+        description: ''
 components:
   schemas:
     Error:
@@ -2440,6 +2458,16 @@ components:
         - client_secret
     ScheduledReports:
       $ref: ./clinic/models/scheduledreports.v1.yaml
+    GenerateMergeReport:
+      title: GenerateMergeReport
+      x-stoplight:
+        id: 3oq18sasrzo0o
+      type: object
+      properties:
+        sourceId:
+          $ref: ./clinic/models/clinicid.v1.yaml
+      required:
+        - sourceId
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
