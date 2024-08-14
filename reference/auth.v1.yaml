@@ -739,7 +739,6 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Profiles
-        - Internal
       security:
         - serverToken: []
     delete:
