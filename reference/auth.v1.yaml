@@ -31,6 +31,9 @@ tags:
     description: APIs intended for internal use by Tidepool.
   - name: Users
     description: List and manage users.
+  - name: Profiles
+    description: |-
+      Create and update user profiles.
 paths:
   /auth/login:
     post:
@@ -697,8 +700,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
-        - Internal
+        - Profiles
       security:
         - serverToken: []
     post:
@@ -717,8 +719,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
-        - Internal
+        - Profiles
       security:
         - serverToken: []
     put:
@@ -737,7 +738,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
+        - Profiles
         - Internal
       security:
         - serverToken: []
@@ -755,8 +756,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
-        - Internal
+        - Profiles
       security:
         - serverToken: []
   '/v1/users/legacy/{userId}/profile':
@@ -776,8 +776,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
-        - Internal
+        - Profiles
       security:
         - serverToken: []
     post:
@@ -796,8 +795,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
-        - Internal
+        - Profiles
       security:
         - serverToken: []
     put:
@@ -816,8 +814,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
-        - Internal
+        - Profiles
       security:
         - serverToken: []
     delete:
@@ -834,8 +831,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - Profile
-        - Internal
+        - Profiles
       security:
         - serverToken: []
 components:
