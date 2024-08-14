@@ -808,7 +808,7 @@ paths:
         $ref: '#/components/requestBodies/UpdateUserProfile'
       responses:
         '200':
-          $ref: '#/components/LegacyUserProfile'
+          $ref: '#/components/responses/LegacyUserProfile'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
