@@ -1,0 +1,41 @@
+title: User Profile
+description: >-
+  User profile returned by platform.
+type: object
+properties:
+  fullName:
+    $ref: '../../../fullname.v1.yaml'
+  birthday:
+    $ref: '../../../common/models/birthday.v1.yaml'
+  diagnosisType:
+    $ref: '../../../diagnosistype.v1.yaml'
+  diagnosisDate:
+    $ref: '../../../common/models/diagnosisdate.v1.yaml'
+  biologicalSex:
+    $ref: '../../../metadata/models/biologicalsex.v1.yaml'
+  targetDevices:
+    $ref: '../../../metadata/models/targetdevices.v1.yaml'
+  targetTimezone:
+    $ref: '../../../metadata/models/targettimezone.v1.yaml'
+  about:
+    $ref: '../../../metadata/models/about.v1.yaml'
+  mrn:
+    $ref: '../../../metadata/models/mrn.v1.yaml'
+  custodian:
+    type: object
+    properties:
+      fullName:
+        $ref: '../../../fullname.v1.yaml'
+  clinic:
+    type: object
+    properties:
+      name:
+        type: string
+        description: 'Name of the clinic'
+      role:
+        $ref: '../role.v1.yaml'
+      telephone:
+        type: string
+      npi:
+        type: string
+
