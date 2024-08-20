@@ -763,7 +763,7 @@ paths:
       - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: GetLegacyUserProfile
-      summary: Get a user's legacy profile.
+      summary: Get a user's profile in the legacy format.
       description: Returns the user's profile in the legacy seagull format specified by the `userId`.
       responses:
         '200':
@@ -780,7 +780,7 @@ paths:
         - sessionToken: []
     post:
       operationId: UpdateLegacyUserProfile
-      summary: Creates or updates a user's profile.
+      summary: Create or updates a user's profile in the legacy format.
       description: Upserts or updates the user profile specified by the `userId`. Due to legacy reasons, this operates as POST request if the profile does not exist or a PUT request if it does.
       requestBody:
         $ref: '#/components/requestBodies/UpdateLegacyUserProfile'
@@ -799,7 +799,7 @@ paths:
         - sessionToken: []
     put:
       operationId: UpdateUserProfile
-      summary: Creates or updates a user's profile
+      summary: Create or updates a user's profile in the legacy format.
       description: Upserts or updates the user profile specified by the `userId`. Due to legacy reasons, this operates as POST request if the profile does not exist or a PUT request if it does.
       requestBody:
         $ref: '#/components/requestBodies/UpdateUserProfile'
