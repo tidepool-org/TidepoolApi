@@ -702,7 +702,7 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
     post:
       operationId: UpdateUserProfile
       summary: Creates or updates a user's profile
@@ -721,7 +721,7 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
     put:
       operationId: UpdateUserProfile
       summary: Creates or updates a user's profile
@@ -740,7 +740,7 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
     delete:
       operationId: DeleteUserProfile
       summary: Delete a user's profile
@@ -757,7 +757,7 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
   '/v1/users/legacy/{userId}/profile':
     parameters:
       - $ref: ./common/parameters/tidepooluserid.yaml
@@ -777,7 +777,7 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
     post:
       operationId: UpdateLegacyUserProfile
       summary: Creates or updates a user's profile.
@@ -796,7 +796,7 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
     put:
       operationId: UpdateUserProfile
       summary: Creates or updates a user's profile
@@ -815,7 +815,7 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
     delete:
       operationId: DeleteUserProfile
       summary: Delete a user's profile
@@ -832,7 +832,26 @@ paths:
       tags:
         - Profiles
       security:
-        - serverToken: []
+        - sessionToken: []
+  '/v1/users/{userId}/users':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.yaml'
+    get:
+      operationId: ListUsers
+      summary: List Users
+      description: >-
+        List all users who have trustee or trustor access to the user account identified by `userId`.
+      responses:
+        '200':
+          $ref: '#/components/responses/TrustUsers'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Profiles
+      security:
+        - sessionToken: []
 components:
   securitySchemes:
     basicAuth:
@@ -988,6 +1007,12 @@ components:
         application/json:
           schema:
             $ref: ./auth/models/profile/legacyprofile.v1.yaml
+    TrustUsers:
+      description: 'Success'
+      content:
+        application/json:
+          schema:
+            $ref: './metadata/models/trustusers.v1.yaml'
     Unauthorized:
       description: Unauthorized
       content:
