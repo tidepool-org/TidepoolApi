@@ -798,11 +798,11 @@ paths:
       security:
         - sessionToken: []
     put:
-      operationId: UpdateUserProfile
+      operationId: UpdateLegacyUserProfile
       summary: Create or updates a user's profile in the legacy format.
       description: Upserts or updates the user profile specified by the `userId`. Due to legacy reasons, this operates as POST request if the profile does not exist or a PUT request if it does.
       requestBody:
-        $ref: '#/components/requestBodies/UpdateUserProfile'
+        $ref: '#/components/requestBodies/UpdateLegacyUserProfile'
       responses:
         '200':
           $ref: '#/components/responses/LegacyUserProfile'
