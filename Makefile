@@ -150,7 +150,7 @@ install_npm_pkgs:
 # When using --no-save, any dependencies not included will be deleted, so one
 # has to install all the packages all at the same time. But it saves us from
 # having to muck with packages.json.
-	npm i --prefix . --no-save --local $(NPM_PKG_SPECS)
+	npm i --prefix $(CURDIR) --no-save --local $(NPM_PKG_SPECS)
 
 .PHONY: install_tools
 install_tools: $(GO_TOOLS) $(NPM_TOOLS)
