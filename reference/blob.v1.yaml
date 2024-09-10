@@ -55,7 +55,7 @@ paths:
     post:
       operationId: UploadDeviceLogs
       summary: Upload new device logs as json
-      description: Uploads a new device logs json to the user's account. The `Digest` header must represent the MD5 hash of the json data content.
+      description: Uploads new device logs to the user's account. The `Digest` header must represent the MD5 hash of the data.
       parameters:
         - $ref: ./common/parameters/digestmd5.v1.yaml
         - $ref: ./blob/parameters/logs-start-at.v1.yaml
@@ -66,9 +66,10 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: ./blob/models/device-log-content.v1.yaml
+              $ref: ./blob/models/device-log-content-list.v1.yaml
+          text/plain:
+            schema:
+              $ref: ./blob/models/device-log-content-plain.v1.yaml
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'
@@ -310,8 +311,11 @@ components:
         application/json:
           schema:
             $ref: ./blob/models/device-log-content-list.v1.yaml
+        text/plain:
+          schema:
+            $ref: ./blob/models/device-log-content-plain.v1.yaml
     DeviceLogsMetadata:
-      description: Device logs metadata
+      description: Device logs metadata. This is information about the log data, but is not the actual log data.
       content:
         application/json:
           schema:
