@@ -7,3 +7,5 @@ build
 .env
 .envrc
 .nvmrc
+.DS_Store
+Session.vim
