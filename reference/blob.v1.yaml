@@ -69,7 +69,7 @@ paths:
               $ref: ./blob/models/device-log-content-list.v1.yaml
           text/plain:
             schema:
-              $ref: ./blob/models/device-log-content-plain.v1.yaml
+              type: string
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'
@@ -111,9 +111,9 @@ paths:
       - $ref: './blob/parameters/device-log-id.v1.yaml'
     get:
       operationId: GetDeviceLogContent
-      summary: Get the content of a single device log.
+      summary: Get the content of a device log.
       description: >-
-        Retrieves the content of the device log.
+        Retrieves the content, the actual data, of a device log.
       responses:
         '200':
           $ref: '#/components/responses/DeviceLogContent'
@@ -313,7 +313,10 @@ components:
             $ref: ./blob/models/device-log-content-list.v1.yaml
         text/plain:
           schema:
-            $ref: ./blob/models/device-log-content-plain.v1.yaml
+            type: string
+            example: >-
+              Any kind of arbritrary log data sent by a device. Establishing
+              connection... Connection established. Sending logs...
     DeviceLogsMetadata:
       description: Device logs metadata. This is information about the log data, but is not the actual log data.
       content:

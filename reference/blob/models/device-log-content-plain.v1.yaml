@@ -1,7 +1,0 @@
-title: Unstructured device log content
-description: >-
-  Device log entry.
-type: string
-example: >-
-  Any kind of arbritrary log data sent by a device. Establishing
-  connection... Connection established. Sending logs...
