@@ -12,10 +12,7 @@ properties:
     type: string
     pattern: ^(1d|7d|14d|30d)$
     example: 7d
-  lastUploadDateFrom:
-    type: string
-    format: date-time
-  lastUploadDateTo:
+  lastDataCutoff:
     type: string
     format: date-time
   highGlucoseThreshold:
@@ -43,8 +40,7 @@ required:
   - schemaVersion
   - clinicId
   - period
-  - lastUploadDateFrom
-  - lastUploadDateTo
+  - lastDataCutoff
   - highGlucoseThreshold
   - veryHighGlucoseThreshold
   - lowGlucoseThreshold
