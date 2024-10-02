@@ -8,6 +8,7 @@ required:
   - timeInTargetPercent
   - timeCGMUsePercent
   - meetingTargets
+  - noData
 additionalProperties:
   type: array
   items:

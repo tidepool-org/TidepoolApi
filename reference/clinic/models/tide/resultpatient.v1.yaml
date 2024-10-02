@@ -62,6 +62,9 @@ properties:
     type: number
     example: 200
     x-go-type: int
+  lastData:
+    type: string
+    format: date-time
   patient:
     $ref: ./patient.v1.yaml
 
