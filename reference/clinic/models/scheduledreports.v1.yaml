@@ -18,5 +18,16 @@ properties:
       - New
       - Replace
     default: New
+  cadence:
+    type: string
+    x-stoplight:
+      id: ibtk59wcgho89
+    enum:
+      - 7d
+      - 14d
+      - 30d
+      - DISABLED
+    description: The cadence of the scheduled reports. Disabling the scheduled reports does not affect reports which are generated after a dataset is uploaded.
 required:
   - onUploadEnabled
+  - cadence
