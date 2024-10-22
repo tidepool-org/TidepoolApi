@@ -335,47 +335,47 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeCGMUsePercent
-          description: Percentage of time [0.0-1.0]  of CGM use
+          description: 'Percentage of time [0.0-1.0]  of CGM use'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryLowPercent
-          description: Percentage of time [0.0-1.0]  below 54 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 54 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInAnyLowPercent
-          description: Percentage of time [0.0-1.0]  below 70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInLowPercent
-          description: Percentage of time [0.0-1.0]  in range 54-70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 54-70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInTargetPercent
-          description: Percentage of time [0.0-1.0]  in range 70-180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 70-180 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInHighPercent
-          description: Percentage of time [0.0-1.0]  in range 180-250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 180-250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryHighPercent
-          description: Percentage of time [0.0-1.0]  above 250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInExtremeHighPercent
-          description: Percentage of time [0.0-1.0]  above 350 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInAnyHighPercent
-          description: Percentage of time [0.0-1.0]  above 180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
         - schema:
             $ref: '#/components/schemas/IntFilter'
           in: query
@@ -500,42 +500,42 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInVeryLowPercent
-          description: Percentage of time [0.0-1.0]  below 54 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 54 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInAnyLowPercent
-          description: Percentage of time [0.0-1.0]  below 70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInLowPercent
-          description: Percentage of time [0.0-1.0]  in range 54-70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 54-70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInTargetPercent
-          description: Percentage of time [0.0-1.0]  in range 70-180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 70-180 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInHighPercent
-          description: Percentage of time [0.0-1.0]  in range 180-250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 180-250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInVeryHighPercent
-          description: Percentage of time [0.0-1.0]  above 250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInExtremeHighPercent
-          description: Percentage of time [0.0-1.0]  above 350 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInAnyHighPercent
-          description: Percentage of time [0.0-1.0]  above 180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
         - schema:
             $ref: '#/components/schemas/IntFilter'
           in: query
@@ -581,7 +581,6 @@ paths:
           in: query
           name: bgm.totalRecords
           description: Total records in period
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -764,7 +763,6 @@ paths:
           in: query
           name: cgm.lastUploadDateTo
           description: Exclusive
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -855,7 +853,6 @@ paths:
           in: query
           name: bgm.totalRecordsDelta
           description: Delta of total record count
-
         - schema:
             type: string
             format: date-time
@@ -1196,8 +1193,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientReviews'
-      description: |-
-        Update the patient's last reviewed date and clinician ID
+      description: Update the patient's last reviewed date and clinician ID
       tags:
         - Clinics
     delete:
@@ -1210,12 +1206,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientReviews'
-        '409':
-          description: Cannot revert a different clinician's review
         '404':
           description: No review to delete
-      description: |-
-        Revert the patient's last reviewed date to the previous set
+        '409':
+          description: Cannot revert a different clinician's review
+      description: Revert the patient's last reviewed date to the previous set
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
@@ -2087,6 +2082,20 @@ paths:
             schema:
               $ref: '#/components/schemas/GenerateMergeReport'
         description: ''
+  '/v1/clinics/{clinicId}/patients/{patientId}/connect/{providerId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+      - $ref: '#/components/parameters/providerId'
+    post:
+      summary: Connect Data Provider
+      operationId: ConnectProvider
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - Clinics
+      description: Send a new request to the patient to connect a data provider
 components:
   schemas:
     Error:
@@ -2314,18 +2323,18 @@ components:
     PatientSummary:
       $ref: ./clinic/models/summaries/patientsummary.v1.yaml
     PatientReview:
-      $ref: "./clinic/models/patientreview.v1.yaml"
+      $ref: ./clinic/models/patientreview.v1.yaml
     PatientReviews:
       type: array
       items:
-        $ref: "#/components/schemas/PatientReview"
+        $ref: '#/components/schemas/PatientReview'
     FloatFilter:
       type: string
-      pattern: ^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$
+      pattern: '^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$'
       example: '>=5.5'
     IntFilter:
       type: string
-      pattern: ^(>=|>|<=|<)[+-]?\d+$
+      pattern: '^(>=|>|<=|<)[+-]?\d+$'
       example: '>=7'
     UpdateTier:
       title: UpdateTier
@@ -2468,6 +2477,10 @@ components:
           $ref: ./clinic/models/clinicid.v1.yaml
       required:
         - sourceId
+    ProviderConnectionRequests:
+      $ref: ./clinic/models/providerconnectionrequests.v1.yaml
+    ProviderConnectionRequest:
+      $ref: ./clinic/models/providerconnectionrequest.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -2586,6 +2599,15 @@ components:
       schema:
         type: boolean
       description: Retrieve clinics with enabled EHR integration
+    providerId:
+      name: providerId
+      in: path
+      schema:
+        type: string
+        enum:
+          - dexcom
+          - twiist
+      required: true
 tags:
   - name: Clinics
     description: 'Manage clinics, clinians and patients.'

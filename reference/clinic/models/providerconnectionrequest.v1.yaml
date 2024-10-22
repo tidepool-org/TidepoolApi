@@ -1,0 +1,21 @@
+title: providerconnectionrequest.v1
+x-stoplight:
+  id: tijem74mwgf9p
+type: object
+properties:
+  providerName:
+    type: string
+    x-stoplight:
+      id: 7qen3hsd5rggw
+    minLength: 1
+  createdTime:
+    type: string
+    x-stoplight:
+      id: j7zzlmmtmwxip
+    format: date-time
+required:
+  - providerName
+  - createdTime
+examples:
+  - providerName: dexcom
+    createdTime: '2019-08-24T14:15:22Z'
