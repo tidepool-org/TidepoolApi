@@ -5,6 +5,9 @@
     },
     {
       "pattern": "^https://www.accessdata.fda.gov"
+    },
+    {
+      "pattern": "^https://diabetesjournals.org"
     }
   ]
 }
