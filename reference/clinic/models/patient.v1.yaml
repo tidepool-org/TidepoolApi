@@ -1,5 +1,6 @@
 type: object
 title: Patient
+description: ''
 properties:
   id:
     $ref: ../../common/models/tidepooluserid.yaml
@@ -57,16 +58,10 @@ properties:
     nullable: true
     x-go-type-skip-optional-pointer: true
     items:
-      $ref: ./patientreview.v1.yaml
-  connectionRequests:
-    $ref: ./providerconnectionrequests.v1.yaml
-    x-stoplight:
-      id: a96pq49rkfbxk
-    readOnly: true
+      $ref: "./patientreview.v1.yaml"
 required:
   - id
   - fullName
   - birthDate
   - createdTime
   - updatedTime
-  - connectionRequests
