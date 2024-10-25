@@ -335,47 +335,47 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeCGMUsePercent
-          description: Percentage of time [0.0-1.0]  of CGM use
+          description: 'Percentage of time [0.0-1.0]  of CGM use'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryLowPercent
-          description: Percentage of time [0.0-1.0]  below 54 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 54 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInAnyLowPercent
-          description: Percentage of time [0.0-1.0]  below 70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInLowPercent
-          description: Percentage of time [0.0-1.0]  in range 54-70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 54-70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInTargetPercent
-          description: Percentage of time [0.0-1.0]  in range 70-180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 70-180 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInHighPercent
-          description: Percentage of time [0.0-1.0]  in range 180-250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 180-250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryHighPercent
-          description: Percentage of time [0.0-1.0]  above 250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInExtremeHighPercent
-          description: Percentage of time [0.0-1.0]  above 350 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInAnyHighPercent
-          description: Percentage of time [0.0-1.0]  above 180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
         - schema:
             $ref: '#/components/schemas/IntFilter'
           in: query
@@ -500,42 +500,42 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInVeryLowPercent
-          description: Percentage of time [0.0-1.0]  below 54 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 54 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInAnyLowPercent
-          description: Percentage of time [0.0-1.0]  below 70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInLowPercent
-          description: Percentage of time [0.0-1.0]  in range 54-70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 54-70 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInTargetPercent
-          description: Percentage of time [0.0-1.0]  in range 70-180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 70-180 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInHighPercent
-          description: Percentage of time [0.0-1.0]  in range 180-250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 180-250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInVeryHighPercent
-          description: Percentage of time [0.0-1.0]  above 250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 250 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInExtremeHighPercent
-          description: Percentage of time [0.0-1.0]  above 350 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInAnyHighPercent
-          description: Percentage of time [0.0-1.0]  above 180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
         - schema:
             $ref: '#/components/schemas/IntFilter'
           in: query
@@ -581,7 +581,6 @@ paths:
           in: query
           name: bgm.totalRecords
           description: Total records in period
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -764,7 +763,6 @@ paths:
           in: query
           name: cgm.lastUploadDateTo
           description: Exclusive
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -855,7 +853,6 @@ paths:
           in: query
           name: bgm.totalRecordsDelta
           description: Delta of total record count
-
         - schema:
             type: string
             format: date-time
@@ -2087,6 +2084,25 @@ paths:
             schema:
               $ref: '#/components/schemas/GenerateMergeReport'
         description: ''
+  '/v1/clinics/{clinicId}/merge':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Merge Clinic
+      operationId: MergeClinic
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MergeClinic'
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      description: 'Merges tags, patients, clinicians, invites and share codes of the source clinic'
 components:
   schemas:
     Error:
@@ -2321,11 +2337,11 @@ components:
         $ref: "#/components/schemas/PatientReview"
     FloatFilter:
       type: string
-      pattern: ^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$
+      pattern: '^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$'
       example: '>=5.5'
     IntFilter:
       type: string
-      pattern: ^(>=|>|<=|<)[+-]?\d+$
+      pattern: '^(>=|>|<=|<)[+-]?\d+$'
       example: '>=7'
     UpdateTier:
       title: UpdateTier
@@ -2468,6 +2484,14 @@ components:
           $ref: ./clinic/models/clinicid.v1.yaml
       required:
         - sourceId
+    MergeClinic:
+      title: MergeClinics
+      x-stoplight:
+        id: 6hn01uuhln0wx
+      type: object
+      properties:
+        sourceId:
+          $ref: ./clinic/models/clinicid.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
