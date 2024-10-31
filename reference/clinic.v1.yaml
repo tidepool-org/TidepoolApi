@@ -28,6 +28,7 @@ paths:
       summary: List Clinics
       tags:
         - Clinics
+        - Internal
       responses:
         '200':
           description: OK
