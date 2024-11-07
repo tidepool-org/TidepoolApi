@@ -269,12 +269,6 @@ paths:
           in: query
           name: lastDataCutoff
           description: Inclusive
-        - schema:
-            type: string
-            format: date-time
-          in: query
-          name: cgm.lastUploadDateTo
-          description: Exclusive
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -756,13 +750,13 @@ paths:
             type: string
             format: date-time
           in: query
-          name: cgm.lastUploadDateFrom
+          name: cgm.lastDataFrom
           description: Inclusive
         - schema:
             type: string
             format: date-time
           in: query
-          name: cgm.lastUploadDateTo
+          name: cgm.lastDataTo
           description: Exclusive
 
         - schema:
