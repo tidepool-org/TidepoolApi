@@ -60,9 +60,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/TokenErrorResponse'
       description: |-
-        Obtain an access, id and refresh token(s) by presenting an authorization grant or a valid refresh token.
+        Obtain an access, id and refresh token(s) by using an authorization code, client credentials or a valid refresh token .
 
-        If the access token request is valid and authorized, the authorization server issues an access token and optional refresh token. If the request client authentication failed or is invalid, the authorization server returns an error response.
+        If the token request is valid and authorized, the authorization server issues an access token and optional refresh token. If the request client authentication failed or is invalid, the authorization server returns an error response.
+
+        ### Client Credentials Grant (Service Account authentication)
+
+        Use this method of authentication if you're accessing Tidepool API's from a non-browser environment (e.g. backend-to-backend connection)
+
+        ```
+        client_id=cgm-monitor
+        client_secret=c50e6502-131c-47f0-b439-a43acb3b83d0
+        grant_type=client_credentials
+        ```
 
         ### Password Credentials Grant
 
