@@ -2378,6 +2378,8 @@ components:
       properties:
         messageRef:
           $ref: '#/components/schemas/EHRMatchMessageRef'
+        patients:
+          $ref: '#/components/schemas/EHRMatchRequestPatientsOptions'
     EHRMatchResponse:
       title: EHRMatchResponse
       x-stoplight:
@@ -2492,6 +2494,36 @@ components:
           $ref: ./clinic/models/clinicid.v1.yaml
     EHRTagsSettings:
       $ref: ./clinic/models/ehrtagssettings.v1.yaml
+    EHRMatchRequestPatientsOptions:
+      title: Patient Matching Options
+      x-stoplight:
+        id: 43n6iid3zghxm
+      type: object
+      properties:
+        criteria:
+          type: array
+          x-stoplight:
+            id: 1odrg3q8zzdil
+          description: Performs an "OR" match for each item in the array
+          minItems: 1
+          items:
+            x-stoplight:
+              id: mgi1k2jyojc4k
+            type: string
+            enum:
+              - MRN
+              - MRN_DOB
+              - DOB_FULLNAME
+        onUniqueMatch:
+          type: string
+          x-stoplight:
+            id: s9ujf5ce4vhc1
+          enum:
+            - ENABLE_REPORTS
+            - DISABLE_REPORTS
+          description: Optional action to be performed when a unique match has been found
+      required:
+        - criteria
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
