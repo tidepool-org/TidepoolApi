@@ -1,6 +1,5 @@
 type: object
 title: Patient
-description: ''
 properties:
   id:
     $ref: ../../common/models/tidepooluserid.yaml
@@ -43,10 +42,6 @@ properties:
     nullable: true
     items:
       $ref: ./datasource.v1.yaml
-  lastRequestedDexcomConnectTime:
-    type: string
-    format: date-time
-    readOnly: true
   lastUploadReminderTime:
     type: string
     format: date-time
@@ -58,10 +53,17 @@ properties:
     nullable: true
     x-go-type-skip-optional-pointer: true
     items:
-      $ref: "./patientreview.v1.yaml"
+      $ref: ./patientreview.v1.yaml
+  connectionRequests:
+    $ref: ./providerconnectionrequests.v1.yaml
+    x-stoplight:
+      id: 502rliv0l2tyy
+    description: Requests for each provider are listed in reverse chronological order
+    readOnly: true
 required:
   - id
   - fullName
   - birthDate
   - createdTime
   - updatedTime
+  - connectionRequests
