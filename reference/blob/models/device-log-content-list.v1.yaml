@@ -1,0 +1,16 @@
+title: Contents of a device log.
+type: array
+minItems: 0
+items:
+  $ref:  './device-log-content.v1.yaml'
+example:
+  - type: send
+    managerIdentifier: 'Devicey McDeviceface'
+    deviceIdentifier: 'MMT-1711:12345678'
+    timestamp: '2017-02-06T02:37:46Z'
+    message: 'sent something ...'
+  - type: connection
+    managerIdentifier: 'Devicey McDeviceface'
+    deviceIdentifier: 'MMT-1711:12345678'
+    timestamp: '2017-02-06T02:36:50Z'
+    message: 'establishing connection ...'

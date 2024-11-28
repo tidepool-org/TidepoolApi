@@ -1,0 +1,7 @@
+description: >-
+  DeviceLog ID
+name: deviceLogId
+in: path
+required: true
+schema:
+  $ref: '../models/id.v1.yaml'

@@ -55,7 +55,7 @@ paths:
     post:
       operationId: UploadDeviceLogs
       summary: Upload new device logs as json
-      description: Uploads a new device logs json to the user's account. The `Digest` header must represent the MD5 hash of the json data content.
+      description: Uploads new device logs to the user's account. The `Digest` header must represent the MD5 hash of the data.
       parameters:
         - $ref: ./common/parameters/digestmd5.v1.yaml
         - $ref: ./blob/parameters/logs-start-at.v1.yaml
@@ -66,9 +66,10 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: ./blob/models/device-log-content.v1.yaml
+              $ref: ./blob/models/device-log-content-list.v1.yaml
+          text/plain:
+            schema:
+              type: string
       responses:
         '201':
           $ref: '#/components/responses/DeviceLogsMetadata'
@@ -89,9 +90,33 @@ paths:
       parameters:
         - $ref: ./blob/parameters/start-at.v1.yaml
         - $ref: ./blob/parameters/end-at.v1.yaml
+        - $ref: ./common/parameters/paginationpage.v1.yaml
+        - $ref: ./common/parameters/paginationsize.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/DeviceLogsMetadataList'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '404':
+          $ref: './common/responses/notfound.v1.yaml'
+      tags:
+        - Device Logs
+
+  '/v1/device_logs/{deviceLogId}/content':
+    parameters:
+      - $ref: './blob/parameters/device-log-id.v1.yaml'
+    get:
+      operationId: GetDeviceLogContent
+      summary: Get the content of a device log.
+      description: >-
+        Retrieves the content, the actual data, of a device log.
+      responses:
+        '200':
+          $ref: '#/components/responses/DeviceLogContent'
         '400':
           $ref: './common/responses/badrequest.v1.yaml'
         '401':
@@ -280,8 +305,20 @@ components:
         '*/*':
           schema:
             $ref: './blob/models/content.v1.yaml'
+    DeviceLogContent:
+      description: Device log content.
+      content:
+        application/json:
+          schema:
+            $ref: ./blob/models/device-log-content-list.v1.yaml
+        text/plain:
+          schema:
+            type: string
+            example: >-
+              Any kind of arbritrary log data sent by a device. Establishing
+              connection... Connection established. Sending logs...
     DeviceLogsMetadata:
-      description: Device logs metadata
+      description: Device logs metadata. This is information about the log data, but is not the actual log data.
       content:
         application/json:
           schema:
