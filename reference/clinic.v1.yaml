@@ -1193,8 +1193,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientReviews'
-      description: |-
-        Update the patient's last reviewed date and clinician ID
+      description: Update the patient's last reviewed date and clinician ID
       tags:
         - Clinics
     delete:
@@ -1207,12 +1206,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PatientReviews'
-        '409':
-          description: Cannot revert a different clinician's review
         '404':
           description: No review to delete
-      description: |-
-        Revert the patient's last reviewed date to the previous set
+        '409':
+          description: Cannot revert a different clinician's review
+      description: Revert the patient's last reviewed date to the previous set
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
@@ -2330,11 +2328,11 @@ components:
     PatientSummary:
       $ref: ./clinic/models/summaries/patientsummary.v1.yaml
     PatientReview:
-      $ref: "./clinic/models/patientreview.v1.yaml"
+      $ref: ./clinic/models/patientreview.v1.yaml
     PatientReviews:
       type: array
       items:
-        $ref: "#/components/schemas/PatientReview"
+        $ref: '#/components/schemas/PatientReview'
     FloatFilter:
       type: string
       pattern: '^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$'
@@ -2380,6 +2378,8 @@ components:
       properties:
         messageRef:
           $ref: '#/components/schemas/EHRMatchMessageRef'
+        patients:
+          $ref: '#/components/schemas/EHRMatchRequestPatientsOptions'
     EHRMatchResponse:
       title: EHRMatchResponse
       x-stoplight:
@@ -2492,6 +2492,38 @@ components:
       properties:
         sourceId:
           $ref: ./clinic/models/clinicid.v1.yaml
+    EHRTagsSettings:
+      $ref: ./clinic/models/ehrtagssettings.v1.yaml
+    EHRMatchRequestPatientsOptions:
+      title: Patient Matching Options
+      x-stoplight:
+        id: 43n6iid3zghxm
+      type: object
+      properties:
+        criteria:
+          type: array
+          x-stoplight:
+            id: 1odrg3q8zzdil
+          description: Performs an "OR" match for each item in the array
+          minItems: 1
+          items:
+            x-stoplight:
+              id: mgi1k2jyojc4k
+            type: string
+            enum:
+              - MRN
+              - MRN_DOB
+              - DOB_FULLNAME
+        onUniqueMatch:
+          type: string
+          x-stoplight:
+            id: s9ujf5ce4vhc1
+          enum:
+            - ENABLE_REPORTS
+            - DISABLE_REPORTS
+          description: Optional action to be performed when a unique match has been found
+      required:
+        - criteria
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
