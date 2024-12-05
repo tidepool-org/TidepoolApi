@@ -20,6 +20,12 @@ properties:
     x-go-type-skip-optional-pointer: true
     items:
       $ref: "../patientreview.v1.yaml"
+  dataSources:
+    type: array
+    nullable: true
+    items:
+      $ref: "../datasource.v1.yaml"
+
 
 required:
   - id
