@@ -1,0 +1,6 @@
+description: >-
+  Full name
+name: fullName
+in: query
+schema:
+  $ref: '../../metadata/models/fullname.v1.yaml'
