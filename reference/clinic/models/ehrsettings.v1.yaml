@@ -31,6 +31,10 @@ properties:
     x-stoplight:
       id: lgfrpsps4x37a
     description: Scheduled Report Settings
+  tags:
+    $ref: ./ehrtagssettings.v1.yaml
+    x-stoplight:
+      id: hp97ilzsssprv
 required:
   - enabled
   - sourceId
@@ -38,3 +42,4 @@ required:
   - mrnIdType
   - provider
   - scheduledReports
+  - tags
