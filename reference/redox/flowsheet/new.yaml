@@ -2,6 +2,9 @@ type: object
 properties:
   Meta:
     type: object
+    required:
+      - DataModel
+      - EventType
     properties:
       DataModel:
         type: string
@@ -59,11 +62,10 @@ properties:
       FacilityCode:
         type: string
         nullable: true
-    required:
-      - DataModel
-      - EventType
   Patient:
     type: object
+    required:
+      - Identifiers
     properties:
       Identifiers:
         type: array
@@ -217,8 +219,6 @@ properties:
             Roles:
               type: array
               items: {}
-    required:
-      - Identifiers
   Visit:
     type: object
     properties:
@@ -271,6 +271,11 @@ properties:
           Bed:
             type: string
             nullable: true
+      Extensions:
+        type: array
+        x-stoplight:
+          id: 0gnhldre4wsiy
+        items: {}
   Observations:
     type: array
     items:
