@@ -168,6 +168,7 @@ paths:
         - sessionToken: []
       tags:
         - Users
+        - Internal
       x-internal: true
   /auth/users:
     get:
