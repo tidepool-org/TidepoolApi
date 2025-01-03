@@ -27,7 +27,7 @@ servers:
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
 tags:
-  - name: Internal
+  - name: System
     description: APIs intended for internal use by Tidepool.
   - name: Users
     description: List and manage users.
@@ -168,6 +168,7 @@ paths:
         - sessionToken: []
       tags:
         - Users
+      x-internal: true
   /auth/users:
     get:
       operationId: GetUsers
@@ -219,6 +220,7 @@ paths:
       tags:
         - Users
         - Internal
+      x-internal: true
   '/auth/user/{userId}':
     parameters:
       - $ref: ./common/parameters/tidepooluserid.yaml
