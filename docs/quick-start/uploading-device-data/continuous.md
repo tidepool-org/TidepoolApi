@@ -157,6 +157,7 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
       "type": "cbg",
       "value": 119,
       "units": "mg/dL",
+      "sampleInterval": 300000,
       "origin": {
         "id": "06b10116-e85c-4abe-8a35-4eca838bd484",
         "name": "com.apple.HealthKit",
@@ -176,6 +177,7 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
       "type": "cbg",
       "value": 120,
       "units": "mg/dL",
+      "sampleInterval": 300000,
       "origin": {
         "id": "1c26886a-ae52-4e43-84cf-5047afe3efc3",
         "name": "com.apple.HealthKit",
