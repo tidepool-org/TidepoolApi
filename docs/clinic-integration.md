@@ -657,7 +657,5 @@ You can update a patient record by making a PUT request (rather than a GET) on t
 * The update may fail if the field values violate validation rules.
 
 ```shell
-curl -X PUT -H "X-Tidepool-Session-Token: {access_token}" "https://app.tidepool.org/v1/clinics/{clinicId}/patients/{patientUserId}"
+curl -X PUT -H "X-Tidepool-Session-Token: {access_token}" -H "Content-Type: application/json" -d '{patient_record}' "https://app.tidepool.org/v1/clinics/{clinicId}/patients/{patientUserId}"
 ```
-
-
