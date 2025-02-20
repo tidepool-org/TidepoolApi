@@ -96,7 +96,7 @@ flowchart TB
     member1 == administrator of ===> clinic1
     member2 ===> clinic1
     member3 ===> clinic1
-    member4 == adminstrator of ===> clinic2
+    member4 == administrator of ===> clinic2
     member4 ===> clinic1
     member5 ===> clinic2
     patient1 ==> clinic1
