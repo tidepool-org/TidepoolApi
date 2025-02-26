@@ -1,0 +1,53 @@
+type: object
+title: glucoseperiod.v5
+description: 'Summary of a specific CGM time period (currently: 1d, 7d, 14d, 30d)'
+allOf:
+  - $ref: '../glucose/glucoseranges.v5.yaml'
+  - type: object
+    properties:
+      hoursWithData:
+        type: number
+        example: 2
+        x-go-type: int
+
+      daysWithData:
+        type: number
+        example: 2
+        x-go-type: int
+
+      averageGlucoseMmol:
+        description: Average Glucose of records in this period
+        type: number
+        example: 5.5
+        x-go-type: float64
+
+      glucoseManagementIndicator:
+        type: number
+        x-go-type: float64
+        description: A derived value which emulates A1C
+        example: 7.5
+
+      coefficientOfVariation:
+        type: number
+        example: 2.5
+        x-go-type: float64
+
+      standardDeviation:
+        type: number
+        example: 2.5
+        x-go-type: float64
+
+      averageDailyRecords:
+        description: Average daily readings
+        type: number
+        example: 3.5
+        x-go-type: float64
+    required:
+      - hoursWithData
+      - daysWithData
+      - averageGlucose
+      - glucoseManagementIndicator
+      - coefficientOfVariation
+      - standardDeviation
+      - averageDailyRecords
+      - averageGlucoseMmol
