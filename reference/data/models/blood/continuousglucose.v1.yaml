@@ -10,6 +10,8 @@ allOf:
           - cbg
       trend:
         $ref: './glucose/trend.v1.yaml'
+      trendRateUnits:
+        $ref: './rateunits.v1.yaml'
       trendRate:
         $ref: './glucose/trendrate.v1.yaml'
       sampleInterval:
