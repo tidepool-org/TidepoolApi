@@ -29,11 +29,11 @@ The device time field is only optional for *this* data type. This is because Tid
 
 ## Sample Interval (`sampleInterval`)
 
-With the latest generation of continuous glucose monitors, different devices may support different intervals between samples. For example, every 5 minutes or every 15 minutes between samples. In fact, some newer devices may even report multiple sample intervals from different data streams. For example, a device that reports data from both 1-minute samples and 5-minutes samples. 
+With the latest generation of continuous glucose monitors, different devices may support different intervals between glucose samples. For example, every 5 minutes or every 15 minutes between glucose samples. In fact, some newer devices may even report multiple sample intervals from different glucose data streams. For example, a device that reports both 1-minute and 5-minutes glucose samples. 
 
-In order to distinguish between sample intervals and to assist with accurate statisitical calculations, the `sampleInterval` must be specified. The value must be an integer representing number of milliseconds between samples for the data stream that this datum belongs to. For example, if a device reports both 1-minute and 5-minute sample data, then the upload would contain some `cbg` data with a sample interval of 60000 (milliseconds in 1-minute) and others with a sample interval of 300000 (milliseconds in 5-minutes). The typical sample intervals are 60000 (milliseconds in 1 minute), 300000 (milliseconds in 5 minutes), and 1500000 (milliseconds in 15 minutes).
+In order to distinguish between sample intervals and to assist with accurate statistical calculations, the `sampleInterval` should be specified, if it is known. The value must be an integer representing number of milliseconds between samples for the data stream that a datum belongs to. For example, if a device reports both 1-minute and 5-minute samples, then the upload would contain some `cbg` data with a sample interval of 60000 (milliseconds in 1 minute) and others with a sample interval of 300000 (milliseconds in 5 minutes). The typical sample intervals are 60000 (milliseconds in 1 minute), 300000 (milliseconds in 5 minutes), and 900000 (milliseconds in 15 minutes).
 
-While this field and value are currently optional in the API implementation, this field will be required in the relatively near future (as of 2025-02-07), so it is marked as such here.
+While this field is optional, it is strongly encouraged to provide this field, assuming definitive information regarding sample interval is available from the device.
 
 ---
 
@@ -41,7 +41,7 @@ While this field and value are currently optional in the API implementation, thi
 
 The backfilled field, an optional boolean, is used to indicate whether this datum was backfilled from the continuous glucose monitor sensor to the device capturing the data. For example, if the CGM sensor is out-of-range of the mobile phone capturing the data, then when the CGM sensor comes back in-range of the mobile phone, the historic sensor data (while the CGM sensor was out-of-range) is "backfilled" to the mobile phone. If it is definitively known that this datum was indeed backfilled, then this field should be set to `true`. If it is definitely known that this datum was **not** backfilled, then this field should be set to `false`. If it is not definitely known one-way-or-the-other, then this field should **not** be specified.
 
-While this value is optional, this field will actively be used in the relatively near future (as of 2025-02-07), so it is highly recommended to support this field as soon as possible, assuming definitive information regarding backfill is available from the device.
+While this field is optional, it is strongly encouraged to provide this field, assuming definitive information regarding backfill is available from the device.
 
 ---
 
