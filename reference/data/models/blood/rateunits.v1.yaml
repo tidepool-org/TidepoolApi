@@ -1,0 +1,8 @@
+title: Glucose Rate Units (mg/dL/minute)
+type: string
+enum:
+  - mmol/L/minute
+  - mg/dL/minute
+example: 'mg/dL/minute'
+x-tags:
+  - Data

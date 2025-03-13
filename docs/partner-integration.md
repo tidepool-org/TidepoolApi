@@ -62,13 +62,13 @@ In addition to the common data fields listed above, Tidepool expects to receive 
 
 CGM API can optionally also provide Trend and other Sample information, such as:
 
-| Description     | Notes                                                             | Tidepool Data Model Field | Example(s)     |
-| --------------- | ----------------------------------------------------------------- | ------------------------- | -------------- |
-| Trend           | Text representation of the trend                                  | `trend`                   | `moderateRise` |
-| Trend Rate      | Numerical representation of the trend rate                        | `trendRate`               | `2`            |
-| Trend Rate Unit | Unit for the trend rate; default is sample value unit per minutes | `trendRateUnit`           | `mg/dL/min`    |
-| Sample Interval | Sample interval for data; integer, optional, milliseconds         | `sampleInterval`          | `300000`       |
-| Backfilled      | Whether data was backfilled from sensor device; boolean, optional | `backfilled`              | `true`         |
+| Description      | Notes                                                             | Tidepool Data Model Field | Example(s)     |
+| ---------------- | ----------------------------------------------------------------- | ------------------------- | -------------- |
+| Trend            | Text representation of the trend                                  | `trend`                   | `moderateRise` |
+| Trend Rate Units | Units for the trend rate, optional                                | `trendRateUnits`          | `mg/dL/minute` |
+| Trend Rate       | Numerical representation of the trend rate, optional              | `trendRate`               | `2.1`          |
+| Sample Interval  | Sample interval for data; integer, optional, milliseconds         | `sampleInterval`          | `300000`       |
+| Backfilled       | Whether data was backfilled from sensor device; boolean, optional | `backfilled`              | `true`         |
 
 ### Insulin Delivery Devices (Pumps, Pens)
 
