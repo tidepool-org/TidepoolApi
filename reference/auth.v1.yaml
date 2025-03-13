@@ -680,6 +680,22 @@ paths:
         - sessionToken: []
       tags:
         - Internal
+  '/v1/partners/twiist/{tidepoolLinkId}':
+    parameters:
+      - schema:
+          type: string
+        name: tidepoolLinkId
+        in: path
+        required: true
+    delete:
+      summary: Unlink Twiist Account
+      operationId: UnlinkTwiistAccount
+      responses:
+        '200':
+          description: OK
+      description: An endpoint to unlink twiist account. The endpoint must be called with an access token issued for the Sequel service account.
+      tags:
+        - Authentication
 components:
   securitySchemes:
     basicAuth:
