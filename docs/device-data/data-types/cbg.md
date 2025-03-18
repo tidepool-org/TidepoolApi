@@ -41,7 +41,7 @@ A continuous glucose monitor may optionally report the trend rate. That is, the 
 
 ## Sample Interval (`sampleInterval`)
 
-With the latest generation of continuous glucose monitors, different devices may support different intervals between glucose samples. For example, every 5 minutes or every 15 minutes between glucose samples. In fact, some newer devices may even report multiple sample intervals from different glucose data streams. For example, a device that reports both 1-minute and 5-minutes glucose samples. 
+With the latest generation of continuous glucose monitors, different devices may support different intervals between glucose samples. For example, every 5 minutes or every 15 minutes between glucose samples. In fact, some newer devices may even report multiple sample intervals from different glucose data streams. For example, a device that reports both 1-minute and 5-minutes glucose samples.
 
 In order to distinguish between sample intervals and to assist with accurate statistical calculations, the `sampleInterval` should be specified, if it is known. The value must be an integer representing number of milliseconds between samples for the data stream that a datum belongs to. For example, if a device reports both 1-minute and 5-minute samples, then the upload would contain some `cbg` data with a sample interval of 60000 (milliseconds in 1 minute) and others with a sample interval of 300000 (milliseconds in 5 minutes). The typical sample intervals are 60000 (milliseconds in 1 minute), 300000 (milliseconds in 5 minutes), and 900000 (milliseconds in 15 minutes).
 
