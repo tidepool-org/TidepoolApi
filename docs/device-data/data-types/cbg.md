@@ -27,6 +27,18 @@ The device time field is only optional for *this* data type. This is because Tid
 
 ---
 
+## Trend Rate Units (`trendRateUnits`)
+
+A continuous glucose monitor may optionally report the trend rate. That is, the rate at which the glucose value has been changing over some period of time, usually on the order of minutes. If this is available then `trendRateUnits` and `trendRate` may be specified to capture this data. Valid values for `trendRateUnits` are `mmol/L/minute` and `mg/dL/minute`.
+
+---
+
+## Trend Rate (`trendRate`)
+
+A continuous glucose monitor may optionally report the trend rate. That is, the rate at which the glucose value has been changing over some period of time, usually on the order of minutes. If this is available then `trendRateUnits` and `trendRate` may be specified to capture this data. The `trendRate` is a floating point value whose valid range depends upon the `trendRateUnits`. For a `trendRateUnits` of `mmol/L/minute` then the range is from -5.5 to 5.5 and for `mg/dL/minute` it is -100.0 to 100.0.
+
+---
+
 ## Sample Interval (`sampleInterval`)
 
 With the latest generation of continuous glucose monitors, different devices may support different intervals between glucose samples. For example, every 5 minutes or every 15 minutes between glucose samples. In fact, some newer devices may even report multiple sample intervals from different glucose data streams. For example, a device that reports both 1-minute and 5-minutes glucose samples.
@@ -52,6 +64,8 @@ While this field is optional, it is strongly encouraged to provide this field, a
     "type": "cbg",
     "units": "mmol/L",
     "value": 3.996538553552784,
+    "trendRate": -0.4,
+    "trendRateUnits": "mmol/L/minute",
     "sampleInterval": 300000,
     "clockDriftOffset": 0,
     "conversionOffset": 0,
@@ -70,6 +84,8 @@ While this field is optional, it is strongly encouraged to provide this field, a
     "type": "cbg",
     "units": "mg/dL",
     "value": 421,
+    "trendRate": -2.2,
+    "trendRateUnits": "mg/dL/minute",
     "sampleInterval": 60000,
     "clockDriftOffset": 0,
     "conversionOffset": 0,
@@ -86,6 +102,8 @@ While this field is optional, it is strongly encouraged to provide this field, a
     "type": "cbg",
     "units": "mmol/L",
     "value": 27.25417263603357,
+    "trendRate": -0.4,
+    "trendRateUnits": "mmol/L/minute",
     "sampleInterval": 300000,
     "_active": true,
     "_groupId": "abcdef",
