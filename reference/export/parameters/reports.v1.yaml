@@ -1,0 +1,11 @@
+description: >-
+  Report Type. The type of report(s) to produce.
+  It can be a single value like `/export/report/userid?reports=apg` or a comma separated list like `/export/report/userid?reports=agp,daily,basics`.
+name: reports
+in: query
+required: false
+style: form
+explode: false
+schema:
+  $ref: '../models/reporttype.v1.yaml'
+  default: all
