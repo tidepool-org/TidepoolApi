@@ -1,0 +1,38 @@
+type: object
+title: glucoserange.v5
+description: 'Metrics for a particular range of glucose values'
+properties:
+  glucose:
+    description: total of glucose values
+    type: number
+    example: 55.5
+    x-go-type: float64
+  minutes:
+    description: total of minutes represented
+    type: number
+    example: 55
+    x-go-type: int
+  records:
+    description: total records
+    type: number
+    example: 5
+    x-go-type: int
+  percent:
+    description: percent of all ranges this range represents, or total CGM use in a Total range
+    type: number
+    example: 0.33
+    x-go-type: float64
+  variance:
+    description: total variance of the values in this range
+    type: number
+    example: 15.5
+    x-go-type: float64
+
+x-go-type-skip-optional-pointer: true
+
+required:
+  - glucose
+  - minutes
+  - records
+  - percent
+  - variance

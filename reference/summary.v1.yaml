@@ -74,39 +74,29 @@ components:
     TidepoolUserId:
       $ref: './common/models/tidepooluserid.yaml'
     SummaryTypeSchema:
-      $ref: './summary/models/summarytype.v1.yaml'
-    BGMBucketData:
-      $ref: './summary/models/bgm/bgmbucketdata.v1.yaml'
-    BGMPeriod:
-      $ref: './summary/models/bgm/bgmperiod.v1.yaml'
-    BGMPeriods:
-      $ref: './summary/models/bgm/bgmperiods.v1.yaml'
-    BGMStats:
-      $ref: './summary/models/bgm/bgmstats.v1.yaml'
-    CGMBucketData:
-      $ref: './summary/models/cgm/cgmbucketdata.v1.yaml'
-    CGMPeriod:
-      $ref: './summary/models/cgm/cgmperiod.v1.yaml'
-    CGMPeriods:
-      $ref: './summary/models/cgm/cgmperiods.v1.yaml'
-    CGMStats:
-      $ref: './summary/models/cgm/cgmstats.v1.yaml'
-    ContinuousBucketData:
-      $ref: './summary/models/continuous/continuousbucketdata.v1.yaml'
-    ContinuousPeriod:
-      $ref: './summary/models/continuous/continuousperiod.v1.yaml'
-    ContinuousPeriods:
-      $ref: './summary/models/continuous/continuousperiods.v1.yaml'
-    ContinuousStats:
-      $ref: './summary/models/continuous/continuousstats.v1.yaml'
-    Bucket:
-      $ref: './summary/models/bucket.v1.yaml'
+      $ref: './summary/models/summarytype.v5.yaml'
     Config:
       $ref: './summary/models/config.v1.yaml'
     Dates:
-      $ref: './summary/models/dates.v1.yaml'
+      $ref: './summary/models/dates.v5.yaml'
+    GlucoseRange:
+      $ref: './summary/models/glucose/glucoserange.v5.yaml'
+    GlucoseRanges:
+      $ref: './summary/models/glucose/glucoseranges.v5.yaml'
+    ContinuousRanges:
+      $ref: './summary/models/continuous/continuousranges.v5.yaml'
+    GlucosePeriod:
+      $ref: './summary/models/glucose/glucoseperiod.v5.yaml'
+    ContinuousPeriod:
+      $ref: './summary/models/continuous/continuousperiod.v5.yaml'
+    CGMPeriods:
+      $ref: './summary/models/cgm/cgmperiods.v5.yaml'
+    BGMPeriods:
+      $ref: './summary/models/bgm/bgmperiods.v5.yaml'
+    ContinuousPeriods:
+      $ref: './summary/models/continuous/continuousperiods.v5.yaml'
     Summary:
-      $ref: './summary/models/summary.v1.yaml'
+      $ref: './summary/models/summary.v5.yaml'
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
