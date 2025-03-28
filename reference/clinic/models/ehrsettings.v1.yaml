@@ -35,6 +35,8 @@ properties:
     $ref: ./ehrtagssettings.v1.yaml
     x-stoplight:
       id: hp97ilzsssprv
+  flowsheets:
+    $ref: ./ehrflowsheetsettings.v1.yaml
 required:
   - enabled
   - sourceId
@@ -43,3 +45,4 @@ required:
   - provider
   - scheduledReports
   - tags
+  - flowsheets
