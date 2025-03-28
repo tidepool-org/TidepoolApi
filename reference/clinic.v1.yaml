@@ -2521,6 +2521,8 @@ components:
           description: Optional action to be performed when a unique match has been found
       required:
         - criteria
+    EHRFlowsheetSettings:
+      $ref: ./clinic/models/ehrflowsheetsettings.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
