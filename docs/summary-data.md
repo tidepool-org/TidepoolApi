@@ -96,14 +96,31 @@ Thus, in the end a user who has both CGM and BGM data may have up to the followi
 
 $$
 \begin{align}
-\begin{bmatrix} CGM \\ BGM \end{bmatrix} types
+\begin{bmatrix}
+  CGM \\
+  BGM
+\end{bmatrix} types
 \times 30 \space days
 \times 24 \space hours
-\times \begin{bmatrix} current \\ previous \end{bmatrix} \space sets
+\times \begin{bmatrix}
+  current \\
+  previous
+\end{bmatrix} \space sets
 & = 2,880 \space hourly \space buckets \nonumber \\
-\begin{bmatrix} CGM \\ BGM \end{bmatrix} types
-\times \begin{bmatrix} 1 \\ 7 \\ 14 \\ 30 \end{bmatrix} \space days
-\times \begin{bmatrix} current \\ previous \end{bmatrix} sets
+\begin{bmatrix}
+  CGM \\
+  BGM
+\end{bmatrix} types
+\times \begin{bmatrix}
+  1 \\
+  7 \\
+  14 \\
+  30
+\end{bmatrix} \space days
+\times \begin{bmatrix}
+  current \\
+  previous
+\end{bmatrix} sets
 & = 16 \space periods \nonumber
 \end{align}
 $$
@@ -131,34 +148,38 @@ We define two additional composite ranges:
 
 The data fields in each 1-hour bucket varies by the type of data: CGM or BGM. Each bucket has a set of common header fields:
 
-|   CGM    |   BGM    | Field                | Type   | Unit  | Notes                                     |
-| :------: | :------: | :------------------- | :----- | :---- | :---------------------------------------- |
-| &#10004; | &#10004; | $Date$               | $date$ |       | Start time of the bucket                  |
-| &#10004; | &#10004; | $LastRecordTime$     | $date$ |       | Time of the last record in the bucket     |
-| &#10004; |          | $LastRecordDuration$ | $int$  | $min$ | Duration of the last sample in the bucket |
+|  CGM  |  BGM  | Field                | Type   | Unit  | Notes                                     |
+| :---: | :---: | :------------------- | :----- | :---- | :---------------------------------------- |
+|   ✅   |   ✅   | $Date$               | $date$ |       | Start time of the bucket                  |
+|   ✅   |   ✅   | $LastRecordTime$     | $date$ |       | Time of the last record in the bucket     |
+|   ✅   |       | $LastRecordDuration$ | $int$  | $min$ | Duration of the last sample in the bucket |
 
 Each bucket contains a set of fields that repeat for each summarized range:
 
-|   CGM    |   BGM    | Field      | Type    | Unit             | Notes |
-| :------: | :------: | :--------- | :------ | :--------------- | :---- |
-| &#10004; | &#10004; | $Glucose$  | $float$ | $\frac{mmol}{L}$ |       |
-| &#10004; |          | $Minutes$  | $int$   | $min$            |       |
-| &#10004; | &#10004; | $Records$  | $int$   |                  |       |
-| &#10004; | &#10004; | $Percent$  | $float$ |                  |       |
-| &#10004; |          | $Variance$ | $float$ |                  |       |
+|  CGM  |  BGM  | Field      | Type    | Unit             | Notes |
+| :---: | :---: | :--------- | :------ | :--------------- | :---- |
+|   ✅   |   ✅   | $Glucose$  | $float$ | $\frac{mmol}{L}$ |       |
+|   ✅   |       | $Minutes$  | $int$   | $min$            |       |
+|   ✅   |   ✅   | $Records$  | $int$   |                  |       |
+|   ✅   |   ✅   | $Percent$  | $float$ |                  |       |
+|   ✅   |       | $Variance$ | $float$ |                  |       |
 
 Combining the definitions above yields this general structure for the hourly buckets:
 
-$Date$
-$LastRecordTime$
-$LastRecordDuration$
-$\boxed{xxx}.Glucose$
-$\boxed{xxx}.Minutes$
-$\boxed{xxx}.Records$
-$\boxed{xxx}.Percent$
-$\boxed{xxx}.Variance$
+$$
+\begin{align}
+& Date \nonumber \\
+& LastRecordTime \nonumber \\
+& LastRecordDuration \nonumber \\
+& \textbf{Xxx}.Glucose \nonumber \\
+& \textbf{Xxx}.Minutes \nonumber \\
+& \textbf{Xxx}.Records \nonumber \\
+& \textbf{Xxx}.Percent \nonumber \\
+& \textbf{Xxx}.Variance \nonumber
+\end{align}
+$$
 
-The last 5 fields repeat 8 times, where $\boxed{xxx}$ is substituted with $Total$, $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$.
+The last 5 fields repeat 8 times, where $\textbf{Xxx}$ is substituted with $Total$, $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$.
 
 ## Period Data Fields
 
@@ -173,39 +194,39 @@ $$
 
 ### Summary Fields
 
-|   CGM    |   BGM    | Field                         | Type    | Unit             | Notes                                          |
-| :------: | :------: | :---------------------------- | :------ | :--------------- | :--------------------------------------------- |
-| &#10004; | &#10004; | $HasTotalRecords$             | $bool$  |                  |                                                |
-| &#10004; | &#10004; | $TotalRecords$                | $int$   |                  | Total number of records in the period          |
-| &#10004; | &#10004; | $TotalRecordsDelta$           | $int$   |                  |                                                |
-| &#10004; | &#10004; | $HasAverageDailyRecords$      | $bool$  |                  |                                                |
-| &#10004; | &#10004; | $AverageDailyRecords$         | $float$ |                  | $\frac{TotalRecords}{DaysInPeriod}$            |
-| &#10004; | &#10004; | $AverageDailyRecordsDelta$    | $float$ |                  |                                                |
-| &#10004; |          | $DaysWithData$                | $int$   |                  | Number of days that have > 0 records           |
-| &#10004; |          | $DaysWithDataDelta$           | $int$   |                  |                                                |
-| &#10004; |          | $HoursWithData$               | $int$   |                  | Number of hours that have > 0 records          |
-| &#10004; |          | $HoursWithDataDelta$          | $int$   |                  |                                                |
-| &#10004; | &#10004; | $HasAverageGlucoseMmol$       | $bool$  |                  |                                                |
-| &#10004; | &#10004; | $AverageGlucoseMmol$          | $float$ | $\frac{mmol}{L}$ | $\frac{TotalGlucose}{TotalRecords}$            |
-| &#10004; | &#10004; | $AverageGlucoseMmolDelta$     | $float$ | $\frac{mmol}{L}$ |                                                |
-| &#10004; |          | $StandardDeviation$           | $float$ | $\frac{mmol}{L}$ | $\sqrt{\frac{TotalVariance}{TotalMinutes}}$    |
-| &#10004; |          | $StandardDeviationDelta$      | $float$ | $\frac{mmol}{L}$ |                                                |
-| &#10004; |          | $CoefficientOfVariation$      | $float$ | $\frac{mmol}{L}$ | $\frac{StandardDeviation}{AverageGlucoseMmol}$ |
-| &#10004; |          | $CoefficientOfVariationDelta$ | $float$ | $\frac{mmol}{L}$ |                                                |
+|  CGM  |  BGM  | Field                         | Type    | Unit             | Notes                                          |
+| :---: | :---: | :---------------------------- | :------ | :--------------- | :--------------------------------------------- |
+|   ✅   |   ✅   | $HasTotalRecords$             | $bool$  |                  |                                                |
+|   ✅   |   ✅   | $TotalRecords$                | $int$   |                  | Total number of records in the period          |
+|   ✅   |   ✅   | $TotalRecordsDelta$           | $int$   |                  |                                                |
+|   ✅   |   ✅   | $HasAverageDailyRecords$      | $bool$  |                  |                                                |
+|   ✅   |   ✅   | $AverageDailyRecords$         | $float$ |                  | $\frac{TotalRecords}{DaysInPeriod}$            |
+|   ✅   |   ✅   | $AverageDailyRecordsDelta$    | $float$ |                  |                                                |
+|   ✅   |       | $DaysWithData$                | $int$   |                  | Number of days that have > 0 records           |
+|   ✅   |       | $DaysWithDataDelta$           | $int$   |                  |                                                |
+|   ✅   |       | $HoursWithData$               | $int$   |                  | Number of hours that have > 0 records          |
+|   ✅   |       | $HoursWithDataDelta$          | $int$   |                  |                                                |
+|   ✅   |   ✅   | $HasAverageGlucoseMmol$       | $bool$  |                  |                                                |
+|   ✅   |   ✅   | $AverageGlucoseMmol$          | $float$ | $\frac{mmol}{L}$ | $\frac{TotalGlucose}{TotalRecords}$            |
+|   ✅   |   ✅   | $AverageGlucoseMmolDelta$     | $float$ | $\frac{mmol}{L}$ |                                                |
+|   ✅   |       | $StandardDeviation$           | $float$ | $\frac{mmol}{L}$ | $\sqrt{\frac{TotalVariance}{TotalMinutes}}$    |
+|   ✅   |       | $StandardDeviationDelta$      | $float$ | $\frac{mmol}{L}$ |                                                |
+|   ✅   |       | $CoefficientOfVariation$      | $float$ | $\frac{mmol}{L}$ | $\frac{StandardDeviation}{AverageGlucoseMmol}$ |
+|   ✅   |       | $CoefficientOfVariationDelta$ | $float$ | $\frac{mmol}{L}$ |                                                |
 
 ### CGM Usage
 
-|   CGM    |  BGM  | Field                    | Type    | Unit  | Notes |
-| :------: | :---: | :----------------------- | :------ | :---- | :---- |
-| &#10004; |       | $HasTimeCGMUsePercent$   | $bool$  |       |       |
-| &#10004; |       | $TimeCGMUsePercent$      | $float$ | $\%$  |       |
-| &#10004; |       | $TimeCGMUsePercentDelta$ | $float$ | $\%$  |       |
-| &#10004; |       | $HasTimeCGMUseMinutes$   | $bool$  |       |       |
-| &#10004; |       | $TimeCGMUseMinutes$      | $int$   | $min$ |       |
-| &#10004; |       | $TimeCGMUseMinutesDelta$ | $int$   | $min$ |       |
-| &#10004; |       | $HasTimeCGMUseRecords$   | $bool$  |       |       |
-| &#10004; |       | $TimeCGMUseRecords$      | $int$   |       |       |
-| &#10004; |       | $TimeCGMUseRecordsDelta$ | $int$   |       |       |
+|  CGM  |  BGM  | Field                    | Type    | Unit  | Notes |
+| :---: | :---: | :----------------------- | :------ | :---- | :---- |
+|   ✅   |       | $HasTimeCGMUsePercent$   | $bool$  |       |       |
+|   ✅   |       | $TimeCGMUsePercent$      | $float$ | $\%$  |       |
+|   ✅   |       | $TimeCGMUsePercentDelta$ | $float$ | $\%$  |       |
+|   ✅   |       | $HasTimeCGMUseMinutes$   | $bool$  |       |       |
+|   ✅   |       | $TimeCGMUseMinutes$      | $int$   | $min$ |       |
+|   ✅   |       | $TimeCGMUseMinutesDelta$ | $int$   | $min$ |       |
+|   ✅   |       | $HasTimeCGMUseRecords$   | $bool$  |       |       |
+|   ✅   |       | $TimeCGMUseRecords$      | $int$   |       |       |
+|   ✅   |       | $TimeCGMUseRecordsDelta$ | $int$   |       |       |
 
 ### Glucose Management Indicator
 
@@ -215,32 +236,32 @@ $$
 (12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152
 $$
 
-|   CGM    |  BGM  | Field                             | Type    | Unit       | Notes |
-| :------: | :---: | :-------------------------------- | :------ | :--------- | :---- |
-| &#10004; |       | $HasGlucoseManagementIndicator$   | $bool$  |            |       |
-| &#10004; |       | $GlucoseManagementIndicator$      | $float$ | $\%Hb1A1c$ |       |
-| &#10004; |       | $GlucoseManagementIndicatorDelta$ | $float$ | $\%Hb1A1c$ |       |
+|  CGM  |  BGM  | Field                             | Type    | Unit       | Notes |
+| :---: | :---: | :-------------------------------- | :------ | :--------- | :---- |
+|   ✅   |       | $HasGlucoseManagementIndicator$   | $bool$  |            |       |
+|   ✅   |       | $GlucoseManagementIndicator$      | $float$ | $\%Hb1A1c$ |       |
+|   ✅   |       | $GlucoseManagementIndicatorDelta$ | $float$ | $\%Hb1A1c$ |       |
 
 ### Range Measurements
 
-The measurements repeat for each range: $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$. The symbol $\boxed{xxx}$ in the follwing table shows where the name of the range would appear.
+The measurements repeat for each range: $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$. The symbol $\textbf{Xxx}$ in the follwing table shows where the name of the range would appear.
 
-These $Time\boxed{xxx}$ field values are only calculated if the following conditions are met:
+These $Time\textbf{Xxx}$ field values are only calculated if the following conditions are met:
 
 * for periods <= 1 day: if $TimeCGMUsePercent > 70\%$
 * for periods > 1 day: if $TotalMinutes > 1,440 \space minutes$ (=24 hours)
 
-|   CGM    |   BGM    | Field                         | Type    | Unit  | Notes |
-| :------: | :------: | :---------------------------- | :------ | :---- | :---- |
-| &#10004; |          | $HasTime\boxed{xxx}Minutes$   | $bool$  |       |       |
-| &#10004; |          | $Time\boxed{xxx}Minutes$      | $int$   | $min$ |       |
-| &#10004; |          | $Time\boxed{xxx}MinutesDelta$ | $int$   | $min$ |       |
-| &#10004; | &#10004; | $HasTime\boxed{xxx}Percent$   | $bool$  |       |       |
-| &#10004; | &#10004; | $Time\boxed{xxx}Percent$      | $float$ | $\%$  |       |
-| &#10004; | &#10004; | $Time\boxed{xxx}PercentDelta$ | $float$ | $\%$  |       |
-| &#10004; | &#10004; | $HasTime\boxed{xxx}Records$   | $bool$  |       |       |
-| &#10004; | &#10004; | $Time\boxed{xxx}Records$      | $int$   |       |       |
-| &#10004; | &#10004; | $Time\boxed{xxx}RecordsDelta$ | $int$   |       |       |
+|  CGM  |  BGM  | Field                          | Type    | Unit  | Notes |
+| :---: | :---: | :----------------------------- | :------ | :---- | :---- |
+|   ✅   |       | $HasTime\textbf{Xxx}Minutes$   | $bool$  |       |       |
+|   ✅   |       | $Time\textbf{Xxx}Minutes$      | $int$   | $min$ |       |
+|   ✅   |       | $Time\textbf{Xxx}MinutesDelta$ | $int$   | $min$ |       |
+|   ✅   |   ✅   | $HasTime\textbf{Xxx}Percent$   | $bool$  |       |       |
+|   ✅   |   ✅   | $Time\textbf{Xxx}Percent$      | $float$ | $\%$  |       |
+|   ✅   |   ✅   | $Time\textbf{Xxx}PercentDelta$ | $float$ | $\%$  |       |
+|   ✅   |   ✅   | $HasTime\textbf{Xxx}Records$   | $bool$  |       |       |
+|   ✅   |   ✅   | $Time\textbf{Xxx}Records$      | $int$   |       |       |
+|   ✅   |   ✅   | $Time\textbf{Xxx}RecordsDelta$ | $int$   |       |       |
 
 ## Handling Multiple Data Sources
 
