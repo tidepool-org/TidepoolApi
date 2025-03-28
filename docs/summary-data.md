@@ -232,15 +232,11 @@ $$
 
 $GlucoseManagementIndicator$ is only calculated if $TimeCGMUsePercent > 70\%$ for any given period. It is calculated using [Jaeb formula](https://www.jaeb.org/gmi/) to produce a GMI value in $\frac{mmol}{mol}$, and then using [NGSP formula](https://ngsp.org/ifcc.asp) to produce a $\%HbA1c$ value, rounded to one decimal point of precision.
 
-$$
-(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152
-$$
-
-|  CGM  |  BGM  | Field                             | Type    | Unit       | Notes |
-| :---: | :---: | :-------------------------------- | :------ | :--------- | :---- |
-|   ✅   |       | $HasGlucoseManagementIndicator$   | $bool$  |            |       |
-|   ✅   |       | $GlucoseManagementIndicator$      | $float$ | $\%Hb1A1c$ |       |
-|   ✅   |       | $GlucoseManagementIndicatorDelta$ | $float$ | $\%Hb1A1c$ |       |
+|  CGM  |  BGM  | Field                             | Type    | Unit       | Notes                                                            |
+| :---: | :---: | :-------------------------------- | :------ | :--------- | :--------------------------------------------------------------- |
+|   ✅   |       | $HasGlucoseManagementIndicator$   | $bool$  |            |                                                                  |
+|   ✅   |       | $GlucoseManagementIndicator$      | $float$ | $\%Hb1A1c$ | $(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152$ |
+|   ✅   |       | $GlucoseManagementIndicatorDelta$ | $float$ | $\%Hb1A1c$ |                                                                  |
 
 ### Range Measurements
 
