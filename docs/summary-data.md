@@ -20,7 +20,9 @@
 
 Tidepool Platform automatically calculates several summary statistics for each user as they upload diabetes data into their account. Currently supported data types are CGM and BGM, from [Continuous Glucose Monitors][cgm] and [Blood Glucose Meters][bgm], respectively. Our plan is to add insulin delivery summaries as well in the future.
 
-The following diagram illustrates how the overall process works using [Tidepool Uploader][uploader] as an example. The same process applies regardless of how the data appears in the user's account. Other examples are uploading using [Tidepool Mobile][mobile], or automatically via import from [Dexcom Clarity][dexcom_clarity], or even 3rd party applications such as [xDrip][xdrip].
+The following diagram illustrates how the overall process works using manual [Tidepool Uploader][uploader] upload as an example. The same process applies regardless of how the data arrives in the user's account. Other examples are automatically uploading using [Tidepool Mobile][mobile], or via cloud-to-cloud import from [Dexcom Clarity][dexcom_clarity] or [Abbott LibreView][abbott_libreview], or even 3rd party applications such as [xDrip][xdrip].
+
+**NOTE:** The summary calculation itself is nearly instantaneous. However, it is triggered by the arrival of new data so depending on the path of the upload it may take anywhere from few minutes to several hours for the summary statistics to be recalculated.
 
 ```mermaid
 sequenceDiagram
@@ -76,7 +78,7 @@ gantt
    axisFormat %b %d
    todayMarker off
    tickInterval 1week
-   last upload     :crit, milestone, 2023-08-31, 0d
+   last uploaded data :crit, milestone, 2023-08-31, 0d
    section Current Periods
       current 1d   :active, 2023-08-30, 1d
       current 7d   :active, 2023-08-24, 7d
@@ -227,6 +229,7 @@ The blackout windows are defined as 15 minutes for Abbott FreeStyle Libre device
 [uploader]: https://www.tidepool.org/download
 [mobile]: https://www.tidepool.org/download
 [dexcom_clarity]: https://clarity.dexcom.com/
+[abbott_libreview]: https://www.libreview.com/
 [xdrip]: https://github.com/NightscoutFoundation/xDrip
 [cgm]: https://diabetes.org/get-involved/advocacy/continuous-glucose-monitors
 [bgm]: https://en.wikipedia.org/wiki/Glucose_meter
