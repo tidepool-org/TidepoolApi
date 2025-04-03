@@ -170,7 +170,7 @@ These field values are only calculated if the following conditions are met:
 |   ✅   |       | $Minutes$  | $int$   | $min$            | Sum of minutes covered by each sample in the period                                       |
 |   ✅   |   ✅   | $Records$  | $int$   |                  | Count of samples in the period                                                            |
 |   ✅   |       | $Percent$  | $float$ | $\%$             | $\frac{\textbf{Xxx}.Records}{Total.Records}$                                              |
-|   ✅   |       | $Variance$ | $float$ |                  | Only in the $Total$ record, calculcated using [weighted incremental algorithm][variance]. |
+|   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$                 | Only in the $Total$ record, calculcated using [weighted incremental algorithm][variance]. |
 
 ### $GlucosePeriod$
 
@@ -192,7 +192,7 @@ These field values are only calculated if the following conditions are met:
 |   ✅   |   ✅   | $AverageGlucoseMmol$         | $float$         | $\frac{mmol}{L}$ | $\frac{Total.Glucose}{Total.Records}$                                                                                                                                                                                                                                                                  |
 |   ✅   |       | $GlucoseManagementIndicator$ | $float$         | $\%Hb1A1c$       | Only calculated if $Total.Percent > 70\%$, using [Jaeb formula][jaeb] to produce a GMI value in $\frac{mmol}{mol}$, and then using [NGSP formula][ngsp] to produce a $\%HbA1c$ value, rounded to one decimal point of precision:<br/> $(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152$ |
 |   ✅   |       | $StandardDeviation$          | $float$         | $\frac{mmol}{L}$ | $\sqrt{\frac{Total.Variance}{Total.Minutes}}$                                                                                                                                                                                                                                                          |
-|   ✅   |       | $CoefficientOfVariation$     | $float$         | $\frac{mmol}{L}$ | $\frac{StandardDeviation}{AverageGlucoseMmol}$                                                                                                                                                                                                                                                         |
+|   ✅   |       | $CoefficientOfVariation$     | $float$         |                  | $\frac{StandardDeviation}{AverageGlucoseMmol}$                                                                                                                                                                                                                                                         |
 |   ✅   |   ✅   | $Delta$                      | $GlucosePeriod$ |                  | Deltas from the previous period of same duration                                                                                                                                                                                                                                                       |
 
 ## Handling Multiple Data Sources
