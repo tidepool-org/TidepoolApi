@@ -162,15 +162,15 @@ The data fields in each period record varies by the type of data: CGM or BGM. Th
 
 These field values are only calculated if the following conditions are met:
 
-* If $DaysInPeriod ≤ 1$ and $Total.Percent > 70\%$
-* If $DaysInPeriod > 1$ and $Total.Minutes > 1,440 \space minutes$ (=24 hours)
+* If $DaysInPeriod ≤ 1$ and $Total.Percent > 70\text{\%}$
+* If $DaysInPeriod > 1$ and $Total.Minutes > 1,440$ (=24 hours)
 
 |  CGM  |  BGM  | Field      | Type    | Unit             | Notes                                                                                     |
 | :---: | :---: | :--------- | :------ | :--------------- | :---------------------------------------------------------------------------------------- |
 |   ✅   |   ✅   | $Glucose$  | $float$ | $\frac{mmol}{L}$ | Sum of all samples in the period                                                          |
 |   ✅   |       | $Minutes$  | $int$   | $min$            | Sum of minutes covered by each sample in the period                                       |
 |   ✅   |   ✅   | $Records$  | $int$   |                  | Count of samples in the period                                                            |
-|   ✅   |       | $Percent$  | $float$ | $\%$             | $\frac{\textbf{Xxx}.Records}{Total.Records}$                                              |
+|   ✅   |       | $Percent$  | $float$ | $\text{\%}$             | $\frac{\textbf{Xxx}.Records}{Total.Records}$                                              |
 |   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$                 | Only in the $Total$ record, calculcated using [weighted incremental algorithm][variance]. |
 
 ### GlucosePeriod
@@ -191,7 +191,7 @@ These field values are only calculated if the following conditions are met:
 |   ✅   |   ✅   | $InAnyHigh$                  | $GlucoseRange$  |                  |                                                                                                                                                                                                                                                                                                        |
 |   ✅   |   ✅   | $AverageDailyRecords$        | $float$         |                  | $\frac{Total.Records}{DaysInPeriod}$                                                                                                                                                                                                                                                                   |
 |   ✅   |   ✅   | $AverageGlucoseMmol$         | $float$         | $\frac{mmol}{L}$ | $\frac{Total.Glucose}{Total.Records}$                                                                                                                                                                                                                                                                  |
-|   ✅   |       | $GlucoseManagementIndicator$ | $float$         | $\%$ HbA1c       | Only calculated if $Total.Percent > 70\%$, using [Jaeb formula][jaeb] to produce a GMI value in $\frac{mmol}{mol}$, and then using [NGSP formula][ngsp] to produce a $\%$ HbA1c value, rounded to one decimal point of precision:<br/> $(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152$ |
+|   ✅   |       | $GlucoseManagementIndicator$ | $float$         | $\text{\%}$ HbA1c       | Only calculated if $Total.Percent > 70\text{\%}$, using [Jaeb formula][jaeb] to produce a GMI value in $\frac{mmol}{mol}$, and then using [NGSP formula][ngsp] to produce a $\text{\%}$ HbA1c value, rounded to one decimal point of precision:<br/> $(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152$ |
 |   ✅   |       | $StandardDeviation$          | $float$         | $\frac{mmol}{L}$ | $\sqrt{\frac{Total.Variance}{Total.Minutes}}$                                                                                                                                                                                                                                                          |
 |   ✅   |       | $CoefficientOfVariation$     | $float$         |                  | $\frac{StandardDeviation}{AverageGlucoseMmol}$                                                                                                                                                                                                                                                         |
 |   ✅   |   ✅   | $Delta$                      | $GlucosePeriod$ |                  | Deltas from the previous period of same duration                                                                                                                                                                                                                                                       |
