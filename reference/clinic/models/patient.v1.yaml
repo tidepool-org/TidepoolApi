@@ -53,6 +53,7 @@ properties:
     readOnly: true
   summary:
     $ref: ./summaries/patientsummary.v1.yaml
+    readOnly: true
   reviews:
     type: array
     nullable: true
