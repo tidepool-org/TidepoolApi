@@ -6,16 +6,15 @@ info:
     The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
 
     For more information, see the [Getting Started](../docs/quick-start.md) section.
-  termsOfService: https://developer.tidepool.org/terms-of-use/
+  termsOfService: 'https://developer.tidepool.org/terms-of-use/'
   contact:
     name: Tidepool API Support
-    url: https://support.tidepool.org/
+    url: 'https://support.tidepool.org/'
     email: support@tidepool.org
   license:
     name: BSD-2-Clause
-    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
-  x-tidepool-service: https://github.com/tidepool-org/platform/data
-
+    url: 'https://github.com/tidepool-org/platform/blob/master/LICENSE'
+  x-tidepool-service: 'https://github.com/tidepool-org/platform/data'
 servers:
   - url: 'https://external.integration.tidepool.org'
     description: integration
@@ -27,98 +26,87 @@ servers:
     description: qa1
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
-
 tags:
   - name: Internal
-    description: >-
-      APIs intended for internal use by Tidepool.
+    description: APIs intended for internal use by Tidepool.
   - name: Data
-    description: >-
-      Manages diabetes data in user's Tidepool account.
-
+    description: Manages diabetes data in user's Tidepool account.
 paths:
   '/v1/users/{userId}/data':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     delete:
       operationId: DeleteAllUserData
       summary: Delete All Data for User
-      description: >-
-        Delete all data for user specified by the `userId`.
+      description: Delete all data for user specified by the `userId`.
       responses:
         '200':
           $ref: '#/components/responses/Success'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
   '/v1/users/{userId}/datasets':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: GetUserDataSets
       summary: Get Data Sets for User
-      description: >-
-        Gets data sets for the user account specified by the `userId`.
+      description: Gets data sets for the user account specified by the `userId`.
       responses:
         '200':
           $ref: '#/components/responses/DataSetList'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     post:
       operationId: CreateDataSet
       summary: Create New Data Set for User
-      description: >-
-        Creates a new data set of type `upload` and data set type `dataSetType` for the user specified by the `userId`.
+      description: Creates a new data set of type `upload` and data set type `dataSetType` for the user specified by the `userId`.
       requestBody:
         $ref: '#/components/requestBodies/CreateNewDataSet'
       responses:
         '200':
           $ref: '#/components/responses/DataSet'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
   '/v1/users/{userId}/data_sets':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: ListDataSets
       summary: List Data Sets for User
-      description: >-
-        Returns a list of data sets for the user specified by the `userId`.
+      description: Returns a list of data sets for the user specified by the `userId`.
       parameters:
-        - $ref: './common/parameters/paginationpage.v1.yaml'
-        - $ref: './common/parameters/paginationsize.v1.yaml'
+        - $ref: ./common/parameters/paginationpage.v1.yaml
+        - $ref: ./common/parameters/paginationsize.v1.yaml
         - name: client.name
           in: query
           schema:
@@ -135,266 +123,244 @@ paths:
         '200':
           $ref: '#/components/responses/DataSetList'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     post:
-      operationId: CreateDataSet2 # This is identical to CreateDataSet
+      operationId: CreateDataSet2
       summary: Create New Data Set for User
-      description: >-
-        Creates a new data set of type `upload` and data set type `dataSetType` for the user specified by the `userId`.
+      description: Creates a new data set of type `upload` and data set type `dataSetType` for the user specified by the `userId`.
       requestBody:
         $ref: '#/components/requestBodies/CreateNewDataSet'
       responses:
         '200':
           $ref: '#/components/responses/DataSet'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
   '/v1/datasets/{dataSetId}':
     parameters:
-      - $ref: './data/parameters/datasetid.v1.yaml'
+      - $ref: ./data/parameters/datasetid.v1.yaml
     put:
       operationId: UpdateDataSet
       summary: Update Data Set
-      description: >-
-        Updates the data set specified by the `dataSetId`.
+      description: Updates the data set specified by the `dataSetId`.
       requestBody:
         $ref: '#/components/requestBodies/UpdateDataSet'
       responses:
         '200':
           $ref: '#/components/responses/DataSet'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     delete:
       operationId: DeleteDataSet
       summary: Delete Data Set
-      description: >-
-        Deletes the data set specified by the `dataSetId`.
+      description: Deletes the data set specified by the `dataSetId`.
       responses:
         '200':
           $ref: '#/components/responses/Success'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
   '/v1/data_sets/{dataSetId}':
     parameters:
-      - $ref: './data/parameters/datasetid.v1.yaml'
+      - $ref: ./data/parameters/datasetid.v1.yaml
     get:
       operationId: GetDataSet
       summary: Get Data Set
-      description: >-
-        Returns the data set specified by the `dataSetId`.
+      description: Returns the data set specified by the `dataSetId`.
       responses:
         '200':
           $ref: '#/components/responses/Success'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     put:
-      operationId: UpdateDataSet2 # This is identical to UpdateDataSet
+      operationId: UpdateDataSet2
       summary: Update Data Set
-      description: >-
-        Updates the data set specified by the `dataSetId`.
+      description: Updates the data set specified by the `dataSetId`.
       requestBody:
         $ref: '#/components/requestBodies/UpdateDataSet'
       responses:
         '200':
           $ref: '#/components/responses/DataSet'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     delete:
-      operationId: DeleteDataSet2 # This is identical to DeleteDataSet
+      operationId: DeleteDataSet2
       summary: Delete Data Set
-      description: >-
-        Deletes an entire dataset specified by the `dataSetId`.
+      description: Deletes an entire dataset specified by the `dataSetId`.
       responses:
         '200':
           $ref: '#/components/responses/Success'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
   '/v1/datasets/{dataSetId}/data':
     parameters:
-      - $ref: './data/parameters/datasetid.v1.yaml'
+      - $ref: ./data/parameters/datasetid.v1.yaml
     post:
       operationId: UploadDataToDataSet
       summary: Upload Data to Data Set
-      description: >-
-        Uploads data to a user's data set identified by the `dataSetId`.
+      description: Uploads data to a user's data set identified by the `dataSetId`.
       requestBody:
         $ref: '#/components/requestBodies/UploadDataList'
       responses:
         '200':
           $ref: '#/components/responses/DataList'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
   '/v1/data_sets/{dataSetId}/data':
     parameters:
-      - $ref: './data/parameters/datasetid.v1.yaml'
+      - $ref: ./data/parameters/datasetid.v1.yaml
     post:
-      operationId: UploadDataToDataSet2 # This is identical to UploadData
+      operationId: UploadDataToDataSet2
       summary: Upload Data to Data Set
-      description: >-
-        Uploads data to a user's data set identified by the `dataSetId`.
+      description: Uploads data to a user's data set identified by the `dataSetId`.
       requestBody:
         $ref: '#/components/requestBodies/UploadDataList'
       responses:
         '200':
           $ref: '#/components/responses/DataList'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     delete:
       operationId: DeleteDataSetData
       summary: Delete Data from Data Set
-      description: >-
-        Deletes data from data set specified by the `dataSetId`.
+      description: Deletes data from data set specified by the `dataSetId`.
       responses:
         '200':
           $ref: '#/components/responses/Success'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
   '/data/{userId}':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: GetData
       summary: Get Data for User
-      description: >-
-        Get data for the specified `userId`.
-        You can filter the data to pull with several query parameters.
+      description: Get data for the specified `userId`. You can filter the data to pull with several query parameters.
       parameters:
-        - $ref: './data/parameters/uploadid.v1.yaml'
-        - $ref: './data/parameters/deviceid.v1.yaml'
-        - $ref: './data/parameters/type.v1.yaml'
-        - $ref: './data/parameters/subtype.v1.yaml'
-        - $ref: './data/parameters/startdate.v1.yaml'
-        - $ref: './data/parameters/enddate.v1.yaml'
-        - $ref: './data/parameters/latest.v1.yaml'
-        - $ref: './data/parameters/dexcom.v1.yaml'
-        - $ref: './data/parameters/carelink.v1.yaml'
-        - $ref: './data/parameters/medtronic.v1.yaml'
+        - $ref: ./data/parameters/uploadid.v1.yaml
+        - $ref: ./data/parameters/deviceid.v1.yaml
+        - $ref: ./data/parameters/type.v1.yaml
+        - $ref: ./data/parameters/subtype.v1.yaml
+        - $ref: ./data/parameters/startdate.v1.yaml
+        - $ref: ./data/parameters/enddate.v1.yaml
+        - $ref: ./data/parameters/latest.v1.yaml
+        - $ref: ./data/parameters/dexcom.v1.yaml
+        - $ref: ./data/parameters/carelink.v1.yaml
+        - $ref: ./data/parameters/medtronic.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/DataList'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-      x-tidepool-service: https://github.com/tidepool-org/tide-whisperer
-
+      x-tidepool-service: 'https://github.com/tidepool-org/tide-whisperer'
     post:
       operationId: UploadData
       summary: Upload Data (LEGACY)
@@ -409,279 +375,264 @@ paths:
         '200':
           $ref: '#/components/responses/LegacyDuplicates'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
         - Internal
       security:
         - sessionToken: []
       deprecated: true
-      x-tidepool-service: https://github.com/tidepool-org/jellyfish
-
+      x-tidepool-service: 'https://github.com/tidepool-org/jellyfish'
   '/v1/users/{userId}/data_sources':
     parameters:
-      - $ref: './common/parameters/tidepooluserid.yaml'
+      - $ref: ./common/parameters/tidepooluserid.yaml
     get:
       operationId: ListDataSources
       summary: List Data Sources for User
-      description: >-
-        Returns a list of data sources for the user specified by the `userId`.
+      description: Returns a list of data sources for the user specified by the `userId`.
       parameters:
-        - $ref: './common/parameters/paginationpage.v1.yaml'
-        - $ref: './common/parameters/paginationsize.v1.yaml'
+        - $ref: ./common/parameters/paginationpage.v1.yaml
+        - $ref: ./common/parameters/paginationsize.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/DataSourceList'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     post:
       operationId: CreateDataSource
       summary: Create New Data Source for User
-      description: >-
-        Creates a new data source for the user specified by the `userId`.
-        Before creating a new data source, you must first create the data provider session.
-        See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to create data provider sessions.
+      description: 'Creates a new data source for the user specified by the `userId`. Before creating a new data source, you must first create the data provider session. See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to create data provider sessions.'
       requestBody:
         $ref: '#/components/requestBodies/CreateNewDataSource'
       responses:
         '200':
           $ref: '#/components/responses/DataSource'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
         - Internal
       security:
         - serverToken: []
-
     delete:
       operationId: DeleteAllDataSources
       summary: Delete All Data Sources for User
-      description: >-
-        Deletes all data sources for the user specified by the `userId`.
-        This does **not** delete the corresponding data provider sessions.
-        See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to delete data provider sessions.
+      description: 'Deletes all data sources for the user specified by the `userId`. This does **not** delete the corresponding data provider sessions. See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to delete data provider sessions.'
       responses:
         '204':
-          description: 'Success'
+          description: Success
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
         - Internal
       security:
         - serverToken: []
-
   '/v1/data_sources/{dataSourceId}':
     parameters:
-      - $ref: './data/parameters/datasourceid.v1.yaml'
+      - $ref: ./data/parameters/datasourceid.v1.yaml
     get:
       operationId: GetDataSource
       summary: Get Data Source
-      description: >-
-        Returns the data source specified by the `dataSourceId`.
+      description: Returns the data source specified by the `dataSourceId`.
       responses:
         '200':
           $ref: '#/components/responses/DataSource'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
       security:
         - sessionToken: []
-
     put:
       operationId: UpdateDataSource
       summary: Update Data Source
-      description: >-
-        Updates the data source specified by the `dataSourceId`.
-        If you want to change the data provider session, you must first create the data provider session.
-        See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to create data provider sessions.
+      description: 'Updates the data source specified by the `dataSourceId`. If you want to change the data provider session, you must first create the data provider session. See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to create data provider sessions.'
       requestBody:
         $ref: '#/components/requestBodies/UpdateDataSource'
       responses:
         '200':
           $ref: '#/components/responses/DataSource'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
         - Internal
       security:
         - serverToken: []
-
     delete:
       operationId: DeleteDataSource
       summary: Delete Data Source
-      description: >-
-        Deletes data source specified by the `dataSourceId`.
-        This does **not** delete the corresponding data provider session.
-        See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to delete data provider sessions.
+      description: 'Deletes data source specified by the `dataSourceId`. This does **not** delete the corresponding data provider session. See the [Authentication APIs](./auth.v1.yaml#CreateUserDataProviderSession) for the details on how to delete data provider sessions.'
       responses:
         '200':
           $ref: '#/components/responses/Success'
         '400':
-          $ref: './common/responses/badrequest.v1.yaml'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: './common/responses/unauthorized.v1.yaml'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '403':
-          $ref: './common/responses/forbidden.v1.yaml'
+          $ref: ./common/responses/forbidden.v1.yaml
         '404':
-          $ref: './common/responses/notfound.v1.yaml'
+          $ref: ./common/responses/notfound.v1.yaml
       tags:
         - Data
         - Internal
       security:
         - serverToken: []
-
+  '/v1/partners/twiist/{tidepoolLinkId}/data':
+    parameters:
+      - schema:
+          type: string
+        name: tidepoolLinkId
+        in: path
+        required: true
+    post:
+      summary: Upload Twiist Data
+      operationId: UploadTwiistData
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        $ref: '#/components/requestBodies/UploadDataList'
+      description: Upload data to a twiist linked user given a Tidepool Link ID. The endpoint must be called with an access token issued for the Sequel service account.
+      tags:
+        - Data
+      security:
+        - sessionToken: []
 components:
   securitySchemes:
     sessionToken:
-      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
-
+      $ref: ./common/security/tidepoolsessiontoken.v1.yaml
     serverToken:
-      $ref: './common/security/tidepoolservertoken.v1.yaml'
-
+      $ref: ./common/security/tidepoolservertoken.v1.yaml
   requestBodies:
     CreateNewDataSource:
-      description: 'Create New Data Source'
+      description: Create New Data Source
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/sources/newdatasource.v1.yaml'
-
+            $ref: ./data/models/sources/newdatasource.v1.yaml
     CreateNewDataSet:
-      description: 'Create New Data Set'
+      description: Create New Data Set
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/newdataset.v1.yaml'
-
+            $ref: ./data/models/newdataset.v1.yaml
     UpdateDataSet:
-      description: 'Update Data Set'
+      description: Update Data Set
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/updatedataset.v1.yaml'
-
+            $ref: ./data/models/updatedataset.v1.yaml
     UploadDataList:
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/dataarray.v1.yaml'
-
+            $ref: ./data/models/dataarray.v1.yaml
     UpdateDataSource:
-      description: 'Update Data Source'
+      description: Update Data Source
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/sources/updatedatasource.v1.yaml'
-
+            $ref: ./data/models/sources/updatedatasource.v1.yaml
     LegacyUploadData:
-      description: 'Upload Data (LEGACY)'
+      description: Upload Data (LEGACY)
       content:
-        'application/json':
+        application/json:
           schema:
             oneOf:
-              - $ref: './data/models/dataset.v1.yaml'
+              - $ref: ./data/models/dataset.v1.yaml
               - type: array
                 items:
-                  $ref: './data/models/dataset.v1.yaml'
-
+                  $ref: ./data/models/dataset.v1.yaml
   responses:
     Success:
-      description: 'Success'
+      description: Success
       content:
-        'application/json':
+        application/json:
           schema:
             type: object
             properties: {}
-
     DataSet:
-      description: 'Data Set'
+      description: Data Set
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/dataset.v1.yaml'
-
+            $ref: ./data/models/dataset.v1.yaml
     DataSetList:
-      description: 'Data Set List'
+      description: Data Set List
       content:
-        'application/json':
+        application/json:
           schema:
             type: object
             properties:
               data:
-                $ref: './data/models/datasetarray.v1.yaml'
-
+                $ref: ./data/models/datasetarray.v1.yaml
     DataList:
-      description: 'Data List'
+      description: Data List
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/dataarray.v1.yaml'
-
+            $ref: ./data/models/dataarray.v1.yaml
     DataSource:
-      description: 'Data Source'
+      description: Data Source
       content:
-        'application/json':
+        application/json:
           schema:
-            $ref: './data/models/sources/datasource.v1.yaml'
-
+            $ref: ./data/models/sources/datasource.v1.yaml
     DataSourceList:
-      description: 'Data Source List'
+      description: Data Source List
       content:
-        'application/json':
+        application/json:
           schema:
             type: array
             items:
-              $ref: './data/models/sources/datasource.v1.yaml'
-
+              $ref: ./data/models/sources/datasource.v1.yaml
     LegacyDuplicates:
-      description: 'Indexes of Duplicate Data Points (LEGACY)'
+      description: Indexes of Duplicate Data Points (LEGACY)
       content:
-        'application/json':
+        application/json:
           schema:
             type: array
             items:
