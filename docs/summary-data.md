@@ -8,10 +8,10 @@
 2. [Calculation](#calculation)
    1. [Threshold Values](#threshold-values)
    2. [Hourly Bucket Data Fields](#hourly-bucket-data-fields)
-      1. [$GlucoseBucket$](#glucosebucket)
+      1. [GlucoseBucket](#glucosebucket)
    3. [Summary Period Data Fields](#summary-period-data-fields)
-      1. [$GlucoseRange$](#glucoserange)
-      2. [$GlucosePeriod$](#glucoseperiod)
+      1. [GlucoseRange](#glucoserange)
+      2. [GlucosePeriod](#glucoseperiod)
    4. [Handling Multiple Data Sources](#handling-multiple-data-sources)
 
 ---
@@ -142,8 +142,7 @@ In addition to the discrete ranges above, we also define two additional composit
 
 The data fields in each 1-hour bucket varies by the type of data: CGM or BGM. Each bucket has a set of common header fields, as well as a set of fields that repeat for each of the 8 named summary ranges: $Total$, $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$. In the following table, $\textbf{Xxx}$ corresponds to those names:
 
-
-### $GlucoseBucket$
+### GlucoseBucket
 
 |  CGM  |  BGM  | Field                  | Type     | Unit             | Notes                                               |
 | :---: | :---: | :--------------------- | :------- | :--------------- | :-------------------------------------------------- |
@@ -159,7 +158,7 @@ The data fields in each 1-hour bucket varies by the type of data: CGM or BGM. Ea
 
 The data fields in each period record varies by the type of data: CGM or BGM. The $DaysInPeriod$ here refers to the number of days in the period: 1, 7, 14, or 30.
 
-### $GlucoseRange$
+### GlucoseRange
 
 These field values are only calculated if the following conditions are met:
 
@@ -174,7 +173,7 @@ These field values are only calculated if the following conditions are met:
 |   ✅   |       | $Percent$  | $float$ | $\%$             | $\frac{\textbf{Xxx}.Records}{Total.Records}$                                              |
 |   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$                 | Only in the $Total$ record, calculcated using [weighted incremental algorithm][variance]. |
 
-### $GlucosePeriod$
+### GlucosePeriod
 
 |  CGM  |  BGM  | Field                        | Type            | Unit             | Notes                                                                                                                                                                                                                                                                                                  |
 | :---: | :---: | :--------------------------- | :-------------- | :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
