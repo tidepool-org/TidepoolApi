@@ -575,7 +575,6 @@ paths:
           in: query
           name: bgm.totalRecords
           description: Total records in period
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -758,7 +757,6 @@ paths:
           in: query
           name: cgm.lastDataTo
           description: Exclusive
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -849,7 +847,6 @@ paths:
           in: query
           name: bgm.totalRecordsDelta
           description: Delta of total record count
-
         - schema:
             type: string
             format: date-time
@@ -2266,6 +2263,12 @@ components:
       properties:
         count:
           type: integer
+          description: The number of items matching the filter
+        totalCount:
+          type: integer
+          x-stoplight:
+            id: hya2p7j9qr1h2
+          description: The total number of items
     PatientsResponse:
       title: PatientsResponse
       type: object
