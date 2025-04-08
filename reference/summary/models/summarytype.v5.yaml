@@ -1,0 +1,6 @@
+type: string
+title: Summary Type
+enum: ['cgm', 'bgm', 'con']
+description: Field which contains a summary type string.
+x-go-type: string
+x-go-type-skip-optional-pointer: true
