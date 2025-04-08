@@ -87,6 +87,8 @@ components:
       $ref: './summary/models/continuous/continuousranges.v5.yaml'
     GlucosePeriod:
       $ref: './summary/models/glucose/glucoseperiod.v5.yaml'
+    GlucosePeriodDelta:
+      $ref: './summary/models/glucose/glucoseperioddelta.v5.yaml'
     ContinuousPeriod:
       $ref: './summary/models/continuous/continuousperiod.v5.yaml'
     CGMPeriods:
@@ -115,4 +117,3 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/TidepoolUserId'
-

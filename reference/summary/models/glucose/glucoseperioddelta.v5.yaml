@@ -43,9 +43,6 @@ allOf:
         example: 3.5
         x-go-type: float64
 
-      delta:
-        $ref: './glucoseperioddelta.v5.yaml'
-
     required:
       - hoursWithData
       - daysWithData
