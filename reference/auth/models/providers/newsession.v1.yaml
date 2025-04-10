@@ -4,7 +4,7 @@ description: >-
 type: object
 properties:
   name:
-    $ref: './name.v1.yaml'
+    $ref: './providerName.v1.yaml'
   type:
     $ref: './type.v1.yaml'
   oauthToken:
