@@ -2,14 +2,16 @@ type: object
 title: summary.v1
 description: 'A summary of a users recent data'
 properties:
+  id:
+    $ref: './summaryid.v1.yaml'
   type:
     $ref: './summarytype.v1.yaml'
   userId:
     $ref: '../../common/models/tidepooluserid.yaml'
   config:
-    $ref: './config.v1.yaml'
+    $ref: './summaryconfig.v1.yaml'
   dates:
-    $ref: './dates.v1.yaml'
+    $ref: './summarydates.v1.yaml'
   stats:
     oneOf:
       - $ref: './cgm/cgmstats.v1.yaml'
@@ -19,6 +21,3 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
-required:
-  - updateWithoutChangeCount

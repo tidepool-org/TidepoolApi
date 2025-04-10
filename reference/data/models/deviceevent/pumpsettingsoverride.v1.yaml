@@ -32,14 +32,14 @@ allOf:
         type: number
         format: float
         minimum: 0
-        maximum: 604800
-        example: 2700
+        maximum: 604800000
+        example: 2700000
       expectedDuration:
         type: number
         format: float
         minimum: 0
-        maximum: 604800
-        example: 7200
+        maximum: 604800000
+        example: 7200000
       bgTarget:
         $ref: ../blood/glucose/target.v1.yaml
         example:

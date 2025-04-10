@@ -67,13 +67,13 @@ The method indicates how the preset was enabled, if known. It can be one of `aut
 
 ## Duration (`duration`)
 
-The `duration` the override is enabled for. When the override is first enabled the `duration` field can indicate how long the override is expected to be enabled for. Once the override is disabled the `duration` field should be updated to indicate the actual duration is was enable for. In this case, if the duration is less than what was expected, the `expectedDuration` field should be specified. If the override is enable indefinitely (meaning that there is no **planned** time to disable) then the `duration` field should not be specified until after the override is disabled.
+The `duration` the override is enabled for. When the override is first enabled the `duration` field can indicate how long the override is expected to be enabled for. Once the override is disabled the `duration` field should be updated to indicate the actual duration is was enable for. In this case, if the duration is less than what was expected, the `expectedDuration` field should be specified. If the override is enable indefinitely (meaning that there is no **planned** time to disable) then the `duration` field should not be specified until after the override is disabled. The `duration` is milliseconds.
 
 ---
 
 ## Expected Duration (`expectedDuration`)
 
-Once the override is disabled, if the actual duration is less than the initial expected duration, then the `expectedDuration` field should be specified and the `duration` field updated to the actual duration.
+Once the override is disabled, if the actual duration is less than the initial expected duration, then the `expectedDuration` field should be specified and the `duration` field updated to the actual duration. The `expectedDuration` is milliseconds.
 
 ---
 
@@ -110,8 +110,8 @@ The insulin sensitivity scale factor in effect while the override is enabled. Th
   "overrideType": "preset",
   "overridePreset": "Running",
   "method": "manual",
-  "duration": 2700,
-  "expectedDuration": 7200,
+  "duration": 2700000,
+  "expectedDuration": 7200000,
   "bgTarget": {
     "high": 160,
     "low": 150

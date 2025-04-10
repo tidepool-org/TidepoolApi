@@ -1,0 +1,34 @@
+title: scheduledreports.v1
+x-stoplight:
+  id: or3i2vsiyder8
+type: object
+description: Scheduled Report Settings
+properties:
+  onUploadEnabled:
+    type: boolean
+    x-stoplight:
+      id: ij8d2vhz49f0u
+    description: |
+      Send a PDF Report and a Flowsheet to Redox after a dataset is uploaded.
+  onUploadNoteEventType:
+    type: string
+    x-stoplight:
+      id: h02b819r2xdy0
+    enum:
+      - New
+      - Replace
+    default: New
+  cadence:
+    type: string
+    x-stoplight:
+      id: ibtk59wcgho89
+    enum:
+      - 1d
+      - 7d
+      - 14d
+      - 30d
+      - DISABLED
+    description: The cadence of the scheduled reports. Disabling the scheduled reports does not affect reports which are generated after a dataset is uploaded.
+required:
+  - onUploadEnabled
+  - cadence
