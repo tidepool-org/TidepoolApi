@@ -4,4 +4,4 @@ name: name
 in: query
 required: false
 schema:
-  $ref: '../../models/providers/name.v1.yaml'
+  $ref: '../../models/providers/providerName.v1.yaml'
