@@ -10,8 +10,8 @@
    2. [Hourly Bucket Data Fields](#hourly-bucket-data-fields)
       1. [GlucoseBucket](#glucosebucket)
    3. [Summary Period Data Fields](#summary-period-data-fields)
-      1. [GlucoseRange](#glucoserange)
-      2. [GlucosePeriod](#glucoseperiod)
+      1. [GlucosePeriod](#glucoseperiod)
+      2. [GlucoseRange](#glucoserange)
    4. [Handling Multiple Data Sources](#handling-multiple-data-sources)
 
 ---
@@ -120,12 +120,130 @@ All of the summary period data is stored within each user account to enable quic
 
 ## Threshold Values
 
-The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are:
+The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges $AnyLow$ and $AnyHigh$. Note also that the $High$ range is inclusive of the $ExtremeHigh$ range.
 
+<table style="text-align: center">
+<colgroup>
+<col style="background-color: #E0E0E0"/>
+<!-- BG range colors from https://github.com/tidepool-org/blip/blob/develop/app/themes/baseTheme.js -->
+<col style="background-color: #E9695E"/>
+<col style="background-color: #F19181"/>
+<col style="background-color: #8DD0A9"/>
+<col style="background-color: #B69CE2"/>
+<col style="background-color: #856ACF"/>
+<col style="background-color: #5438A3"/>
+</colgroup>
+<thead>
+<tr>
+<th rowspan="2" style="font-style: italic">
+Unit
+</th>
+<th colspan="2" style="background-image: linear-gradient(to right, #E9695E, #F19181)">
+
+$AnyLow$
+</th>
+<th rowspan="2">
+
+$Target$
+</th>
+<th colspan="3" style="background-image: linear-gradient(to right, #B69CE2, #856ACF, #5438A3)">
+
+$AnyHigh$
+</th>
+</tr>
+<tr>
+<th>
+
+$VeryLow$
+</th>
+<th>
+
+$Low$
+</th>
+<th>
+
+$High$
+</th>
+<th>
+
+$VeryHigh$
+</th>
+<th>
+
+$ExtremeHigh$
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+$\frac{mmol}{L}$
+</td>
+<td>
+
+$v < 3.0$
+</td>
+<td>
+
+$3.0 ≤ v < 3.9$
+</td>
+<td>
+
+$3.9 ≤ v ≤ 10.0$
+</td>
+<td>
+
+$10.0 < v ≤ 13.9$
+</td>
+<td>
+
+$v > 13.9$
+</td>
+<td>
+
+$v ≥ 19.4$
+</td>
+</tr>
+<tr>
+<td>
+
+$\frac{mg}{dL}$
+</td>
+<td>
+
+$v < 54$
+</td>
+<td>
+
+$54 ≤ v < 70$
+</td>
+<td>
+
+$70 ≤ v ≤ 180$
+</td>
+<td>
+
+$180 < v ≤ 250$
+</td>
+<td>
+
+$v > 250$
+</td>
+<td>
+
+$v ≥ 350$
+</td>
+</tr>
+</tbody>
+</table>
+
+<!-- unfortunately stock GFM doesn't support 2-row colum headers >
 |       Unit       | $VeryLow$ |      $Low$      |     $Target$     |      $High$       | $VeryHigh$ | $ExtremeHigh$ |
 | :--------------: | :-------: | :-------------: | :--------------: | :---------------: | :--------: | :-----------: |
 | $\frac{mmol}{L}$ | $v < 3.0$ | $3.0 ≤ v < 3.9$ | $3.9 ≤ v ≤ 10.0$ | $10.0 < v ≤ 13.9$ | $v > 13.9$ |  $v ≥ 19.4$   |
 | $\frac{mg}{dL}$  | $v < 54$  |  $54 ≤ v < 70$  |  $70 ≤ v ≤ 180$  |  $180 < v ≤ 250$  | $v > 250$  |   $v ≥ 350$   |
+-->
 
 **NOTE:** Tidepool normalizes glucose samples to $\frac{mmol}{L}$ units. If the original sample was in $\frac{mg}{dL}$ units, it is converted using a conversion factor of $18.01559$ derived from the molecular weight of glucose ($C_{6} H_{12} O_{6}$):
 
@@ -133,68 +251,69 @@ $$
 12.01070 \frac{g}{mol} \times 6 + 1.00794 \frac{g}{mol} \times 12 + 15.99940 \frac{g}{mol} \times 6 = 180.1559 \frac{g}{mol}
 $$
 
-In addition to the discrete ranges above, we also define two additional composite ranges:
-
-* $AnyLow$ that covers the $VeryLow$ and $Low$ ranges
-* $AnyHigh$ that covers the $High$, $VeryHigh$ and $ExtremeHigh$ ranges
-
 ## Hourly Bucket Data Fields
 
-The data fields in each 1-hour bucket varies by the type of data: CGM or BGM. Each bucket has a set of common header fields, as well as a set of fields that repeat for each of the 8 named summary ranges: $Total$, $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$. In the following table, $\textbf{Xxx}$ corresponds to those names:
+Each bucket has a set of common fields, as well as a set of fields repeated for each of the 7 named summary ranges: $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$. For brevity, in the following table the placeholder $\textbf{Xxx}$ corresponds to those names rather than repeating each set of fields.
 
 ### GlucoseBucket
 
-|  CGM  |  BGM  | Field                  | Type     | Unit             | Notes                                               |
-| :---: | :---: | :--------------------- | :------- | :--------------- | :-------------------------------------------------- |
-|   ✅   |   ✅   | $Date$                 | $date$   |                  | Start time of the bucket                            |
-|   ✅   |   ✅   | $Type$                 | $string$ |                  | Type of the bucket record: `cgm` or `bgm`           |
-|   ✅   |   ✅   | $LastRecordTime$       | $date$   |                  | Time of the last record in the bucket               |
-|   ✅   |       | $LastRecordDuration$   | $int$    | $min$            | Duration of the last sample in the bucket           |
-|   ✅   |   ✅   | $\textbf{Xxx}.Glucose$ | $float$  | $\frac{mmol}{L}$ | Sum of all samples in the bucket                    |
-|   ✅   |       | $\textbf{Xxx}.Minutes$ | $int$    | $min$            | Sum of minutes covered by each sample in the bucket |
-|   ✅   |   ✅   | $\textbf{Xxx}.Records$ | $int$    |                  | Count of samples in the bucket                      |
+|  CGM  |  BGM  | Field                  | Type     | Unit             | Notes                                                                              |
+| :---: | :---: | :--------------------- | :------- | :--------------- | :--------------------------------------------------------------------------------- |
+|   ✅   |   ✅   | $Type$                 | $string$ |                  | Type of data in this bucket: `cgm` or `bgm`                                        |
+|   ✅   |   ✅   | $Date$                 | $date$   |                  | Start time of the bucket                                                           |
+|   ✅   |   ✅   | $LastRecordTime$       | $date$   |                  | Time of the last sample in the bucket                                              |
+|   ✅   |       | $LastRecordDuration$   | $int$    | $min$            | Duration of the last sample in the bucket                                          |
+|   ✅   |   ✅   | $Total.Glucose$        | $float$  | $\frac{mmol}{L}$ | Sum of all samples in the bucket                                                   |
+|   ✅   |       | $Total.Minutes$        | $int$    | $min$            | Sum of minutes covered by all samples in the bucket                                |
+|   ✅   |   ✅   | $Total.Records$        | $int$    |                  | Count of all samples in the bucket                                                 |
+|   ✅   |   ✅   | $\textbf{Xxx}.Glucose$ | $float$  | $\frac{mmol}{L}$ | Sum of all samples within the thresholds of $Xxx$ in the bucket                    |
+|   ✅   |       | $\textbf{Xxx}.Minutes$ | $int$    | $min$            | Sum of minutes covered by each sample within the thresholds of $Xxx$ in the bucket |
+|   ✅   |   ✅   | $\textbf{Xxx}.Records$ | $int$    |                  | Count of samples within the thresholds of $Xxx$ in the bucket                      |
 
 ## Summary Period Data Fields
 
-The data fields in each period record varies by the type of data: CGM or BGM. The $DaysInPeriod$ here refers to the number of days in the period: 1, 7, 14, or 30.
-
-### GlucoseRange
-
-These field values are only calculated if the following conditions are met:
-
-* If $DaysInPeriod ≤ 1$ and $Total.Percent > 70$
-* If $DaysInPeriod > 1$ and $Total.Minutes > 1,440$ (=24 hours)
-
-|  CGM  |  BGM  | Field      | Type    | Unit                 | Notes                                                                                     |
-| :---: | :---: | :--------- | :------ | :------------------- | :---------------------------------------------------------------------------------------- |
-|   ✅   |   ✅   | $Glucose$  | $float$ | $\frac{mmol}{L}$     | Sum of all samples in the period                                                          |
-|   ✅   |       | $Minutes$  | $int$   | $min$                | Sum of minutes covered by each sample in the period                                       |
-|   ✅   |   ✅   | $Records$  | $int$   |                      | Count of samples in the period                                                            |
-|   ✅   |       | $Percent$  | $float$ | %                    | $\frac{\textbf{Xxx}.Records}{Total.Records}$                                              |
-|   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$ | Only in the $Total$ record, calculcated using [weighted incremental algorithm][variance]. |
+* $GlucosePeriod.GlucoseManagementIndex$ is only present if $GlucosePeriod.Total.Percent > 70$
+  * It is calculated using the [Jaeb formula][jaeb] to produce a GMI value in $\frac{mmol}{mol}$ units, and then using the [NGSP formula][ngsp] to produce a % HbA1c value
+  * It is rounded to one decimal point of precision
+* $GlucosePeriod.Delta$ is not recursive: it is only present in the top-level $GlucosePeriod$
+* $GlucosePeriod.Total$ is always present, but the threshold ranges are present only if:
+  * $GlucosePeriod.DaysInPeriod ≤ 1$ and $GlucosePeriod.Total.Percent > 70$ or
+  * $GlucosePeriod.DaysInPeriod > 1$ and $GlucosePeriod.Total.Minutes > 1,440$ (=24 hours)
+* $GlucoseRange.Variance$ is only present in $GlucosePeriod.Total$
 
 ### GlucosePeriod
 
-|  CGM  |  BGM  | Field                        | Type            | Unit              | Notes                                                                                                                                                                                                                                                                                                                 |
-| :---: | :---: | :--------------------------- | :-------------- | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|   ✅   |   ✅   | $DaysInPeriod$               | $int$           |                   | Number of days in the period                                                                                                                                                                                                                                                                                          |
-|   ✅   |   ✅   | $DaysWithData$               | $int$           |                   | Number of days where $Total.Records > 0$                                                                                                                                                                                                                                                                              |
-|   ✅   |   ✅   | $HoursWithData$              | $int$           |                   | Number of hours where $Total.Records > 0$                                                                                                                                                                                                                                                                             |
-|   ✅   |   ✅   | $Total$                      | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InVeryLow$                  | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InLow$                      | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InTarget$                   | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InHigh$                     | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InVeryHigh$                 | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InExtremeHigh$              | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InAnyLow$                   | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $InAnyHigh$                  | $GlucoseRange$  |                   |                                                                                                                                                                                                                                                                                                                       |
-|   ✅   |   ✅   | $AverageDailyRecords$        | $float$         |                   | $\frac{Total.Records}{DaysInPeriod}$                                                                                                                                                                                                                                                                                  |
-|   ✅   |   ✅   | $AverageGlucoseMmol$         | $float$         | $\frac{mmol}{L}$  | $\frac{Total.Glucose}{Total.Records}$                                                                                                                                                                                                                                                                                 |
-|   ✅   |       | $GlucoseManagementIndicator$ | $float$         | % HbA1c | Only calculated if $Total.Percent > 70$, using [Jaeb formula][jaeb] to produce a GMI value in $\frac{mmol}{mol}$, and then using [NGSP formula][ngsp] to produce a % HbA1c value, rounded to one decimal point of precision:<br/> $(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152$ |
-|   ✅   |       | $StandardDeviation$          | $float$         | $\frac{mmol}{L}$  | $\sqrt{\frac{Total.Variance}{Total.Minutes}}$                                                                                                                                                                                                                                                                         |
-|   ✅   |       | $CoefficientOfVariation$     | $float$         |                   | $\frac{StandardDeviation}{AverageGlucoseMmol}$                                                                                                                                                                                                                                                                        |
-|   ✅   |   ✅   | $Delta$                      | $GlucosePeriod$ |                   | Deltas from the previous period of same duration                                                                                                                                                                                                                                                                      |
+|  CGM  |  BGM  | Field                        | Type            | Unit             | Notes                                                            |
+| :---: | :---: | :--------------------------- | :-------------- | :--------------- | :--------------------------------------------------------------- |
+|   ✅   |   ✅   | $Type$                       | $string$        |                  | Type of data in this period: `cgm` or `bgm`                      |
+|   ✅   |   ✅   | $DaysInPeriod$               | $int$           |                  | Number of days in this period: 1, 7, 14, or 30                   |
+|   ✅   |   ✅   | $DaysWithData$               | $int$           |                  | Number of days where $Total.Records > 0$                         |
+|   ✅   |   ✅   | $HoursWithData$              | $int$           |                  | Number of hours where $Total.Records > 0$                        |
+|   ✅   |   ✅   | $Total$                      | $GlucoseRange$  |                  | Totals for all samples regardless of thresholds                  |
+|   ✅   |   ✅   | $InVeryLow$                  | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InLow$                      | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InTarget$                   | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InHigh$                     | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InVeryHigh$                 | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InExtremeHigh$              | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InAnyLow$                   | $GlucoseRange$  |                  | $InVeryLow + InLow$                                              |
+|   ✅   |   ✅   | $InAnyHigh$                  | $GlucoseRange$  |                  | $InHigh + InVeryHigh$ (this includes $InExtremeHigh$)            |
+|   ✅   |   ✅   | $AverageDailyRecords$        | $float$         |                  | $\frac{Total.Records}{DaysInPeriod}$                             |
+|   ✅   |   ✅   | $AverageGlucoseMmol$         | $float$         | $\frac{mmol}{L}$ | $\frac{Total.Glucose}{Total.Records}$                            |
+|   ✅   |       | $GlucoseManagementIndicator$ | $float$         | % HbA1c          | $(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152$ |
+|   ✅   |       | $StandardDeviation$          | $float$         | $\frac{mmol}{L}$ | $\sqrt{\frac{Total.Variance}{Total.Minutes}}$                    |
+|   ✅   |       | $CoefficientOfVariation$     | $float$         |                  | $\frac{StandardDeviation}{AverageGlucoseMmol}$                   |
+|   ✅   |   ✅   | $Delta$                      | $GlucosePeriod$ |                  | Deltas from the previous period of the same duration             |
+
+### GlucoseRange
+
+|  CGM  |  BGM  | Field      | Type    | Unit                 | Notes                                                        |
+| :---: | :---: | :--------- | :------ | :------------------- | :----------------------------------------------------------- |
+|   ✅   |   ✅   | $Glucose$  | $float$ | $\frac{mmol}{L}$     | Sum of all samples in the period                             |
+|   ✅   |       | $Minutes$  | $int$   | $min$                | Sum of minutes covered by each sample in the period          |
+|   ✅   |   ✅   | $Records$  | $int$   |                      | Count of samples in the period                               |
+|   ✅   |       | $Percent$  | $float$ | %                    | $\frac{\textbf{Xxx}.Records}{Total.Records}$                 |
+|   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$ | Calculated using [weighted incremental algorithm][variance]. |
 
 ## Handling Multiple Data Sources
 
