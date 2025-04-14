@@ -3,3 +3,7 @@ default: true
 
 # MD013/line-length - Line length
 MD013: false
+
+# MD033/no-inline-html - Inline HTML
+MD033:
+  allowed_elements: [ table, colgroup, col, thead, tbody, tr, th, td ]
