@@ -122,6 +122,8 @@ All of the summary period data is stored within each user account to enable quic
 
 The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges $AnyLow$ and $AnyHigh$. Note also that the $High$ range is inclusive of the $ExtremeHigh$ range.
 
+<!-- unfortunately GitHub Markdown renderer strips all styles from HTML tables... -->
+<!-- so these styles are only useful if rendering with some other Markdown renderer -->
 <table style="text-align: center">
 <colgroup>
 <col style="background-color: #E0E0E0"/>
@@ -272,7 +274,7 @@ Each bucket has a set of common fields, as well as a set of fields repeated for 
 
 ## Summary Period Data Fields
 
-* $GlucosePeriod.GlucoseManagementIndex$ is only present if $GlucosePeriod.Total.Percent > 70$
+* $GlucosePeriod.GlucoseManagementIndicator$ is only present if $GlucosePeriod.Total.Percent > 70$
   * It is calculated using the [Jaeb formula][jaeb] to produce a GMI value in $\frac{mmol}{mol}$ units, and then using the [NGSP formula][ngsp] to produce a % HbA1c value
   * It is rounded to one decimal point of precision
 * $GlucosePeriod.Delta$ is not recursive: it is only present in the top-level $GlucosePeriod$
