@@ -1,0 +1,22 @@
+type: object
+title: glucoseranges.v5
+description: 'glucose ranges'
+properties:
+  total:
+    $ref: './glucoserange.v5.yaml'
+  inVeryLow:
+    $ref: './glucoserange.v5.yaml'
+  inLow:
+    $ref: './glucoserange.v5.yaml'
+  inTarget:
+    $ref: './glucoserange.v5.yaml'
+  inHigh:
+    $ref: './glucoserange.v5.yaml'
+  inVeryHigh:
+    $ref: './glucoserange.v5.yaml'
+  inExtremeHigh:
+    $ref: './glucoserange.v5.yaml'
+  inAnyLow:
+    $ref: './glucoserange.v5.yaml'
+  inAnyHigh:
+    $ref: './glucoserange.v5.yaml'
