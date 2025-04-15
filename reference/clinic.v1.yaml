@@ -1548,7 +1548,7 @@ paths:
             schema:
               $ref: '#/components/schemas/PatientSummary'
         description: ''
-  '/v1/patients/summary/{summaryId}':
+  '/v1/summaries/{summaryId}/clinics':
     parameters:
       - $ref: '#/components/parameters/summaryId'
     delete:
@@ -1557,8 +1557,8 @@ paths:
       responses:
         '200':
           description: OK
-        '404':
-          description: Not Found
+        '204':
+          description: No Change
       description: Internal endpoint which deletes the summary in all patient records which match the summary id.
       tags:
         - Clinics
