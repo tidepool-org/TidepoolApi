@@ -131,9 +131,6 @@ NPM_TOOLS = \
 	$(NPM_BIN)/spectral \
 	$(NPM_BIN)/stoplight \
 
-# TODO: update markdown-link-check version. Right now there's a bug in
-# 3.12.x. 3.11.2 is the latest version before 3.12.x. See
-# https://github.com/tcort/markdown-link-check/issues/304
 NPM_PKG_SPECS = \
 	@openapi-contrib/json-schema-to-openapi-schema@^3.0.3 \
 	@redocly/cli@1.34.2 \
