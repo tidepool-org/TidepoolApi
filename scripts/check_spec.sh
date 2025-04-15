@@ -19,13 +19,11 @@ case $1 in
 
     -c | --self-check)
 	trace spectral --version
-	trace swagger-cli --version
 	trace redocly --version
 	;;
 
     *)
 	spec=${1?:spec-filename is required}
-	trace swagger-cli validate "$spec"
 	trace spectral lint --quiet "$spec"
 	trace redocly lint --format=codeframe "$spec"
 esac
