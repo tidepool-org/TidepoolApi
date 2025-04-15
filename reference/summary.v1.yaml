@@ -45,7 +45,7 @@ tags:
 paths:
   '/v1/summaries/{summaryType}/{userId}':
     parameters:
-      - $ref: '#/components/parameters/summaryType'
+      - $ref: '#/components/parameters/summaryType.v5'
       - $ref: '#/components/parameters/userId'
     get:
       summary: Get User Summary
@@ -55,7 +55,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Summary'
+                $ref: '#/components/schemas/summary.v5'
         '400':
           description: Bad Request
         '403':
@@ -71,33 +71,35 @@ paths:
 
 components:
   schemas:
-    TidepoolUserId:
+    summaryId.v1:
+      $ref: ./summary/models/summaryId.v1.yaml
+    tidepooluserid:
       $ref: './common/models/tidepooluserid.yaml'
-    SummaryTypeSchema:
-      $ref: './summary/models/summarytype.v5.yaml'
-    Config:
-      $ref: './summary/models/config.v1.yaml'
-    Dates:
-      $ref: './summary/models/dates.v5.yaml'
-    GlucoseRange:
-      $ref: './summary/models/glucose/glucoserange.v5.yaml'
-    GlucoseRanges:
-      $ref: './summary/models/glucose/glucoseranges.v5.yaml'
-    ContinuousRanges:
-      $ref: './summary/models/continuous/continuousranges.v5.yaml'
-    GlucosePeriod:
-      $ref: './summary/models/glucose/glucoseperiod.v5.yaml'
-    GlucosePeriodDelta:
-      $ref: './summary/models/glucose/glucoseperioddelta.v5.yaml'
-    ContinuousPeriod:
-      $ref: './summary/models/continuous/continuousperiod.v5.yaml'
-    CGMPeriods:
-      $ref: './summary/models/cgm/cgmperiods.v5.yaml'
-    BGMPeriods:
-      $ref: './summary/models/bgm/bgmperiods.v5.yaml'
-    ContinuousPeriods:
-      $ref: './summary/models/continuous/continuousperiods.v5.yaml'
-    Summary:
+    summaryType.v5:
+      $ref: './summary/models/summaryType.v5.yaml'
+    summaryConfig.v1:
+      $ref: './summary/models/summaryConfig.v1.yaml'
+    summaryDates.v5:
+      $ref: './summary/models/summaryDates.v5.yaml'
+    glucoseRange.v5:
+      $ref: './summary/models/glucose/glucoseRange.v5.yaml'
+    glucoseRanges.v5:
+      $ref: './summary/models/glucose/glucoseRanges.v5.yaml'
+    continuousRanges.v5:
+      $ref: './summary/models/continuous/continuousRanges.v5.yaml'
+    glucosePeriod.v5:
+      $ref: './summary/models/glucose/glucosePeriod.v5.yaml'
+    glucosePeriodDelta.v5:
+      $ref: './summary/models/glucose/glucosePeriodDelta.v5.yaml'
+    continuousPeriod.v5:
+      $ref: './summary/models/continuous/continuousPeriod.v5.yaml'
+    cgmPeriods.v5:
+      $ref: './summary/models/cgm/cgmPeriods.v5.yaml'
+    bgmPeriods.v5:
+      $ref: './summary/models/bgm/bgmPeriods.v5.yaml'
+    continuousPeriods.v5:
+      $ref: './summary/models/continuous/continuousPeriods.v5.yaml'
+    summary.v5:
       $ref: './summary/models/summary.v5.yaml'
   securitySchemes:
     sessionToken:
@@ -105,15 +107,15 @@ components:
     serverToken:
       $ref: './common/security/tidepoolservertoken.v1.yaml'
   parameters:
-    summaryType:
+    summaryType.v5:
       name: summaryType
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/SummaryTypeSchema'
+        $ref: '#/components/schemas/summaryType.v5'
     userId:
       name: userId
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/TidepoolUserId'
+        $ref: '#/components/schemas/tidepooluserid'

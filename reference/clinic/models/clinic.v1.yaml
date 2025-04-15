@@ -3,13 +3,13 @@ description: Clinic
 type: object
 properties:
   id:
-    $ref: ./clinicid.v1.yaml
+    $ref: ./clinicId.v1.yaml
   address:
-    $ref: ./streetaddress.v1.yaml
+    $ref: ./streetAddress.v1.yaml
   city:
     $ref: ./city.v1.yaml
   postalCode:
-    $ref: ./postalcode.v1.yaml
+    $ref: ./postalCode.v1.yaml
   state:
     $ref: ./state.v1.yaml
   country:
@@ -17,11 +17,11 @@ properties:
   patientTags:
     type: array
     items:
-      $ref: ./patienttag.v1.yaml
+      $ref: ./patientTag.v1.yaml
   lastDeletedPatientTag:
-    $ref: ./patienttag.v1.yaml
+    $ref: ./patientTag.v1.yaml
   phoneNumbers:
-    $ref: ./phonenumbers.v1.yaml
+    $ref: ./phoneNumbers.v1.yaml
   clinicType:
     type: string
     minLength: 1
@@ -41,7 +41,7 @@ properties:
   name:
     $ref: ./name.v1.yaml
   shareCode:
-    $ref: ./sharecode.v1.yaml
+    $ref: ./shareCode.v1.yaml
   canMigrate:
     type: boolean
     readOnly: true
@@ -74,7 +74,7 @@ properties:
   suppressedNotifications:
     $ref: ./suppressedNotifications.v1.yaml
   timezone:
-    $ref: ./clinictimezone.v1.yaml
+    $ref: ./clinicTimezone.v1.yaml
 required:
   - id
   - name

@@ -1,6 +1,0 @@
-type: object
-title: cgmperiods.v1
-x-go-type-skip-optional-pointer: true
-description: 'A map to each supported CGM summary period'
-additionalProperties:
-  $ref: './cgmperiod.v1.yaml'

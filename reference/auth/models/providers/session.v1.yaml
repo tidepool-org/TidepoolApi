@@ -10,7 +10,7 @@ properties:
   modifiedTime:
     $ref: '../../../common/models/datetime.v1.yaml'
   name:
-    $ref: './name.v1.yaml'
+    $ref: './providerName.v1.yaml'
   oauthToken:
     $ref: './oauthtoken.v1.yaml'
   type:

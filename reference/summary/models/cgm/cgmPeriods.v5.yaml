@@ -1,0 +1,6 @@
+type: object
+title: cgmperiods.v5
+#x-go-type-skip-optional-pointer: true
+description: 'A map to each supported CGM summary period'
+additionalProperties:
+  $ref: '../glucose/glucosePeriod.v5.yaml'
