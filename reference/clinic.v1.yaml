@@ -1616,23 +1616,6 @@ paths:
       description: Sends upload reminder to the patient
       tags:
         - Clinics
-  '/v1/clinics/{clinicId}/patients/{patientId}/send_dexcom_connect_request':
-    parameters:
-      - $ref: '#/components/parameters/clinicId'
-      - $ref: '#/components/parameters/patientId'
-    post:
-      summary: Resend Dexcom connect request email
-      operationId: SendDexcomConnectRequest
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Patient'
-      description: Resend Dexcom connect request to the email address of the patient
-      tags:
-        - Clinics
   '/v1/clinics/{clinicId}/patients/assign_tag/{patientTagId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2098,6 +2081,21 @@ paths:
         - Internal
       x-internal: true
       description: 'Merges tags, patients, clinicians, invites and share codes of the source clinic'
+  '/v1/clinics/{clinicId}/patients/{patientId}/connect/{providerId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+      - $ref: '#/components/parameters/providerId'
+    post:
+      summary: ''
+      operationId: ConnectProvider
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - Clinics
+        - Internal
+      description: Send a new request to the patient to connect a data provider
 components:
   schemas:
     Error:
@@ -2523,6 +2521,12 @@ components:
         - criteria
     EHRFlowsheetSettings:
       $ref: ./clinic/models/ehrflowsheetsettings.v1.yaml
+    ProviderConnectionRequest:
+      $ref: ./clinic/models/providerconnectionrequest.v1.yaml
+    ProviderConnectionRequests:
+      $ref: ./clinic/models/providerconnectionrequests.v1.yaml
+    ProviderId:
+      $ref: ./clinic/models/provider.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -2641,6 +2645,13 @@ components:
       schema:
         type: boolean
       description: Retrieve clinics with enabled EHR integration
+    providerId:
+      name: providerId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ProviderId'
+      description: Provider ID
 tags:
   - name: Clinics
     description: 'Manage clinics, clinians and patients.'
