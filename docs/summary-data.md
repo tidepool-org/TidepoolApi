@@ -120,7 +120,7 @@ All of the summary period data is stored within each user account to enable quic
 
 ## Threshold Values
 
-The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges $AnyLow$ and $AnyHigh$. Note also that the $High$ range is inclusive of the $ExtremeHigh$ range.
+The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges $AnyLow$ and $AnyHigh$. Note also that the $VeryHigh$ range is inclusive of the $ExtremeHigh$ range.
 
 <!-- unfortunately GitHub Markdown renderer strips all styles from HTML tables... -->
 <!-- so these styles are only useful if rendering with some other Markdown renderer -->
