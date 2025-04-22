@@ -908,6 +908,50 @@ paths:
               $ref: '#/components/schemas/PatientTag'
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/sites':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: 'List Sites'
+      operationId: 'ListSites'
+      responses:
+        '200':
+          description: 'OK'
+      description: 'List sites'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/sites/{siteId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/siteId'
+    put:
+      summary: 'Update a Site'
+      operationId: 'UpdateSite'
+      responses:
+        '204':
+          description: 'No Content'
+      description: 'Update a Site'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      tags:
+        - Clinics
+    delete:
+      summary: 'Delete a Site'
+      operationId: 'DeleteSite'
+      responses:
+        '204':
+          description: 'No Content'
+      description: 'Delete a Site'
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2124,6 +2168,12 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/PatientTag'
+    Site:
+      $ref: ./clinic/models/site.v1.yaml
+    Sites:
+      type: array
+      items:
+        $ref: '#/components/schemas/Site'
     DateTime:
       $ref: ./common/models/datetime.v1.yaml
     DataSource:
@@ -2570,6 +2620,13 @@ components:
         pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
     patientTagId:
       name: patientTagId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-f0-9]{24}$'
+    siteId:
+      name: siteId
       in: path
       required: true
       schema:
