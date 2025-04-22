@@ -1,0 +1,7 @@
+description: >-
+  Site ID
+name: siteId
+in: path
+required: true
+schema:
+  $ref: '../models/siteid.v1.yaml'
