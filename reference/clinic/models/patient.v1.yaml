@@ -59,6 +59,12 @@ properties:
     x-go-type-skip-optional-pointer: true
     items:
       $ref: "./patientreview.v1.yaml"
+  sites:
+    type: array
+    nullable: true
+    x-go-type-skip-optional-pointer: true
+    items:
+      $ref: "./site.v1.yaml"
 required:
   - id
   - fullName
