@@ -61,6 +61,12 @@ properties:
       id: 502rliv0l2tyy
     description: Requests for each provider are listed in reverse chronological order
     readOnly: true
+  sites:
+    type: array
+    nullable: true
+    x-go-type-skip-optional-pointer: true
+    items:
+      $ref: ./site.v1.yaml
 required:
   - id
   - fullName
