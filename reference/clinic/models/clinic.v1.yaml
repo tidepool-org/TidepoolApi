@@ -18,6 +18,10 @@ properties:
     type: array
     items:
       $ref: ./patientTag.v1.yaml
+  sites:
+    type: array
+    items:
+      $ref: ./clinicSite.v1.yaml
   lastDeletedPatientTag:
     $ref: ./patientTag.v1.yaml
   phoneNumbers:
