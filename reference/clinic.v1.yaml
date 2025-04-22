@@ -908,6 +908,16 @@ paths:
           description: Comma-separated list of patient tag IDs
           style: form
           explode: false
+        - name: sites
+          schema:
+            type: array
+            items:
+              type: string
+              format: '^[a-f0-9]{24}$'
+          in: query
+          description: Comma-separated list of clinic site IDs
+          style: form
+          explode: false
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -942,6 +952,75 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/patientTag.v1'
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/sites':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: List Sites
+      operationId: ListSites
+      responses:
+        '200':
+          description: List of clinic sites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clinicSites.v1'
+      description: List sites
+      tags:
+        - Clinics
+    post:
+      summary: Create a Site
+      operationId: CreateSite
+      responses:
+        '200':
+          description: List of clinic sites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clinicSites.v1'
+      description: Create a Site
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/siteCreation.v1'
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/sites/{siteId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/siteId'
+    put:
+      summary: Update a Site
+      operationId: UpdateSite
+      responses:
+        '200':
+          description: List of clinic sites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clinicSites.v1'
+      description: Update a Site
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/site.v1'
+      tags:
+        - Clinics
+    delete:
+      summary: Delete a Site
+      operationId: DeleteSite
+      responses:
+        '200':
+          description: List of clinic sites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clinicSites.v1'
+      description: 'Delete a Site'
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
@@ -2167,6 +2246,14 @@ components:
       type: array
       items:
         $ref: ./clinic/models/dataSource.v1.yaml
+    clinicSites.v1:
+      type: array
+      items:
+        $ref: ./clinic/models/clinicSite.v1.yaml
+    site.v1:
+      $ref: ./clinic/models/site.v1.yaml
+    siteCreation.v1:
+      $ref: ./clinic/models/siteCreation.v1.yaml
     tidepoolUserIds.v1:
       type: array
       nullable: true
@@ -2218,6 +2305,8 @@ components:
           minLength: 1
         tags:
           $ref: ./clinic/models/patientTagIds.v1.yaml
+        siteIds:
+          $ref: ./clinic/models/siteIds.v1.yaml
     associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
@@ -2525,6 +2614,13 @@ components:
         pattern: '^([0-9a-f]{10}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$'
     patientTagId:
       name: patientTagId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-f0-9]{24}$'
+    siteId:
+      name: siteId
       in: path
       required: true
       schema:

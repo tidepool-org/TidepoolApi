@@ -1,0 +1,3 @@
+allOf:
+  - $ref: ./site.v1.yaml
+  - $ref: ./sitePatients.v1.yaml
