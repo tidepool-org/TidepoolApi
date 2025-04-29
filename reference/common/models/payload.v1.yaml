@@ -1,6 +1,6 @@
 title: Payload
 description: >-
-  Additional user-specified metadata.
+  Grab bag field for data that isn't yet part of the data model.
   The maximum size is 4K bytes.
 type: object
 additionalProperties: true
