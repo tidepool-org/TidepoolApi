@@ -575,7 +575,6 @@ paths:
           in: query
           name: bgm.totalRecords
           description: Total records in period
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -758,7 +757,6 @@ paths:
           in: query
           name: cgm.lastDataTo
           description: Exclusive
-
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -849,7 +847,6 @@ paths:
           in: query
           name: bgm.totalRecordsDelta
           description: Delta of total record count
-
         - schema:
             type: string
             format: date-time
@@ -2362,8 +2359,6 @@ components:
       $ref: ./clinic/models/membershiprestrictions.v1.yaml
     EHRSettings:
       $ref: ./clinic/models/ehrsettings.v1.yaml
-    EHRFacility:
-      $ref: ./clinic/models/ehrfacility.v1.yaml
     EHRMatchRequest:
       title: EHR Match Request
       x-stoplight:
