@@ -1,0 +1,7 @@
+description: >-
+  Provider Session Name
+name: name
+in: query
+required: false
+schema:
+  $ref: '../../models/providers/providerName.v1.yaml'
