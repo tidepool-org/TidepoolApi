@@ -1,0 +1,6 @@
+type: object
+title: continuousperiods.v5
+#x-go-type-skip-optional-pointer: true
+description: 'A map to each supported Continuous summary period'
+additionalProperties:
+  $ref: './continuousperiod.v5.yaml'
