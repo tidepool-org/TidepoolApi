@@ -29,3 +29,8 @@ catalog:
 
 openapi:
   hideInfoMetadata: true
+
+ignore:
+  - 'reference/xealth.v2.yaml'
+  - 'reference/redox.v1.yaml'
+  - 'reference/auth.v1.yaml'
