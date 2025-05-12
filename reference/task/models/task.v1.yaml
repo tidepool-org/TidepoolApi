@@ -2,7 +2,7 @@ title: Task
 type: object
 properties:
   id:
-    $ref: './id.v1.yaml'
+    $ref: './task-id.v1.yaml'
   name:
     $ref: './name.v1.yaml'
   type:
