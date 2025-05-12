@@ -64,9 +64,9 @@ If the current active basal is a suspend and the suppressed is a temp, then the 
 * [Percent](./temp.md#percent-percent)
 * [Nested Suppressed Object](#nested-suppressed-in-suspend-basals)
 
-<!-- theme: warning -->
-
-> We do *not* include any timestamp or duration information in the suppressed — these values are always equal to those of the active basal intervals, so it is unnecessary to specify them.
+{% admonition type="warning" %}
+We do *not* include any timestamp or duration information in the suppressed — these values are always equal to those of the active basal intervals, so it is unnecessary to specify them.
+{% /admonition %}
 
 ---
 
@@ -220,9 +220,9 @@ The durations of all three temp intervals here adds up to the programmed temp du
 
 For a suspend that crosses scheduled boundaries, the examples would be very similar, except with no rate on the top-level (active) suspend basal.
 
-<!-- theme: warning -->
-
-> A known issue with this data model is that when a temp or suspend basal crosses *more than one* schedule boundary, but then is cancelled within one of the "middle" (not edge) segments, we have no good way to represent the original expected duration of the *entire* programmed temp or suspend. The expected duration on a middle segment of a three-or-more segment temp or suspend basal should be the expected duration of *that segment* from the basal schedule.
+{% admonition type="warning" %}
+A known issue with this data model is that when a temp or suspend basal crosses *more than one* schedule boundary, but then is cancelled within one of the "middle" (not edge) segments, we have no good way to represent the original expected duration of the *entire* programmed temp or suspend. The expected duration on a middle segment of a three-or-more segment temp or suspend basal should be the expected duration of *that segment* from the basal schedule.
+{% /admonition %}
 
 ---
 

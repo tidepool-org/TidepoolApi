@@ -91,9 +91,9 @@ Example:
 
 * `c4c31493417b4c6d968b72f08e6b3712`
 
-<!-- theme: info -->
-
-> IDs are not deterministically generated from the content of events and are therefore not useful for deduplication.
+{% admonition type="info" %}
+IDs are not deterministically generated from the content of events and are therefore not useful for deduplication.
+{% /admonition %}
 
 ---
 
@@ -126,9 +126,9 @@ Examples:
 
 An upload identifier. This field should be the upload ID of the corresponding upload record. Currently, upload IDs are generated in [Tidepool Uploader](https://github.com/tidepool-org/uploader/blob/master/lib/core/api.js) as a hash of various pieces of upload session metadata.
 
-<!-- theme: warning -->
-
-> Upload ID does *not* figure in the calculations of an event record's ID. This ID is used to prevent storage of multiple copies of the same event. This means that multiple attempts to upload the same event record will nevertheless result in the same ID.
+{% admonition type="warning" %}
+Upload ID does *not* figure in the calculations of an event record's ID. This ID is used to prevent storage of multiple copies of the same event. This means that multiple attempts to upload the same event record will nevertheless result in the same ID.
+{% /admonition %}
 
 ---
 
