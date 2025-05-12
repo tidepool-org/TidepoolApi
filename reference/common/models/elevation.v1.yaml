@@ -3,7 +3,7 @@ description: >-
   Elevation, expressed as `meters` or `feet`.
 type: object
 oneOf:
-  - $ref: './elevation/meters.v1.yaml'
+  - $ref: './elevation/elevation-meters.v1.yaml'
   - $ref: './elevation/feet.v1.yaml'
 required:
   - units

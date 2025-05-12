@@ -25,7 +25,7 @@ allOf:
       elevationChange:
         oneOf:
           - $ref: '../../../../common/models/distance/feet.v1.yaml'
-          - $ref: '../../../../common/models/distance/meters.v1.yaml'
+          - $ref: '../../../../common/models/distance/distance-meters.v1.yaml'
       energy:
         $ref: '../../../../common/models/energy.v1.yaml'
       flight:
