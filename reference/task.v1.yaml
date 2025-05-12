@@ -91,7 +91,7 @@ paths:
 
   '/v1/tasks/{taskId}':
     parameters:
-      - $ref: './task/parameters/id.v1.yaml'
+      - $ref: './task/parameters/task-id.v1.yaml'
     get:
       operationId: GetTask
       summary: Get Task

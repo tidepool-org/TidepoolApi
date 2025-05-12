@@ -4,7 +4,7 @@ description: >-
 type: object
 properties:
   id:
-    $ref: './origin/id.v1.yaml'
+    $ref: './origin-id.v1.yaml'
   name:
     $ref: './origin/name.v1.yaml'
   payload:

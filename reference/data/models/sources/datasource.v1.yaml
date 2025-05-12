@@ -10,7 +10,7 @@ properties:
   earliestDataTime:
     $ref: '../../../common/models/datetime.v1.yaml'
   id:
-    $ref: './id.v1.yaml'
+    $ref: './data-source-id.v1.yaml'
   lastImportTime:
     $ref: '../../../common/models/datetime.v1.yaml'
   latestDataTime:
