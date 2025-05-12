@@ -47,7 +47,7 @@ While this field is optional, it is strongly encouraged to provide this field, a
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "cbg",
     "units": "mmol/L",
@@ -65,7 +65,7 @@ While this field is optional, it is strongly encouraged to provide this field, a
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "cbg",
     "units": "mg/dL",
@@ -81,7 +81,7 @@ While this field is optional, it is strongly encouraged to provide this field, a
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "cbg",
     "units": "mmol/L",

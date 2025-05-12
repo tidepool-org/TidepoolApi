@@ -106,7 +106,7 @@ Net is the net number of units of insulin the bolus calculator recommended given
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "wizard",
     "bgInput": 2.109284236597303,
@@ -137,7 +137,7 @@ Net is the net number of units of insulin the bolus calculator recommended given
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "wizard",
     "bgInput": 392,
@@ -178,7 +178,7 @@ Net is the net number of units of insulin the bolus calculator recommended given
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "wizard",
     "bgInput": 16.152676653942503,

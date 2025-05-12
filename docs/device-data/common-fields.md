@@ -132,7 +132,7 @@ Upload ID does *not* figure in the calculations of an event record's ID. This ID
 
 ---
 
-```json title="Example of All Possible Fields" lineNumbers=true
+```json {% title="Example of All Possible Fields" %}
 {
     "_active": true,
     "_groupId": "abcdef",

@@ -9,7 +9,7 @@ This type is used to convey information about water consumption.
 
 ## Examples
 
-```json title="Example (water consumption)" lineNumbers=true
+```json {% title="Example (water consumption)" %}
 {
     "type": "water",
     "clockDriftOffset": 0,

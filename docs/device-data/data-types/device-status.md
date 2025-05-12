@@ -9,7 +9,7 @@ This type is used to convey the status of a device.
 
 ## Examples
 
-```json title="Example (insulin pump)" lineNumbers=true
+```json {% title="Example (insulin pump)" %}
 {
     "type": "deviceStatus",
     "clockDriftOffset": 0,
@@ -45,7 +45,7 @@ This type is used to convey the status of a device.
 }
 ```
 
-```json title="Example (AID)" lineNumbers=true
+```json {% title="Example (AID)" %}
 {
     "type": "deviceStatus",
     "clockDriftOffset": 0,

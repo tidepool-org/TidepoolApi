@@ -255,7 +255,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -365,7 +365,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -482,7 +482,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",

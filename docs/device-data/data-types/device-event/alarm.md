@@ -70,7 +70,7 @@ See [linking events](../../linking-events.md) for additional details regarding i
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "deviceEvent",
     "subType": "alarm",
@@ -88,7 +88,7 @@ See [linking events](../../linking-events.md) for additional details regarding i
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "deviceEvent",
     "subType": "alarm",
@@ -103,7 +103,7 @@ See [linking events](../../linking-events.md) for additional details regarding i
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "deviceEvent",
     "subType": "alarm",

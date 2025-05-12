@@ -38,7 +38,7 @@ The linked value indicates that the blood glucose value was transferred from a b
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "smbg",
     "subType": "manual",
@@ -56,7 +56,7 @@ The linked value indicates that the blood glucose value was transferred from a b
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "smbg",
     "subType": "manual",
@@ -72,7 +72,7 @@ The linked value indicates that the blood glucose value was transferred from a b
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "smbg",
     "subType": "linked",

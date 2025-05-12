@@ -27,7 +27,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose deliver
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "bolus",
     "subType": "normal",
@@ -45,7 +45,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose deliver
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "bolus",
     "subType": "normal",
@@ -61,7 +61,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose deliver
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "bolus",
     "subType": "normal",

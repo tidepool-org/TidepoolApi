@@ -13,7 +13,7 @@ An event that occurs when a device has switched to a different setting.
 
 ---
 
-```json title="Example" lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "deviceEvent",
   "subType": "settingsChange",

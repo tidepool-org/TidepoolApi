@@ -170,7 +170,7 @@ The units for the remaining amount of insulin in the reservoir. One of `Units`.
 
 ---
 
-```json title="Example Pump Status" lineNumbers=true
+```json {% title="Example Pump Status" %}
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

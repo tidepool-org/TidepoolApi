@@ -76,7 +76,7 @@ When a temp or suspend basal crosses a basal schedule boundary, the original pro
 
 For example, let us assume this basal schedule is active:
 
-```json lineNumbers=true
+```json
 [
   {
     "start": 0, // midnight
@@ -103,7 +103,7 @@ For example, let us assume this basal schedule is active:
 
 A scheduled basal event on a particular day at 12:00 am — according to this schedule —  would look like:
 
-```json lineNumbers=true
+```json
 {
   "type": "basal",
   "deliveryType": "scheduled",
@@ -122,7 +122,7 @@ A scheduled basal event on a particular day at 12:00 am — according to this sc
 
 Now, let's say a user programs a temp basal at 12:25 am to run for three hours, until 3:25 am. The scheduled basal will look almost the same, except the duration will be different since the scheduled segment will have only run for 25 minutes from 12:00 am to 12:25 am:
 
-```json lineNumbers=true
+```json
 {
   "type": "basal",
   "deliveryType": "scheduled",
@@ -143,7 +143,7 @@ The three-hour temp basal will cross schedule boundaries at 1:00 am and 3:00 am.
 
 First temp interval:
 
-```json lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "basal",
   "deliveryType": "temp",
@@ -168,7 +168,7 @@ First temp interval:
 
 Second temp interval:
 
-```json lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "basal",
   "deliveryType": "temp",
@@ -193,7 +193,7 @@ Second temp interval:
 
 Third temp interval:
 
-```json lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "basal",
   "deliveryType": "temp",
@@ -230,7 +230,7 @@ A known issue with this data model is that when a temp or suspend basal crosses 
 
 To date, we know of one insulin pump manufacturer (Medtronic) that allows for *editing* a temp basal while it is in effect. In principle, the same could apply to a suspend programmed with a duration (as required for OmniPod). For the purposes of our temp basal model, we treat the editing of a temp basal as a cancellation, followed by the immediate scheduling of a second temp. We *do not* consider the first temp basal to be suppressed by the second edited temp. For example, consider a user running a "flat rate" basal schedule:
 
-```json lineNumbers=true
+```json {% title="Example" %}
 [
   {
     "start": 0,
@@ -241,7 +241,7 @@ To date, we know of one insulin pump manufacturer (Medtronic) that allows for *e
 
 At 8:00 am, this user schedules an 85% temp basal to run for four hours, but edits it after three hours and 36 minutes to change the percentage to 90%. The first temp basal event will look like this:
 
-```json lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "basal",
   "deliveryType": "temp",
@@ -269,7 +269,7 @@ At 8:00 am, this user schedules an 85% temp basal to run for four hours, but edi
 
 The second follows immediately,  but carries no indication that it is an "edited" temp (except perhaps additional information in the payload); rather, it is indistinguishable from a "fresh" temp basal scheduled for the given time. Note that its suppressed is the scheduled flat-rate basal, *not* the prior temp basal.
 
-```json lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "basal",
   "deliveryType": "temp",
@@ -302,7 +302,7 @@ Because a suspend can occur when a temp is in effect, there is the possibility o
 
 In addition to the suppressed  (about the temp) on the active suspend, the suppressed temp can *also* have a suppressed containing information about the scheduled basal that *would have occurred* had the temp basal not been programmed. For example:
 
-```json lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "basal",
   "deliveryType": "suspend",

@@ -52,7 +52,7 @@ Where available in the data, the volume of a priming event should be included to
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "deviceEvent",
     "subType": "prime",
@@ -70,7 +70,7 @@ Where available in the data, the volume of a priming event should be included to
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "deviceEvent",
     "subType": "prime",
@@ -86,7 +86,7 @@ Where available in the data, the volume of a priming event should be included to
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "deviceEvent",
     "subType": "prime",

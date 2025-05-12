@@ -24,7 +24,7 @@ For example, each driver should: import the Utility; initialize the Utility; and
 
 ### Import The Utility
 
-```javascript title="JavaScript" lineNumbers=true
+```javascript {% title="JavaScript" %}
 var TZOUtil = require('lib/TimezoneOffsetUtil');
 ```
 
@@ -38,7 +38,7 @@ Initialize the Utility with:
 2. UTC timestamp of the most recent datum from the device’s history.
 3. An array of the date & time settings changes from the device’s history. (If the device does not store date & time settings changes, then an empty array should be passed).
 
-```javascript title="JavaScript" lineNumbers=true
+```javascript {% title="JavaScript" %}
 cfg.tzoUtil = new TZOUtil(timezone, mostRecent, changes);
 ```
 
@@ -65,7 +65,7 @@ To employ this, you will need the following pieces of time-related information a
     * `sundial.buildTimestamp` or
     * `sundial.parseFromFormat` (usually this is the object used to produce device time via `sundial.formatDeviceTime`)
 
-```javascript title="JavaScript" lineNumbers=true
+```javascript {% title="JavaScript" %}
 _.each(data, function(datum) {
   cfg.tzoUtil.fillInUTCInfo(datum, jsDate);
 });

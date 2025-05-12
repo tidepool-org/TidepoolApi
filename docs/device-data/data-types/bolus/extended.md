@@ -29,7 +29,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "bolus",
     "subType": "square",
@@ -49,7 +49,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "bolus",
     "subType": "square",
@@ -67,7 +67,7 @@ This is the sub-type of bolus event that represents a bolus insulin dose program
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "bolus",
     "subType": "square",

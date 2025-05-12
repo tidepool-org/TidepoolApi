@@ -36,7 +36,7 @@ Tidepool has used the most popular blood ketone meter on the American market —
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "bloodKetone",
     "units": "mmol/L",
@@ -53,7 +53,7 @@ Tidepool has used the most popular blood ketone meter on the American market —
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "bloodKetone",
     "units": "mmol/L",
@@ -68,7 +68,7 @@ Tidepool has used the most popular blood ketone meter on the American market —
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "bloodKetone",
     "units": "mmol/L",

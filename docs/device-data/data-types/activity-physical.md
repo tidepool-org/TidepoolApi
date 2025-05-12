@@ -11,7 +11,7 @@ This type is used to convey information about physical activity.
 
 ## Examples
 
-```json title="Example (physical activity)" lineNumbers=true
+```json {% title="Example (physical activity)" %}
 {
     "type": "water",
     "clockDriftOffset": 0,

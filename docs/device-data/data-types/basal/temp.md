@@ -43,7 +43,7 @@ Tidepool's data model has standardized on a floating point representation of the
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -69,7 +69,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -93,7 +93,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "basal",
     "deliveryType": "temp",

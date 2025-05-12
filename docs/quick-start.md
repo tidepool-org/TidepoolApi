@@ -39,7 +39,7 @@ curl -i -X POST -u [your account email]:[your account password] https://int-api.
 
 This will return an HTTP response that looks like this:
 
-```http title="Sample Response" lineNumbers=true
+```http {% title="Sample Response" %}
 Access-Control-Allow-Headers: Authorization, Content-Type, X-Tidepool-Session-Token
 Access-Control-Allow-Methods: GET, POST, PUT
 X-Tidepool-Session-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkdXIiOjIuNTkyZSswNiwiZXhwIjoxNDcxMTM0MzIzLCJzdnIiOiJubyIsInVzciI6IjU0YzkwZmIzMjUifQ.bbkzG_rwp9IVMI3HVYm_ct8mMW_YTnTALUW12345678
@@ -75,7 +75,7 @@ Tidepool ecosystem:
 
 For example, a request with both headers specified:
 
-```http title="Sample Request" lineNumbers=true
+```http {% title="Sample Request" %}
 GET  /v1/users/a43d25a01f/images HTTP/1.1
 Host: int-api.tidepool.org
 X-Tidepool-Trace-Request: c836ab48d92c4789abb38d759a021b3e
@@ -92,7 +92,7 @@ The Tidepool API uses [standard HTTP status codes](https://www.w3.org/Protocols/
 >
 > Some Tidepool legacy APIs return the developer guidance in different UTF-8 JSON format.
 
-```json title="Sample Error" lineNumbers=true
+```json {% title="Sample Error" %}
 {
   'code': 'length-out-of-range',
   'title': 'length is out of range',

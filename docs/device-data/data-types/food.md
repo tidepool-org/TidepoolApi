@@ -9,7 +9,7 @@ This type is used to convey information about food consumption.
 
 ## Examples
 
-```json title="Example (food consumption)" lineNumbers=true
+```json {% title="Example (food consumption)" %}
 {
     "type": "food",
     "clockDriftOffset": 0,

@@ -157,7 +157,7 @@ The style of alert when normal alert is presented as a user notification. One of
 
 ---
 
-```json title="Example" lineNumbers=true
+```json {% title="Example" %}
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

@@ -101,7 +101,7 @@ The insulin sensitivity scale factor in effect while the override is enabled. Th
 
 ---
 
-```json title="Example" lineNumbers=true
+```json {% title="Example" %}
 {
   "id": "bfc3e597e16c436a94a03d7fd095a774",
   "time": "2017-02-06T02:37:46Z",
