@@ -2,7 +2,7 @@ title: Association (datum)
 type: object
 properties:
   type:
-    $ref: './type.v1.yaml'
+    $ref: './association-type.v1.yaml'
   reason:
     $ref: './reason.v1.yaml'
   id:

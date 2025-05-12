@@ -6,7 +6,7 @@ properties:
   name:
     $ref: './name.v1.yaml'
   type:
-    $ref: './type.v1.yaml'
+    $ref: './task-type.v1.yaml'
   priority:
     $ref: './priority.v1.yaml'
   data:

@@ -22,7 +22,7 @@ properties:
   providerSessionId:
     $ref: '../../../auth/models/providers/sessionid.v1.yaml'
   providerType:
-    $ref: '../../../auth/models/providers/type.v1.yaml'
+    $ref: '../../../auth/models/providers/provider-type.v1.yaml'
   revision:
     type: integer
     format: int32
