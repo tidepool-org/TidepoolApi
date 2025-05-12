@@ -1,5 +1,5 @@
 title: Bolus
-description: 'An abstract base data type for different types of bolus data: [normal](../normal.v1.yaml), [extended](./extended.v1.yaml), or [combination](./combination.v1.yaml)'
+description: 'An abstract base data type for different types of bolus data'
 allOf:
   - $ref: ../base.v1.yaml
   - type: object

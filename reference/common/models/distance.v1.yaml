@@ -4,6 +4,6 @@ description: >-
 oneOf:
   - $ref: './distance/distance-meters.v1.yaml'
   - $ref: './distance/kilometers.v1.yaml'
-  - $ref: './distance/feet.v1.yaml'
+  - $ref: './distance/distance-feet.v1.yaml'
   - $ref: './distance/yards.v1.yaml'
   - $ref: './distance/miles.v1.yaml'

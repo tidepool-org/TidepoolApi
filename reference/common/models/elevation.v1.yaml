@@ -4,7 +4,7 @@ description: >-
 type: object
 oneOf:
   - $ref: './elevation/elevation-meters.v1.yaml'
-  - $ref: './elevation/feet.v1.yaml'
+  - $ref: './elevation/elevation-feet.v1.yaml'
 required:
   - units
   - value
