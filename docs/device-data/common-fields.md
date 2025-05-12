@@ -20,9 +20,11 @@
 
 ## Quick summary
 
-```yaml json_schema
-$ref: '../../reference/data/models/base.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../reference/data/models/base.v1.yaml"
+  }
+/%}
 
 ---
 

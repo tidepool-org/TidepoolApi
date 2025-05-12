@@ -18,25 +18,31 @@
 
 ## Quick Summary: scheduled
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/suppressed/scheduled.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suppressed/scheduled.v1.yaml"
+  }
+/%}
 
 ---
 
 ## Quick Summary: automated
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/suppressed/automated.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suppressed/automated.v1.yaml"
+  }
+/%}
 
 ---
 
 ## Quick Summary: temporary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/suppressed/temporary.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suppressed/temporary.v1.yaml"
+  }
+/%}
 
 ---
 
