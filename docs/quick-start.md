@@ -12,11 +12,9 @@
 
 ---
 
-<!-- theme: success -->
-
-> ### Prerequisites
->
-> Before you begin, you will need to create a [Tidepool user account](https://int-app.tidepool.org/signup). It's free and should take you less than two minutes. You can also download [curl](https://curl.haxx.se/download.html) or [Postman](https://app.getpostman.com/run-collection/9b665f2fb9a8a483bf30?via=clientlibraries) onto your computer (this isn't strictly required but is strongly encouraged).
+{% admonition type="success" name="Prerequisites" %}
+Before you begin, you will need to create a [Tidepool user account](https://int-app.tidepool.org/signup). It's free and should take you less than two minutes. You can also download [curl](https://curl.haxx.se/download.html) or [Postman](https://app.getpostman.com/run-collection/9b665f2fb9a8a483bf30?via=clientlibraries) onto your computer (this isn't strictly required but is strongly encouraged).
+{% /admonition %}
 
 ## Authentication
 
