@@ -35,9 +35,11 @@ Finally the `custom` override is one that does not match any of the other overri
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/pumpsettingsoverride.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/pumpsettingsoverride.v1.yaml"
+  }
+/%}
 
 ---
 

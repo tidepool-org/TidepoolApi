@@ -13,9 +13,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../reference/data/models/blood/continuousglucose.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/blood/continuousglucose.v1.yaml"
+  }
+/%}
 
 ---
 

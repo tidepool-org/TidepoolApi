@@ -14,9 +14,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/timechange.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/timechange.v1.yaml"
+  }
+/%}
 
 ---
 

@@ -2,6 +2,7 @@
   label: Home
 
 - group: Documentation
+  expanded: true
   items:
     - page: docs/welcome.md
       label: Welcome!
