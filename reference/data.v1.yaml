@@ -370,7 +370,7 @@ paths:
       parameters:
         - $ref: './data/parameters/uploadid.v1.yaml'
         - $ref: './data/parameters/deviceid.v1.yaml'
-        - $ref: './data/parameters/type.v1.yaml'
+        - $ref: './data/parameters/data-type.v1.yaml'
         - $ref: './data/parameters/subtype.v1.yaml'
         - $ref: './data/parameters/startdate.v1.yaml'
         - $ref: './data/parameters/enddate.v1.yaml'

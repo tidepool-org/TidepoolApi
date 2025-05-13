@@ -11,11 +11,9 @@
 
 ---
 
-<!-- theme: success -->
-
-> ### Are You Authenticated?
->
-> Make sure that you have a [Tidepool session token](../quick-start.md#authentication) before trying to fetch data.
+{% admonition type="success" name="Are You Authenticated?" %}
+Make sure that you have a [Tidepool session token](../quick-start.md#authentication) before trying to fetch data.
+{% /admonition %}
 
 ---
 
@@ -84,9 +82,9 @@ To fetch just the pump settings for Jill Jellyfish, use:
 }
 ```
 
-<!-- theme: info -->
-
-> All glucose data in Tidepool is stored in mmol/L. To convert to mg/dL, multiply by 18.01559.
+{% admonition type="info" %}
+All glucose data in Tidepool is stored in mmol/L. To convert to mg/dL, multiply by 18.01559.
+{% /admonition %}
 
 ---
 

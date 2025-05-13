@@ -13,9 +13,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/calibration.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/calibration.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -27,7 +29,7 @@ The calibration sub-type of device event represents a user's manual entry of a s
 
 ## Examples
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "deviceEvent",
     "subType": "calibration",
@@ -43,7 +45,7 @@ The calibration sub-type of device event represents a user's manual entry of a s
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "deviceEvent",
     "subType": "calibration",

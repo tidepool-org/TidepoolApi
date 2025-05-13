@@ -1,6 +1,6 @@
 title: Delivery Type
 description: >-
-  This defines the basal delivery type, used to differentiate between [automated](./automated.v1.yaml), [scheduled](./scheduled.v1.yaml), [suspended](./suspend.v1.yaml) and [temporary](./temporary.v1.yaml) basal types.
+  This defines the basal delivery type, used to differentiate between [automated](../automated.v1.yaml), [scheduled](../scheduled.v1.yaml), [suspended](#schema/suspend.v1) and [temporary](../temporary.v1.yaml) basal types.
 type: string
 enum:
   - automated

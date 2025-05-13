@@ -23,9 +23,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../reference/data/models/upload.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/upload.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -134,7 +136,7 @@ A string identifying the software version of the uploading client. For Tidepool 
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "upload",
     "byUser": "154bb78230",
@@ -161,7 +163,7 @@ A string identifying the software version of the uploading client. For Tidepool 
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "upload",
     "byUser": "eda1e15c6a",
@@ -186,7 +188,7 @@ A string identifying the software version of the uploading client. For Tidepool 
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "upload",
     "byUser": "e9c6044f37",

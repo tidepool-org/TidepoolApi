@@ -6,7 +6,9 @@ properties:
   annotations:
     $ref: '../../common/models/annotationarray.v1.yaml'
   archivedTime:
-    $ref: '../../common/models/datetime.v1.yaml'
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+    readOnly: true
   archivedDatasetId:
     $ref: './datasetid.v1.yaml'
   associations:

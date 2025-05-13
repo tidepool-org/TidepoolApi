@@ -128,9 +128,9 @@ Person with diabetes (PwD) is used  to avoid the disease-centric term "diabetic.
 
 A timezone — sometimes referred to as a named timezone or timezone name — is a string referring to a valid timezone from the IANA Time Zone Database. In many cases, a timezone will not match a [timezone offset](#timezone-offset) year-round because of Daylight Savings.
 
-<!-- theme: info -->
-
-> An abbreviation such as PDT for "Pacific Daylight Time" is not a timezone since it contains both timezone and timezone offset information.
+{% admonition type="info" %}
+An abbreviation such as PDT for "Pacific Daylight Time" is not a timezone since it contains both timezone and timezone offset information.
+{% /admonition %}
 
 Examples:
 

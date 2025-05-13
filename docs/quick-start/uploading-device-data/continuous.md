@@ -47,7 +47,7 @@ If you have previously opened a continuous session, [skip ahead](#find-an-existi
 
 This will return an HTTP response with a JSON body. You should store **the value of the upload session ID** to use when uploading data to this session.
 
-```json title="Sample Response" lineNumbers=true
+```json {% title="Sample Response" %}
 {
   "data": {
     "createdTime": "2019-08-29T08:05:25.851Z",
@@ -91,7 +91,7 @@ If you have previously opened a continuous session, you can use this request to 
 
 This will return an HTTP response with a JSON body. You should temporarily store the value of the upload session ID you intend to write data to.
 
-```json title="Sample Response" lineNumbers=true
+```json {% title="Sample Response" %}
 [
   {
     "client": {

@@ -15,7 +15,7 @@
 
 Here is an example of a carb event that was initially a carb entry of 40g, that was changed to 60g 15 minutes later:
 
-```json title="Sample Modified Quantity" lineNumbers=true
+```json {% title="Sample Modified Quantity" %}
 {
   "id": "77d722a44fa0055b20c9b988c078766f",
   "name": "🍞🧀",
@@ -48,7 +48,7 @@ Here is an example of a carb event that was initially a carb entry of 40g, that 
 
 Here is an example of a carbohydrate event that was deleted 4 minutes after initial entry:
 
-```json title="Sample Deleted Event" lineNumbers=true
+```json {% title="Sample Deleted Event" %}
 {
   "id": "77d722a44fa0055b20c9b988c078766f",
   "name": "🍞🧀",
@@ -80,7 +80,7 @@ Here is an example of a carbohydrate event that was deleted 4 minutes after init
 
 Here is an example of a carb event that was initially a carb entry of 40g, that was changed to occur at an earlier time 5 minutes after originally being entered:
 
-```json title="Sample Modified Time" lineNumbers=true
+```json {% title="Sample Modified Time" %}
 {
   "id": "77d722a44fa0055b20c9b988c078766f",
   "name": "🍞🧀",

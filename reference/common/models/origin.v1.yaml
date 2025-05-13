@@ -4,7 +4,7 @@ description: >-
 type: object
 properties:
   id:
-    $ref: './origin/id.v1.yaml'
+    $ref: './origin-id.v1.yaml'
   name:
     $ref: './origin/name.v1.yaml'
   payload:
@@ -12,7 +12,7 @@ properties:
   time:
     $ref: './datetime.v1.yaml'
   type:
-    $ref: './origin/type.v1.yaml'
+    $ref: './origin/origin-type.v1.yaml'
   version:
     $ref: './origin/version.v1.yaml'
 required:

@@ -61,9 +61,9 @@ In occasional instances, a user sets the time on the diabetes device to the wron
 
 There is a set of three-letter and four-letter codes used to abbreviate timezone and timezone offset information. For example, PST (Pacific Standard Time) refers to the US/Pacific timezone, which has an offset of –480 minutes to UTC. PDT (Pacific Daylight Time) refers to the same timezone when [DST](../glossary.md#dst) is in effect.
 
-<!-- theme: info -->
-
-> It is important to keep these abbreviations distinct from timezone names. Do not use an abbreviation where a timezone is requested, and vice versa.
+{% admonition type="info" %}
+It is important to keep these abbreviations distinct from timezone names. Do not use an abbreviation where a timezone is requested, and vice versa.
+{% /admonition %}
 
 ---
 
