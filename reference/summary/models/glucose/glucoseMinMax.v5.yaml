@@ -10,3 +10,6 @@ properties:
     type: number
     example: 8.0
     x-go-type: float64
+required:
+  - min
+  - max
