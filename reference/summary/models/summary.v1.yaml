@@ -5,22 +5,15 @@ properties:
   id:
     $ref: './summaryId.v1.yaml'
   type:
-    $ref: './summarytype.v1.yaml'
+    $ref: './summaryType.v1.yaml'
   userId:
     $ref: '../../common/models/tidepooluserid.yaml'
   config:
-    $ref: './config.v1.yaml'
+    $ref: './summaryConfig.v1.yaml'
   dates:
-    $ref: './dates.v1.yaml'
+    $ref: './summaryDates.v1.yaml'
   stats:
     oneOf:
-      - $ref: './cgm/cgmstats.v1.yaml'
-      - $ref: './bgm/bgmstats.v1.yaml'
-      - $ref: './continuous/continuousstats.v1.yaml'
-  updateWithoutChangeCount:
-    type: number
-    example: 5
-    x-go-type: int
-
-required:
-  - updateWithoutChangeCount
+      - $ref: './cgm/cgmStats.v1.yaml'
+      - $ref: './bgm/bgmStats.v1.yaml'
+      - $ref: './continuous/continuousStats.v1.yaml'

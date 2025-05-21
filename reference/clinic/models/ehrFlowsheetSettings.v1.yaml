@@ -1,0 +1,8 @@
+title: Flowsheet Settings
+type: object
+properties:
+  icode:
+    type: boolean
+    description: "Determine if values should be sent in accorance with ICode2 rounding standards, or if we should send the values at higher precision."
+required:
+  - icode

@@ -1,0 +1,12 @@
+type: object
+title: bgmstats.v1
+description: 'A summary of a users recent BGM glucose values'
+properties:
+  id:
+    $ref: '../../../summary/models/summaryId.v1.yaml'
+  config:
+    $ref: '../../../summary/models/summaryConfig.v1.yaml'
+  dates:
+    $ref: '../../../summary/models/summaryDates.v1.yaml'
+  periods:
+    $ref: '../../../summary/models/bgm/bgmPeriods.v1.yaml'

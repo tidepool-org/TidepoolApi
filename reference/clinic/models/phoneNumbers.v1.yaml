@@ -1,0 +1,8 @@
+title: Phone phoneNumbers
+description: >-
+  An array of phone numbers.
+type: array
+uniqueItems: true
+minItems: 1
+items:
+  $ref: './phoneNumber.v1.yaml'

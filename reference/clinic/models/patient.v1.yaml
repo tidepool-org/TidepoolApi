@@ -20,13 +20,13 @@ properties:
     description: The medical record number of the patient
     minLength: 1
   tags:
-    $ref: ./patienttagids.v1.yaml
+    $ref: ./patientTagIds.v1.yaml
   targetDevices:
     type: array
     items:
       type: string
   permissions:
-    $ref: ./patientpermissions.v1.yaml
+    $ref: ./patientPermissions.v1.yaml
   createdTime:
     type: string
     format: date-time
@@ -47,7 +47,7 @@ properties:
     format: date-time
     readOnly: true
   summary:
-    $ref: ./summaries/patientsummary.v1.yaml
+    $ref: ./summaries/patientSummary.v1.yaml
   reviews:
     type: array
     nullable: true
