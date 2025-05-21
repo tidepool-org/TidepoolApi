@@ -2102,7 +2102,7 @@ paths:
       - $ref: '#/components/parameters/patientId'
       - $ref: '#/components/parameters/providerId'
     post:
-      summary: ''
+      summary: Connect Provider
       operationId: ConnectProvider
       responses:
         '204':
