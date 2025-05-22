@@ -9,7 +9,7 @@ properties:
       id: efcvyea5slw36
     format: date-time
   providerName:
-    $ref: ./provider.v1.yaml
+    $ref: ./providerId.v1.yaml
     x-stoplight:
       id: ej94kmuykpg1k
 required:

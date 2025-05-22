@@ -1113,7 +1113,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/clinician.v1'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Internal endpoint to associate a clinician to a user.
       requestBody:
         content:
@@ -1140,7 +1140,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/clinician.v1'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Internal endpoint to retrieve invited clinician.
       tags:
         - Clinics
@@ -1318,7 +1318,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/clinician.v1'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
       tags:
         - Clinics
@@ -2127,10 +2127,6 @@ components:
         $ref: ./clinic/models/patient.v1.yaml
     patientTag.v1:
       $ref: ./clinic/models/patientTag.v1.yaml
-    patientTags.v1:
-      type: array
-      items:
-        $ref: ./clinic/models/patientTag.v1.yaml
     dataSources.v1:
       type: array
       items:
@@ -2575,7 +2571,7 @@ components:
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/ProviderId'
+        $ref: ./clinic/models/providerId.v1.yaml
       description: Provider ID
 tags:
   - name: Clinics
