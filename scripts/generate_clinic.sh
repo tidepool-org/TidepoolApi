@@ -18,7 +18,7 @@ case $1 in
 	;;
 
     -c | --self-check)
-	trace swagger-cli --version
+	trace redocly --version
 	trace oapi-codegen --version
 	;;
 
@@ -28,7 +28,7 @@ case $1 in
 	server="$(dirname "$bundled")/server"
 	client="$(dirname "$bundled")/client"
 	common=( --old-config-style --exclude-tags=Confirmations --package=api )
-	trace swagger-cli bundle "$source" -o "$bundled" -t yaml
+	trace redocly bundle "$source" -o "$bundled"
 	trace mkdir -p "$server" "$client"
 	trace oapi-codegen "${common[@]}" --generate=server -o "$server/gen_server.go" "$bundled"
 	trace oapi-codegen "${common[@]}" --generate=spec -o "$server/gen_spec.go" "$bundled"

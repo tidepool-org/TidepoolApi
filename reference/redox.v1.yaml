@@ -27,28 +27,17 @@ paths:
           application/json:
             schema:
               anyOf:
-                - $ref: '#/components/schemas/NewOrder'
-                - $ref: '#/components/schemas/NewFlowsheet'
-                - $ref: '#/components/schemas/NewNotes'
-                - $ref: '#/components/schemas/NewResults'
-                - $ref: '#/components/schemas/ReplaceNotes'
+                - $ref: ./redox/order/newOrder.yaml
+                - $ref: ./redox/flowsheet/newFlowsheet.yaml
+                - $ref: ./redox/notes/newNotes.yaml
+                - $ref: ./redox/results/newResults.yaml
+                - $ref: ./redox/notes/replaceNotes.yaml
       description: |-
         Currently, this endpoint's only purpose is to reference Redox models so we can use them for code generation. The code generation tool emits models only if they are referenced in the API portion of the spec.
 
         In the future we may use this for sending data to Redox as well.
     parameters: []
 components:
-  schemas:
-    NewOrder:
-      $ref: ./redox/order/new.yaml
-    NewFlowsheet:
-      $ref: ./redox/flowsheet/new.yaml
-    NewNotes:
-      $ref: ./redox/notes/new.yaml
-    NewResults:
-      $ref: ./redox/results/new.yaml
-    ReplaceNotes:
-      $ref: ./redox/notes/replace.yaml
   securitySchemes: {}
 tags:
   - name: Redox

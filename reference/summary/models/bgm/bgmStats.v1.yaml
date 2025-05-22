@@ -1,0 +1,6 @@
+type: object
+title: bgmstats.v1
+description: 'A summary of a users recent BGM glucose values'
+properties:
+  periods:
+    $ref: './bgmPeriods.v1.yaml'

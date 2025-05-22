@@ -45,7 +45,7 @@ tags:
 paths:
   '/v1/summaries/{summaryType}/{userId}':
     parameters:
-      - $ref: '#/components/parameters/summaryType'
+      - $ref: '#/components/parameters/summaryType.v5'
       - $ref: '#/components/parameters/userId'
     get:
       summary: Get User Summary
@@ -55,7 +55,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Summary'
+                $ref: ./summary/models/summary.v5.yaml
         '400':
           description: Bad Request
         '403':
@@ -70,50 +70,21 @@ paths:
         - Internal
 
 components:
-  schemas:
-    TidepoolUserId:
-      $ref: './common/models/tidepooluserid.yaml'
-    SummaryTypeSchema:
-      $ref: './summary/models/summarytype.v5.yaml'
-    Config:
-      $ref: './summary/models/config.v1.yaml'
-    Dates:
-      $ref: './summary/models/dates.v5.yaml'
-    GlucoseRange:
-      $ref: './summary/models/glucose/glucoserange.v5.yaml'
-    GlucoseRanges:
-      $ref: './summary/models/glucose/glucoseranges.v5.yaml'
-    ContinuousRanges:
-      $ref: './summary/models/continuous/continuousranges.v5.yaml'
-    GlucosePeriod:
-      $ref: './summary/models/glucose/glucoseperiod.v5.yaml'
-    GlucosePeriodDelta:
-      $ref: './summary/models/glucose/glucoseperioddelta.v5.yaml'
-    ContinuousPeriod:
-      $ref: './summary/models/continuous/continuousperiod.v5.yaml'
-    CGMPeriods:
-      $ref: './summary/models/cgm/cgmperiods.v5.yaml'
-    BGMPeriods:
-      $ref: './summary/models/bgm/bgmperiods.v5.yaml'
-    ContinuousPeriods:
-      $ref: './summary/models/continuous/continuousperiods.v5.yaml'
-    Summary:
-      $ref: './summary/models/summary.v5.yaml'
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
     serverToken:
       $ref: './common/security/tidepoolservertoken.v1.yaml'
   parameters:
-    summaryType:
+    summaryType.v5:
       name: summaryType
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/SummaryTypeSchema'
+        $ref: ./summary/models/summaryType.v5.yaml
     userId:
       name: userId
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/TidepoolUserId'
+        $ref: ./common/models/tidepooluserid.yaml

@@ -1,0 +1,34 @@
+title: providerconnectionrequests.v1
+x-stoplight:
+  id: c8q7wrz5rtge5
+type: object
+readOnly: true
+properties:
+  twiist:
+    type: array
+    x-stoplight:
+      id: 7ve65jmart7pj
+    items:
+      $ref: ./providerConnectionRequest.v1.yaml
+      x-stoplight:
+        id: 47ez7wiccxdut
+  dexcom:
+    type: array
+    x-stoplight:
+      id: 7ve65jmart7pj
+    items:
+      $ref: ./providerConnectionRequest.v1.yaml
+      x-stoplight:
+        id: 913pgkbkz62eq
+  abbott:
+    type: array
+    x-stoplight:
+      id: u9rfvrr2njlcq
+    items:
+      $ref: ./providerConnectionRequest.v1.yaml
+      x-stoplight:
+        id: 47ez7wiccxdut
+required:
+  - twiist
+  - dexcom
+  - abbott
