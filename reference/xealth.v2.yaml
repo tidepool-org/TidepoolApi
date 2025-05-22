@@ -125,6 +125,8 @@ info:
     | ----------- | ----------- |
     | Code      | 200 OK |
     | Body   | <code>{<br>&nbsp;&nbsp;&nbsp;"keys":[{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"kty":"RSA",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"n": "XXXXXXXX",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"e":"AQAB",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"alg":"RS256",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"kid":"fc7781c6-5c6c-11ec-bf63-0242ac130002"<br>&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"kty":"RSA",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"n": "YYYYYYYY",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"e":"AQAB",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"alg":"RS256",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"kid":"9cf3feaf-f53d-4ebc-82b6-ffdc54fef814"<br>&nbsp;&nbsp;&nbsp;}]<br>} |
+  x-metadata:
+    category: deprecated
 servers:
   - url: 'https://provider.xealth.io/v2'
     description: Production server

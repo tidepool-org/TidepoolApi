@@ -85,7 +85,7 @@ As an example, creating a new dataset using the `org.tidepool.deduplicator.devic
 
 This will return an HTTP response with a JSON body. You should temporarily store **the value of the upload session ID** to upload data for this session.
 
-```json title="Sample Response" lineNumbers=true
+```json {% title="Sample Response" %}
 {
   "data": {
     "createdTime": "2017-02-06T02:37:46Z",

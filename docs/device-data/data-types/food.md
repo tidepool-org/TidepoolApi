@@ -1,15 +1,17 @@
 <!-- omit in toc -->
 # Food Consumption (`food`)
 
-```yaml json_schema
-$ref: '../../../reference/data/models/food/food.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/food/food.v1.yaml"
+  }
+/%}
 
 This type is used to convey information about food consumption.
 
 ## Examples
 
-```json title="Example (food consumption)" lineNumbers=true
+```json {% title="Example (food consumption)" %}
 {
     "type": "food",
     "clockDriftOffset": 0,

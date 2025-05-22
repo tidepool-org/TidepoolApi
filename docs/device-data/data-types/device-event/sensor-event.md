@@ -5,13 +5,15 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/sensor.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/sensor.v1.yaml"
+  }
+/%}
 
 ---
 
-```json title="Example" lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "deviceEvent",
   "subType": "sensorEvent",

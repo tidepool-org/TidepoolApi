@@ -14,7 +14,7 @@ properties:
   oauthToken:
     $ref: './oauthtoken.v1.yaml'
   type:
-    $ref: './type.v1.yaml'
+    $ref: './provider-type.v1.yaml'
   userId:
     $ref: '../../../common/models/tidepooluserid.yaml'
 required:

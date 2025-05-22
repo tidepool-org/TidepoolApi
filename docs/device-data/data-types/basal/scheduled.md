@@ -13,9 +13,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/scheduled.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/scheduled.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -27,7 +29,7 @@ This is the sub-type of basal event that represents intervals of basal insulin d
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "basal",
     "deliveryType": "scheduled",
@@ -46,7 +48,7 @@ This is the sub-type of basal event that represents intervals of basal insulin d
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "basal",
     "deliveryType": "scheduled",
@@ -63,7 +65,7 @@ This is the sub-type of basal event that represents intervals of basal insulin d
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "basal",
     "deliveryType": "scheduled",

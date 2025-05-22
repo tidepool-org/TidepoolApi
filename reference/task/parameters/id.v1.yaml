@@ -4,4 +4,4 @@ name: taskId
 in: path
 required: true
 schema:
-  $ref: '../models/id.v1.yaml'
+  $ref: '../models/task-id.v1.yaml'

@@ -1,4 +1,6 @@
 title: Upload ID
+description: >-
+  An upload identifier; this field should be the uploadId of the corresponding upload record
 type: string
 pattern: '^([0-9a-f]{32}|upid_[0-9a-f]{12})$'
 minLength: 17

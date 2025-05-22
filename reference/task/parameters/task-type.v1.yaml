@@ -5,4 +5,4 @@ name: type
 in: query
 required: false
 schema:
-  $ref: '../models/type.v1.yaml'
+  $ref: '../models/task-type.v1.yaml'

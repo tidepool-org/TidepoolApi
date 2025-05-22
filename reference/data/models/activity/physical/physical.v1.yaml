@@ -13,7 +13,7 @@ allOf:
       activityTypeOther:
         $ref: './otheractivitytype.v1.yaml'
       name:
-        $ref: './name.v1.yaml'
+        $ref: './activity-name.v1.yaml'
       reportedIntensity:
         $ref: './reportedintensity.v1.yaml'
       aggregate:
@@ -24,8 +24,8 @@ allOf:
         $ref: '../../../../common/models/duration.v1.yaml'
       elevationChange:
         oneOf:
-          - $ref: '../../../../common/models/distance/feet.v1.yaml'
-          - $ref: '../../../../common/models/distance/meters.v1.yaml'
+          - $ref: '../../../../common/models/distance/distance-feet.v1.yaml'
+          - $ref: '../../../../common/models/distance/distance-meters.v1.yaml'
       energy:
         $ref: '../../../../common/models/energy.v1.yaml'
       flight:
