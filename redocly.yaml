@@ -34,3 +34,7 @@ ignore:
   - 'reference/xealth.v2.yaml'
   - 'reference/redox.v1.yaml'
   - 'reference/auth.v1.yaml'
+
+markdown:
+  toc:
+    depth: 2
