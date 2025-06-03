@@ -2280,6 +2280,10 @@ components:
       type: object
       properties:
         count:
+          description: The number of items matching the filter
+          type: integer
+        totalCount:
+          description: The total number of items
           type: integer
     PatientsResponse:
       title: PatientsResponse
