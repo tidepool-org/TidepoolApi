@@ -304,17 +304,22 @@ paths:
           name: period
           description: 'Time Period to display, filter, and sort'
         - schema:
-            type: boolean
-          in: query
-          name: offsetPeriods
-          required: false
-          description: 'If we should display, filter, and sort based on the offset periods or default periods'
-        - schema:
             type: string
             format: date-time
           in: query
           name: lastReviewed
           description: Inclusive
+
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.max
+          description: 'Max glucose value in Mmol/L'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.min
+          description: 'Min glucose value in Mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -485,6 +490,17 @@ paths:
           in: query
           name: cgm.coefficientOfVariation
           description: Coefficient Of Variation of glucose values in Mmol/L
+
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.max
+          description: 'Max glucose value in Mmol/L'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.min
+          description: 'Min glucose value in Mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -576,6 +592,16 @@ paths:
           name: bgm.totalRecords
           description: Total records in period
 
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.maxDelta
+          description: 'Delta of Max glucose value in Mmol/L'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.minDelta
+          description: 'Delta of Min glucose value in Mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -759,6 +785,16 @@ paths:
           name: cgm.lastDataTo
           description: Exclusive
 
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.maxDelta
+          description: 'Delta of Max glucose value in Mmol/L'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.minDelta
+          description: 'Delta of Min glucose value in Mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query

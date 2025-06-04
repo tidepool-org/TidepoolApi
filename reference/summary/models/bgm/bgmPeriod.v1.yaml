@@ -2,6 +2,15 @@ type: object
 title: bgmperiod.v1
 description: 'Summary of a specific BGM time period (currently: 1d, 7d, 14d, 30d)'
 properties:
+  min:
+    type: number
+    example: 3.0
+    x-go-type: float64
+  max:
+    type: number
+    example: 8.0
+    x-go-type: float64
+
   hasAverageGlucoseMmol:
     type: boolean
   averageGlucoseMmol:
@@ -196,7 +205,7 @@ properties:
     type: number
     example: 5
     x-go-type: int
-  
+
   hasTimeInAnyLowPercent:
     type: boolean
   timeInAnyLowPercent:
@@ -269,3 +278,5 @@ required:
   - hasTimeInAnyHighRecords
   - hasTotalRecords
   - hasAverageDailyRecords
+  - min
+  - max
