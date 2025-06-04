@@ -1548,6 +1548,21 @@ paths:
             schema:
               $ref: '#/components/schemas/PatientSummary'
         description: ''
+  '/v1/summaries/{summaryId}/clinics':
+    parameters:
+      - $ref: '#/components/parameters/summaryId'
+    delete:
+      summary: DeletePatientSummary
+      operationId: DeletePatientSummary
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Change
+      description: Internal endpoint which deletes the summary in all patient records which match the summary id.
+      tags:
+        - Clinics
+        - Internal
   '/v1/patients/{userId}/data_sources':
     parameters:
       - $ref: '#/components/parameters/userId'
@@ -2087,7 +2102,7 @@ paths:
       - $ref: '#/components/parameters/patientId'
       - $ref: '#/components/parameters/providerId'
     post:
-      summary: ''
+      summary: Connect Provider
       operationId: ConnectProvider
       responses:
         '204':
@@ -2265,6 +2280,10 @@ components:
       type: object
       properties:
         count:
+          description: The number of items matching the filter
+          type: integer
+        totalCount:
+          description: The total number of items
           type: integer
     PatientsResponse:
       title: PatientsResponse
@@ -2316,6 +2335,8 @@ components:
       $ref: ./summary/models/cgm/cgmperiods.v1.yaml
     PatientCGMStats:
       $ref: ./clinic/models/summaries/cgmstats.v1.yaml
+    summaryId.v1:
+      $ref: ./summary/models/summaryId.v1.yaml
     PatientSummaryConfig:
       $ref: ./summary/models/config.v1.yaml
     PatientSummaryDates:
@@ -2581,6 +2602,12 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/TidepoolUserId'
+    summaryId:
+      name: summaryId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/summaryId.v1'
     inviteId:
       name: inviteId
       in: path
