@@ -62,7 +62,7 @@ paths:
       summary: Refresh Session Token
       description: |-
         **This API is deprecated and will be removed by end of 2023.**
-        Refreshes an existing session token.        
+        Refreshes an existing session token.
       responses:
         '200':
           $ref: '#/components/responses/TokenData'
@@ -405,7 +405,7 @@ paths:
     get:
       operationId: VerifyDeviceToken
       summary: Verify Device Token
-      description: 'Checks the validity of Apple''s DeviceCheck token by calling Apple''s server to verify it. For more details, see Apple''s [developer documentation](https://developer.apple.com/documentation/devicecheck).'
+      description: "Checks the validity of Apple's DeviceCheck token by calling Apple's server to verify it. For more details, see Apple's [developer documentation](https://developer.apple.com/documentation/devicecheck)."
       requestBody:
         $ref: '#/components/requestBodies/VerifyDeviceToken'
       responses:
@@ -547,7 +547,7 @@ paths:
       parameters:
         - $ref: ./common/parameters/paginationpage.v1.yaml
         - $ref: ./common/parameters/paginationsize.v1.yaml
-        - $ref: ./auth/parameters/providers/name.v1.yaml
+        - $ref: ./auth/parameters/providers/providerName.v1.yaml
         - $ref: ./auth/parameters/providers/type.v1.yaml
       responses:
         '200':

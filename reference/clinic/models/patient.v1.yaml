@@ -20,13 +20,13 @@ properties:
     description: The medical record number of the patient
     minLength: 1
   tags:
-    $ref: ./patienttagids.v1.yaml
+    $ref: ./patientTagIds.v1.yaml
   targetDevices:
     type: array
     items:
       type: string
   permissions:
-    $ref: ./patientpermissions.v1.yaml
+    $ref: ./patientPermissions.v1.yaml
   createdTime:
     type: string
     format: date-time
@@ -41,21 +41,21 @@ properties:
     type: array
     nullable: true
     items:
-      $ref: ./datasource.v1.yaml
+      $ref: ./dataSource.v1.yaml
   lastUploadReminderTime:
     type: string
     format: date-time
     readOnly: true
   summary:
-    $ref: ./summaries/patientsummary.v1.yaml
+    $ref: ./summaries/patientSummary.v1.yaml
   reviews:
     type: array
     nullable: true
     x-go-type-skip-optional-pointer: true
     items:
-      $ref: ./patientreview.v1.yaml
+      $ref: ./patientReview.v1.yaml
   connectionRequests:
-    $ref: ./providerconnectionrequests.v1.yaml
+    $ref: ./providerConnectionRequests.v1.yaml
     x-stoplight:
       id: 502rliv0l2tyy
     description: Requests for each provider are listed in reverse chronological order

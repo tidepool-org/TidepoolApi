@@ -16,7 +16,7 @@ properties:
     description: The name of the clinician
     minLength: 1
   roles:
-    $ref: ./clinicianroles.v1.yaml
+    $ref: ./clinicianRoles.v1.yaml
   createdTime:
     type: string
     format: date-time

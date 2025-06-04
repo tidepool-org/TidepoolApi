@@ -2,11 +2,11 @@ type: object
 title: summary.v5
 description: 'A summary of a users recent data'
 allOf:
-  - $ref: './summarybase.v5.yaml'
+  - $ref: './summaryBase.v5.yaml'
   - type: object
     properties:
       periods:
         oneOf:
-          - $ref: './cgm/cgmperiods.v5.yaml'
-          - $ref: './bgm/bgmperiods.v5.yaml'
-          - $ref: './continuous/continuousperiods.v5.yaml'
+          - $ref: './cgm/cgmPeriods.v5.yaml'
+          - $ref: './bgm/bgmPeriods.v5.yaml'
+          - $ref: './continuous/continuousPeriods.v5.yaml'

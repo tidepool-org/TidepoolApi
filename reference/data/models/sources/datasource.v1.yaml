@@ -18,7 +18,7 @@ properties:
   modifiedTime:
     $ref: '../../../common/models/datetime.v1.yaml'
   providerName:
-    $ref: '../../../auth/models/providers/name.v1.yaml'
+    $ref: '../../../auth/models/providers/providerName.v1.yaml'
   providerSessionId:
     $ref: '../../../auth/models/providers/sessionid.v1.yaml'
   providerType:

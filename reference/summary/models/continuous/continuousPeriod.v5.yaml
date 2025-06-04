@@ -1,0 +1,15 @@
+type: object
+title: continuousperiod.v5
+description: 'Summary of a specific CGM time period (currently: 1d, 7d, 14d, 30d)'
+allOf:
+  - $ref: './continuousRanges.v5.yaml'
+  - type: object
+    properties:
+      averageDailyRecords:
+        description: Average daily readings
+        type: number
+        example: 3.5
+        x-go-type: float64
+
+required:
+  - averageDailyRecords
