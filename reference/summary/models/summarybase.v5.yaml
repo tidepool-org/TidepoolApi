@@ -1,0 +1,14 @@
+type: object
+title: summarybase.v5
+description: 'shared properties of all summaries'
+properties:
+  id:
+    $ref: './summaryId.v1.yaml'
+  type:
+    $ref: './summarytype.v5.yaml'
+  userId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  config:
+    $ref: './config.v1.yaml'
+  dates:
+    $ref: './dates.v5.yaml'

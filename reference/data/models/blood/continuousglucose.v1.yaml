@@ -10,8 +10,14 @@ allOf:
           - cbg
       trend:
         $ref: './glucose/trend.v1.yaml'
+      trendRateUnits:
+        $ref: './rateunits.v1.yaml'
       trendRate:
         $ref: './glucose/trendrate.v1.yaml'
+      sampleInterval:
+        $ref: './glucose/sampleinterval.v1.yaml'
+      backfilled:
+        $ref: './glucose/backfilled.v1.yaml'
     required:
       - type
   - $ref: './glucose/glucose.v1.yaml'

@@ -147,6 +147,9 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
       "type": "cbg",
       "value": 119,
       "units": "mg/dL",
+      "trendRate": -2.2,
+      "trendRateUnits": "mg/dL/minute",
+      "sampleInterval": 300000,
       "payload": {
         "interstitialSignal": 24.98
       }
@@ -161,6 +164,9 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
       "type": "cbg",
       "value": 120,
       "units": "mg/dL",
+      "trendRate": -2.2,
+      "trendRateUnits": "mg/dL/minute",
+      "sampleInterval": 300000,
       "payload": {
         "interstitialSignal": 25.22
       }

@@ -1,0 +1,8 @@
+title: Third-Party Data Providers
+x-stoplight:
+  id: fdmfczqym3ocn
+type: string
+enum:
+  - dexcom
+  - twiist
+  - abbott

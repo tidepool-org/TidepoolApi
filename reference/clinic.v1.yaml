@@ -1548,6 +1548,21 @@ paths:
             schema:
               $ref: '#/components/schemas/PatientSummary'
         description: ''
+  '/v1/summaries/{summaryId}/clinics':
+    parameters:
+      - $ref: '#/components/parameters/summaryId'
+    delete:
+      summary: DeletePatientSummary
+      operationId: DeletePatientSummary
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Change
+      description: Internal endpoint which deletes the summary in all patient records which match the summary id.
+      tags:
+        - Clinics
+        - Internal
   '/v1/patients/{userId}/data_sources':
     parameters:
       - $ref: '#/components/parameters/userId'
@@ -1614,23 +1629,6 @@ paths:
         '200':
           description: OK
       description: Sends upload reminder to the patient
-      tags:
-        - Clinics
-  '/v1/clinics/{clinicId}/patients/{patientId}/send_dexcom_connect_request':
-    parameters:
-      - $ref: '#/components/parameters/clinicId'
-      - $ref: '#/components/parameters/patientId'
-    post:
-      summary: Resend Dexcom connect request email
-      operationId: SendDexcomConnectRequest
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Patient'
-      description: Resend Dexcom connect request to the email address of the patient
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/patients/assign_tag/{patientTagId}':
@@ -2098,6 +2096,21 @@ paths:
         - Internal
       x-internal: true
       description: 'Merges tags, patients, clinicians, invites and share codes of the source clinic'
+  '/v1/clinics/{clinicId}/patients/{patientId}/connect/{providerId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+      - $ref: '#/components/parameters/providerId'
+    post:
+      summary: Connect Provider
+      operationId: ConnectProvider
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - Clinics
+        - Internal
+      description: Send a new request to the patient to connect a data provider
 components:
   schemas:
     Error:
@@ -2267,6 +2280,10 @@ components:
       type: object
       properties:
         count:
+          description: The number of items matching the filter
+          type: integer
+        totalCount:
+          description: The total number of items
           type: integer
     PatientsResponse:
       title: PatientsResponse
@@ -2318,6 +2335,8 @@ components:
       $ref: ./summary/models/cgm/cgmperiods.v1.yaml
     PatientCGMStats:
       $ref: ./clinic/models/summaries/cgmstats.v1.yaml
+    summaryId.v1:
+      $ref: ./summary/models/summaryId.v1.yaml
     PatientSummaryConfig:
       $ref: ./summary/models/config.v1.yaml
     PatientSummaryDates:
@@ -2521,6 +2540,14 @@ components:
           description: Optional action to be performed when a unique match has been found
       required:
         - criteria
+    EHRFlowsheetSettings:
+      $ref: ./clinic/models/ehrflowsheetsettings.v1.yaml
+    ProviderConnectionRequest:
+      $ref: ./clinic/models/providerconnectionrequest.v1.yaml
+    ProviderConnectionRequests:
+      $ref: ./clinic/models/providerconnectionrequests.v1.yaml
+    ProviderId:
+      $ref: ./clinic/models/provider.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -2575,6 +2602,12 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/TidepoolUserId'
+    summaryId:
+      name: summaryId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/summaryId.v1'
     inviteId:
       name: inviteId
       in: path
@@ -2639,6 +2672,13 @@ components:
       schema:
         type: boolean
       description: Retrieve clinics with enabled EHR integration
+    providerId:
+      name: providerId
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/ProviderId'
+      description: Provider ID
 tags:
   - name: Clinics
     description: 'Manage clinics, clinians and patients.'
