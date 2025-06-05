@@ -6,7 +6,16 @@ properties:
     type: number
     example: 3.0
     x-go-type: float64
+  minDelta:
+    type: number
+    example: 3.0
+    x-go-type: float64
+
   max:
+    type: number
+    example: 8.0
+    x-go-type: float64
+  maxDelta:
     type: number
     example: 8.0
     x-go-type: float64
@@ -297,7 +306,9 @@ required:
   - hasTotalRecords
   - hasAverageDailyRecords
   - min
+  - minDelta
   - max
+  - maxDelta
   - standardDeviation
   - standardDeviationDelta
   - coefficientOfVariation
