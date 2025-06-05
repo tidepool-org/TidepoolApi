@@ -258,6 +258,24 @@ properties:
     example: 2.5
     x-go-type: float64
 
+  standardDeviation:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  standardDeviationDelta:
+    type: number
+    example: 2.5
+    x-go-type: float64
+
+  coefficientOfVariation:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  coefficientOfVariationDelta:
+    type: number
+    example: 2.5
+    x-go-type: float64
+
 required:
   - hasAverageGlucoseMmol
   - hasTimeInTargetPercent
@@ -280,3 +298,7 @@ required:
   - hasAverageDailyRecords
   - min
   - max
+  - standardDeviation
+  - standardDeviationDelta
+  - coefficientOfVariation
+  - coefficientOfVariationDelta
