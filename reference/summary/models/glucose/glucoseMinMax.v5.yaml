@@ -2,14 +2,15 @@ type: object
 title: glucoseminmax.v5
 description: 'minimum and maximum glucose values'
 properties:
-  minGlucose:
+  min:
     type: number
     example: 3.0
     x-go-type: float64
-  maxGlucose:
+  max:
     type: number
     example: 8.0
     x-go-type: float64
+x-go-type-skip-optional-pointer: true
 required:
   - min
   - max
