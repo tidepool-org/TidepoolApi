@@ -5,6 +5,6 @@ oneOf:
   - $ref: './association/blob.v1.yaml'
   - $ref: './association/datum.v1.yaml'
   - $ref: './association/image.v1.yaml'
-  - $ref: './association/url.v1.yaml'
+  - $ref: './association/url-association.v1.yaml'
 required:
   - type

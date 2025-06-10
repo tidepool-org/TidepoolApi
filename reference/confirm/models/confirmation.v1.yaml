@@ -3,8 +3,8 @@ type: object
 properties:
   key:
     $ref: ./key.v1.yaml
-  type: 
-    $ref: './type.v1.yaml'
+  type:
+    $ref: './confirmation-type.v1.yaml'
   status:
     $ref: './status.v1.yaml'
   email:

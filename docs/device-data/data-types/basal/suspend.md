@@ -13,9 +13,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/suspend.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suspend.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -29,7 +31,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -53,7 +55,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -75,7 +77,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "basal",
     "deliveryType": "suspend",

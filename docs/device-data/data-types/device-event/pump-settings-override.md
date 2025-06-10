@@ -35,9 +35,11 @@ Finally the `custom` override is one that does not match any of the other overri
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/pumpsettingsoverride.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/pumpsettingsoverride.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -101,7 +103,7 @@ The insulin sensitivity scale factor in effect while the override is enabled. Th
 
 ---
 
-```json title="Example" lineNumbers=true
+```json {% title="Example" %}
 {
   "id": "bfc3e597e16c436a94a03d7fd095a774",
   "time": "2017-02-06T02:37:46Z",

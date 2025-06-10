@@ -27,9 +27,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../reference/data/models/cgmsettings.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/cgmsettings.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -165,7 +167,7 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "cgmSettings",
     "firmwareVersion": "1.2",
@@ -215,7 +217,7 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "cgmSettings",
     "firmwareVersion": "1.2",
@@ -263,7 +265,7 @@ The unit of the CGM, if known. One of `mg/dL` or `mmol/L`.
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "cgmSettings",
     "firmwareVersion": "1.2",

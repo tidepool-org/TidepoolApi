@@ -24,7 +24,7 @@ For example, each driver should: import the Utility; initialize the Utility; and
 
 ### Import The Utility
 
-```javascript title="JavaScript" lineNumbers=true
+```javascript {% title="JavaScript" %}
 var TZOUtil = require('lib/TimezoneOffsetUtil');
 ```
 
@@ -38,7 +38,7 @@ Initialize the Utility with:
 2. UTC timestamp of the most recent datum from the device’s history.
 3. An array of the date & time settings changes from the device’s history. (If the device does not store date & time settings changes, then an empty array should be passed).
 
-```javascript title="JavaScript" lineNumbers=true
+```javascript {% title="JavaScript" %}
 cfg.tzoUtil = new TZOUtil(timezone, mostRecent, changes);
 ```
 
@@ -65,7 +65,7 @@ To employ this, you will need the following pieces of time-related information a
     * `sundial.buildTimestamp` or
     * `sundial.parseFromFormat` (usually this is the object used to produce device time via `sundial.formatDeviceTime`)
 
-```javascript title="JavaScript" lineNumbers=true
+```javascript {% title="JavaScript" %}
 _.each(data, function(datum) {
   cfg.tzoUtil.fillInUTCInfo(datum, jsDate);
 });
@@ -91,9 +91,9 @@ The partially-built time change events composing the array of changes is provide
 * jsDate = a JavaScript Date constructed from the **to** time
 * Index = an index (with an expectation that all indices be monotonically increasing with event order) for the datum that allows it to be sorted on the device in the order that the events actually happened (which will not match device time order in the case of date & time settings changes on the device)
 
-<!-- theme: info -->
-
-> The index does not have to be numerical. For example, in the case of [Dexcom data](../../device-data/data-types/cgm-settings.md), the index is the Dexcom’s internal time, which is monotonically increasing and never affected by adjustments to the Dexcom’s date & time settings.
+{% admonition type="info" %}
+The index does not have to be numerical. For example, in the case of [Dexcom data](../../device-data/data-types/cgm-settings.md), the index is the Dexcom's internal time, which is monotonically increasing and never affected by adjustments to the Dexcom's date & time settings.
+{% /admonition %}
 
 The array of changes does not need to be sorted before passing it into the Timezone Offset Utility constructor. The changes will be mutated by the Timezone Offset Utility:
 

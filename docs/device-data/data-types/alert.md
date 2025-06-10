@@ -22,9 +22,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../reference/data/models/alert.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/alert.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -78,7 +80,7 @@ The time the alert was retracted after it was presented.
 
 ---
 
-```json title="Example Low Glucose Alert" lineNumbers=true
+```json {% title="Example Low Glucose Alert" %}
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

@@ -14,9 +14,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/timechange.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/timechange.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -44,7 +46,7 @@ The method field on the change object details whether the time change was manual
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "deviceEvent",
     "subType": "timeChange",
@@ -65,7 +67,7 @@ The method field on the change object details whether the time change was manual
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "deviceEvent",
     "subType": "timeChange",
@@ -84,7 +86,7 @@ The method field on the change object details whether the time change was manual
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "deviceEvent",
     "subType": "timeChange",

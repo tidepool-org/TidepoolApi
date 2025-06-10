@@ -8,6 +8,9 @@
     },
     {
       "pattern": "^https://diabetesjournals.org/care/issue/46/Supplement_1"
+    },
+     {
+      "pattern": "https://github.com"
     }
   ]
 }

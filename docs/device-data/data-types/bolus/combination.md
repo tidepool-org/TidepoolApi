@@ -13,9 +13,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/bolus/combination.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/bolus/combination.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -29,7 +31,7 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "bolus",
     "subType": "dual/square",
@@ -50,7 +52,7 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "bolus",
     "subType": "dual/square",
@@ -69,7 +71,7 @@ Most insulin pumps ask the user to divide the normal and extended portions of a 
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "bolus",
     "subType": "dual/square",

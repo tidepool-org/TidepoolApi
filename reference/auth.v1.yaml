@@ -548,7 +548,7 @@ paths:
         - $ref: ./common/parameters/paginationpage.v1.yaml
         - $ref: ./common/parameters/paginationsize.v1.yaml
         - $ref: ./auth/parameters/providers/name.v1.yaml
-        - $ref: ./auth/parameters/providers/type.v1.yaml
+        - $ref: ./auth/parameters/providers/provider-type.v1.yaml
       responses:
         '200':
           $ref: '#/components/responses/ProviderSessions'
