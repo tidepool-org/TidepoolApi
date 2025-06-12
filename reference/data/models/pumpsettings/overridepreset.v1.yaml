@@ -1,7 +1,7 @@
 title: Pump Settings Override Preset
-description: An insulin pump settings override preset.
 allOf:
   - type: object
+    description: An insulin pump settings override preset.
     properties:
       abbreviation:
         type: string
