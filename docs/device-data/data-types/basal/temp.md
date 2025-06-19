@@ -25,6 +25,7 @@ Tidepool's data model has standardized on a floating point representation of the
 ## Suppressed (`suppressed`)
 
 An object representing another `basal` event - namely, the event that is currently [suppressed](./suppressed.md) (inactive) because this temp basal is in effect.
+
 ---
 
 ## Quick Summary

@@ -10,6 +10,7 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 {% partial file="/_partials/basal.md" /%}
 
 {% partial file="/_partials/rate.md" /%}
+
 ---
 
 ## Quick Summary

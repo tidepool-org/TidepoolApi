@@ -14,6 +14,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 ## Suppressed (`suppressed`)
 
 An object representing another `basal` event - namely, the event that is currently [suppressed](./suppressed.md) (inactive) because this suspended basal is in effect.
+
 ---
 
 ## Quick Summary
