@@ -1,6 +1,6 @@
 title: Device ID
 description: >-
-  Device identifier, if provided by the manufacturer.
+  Globally unique to device and repeatable with each upload, e.g. device make and model with serial number
 type: string
 minLength: 1
 example: 'MMT-1711:12345678'

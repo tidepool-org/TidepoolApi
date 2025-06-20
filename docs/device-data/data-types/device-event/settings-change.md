@@ -5,15 +5,17 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/settingschange.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/settingschange.v1.yaml"
+  }
+/%}
 
 An event that occurs when a device has switched to a different setting.
 
 ---
 
-```json title="Example" lineNumbers=true
+```json {% title="Example" %}
 {
   "type": "deviceEvent",
   "subType": "settingsChange",

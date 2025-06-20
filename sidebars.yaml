@@ -1,0 +1,167 @@
+- page: index.md
+  label: Home
+
+- group: Documentation
+  expanded: true
+  items:
+    - page: docs/welcome.md
+      label: Welcome!
+
+    - group: Getting Started
+      items:
+        - page: docs/quick-start.md
+          label: Overview
+        - page: docs/quick-start/fetching-device-data.md
+          label: Fetching Device Data
+        - page: docs/quick-start/notes.md
+          label: Fetching User Notes
+        - group: Uploading Device Data
+          items:
+            - page: docs/quick-start/uploading-device-data.md
+              label: Overview
+            - page: docs/quick-start/uploading-device-data/continuous.md
+              label: Uploading Data in a Continuous Session (`continuous`)
+            - page: docs/quick-start/uploading-device-data/normal.md
+              label: Uploading Data in a Normal Session (`normal`)
+
+    - group: Data Sharing
+      items:
+        - page: docs/data-sharing.md
+          label: Overview
+        - page: docs/data-sharing/people.md
+          label: Sharing with People
+        - page: docs/data-sharing/clinics.md
+          label: Sharing with Clinics
+
+    - page: docs/partner-integration.md
+      label: Partner Integration
+
+    - group: Date/Time Guide
+      items:
+        - page: docs/datetime.md
+          label: Overview
+        - group: Bootstrapping to UTC (BtUTC)
+          items:
+            - page: docs/datetime/btutc.md
+              label: Overview
+            - page: docs/datetime/btutc/clock-drift.md
+              label: Clock Drift Offset (`clockDriftOffset`)
+            - page: docs/datetime/btutc/conversion.md
+              label: Conversion Offset (`conversionOffset`)
+            - page: docs/datetime/btutc/timezone.md
+              label: Timezone Offset (`timezoneOffset`)
+            - page: docs/datetime/btutc/usage.md
+              label: Usage
+        - page: docs/datetime/glossary.md
+          label: Glossary
+        - page: docs/datetime/assumptions.md
+          label: Incorrect Assumptions About Diabetes Device Times
+
+    - page: docs/summary-data.md
+      label: Summary Statistics
+
+    - group: Diabetes Device Data Model
+      items:
+        - page: docs/device-data.md
+          label: Overview
+        - page: docs/device-data/annotations.md
+          label: Annotations
+        - page: docs/device-data/common-fields.md
+          label: Common Fields
+        - group: Diabetes Data Types
+          items:
+            - page: docs/device-data/data-types.md
+              label: Overview
+            - page: docs/device-data/data-types/alert.md
+              label: Alert (`alert`)
+            - group: Basal Insulin (`basal`)
+              items:
+                - page: docs/device-data/data-types/basal.md
+                  label: Overview
+                - page: docs/device-data/data-types/basal/automated.md
+                  label: Automated Basals (`automated`)
+                - page: docs/device-data/data-types/basal/scheduled.md
+                  label: Scheduled Basals (`scheduled`)
+                - page: docs/device-data/data-types/basal/suppressed.md
+                  label: Suppressed Basals (`suppressed`)
+                - page: docs/device-data/data-types/basal/suspend.md
+                  label: Suspend Basals (`suspend`)
+                - page: docs/device-data/data-types/basal/temp.md
+                  label: Temporary Basals (`temp`)
+            - page: docs/device-data/data-types/blood-ketones.md
+              label: Blood Ketones (`bloodKetone`)
+            - page: docs/device-data/data-types/calculator.md
+              label: Bolus Calculator Records (`wizard`)
+            - group: Bolus Insulin (`bolus`)
+              items:
+                - page: docs/device-data/data-types/bolus.md
+                  label: Overview
+                - page: docs/device-data/data-types/bolus/automated.md
+                  label: Automated Bolus (`automated`)
+                - page: docs/device-data/data-types/bolus/combination.md
+                  label: Combination Bolus (`combination`)
+                - page: docs/device-data/data-types/bolus/extended.md
+                  label: Extended Bolus (`extended`)
+                - page: docs/device-data/data-types/bolus/normal.md
+                  label: Normal Bolus (`normal`)
+            - page: docs/device-data/data-types/cbg.md
+              label: Continuous Blood Glucose (`cbg`)
+            - page: docs/device-data/data-types/smbg.md
+              label: Self-Monitored Blood Glucose (`smbg`)
+            - page: docs/device-data/data-types/cgm-settings.md
+              label: "Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)"
+            - page: docs/device-data/data-types/controller-settings.md
+              label: Controller Settings (`controllerSettings`)
+            - page: docs/device-data/data-types/controller-status.md
+              label: Controller Status (`controllerStatus`)
+            - group: Device Event (`deviceEvent`)
+              items:
+                - page: docs/device-data/data-types/device-event.md
+                  label: Overview
+                - page: docs/device-data/data-types/device-event/alarm.md
+                  label: Alarm (`alarm`)
+                - page: docs/device-data/data-types/device-event/calibration.md
+                  label: Calibration (`calibration`)
+                - page: docs/device-data/data-types/device-event/settings-change.md
+                  label: Device Settings Change (`settingsChange`)
+                - page: docs/device-data/data-types/device-event/prime.md
+                  label: Prime (`prime`)
+                - page: docs/device-data/data-types/device-event/pump-settings-override.md
+                  label: Pump Settings Override (`pumpSettingsOverride`)
+                - page: docs/device-data/data-types/device-event/reservoir-change.md
+                  label: Reservoir Change (`reservoirChange`)
+                - page: docs/device-data/data-types/device-event/sensor-event.md
+                  label: Sensor Event (`sensorEvent`)
+                - page: docs/device-data/data-types/device-event/status.md
+                  label: Status (`status`)
+                - page: docs/device-data/data-types/device-event/time-change.md
+                  label: Time Change (`timeChange`)
+            - page: docs/device-data/data-types/device-status.md
+              label: Device Status (`deviceStatus`)
+            - page: docs/device-data/data-types/dosing-decision.md
+              label: Dosing Decisions (`dosingDecision`)
+            - page: docs/device-data/data-types/pump-settings.md
+              label: Pump Settings (`pumpSettings`)
+            - page: docs/device-data/data-types/pump-status.md
+              label: Pump Status (`pumpStatus`)
+            - page: docs/device-data/data-types/food.md
+              label: Food Consumption (`food`)
+            - page: docs/device-data/data-types/water.md
+              label: Water Consumption (`water`)
+            - page: docs/device-data/data-types/activity-physical.md
+              label: Physical Activity (`physicalActivity`)
+            - page: docs/device-data/data-types/upload.md
+              label: Upload Metadata (`upload`)
+        - page: docs/device-data/event-history.md
+          label: Event History
+        - page: docs/device-data/linking-events.md
+          label: Linking Events
+        - page: docs/device-data/oor-values.md
+          label: Out of Range Values
+        - page: docs/device-data/units.md
+          label: Units
+
+#- group: API Reference
+#  items:
+      # - directory: reference/
+      
