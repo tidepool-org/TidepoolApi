@@ -1,6 +1,0 @@
-type: object
-title: bgmperiods.v1
-description: 'A map to each supported BGM summary period'
-x-go-type-skip-optional-pointer: true
-additionalProperties:
-  $ref: './bgmperiod.v1.yaml'

@@ -16,7 +16,7 @@
 
 ---
 
-# Overview
+## Overview
 
 Tidepool Platform automatically calculates several summary statistics for each user as they upload diabetes data into their account. Currently supported data types are CGM and BGM, from [Continuous Glucose Monitors][cgm] and [Blood Glucose Meters][bgm], respectively. Our plan is to add insulin delivery summaries as well in the future.
 
@@ -51,7 +51,7 @@ sequenceDiagram
    Platform->>Clinic: Summary available via patient list
 ```
 
-# Calculation
+## Calculation
 
 The summary calculation is done in batches of up to 250 most out-of-date user accounts, up to 4 batches in one iteration, where each iteration may begin every 30 seconds. Thus, each calculation iteration may update up to 1,000 accounts. The calculation for each user proceeds as shown in the diagram below:
 

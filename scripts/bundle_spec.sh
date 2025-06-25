@@ -24,5 +24,5 @@ case $1 in
     *)
 	source=${1?:source-spec is required}
 	bundle=${2?:bundle-spec is required}
-	trace redocly bundle "$source" --output "$bundle"
+	trace redocly bundle "$source" -o "$bundle"
 esac

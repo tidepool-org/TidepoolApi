@@ -27,7 +27,7 @@ properties:
   latestRevision:
     $ref: ./revision.v1.yaml
   clinicId:
-    $ref: '../../clinic/models/clinicid.v1.yaml'
+    $ref: '../../clinic/models/clinicId.v1.yaml'
 required:
   - id
   - state

@@ -43,7 +43,7 @@ You can narrow the fetch query by specifying a type, sub-type and/or date query 
 <!-- title: Query Parameters -->
 
 | Parameter | Type | Effect | Example
-| --- | --- | --- | --- |
+| --- | --- | --- | ---
 | Device ID | String | Only objects with a device ID field matching the specified device ID param will be returned. | E.g. `/data/userid?deviceId=abcdef0123456789`
 | End date | String (in ISO-8601 date/time format) | Only objects with time field less than or equal to end date will be returned. | E.g. `?endDate=2015-10-10T15:00:00.000Z`
 | Latest data | Boolean | Returns only the most recent results for each type matching the results filtered by the other query parameters. | All types: `?latest=true` or single type: `?latest=true&type=cbg`
@@ -57,7 +57,7 @@ In addition, there are several “special” parameters that have an effect on t
 <!-- title: Additional Query Parameters -->
 
 | Parameter | Type | Effect | Example
-| --- | --- | --- | --- |
+| --- | --- | --- | ---
 | Carelink | Boolean | Return data from the now-deprecated CareLink import, unless data for the same time period has been uploaded using the Uploader (the device manufacturers field contains the string Medtronic). | E.g. `/data/userid?carelink=true`
 | Dexcom | Boolean | Return CGM data from *only* the Dexcom API, even if other CGM data exists from other sources. | E.g. `/data/userid?dexcom=true`
 | Medtronic | Boolean | Return CGM, Basal and Bolus data from Medtronic Uploads, provided that data exists after `2017-09-01`. Unless data from a Medtronic device has been uploaded by Loop via HealthKit (`origin.payload.device.manufacturer` is Medtronic), and that data exists after `2017-09-01`. | E.g. `/data/userid?medtronic=true`
@@ -99,7 +99,7 @@ So, you have three time ranges that apply here:
 <!-- title: Time Ranges -->
 
 | Start Time | End Time | CGM Data Returned
-| --- | --- | --- |
+| --- | --- | ---
 | Beginning of Time | Dexcom API Earliest Data Time | All CGM Data
 | Dexcom API Earliest Data Time | Dexcom API Latest Data Time |   Only Dexcom API CGM Data
 | Dexcom API Latest Data Time | End of Time | All CGM data

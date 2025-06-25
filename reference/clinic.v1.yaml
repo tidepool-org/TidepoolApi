@@ -34,25 +34,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinics'
+                $ref: '#/components/schemas/clinics.v1'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: ./common/models/error.v1.yaml
         '403':
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: ./common/models/error.v1.yaml
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: ./common/models/error.v1.yaml
       operationId: ListClinics
       description: Retrieve the list of clinics
       parameters:
@@ -76,7 +76,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinic'
+                $ref: ./clinic/models/clinic.v1.yaml
             application/xml:
               schema:
                 type: object
@@ -91,7 +91,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Clinic'
+              $ref: ./clinic/models/clinic.v1.yaml
       description: Create a new clinic
       x-roles: []
       tags:
@@ -131,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinic'
+                $ref: ./clinic/models/clinic.v1.yaml
           links:
             get-clinicians:
               operationId: get-clinics-clinicid-clinicians
@@ -159,7 +159,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinic'
+                $ref: ./clinic/models/clinic.v1.yaml
         '400':
           description: Bad Request
         '403':
@@ -171,7 +171,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Clinic'
+              $ref: ./clinic/models/clinic.v1.yaml
           application/xml:
             schema:
               type: object
@@ -206,7 +206,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinicians'
+                $ref: '#/components/schemas/clinicians.v1'
       operationId: ListClinicians
       description: 'Retrieve the list of clinic members. '
       parameters:
@@ -226,7 +226,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Clinician'
+              $ref: ./clinic/models/clinician.v1.yaml
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/tide_report':
@@ -243,7 +243,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TideResponse'
+                $ref: ./clinic/models/tide/tideResponse.v1.yaml
       operationId: TideReport
       parameters:
         - schema:
@@ -282,7 +282,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientsResponse'
+                $ref: '#/components/schemas/patientsResponse.v1'
       operationId: ListPatients
       parameters:
         - $ref: '#/components/parameters/search'
@@ -882,13 +882,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       description: Create a custodial account for a patient
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Patient'
+              $ref: ./clinic/models/patient.v1.yaml
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/patient_tags':
@@ -905,7 +905,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientTag'
+              $ref: '#/components/schemas/patientTag.v1'
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
@@ -922,7 +922,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       operationId: GetClinician
       description: Retrieve a member of clinic given their user id
     put:
@@ -962,7 +962,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       operationId: GetPatient
       description: Retrieve a patient of clinic given their user id
     post:
@@ -974,7 +974,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       description: Internal endpoint for creating a patient from an existing user
       tags:
         - Clinics
@@ -982,7 +982,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreatePatient'
+              $ref: '#/components/schemas/createPatient.v1'
     put:
       summary: Update Patient
       operationId: UpdatePatient
@@ -992,13 +992,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       description: Update existing patient of a clinic
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Patient'
+              $ref: ./clinic/models/patient.v1.yaml
       tags:
         - Clinics
     delete:
@@ -1027,7 +1027,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientTag'
+              $ref: '#/components/schemas/patientTag.v1'
     delete:
       summary: Delete Patient Tag
       operationId: DeletePatientTag
@@ -1055,7 +1055,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InviteClinician'
+              $ref: ./clinic/models/inviteClinician.v1.yaml
       tags:
         - Clinics
         - Confirmations
@@ -1113,13 +1113,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Internal endpoint to associate a clinician to a user.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AssociateClinicianToUser'
+              $ref: '#/components/schemas/associateClinicianToUser.v1'
       tags:
         - Clinics
     delete:
@@ -1140,7 +1140,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Internal endpoint to retrieve invited clinician.
       tags:
         - Clinics
@@ -1189,7 +1189,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientReviews'
+                $ref: '#/components/schemas/patientReviews.v1'
       description: Update the patient's last reviewed date and clinician ID
       tags:
         - Clinics
@@ -1202,7 +1202,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientReviews'
+                $ref: '#/components/schemas/patientReviews.v1'
         '404':
           description: No review to delete
         '409':
@@ -1223,7 +1223,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientReviews'
+                $ref: ./clinic/models/patientPermissions.v1.yaml
       description: |-
         Update permissions that a clinic has over a patient account. If all permissions are revoked as a result of the update, the patient profile will be removed from the clinic.
 
@@ -1234,7 +1234,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientPermissions'
+              $ref: ./clinic/models/patientPermissions.v1.yaml
       parameters: []
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions/{permission}':
     parameters:
@@ -1276,7 +1276,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientClinicRelationships'
+                $ref: '#/components/schemas/patientClinicRelationships.v1'
       operationId: ListClinicsForPatient
       description: Get all clinics a user is a patient of
       parameters:
@@ -1318,7 +1318,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
       tags:
         - Clinics
@@ -1336,7 +1336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClinicianClinicRelationships'
+                $ref: '#/components/schemas/clinicianClinicRelationships.v1'
       operationId: ListClinicsForClinician
       description: Returns a list of all clinics a clinician is a member of
       parameters:
@@ -1357,7 +1357,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       operationId: MigrateLegacyClinicianPatients
       tags:
         - Clinics
@@ -1367,7 +1367,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Migration'
+              $ref: '#/components/schemas/migration.v1'
     get:
       summary: Retrieve Migration Status
       operationId: ListMigrations
@@ -1377,7 +1377,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migrations'
+                $ref: '#/components/schemas/migrations.v1'
       description: ListMigrations
       tags:
         - Clinics
@@ -1421,17 +1421,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       operationId: TriggerInitialMigration
       description: Trigger the initial migration
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TriggerMigration'
+              $ref: '#/components/schemas/triggerMigration.v1'
   '/v1/clinics/{clinicId}/migrations/{userId}':
     parameters:
-      - $ref: ./clinic/parameters/clinicid.v1.yaml
+      - $ref: ./clinic/parameters/clinicId.v1.yaml
       - $ref: '#/components/parameters/userId'
     get:
       summary: Get Migration
@@ -1444,7 +1444,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       operationId: GetMigration
       description: Get a migration by user id
     patch:
@@ -1456,12 +1456,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MigrationUpdate'
+              $ref: '#/components/schemas/migrationUpdate.v1'
       description: Internal endpoint to update the status of a migration
       tags:
         - Clinics
@@ -1501,7 +1501,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserDetails'
+              $ref: '#/components/schemas/updateUserDetails.v1'
       tags:
         - Clinics
         - Internal
@@ -1519,7 +1519,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ClinicianClinicRelationship'
+                  $ref: '#/components/schemas/clinicianClinicRelationship.v1'
       operationId: ListAllClinicians
       parameters:
         - $ref: '#/components/parameters/offset'
@@ -1546,7 +1546,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientSummary'
+              $ref: ./clinic/models/summaries/patientSummary.v1.yaml
         description: ''
   '/v1/summaries/{summaryId}/clinics':
     parameters:
@@ -1582,7 +1582,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DataSources'
+              $ref: '#/components/schemas/dataSources.v1'
   '/v1/clinics/{clinicId}/tier':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1643,7 +1643,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TidepoolUserIds'
+              $ref: '#/components/schemas/tidepoolUserIds.v1'
       responses:
         '200':
           description: OK
@@ -1663,7 +1663,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TidepoolUserIds'
+              $ref: '#/components/schemas/tidepoolUserIds.v1'
       responses:
         '200':
           description: OK
@@ -1684,7 +1684,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MembershipRestrictions'
+                $ref: ./clinic/models/membershipRestrictions.v1.yaml
       operationId: ListMembershipRestrictions
       description: |-
         Returns a list of the membership restrictions that will be evaluated when a user joins a clinic.
@@ -1699,13 +1699,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MembershipRestrictions'
+                $ref: ./clinic/models/membershipRestrictions.v1.yaml
       description: An internal endpoint to update clinic membership restrictions
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MembershipRestrictions'
+              $ref: ./clinic/models/membershipRestrictions.v1.yaml
       x-internal: true
       tags:
         - Clinics
@@ -1756,7 +1756,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EHRSettings'
+                $ref: ./clinic/models/ehrSettings.v1.yaml
       operationId: GetEHRSettings
       description: Returns EHR related settings
       x-internal: true
@@ -1775,7 +1775,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EHRSettings'
+              $ref: ./clinic/models/ehrSettings.v1.yaml
   /v1/redox/match:
     post:
       summary: Match Clinic and Patient
@@ -1786,7 +1786,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EHRMatchResponse'
+                $ref: '#/components/schemas/ehrMatchResponse.v1'
         '404':
           description: Not Found
       tags:
@@ -1804,7 +1804,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EHRMatchRequest'
+              $ref: '#/components/schemas/ehrMatchRequest.v1'
       x-internal: true
   '/v1/clinics/{clinicId}/settings/mrn':
     parameters:
@@ -1820,7 +1820,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MRNSettings'
+                $ref: ./clinic/models/mrnSettings.v1.yaml
       operationId: GetMRNSettings
       x-internal: true
       description: Retrieve MRN settings
@@ -1838,7 +1838,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MRNSettings'
+              $ref: ./clinic/models/mrnSettings.v1.yaml
   '/v1/clinics/{clinicId}/settings/patient_count':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1854,7 +1854,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientCountSettings'
+                $ref: ./clinic/models/patientCountSettings.v1.yaml
       x-internal: true
     put:
       operationId: UpdatePatientCountSettings
@@ -1867,7 +1867,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientCountSettings'
+              $ref: ./clinic/models/patientCountSettings.v1.yaml
       responses:
         '200':
           description: OK
@@ -1886,7 +1886,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientCount'
+                $ref: ./clinic/models/patientCount.v1.yaml
   '/v1/clinics/{clinicId}/ehr/sync':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1916,7 +1916,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientClinicRelationships'
+                $ref: '#/components/schemas/patientClinicRelationships.v1'
       operationId: FindPatients
       description: Returns all patients to which the clinician has access to
       parameters:
@@ -2037,7 +2037,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddServiceAccount'
+              $ref: '#/components/schemas/addServiceAccount.v1'
       tags:
         - Clinics
         - Internal
@@ -2075,7 +2075,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GenerateMergeReport'
+              $ref: '#/components/schemas/generateMergeReport.v1'
         description: ''
   '/v1/clinics/{clinicId}/merge':
     parameters:
@@ -2090,7 +2090,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MergeClinic'
+              $ref: '#/components/schemas/mergeClinic.v1'
       tags:
         - Clinics
         - Internal
@@ -2113,87 +2113,59 @@ paths:
       description: Send a new request to the patient to connect a data provider
 components:
   schemas:
-    Error:
-      $ref: ./common/models/error.v1.yaml
-    Clinic:
-      $ref: ./clinic/models/clinic.v1.yaml
-    Clinics:
+    clinics.v1:
       type: array
       items:
-        $ref: '#/components/schemas/Clinic'
-    Clinician:
-      $ref: ./clinic/models/clinician.v1.yaml
-    Clinicians:
+        $ref: ./clinic/models/clinic.v1.yaml
+    clinicians.v1:
       type: array
       items:
-        $ref: '#/components/schemas/Clinician'
-    Patient:
-      $ref: ./clinic/models/patient.v1.yaml
-    Patients:
+        $ref: ./clinic/models/clinician.v1.yaml
+    patients.v1:
       type: array
       items:
         $ref: ./clinic/models/patient.v1.yaml
-    PatientTag:
-      $ref: ./clinic/models/patienttag.v1.yaml
-    PatientTags:
+    patientTag.v1:
+      $ref: ./clinic/models/patientTag.v1.yaml
+    dataSources.v1:
       type: array
       items:
-        $ref: '#/components/schemas/PatientTag'
-    DateTime:
-      $ref: ./common/models/datetime.v1.yaml
-    DataSource:
-      $ref: ./clinic/models/datasource.v1.yaml
-    DataSources:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataSource'
-    InviteClinician:
-      $ref: ./clinic/models/inviteclinician.v1.yaml
-    TidepoolUserId:
-      $ref: ./common/models/tidepooluserid.yaml
-    TidepoolUserIds:
+        $ref: ./clinic/models/dataSource.v1.yaml
+    tidepoolUserIds.v1:
       type: array
       nullable: true
       description: Array of Tidepool User IDs
       items:
-        $ref: '#/components/schemas/TidepoolUserId'
+        $ref: ./common/models/tidepooluserid.yaml
       minItems: 1
       maxItems: 1000
       uniqueItems: true
-    ClinicianRoles:
-      $ref: ./clinic/models/clinicianroles.v1.yaml
-    PhoneNumber:
-      $ref: ./clinic/models/phonenumber.v1.yaml
-    PatientPermissions:
-      $ref: ./clinic/models/patientpermissions.v1.yaml
-    Id:
-      $ref: ./clinic/models/clinicid.v1.yaml
-    PatientClinicRelationship:
+    patientClinicRelationship.v1:
       title: PatientClinicRelationship
       type: object
       properties:
         patient:
-          $ref: '#/components/schemas/Patient'
+          $ref: ./clinic/models/patient.v1.yaml
         clinic:
-          $ref: '#/components/schemas/Clinic'
+          $ref: ./clinic/models/clinic.v1.yaml
       required:
         - patient
         - clinic
-    PatientClinicRelationships:
+    patientClinicRelationships.v1:
       title: PatientClinicRelationships
       type: array
       items:
-        $ref: '#/components/schemas/PatientClinicRelationship'
-    CreatePatient:
+        $ref: '#/components/schemas/patientClinicRelationship.v1'
+    createPatient.v1:
       title: Create Patient
       type: object
       properties:
         permissions:
-          $ref: ./clinic/models/patientpermissions.v1.yaml
+          $ref: ./clinic/models/patientPermissions.v1.yaml
         isMigrated:
           type: boolean
         legacyClinicianId:
-          $ref: '#/components/schemas/TidepoolUserId'
+          $ref: ./common/models/tidepooluserid.yaml
         attestationSubmitted:
           type: boolean
         fullName:
@@ -2209,8 +2181,8 @@ components:
           description: The medical record number of the patient
           minLength: 1
         tags:
-          $ref: '#/components/schemas/PatientTagIds'
-    AssociateClinicianToUser:
+          $ref: ./clinic/models/patientTagIds.v1.yaml
+    associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
       properties:
@@ -2218,23 +2190,23 @@ components:
           type: string
       required:
         - userId
-    ClinicianClinicRelationship:
+    clinicianClinicRelationship.v1:
       title: ClinicianClinicRelationship
       type: object
       properties:
         clinician:
-          $ref: '#/components/schemas/Clinician'
+          $ref: ./clinic/models/clinician.v1.yaml
         clinic:
-          $ref: '#/components/schemas/Clinic'
+          $ref: ./clinic/models/clinic.v1.yaml
       required:
         - clinician
         - clinic
-    ClinicianClinicRelationships:
+    clinicianClinicRelationships.v1:
       title: ClinicianClinicRelationships
       type: array
       items:
-        $ref: '#/components/schemas/ClinicianClinicRelationship'
-    Migration:
+        $ref: '#/components/schemas/clinicianClinicRelationship.v1'
+    migration.v1:
       title: Migration
       type: object
       properties:
@@ -2243,7 +2215,7 @@ components:
           description: The user id of the legacy clinician account that needs to be migrated.
           minLength: 1
         status:
-          $ref: ./clinic/models/migrationstatus.v1.yaml
+          $ref: ./clinic/models/migrationStatus.v1.yaml
         createdTime:
           type: string
           format: date-time
@@ -2260,22 +2232,20 @@ components:
         - userId
         - createdTime
         - updatedTime
-    Migrations:
+    migrations.v1:
       title: Migrations
       type: array
       items:
-        $ref: '#/components/schemas/Migration'
-    MigrationUpdate:
+        $ref: '#/components/schemas/migration.v1'
+    migrationUpdate.v1:
       title: MigrationUpdate
       type: object
       properties:
         status:
-          $ref: ./clinic/models/migrationstatus.v1.yaml
+          $ref: ./clinic/models/migrationStatus.v1.yaml
       required:
         - status
-    MigrationStatus:
-      $ref: ./clinic/models/migrationstatus.v1.yaml
-    Meta:
+    meta.v1:
       title: Meta
       type: object
       properties:
@@ -2285,19 +2255,15 @@ components:
         totalCount:
           description: The total number of items
           type: integer
-    PatientsResponse:
+    patientsResponse.v1:
       title: PatientsResponse
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Patients'
+          $ref: '#/components/schemas/patients.v1'
         meta:
-          $ref: '#/components/schemas/Meta'
-    Tide:
-      $ref: ./clinic/models/tide.v1.yaml
-    TideResponse:
-      $ref: '#/components/schemas/Tide'
-    UpdateUserDetails:
+          $ref: '#/components/schemas/meta.v1'
+    updateUserDetails.v1:
       title: UpdateUserDetails
       type: object
       properties:
@@ -2305,50 +2271,16 @@ components:
           type: string
           format: email
           minLength: 1
-    TriggerMigration:
+    triggerMigration.v1:
       title: TriggerMigration
       type: object
       properties:
         attestationSubmitted:
           type: boolean
-    PatientTagIds:
-      $ref: ./clinic/models/patienttagids.v1.yaml
-    TideConfig:
-      $ref: ./clinic/models/tide/config.v1.yaml
-    TideFilters:
-      $ref: ./clinic/models/tide/filters.v1.yaml
-    TidePatient:
-      $ref: ./clinic/models/tide/patient.v1.yaml
-    TideResultPatient:
-      $ref: ./clinic/models/tide/resultpatient.v1.yaml
-    TideResults:
-      $ref: ./clinic/models/tide/results.v1.yaml
-    PatientBGMPeriod:
-      $ref: ./summary/models/bgm/bgmperiod.v1.yaml
-    PatientBGMPeriods:
-      $ref: ./summary/models/bgm/bgmperiods.v1.yaml
-    PatientBGMStats:
-      $ref: ./clinic/models/summaries/bgmstats.v1.yaml
-    PatientCGMPeriod:
-      $ref: ./summary/models/cgm/cgmperiod.v1.yaml
-    PatientCGMPeriods:
-      $ref: ./summary/models/cgm/cgmperiods.v1.yaml
-    PatientCGMStats:
-      $ref: ./clinic/models/summaries/cgmstats.v1.yaml
-    summaryId.v1:
-      $ref: ./summary/models/summaryId.v1.yaml
-    PatientSummaryConfig:
-      $ref: ./summary/models/config.v1.yaml
-    PatientSummaryDates:
-      $ref: ./summary/models/dates.v1.yaml
-    PatientSummary:
-      $ref: ./clinic/models/summaries/patientsummary.v1.yaml
-    PatientReview:
-      $ref: ./clinic/models/patientreview.v1.yaml
-    PatientReviews:
+    patientReviews.v1:
       type: array
       items:
-        $ref: '#/components/schemas/PatientReview'
+        $ref: ./clinic/models/patientReview.v1.yaml
     FloatFilter:
       type: string
       pattern: '^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$'
@@ -2362,30 +2294,20 @@ components:
       type: object
       properties:
         tier:
-          $ref: '#/components/schemas/Tier'
+          $ref: '#/components/schemas/tier.v1'
       required:
         - tier
-    Tier:
+    tier.v1:
       $ref: ./clinic/models/tier.v1.yaml
     UpdateSuppressedNotifications:
       title: UpdateSuppressedNotifications
       type: object
       properties:
         suppressedNotifications:
-          $ref: '#/components/schemas/SuppressedNotifications'
+          $ref: ./clinic/models/suppressedNotifications.v1.yaml
       required:
         - suppressedNotifications
-    SuppressedNotifications:
-      $ref: ./clinic/models/suppressedNotifications.v1.yaml
-    MembershipRestriction:
-      $ref: ./clinic/models/membershiprestriction.v1.yaml
-    MembershipRestrictions:
-      $ref: ./clinic/models/membershiprestrictions.v1.yaml
-    EHRSettings:
-      $ref: ./clinic/models/ehrsettings.v1.yaml
-    EHRFacility:
-      $ref: ./clinic/models/ehrfacility.v1.yaml
-    EHRMatchRequest:
+    ehrMatchRequest.v1:
       title: EHR Match Request
       x-stoplight:
         id: nq0mlm5dqdfw0
@@ -2393,37 +2315,25 @@ components:
       x-examples: {}
       properties:
         messageRef:
-          $ref: '#/components/schemas/EHRMatchMessageRef'
+          $ref: '#/components/schemas/ehrMatchMessageRef.v1'
         patients:
-          $ref: '#/components/schemas/EHRMatchRequestPatientsOptions'
-    EHRMatchResponse:
+          $ref: '#/components/schemas/ehrMatchRequestPatientsOptions.v1'
+    ehrMatchResponse.v1:
       title: EHRMatchResponse
       x-stoplight:
         id: pekkj09rlany0
       type: object
       properties:
         clinic:
-          $ref: '#/components/schemas/Clinic'
+          $ref: ./clinic/models/clinic.v1.yaml
         patients:
-          $ref: '#/components/schemas/Patients'
+          $ref: '#/components/schemas/patients.v1'
         settings:
-          $ref: '#/components/schemas/EHRSettings'
+          $ref: ./clinic/models/ehrSettings.v1.yaml
       required:
         - clinic
         - settings
-    MRNSettings:
-      $ref: ./clinic/models/mrnsettings.v1.yaml
-    PatientCount:
-      $ref: ./clinic/models/patientcount.v1.yaml
-    PatientCountLimit:
-      $ref: ./clinic/models/patientcountlimit.v1.yaml
-    PatientCountSettings:
-      $ref: ./clinic/models/patientcountsettings.v1.yaml
-    EHRDestinationIds:
-      $ref: ./clinic/models/ehrdestinations.v1.yaml
-    EHRProcedureCodes:
-      $ref: ./clinic/models/ehrprocedures.v1.yaml
-    EHRMatchMessageRef:
+    ehrMatchMessageRef.v1:
       title: EHRMatchMessageRef
       x-stoplight:
         id: a1215t5vip3tr
@@ -2462,8 +2372,8 @@ components:
           description: The medical record number of the patient
           minLength: 1
         tags:
-          $ref: '#/components/schemas/PatientTagIds'
-    AddServiceAccount:
+          $ref: ./clinic/models/patientTagIds.v1.yaml
+    addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
         id: 3c7ko800mld31
@@ -2488,29 +2398,25 @@ components:
         - name
         - client_id
         - client_secret
-    ScheduledReports:
-      $ref: ./clinic/models/scheduledreports.v1.yaml
-    GenerateMergeReport:
+    generateMergeReport.v1:
       title: GenerateMergeReport
       x-stoplight:
         id: 3oq18sasrzo0o
       type: object
       properties:
         sourceId:
-          $ref: ./clinic/models/clinicid.v1.yaml
+          $ref: ./clinic/models/clinicId.v1.yaml
       required:
         - sourceId
-    MergeClinic:
+    mergeClinic.v1:
       title: MergeClinics
       x-stoplight:
         id: 6hn01uuhln0wx
       type: object
       properties:
         sourceId:
-          $ref: ./clinic/models/clinicid.v1.yaml
-    EHRTagsSettings:
-      $ref: ./clinic/models/ehrtagssettings.v1.yaml
-    EHRMatchRequestPatientsOptions:
+          $ref: ./clinic/models/clinicId.v1.yaml
+    ehrMatchRequestPatientsOptions.v1:
       title: Patient Matching Options
       x-stoplight:
         id: 43n6iid3zghxm
@@ -2540,14 +2446,6 @@ components:
           description: Optional action to be performed when a unique match has been found
       required:
         - criteria
-    EHRFlowsheetSettings:
-      $ref: ./clinic/models/ehrflowsheetsettings.v1.yaml
-    ProviderConnectionRequest:
-      $ref: ./clinic/models/providerconnectionrequest.v1.yaml
-    ProviderConnectionRequests:
-      $ref: ./clinic/models/providerconnectionrequests.v1.yaml
-    ProviderId:
-      $ref: ./clinic/models/provider.v1.yaml
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -2601,13 +2499,13 @@ components:
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/TidepoolUserId'
+        $ref: ./common/models/tidepooluserid.yaml
     summaryId:
       name: summaryId
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/summaryId.v1'
+        $ref: ./summary/models/summaryId.v1.yaml
     inviteId:
       name: inviteId
       in: path
@@ -2677,7 +2575,7 @@ components:
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/ProviderId'
+        $ref: ./clinic/models/providerId.v1.yaml
       description: Provider ID
 tags:
   - name: Clinics

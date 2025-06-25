@@ -1,0 +1,10 @@
+type: object
+title: continuousranges.v5
+description: 'continuous ranges'
+properties:
+  realtime:
+    $ref: '../glucose/glucoseRange.v5.yaml'
+  deferred:
+    $ref: '../glucose/glucoseRange.v5.yaml'
+  total:
+    $ref: '../glucose/glucoseRange.v5.yaml'

@@ -1,0 +1,11 @@
+title: Invite Clinician
+type: object
+description: ''
+properties:
+  email:
+    $ref: '../../common/models/emailaddress.v1.yaml'
+  roles:
+    $ref: './clinicianRoles.v1.yaml'
+required:
+  - email
+  - roles
