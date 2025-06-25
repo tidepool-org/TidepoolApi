@@ -1,0 +1,28 @@
+title: Report details
+description: >-
+  Report details
+type: object
+properties:
+  reports:
+    $ref: ./reporttype.v1.yaml
+    default:
+      - all
+  tzName:
+    $ref: ../../data/models/timezonename.v1.yaml
+    default: UTC
+  bgUnits:
+    $ref: ../../data/models/blood/units.v1.yaml
+    default: mmol/L
+  startDate:
+    $ref: ../../common/models/datetime.v1.yaml
+  endDate:
+    $ref: ../../common/models/datetime.v1.yaml
+example:
+  reports:
+    - daily
+    - basics
+    - settings
+  tzName: 'NZ'
+  bgUnits: mmol/L
+  startDate: '2022-02-06T02:37:46Z'
+  endDate: '2022-03-06T02:37:46Z'
