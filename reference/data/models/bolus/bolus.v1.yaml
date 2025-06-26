@@ -1,8 +1,8 @@
 title: Bolus
-description: 'An abstract base data type for different types of bolus data'
 allOf:
   - $ref: ../base.v1.yaml
   - type: object
+    description: 'An abstract base data type for different types of bolus data'
     properties:
       type:
         type: string

@@ -1,9 +1,9 @@
 title: Upload
-description: Metadata about an upload of diabetes device data to the Tidepool platform.
 allOf:
   - $ref: './base.v1.yaml'
   - $ref: './uploaddevice.v1.yaml'
   - type: object
+    description: Metadata about an upload of diabetes device data to the Tidepool platform.
     properties:
       type:
         type: string

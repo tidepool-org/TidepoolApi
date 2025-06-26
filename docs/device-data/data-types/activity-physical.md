@@ -13,7 +13,7 @@ This type is used to convey information about physical activity.
 
 ```json {% title="Example (physical activity)" %}
 {
-    "type": "water",
+    "type": "physicalActivity",
     "clockDriftOffset": 0,
     "conversionOffset": 0,
     "createdTime": "2018-05-14T08:17:13.453Z",

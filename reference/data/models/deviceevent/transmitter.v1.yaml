@@ -1,8 +1,8 @@
 title: 'DeviceTransmitterEvent [Proposed]'
-description: A transmitter event
 allOf:
   - $ref: './event.v1.yaml'
   - type: object
+    description: A transmitter event
     properties:
       subType:
         type: string
