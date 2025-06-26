@@ -6,8 +6,6 @@ properties:
   enabled:
     type: boolean
     description: Enable or disable the EHR integration
-  facility:
-    $ref: ./ehrFacility.v1.yaml
   sourceId:
     type: string
   destinationIds:
