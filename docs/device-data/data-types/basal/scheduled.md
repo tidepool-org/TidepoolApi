@@ -7,9 +7,9 @@ The string `scheduled`.
 
 This is the sub-type of basal event that represents intervals of basal insulin delivery triggered by the pump itself according to the active basal schedule programmed by the user (or clinician).
 
-{% partial file="/_partials/basal.md" /%}
+{% partial file="/_partials/basal_duration.md" /%}
 
-{% partial file="/_partials/rate.md" /%}
+{% partial file="/_partials/basal_rate.md" /%}
 
 ## Schedule Name (`scheduleName`)
 

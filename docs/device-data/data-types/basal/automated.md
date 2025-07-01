@@ -7,9 +7,9 @@ The string `automated`.
 
 This is the sub-type of basal event representing intervals of basal insulin delivery triggered by the pump itself (rather than manual user entry) according to a closed loop algorithm.
 
-{% partial file="/_partials/basal.md" /%}
+{% partial file="/_partials/basal_duration.md" /%}
 
-{% partial file="/_partials/rate.md" /%}
+{% partial file="/_partials/basal_rate.md" /%}
 
 ---
 

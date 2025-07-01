@@ -9,7 +9,7 @@ This is the sub-type of basal event representing the total suspension of insulin
 
 No rate field appears on suspend basal events. The rate is always zero, so this is redundant information.
 
-{% partial file="/_partials/basal.md" /%}
+{% partial file="/_partials/basal_duration.md" /%}
 
 ## Suppressed (`suppressed`)
 

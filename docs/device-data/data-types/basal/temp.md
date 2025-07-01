@@ -7,7 +7,7 @@ The string `temp`.
 
 This is the sub-type of basal event that represents temporary intervals of basal insulin delivery requested by the user. Insulin pumps allow a temporary basal insulin rate for a duration of up to 24 hours. Depending on the pump, the user will be able to program a temp basal rate by percentage, manual specification or both.
 
-{% partial file="/_partials/basal.md" /%}
+{% partial file="/_partials/basal_duration.md" /%}
 
 ## Percent (`percent`)
 
@@ -20,7 +20,7 @@ Examples:
 
 Tidepool's data model has standardized on a floating point representation of the second strategy. The value 0.0 represents a temp basal at 0% of the current active rate, 0.5 at 50%, 1.0 at 100%, 1.5 at 150%, and so on.
 
-{% partial file="/_partials/rate.md" /%}
+{% partial file="/_partials/basal_rate.md" /%}
 
 ## Suppressed (`suppressed`)
 
