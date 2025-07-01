@@ -1,8 +1,8 @@
 title: Food
-description: Food consumption
 allOf:
   - $ref: '../base.v1.yaml'
   - type: object
+    description: Food consumption
     properties:
       amount:
         $ref: '../amount.v1.yaml'

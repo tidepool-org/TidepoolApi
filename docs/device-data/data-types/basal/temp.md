@@ -1,32 +1,13 @@
 <!-- omit in toc -->
 # Temporary Basals (`temp`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
-3. [Percent (`percent`)](#percent-percent)
-4. [Examples](#examples)
-5. [Keep Reading](#keep-reading)
-
----
-
-## Quick Summary
-
-{% json-schema
-  schema={
-    "$ref": "../../../../reference/data/models/basal/temporary.v1.yaml"
-  }
-/%}
-
----
-
 ## Delivery Type (`deliveryType`)
+
+The string `temp`.
 
 This is the sub-type of basal event that represents temporary intervals of basal insulin delivery requested by the user. Insulin pumps allow a temporary basal insulin rate for a duration of up to 24 hours. Depending on the pump, the user will be able to program a temp basal rate by percentage, manual specification or both.
 
----
+{% partial file="/_partials/basal_duration.md" /%}
 
 ## Percent (`percent`)
 
@@ -38,6 +19,22 @@ Examples:
 2. The user inputs 50% to yield  0.25 units per hour and 150% to yield a 0.75 temporary rate
 
 Tidepool's data model has standardized on a floating point representation of the second strategy. The value 0.0 represents a temp basal at 0% of the current active rate, 0.5 at 50%, 1.0 at 100%, 1.5 at 150%, and so on.
+
+{% partial file="/_partials/basal_rate.md" /%}
+
+## Suppressed (`suppressed`)
+
+An object representing another `basal` event - namely, the event that is currently [suppressed](./suppressed.md) (inactive) because this temp basal is in effect.
+
+---
+
+## Quick Summary
+
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/temporary.v1.yaml"
+  }
+/%}
 
 ---
 

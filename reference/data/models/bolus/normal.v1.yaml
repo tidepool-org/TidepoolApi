@@ -1,8 +1,8 @@
 title: Bolus Normal
-description: A normal bolus event
 allOf:
   - $ref: './bolus.v1.yaml'
   - type: object
+    description: A normal bolus event
     properties:
       expectedNormal:
         type: number

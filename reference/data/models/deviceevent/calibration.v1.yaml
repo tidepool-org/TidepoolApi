@@ -1,8 +1,8 @@
 title: Device Calibration
-description: A blood glucose device calibration event
 allOf:
   - $ref: './event.v1.yaml'
   - type: object
+    description: A blood glucose device calibration event
     properties:
       subType:
         type: string

@@ -1,8 +1,8 @@
 title: Controller Settings
-description: Controller settings
 allOf:
   - $ref: ../base.v1.yaml
   - type: object
+    description: Controller settings
     properties:
       type:
         type: string

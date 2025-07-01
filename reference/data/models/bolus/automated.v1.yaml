@@ -1,8 +1,8 @@
 title: Bolus Automated
-description: An automated bolus event
 allOf:
   - $ref: './bolus.v1.yaml'
   - type: object
+    description: An automated bolus event
     properties:
       expectedNormal:
         type: number

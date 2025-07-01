@@ -1,8 +1,8 @@
 title: Physical Activity
-description: Logging of physical activity
 allOf:
   - $ref: '../../base.v1.yaml'
   - type: object
+    description: Logging of physical activity
     properties:
       type:
         type: string
