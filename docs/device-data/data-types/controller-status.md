@@ -14,9 +14,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../reference/data/models/controllerstatus.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/controllerstatus.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -63,7 +65,7 @@ The units for the remaining amount of battery, if known. One of `percent`.
 
 ---
 
-```json title="Example" lineNumbers=true
+```json {% title="Example" %}
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

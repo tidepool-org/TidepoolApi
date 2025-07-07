@@ -4,4 +4,4 @@ name: tokenId
 in: path
 required: true
 schema:
-  $ref: '../../models/restricted/id.v1.yaml'
+  $ref: '../../models/restricted/restricted-token-id.v1.yaml'

@@ -1,15 +1,17 @@
 <!-- omit in toc -->
 # Water Consumption (`water`)
 
-```yaml json_schema
-$ref: '../../../reference/data/models/water/water.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/water/water.v1.yaml"
+  }
+/%}
 
 This type is used to convey information about water consumption.
 
 ## Examples
 
-```json title="Example (water consumption)" lineNumbers=true
+```json {% title="Example (water consumption)" %}
 {
     "type": "water",
     "clockDriftOffset": 0,

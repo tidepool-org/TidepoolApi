@@ -4,4 +4,4 @@ name: blobId
 in: path
 required: true
 schema:
-  $ref: '../models/id.v1.yaml'
+  $ref: '../models/blob-id.v1.yaml'

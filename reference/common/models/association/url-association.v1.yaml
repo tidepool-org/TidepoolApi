@@ -2,11 +2,11 @@ title: Association (url)
 type: object
 properties:
   type:
-    $ref: './type.v1.yaml'
+    $ref: './association-type.v1.yaml'
   reason:
     $ref: './reason.v1.yaml'
   id:
-    $ref: './id.v1.yaml'
+    $ref: './association-id.v1.yaml'
   url:
     $ref: '../url.v1.yaml'
 required:
