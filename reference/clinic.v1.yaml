@@ -314,17 +314,17 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.max
-          description: 'Max glucose value in Mmol/L'
+          description: 'Max glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.min
-          description: 'Min glucose value in Mmol/L'
+          description: 'Min glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.averageGlucoseMmol
-          description: Average glucose value of records in Mmol/L
+          description: Average glucose value of records in mmol/L
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -484,28 +484,28 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.standardDeviation
-          description: Standard deviation of glucose values in Mmol/L
+          description: Standard deviation of glucose values in mmol/L
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.coefficientOfVariation
-          description: Coefficient Of Variation of glucose values in Mmol/L
+          description: Coefficient Of Variation of glucose values in mmol/L
 
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.max
-          description: 'Max glucose value in Mmol/L'
+          description: 'Max glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.min
-          description: 'Min glucose value in Mmol/L'
+          description: 'Min glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.averageGlucoseMmol
-          description: Average glucose value of records in Mmol/L
+          description: Average glucose value of records in mmol/L
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -596,17 +596,17 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.maxDelta
-          description: 'Delta of Max glucose value in Mmol/L'
+          description: 'Delta of Max glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.minDelta
-          description: 'Delta of Min glucose value in Mmol/L'
+          description: 'Delta of Min glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.averageGlucoseMmolDelta
-          description: Delta of average glucose value in Mmol/L
+          description: Delta of average glucose value in mmol/L
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
@@ -766,12 +766,12 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.standardDeviationDelta
-          description: Delta of the standard deviation of glucose values in Mmol/L
+          description: Delta of the standard deviation of glucose values in mmol/L
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.coefficientOfVariationDelta
-          description: Delta of the coefficient of glucose values in Mmol/L
+          description: Delta of the coefficient of glucose values in mmol/L
         - schema:
             type: string
             format: date-time
@@ -789,17 +789,17 @@ paths:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.maxDelta
-          description: 'Delta of Max glucose value in Mmol/L'
+          description: 'Delta of Max glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.minDelta
-          description: 'Delta of Min glucose value in Mmol/L'
+          description: 'Delta of Min glucose value in mmol/L'
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.averageGlucoseMmolDelta
-          description: Delta of the average glucose values in Mmol/L
+          description: Delta of the average glucose values in mmol/L
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
