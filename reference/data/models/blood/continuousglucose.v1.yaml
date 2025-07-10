@@ -1,8 +1,8 @@
 title: Continuous Glucose
-description: A continuous glucose measurement
 allOf:
   - $ref: '../base.v1.yaml'
   - type: object
+    description: A continuous glucose measurement
     properties:
       type:
         type: string

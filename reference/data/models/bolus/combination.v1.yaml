@@ -1,8 +1,8 @@
 title: Bolus Combination
-description: A combination bolus event
 allOf:
   - $ref: './bolus.v1.yaml'
   - type: object
+    description: A combination bolus event
     properties:
       duration:
         type: integer

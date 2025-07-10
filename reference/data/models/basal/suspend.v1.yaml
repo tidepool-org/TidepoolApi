@@ -1,8 +1,8 @@
 title: Basal Suspend
-description: A basal suspend event
 allOf:
   - $ref: '../base.v1.yaml'
   - type: object
+    description: A basal suspend event
     properties:
       deliveryType:
         $ref: './deliverytype.v1.yaml'

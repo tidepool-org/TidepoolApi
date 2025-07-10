@@ -1,13 +1,19 @@
 <!-- omit in toc -->
 # Suspend Basals (`suspend`)
 
-<!-- omit in toc -->
-## Table of Contents
+## Delivery Type (`deliveryType`)
 
-1. [Quick Summary](#quick-summary)
-2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
-3. [Examples](#examples)
-4. [Keep Reading](#keep-reading)
+The string `suspend`.
+
+This is the sub-type of basal event representing the total suspension of insulin delivery on a pump within the stream of basal events — which should be without gaps or overlaps. The user's inputs to suspend (and later resume) insulin delivery are part of Tidepool's [device event](../device-event.md) data type. We represent suspend intervals as a suspend basal to maintain a continuous stream of basal data, making the calculation of statistics (e.g. total basal dose per day) easier.
+
+No rate field appears on suspend basal events. The rate is always zero, so this is redundant information.
+
+{% partial file="/_partials/basal_duration.md" /%}
+
+## Suppressed (`suppressed`)
+
+An object representing another `basal` event - namely, the event that is currently [suppressed](./suppressed.md) (inactive) because this suspended basal is in effect.
 
 ---
 
@@ -18,14 +24,6 @@
     "$ref": "../../../../reference/data/models/basal/suspend.v1.yaml"
   }
 /%}
-
----
-
-## Delivery Type (`deliveryType`)
-
-This is the sub-type of basal event representing the total suspension of insulin delivery on a pump within the stream of basal events — which should be without gaps or overlaps. The user's inputs to suspend (and later resume) insulin delivery are part of Tidepool's [device event](../device-event.md) data type. We represent suspend intervals as a suspend basal to maintain a continuous stream of basal data, making the calculation of statistics (e.g. total basal dose per day) easier.
-
-No rate field appears on suspend basal events. The rate is always zero, so this is redundant information.
 
 ---
 

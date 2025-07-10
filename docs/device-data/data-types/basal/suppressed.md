@@ -1,51 +1,6 @@
 <!-- omit in toc -->
 # Suppressed Basals (`suppressed`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary: scheduled](#quick-summary-scheduled)
-2. [Quick Summary: automated](#quick-summary-automated)
-3. [Quick Summary: temporary](#quick-summary-temporary)
-4. [Overview](#overview)
-5. [Suppressed Across Schedule Boundaries](#suppressed-across-schedule-boundaries)
-6. [Suppressed: When A Temp Or Suspend Is Edited](#suppressed-when-a-temp-or-suspend-is-edited)
-7. [Nested Suppressed In Suspend Basals](#nested-suppressed-in-suspend-basals)
-8. [Suppressed Suspend Basals](#suppressed-suspend-basals)
-9. [Keep Reading](#keep-reading)
-
----
-
-## Quick Summary: scheduled
-
-{% json-schema
-  schema={
-    "$ref": "../../../../reference/data/models/basal/suppressed/scheduled.v1.yaml"
-  }
-/%}
-
----
-
-## Quick Summary: automated
-
-{% json-schema
-  schema={
-    "$ref": "../../../../reference/data/models/basal/suppressed/automated.v1.yaml"
-  }
-/%}
-
----
-
-## Quick Summary: temporary
-
-{% json-schema
-  schema={
-    "$ref": "../../../../reference/data/models/basal/suppressed/temporary.v1.yaml"
-  }
-/%}
-
----
-
 ## Overview
 
 A suppressed basal is a way to essentially replace one basal with another basal. For example, if a PwD's blood glucose is falling, they may program a temp basal to try and prevent hypoglycemia. By programming a temp basal, they are suppressing a scheduled basal, which was previously in effect. A suppressed can apply to all basal types except a suspend — [see here](#suppressed-suspend-basals).
@@ -342,6 +297,38 @@ A suspend basal can embed a scheduled, automatic or temporary suppressed basal, 
 * A user's blood glucose is falling and they program a temp basal (which embeds a suppressed scheduled basal) in an attempt to prevent hypoglycemia
 * However, the user's blood glucose continues to fall and the insulin pump suspends insulin delivery (due to the automatic low glucose suspend feauture)
 * This creates a suspend basal that embeds a suppressed temp basal, which is still embedding a suppressed scheduled basal
+
+---
+
+--
+
+## Quick Summary: scheduled
+
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suppressed/scheduled.v1.yaml"
+  }
+/%}
+
+---
+
+## Quick Summary: automated
+
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suppressed/automated.v1.yaml"
+  }
+/%}
+
+---
+
+## Quick Summary: temporary
+
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suppressed/temporary.v1.yaml"
+  }
+/%}
 
 ---
 

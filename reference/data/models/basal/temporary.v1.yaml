@@ -1,8 +1,8 @@
 title: Basal Temporary
-description: A temporary basal delivery event
 allOf:
   - $ref: '../base.v1.yaml'
   - type: object
+    description: A temporary basal delivery event
     properties:
       deliveryType:
         $ref: './deliverytype.v1.yaml'
