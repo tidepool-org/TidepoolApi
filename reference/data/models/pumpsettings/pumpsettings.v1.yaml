@@ -152,6 +152,46 @@ allOf:
         description: The serial number of the pump, if known.
         minLength: 1
         maxLength: 100
+      sleepSchedules:
+        type: array
+        minItems: 0
+        maxItems: 10
+        items:
+          type: object
+          oneOf:
+            - properties:
+                enabled:
+                  type: boolean
+                  enum:
+                    - true
+                days:
+                  $ref: '../days.v1.yaml'
+                start:
+                  $ref: '../midnightoffset.v1.yaml'
+                  description: Start time in seconds, offset from midnight (e.g. 11pm is 82800)
+                end:
+                  $ref: '../midnightoffset.v1.yaml'
+                  description: end time in seconds, offset from midnight (e.g. 7am is 25200)
+              required:
+                - enabled
+                - start
+                - end
+                - days
+            - properties:
+                enabled:
+                  type: boolean
+                  enum:
+                    - false
+                days:
+                  $ref: '../days.v1.yaml'
+                start:
+                  $ref: '../midnightoffset.v1.yaml'
+                  description: Start time in seconds, offset from midnight (e.g. 11pm is 82800)
+                end:
+                  $ref: '../midnightoffset.v1.yaml'
+                  description: end time in seconds, offset from midnight (e.g. 7am is 25200)
+              required:
+                - enabled
       softwareVersion:
         type: string
         description: The software version of the pump, if known.
