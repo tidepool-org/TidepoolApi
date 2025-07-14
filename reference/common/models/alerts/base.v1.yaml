@@ -1,0 +1,8 @@
+# intended as a mix-in to build complete alert specs
+type: object
+properties:
+  enabled:
+    type: boolean
+    default: false
+    description: >-
+      A toggle for disabling the alert.

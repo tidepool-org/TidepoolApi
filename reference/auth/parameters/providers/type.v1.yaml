@@ -1,7 +1,0 @@
-description: >-
-  Provider Type
-name: type
-in: query
-required: false
-schema:
-  $ref: '../../models/providers/type.v1.yaml'

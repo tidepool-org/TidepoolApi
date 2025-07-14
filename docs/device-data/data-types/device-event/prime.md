@@ -15,9 +15,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/deviceevent/prime.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/deviceevent/prime.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -52,7 +54,7 @@ Where available in the data, the volume of a priming event should be included to
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "deviceEvent",
     "subType": "prime",
@@ -70,7 +72,7 @@ Where available in the data, the volume of a priming event should be included to
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "deviceEvent",
     "subType": "prime",
@@ -86,7 +88,7 @@ Where available in the data, the volume of a priming event should be included to
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "deviceEvent",
     "subType": "prime",

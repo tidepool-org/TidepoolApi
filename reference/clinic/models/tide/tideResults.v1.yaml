@@ -1,0 +1,15 @@
+type: object
+title: tideresults.v1
+description: ''
+required:
+  - timeInVeryLowPercent
+  - timeInLowPercent
+  - dropInTimeInTargetPercent
+  - timeInTargetPercent
+  - timeCGMUsePercent
+  - meetingTargets
+  - noData
+additionalProperties:
+  type: array
+  items:
+    $ref: ./tideResultPatient.v1.yaml

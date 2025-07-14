@@ -1,6 +1,5 @@
 type: object
 title: Patient
-description: ''
 properties:
   id:
     $ref: ../../common/models/tidepooluserid.yaml
@@ -21,24 +20,13 @@ properties:
     description: The medical record number of the patient
     minLength: 1
   tags:
-    type: array
-    nullable: true
-    uniqueItems: true
-    items:
-      title: Patient Tag ID
-      description: >-
-        Patient Tag identifier.
-      type: string
-      minLength: 24
-      maxLength: 24
-      pattern: '^[a-f0-9]{24}$'
-      readOnly: true
+    $ref: ./patientTagIds.v1.yaml
   targetDevices:
     type: array
     items:
       type: string
   permissions:
-    $ref: ./patientpermissions.v1.yaml
+    $ref: ./patientPermissions.v1.yaml
   createdTime:
     type: string
     format: date-time
@@ -53,20 +41,30 @@ properties:
     type: array
     nullable: true
     items:
-      $ref: ./datasource.v1.yaml
-  lastRequestedDexcomConnectTime:
-    type: string
-    format: date-time
-    readOnly: true
+      $ref: ./dataSource.v1.yaml
   lastUploadReminderTime:
     type: string
     format: date-time
     readOnly: true
   summary:
-    $ref: ./summaries/patientsummary.v1.yaml
+    $ref: ./summaries/patientSummary.v1.yaml
+    readOnly: true
+  reviews:
+    type: array
+    nullable: true
+    x-go-type-skip-optional-pointer: true
+    items:
+      $ref: ./patientReview.v1.yaml
+  connectionRequests:
+    $ref: ./providerConnectionRequests.v1.yaml
+    x-stoplight:
+      id: 502rliv0l2tyy
+    description: Requests for each provider are listed in reverse chronological order
+    readOnly: true
 required:
   - id
   - fullName
   - birthDate
   - createdTime
   - updatedTime
+  - connectionRequests

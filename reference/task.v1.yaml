@@ -49,7 +49,7 @@ paths:
         It can also be paginated with the `page` and `size` query parameters.
       parameters:
         - $ref: './task/parameters/name.v1.yaml'
-        - $ref: './task/parameters/type.v1.yaml'
+        - $ref: './task/parameters/task-type.v1.yaml'
         - $ref: './task/parameters/state.v1.yaml'
         - $ref: './common/parameters/paginationpage.v1.yaml'
         - $ref: './common/parameters/paginationsize.v1.yaml'
@@ -57,11 +57,11 @@ paths:
         '200':
           $ref: '#/components/responses/Tasks'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '500':
-          $ref: '#/components/responses/ServerError'
+          $ref: ./common/responses/servererror.v1.yaml
       tags:
         - Tasks
         - Internal
@@ -80,11 +80,11 @@ paths:
         '200':
           $ref: '#/components/responses/Task'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '500':
-          $ref: '#/components/responses/ServerError'
+          $ref: ./common/responses/servererror.v1.yaml
       tags:
         - Tasks
         - Internal
@@ -101,13 +101,13 @@ paths:
         '200':
           $ref: '#/components/responses/Task'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: ./common/responses/notfound.v1.yaml
         '500':
-          $ref: '#/components/responses/ServerError'
+          $ref: ./common/responses/servererror.v1.yaml
       tags:
         - Tasks
         - Internal
@@ -126,13 +126,13 @@ paths:
         '200':
           $ref: '#/components/responses/Task'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: ./common/responses/notfound.v1.yaml
         '500':
-          $ref: '#/components/responses/ServerError'
+          $ref: ./common/responses/servererror.v1.yaml
       tags:
         - Tasks
         - Internal
@@ -146,13 +146,13 @@ paths:
         '200':
           description: 'Success'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: ./common/responses/badrequest.v1.yaml
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: ./common/responses/unauthorized.v1.yaml
         '404':
-          $ref: '#/components/responses/NotFound'
+          $ref: ./common/responses/notfound.v1.yaml
         '500':
-          $ref: '#/components/responses/ServerError'
+          $ref: ./common/responses/servererror.v1.yaml
       tags:
         - Tasks
         - Internal
@@ -176,15 +176,3 @@ components:
         'application/json':
           schema:
             $ref: './task/models/tasks.v1.yaml'
-
-    BadRequest:
-      $ref: './common/responses/badrequest.v1.yaml'
-
-    NotFound:
-      $ref: './common/responses/notfound.v1.yaml'
-
-    Unauthorized:
-      $ref: './common/responses/unauthorized.v1.yaml'
-
-    ServerError:
-      $ref: './common/responses/servererror.v1.yaml'

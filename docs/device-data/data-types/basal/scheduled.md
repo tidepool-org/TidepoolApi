@@ -1,33 +1,39 @@
 <!-- omit in toc -->
 # Scheduled Basals (`scheduled`)
 
-<!-- omit in toc -->
-## Table of Contents
+## Delivery Type (`deliveryType`)
 
-1. [Quick Summary](#quick-summary)
-2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
-3. [Examples](#examples)
-4. [Keep Reading](#keep-reading)
+The string `scheduled`.
+
+This is the sub-type of basal event that represents intervals of basal insulin delivery triggered by the pump itself according to the active basal schedule programmed by the user (or clinician).
+
+{% partial file="/_partials/basal_duration.md" /%}
+
+{% partial file="/_partials/basal_rate.md" /%}
+
+## Schedule Name (`scheduleName`)
+
+A string: the name of the basal schedule.
+
+Tidepool would love to surface the basal schedule names for every pump manufacturer. Unfortunately, most manufacturers do not provide this information or record pump setting changes. In some cases, we can find this information ourselves by looking up the active pump settings at the time of a particular basal event.
+
+Schedule name is an optional field and should only be added to basal data when directly available from an insulin pump's raw data, or if it can be inferred with high confidence via lookup against a complete pump settings history.
 
 ---
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/scheduled.v1.yaml'
-```
-
----
-
-## Delivery Type (`deliveryType`)
-
-This is the sub-type of basal event that represents intervals of basal insulin delivery triggered by the pump itself according to the active basal schedule programmed by the user (or clinician).
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/scheduled.v1.yaml"
+  }
+/%}
 
 ---
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "basal",
     "deliveryType": "scheduled",
@@ -46,7 +52,7 @@ This is the sub-type of basal event that represents intervals of basal insulin d
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "basal",
     "deliveryType": "scheduled",
@@ -63,7 +69,7 @@ This is the sub-type of basal event that represents intervals of basal insulin d
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "basal",
     "deliveryType": "scheduled",

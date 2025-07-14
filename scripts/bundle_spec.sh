@@ -1,25 +1,28 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+TOOLS_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
+NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
+PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo + $*
-    $*
+    echo "${PS4}$*"
+    "$@"
 }
 
 case $1 in
-	-h | --help)
-		echo "usage: $(basename $0) [-h | --help] | [-i | --install] | [-c | --self-check] | {source-spec} {bundle-spec}"
-		;;
-
-    -i | --install)
-        trace npm install -g @redocly/cli@1.0.0-rc.3
-        exit 0
-        ;;
+    -h | --help)
+	echo "usage: $(basename "$0") [-h | --help] | [-c | --self-check] | {source-spec} {bundle-spec}"
+	;;
 
     -c | --self-check)
-        trace redocly --version
-        exit 0
-        ;;
+	trace redocly --version
+	;;
 
     *)
-		trace redocly bundle $1 --output $2
+	source=${1?:source-spec is required}
+	bundle=${2?:bundle-spec is required}
+	trace redocly bundle "$source" -o "$bundle"
 esac

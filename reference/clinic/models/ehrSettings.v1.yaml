@@ -1,0 +1,46 @@
+title: EHR Settings
+x-stoplight:
+  id: m0iw4p0mf24nb
+type: object
+properties:
+  enabled:
+    type: boolean
+    description: Enable or disable the EHR integration
+  sourceId:
+    type: string
+  destinationIds:
+    $ref: ./ehrDestinations.v1.yaml
+  procedureCodes:
+    $ref: ./ehrProcedures.v1.yaml
+  mrnIdType:
+    type: string
+    x-stoplight:
+      id: x74orwp43yu91
+    minLength: 1
+  provider:
+    type: string
+    x-stoplight:
+      id: z31vhe9hbaqrn
+    enum:
+      - xealth
+      - redox
+  scheduledReports:
+    $ref: ./scheduledReports.v1.yaml
+    x-stoplight:
+      id: lgfrpsps4x37a
+    description: Scheduled Report Settings
+  tags:
+    $ref: ./ehrTagsSettings.v1.yaml
+    x-stoplight:
+      id: hp97ilzsssprv
+  flowsheets:
+    $ref: ./ehrFlowsheetSettings.v1.yaml
+required:
+  - enabled
+  - sourceId
+  - procedureCodes
+  - mrnIdType
+  - provider
+  - scheduledReports
+  - tags
+  - flowsheets

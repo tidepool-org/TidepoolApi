@@ -1,7 +1,7 @@
 title: Pump Settings Override Preset
-description: An insulin pump settings override preset.
 allOf:
   - type: object
+    description: An insulin pump settings override preset.
     properties:
       abbreviation:
         type: string
@@ -12,7 +12,7 @@ allOf:
         type: number
         format: float
         minimum: 0
-        maximum: 604800
+        maximum: 604800000
         example: 7200
       bgTarget:
         $ref: ../blood/glucose/target.v1.yaml

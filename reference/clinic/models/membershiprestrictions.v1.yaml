@@ -1,8 +1,0 @@
-title: Membership Restrictions
-type: object
-description: A user joining a clinic must match at least one of the specified membership restrictions
-properties:
-  restrictions:
-    type: array
-    items:
-      $ref: ./membershiprestriction.v1.yaml

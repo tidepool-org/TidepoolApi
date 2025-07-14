@@ -28,9 +28,11 @@
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../reference/data/models/pumpsettings/pumpsettings.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/pumpsettings/pumpsettings.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -201,7 +203,7 @@ An abbreviation for the preset. Commonly set to an emoji.
 <!-- omit in toc -->
 ### Duration (`duration`)
 
-The intended duration of the override when initially enabled. Not specifying this field indicates that the override should be enable indefinitely.
+The intended duration of the override when initially enabled. Not specifying this field indicates that the override should be enable indefinitely. The `duration` is milliseconds.
 
 <!-- omit in toc -->
 ### Blood Glucose Target (Preset) (`bgTarget`)
@@ -271,7 +273,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -356,7 +358,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
     "overridePresets": {
         "Running": {
             "abbreviation": "🏃‍♀️",
-            "duration": 7200,
+            "duration": 7200000,
             "bgTarget": {},
             "basalRateScaleFactor": 0.8,
             "carbRatioScaleFactor": 1.25,
@@ -395,7 +397,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -489,7 +491,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
     "overridePresets": {
         "Running": {
             "abbreviation": "🏃‍♀️",
-            "duration": 7200,
+            "duration": 7200000,
             "bgTarget": {},
             "basalRateScaleFactor": 0.8,
             "carbRatioScaleFactor": 1.25,
@@ -526,7 +528,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "pumpSettings",
     "activeSchedule": "Normal",
@@ -623,7 +625,7 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
     "overridePresets": {
         "Running": {
             "abbreviation": "🏃‍♀️",
-            "duration": 7200,
+            "duration": 7200000,
             "bgTarget": {},
             "basalRateScaleFactor": 0.8,
             "carbRatioScaleFactor": 1.25,

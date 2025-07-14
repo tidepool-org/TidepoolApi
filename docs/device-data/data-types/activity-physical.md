@@ -1,17 +1,19 @@
 <!-- omit in toc -->
 # Physical Activity (`physicalActivity`)
 
-```yaml json_schema
-$ref: '../../../reference/data/models/activity/physical/physical.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/activity/physical/physical.v1.yaml"
+  }
+/%}
 
 This type is used to convey information about physical activity.
 
 ## Examples
 
-```json title="Example (physical activity)" lineNumbers=true
+```json {% title="Example (physical activity)" %}
 {
-    "type": "water",
+    "type": "physicalActivity",
     "clockDriftOffset": 0,
     "conversionOffset": 0,
     "createdTime": "2018-05-14T08:17:13.453Z",

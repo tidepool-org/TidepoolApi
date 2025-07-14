@@ -1,0 +1,45 @@
+type: object
+properties:
+  urgentLow:
+    allOf:
+      - $ref: './alerts/base.v1.yaml'
+      - $ref: './alerts/glucosethreshold.v1.yaml'
+      - type: object
+        description: >-
+          Blood glucose measurements at or below this value will trigger an immediate and urgent alert.
+  low:
+    allOf:
+      - $ref: './alerts/base.v1.yaml'
+      - $ref: './alerts/delay.v1.yaml'
+      - $ref: './alerts/repeat.v1.yaml'
+      - $ref: './alerts/glucosethreshold.v1.yaml'
+      - type: object
+        description: >-
+          Blood glucose measurements at or below this value will trigger an alert.
+  high:
+    allOf:
+      - $ref: './alerts/base.v1.yaml'
+      - $ref: './alerts/delay.v1.yaml'
+      - $ref: './alerts/repeat.v1.yaml'
+      - $ref: './alerts/glucosethreshold.v1.yaml'
+      - type: object
+        description: >-
+          Blood glucose measurements at or above this value will trigger an alert.
+  noCommunication:
+    allOf:
+      - $ref: './alerts/base.v1.yaml'
+      - $ref: './alerts/delay.v1.yaml'
+      - type: object
+        description: >-
+          An alert sent when issues prevent the display of CGM data.
+  notLooping:
+    allOf:
+      - $ref: './alerts/base.v1.yaml'
+      - $ref: './alerts/delay.v1.yaml'
+      - type: object
+        description: >-
+          An alert sent when the Tidepool Loop app is unable to loop.
+minProperties: 1
+description: >-
+  Configuration for alerts triggered in response to the status of a user's
+  device and data.

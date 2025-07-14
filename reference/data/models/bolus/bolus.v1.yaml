@@ -1,20 +1,22 @@
 title: Bolus
-description: >-
-  An abstract base data type for different types of bolus data: [normal](./normal.v1.yaml), [extended](./extended.v1.yaml), or [combination](./combination.v1.yaml)
 allOf:
-  - $ref: '../base.v1.yaml'
+  - $ref: ../base.v1.yaml
   - type: object
+    description: 'An abstract base data type for different types of bolus data'
     properties:
       type:
         type: string
         enum:
           - bolus
       subType:
-        $ref: './subtype.v1.yaml'
+        $ref: ./subtype.v1.yaml
       insulinFormulation:
-        $ref: '../insulin/formulation.v1.yaml'
+        $ref: ../insulin/formulation.v1.yaml
+      deliveryContext:
+        $ref: ./deliverycontext.v1.yaml
 required:
   - type
   - subType
 x-tags:
   - Data
+x-internal: false

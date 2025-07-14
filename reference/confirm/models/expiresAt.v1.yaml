@@ -1,0 +1,6 @@
+title: Expiration Time
+type: string
+format: date-time
+description: >-
+  If specified, the invitation will expire at the given date and time.
+example: "2024-01-30T08:11:00Z"

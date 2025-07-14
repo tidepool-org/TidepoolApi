@@ -3,7 +3,7 @@ type: object
 readOnly: true
 properties:
   id:
-    $ref: './id.v1.yaml'
+    $ref: './blob-id.v1.yaml'
   userId:
     $ref: '../../common/models/tidepooluserid.yaml'
   digestMD5:

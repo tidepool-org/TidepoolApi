@@ -1,8 +1,8 @@
 title: Device Alarm
-description: An alert from a diabetes device
 allOf:
   - $ref: './event.v1.yaml'
   - type: object
+    description: An alert from a diabetes device
     properties:
       subType:
         type: string

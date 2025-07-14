@@ -24,14 +24,16 @@
 18. [Schedule Time Zone Offset (`scheduleTimeZoneOffset`)](#schedule-time-zone-offset-scheduletimezoneoffset)
 19. [Units (`units`)](#units-units)
 20. [Keep Reading](#keep-reading)
-  
+
 ---
 
 ## Quick Summary
 
-```yaml json_schema
-$ref: '../../../reference/data/models/dosingdecision/dosingdecision.v1.yaml'
-```
+{% json-schema
+  schema={
+    "$ref": "../../../reference/data/models/dosingdecision/dosingdecision.v1.yaml"
+  }
+/%}
 
 ---
 
@@ -306,7 +308,7 @@ The insulin units of the dosing decision. Can be one of `Units`.
 
 ---
 
-```json title="Example Dosing Decision" lineNumbers=true
+```json {% title="Example Dosing Decision" %}
 {
     "id": "02ccebd2affc472d9b296d4f1f800dfd",
     "time": "2018-05-14T08:17:07.560Z",

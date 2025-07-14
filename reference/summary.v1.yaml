@@ -45,7 +45,7 @@ tags:
 paths:
   '/v1/summaries/{summaryType}/{userId}':
     parameters:
-      - $ref: '#/components/parameters/summaryType'
+      - $ref: '#/components/parameters/summaryType.v5'
       - $ref: '#/components/parameters/userId'
     get:
       summary: Get User Summary
@@ -55,7 +55,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Summary'
+                $ref: ./summary/models/summary.v5.yaml
         '400':
           description: Bad Request
         '403':
@@ -70,53 +70,21 @@ paths:
         - Internal
 
 components:
-  schemas:
-    TidepoolUserId:
-      $ref: './common/models/tidepooluserid.yaml'
-    SummaryTypeSchema:
-      $ref: './summary/models/summarytype.v1.yaml'
-    AverageGlucose:
-      $ref: './data/models/blood/glucose/glucosemmol.v1.yaml'
-    BGMBucketData:
-      $ref: './summary/models/bgmbucketdata.v1.yaml'
-    BGMPeriod:
-      $ref: './summary/models/bgmperiod.v1.yaml'
-    BGMPeriods:
-      $ref: './summary/models/bgmperiods.v1.yaml'
-    BGMStats:
-      $ref: './summary/models/bgmstats.v1.yaml'
-    CGMBucketData:
-      $ref: './summary/models/cgmbucketdata.v1.yaml'
-    CGMPeriod:
-      $ref: './summary/models/cgmperiod.v1.yaml'
-    CGMPeriods:
-      $ref: './summary/models/cgmperiods.v1.yaml'
-    CGMStats:
-      $ref: './summary/models/cgmstats.v1.yaml'
-    Bucket:
-      $ref: './summary/models/bucket.v1.yaml'
-    Config:
-      $ref: './summary/models/config.v1.yaml'
-    Dates:
-      $ref: './summary/models/dates.v1.yaml'
-    Summary:
-      $ref: './summary/models/summary.v1.yaml'
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
     serverToken:
       $ref: './common/security/tidepoolservertoken.v1.yaml'
   parameters:
-    summaryType:
+    summaryType.v5:
       name: summaryType
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/SummaryTypeSchema'
+        $ref: ./summary/models/summaryType.v5.yaml
     userId:
       name: userId
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/TidepoolUserId'
-
+        $ref: ./common/models/tidepooluserid.yaml

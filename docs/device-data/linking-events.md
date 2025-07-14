@@ -35,7 +35,7 @@ Platform creates GUIDs for the ID of each event. This means that linked events s
 
 The data for ingestion via Platform looks like:
 
-```json title="Sample Data" lineNumbers=true
+```json {% title="Sample Data" %}
 [
   {
     "type": "wizard",
@@ -61,7 +61,7 @@ The data for ingestion via Platform looks like:
 
 The resulting data looks like:
 
-```json title="Sample Response" lineNumbers=true
+```json {% title="Sample Response" %}
 [
   {
     "type": "bolus",

@@ -1,0 +1,9 @@
+title: Bolus Delivery Context
+type: string
+enum:
+  - algorithm
+  - device
+  - oneButton
+  - remote
+  - watch
+  - undetermined

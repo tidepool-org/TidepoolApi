@@ -4,3 +4,37 @@ rules:
   no-ambiguous-paths: off
   operation-2xx-response: off
   operation-4xx-response: off
+
+logo: 
+  image: ./assets/images/Tidepool_Logo_Dark_Large.png
+  link: /
+  altText: "Tidepool Logo"
+  favicon: ./assets/images/Tidepool_T_Icon_Small.png
+
+navbar:
+  items:
+    - page: index.md
+      label: Home
+    - page: /tidepool-apis/
+
+catalog:
+  tidepool-catalog:
+    title: Tidepool API
+    description: Making diabetes data accessible, actionable and meaningful
+    slug: /tidepool-apis/
+    items:
+      - directory: ./reference
+        # includeByMetadata:
+        #    category: deprecated
+
+openapi:
+  hideInfoMetadata: true
+
+ignore:
+  - 'reference/xealth.v2.yaml'
+  - 'reference/redox.v1.yaml'
+  - 'reference/auth.v1.yaml'
+
+markdown:
+  toc:
+    depth: 2

@@ -3,8 +3,8 @@ type: object
 properties:
   key:
     $ref: ./key.v1.yaml
-  type: 
-    $ref: './type.v1.yaml'
+  type:
+    $ref: './confirmation-type.v1.yaml'
   status:
     $ref: './status.v1.yaml'
   email:
@@ -21,6 +21,8 @@ properties:
     type: string
   restrictions:
     $ref: ./restrictions.v1.yaml
+  expiresAt:
+    $ref: ./expiresAt.v1.yaml
 required:
   - key
   - type

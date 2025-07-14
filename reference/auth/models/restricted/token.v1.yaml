@@ -6,7 +6,7 @@ properties:
   expirationTime:
     $ref: '../../../common/models/datetime.v1.yaml'
   id:
-    $ref: './id.v1.yaml'
+    $ref: './restricted-token-id.v1.yaml'
   modifiedTime:
     $ref: '../../../common/models/datetime.v1.yaml'
   paths:

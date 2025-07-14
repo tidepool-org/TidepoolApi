@@ -1,0 +1,13 @@
+type: array
+title: Patient Tag ID List
+uniqueItems: true
+nullable: true
+items:
+  title: Patient Tag ID
+  description: >-
+    Patient Tag identifier.
+  type: string
+  minLength: 24
+  maxLength: 24
+  pattern: '^[a-f0-9]{24}$'
+  readOnly: true

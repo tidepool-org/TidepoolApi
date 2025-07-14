@@ -7,17 +7,22 @@
 1. [Overview](#overview)
 2. [Calculation](#calculation)
    1. [Threshold Values](#threshold-values)
-   2. [Bucket Fields](#bucket-fields)
-   3. [Period Fields](#period-fields)
+   2. [Hourly Bucket Data Fields](#hourly-bucket-data-fields)
+      1. [GlucoseBucket](#glucosebucket)
+   3. [Summary Period Data Fields](#summary-period-data-fields)
+      1. [GlucosePeriod](#glucoseperiod)
+      2. [GlucoseRange](#glucoserange)
    4. [Handling Multiple Data Sources](#handling-multiple-data-sources)
 
 ---
 
-# Overview
+## Overview
 
-Tidepool Platform automatically calculates several summary statistics for each user as they upload diabetes data into their account. Currently supported data types are CGM (`cbg`) and BGM (`smbg`). Our plan is to add insulin pump summaries as well in the future.
+Tidepool Platform automatically calculates several summary statistics for each user as they upload diabetes data into their account. Currently supported data types are CGM and BGM, from [Continuous Glucose Monitors][cgm] and [Blood Glucose Meters][bgm], respectively. Our plan is to add insulin delivery summaries as well in the future.
 
-The following diagram illustrates how the overall process works using Tidepool Uploader as an example. The same process applies regardless of how the data appears in the user's account. Other examples are uploading using Tidepool Mobile, or automatically via import from Dexcom Clarity, or even 3rd party applications such as xDrip.
+The following diagram illustrates how the overall process works using manual [Tidepool Uploader][uploader] upload as an example. The same process applies regardless of how the data arrives in the user's account. Other examples are automatically uploading using [Tidepool Mobile][mobile], or via cloud-to-cloud import from [Dexcom Clarity][dexcom_clarity] or [Abbott LibreView][abbott_libreview], or even 3rd party applications such as [xDrip][xdrip].
+
+**NOTE:** The summary calculation itself is nearly instantaneous. However, it is triggered by the arrival of new data so depending on the path of the upload it may take anywhere from few minutes to several hours for the summary statistics to be recalculated.
 
 ```mermaid
 sequenceDiagram
@@ -32,23 +37,23 @@ sequenceDiagram
    activate Uploader
    Uploader->>Platform: Upload diabetes data
    activate Platform
-   note right of Platform: If cbg or smbg data
+   note right of Platform: If CGM or BGM data
    Platform->>Platform: Mark account summary as out-of-date
    Platform->>Uploader: OK
    deactivate Platform
    Uploader->>PWD: OK
    deactivate Uploader
 
-   loop Every 3 minutes
+   loop Every 30 seconds
       Platform->>Platform: Re-calculate summary data
       Platform->>Platform: Store summary data
    end
    Platform->>Clinic: Summary available via patient list
 ```
 
-# Calculation
+## Calculation
 
-The summary calculation is done in batches of 500 most out-of-date user accounts at a time, every 3 minutes. The calculation for each user proceeds as shown in the diagram below:
+The summary calculation is done in batches of up to 250 most out-of-date user accounts, up to 4 batches in one iteration, where each iteration may begin every 30 seconds. Thus, each calculation iteration may update up to 1,000 accounts. The calculation for each user proceeds as shown in the diagram below:
 
 ```mermaid
 sequenceDiagram
@@ -58,93 +63,259 @@ sequenceDiagram
    participant Buckets as Buckets
    participant Periods as Periods
 
-   Device->>Samples: Upload cbg and/or smbg samples
-   Samples->>Buckets: Summarize by type into 1-hour buckets
+   Device->>Samples: Upload CGM and/or BGM samples
+   Samples->>Buckets: Summarize by type into 1-hour buckets over 60 days
    Buckets->>Periods: Summarize by type into 1, 7, 14, 30 day periods
 ```
 
-Each user's data is first summarized into a set of 1-hour buckets separated by type (`cbg` or `smbg`) over the last 30 days, for a maximum of 720 buckets. The 30 day window is backwards from the date of the last uploaded data for each user, not the present day. The window may be shorter than 30 days of data until the user uploads enough data to fill it. Finally, the window may contain gaps if the user has not uploaded data that fills each bucket.
+Each user's data is first summarized into a set of 1-hour buckets separated by type (CGM or BGM) over the last 60 days, for a maximum of 1,440 buckets per type. The 60 day window is backwards from the date of the last uploaded data for each user, not the current date. The window may be shorter than 60 days of data if the user has not uploaded enough data. The window may also contain gaps.
 
-The 1-hour buckets are then further summarized by type into a set of 1, 7, 14, and 30 day periods. Thus, in the end a user who has both CGM and BGM data will have:
+The 1-hour buckets are then further summarized by type (CGM, BGM) into 1, 7, 14, and 30 day periods again backwards from the date of last uploaded data. In each period record, there is a delta record from the previous period of the corresponding duration. This enables period-over-period comparisons to support advanced dashboards such as _Stanford Timely Interventions for Diabetes Excellence_ or TIDE ([paper][tide]). The following diagram illustrates the relationship of the periods and the corresponding delta record.
 
-* Up to 1,440 1-hour buckets: `[ CGM, BGM ] x (30 * 24)`
-* Up to 8 period records: `[ CGM, BGM ] x [ 1d, 7d, 14d, 30d ]`
+```mermaid
+gantt
+   dateFormat YYYY-MM-DD
+   axisFormat %b %d
+   todayMarker off
+   tickInterval 1week
+   last uploaded data :crit, milestone, 2023-08-31, 0d
+   section Current Periods
+      current 1d   :active, 2023-08-30, 1d
+      current 7d   :active, 2023-08-24, 7d
+      current 14d  :active, 2023-08-17, 14d
+      current 30d  :active, 2023-08-01, 30d
+   section Previous Periods
+      previous 1d  :2023-08-29, 1d
+      previous 7d  :2023-08-17, 7d
+      previous 14d :2023-08-03, 14d
+      previous 30d :2023-07-02, 30d
+```
 
-All of the data is stored within each user account to enable quick sorting and filtering in each clinic's patient list. If a user is a patient of multiple clinics, all clinics share the same summary data.
+Thus, a user who has both CGM and BGM data may have up to the following number of summary calculation artifacts:
+
+$$
+\begin{align}
+\begin{bmatrix}
+  CGM \\
+  BGM
+\end{bmatrix} types
+\times 60 \space days
+\times 24 \space hours
+& = 2,880 \space hourly \space buckets \nonumber \\
+\begin{bmatrix}
+  CGM \\
+  BGM
+\end{bmatrix} types
+\times \begin{bmatrix}
+  1 \\
+  7 \\
+  14 \\
+  30
+\end{bmatrix} \space days
+& = 8 \space periods \nonumber
+\end{align}
+$$
+
+All of the summary period data is stored within each user account to enable quick sorting and filtering in each clinic's patient list. If a user is a patient of multiple clinics, all clinics share the same summary data.
 
 ## Threshold Values
 
-The summary calculation uses the glycemic targets established by [ADA](https://diabetes.org/) [[standards of care](https://diabetesjournals.org/care/issue/46/Supplement_1)] and [AACE](https://pro.aace.com/) [[paper](https://doi.org/10.1016/j.eprac.2022.08.002), [table](https://www.endocrinepractice.org/article/S1530-891X(22)00576-6/fulltext#tbl6)] to characterize each `cbg` or `smbg` glucose value as one of very low, low, in range, high, or very high. The same target ranges are currently used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are:
+The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges $AnyLow$ and $AnyHigh$. Note also that the $VeryHigh$ range is inclusive of the $ExtremeHigh$ range.
 
-<!-- Tidepool stores values in mmol/L with conversion factor of 18.01559 -->
-|       Unit |    Very Low |                Low |             In Range |                 High |    Very High |
-| ---------: | ----------: | -----------------: | -------------------: | -------------------: | -----------: |
-| **mmol/L** | value < 3.0 | 3.0 <= value < 3.9 | 3.9 <= value <= 10.0 | 10.0 < value <= 13.9 | value > 13.9 |
-|  **mg/dL** |  value < 54 |   54 <= value < 70 |   70 <= value <= 180 |   180 < value <= 250 |  value > 250 |
+<!-- unfortunately GitHub Markdown renderer strips all styles from HTML tables... -->
+<!-- so these styles are only useful if rendering with some other Markdown renderer -->
+<table style="text-align: center">
+<colgroup>
+<col style="background-color: #E0E0E0"/>
+<!-- BG range colors from https://github.com/tidepool-org/blip/blob/develop/app/themes/baseTheme.js -->
+<col style="background-color: #E9695E"/>
+<col style="background-color: #F19181"/>
+<col style="background-color: #8DD0A9"/>
+<col style="background-color: #B69CE2"/>
+<col style="background-color: #856ACF"/>
+<col style="background-color: #5438A3"/>
+</colgroup>
+<thead>
+<tr>
+<th rowspan="2" style="font-style: italic">
+Unit
+</th>
+<th colspan="2" style="background-image: linear-gradient(to right, #E9695E, #F19181)">
 
-## Bucket Fields
+$AnyLow$
+</th>
+<th rowspan="2">
 
-The data fields in buckets vary by the type of source data:
+$Target$
+</th>
+<th colspan="3" style="background-image: linear-gradient(to right, #B69CE2, #856ACF, #5438A3)">
 
-|  `cbg`   |  `smbg`  | Field             | Type      | Unit    |
-| :------: | :------: | :---------------- | :-------- | :------ |
-| &#10004; |          | `VeryLowMinutes`  | `int`     | minutes |
-| &#10004; | &#10004; | `VeryLowRecords`  | `int`     |         |
-| &#10004; |          | `LowMinutes`      | `int`     | minutes |
-| &#10004; | &#10004; | `LowRecords`      | `int`     |         |
-| &#10004; |          | `TargetMinutes`   | `int`     | minutes |
-| &#10004; | &#10004; | `TargetRecords`   | `int`     |         |
-| &#10004; |          | `HighMinutes`     | `int`     | minutes |
-| &#10004; | &#10004; | `HighRecords`     | `int`     |         |
-| &#10004; |          | `VeryHighMinutes` | `int`     | minutes |
-| &#10004; | &#10004; | `VeryHighRecords` | `int`     |         |
-| &#10004; | &#10004; | `TotalGlucose`    | `float64` | mmol/L  |
-| &#10004; |          | `TotalMinutes`    | `int`     | minutes |
-| &#10004; | &#10004; | `TotalRecords`    | `int`     |         |
+$AnyHigh$
+</th>
+</tr>
+<tr>
+<th>
 
-## Period Fields
+$VeryLow$
+</th>
+<th>
 
-The data fields in periods vary by the type of source data:
+$Low$
+</th>
+<th>
 
-|  `cgm`   |  `smbg`  | Field                           | Type      | Unit    | Notes                         |
-| :------: | :------: | :------------------------------ | :-------- | :------ | :---------------------------- |
-| &#10004; | &#10004; | `HasAverageGlucose`             | `bool`    |         |                               |
-| &#10004; |          | `HasGlucoseManagementIndicator` | `bool`    |         |                               |
-| &#10004; |          | `HasTimeCGMUsePercent`          | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInLowPercent`           | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInVeryLowPercent`       | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInTargetPercent`        | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInHighPercent`          | `bool`    |         |                               |
-| &#10004; | &#10004; | `HasTimeInVeryHighPercent`      | `bool`    |         |                               |
-| &#10004; |          | `TimeCGMUsePercent`             | `float64` | %       |                               |
-| &#10004; |          | `TimeCGMUseMinutes`             | `int`     | minutes |                               |
-| &#10004; |          | `TimeCGMUseRecords`             | `int`     |         |                               |
-| &#10004; | &#10004; | `AverageGlucose`                | `float64` | mmol/L  | `TotalGlucose / TotalRecords` |
-|          | &#10004; | `TotalRecords`                  | `int`     |         |                               |
-| &#10004; |          | `GlucoseManagementIndicator`    | `float64` | %Hb1A1c | footnote 1                    |
-| &#10004; | &#10004; | `TimeInVeryLowPercent`          | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInVeryLowMinutes`          | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInVeryLowRecords`          | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInLowPercent`              | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInLowMinutes`              | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInLowRecords`              | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInTargetPercent`           | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInTargetMinutes`           | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInTargetRecords`           | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInHighPercent`             | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInHighMinutes`             | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInHighRecords`             | `int`     |         | footnote 2                    |
-| &#10004; | &#10004; | `TimeInVeryHighPercent`         | `float64` | %       | footnote 2                    |
-| &#10004; |          | `TimeInVeryHighMinutes`         | `int`     | minutes | footnote 2                    |
-| &#10004; | &#10004; | `TimeInVeryHighRecords`         | `int`     |         | footnote 2                    |
+$High$
+</th>
+<th>
 
-Footnotes
+$VeryHigh$
+</th>
+<th>
 
-1. `GlucoseManagementIndicator` value is only calculated if `TimeCGMUsePercent` for the period is >70%. It is calculated as follows:
-   1. `12.71 + 4.70587 * AverageGlucose` per the [Jaeb formula](https://www.jaeb.org/gmi/) to produce a GMI value in mmol/mol
-   2. `GMI * 0.09148 + 2.152` per the [NGSP formula](https://ngsp.org/ifcc.asp) to produce a %HbA1c value
-   3. Round the result to one decimal point
-2. The `TimeInXXX` values are only calculated if `TimeCGMUsePercent` is >70% for periods <= 1 day, and only if `TotalMinutes` is >1440 minutes (=24 hours) for periods > 1 day.
+$ExtremeHigh$
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+$\frac{mmol}{L}$
+</td>
+<td>
+
+$v < 3.0$
+</td>
+<td>
+
+$3.0 ≤ v < 3.9$
+</td>
+<td>
+
+$3.9 ≤ v ≤ 10.0$
+</td>
+<td>
+
+$10.0 < v ≤ 13.9$
+</td>
+<td>
+
+$v > 13.9$
+</td>
+<td>
+
+$v ≥ 19.4$
+</td>
+</tr>
+<tr>
+<td>
+
+$\frac{mg}{dL}$
+</td>
+<td>
+
+$v < 54$
+</td>
+<td>
+
+$54 ≤ v < 70$
+</td>
+<td>
+
+$70 ≤ v ≤ 180$
+</td>
+<td>
+
+$180 < v ≤ 250$
+</td>
+<td>
+
+$v > 250$
+</td>
+<td>
+
+$v ≥ 350$
+</td>
+</tr>
+</tbody>
+</table>
+
+<!-- unfortunately stock GFM doesn't support 2-row colum headers >
+|       Unit       | $VeryLow$ |      $Low$      |     $Target$     |      $High$       | $VeryHigh$ | $ExtremeHigh$ |
+| :--------------: | :-------: | :-------------: | :--------------: | :---------------: | :--------: | :-----------: |
+| $\frac{mmol}{L}$ | $v < 3.0$ | $3.0 ≤ v < 3.9$ | $3.9 ≤ v ≤ 10.0$ | $10.0 < v ≤ 13.9$ | $v > 13.9$ |  $v ≥ 19.4$   |
+| $\frac{mg}{dL}$  | $v < 54$  |  $54 ≤ v < 70$  |  $70 ≤ v ≤ 180$  |  $180 < v ≤ 250$  | $v > 250$  |   $v ≥ 350$   |
+-->
+
+**NOTE:** Tidepool normalizes glucose samples to $\frac{mmol}{L}$ units. If the original sample was in $\frac{mg}{dL}$ units, it is converted using a conversion factor of $18.01559$ derived from the molecular weight of glucose ($C_{6} H_{12} O_{6}$):
+
+$$
+12.01070 \frac{g}{mol} \times 6 + 1.00794 \frac{g}{mol} \times 12 + 15.99940 \frac{g}{mol} \times 6 = 180.1559 \frac{g}{mol}
+$$
+
+## Hourly Bucket Data Fields
+
+Each bucket has a set of common fields, as well as a set of fields repeated for each of the 7 named summary ranges: $InLow$, $InTarget$, $InHigh$, $InVeryHigh$, $InExtremeHigh$, $InAnyLow$, and $InAnyHigh$. For brevity, in the following table the placeholder $\textbf{Xxx}$ corresponds to those names rather than repeating each set of fields.
+
+### GlucoseBucket
+
+|  CGM  |  BGM  | Field                  | Type     | Unit             | Notes                                                                              |
+| :---: | :---: | :--------------------- | :------- | :--------------- | :--------------------------------------------------------------------------------- |
+|   ✅   |   ✅   | $Type$                 | $string$ |                  | Type of data in this bucket: `cgm` or `bgm`                                        |
+|   ✅   |   ✅   | $Date$                 | $date$   |                  | Start time of the bucket                                                           |
+|   ✅   |   ✅   | $LastRecordTime$       | $date$   |                  | Time of the last sample in the bucket                                              |
+|   ✅   |       | $LastRecordDuration$   | $int$    | $min$            | Duration of the last sample in the bucket                                          |
+|   ✅   |   ✅   | $Total.Glucose$        | $float$  | $\frac{mmol}{L}$ | Sum of all samples in the bucket                                                   |
+|   ✅   |       | $Total.Minutes$        | $int$    | $min$            | Sum of minutes covered by all samples in the bucket                                |
+|   ✅   |   ✅   | $Total.Records$        | $int$    |                  | Count of all samples in the bucket                                                 |
+|   ✅   |   ✅   | $\textbf{Xxx}.Glucose$ | $float$  | $\frac{mmol}{L}$ | Sum of all samples within the thresholds of $Xxx$ in the bucket                    |
+|   ✅   |       | $\textbf{Xxx}.Minutes$ | $int$    | $min$            | Sum of minutes covered by each sample within the thresholds of $Xxx$ in the bucket |
+|   ✅   |   ✅   | $\textbf{Xxx}.Records$ | $int$    |                  | Count of samples within the thresholds of $Xxx$ in the bucket                      |
+
+## Summary Period Data Fields
+
+* $GlucosePeriod.GlucoseManagementIndicator$ is only present if $GlucosePeriod.Total.Percent > 70$
+  * It is calculated using the [Jaeb formula][jaeb] to produce a GMI value in $\frac{mmol}{mol}$ units, and then using the [NGSP formula][ngsp] to produce a % HbA1c value
+  * It is rounded to one decimal point of precision
+* $GlucosePeriod.Delta$ is not recursive: it is only present in the top-level $GlucosePeriod$
+* $GlucosePeriod.Total$ is always present, but the threshold ranges are present only if:
+  * $GlucosePeriod.DaysInPeriod ≤ 1$ and $GlucosePeriod.Total.Percent > 70$ or
+  * $GlucosePeriod.DaysInPeriod > 1$ and $GlucosePeriod.Total.Minutes > 1,440$ (=24 hours)
+* $GlucoseRange.Variance$ is only present in $GlucosePeriod.Total$
+
+### GlucosePeriod
+
+|  CGM  |  BGM  | Field                        | Type            | Unit             | Notes                                                            |
+| :---: | :---: | :--------------------------- | :-------------- | :--------------- | :--------------------------------------------------------------- |
+|   ✅   |   ✅   | $Type$                       | $string$        |                  | Type of data in this period: `cgm` or `bgm`                      |
+|   ✅   |   ✅   | $DaysInPeriod$               | $int$           |                  | Number of days in this period: 1, 7, 14, or 30                   |
+|   ✅   |   ✅   | $DaysWithData$               | $int$           |                  | Number of days where $Total.Records > 0$                         |
+|   ✅   |   ✅   | $HoursWithData$              | $int$           |                  | Number of hours where $Total.Records > 0$                        |
+|   ✅   |   ✅   | $Total$                      | $GlucoseRange$  |                  | Totals for all samples regardless of thresholds                  |
+|   ✅   |   ✅   | $InVeryLow$                  | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InLow$                      | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InTarget$                   | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InHigh$                     | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InVeryHigh$                 | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InExtremeHigh$              | $GlucoseRange$  |                  |                                                                  |
+|   ✅   |   ✅   | $InAnyLow$                   | $GlucoseRange$  |                  | $InVeryLow + InLow$                                              |
+|   ✅   |   ✅   | $InAnyHigh$                  | $GlucoseRange$  |                  | $InHigh + InVeryHigh$ (this includes $InExtremeHigh$)            |
+|   ✅   |   ✅   | $AverageDailyRecords$        | $float$         |                  | $\frac{Total.Records}{DaysInPeriod}$                             |
+|   ✅   |   ✅   | $AverageGlucoseMmol$         | $float$         | $\frac{mmol}{L}$ | $\frac{Total.Glucose}{Total.Records}$                            |
+|   ✅   |       | $GlucoseManagementIndicator$ | $float$         | % HbA1c          | $(12.71 + 4.70587 \times AverageGlucose) \times 0.09148 + 2.152$ |
+|   ✅   |       | $StandardDeviation$          | $float$         | $\frac{mmol}{L}$ | $\sqrt{\frac{Total.Variance}{Total.Minutes}}$                    |
+|   ✅   |       | $CoefficientOfVariation$     | $float$         |                  | $\frac{StandardDeviation}{AverageGlucoseMmol}$                   |
+|   ✅   |   ✅   | $Delta$                      | $GlucosePeriod$ |                  | Deltas from the previous period of the same duration             |
+
+### GlucoseRange
+
+|  CGM  |  BGM  | Field      | Type    | Unit                 | Notes                                                        |
+| :---: | :---: | :--------- | :------ | :------------------- | :----------------------------------------------------------- |
+|   ✅   |   ✅   | $Glucose$  | $float$ | $\frac{mmol}{L}$     | Sum of all samples in the period                             |
+|   ✅   |       | $Minutes$  | $int$   | $min$                | Sum of minutes covered by each sample in the period          |
+|   ✅   |   ✅   | $Records$  | $int$   |                      | Count of samples in the period                               |
+|   ✅   |       | $Percent$  | $float$ | %                    | $\frac{\textbf{Xxx}.Records}{Total.Records}$                 |
+|   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$ | Calculated using [weighted incremental algorithm][variance]. |
 
 ## Handling Multiple Data Sources
 
@@ -154,15 +325,32 @@ In the following example there is a series of data samples in the current 1-hour
 
 | Time       | Device    | Action                                                                |
 | ---------- | --------- | --------------------------------------------------------------------- |
-| `xx:00:00` | Dexcom G6 | **Included in calculation.** Sets blackout window to 5 minutes.       |
-| `xx:00:30` | Brand X   | Ignored within blackout window.                                       |
-| `xx:01:30` | Brand X   | Ignored within blackout window.                                       |
-| `xx:02:30` | Brand X   | Ignored within blackout window.                                       |
-| `xx:03:30` | Brand X   | Ignored within blackout window.                                       |
-| `xx:04:30` | Brand X   | Ignored within blackout window.                                       |
-| `xx:05:00` | Dexcom G6 | **Included in calculation.** Resets the blackout window to 5 minutes. |
-| `xx:05:30` | Brand X   | Ignored within blackout window.                                       |
-| `xx:06:30` | Brand X   | Ignored within blackout window.                                       |
+| $xx:00:00$ | Dexcom G6 | **Included in calculation.** Sets blackout window to 5 minutes.       |
+| $xx:00:30$ | Brand X   | Ignored within blackout window.                                       |
+| $xx:01:30$ | Brand X   | Ignored within blackout window.                                       |
+| $xx:02:30$ | Brand X   | Ignored within blackout window.                                       |
+| $xx:03:30$ | Brand X   | Ignored within blackout window.                                       |
+| $xx:04:30$ | Brand X   | Ignored within blackout window.                                       |
+| $xx:05:00$ | Dexcom G6 | **Included in calculation.** Resets the blackout window to 5 minutes. |
+| $xx:05:30$ | Brand X   | Ignored within blackout window.                                       |
+| $xx:06:30$ | Brand X   | Ignored within blackout window.                                       |
 | ...        | ...       | ...                                                                   |
 
 The blackout windows are defined as 15 minutes for Abbott FreeStyle Libre devices, and 5 minutes for all other devices.
+
+[ada]: https://diabetes.org/
+[ada_care]: https://diabetesjournals.org/care/issue/46/Supplement_1
+[aace]: https://pro.aace.com/
+[aace_paper]: https://doi.org/10.1016/j.eprac.2022.08.002
+[aace_table]: https://www.endocrinepractice.org/article/S1530-891X(22)00576-6/fulltext#tbl6
+[tide]: https://pubmed.ncbi.nlm.nih.gov/39506045/
+[jaeb]: https://www.jaeb.org/gmi/
+[ngsp]: https://ngsp.org/ifcc.asp
+[uploader]: https://www.tidepool.org/download
+[mobile]: https://www.tidepool.org/download
+[dexcom_clarity]: https://clarity.dexcom.com/
+[abbott_libreview]: https://www.libreview.com/
+[xdrip]: https://github.com/NightscoutFoundation/xDrip
+[cgm]: https://diabetes.org/get-involved/advocacy/continuous-glucose-monitors
+[bgm]: https://en.wikipedia.org/wiki/Glucose_meter
+[variance]: https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Weighted_incremental_algorithm

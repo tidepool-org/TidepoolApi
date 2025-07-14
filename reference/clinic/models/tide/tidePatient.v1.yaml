@@ -1,0 +1,31 @@
+type: object
+title: tidepatient.v1
+description: ''
+properties:
+  id:
+    $ref: ../../../common/models/tidepooluserid.yaml
+  email:
+    type: string
+    x-go-type: string
+    format: email
+  fullName:
+    type: string
+    description: The full name of the patient
+    minLength: 1
+  tags:
+    $ref: ../patientTagIds.v1.yaml
+  reviews:
+    type: array
+    nullable: true
+    x-go-type-skip-optional-pointer: true
+    items:
+      $ref: '../patientReview.v1.yaml'
+  dataSources:
+    type: array
+    nullable: true
+    items:
+      $ref: '../dataSource.v1.yaml'
+
+required:
+  - id
+  - tags

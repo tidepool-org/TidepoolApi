@@ -1,40 +1,38 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
+
+set -eou pipefail
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+TOOLS_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
+NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
+PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo + $*
-    $*
+    echo "${PS4}$*"
+    "$@"
 }
 
 case $1 in
-	-h | --help)
-		echo "usage: $(basename $0) [-h | --help] | [-i | --install] | [-c | --self-check] | {source-spec-filename} {bundled-spec-filename}"
-		;;
-
-    -i | --install)
-		trace npm --version
-		trace npm install -g @apidevtools/swagger-cli@4.0.4
-		trace go version
-		trace go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@latest
-        exit 0
-        ;;
+    -h | --help)
+	echo "usage: $(basename "$0") [-h | --help] | [-c | --self-check] | {source-spec-filename} {bundled-spec-filename}"
+	;;
 
     -c | --self-check)
-        trace swagger-cli --version
-        trace oapi-codegen --version
-        exit 0
-        ;;
+	trace redocly --version
+	trace oapi-codegen --version
+	;;
 
     *)
-        source=$1
-		bundled=$2
-        server=$(dirname $bundled)/server
-        client=$(dirname $bundled)/client
-        common="--old-config-style --exclude-tags=Confirmations --package=api"
-		trace swagger-cli bundle $source -o $bundled -t yaml
-        trace mkdir -p $server $client
-		trace oapi-codegen $common --generate=server -o $server/gen_server.go $bundled
-		trace oapi-codegen $common --generate=spec -o $server/gen_spec.go $bundled
-		trace oapi-codegen $common --generate=types -o $server/gen_types.go $bundled
-        trace oapi-codegen $common --generate=types -o $client/types.go $bundled
-	    trace oapi-codegen $common --generate=client -o $client/client.go $bundled
+	source=${1?:source-spec-filename is required}
+	bundled=${2?:bundled-spec-filename is required}
+	server="$(dirname "$bundled")/server"
+	client="$(dirname "$bundled")/client"
+	common=( --old-config-style --exclude-tags=Confirmations --package=api )
+	trace redocly bundle "$source" -o "$bundled"
+	trace mkdir -p "$server" "$client"
+	trace oapi-codegen "${common[@]}" --generate=server -o "$server/gen_server.go" "$bundled"
+	trace oapi-codegen "${common[@]}" --generate=spec -o "$server/gen_spec.go" "$bundled"
+	trace oapi-codegen "${common[@]}" --generate=types -o "$server/gen_types.go" "$bundled"
+	trace oapi-codegen "${common[@]}" --generate=types -o "$client/types.go" "$bundled"
+	trace oapi-codegen "${common[@]}" --generate=client -o "$client/client.go" "$bundled"
 esac

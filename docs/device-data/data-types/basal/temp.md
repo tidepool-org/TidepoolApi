@@ -1,30 +1,13 @@
 <!-- omit in toc -->
 # Temporary Basals (`temp`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
-3. [Percent (`percent`)](#percent-percent)
-4. [Examples](#examples)
-5. [Keep Reading](#keep-reading)
-
----
-
-## Quick Summary
-
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/temporary.v1.yaml'
-```
-
----
-
 ## Delivery Type (`deliveryType`)
+
+The string `temp`.
 
 This is the sub-type of basal event that represents temporary intervals of basal insulin delivery requested by the user. Insulin pumps allow a temporary basal insulin rate for a duration of up to 24 hours. Depending on the pump, the user will be able to program a temp basal rate by percentage, manual specification or both.
 
----
+{% partial file="/_partials/basal_duration.md" /%}
 
 ## Percent (`percent`)
 
@@ -37,11 +20,27 @@ Examples:
 
 Tidepool's data model has standardized on a floating point representation of the second strategy. The value 0.0 represents a temp basal at 0% of the current active rate, 0.5 at 50%, 1.0 at 100%, 1.5 at 150%, and so on.
 
+{% partial file="/_partials/basal_rate.md" /%}
+
+## Suppressed (`suppressed`)
+
+An object representing another `basal` event - namely, the event that is currently [suppressed](./suppressed.md) (inactive) because this temp basal is in effect.
+
+---
+
+## Quick Summary
+
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/temporary.v1.yaml"
+  }
+/%}
+
 ---
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -67,7 +66,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "basal",
     "deliveryType": "temp",
@@ -91,7 +90,7 @@ Tidepool's data model has standardized on a floating point representation of the
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "basal",
     "deliveryType": "temp",

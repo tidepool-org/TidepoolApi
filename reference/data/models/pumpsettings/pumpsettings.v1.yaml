@@ -143,11 +143,13 @@ allOf:
         example: Pump A Lot
       name:
         type: string
+        description: The name of the pump, if known.
         minLength: 1
         maxLength: 100
         example: My Pump
       serialNumber:
         type: string
+        description: The serial number of the pump, if known.
         minLength: 1
         maxLength: 100
       sleepSchedules:
@@ -192,6 +194,7 @@ allOf:
                 - enabled
       softwareVersion:
         type: string
+        description: The software version of the pump, if known.
         minLength: 1
         maxLength: 100
         example: 3.4.5

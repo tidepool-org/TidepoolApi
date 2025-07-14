@@ -1,0 +1,49 @@
+type: object
+title: summaryDates.v5
+x-go-type-skip-optional-pointer: true
+description: 'dates tracked for summary calculation'
+properties:
+  lastUpdatedDate:
+    description: Date of the last calculation
+    type: string
+    format: date-time
+
+  lastUpdatedReason:
+    description: List of reasons the summary was updated for
+    type: array
+    items:
+      type: string
+
+  firstData:
+    description: Date of the first included value
+    type: string
+    format: date-time
+
+  lastData:
+    description: Date of the last calculated value
+    type: string
+    format: date-time
+
+  lastUploadDate:
+    description: Created date of the last calculated value
+    type: string
+    format: date-time
+
+  outdatedSince:
+    description: Date of the first user upload after lastData, removed when calculated
+    type: string
+    format: date-time
+
+  outdatedReason:
+    description: List of reasons the summary was marked outdated for
+    type: array
+    items:
+      type: string
+
+required:
+  - firstData
+  - lastData
+  - lastUpdatedReason
+  - lastUpdatedDate
+  - lastUploadDate
+  - outdatedReason

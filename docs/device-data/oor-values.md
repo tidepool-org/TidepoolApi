@@ -17,11 +17,14 @@ Blood glucose meters, ketone meters and continuous glucose monitors have a range
 
 For example, for a low CGM reading for a device that displays in mg/dL with a low threshold of 40 mg/dL:
 
-```json title="Sample Low CGM Reading" lineNumbers=true
+```json {% title="Sample Low CGM Reading" %}
 {
   "type": "cbg",
   "units": "mg/dL",
   "value": 39,
+  "trendRate": -2.2,
+  "trendRateUnits": "mg/dL/minute",
+  "sampleInterval": 300000,
   "clockDriftOffset": 0,
   "conversionOffset": 0,
   "deviceId": "DevId0987654321",
@@ -51,11 +54,14 @@ For blood ketone readings, the threshold should be a value measured in mmol/L. W
 
 For example, for a high CGM reading for a device that displays in mmol/L with a high threshold of 23.0 mmol/L:
 
-```json title="Sample High CGM Reading" lineNumbers=true
+```json {% title="Sample High CGM Reading" %}
 {
   "type": "cbg",
   "units": "mmol/L",
   "value": 23.035604162838963,
+  "trendRate": -0.4,
+  "trendRateUnits": "mmol/L/minute",
+  "sampleInterval": 300000,
   "clockDriftOffset": 0,
   "conversionOffset": 0,
   "deviceId": "DevId0987654321",
@@ -81,7 +87,7 @@ For example, for a high CGM reading for a device that displays in mmol/L with a 
 
 If the device (or manufacturer) does not provide the exact threshold levels, then the threshold field should *not* be provided, and an additional `[datatype]/unknown-value` annotation should be provided. This is the case in our current Abbott Precision Xtra driver for ketone readings:
 
-```json title="Sample Unknown Value" lineNumbers=true
+```json {% title="Sample Unknown Value" %}
 {
   "type": "bloodKetone",
   "units": "mmol/L",

@@ -1,0 +1,14 @@
+title: MRN Settings
+x-stoplight:
+  id: 876c3qkxy3ih9
+type: object
+properties:
+  required:
+    type: boolean
+    description: Require MRN when creating or updating patients
+  unique:
+    type: boolean
+    description: Enforce MRN uniqueness constraint
+required:
+  - required
+  - unique

@@ -1,0 +1,6 @@
+type: object
+title: cgmstats.v1
+description: 'A summary of a users recent CGM glucose values'
+properties:
+  periods:
+    $ref: './cgmPeriods.v1.yaml'

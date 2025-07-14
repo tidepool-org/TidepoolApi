@@ -1,0 +1,21 @@
+title: EHR Tags Settings
+x-stoplight:
+  id: w3h05rpqc45iv
+type: object
+description: This configuration only applies to integrations using Redox Data Model
+properties:
+  codes:
+    type: array
+    x-stoplight:
+      id: fcr5es83pzi6r
+    description: Codes of the clinical info items used to select the tags to associate with the patient. If defined, all tags of a patient will be replaced every time an enrollment order for the patient is processed.
+    items:
+      x-stoplight:
+        id: h40mu6ujxknzf
+      type: string
+  separator:
+    type: string
+    x-stoplight:
+      id: ic7t703igp2rn
+    description: 'If set to a non-empty string, the tag values will be split using this separator'
+    minLength: 1

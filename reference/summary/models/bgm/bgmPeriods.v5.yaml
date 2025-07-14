@@ -1,0 +1,6 @@
+type: object
+title: bgmperiods.v5
+description: 'A map to each supported BGM summary period'
+#x-go-type-skip-optional-pointer: true
+additionalProperties:
+  $ref: '../glucose/glucosePeriod.v5.yaml'

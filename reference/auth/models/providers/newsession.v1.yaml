@@ -4,9 +4,9 @@ description: >-
 type: object
 properties:
   name:
-    $ref: './name.v1.yaml'
+    $ref: './providerName.v1.yaml'
   type:
-    $ref: './type.v1.yaml'
+    $ref: './provider-type.v1.yaml'
   oauthToken:
     $ref: './oauthtoken.v1.yaml'
 required:

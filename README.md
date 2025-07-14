@@ -1,4 +1,4 @@
-# TidepoolApi
+# TidepoolApi 
 
 ![Tidepool Logo](./assets/images/Tidepool_Logo_Dark_Large.png)
 

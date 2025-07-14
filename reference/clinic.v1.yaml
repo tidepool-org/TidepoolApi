@@ -34,25 +34,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinics'
+                $ref: '#/components/schemas/clinics.v1'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: ./common/models/error.v1.yaml
         '403':
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: ./common/models/error.v1.yaml
         '500':
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: ./common/models/error.v1.yaml
       operationId: ListClinics
       description: Retrieve the list of clinics
       parameters:
@@ -61,6 +61,7 @@ paths:
         - $ref: '#/components/parameters/shareCode'
         - $ref: '#/components/parameters/createdTimeStart'
         - $ref: '#/components/parameters/createdTimeEnd'
+        - $ref: '#/components/parameters/ehrEnabled'
       x-roles:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
@@ -75,7 +76,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinic'
+                $ref: ./clinic/models/clinic.v1.yaml
             application/xml:
               schema:
                 type: object
@@ -90,7 +91,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Clinic'
+              $ref: ./clinic/models/clinic.v1.yaml
       description: Create a new clinic
       x-roles: []
       tags:
@@ -130,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinic'
+                $ref: ./clinic/models/clinic.v1.yaml
           links:
             get-clinicians:
               operationId: get-clinics-clinicid-clinicians
@@ -158,7 +159,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinic'
+                $ref: ./clinic/models/clinic.v1.yaml
         '400':
           description: Bad Request
         '403':
@@ -170,7 +171,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Clinic'
+              $ref: ./clinic/models/clinic.v1.yaml
           application/xml:
             schema:
               type: object
@@ -205,7 +206,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinicians'
+                $ref: '#/components/schemas/clinicians.v1'
       operationId: ListClinicians
       description: 'Retrieve the list of clinic members. '
       parameters:
@@ -225,9 +226,49 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Clinician'
+              $ref: ./clinic/models/clinician.v1.yaml
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/tide_report':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: View TIDE Report
+      description: Retrieve a report of patients with tags by TIDE categories
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/tide/tideResponse.v1.yaml
+      operationId: TideReport
+      parameters:
+        - schema:
+            type: string
+            pattern: ^(1d|7d|14d|30d)$
+            example: 7d
+          in: query
+          name: period
+          description: Time Period to display
+        - schema:
+            type: array
+            items:
+              type: string
+              format: '^[a-f0-9]{24}$'
+          in: query
+          name: tags
+          description: Comma-separated list of patient tag IDs
+          style: form
+          explode: false
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: lastDataCutoff
+          description: Inclusive
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -241,7 +282,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientsResponse'
+                $ref: '#/components/schemas/patientsResponse.v1'
       operationId: ListPatients
       parameters:
         - $ref: '#/components/parameters/search'
@@ -263,210 +304,563 @@ paths:
           name: period
           description: 'Time Period to display, filter, and sort'
         - schema:
+            type: boolean
+          in: query
+          name: offsetPeriods
+          required: false
+          description: 'If we should display, filter, and sort based on the offset periods or default periods'
+        - schema:
             type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.5'
+            format: date-time
+          in: query
+          name: lastReviewed
+          description: Inclusive
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.averageGlucoseMmol
+          description: Average glucose value of records in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.glucoseManagementIndicator
+          description: Glucose management Indicator of records
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeCGMUsePercent
-          description: Percentage of time of CGM use
+          description: 'Percentage of time [0.0-1.0]  of CGM use'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryLowPercent
-          description: Percentage of time below 54 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 54 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInAnyLowPercent
+          description: 'Percentage of time [0.0-1.0]  below 70 mg/dL'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInLowPercent
-          description: Percentage of time in range 54-70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 54-70 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInTargetPercent
-          description: Percentage of time in range 70-180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 70-180 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInHighPercent
-          description: Percentage of time in range 180-250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 180-250 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.timeInVeryHighPercent
-          description: Percentage of time above 250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 250 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInExtremeHighPercent
+          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInAnyHighPercent
+          description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeCGMUseMinutes
+          description: Minutes of CGM use
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryLowMinutes
+          description: Minutes below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyLowMinutes
+          description: Minutes below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInLowMinutes
+          description: Minutes in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInTargetMinutes
+          description: Minutes in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInHighMinutes
+          description: Minutes in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryHighMinutes
+          description: Minutes above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInExtremeHighMinutes
+          description: Minutes above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyHighMinutes
+          description: Minutes above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeCGMUseRecords
           description: Records of CGM use
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInVeryLowRecords
           description: Records below 54 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyLowRecords
+          description: Records below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInLowRecords
           description: Records in range 54-70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInTargetRecords
           description: Records in range 70-180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInHighRecords
           description: Records in range 180-250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.timeInVeryHighRecords
           description: Records above 250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyHighRecords
+          description: Records above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: cgm.averageDailyRecords
           description: Average records per day
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: cgm.totalRecords
           description: Total records in period
         - schema:
-            type: string
-            format: date-time
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: cgm.lastUploadDateFrom
-          description: Inclusive
+          name: cgm.hoursWithData
+          description: Total hours with data in period
         - schema:
-            type: string
-            format: date-time
+            $ref: '#/components/schemas/IntFilter'
           in: query
-          name: cgm.lastUploadDateTo
-          description: Exclusive
+          name: cgm.daysWithData
+          description: Total days with data in period
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.standardDeviation
+          description: Standard deviation of glucose values in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.coefficientOfVariation
+          description: Coefficient Of Variation of glucose values in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.averageGlucoseMmol
+          description: Average glucose value of records in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInVeryLowPercent
-          description: Percentage of time below 54 mg/dL
+          description: 'Percentage of time [0.0-1.0]  below 54 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInAnyLowPercent
+          description: 'Percentage of time [0.0-1.0]  below 70 mg/dL'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInLowPercent
-          description: Percentage of time in range 54-70 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 54-70 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInTargetPercent
-          description: Percentage of time in range 70-180 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 70-180 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInHighPercent
-          description: Percentage of time in range 180-250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  in range 180-250 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d\.\d\d?$
-            example: '>=0.7'
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.timeInVeryHighPercent
-          description: Percentage of time above 250 mg/dL
+          description: 'Percentage of time [0.0-1.0]  above 250 mg/dL'
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInExtremeHighPercent
+          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInAnyHighPercent
+          description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: bgm.timeInVeryLowRecords
           description: Records below 54 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInAnyLowRecords
+          description: Records below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: bgm.timeInLowRecords
           description: Records in range 54-70 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: bgm.timeInTargetRecords
           description: Records in range 70-180 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: bgm.timeInHighRecords
           description: Records in range 180-250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: bgm.timeInVeryHighRecords
           description: Records above 250 mg/dL
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInAnyHighRecords
+          description: Records above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
           in: query
           name: bgm.averageDailyRecords
           description: Average records per day
         - schema:
-            type: string
-            pattern: ^(>=|>|<=|<)\d+$
-            example: '>=42'
+            $ref: '#/components/schemas/IntFilter'
           in: query
           name: bgm.totalRecords
           description: Total records in period
+
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.averageGlucoseMmolDelta
+          description: Delta of average glucose value in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.glucoseManagementIndicatorDelta
+          description: Glucose management Indicator of records
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeCGMUsePercentDelta
+          description: Delta of time of CGM use
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInVeryLowPercentDelta
+          description: Delta of time below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInAnyLowPercentDelta
+          description: Delta of time below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInLowPercentDelta
+          description: Delta of time in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInTargetPercentDelta
+          description: Delta of time in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInHighPercentDelta
+          description: Delta of time in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInVeryHighPercentDelta
+          description: Delta of time above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInExtremeHighPercentDelta
+          description: Delta of time above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.timeInAnyHighPercentDelta
+          description: Delta of time above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeCGMUseMinutesDelta
+          description: Delta of minutes of CGM use
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryLowMinutesDelta
+          description: Delta of minutes below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyLowMinutesDelta
+          description: Delta of minutes below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInLowMinutesDelta
+          description: Delta of minutes in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInTargetMinutesDelta
+          description: Delta of minutes in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInHighMinutesDelta
+          description: Delta of minutes in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryHighMinutesDelta
+          description: Delta of minutes above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInExtremeHighMinutesDelta
+          description: Delta of minutes above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyHighMinutesDelta
+          description: Delta of minutes above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeCGMUseRecordsDelta
+          description: Delta of records count
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryLowRecordsDelta
+          description: Delta of records below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyLowRecordsDelta
+          description: Delta of records below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInLowRecordsDelta
+          description: Delta of records in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInTargetRecordsDelta
+          description: Delta of records in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInHighRecordsDelta
+          description: Delta of records in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInVeryHighRecordsDelta
+          description: Delta of records above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.timeInAnyHighRecordsDelta
+          description: Delta of records above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.averageDailyRecordsDelta
+          description: Delta of average records per day
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.totalRecordsDelta
+          description: Delta of total records
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.hoursWithDataDelta
+          description: Delta of total hours with data
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: cgm.daysWithDataDelta
+          description: Delta of total days with data
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.standardDeviationDelta
+          description: Delta of the standard deviation of glucose values in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: cgm.coefficientOfVariationDelta
+          description: Delta of the coefficient of glucose values in Mmol/L
         - schema:
             type: string
             format: date-time
           in: query
-          name: bgm.lastUploadDateFrom
+          name: cgm.lastDataFrom
           description: Inclusive
         - schema:
             type: string
             format: date-time
           in: query
-          name: bgm.lastUploadDateTo
+          name: cgm.lastDataTo
+          description: Exclusive
+
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.averageGlucoseMmolDelta
+          description: Delta of the average glucose values in Mmol/L
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInVeryLowPercentDelta
+          description: Delta of time below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInAnyLowPercentDelta
+          description: Delta of time below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInLowPercentDelta
+          description: Delta of time in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInTargetPercentDelta
+          description: Delta of time in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInHighPercentDelta
+          description: Delta of time in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInVeryHighPercentDelta
+          description: Delta of time above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInExtremeHighPercentDelta
+          description: Delta of time above 350 mg/dL
+        - schema:
+            $ref: '#/components/schemas/FloatFilter'
+          in: query
+          name: bgm.timeInAnyHighPercentDelta
+          description: Delta of time above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInVeryLowRecordsDelta
+          description: Delta of records below 54 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInAnyLowRecordsDelta
+          description: Delta of records below 70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInLowRecordsDelta
+          description: Delta of records in range 54-70 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInTargetRecordsDelta
+          description: Delta of records in range 70-180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInHighRecordsDelta
+          description: Delta of records in range 180-250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInVeryHighRecordsDelta
+          description: Delta of records above 250 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.timeInAnyHighRecordsDelta
+          description: Delta of records above 180 mg/dL
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.averageDailyRecordsDelta
+          description: Delta of average records per day
+        - schema:
+            $ref: '#/components/schemas/IntFilter'
+          in: query
+          name: bgm.totalRecordsDelta
+          description: Delta of total record count
+
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: bgm.lastDataFrom
+          description: Inclusive
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: bgm.lastDataTo
           description: Exclusive
         - schema:
             type: array
@@ -488,13 +882,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       description: Create a custodial account for a patient
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Patient'
+              $ref: ./clinic/models/patient.v1.yaml
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/patient_tags':
@@ -511,7 +905,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientTag'
+              $ref: '#/components/schemas/patientTag.v1'
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
@@ -528,7 +922,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       operationId: GetClinician
       description: Retrieve a member of clinic given their user id
     put:
@@ -568,7 +962,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       operationId: GetPatient
       description: Retrieve a patient of clinic given their user id
     post:
@@ -580,7 +974,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       description: Internal endpoint for creating a patient from an existing user
       tags:
         - Clinics
@@ -588,7 +982,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreatePatient'
+              $ref: '#/components/schemas/createPatient.v1'
     put:
       summary: Update Patient
       operationId: UpdatePatient
@@ -598,13 +992,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Patient'
+                $ref: ./clinic/models/patient.v1.yaml
       description: Update existing patient of a clinic
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Patient'
+              $ref: ./clinic/models/patient.v1.yaml
       tags:
         - Clinics
     delete:
@@ -633,7 +1027,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientTag'
+              $ref: '#/components/schemas/patientTag.v1'
     delete:
       summary: Delete Patient Tag
       operationId: DeletePatientTag
@@ -661,7 +1055,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InviteClinician'
+              $ref: ./clinic/models/inviteClinician.v1.yaml
       tags:
         - Clinics
         - Confirmations
@@ -670,7 +1064,7 @@ paths:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/inviteId'
     patch:
-      summary: 'Resend Clinician Invite'
+      summary: Resend Clinician Invite
       operationId: ResendInvite
       responses:
         '200':
@@ -719,13 +1113,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Internal endpoint to associate a clinician to a user.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AssociateClinicianToUser'
+              $ref: '#/components/schemas/associateClinicianToUser.v1'
       tags:
         - Clinics
     delete:
@@ -746,7 +1140,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Internal endpoint to retrieve invited clinician.
       tags:
         - Clinics
@@ -777,6 +1171,45 @@ paths:
       tags:
         - Clinics
         - Confirmations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcceptPatientInvitation'
+  '/v1/clinics/{clinicId}/patients/{patientId}/reviews':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    put:
+      summary: Update Patient Reviews
+      operationId: UpdatePatientReviews
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patientReviews.v1'
+      description: Update the patient's last reviewed date and clinician ID
+      tags:
+        - Clinics
+    delete:
+      summary: Delete Patient Reviews
+      operationId: DeletePatientReviews
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patientReviews.v1'
+        '404':
+          description: No review to delete
+        '409':
+          description: Cannot revert a different clinician's review
+      description: Revert the patient's last reviewed date to the previous set
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -790,7 +1223,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientPermissions'
+                $ref: ./clinic/models/patientPermissions.v1.yaml
       description: |-
         Update permissions that a clinic has over a patient account. If all permissions are revoked as a result of the update, the patient profile will be removed from the clinic.
 
@@ -801,7 +1234,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientPermissions'
+              $ref: ./clinic/models/patientPermissions.v1.yaml
       parameters: []
   '/v1/clinics/{clinicId}/patients/{patientId}/permissions/{permission}':
     parameters:
@@ -843,7 +1276,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PatientClinicRelationships'
+                $ref: '#/components/schemas/patientClinicRelationships.v1'
       operationId: ListClinicsForPatient
       description: Get all clinics a user is a patient of
       parameters:
@@ -885,7 +1318,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Clinician'
+                $ref: ./clinic/models/clinician.v1.yaml
       description: Accept an invite to join a clinic as clinician. The clinician will be associated to the currently authenticated user if the email in their profile matches the email of the invite.
       tags:
         - Clinics
@@ -903,7 +1336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ClinicianClinicRelationships'
+                $ref: '#/components/schemas/clinicianClinicRelationships.v1'
       operationId: ListClinicsForClinician
       description: Returns a list of all clinics a clinician is a member of
       parameters:
@@ -924,7 +1357,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       operationId: MigrateLegacyClinicianPatients
       tags:
         - Clinics
@@ -934,7 +1367,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Migration'
+              $ref: '#/components/schemas/migration.v1'
     get:
       summary: Retrieve Migration Status
       operationId: ListMigrations
@@ -944,7 +1377,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migrations'
+                $ref: '#/components/schemas/migrations.v1'
       description: ListMigrations
       tags:
         - Clinics
@@ -988,17 +1421,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       operationId: TriggerInitialMigration
       description: Trigger the initial migration
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TriggerMigration'
+              $ref: '#/components/schemas/triggerMigration.v1'
   '/v1/clinics/{clinicId}/migrations/{userId}':
     parameters:
-      - $ref: ./clinic/parameters/clinicid.v1.yaml
+      - $ref: ./clinic/parameters/clinicId.v1.yaml
       - $ref: '#/components/parameters/userId'
     get:
       summary: Get Migration
@@ -1011,7 +1444,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       operationId: GetMigration
       description: Get a migration by user id
     patch:
@@ -1023,12 +1456,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Migration'
+                $ref: '#/components/schemas/migration.v1'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MigrationUpdate'
+              $ref: '#/components/schemas/migrationUpdate.v1'
       description: Internal endpoint to update the status of a migration
       tags:
         - Clinics
@@ -1037,7 +1470,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/userId'
     delete:
-      summary: 'Remove User from Clinics'
+      summary: Remove User from Clinics
       operationId: DeleteUserFromClinics
       responses:
         '200':
@@ -1068,7 +1501,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserDetails'
+              $ref: '#/components/schemas/updateUserDetails.v1'
       tags:
         - Clinics
         - Internal
@@ -1086,7 +1519,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ClinicianClinicRelationship'
+                  $ref: '#/components/schemas/clinicianClinicRelationship.v1'
       operationId: ListAllClinicians
       parameters:
         - $ref: '#/components/parameters/offset'
@@ -1113,8 +1546,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatientSummary'
+              $ref: ./clinic/models/summaries/patientSummary.v1.yaml
         description: ''
+  '/v1/summaries/{summaryId}/clinics':
+    parameters:
+      - $ref: '#/components/parameters/summaryId'
+    delete:
+      summary: DeletePatientSummary
+      operationId: DeletePatientSummary
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Change
+      description: Internal endpoint which deletes the summary in all patient records which match the summary id.
+      tags:
+        - Clinics
+        - Internal
   '/v1/patients/{userId}/data_sources':
     parameters:
       - $ref: '#/components/parameters/userId'
@@ -1134,7 +1582,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DataSources'
+              $ref: '#/components/schemas/dataSources.v1'
   '/v1/clinics/{clinicId}/tier':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1183,23 +1631,6 @@ paths:
       description: Sends upload reminder to the patient
       tags:
         - Clinics
-  '/v1/clinics/{clinicId}/patients/{patientId}/send_dexcom_connect_request':
-    parameters:
-      - $ref: '#/components/parameters/clinicId'
-      - $ref: '#/components/parameters/patientId'
-    post:
-      summary: Resend Dexcom connect request email
-      operationId: SendDexcomConnectRequest
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Patient'
-      description: Resend Dexcom connect request to the email address of the patient
-      tags:
-        - Clinics
   '/v1/clinics/{clinicId}/patients/assign_tag/{patientTagId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1212,7 +1643,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TidepoolUserIds'
+              $ref: '#/components/schemas/tidepoolUserIds.v1'
       responses:
         '200':
           description: OK
@@ -1232,7 +1663,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TidepoolUserIds'
+              $ref: '#/components/schemas/tidepoolUserIds.v1'
       responses:
         '200':
           description: OK
@@ -1253,7 +1684,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MembershipRestrictions'
+                $ref: ./clinic/models/membershipRestrictions.v1.yaml
       operationId: ListMembershipRestrictions
       description: |-
         Returns a list of the membership restrictions that will be evaluated when a user joins a clinic.
@@ -1268,102 +1699,490 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MembershipRestrictions'
+                $ref: ./clinic/models/membershipRestrictions.v1.yaml
       description: An internal endpoint to update clinic membership restrictions
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MembershipRestrictions'
+              $ref: ./clinic/models/membershipRestrictions.v1.yaml
       x-internal: true
       tags:
         - Clinics
         - Internal
+  /v1/redox:
+    post:
+      summary: Redox EHR Endpoint
+      operationId: ProcessEHRMessage
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Internal
+        - Redox
+        - Clinics
+      description: An endpoint for incoming Redox messages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      x-internal: true
+  /v1/redox/verify:
+    post:
+      summary: Redox Verify Endpoint
+      operationId: VerifyEndpoint
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Internal
+        - Redox
+        - Clinics
+      x-internal: true
+      description: Internal endpoint for Redox challenge verification
+  '/v1/clinics/{clinicId}/settings/ehr':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: Get EHR Settings
+      tags:
+        - Clinics
+        - Internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/ehrSettings.v1.yaml
+      operationId: GetEHRSettings
+      description: Returns EHR related settings
+      x-internal: true
+    put:
+      summary: Update EHR Settings
+      operationId: UpdateEHRSettings
+      responses:
+        '200':
+          description: OK
+      description: Update EHR related settings for a clinic
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/ehrSettings.v1.yaml
+  /v1/redox/match:
+    post:
+      summary: Match Clinic and Patient
+      operationId: MatchClinicAndPatient
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ehrMatchResponse.v1'
+        '404':
+          description: Not Found
+      tags:
+        - Clinics
+        - Internal
+      description: |
+        An internal endpoint used for matching an EHR request (e.g. NewOrder) to a clinic and patient.
+
+        If a clinic with the provided details cannot be found, the service will return `404 Not Found` and will not attempt to match patients to the provided details.
+
+        Due to lack of uniqueness constraints on the MRN and DOB fields it's possible that multiple patient records match the provided attributes. All results will be returned in the response and it's the calling services responsiblity to determine how to handle duplicates records.
+
+        If a unique match is found, the patient matching criteria will be added to the patient record for future use (e.g. pushing data on a schedule).
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ehrMatchRequest.v1'
+      x-internal: true
+  '/v1/clinics/{clinicId}/settings/mrn':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: Get MRN Settings
+      tags:
+        - Clinics
+        - Internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/mrnSettings.v1.yaml
+      operationId: GetMRNSettings
+      x-internal: true
+      description: Retrieve MRN settings
+    put:
+      summary: Update MRN Settings
+      operationId: UpdateMRNSettings
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Clinics
+        - Internal
+      description: Update MRN Settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/mrnSettings.v1.yaml
+  '/v1/clinics/{clinicId}/settings/patient_count':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      operationId: GetPatientCountSettings
+      summary: Get Patient Count Settings
+      description: Get Patient Count settings
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patientCountSettings.v1.yaml
+      x-internal: true
+    put:
+      operationId: UpdatePatientCountSettings
+      summary: Update Patient Count Settings
+      description: Update Patient Count Settings
+      tags:
+        - Clinics
+        - Internal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/patientCountSettings.v1.yaml
+      responses:
+        '200':
+          description: OK
+  '/v1/clinics/{clinicId}/patient_count':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      operationId: GetPatientCount
+      summary: Get Patient Count
+      description: Get Patient Count
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patientCount.v1.yaml
+  '/v1/clinics/{clinicId}/ehr/sync':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Sync EHR Data
+      operationId: SyncEHRData
+      responses:
+        '202':
+          description: Accepted
+      description: |-
+        An internal endpoint which will push the latest patient summary statistics and PDF reports for all patients who have an active subscription. The actual data is pushed asynchronously. A successful response means that an asynchronous task has been scheduled for each patient of the clinic with an active subscription.
+
+        Will return 404 Not Found if the clinic does not have an active EHR connection.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      parameters: []
+  /v1/patients:
+    get:
+      summary: Find Patients
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patientClinicRelationships.v1'
+      operationId: FindPatients
+      description: Returns all patients to which the clinician has access to
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: mrn
+        - schema:
+            type: string
+          in: query
+          name: birthDate
+        - schema:
+            type: string
+          in: query
+          name: workspaceId
+          description: The identifier of the workspace
+        - schema:
+            type: string
+            enum:
+              - clinicId
+              - ehrSourceId
+          in: query
+          name: workspaceIdType
+          description: The type of the workspace identifier
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+  /v1/xealth/preorder:
+    parameters: []
+    post:
+      summary: Preorder Form Webhook
+      operationId: XealthPreorder
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      description: |-
+        The Preorder endpoint can be invoked when a care provider attempts to place an order manually within the EHR. Subscribers can use Preorder Forms to present additional information to, or receive input from, a care provider before an order can be placed. Preorder Forms can also be implemented so as to prevent an order from being placed entirely.
+
+        https://sandbox.xealth.io/app/api-docs#tag/Digital-Care/paths/preorder/post
+  /v1/xealth/programs:
+    put:
+      summary: Get Programs
+      operationId: XealthGetPrograms
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  /v1/xealth/program:
+    put:
+      summary: Get Program Url
+      operationId: XealthGetProgramUrl
+      responses:
+        '200':
+          description: OK
+      description: ''
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  /v1/xealth/notification:
+    post:
+      summary: Notification Webhook
+      operationId: XealthNotification
+      responses:
+        '200':
+          description: OK
+      description: ''
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  /v1/xealth/report/web/viewer.html:
+    get:
+      summary: View PDF Report
+      tags:
+        - Clinics
+        - Internal
+      responses:
+        '200':
+          description: OK
+      operationId: ViewPDFReport
+      description: View PDF report for a given patient of a clinic
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: clinicId
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: patientId
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: restricted_token
+          required: true
+      x-internal: true
+    parameters: []
+  '/v1/clinics/{clinicId}/service_accounts':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Add Service Account
+      operationId: AddServiceAccount
+      responses:
+        '200':
+          description: OK
+      description: Adds authentication client's service account as a new clinician member.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/addServiceAccount.v1'
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  '/v1/patients/{patientId}/ehr/sync':
+    parameters:
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Sync EHR Data for Patient
+      operationId: SyncEHRDataForPatient
+      responses:
+        '202':
+          description: Accepted
+      description: |-
+        An internal endpoint which will push the latest patient summary statistics and PDF reports to all EHR enabled clinics for which the patient has an active subscription. The actual data is pushed asynchronously. A successful response means that an asynchronous task has been scheduled.
+
+        A 404 response will be returned if no active subscriptions can be found for given patient.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+  '/v1/clinics/{clinicId}/reports/merge':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Generate Clinic Merge Report
+      operationId: GenerateMergeReport
+      responses:
+        '200':
+          description: OK
+      description: Generates a spreadsheet report for merging two clinics
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/generateMergeReport.v1'
+        description: ''
+  '/v1/clinics/{clinicId}/merge':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Merge Clinic
+      operationId: MergeClinic
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mergeClinic.v1'
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      description: 'Merges tags, patients, clinicians, invites and share codes of the source clinic'
+  '/v1/clinics/{clinicId}/patients/{patientId}/connect/{providerId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+      - $ref: '#/components/parameters/providerId'
+    post:
+      summary: Connect Provider
+      operationId: ConnectProvider
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - Clinics
+        - Internal
+      description: Send a new request to the patient to connect a data provider
 components:
   schemas:
-    Error:
-      $ref: ./common/models/error.v1.yaml
-    Clinic:
-      $ref: ./clinic/models/clinic.v1.yaml
-    Clinics:
+    clinics.v1:
       type: array
       items:
-        $ref: '#/components/schemas/Clinic'
-    Clinician:
-      $ref: ./clinic/models/clinician.v1.yaml
-    Clinicians:
+        $ref: ./clinic/models/clinic.v1.yaml
+    clinicians.v1:
       type: array
       items:
-        $ref: '#/components/schemas/Clinician'
-    Patient:
-      $ref: ./clinic/models/patient.v1.yaml
-    Patients:
+        $ref: ./clinic/models/clinician.v1.yaml
+    patients.v1:
       type: array
       items:
         $ref: ./clinic/models/patient.v1.yaml
-    PatientTag:
-      $ref: ./clinic/models/patienttag.v1.yaml
-    PatientTags:
+    patientTag.v1:
+      $ref: ./clinic/models/patientTag.v1.yaml
+    dataSources.v1:
       type: array
       items:
-        $ref: '#/components/schemas/PatientTag'
-    DateTime:
-      $ref: ./common/models/datetime.v1.yaml
-    DataSource:
-      $ref: ./clinic/models/datasource.v1.yaml
-    DataSources:
+        $ref: ./clinic/models/dataSource.v1.yaml
+    tidepoolUserIds.v1:
       type: array
-      items:
-        $ref: '#/components/schemas/DataSource'
-    InviteClinician:
-      $ref: ./clinic/models/inviteclinician.v1.yaml
-    TidepoolUserId:
-      $ref: ./common/models/tidepooluserid.yaml
-    TidepoolUserIds:
-      type: array
+      nullable: true
       description: Array of Tidepool User IDs
       items:
-        $ref: '#/components/schemas/TidepoolUserId'
+        $ref: ./common/models/tidepooluserid.yaml
       minItems: 1
       maxItems: 1000
       uniqueItems: true
-    ClinicianRoles:
-      $ref: ./clinic/models/clinicianroles.v1.yaml
-    PhoneNumber:
-      $ref: ./clinic/models/phonenumber.v1.yaml
-    PatientPermissions:
-      $ref: ./clinic/models/patientpermissions.v1.yaml
-    Id:
-      $ref: ./clinic/models/clinicid.v1.yaml
-    PatientClinicRelationship:
+    patientClinicRelationship.v1:
       title: PatientClinicRelationship
       type: object
       properties:
         patient:
-          $ref: '#/components/schemas/Patient'
+          $ref: ./clinic/models/patient.v1.yaml
         clinic:
-          $ref: '#/components/schemas/Clinic'
+          $ref: ./clinic/models/clinic.v1.yaml
       required:
         - patient
         - clinic
-    PatientClinicRelationships:
+    patientClinicRelationships.v1:
       title: PatientClinicRelationships
       type: array
       items:
-        $ref: '#/components/schemas/PatientClinicRelationship'
-    CreatePatient:
+        $ref: '#/components/schemas/patientClinicRelationship.v1'
+    createPatient.v1:
       title: Create Patient
       type: object
       properties:
         permissions:
-          $ref: ./clinic/models/patientpermissions.v1.yaml
+          $ref: ./clinic/models/patientPermissions.v1.yaml
         isMigrated:
           type: boolean
         legacyClinicianId:
-          $ref: '#/components/schemas/TidepoolUserId'
+          $ref: ./common/models/tidepooluserid.yaml
         attestationSubmitted:
           type: boolean
-    AssociateClinicianToUser:
+        fullName:
+          type: string
+          description: The full name of the patient
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        tags:
+          $ref: ./clinic/models/patientTagIds.v1.yaml
+    associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
       properties:
@@ -1371,23 +2190,23 @@ components:
           type: string
       required:
         - userId
-    ClinicianClinicRelationship:
+    clinicianClinicRelationship.v1:
       title: ClinicianClinicRelationship
       type: object
       properties:
         clinician:
-          $ref: '#/components/schemas/Clinician'
+          $ref: ./clinic/models/clinician.v1.yaml
         clinic:
-          $ref: '#/components/schemas/Clinic'
+          $ref: ./clinic/models/clinic.v1.yaml
       required:
         - clinician
         - clinic
-    ClinicianClinicRelationships:
+    clinicianClinicRelationships.v1:
       title: ClinicianClinicRelationships
       type: array
       items:
-        $ref: '#/components/schemas/ClinicianClinicRelationship'
-    Migration:
+        $ref: '#/components/schemas/clinicianClinicRelationship.v1'
+    migration.v1:
       title: Migration
       type: object
       properties:
@@ -1396,7 +2215,7 @@ components:
           description: The user id of the legacy clinician account that needs to be migrated.
           minLength: 1
         status:
-          $ref: ./clinic/models/migrationstatus.v1.yaml
+          $ref: ./clinic/models/migrationStatus.v1.yaml
         createdTime:
           type: string
           format: date-time
@@ -1413,36 +2232,38 @@ components:
         - userId
         - createdTime
         - updatedTime
-    Migrations:
+    migrations.v1:
       title: Migrations
       type: array
       items:
-        $ref: '#/components/schemas/Migration'
-    MigrationUpdate:
+        $ref: '#/components/schemas/migration.v1'
+    migrationUpdate.v1:
       title: MigrationUpdate
       type: object
       properties:
         status:
-          $ref: ./clinic/models/migrationstatus.v1.yaml
+          $ref: ./clinic/models/migrationStatus.v1.yaml
       required:
         - status
-    MigrationStatus:
-      $ref: ./clinic/models/migrationstatus.v1.yaml
-    Meta:
+    meta.v1:
       title: Meta
       type: object
       properties:
         count:
+          description: The number of items matching the filter
           type: integer
-    PatientsResponse:
+        totalCount:
+          description: The total number of items
+          type: integer
+    patientsResponse.v1:
       title: PatientsResponse
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Patients'
+          $ref: '#/components/schemas/patients.v1'
         meta:
-          $ref: '#/components/schemas/Meta'
-    UpdateUserDetails:
+          $ref: '#/components/schemas/meta.v1'
+    updateUserDetails.v1:
       title: UpdateUserDetails
       type: object
       properties:
@@ -1450,56 +2271,181 @@ components:
           type: string
           format: email
           minLength: 1
-    TriggerMigration:
+    triggerMigration.v1:
       title: TriggerMigration
       type: object
       properties:
         attestationSubmitted:
           type: boolean
-    AverageGlucose:
-      $ref: ./data/models/blood/glucose/glucosemmol.v1.yaml
-    PatientBGMPeriod:
-      $ref: ./summary/models/bgmperiod.v1.yaml
-    PatientBGMPeriods:
-      $ref: ./clinic/models/summaries/bgmperiods.v1.yaml
-    PatientBGMStats:
-      $ref: ./clinic/models/summaries/bgmstats.v1.yaml
-    PatientCGMPeriod:
-      $ref: ./summary/models/cgmperiod.v1.yaml
-    PatientCGMPeriods:
-      $ref: ./clinic/models/summaries/cgmperiods.v1.yaml
-    PatientCGMStats:
-      $ref: ./clinic/models/summaries/cgmstats.v1.yaml
-    PatientSummaryConfig:
-      $ref: ./summary/models/config.v1.yaml
-    PatientSummaryDates:
-      $ref: ./summary/models/dates.v1.yaml
-    PatientSummary:
-      $ref: ./clinic/models/summaries/patientsummary.v1.yaml
+    patientReviews.v1:
+      type: array
+      items:
+        $ref: ./clinic/models/patientReview.v1.yaml
+    FloatFilter:
+      type: string
+      pattern: '^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$'
+      example: '>=5.5'
+    IntFilter:
+      type: string
+      pattern: '^(>=|>|<=|<)[+-]?\d+$'
+      example: '>=7'
     UpdateTier:
       title: UpdateTier
       type: object
       properties:
         tier:
-          $ref: '#/components/schemas/Tier'
+          $ref: '#/components/schemas/tier.v1'
       required:
         - tier
-    Tier:
+    tier.v1:
       $ref: ./clinic/models/tier.v1.yaml
     UpdateSuppressedNotifications:
       title: UpdateSuppressedNotifications
       type: object
       properties:
         suppressedNotifications:
-          $ref: '#/components/schemas/SuppressedNotifications'
+          $ref: ./clinic/models/suppressedNotifications.v1.yaml
       required:
         - suppressedNotifications
-    SuppressedNotifications:
-      $ref: ./clinic/models/suppressedNotifications.v1.yaml
-    MembershipRestriction:
-      $ref: ./clinic/models/membershiprestriction.v1.yaml
-    MembershipRestrictions:
-      $ref: ./clinic/models/membershiprestrictions.v1.yaml
+    ehrMatchRequest.v1:
+      title: EHR Match Request
+      x-stoplight:
+        id: nq0mlm5dqdfw0
+      type: object
+      x-examples: {}
+      properties:
+        messageRef:
+          $ref: '#/components/schemas/ehrMatchMessageRef.v1'
+        patients:
+          $ref: '#/components/schemas/ehrMatchRequestPatientsOptions.v1'
+    ehrMatchResponse.v1:
+      title: EHRMatchResponse
+      x-stoplight:
+        id: pekkj09rlany0
+      type: object
+      properties:
+        clinic:
+          $ref: ./clinic/models/clinic.v1.yaml
+        patients:
+          $ref: '#/components/schemas/patients.v1'
+        settings:
+          $ref: ./clinic/models/ehrSettings.v1.yaml
+      required:
+        - clinic
+        - settings
+    ehrMatchMessageRef.v1:
+      title: EHRMatchMessageRef
+      x-stoplight:
+        id: a1215t5vip3tr
+      type: object
+      properties:
+        dataModel:
+          type: string
+          enum:
+            - Order
+        eventType:
+          type: string
+          enum:
+            - New
+        documentId:
+          type: string
+      required:
+        - dataModel
+        - eventType
+        - documentId
+    AcceptPatientInvitation:
+      title: AcceptPatientInvitation
+      x-stoplight:
+        id: vo0jck92hztsj
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: The full name of the patient
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        tags:
+          $ref: ./clinic/models/patientTagIds.v1.yaml
+    addServiceAccount.v1:
+      title: AddServiceAccount
+      x-stoplight:
+        id: 3c7ko800mld31
+      type: object
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: 3333gszyq3x79
+          minLength: 1
+        client_id:
+          type: string
+          x-stoplight:
+            id: kgfyaapmfjies
+          minLength: 1
+        client_secret:
+          type: string
+          x-stoplight:
+            id: 8jdosn0tlbqp5
+          minLength: 1
+      required:
+        - name
+        - client_id
+        - client_secret
+    generateMergeReport.v1:
+      title: GenerateMergeReport
+      x-stoplight:
+        id: 3oq18sasrzo0o
+      type: object
+      properties:
+        sourceId:
+          $ref: ./clinic/models/clinicId.v1.yaml
+      required:
+        - sourceId
+    mergeClinic.v1:
+      title: MergeClinics
+      x-stoplight:
+        id: 6hn01uuhln0wx
+      type: object
+      properties:
+        sourceId:
+          $ref: ./clinic/models/clinicId.v1.yaml
+    ehrMatchRequestPatientsOptions.v1:
+      title: Patient Matching Options
+      x-stoplight:
+        id: 43n6iid3zghxm
+      type: object
+      properties:
+        criteria:
+          type: array
+          x-stoplight:
+            id: 1odrg3q8zzdil
+          description: Performs an "OR" match for each item in the array
+          minItems: 1
+          items:
+            x-stoplight:
+              id: mgi1k2jyojc4k
+            type: string
+            enum:
+              - MRN
+              - MRN_DOB
+              - DOB_FULLNAME
+        onUniqueMatch:
+          type: string
+          x-stoplight:
+            id: s9ujf5ce4vhc1
+          enum:
+            - ENABLE_REPORTS
+            - DISABLE_REPORTS
+          description: Optional action to be performed when a unique match has been found
+      required:
+        - criteria
   securitySchemes:
     sessionToken:
       name: x-tidepool-session-token
@@ -1553,7 +2499,13 @@ components:
       in: path
       required: true
       schema:
-        $ref: '#/components/schemas/TidepoolUserId'
+        $ref: ./common/models/tidepooluserid.yaml
+    summaryId:
+      name: summaryId
+      in: path
+      required: true
+      schema:
+        $ref: ./summary/models/summaryId.v1.yaml
     inviteId:
       name: inviteId
       in: path
@@ -1611,12 +2563,28 @@ components:
         type: string
         format: date-time
       description: Return records created before the given date (exclusive)
+    ehrEnabled:
+      name: ehrEnabled
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Retrieve clinics with enabled EHR integration
+    providerId:
+      name: providerId
+      in: path
+      required: true
+      schema:
+        $ref: ./clinic/models/providerId.v1.yaml
+      description: Provider ID
 tags:
-  - name: Internal
-    description: APIs intended for internal use by Tidepool.
   - name: Clinics
     description: 'Manage clinics, clinians and patients.'
   - name: Confirmations
     description: 'Manage confirmations for account creation, sharing invites, etc.'
+  - name: Internal
+    description: APIs intended for internal use by Tidepool.
+  - name: Redox
+    description: Public endpoints invoked by Redox.
 security:
   - sessionToken: []

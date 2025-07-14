@@ -47,7 +47,7 @@ If you have previously opened a continuous session, [skip ahead](#find-an-existi
 
 This will return an HTTP response with a JSON body. You should store **the value of the upload session ID** to use when uploading data to this session.
 
-```json title="Sample Response" lineNumbers=true
+```json {% title="Sample Response" %}
 {
   "data": {
     "createdTime": "2019-08-29T08:05:25.851Z",
@@ -91,7 +91,7 @@ If you have previously opened a continuous session, you can use this request to 
 
 This will return an HTTP response with a JSON body. You should temporarily store the value of the upload session ID you intend to write data to.
 
-```json title="Sample Response" lineNumbers=true
+```json {% title="Sample Response" %}
 [
   {
     "client": {
@@ -157,6 +157,9 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
       "type": "cbg",
       "value": 119,
       "units": "mg/dL",
+      "trendRate": -2.2,
+      "trendRateUnits": "mg/dL/minute",
+      "sampleInterval": 300000,
       "origin": {
         "id": "06b10116-e85c-4abe-8a35-4eca838bd484",
         "name": "com.apple.HealthKit",
@@ -176,6 +179,9 @@ As an example, uploading a couple of continuous blood glucose (CBG) records migh
       "type": "cbg",
       "value": 120,
       "units": "mg/dL",
+      "trendRate": -2.2,
+      "trendRateUnits": "mg/dL/minute",
+      "sampleInterval": 300000,
       "origin": {
         "id": "1c26886a-ae52-4e43-84cf-5047afe3efc3",
         "name": "com.apple.HealthKit",

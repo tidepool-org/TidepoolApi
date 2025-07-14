@@ -3,13 +3,15 @@ type: object
 readOnly: true
 properties:
   id:
-    $ref: './id.v1.yaml'
+    $ref: './blob-id.v1.yaml'
   userId:
     $ref: '../../common/models/tidepooluserid.yaml'
   digestMD5:
     $ref: '../../common/models/digestmd5.v1.yaml'
   mediaType:
-    $ref: '../../common/models/mediatype.v1.yaml'
+    type: string
+    enum:
+      - 'application/json'
   size:
     $ref: './size.v1.yaml'
   createdTime:
@@ -30,8 +32,8 @@ required:
 example:
   id: 97a9fae8a19b4da58bb48dc90c9562c9
   userId: 4d94a5fb-642e-48f1-89b9-c6a3e6145342
-  digestMD5: NGQ1MDgzMjg3N2Q3ZWU3MTEyZGFmMTU5MzNlNDc0N2MK
-  mediaType: application/octet-stream
+  digestMD5: HUXZLQLMuI/KZ5KDcJPcOA==
+  mediaType: application/json
   size: 1024
   createdTime: '2017-02-06T02:35:46Z'
   startAt: '2017-02-06T02:35:46Z'

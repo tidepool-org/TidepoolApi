@@ -2,3 +2,8 @@
 dist
 build
 .idea/
+/node_modules/
+/tools/
+.env
+.envrc
+.nvmrc

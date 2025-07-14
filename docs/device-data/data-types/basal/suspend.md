@@ -1,35 +1,35 @@
 <!-- omit in toc -->
 # Suspend Basals (`suspend`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
-3. [Examples](#examples)
-4. [Keep Reading](#keep-reading)
-
----
-
-## Quick Summary
-
-```yaml json_schema
-$ref: '../../../../reference/data/models/basal/suspend.v1.yaml'
-```
-
----
-
 ## Delivery Type (`deliveryType`)
+
+The string `suspend`.
 
 This is the sub-type of basal event representing the total suspension of insulin delivery on a pump within the stream of basal events — which should be without gaps or overlaps. The user's inputs to suspend (and later resume) insulin delivery are part of Tidepool's [device event](../device-event.md) data type. We represent suspend intervals as a suspend basal to maintain a continuous stream of basal data, making the calculation of statistics (e.g. total basal dose per day) easier.
 
 No rate field appears on suspend basal events. The rate is always zero, so this is redundant information.
 
+{% partial file="/_partials/basal_duration.md" /%}
+
+## Suppressed (`suppressed`)
+
+An object representing another `basal` event - namely, the event that is currently [suppressed](./suppressed.md) (inactive) because this suspended basal is in effect.
+
+---
+
+## Quick Summary
+
+{% json-schema
+  schema={
+    "$ref": "../../../../reference/data/models/basal/suspend.v1.yaml"
+  }
+/%}
+
 ---
 
 ## Examples
 
-```json title="Example (client)" lineNumbers=true
+```json {% title="Example (client)" %}
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -53,7 +53,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
-```json title="Example (ingestion)" lineNumbers=true
+```json {% title="Example (ingestion)" %}
 {
     "type": "basal",
     "deliveryType": "suspend",
@@ -75,7 +75,7 @@ No rate field appears on suspend basal events. The rate is always zero, so this 
 }
 ```
 
-```json title="Example (storage)" lineNumbers=true
+```json {% title="Example (storage)" %}
 {
     "type": "basal",
     "deliveryType": "suspend",

@@ -1,0 +1,271 @@
+type: object
+title: bgmperiod.v1
+description: 'Summary of a specific BGM time period (currently: 1d, 7d, 14d, 30d)'
+properties:
+  hasAverageGlucoseMmol:
+    type: boolean
+  averageGlucoseMmol:
+    description: Average Glucose of records in this period
+    type: number
+    example: 5.5
+    x-go-type: float64
+  averageGlucoseMmolDelta:
+    description: Difference between the averageGlucose in this period and the other offset version
+    type: number
+    example: 2.5
+    x-go-type: float64
+
+  hasTimeInTargetPercent:
+    type: boolean
+  timeInTargetPercent:
+    description: Percentage of time spent in target glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInTargetPercentDelta:
+    description: Difference between the timeInTargetPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInTargetRecords:
+    type: boolean
+  timeInTargetRecords:
+    description: Counter of records in target glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInTargetRecordsDelta:
+    description: Difference between the timeInTargetRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInHighPercent:
+    type: boolean
+  timeInHighPercent:
+    description: Percentage of time spent in high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInHighPercentDelta:
+    description: Difference between the timeInHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInHighRecords:
+    type: boolean
+  timeInHighRecords:
+    description: Counter of records in high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInHighRecordsDelta:
+    description: Difference between the timeInHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInVeryHighPercent:
+    type: boolean
+  timeInVeryHighPercent:
+    description: Percentage of time spent in very high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInVeryHighPercentDelta:
+    description: Difference between the timeInVeryHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInVeryHighRecords:
+    type: boolean
+  timeInVeryHighRecords:
+    description: Counter of records in very high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInVeryHighRecordsDelta:
+    description: Difference between the timeInVeryHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInExtremeHighPercent:
+    type: boolean
+  timeInExtremeHighPercent:
+    description: Percentage of time spent in extreme high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInExtremeHighPercentDelta:
+    description: Difference between the timeInExtremeHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInExtremeHighRecords:
+    type: boolean
+  timeInExtremeHighRecords:
+    description: Counter of records in extreme high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInExtremeHighRecordsDelta:
+    description: Difference between the timeInExtremeHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInAnyHighPercent:
+    type: boolean
+  timeInAnyHighPercent:
+    description: Percentage of time spent in Any high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInAnyHighPercentDelta:
+    description: Difference between the timeInAnyHighPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInAnyHighRecords:
+    type: boolean
+  timeInAnyHighRecords:
+    description: Counter of records in Any high glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInAnyHighRecordsDelta:
+    description: Difference between the timeInAnyHighRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInLowPercent:
+    type: boolean
+  timeInLowPercent:
+    description: Percentage of time spent in low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInLowPercentDelta:
+    description: Difference between the timeInLowPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInLowRecords:
+    type: boolean
+  timeInLowRecords:
+    description: Counter of records in low glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInLowRecordsDelta:
+    description: Difference between the timeInLowRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTimeInVeryLowPercent:
+    type: boolean
+  timeInVeryLowPercent:
+    description: Percentage of time spent in very low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInVeryLowPercentDelta:
+    description: Difference between the timeInVeryLowPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInVeryLowRecords:
+    type: boolean
+  timeInVeryLowRecords:
+    description: Counter of records in very low glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInVeryLowRecordsDelta:
+    description: Difference between the timeInVeryLowRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+  
+  hasTimeInAnyLowPercent:
+    type: boolean
+  timeInAnyLowPercent:
+    description: Percentage of time spent in Any low glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
+  timeInAnyLowPercentDelta:
+    description: Difference between the timeInAnyLowPercent in this period and version in the opposite offset
+    type: number
+    example: 0.2
+    x-go-type: float64
+
+  hasTimeInAnyLowRecords:
+    type: boolean
+  timeInAnyLowRecords:
+    description: Counter of records in Any low glucose range
+    type: number
+    example: 10
+    x-go-type: int
+  timeInAnyLowRecordsDelta:
+    description: Difference between the timeInAnyLowRecords in this period and version in the opposite offset
+    type: number
+    example: 5
+    x-go-type: int
+
+  hasTotalRecords:
+    type: boolean
+  totalRecords:
+    description: Counter of records
+    type: number
+    example: 10
+    x-go-type: int
+  totalRecordsDelta:
+    description: Difference between the totalRecords in this period and version in the opposite offset
+    type: number
+    example: 10
+    x-go-type: int
+
+  hasAverageDailyRecords:
+    type: boolean
+  averageDailyRecords:
+    description: Average daily readings
+    type: number
+    example: 3.5
+    x-go-type: float64
+  averageDailyRecordsDelta:
+    description: Difference between the averageDailyRecords in this period and version in the opposite offset
+    type: number
+    example: 2.5
+    x-go-type: float64
+
+required:
+  - hasAverageGlucoseMmol
+  - hasTimeInTargetPercent
+  - hasTimeInTargetRecords
+  - hasTimeInHighPercent
+  - hasTimeInHighRecords
+  - hasTimeInVeryHighPercent
+  - hasTimeInVeryHighRecords
+  - hasTimeInExtremeHighPercent
+  - hasTimeInExtremeHighRecords
+  - hasTimeInLowPercent
+  - hasTimeInLowRecords
+  - hasTimeInVeryLowPercent
+  - hasTimeInVeryLowRecords
+  - hasTimeInAnyLowPercent
+  - hasTimeInAnyLowRecords
+  - hasTimeInAnyHighPercent
+  - hasTimeInAnyHighRecords
+  - hasTotalRecords
+  - hasAverageDailyRecords
