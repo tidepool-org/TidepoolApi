@@ -1,23 +1,4 @@
-<!-- omit in toc -->
 # Clinic Integration Guide
-
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Introduction](#introduction)
-   1. [Clinic Data Model](#clinic-data-model)
-2. [Authentication](#authentication)
-3. [Common Use Cases](#common-use-cases)
-   1. [Identify Current User](#identify-current-user)
-   2. [Enumerate Clinics](#enumerate-clinics)
-   3. [Enumerate Clinic Staff Members](#enumerate-clinic-staff-members)
-   4. [Enumerate Patients](#enumerate-patients)
-   5. [Search for a Patient](#search-for-a-patient)
-   6. [Fetch Patient Record](#fetch-patient-record)
-   7. [Fetch Patient Data](#fetch-patient-data)
-   8. [Update Patient Record](#update-patient-record)
-
----
 
 ## Introduction
 

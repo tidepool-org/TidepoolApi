@@ -1,14 +1,4 @@
-<!-- omit in toc -->
 # Authentication
-
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Access Tokens and Refresh Tokens](#access-tokens-and-refresh-tokens)
-3. [Two-Factor Authentication (2FA)](#two-factor-authentication-2fa)
-
----
 
 ## Introduction
 
