@@ -35,6 +35,8 @@
 
     - group: Integration Guides
       items:
+        - page: docs/authentication.md
+          label: Authentication
         - page: docs/partner-integration.md
           label: Partner Integration
         - page: docs/clinic-integration.md
