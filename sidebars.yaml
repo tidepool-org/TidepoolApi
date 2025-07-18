@@ -33,8 +33,12 @@
         - page: docs/data-sharing/clinics.md
           label: Sharing with Clinics
 
-    - page: docs/partner-integration.md
-      label: Partner Integration
+    - group: Integration Guides
+      items:
+        - page: docs/partner-integration.md
+          label: Partner Integration
+        - page: docs/clinic-integration.md
+          label: Clinic Integration
 
     - group: Date/Time Guide
       items:
