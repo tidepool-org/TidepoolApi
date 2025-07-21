@@ -1,0 +1,13 @@
+title: recordupdate.v1
+x-stoplight:
+  id: c8oq1dn4m4uak
+type: object
+properties:
+  status:
+    type: string
+    x-stoplight:
+      id: 2hnhmpwbyck12
+    enum:
+      - revoked
+required:
+  - status
