@@ -1,0 +1,20 @@
+title: consents.v1
+x-stoplight:
+  id: o02joytb2fxay
+type: object
+properties:
+  data:
+    x-stoplight:
+      id: iepviv3jm8m9m
+    type: array
+    items:
+      $ref: ./consent.v1.yaml
+      x-stoplight:
+        id: 22oi76x2nbqnp
+  count:
+    type: integer
+    x-stoplight:
+      id: jsfxo40v5vj0g
+required:
+  - data
+  - count

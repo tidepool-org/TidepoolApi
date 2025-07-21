@@ -1,0 +1,64 @@
+title: record.v1
+x-stoplight:
+  id: nvtrxa89tps30
+type: object
+properties:
+  id:
+    type: string
+    minLength: 1
+    readOnly: true
+  status:
+    type: string
+    x-stoplight:
+      id: m5tc1errbouci
+    enum:
+      - active
+      - revoked
+    readOnly: true
+  type:
+    type: string
+    x-stoplight:
+      id: jub0w6n4sx03g
+    minLength: 1
+    maxLength: 100
+  version:
+    type: integer
+    x-stoplight:
+      id: s4pt6ptt7ez4n
+    minimum: 1
+  grantTime:
+    type: string
+    x-stoplight:
+      id: z984vbbyzt0n5
+    format: date-time
+    readOnly: true
+  revocationTime:
+    type: string
+    x-stoplight:
+      id: 9hx9eo1oucsak
+    format: date-time
+    readOnly: true
+  createdTime:
+    type: string
+    x-stoplight:
+      id: r7ypd0pfkbhkv
+    format: date-time
+    readOnly: true
+  updatedTime:
+    type: string
+    x-stoplight:
+      id: ohlc8mndn74ov
+    format: date-time
+    readOnly: true
+  metadata:
+    $ref: ./metadata.v1.yaml
+    x-stoplight:
+      id: u4fzjwa9iivzp
+required:
+  - id
+  - status
+  - type
+  - version
+  - grantTime
+  - createdTime
+  - updatedTime
