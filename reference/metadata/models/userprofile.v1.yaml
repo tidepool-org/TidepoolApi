@@ -9,7 +9,7 @@ properties:
     type: object
     properties:
       diagnosisType:
-        $ref: './diagnosistype.v1.yaml'
+        $ref: './diagnosisType.v1.yaml'
       diagnosisDate:
         $ref: '../../common/models/diagnosisdate.v1.yaml'
       birthday:

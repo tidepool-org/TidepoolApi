@@ -3,9 +3,11 @@ type: string
 enum:
   - type1
   - type2
+  - type3c
   - gestational
   - prediabetes
   - lada
   - mody
   - other
+  - notApplicable
 example: 'type1'
