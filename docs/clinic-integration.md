@@ -7,7 +7,7 @@ This guide is for clinics who are interested in retrieving clinic or patient dat
 1. EHR integrations with [Health Level Seven (HL7)](https://www.hl7.org) and [Fast Healthcare Interoperability Resources (FIHR)](https://hl7.org/fhir/) through middleware partners [Redox](https://redoxengine.com/) and [Xealth](https://www.xealth.com/). This feature is part of our [Tidepool+ offering](https://www.tidepool.org/providers/tidepoolplus) that requires a paid subscription.
 2. Tidepool Data Platform exposes a rich set of REST APIs that may be used to directly interact with Tidepool data model. These are the same APIs that are used by Tidepool's own applications.
 
-If you are interested in EHR integration, please contact Tidepool Sales team. This guide focuses on the latter use-case.
+If you are interested in EHR integration, please contact [Tidepool Sales team](mailto:sales@tidepool.org). This guide focuses on the latter use-case.
 
 The intended audience for this guide are information technology teams or software developers who may be asked to evaluate and implement the direct API integration. For brevity, this guide assumes you are experienced with common web technologies such as OpenID Connect, OAuth2 and REST APIs.
 
@@ -578,7 +578,13 @@ The resulting patient record has the same format as one element of the data arra
 
 ### Fetch Patient Data
 
-You can fetch the individual diabetes data points for any given patient by invoking the data API. The start and end dates are ISO8601 formatted dates, and the data type list is a comma-separated list of data types you want to fetch. The full list of data types is `cbg,smbg,basal,bolus,wizard,food,cgmSettings,deviceEvent,dosingDecision,insulin,physicalActivity,pumpSettings,reportedState,upload,water`.
+You can fetch the individual diabetes data points for any given patient by invoking the data API. The start and end dates are ISO8601 formatted dates, and the data type list is a comma-separated list of data types you want to fetch. The full list of data types can be found in:
+
+{% json-schema
+  schema={
+    "$ref": "../../reference/data/models/datatype.v1.yaml"
+  }
+/%}
 
 ```shell
 curl -X GET -H "X-Tidepool-Session-Token: {access_token}" "https://app.tidepool.org/data/{userId}?startDate={startDate}&endDate={endDate}&type={dataTypesList}"
