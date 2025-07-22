@@ -63,6 +63,8 @@ properties:
     readOnly: true
   glycemicRanges:
     $ref: ./glycemicRanges.v1.yaml
+  diagnosisType:
+    $ref: ../../metadata/models/diagnosisType.v1.yaml
 required:
   - id
   - fullName
