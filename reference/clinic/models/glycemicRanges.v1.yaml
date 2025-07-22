@@ -1,0 +1,10 @@
+title: Glycemic Ranges
+description: >-
+  An identifier for a pre-defined set of thresholds and times in range.
+type: string
+enum:
+  - ADA standard
+  - ADA pregnancy type 1
+  - ADA pregnancy GDM or type 2
+  - ADA older or high-risk
+example: ADA standard

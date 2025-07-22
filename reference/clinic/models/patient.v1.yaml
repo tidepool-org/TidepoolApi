@@ -68,6 +68,8 @@ properties:
     x-omitzero: true
     items:
       $ref: ./site.v1.yaml
+  glycemicRanges:
+    $ref: ./glycemicRanges.v1.yaml
 required:
   - id
   - fullName

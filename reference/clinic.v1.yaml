@@ -2381,6 +2381,8 @@ components:
           x-omitzero: true
           items:
             $ref: ./clinic/models/site.v1.yaml
+        glycemicRanges:
+          $ref: ./clinic/models/glycemicRanges.v1.yaml
     associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
