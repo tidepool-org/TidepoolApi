@@ -582,7 +582,7 @@ You can fetch the individual diabetes data points for any given patient by invok
 
 {% json-schema
   schema={
-    "$ref": "../../reference/data/models/datatype.v1.yaml"
+    "$ref": "../reference/data/models/datatype.v1.yaml"
   }
 /%}
 
