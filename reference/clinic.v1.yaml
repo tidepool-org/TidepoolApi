@@ -2182,6 +2182,10 @@ components:
           minLength: 1
         tags:
           $ref: ./clinic/models/patientTagIds.v1.yaml
+        glycemicRanges:
+          $ref: ./clinic/models/glycemicRanges.v1.yaml
+        diagnosisType:
+          $ref: ./metadata/models/diagnosisType.v1.yaml
     associateClinicianToUser.v1:
       title: Associate Clinician
       type: object

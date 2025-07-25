@@ -61,6 +61,10 @@ properties:
       id: 502rliv0l2tyy
     description: Requests for each provider are listed in reverse chronological order
     readOnly: true
+  glycemicRanges:
+    $ref: ./glycemicRanges.v1.yaml
+  diagnosisType:
+    $ref: ../../metadata/models/diagnosisType.v1.yaml
 required:
   - id
   - fullName

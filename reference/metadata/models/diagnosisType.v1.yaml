@@ -8,4 +8,5 @@ enum:
   - lada
   - mody
   - other
+  - notApplicable
 example: 'type1'
