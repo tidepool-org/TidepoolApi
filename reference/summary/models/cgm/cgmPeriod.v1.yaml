@@ -2,6 +2,24 @@ type: object
 title: cgmperiod.v1
 description: 'Summary of a specific CGM time period (currently: 1d, 7d, 14d, 30d)'
 properties:
+  min:
+    type: number
+    example: 3.0
+    x-go-type: float64
+  minDelta:
+    type: number
+    example: 3.0
+    x-go-type: float64
+
+  max:
+    type: number
+    example: 8.0
+    x-go-type: float64
+  maxDelta:
+    type: number
+    example: 8.0
+    x-go-type: float64
+
   hasAverageGlucoseMmol:
     type: boolean
   averageGlucoseMmol:
@@ -144,7 +162,7 @@ properties:
     type: number
     example: 5
     x-go-type: int
-  
+
   hasTimeInExtremeHighPercent:
     type: boolean
   timeInExtremeHighPercent:
@@ -300,7 +318,7 @@ properties:
     type: number
     example: 5
     x-go-type: int
-    
+
   hasTimeInAnyLowPercent:
     type: boolean
   timeInAnyLowPercent:
@@ -481,3 +499,7 @@ required:
   - hoursWithDataDelta
   - daysWithData
   - daysWithDataDelta
+  - min
+  - minDelta
+  - max
+  - maxDelta
