@@ -3,8 +3,7 @@ description: Consent
 type: object
 properties:
   type:
-    description: Test
-    type: string
+    $ref: ./type.v1.yaml
   version:
     type: integer
     example: 1

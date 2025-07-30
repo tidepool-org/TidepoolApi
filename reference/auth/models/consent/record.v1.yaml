@@ -15,17 +15,43 @@ properties:
       - active
       - revoked
     readOnly: true
-  type:
+  ageGroup:
     type: string
     x-stoplight:
+      id: u5whtndrytunl
+    enum:
+      - <12
+      - 13-17
+      - 18+
+  ownerName:
+    type: string
+    x-stoplight:
+      id: 2cw4335ateapa
+    description: The name of the account owner
+  parentGuardianName:
+    type: string
+    x-stoplight:
+      id: 94pqubqvzwigs
+    description: The name of the parent or legal guardian granting the consent. Required if ageGroup is '<12' or '13-17'.
+  grantorType:
+    type: string
+    x-stoplight:
+      id: zc8e4q8t37yig
+    enum:
+      - owner
+      - parent/guardian
+  type:
+    $ref: ./type.v1.yaml
+    x-stoplight:
       id: jub0w6n4sx03g
-    minLength: 1
-    maxLength: 100
   version:
     type: integer
     x-stoplight:
       id: s4pt6ptt7ez4n
-    minimum: 1
+  metadata:
+    $ref: ./metadata.v1.yaml
+    x-stoplight:
+      id: u4fzjwa9iivzp
   grantTime:
     type: string
     x-stoplight:
@@ -50,13 +76,12 @@ properties:
       id: ohlc8mndn74ov
     format: date-time
     readOnly: true
-  metadata:
-    $ref: ./metadata.v1.yaml
-    x-stoplight:
-      id: u4fzjwa9iivzp
 required:
   - id
   - status
+  - ageGroup
+  - ownerName
+  - grantorType
   - type
   - version
   - grantTime

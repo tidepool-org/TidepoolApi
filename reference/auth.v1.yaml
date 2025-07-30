@@ -683,7 +683,9 @@ paths:
   /v1/consents:
     get:
       summary: List Consents
-      tags: []
+      tags:
+        - Internal
+        - Consent
       responses:
         '200':
           description: OK
@@ -692,30 +694,19 @@ paths:
               schema:
                 $ref: ./auth/models/consent/consents.v1.yaml
       operationId: ListConsents
-      description: Retrieves the list of all different consent types and their content. By default returns only the latest version for each consent type. This can be override by setting the `version` query parameter to `all`
+      description: 'Retrieves the list of all different consent types and their content. '
       requestBody:
         content: {}
-      parameters:
-        - schema:
-            type: string
-            enum:
-              - latest
-              - all
-            default: latest
-          in: query
-          name: version
-          description: Whether to return all versions or only the most recent one.
+      parameters: []
+      x-internal: true
     parameters: []
-  '/v1/consents/{type}':
+  '/v1/consents/{consentType}':
     parameters:
-      - schema:
-          type: string
-        name: type
-        in: path
-        required: true
+      - $ref: '#/components/parameters/consentType'
     get:
       summary: Get Latest Consent By Type
-      tags: []
+      tags:
+        - Consent
       responses:
         '200':
           description: OK
@@ -725,16 +716,14 @@ paths:
                 $ref: ./auth/models/consent/consent.v1.yaml
       operationId: GetLatestConsentByType
       description: Returns the latest consent version for the given type
-  '/v1/consent/{type}/versions':
+  '/v1/consent/{consentType}/versions':
     parameters:
-      - schema:
-          type: string
-        name: type
-        in: path
-        required: true
+      - $ref: '#/components/parameters/consentType'
     get:
       summary: Get Consent Versions
-      tags: []
+      tags:
+        - Consent
+        - Internal
       responses:
         '200':
           description: OK
@@ -742,15 +731,12 @@ paths:
             application/json:
               schema:
                 $ref: ./auth/models/consent/consents.v1.yaml
-      operationId: GetConentVersions
+      operationId: GetConsentVersions
       description: Returns a list of all consent versions for a given type
+      x-internal: true
   '/v1/users/{userId}/consents':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
     get:
       summary: Get User Consent Records
       tags: []
@@ -762,16 +748,16 @@ paths:
               schema:
                 $ref: ./auth/models/consent/records.v1.yaml
       operationId: GetUserConsentRecords
-      description: Returns a list of all user consent records. By default only the most recent consent record for a given consent type will be returned. This can be overriden by setting the `version` query parameter to `all`.
+      description: Returns a list of all user consent records. By default only the most recent consent record for a given consent type will be returned. This can be overriden by setting the `latest` query parameter to `false`.
       parameters:
         - schema:
-            type: string
+            type: boolean
             enum:
-              - latest
-              - all
-            default: latest
+              - 'true'
+              - 'false'
+            default: 'true'
           in: query
-          name: version
+          name: latest
           description: Whether to return all versions or only the most recent one.
         - schema:
             type: string
@@ -795,11 +781,7 @@ paths:
               $ref: ./auth/models/consent/recordcreate.v1.yaml
   '/v1/users/{userId}/consents/{recordId}':
     parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/userId'
       - schema:
           type: string
         name: recordId
@@ -818,7 +800,7 @@ paths:
       operationId: GetUserConsentRecord
       description: Retrieves a consent record by ID for a given user.
     patch:
-      summary: ''
+      summary: Update User Consent Record
       operationId: UpdateUserConsentRecord
       responses:
         '200':
@@ -833,6 +815,13 @@ paths:
           application/json:
             schema:
               $ref: ./auth/models/consent/recordupdate.v1.yaml
+    delete:
+      summary: ''
+      operationId: RevokeConsent
+      responses:
+        '200':
+          description: OK
+      description: Revokes a consent record
 components:
   securitySchemes:
     basicAuth:
@@ -1094,3 +1083,16 @@ components:
                 required:
                   - code
                   - reason
+  parameters:
+    consentType:
+      name: consentType
+      in: path
+      required: true
+      schema:
+        $ref: ./auth/models/consent/type.v1.yaml
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: ./common/models/tidepooluserid.yaml
