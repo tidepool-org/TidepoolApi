@@ -1,0 +1,6 @@
+title: Consent Type
+x-stoplight:
+  id: r396s741z1sca
+type: string
+pattern: '^[a-z0-9_-]{3,64}$'
+example: big_data_donation_project

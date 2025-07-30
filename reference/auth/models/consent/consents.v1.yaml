@@ -7,6 +7,7 @@ properties:
     x-stoplight:
       id: iepviv3jm8m9m
     type: array
+    uniqueItems: true
     items:
       $ref: ./consent.v1.yaml
       x-stoplight:
