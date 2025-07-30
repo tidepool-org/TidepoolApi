@@ -3,11 +3,9 @@ x-stoplight:
   id: c8oq1dn4m4uak
 type: object
 properties:
-  status:
-    type: string
+  metadata:
+    $ref: ./metadata.v1.yaml
     x-stoplight:
       id: 2hnhmpwbyck12
-    enum:
-      - revoked
 required:
-  - status
+  - metadata

@@ -7,6 +7,7 @@ properties:
     type: array
     x-stoplight:
       id: whbezmg3q7pxh
+    uniqueItems: true
     items:
       $ref: ./record.v1.yaml
       x-stoplight:
