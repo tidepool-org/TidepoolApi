@@ -957,29 +957,16 @@ paths:
   '/v1/clinics/{clinicId}/sites':
     parameters:
       - $ref: '#/components/parameters/clinicId'
-    get:
-      summary: List Sites
-      operationId: ListSites
-      responses:
-        '200':
-          description: List of clinic sites
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/clinicSites.v1'
-      description: List sites
-      tags:
-        - Clinics
     post:
       summary: Create a Site
       operationId: CreateSite
       responses:
         '200':
-          description: List of clinic sites
+          description: The newly-created clinic site
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/clinicSites.v1'
+                $ref: ./clinic/models/clinicSite.v1.yaml
       description: Create a Site
       requestBody:
         content:
@@ -997,11 +984,11 @@ paths:
       operationId: UpdateSite
       responses:
         '200':
-          description: List of clinic sites
+          description: The updated clinic site
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/clinicSites.v1'
+                $ref: ./clinic/models/clinicSite.v1.yaml
       description: Update a Site
       requestBody:
         content:
@@ -1014,12 +1001,8 @@ paths:
       summary: Delete a Site
       operationId: DeleteSite
       responses:
-        '200':
-          description: List of clinic sites
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/clinicSites.v1'
+        '204':
+          description: No content
       description: 'Delete a Site'
       tags:
         - Clinics
