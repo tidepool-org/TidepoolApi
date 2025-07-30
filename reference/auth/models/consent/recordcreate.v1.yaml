@@ -1,0 +1,9 @@
+$ref: ./record.v1.yaml
+x-stoplight:
+  id: saa37zeaoirkr
+examples:
+  - type: tbddp
+    version: 1
+    metadata:
+      supportedOrganizations:
+        - ADCES Foundation
