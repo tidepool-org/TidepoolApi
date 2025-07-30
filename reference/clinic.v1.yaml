@@ -945,7 +945,11 @@ paths:
       operationId: CreatePatientTag
       responses:
         '200':
-          description: OK
+          description: The newly-created patient tag
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patientTag.v1.yaml
       description: Create a new patient tag
       requestBody:
         content:
@@ -1117,7 +1121,11 @@ paths:
       operationId: UpdatePatientTag
       responses:
         '200':
-          description: OK
+          description: The updated patient tag
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patientTag.v1.yaml
       description: Update existing patient tag
       tags:
         - Clinics
@@ -1130,8 +1138,8 @@ paths:
       summary: Delete Patient Tag
       operationId: DeletePatientTag
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No content
       description: Removes a patient tag from a clinic and tagged patients
       tags:
         - Clinics
