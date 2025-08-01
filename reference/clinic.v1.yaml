@@ -2296,8 +2296,10 @@ components:
           minLength: 1
         tags:
           $ref: ./clinic/models/patientTagIds.v1.yaml
-        siteIds:
-          $ref: ./clinic/models/siteIds.v1.yaml
+        sites:
+          type: array
+          items:
+            $ref: ./clinic/models/site.v1.yaml
     associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
@@ -2489,6 +2491,10 @@ components:
           minLength: 1
         tags:
           $ref: ./clinic/models/patientTagIds.v1.yaml
+        sites:
+          type: array
+          items:
+            $ref: ./clinic/models/clinicSite.v1.yaml
     addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
