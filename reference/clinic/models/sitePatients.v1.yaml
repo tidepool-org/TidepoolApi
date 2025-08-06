@@ -1,0 +1,13 @@
+# sitepatients extends site with the clinic-specific patient count
+type: object
+title: Site Patients
+description: Site properties specific to a clinic.
+properties:
+  patients:
+    type: integer
+    x-go-type-skip-optional-pointer: true
+    description: The number of patients associated with the site.
+    readOnly: true
+    minimum: 0
+required:
+  - patients
