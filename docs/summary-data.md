@@ -1,20 +1,4 @@
-<!-- omit in toc -->
 # Summary Statistics
-
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Calculation](#calculation)
-   1. [Threshold Values](#threshold-values)
-   2. [Hourly Bucket Data Fields](#hourly-bucket-data-fields)
-      1. [GlucoseBucket](#glucosebucket)
-   3. [Summary Period Data Fields](#summary-period-data-fields)
-      1. [GlucosePeriod](#glucoseperiod)
-      2. [GlucoseRange](#glucoserange)
-   4. [Handling Multiple Data Sources](#handling-multiple-data-sources)
-
----
 
 ## Overview
 
@@ -309,13 +293,13 @@ Each bucket has a set of common fields, as well as a set of fields repeated for 
 
 ### GlucoseRange
 
-|  CGM  |  BGM  | Field      | Type    | Unit                 | Notes                                                        |
-| :---: | :---: | :--------- | :------ | :------------------- | :----------------------------------------------------------- |
-|   ✅   |   ✅   | $Glucose$  | $float$ | $\frac{mmol}{L}$     | Sum of all samples in the period                             |
-|   ✅   |       | $Minutes$  | $int$   | $min$                | Sum of minutes covered by each sample in the period          |
-|   ✅   |   ✅   | $Records$  | $int$   |                      | Count of samples in the period                               |
-|   ✅   |       | $Percent$  | $float$ | %                    | $\frac{\textbf{Xxx}.Records}{Total.Records}$                 |
-|   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$ | Calculated using [weighted incremental algorithm][variance]. |
+|  CGM  |  BGM  | Field      | Type    | Unit                 | Notes                                                                                                    |
+| :---: | :---: | :--------- | :------ | :------------------- | :------------------------------------------------------------------------------------------------------- |
+|   ✅   |   ✅   | $Glucose$  | $float$ | $\frac{mmol}{L}$     | Sum of all samples in the period                                                                         |
+|   ✅   |       | $Minutes$  | $int$   | $min$                | Sum of minutes covered by each sample in the period                                                      |
+|   ✅   |   ✅   | $Records$  | $int$   |                      | Count of samples in the period                                                                           |
+|   ✅   |   ✅   | $Percent$  | $float$ | %                    | if $Total.Minutes ≠ 0$: $\frac{\textbf{Xxx}.Minutes}{Total.Minutes}$ or if $Total.Records ≠ 0$: $\frac{\textbf{Xxx}.Records}{Total.Records}$ |
+|   ✅   |       | $Variance$ | $float$ | $(\frac{mmol}{L})^2$ | Calculated using [weighted incremental algorithm][variance].                                             |
 
 ## Handling Multiple Data Sources
 
