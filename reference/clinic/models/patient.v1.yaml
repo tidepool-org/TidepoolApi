@@ -64,6 +64,8 @@ properties:
   sites:
     type: array
     x-go-type-skip-optional-pointer: true
+    x-omitempty: false
+    x-omitzero: true
     items:
       $ref: ./site.v1.yaml
 required:

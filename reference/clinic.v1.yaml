@@ -2263,6 +2263,8 @@ components:
         sites:
           type: array
           x-go-type-skip-optional-pointer: true
+          x-omitempty: false
+          x-omitzero: true
           items:
             $ref: ./clinic/models/site.v1.yaml
     associateClinicianToUser.v1:
@@ -2459,6 +2461,8 @@ components:
         sites:
           type: array
           x-go-type-skip-optional-pointer: true
+          x-omitempty: false
+          x-omitzero: true
           items:
             $ref: ./clinic/models/clinicSite.v1.yaml
     addServiceAccount.v1:
