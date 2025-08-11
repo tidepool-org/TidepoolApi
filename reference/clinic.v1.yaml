@@ -2298,6 +2298,7 @@ components:
           $ref: ./clinic/models/patientTagIds.v1.yaml
         sites:
           type: array
+          x-go-type-skip-optional-pointer: true
           items:
             $ref: ./clinic/models/site.v1.yaml
     associateClinicianToUser.v1:
@@ -2493,6 +2494,7 @@ components:
           $ref: ./clinic/models/patientTagIds.v1.yaml
         sites:
           type: array
+          x-go-type-skip-optional-pointer: true
           items:
             $ref: ./clinic/models/clinicSite.v1.yaml
     addServiceAccount.v1:
