@@ -20,6 +20,7 @@ properties:
       $ref: ./patientTag.v1.yaml
   sites:
     type: array
+    x-go-type-skip-optional-pointer: true
     items:
       $ref: ./clinicSite.v1.yaml
   lastDeletedPatientTag:
