@@ -1,0 +1,14 @@
+type: object
+title: tidemetadata.v1
+description: Metadata describing the results of the Tide Report.
+properties:
+  candidatePatients:
+    type: number
+    x-go-type: int
+    description: The total number of possible patients, after filters, but before limits.
+    example: 253
+  selectedPatients:
+    type: number
+    x-go-type: int
+    description: The total number of selected patients, after filters and limits.
+    example: 150
