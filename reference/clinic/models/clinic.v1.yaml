@@ -18,6 +18,11 @@ properties:
     type: array
     items:
       $ref: ./patientTag.v1.yaml
+  sites:
+    type: array
+    x-go-type-skip-optional-pointer: true
+    items:
+      $ref: ./site.v1.yaml
   lastDeletedPatientTag:
     $ref: ./patientTag.v1.yaml
   phoneNumbers:
