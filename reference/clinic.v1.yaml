@@ -970,7 +970,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/clinicSite.v1.yaml
+                $ref: ./clinic/models/site.v1.yaml
       description: Create a Site
       requestBody:
         content:
@@ -992,7 +992,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./clinic/models/clinicSite.v1.yaml
+                $ref: ./clinic/models/site.v1.yaml
       description: Update a Site
       requestBody:
         content:
@@ -2237,10 +2237,6 @@ components:
       type: array
       items:
         $ref: ./clinic/models/dataSource.v1.yaml
-    clinicSites.v1:
-      type: array
-      items:
-        $ref: ./clinic/models/clinicSite.v1.yaml
     site.v1:
       $ref: ./clinic/models/site.v1.yaml
     siteCreation.v1:
@@ -2500,7 +2496,7 @@ components:
           x-omitempty: false
           x-omitzero: true
           items:
-            $ref: ./clinic/models/clinicSite.v1.yaml
+            $ref: ./clinic/models/site.v1.yaml
     addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
