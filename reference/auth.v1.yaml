@@ -716,7 +716,7 @@ paths:
                 $ref: ./auth/models/consent/consent.v1.yaml
       operationId: GetLatestConsentByType
       description: Returns the latest consent version for the given type
-  '/v1/consent/{consentType}/versions':
+  '/v1/consents/{consentType}/versions':
     parameters:
       - $ref: '#/components/parameters/consentType'
     get:
@@ -782,11 +782,7 @@ paths:
   '/v1/users/{userId}/consents/{recordId}':
     parameters:
       - $ref: '#/components/parameters/userId'
-      - schema:
-          type: string
-        name: recordId
-        in: path
-        required: true
+      - $ref: '#/components/parameters/recordId'
     get:
       summary: Get User Consent Record
       tags: []
@@ -1096,3 +1092,9 @@ components:
       required: true
       schema:
         $ref: ./common/models/tidepooluserid.yaml
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      schema:
+        $ref: ./auth/models/consent/recordId.v1.yaml
