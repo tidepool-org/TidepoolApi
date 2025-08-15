@@ -4,9 +4,7 @@ x-stoplight:
 type: object
 properties:
   id:
-    type: string
-    minLength: 1
-    readOnly: true
+    $ref: ./recordId.v1.yaml
   status:
     type: string
     x-stoplight:
