@@ -1,8 +1,8 @@
 title: CGM Settings
-description: Continuous Glucose Monitor settings
 allOf:
   - $ref: ./base.v1.yaml
   - type: object
+    description: Continuous Glucose Monitor settings
     properties:
       firmwareVersion:
         type: string

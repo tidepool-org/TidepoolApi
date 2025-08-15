@@ -1,8 +1,8 @@
 title: Bolus Extended
-description: An extended bolus event
 allOf:
   - $ref: './bolus.v1.yaml'
   - type: object
+    description: An extended bolus event
     properties:
       duration:
         type: integer

@@ -1,13 +1,15 @@
 <!-- omit in toc -->
 # Automated Basals (`automated`)
 
-<!-- omit in toc -->
-## Table of Contents
+## Delivery Type (`deliveryType`)
 
-1. [Quick Summary](#quick-summary)
-2. [Delivery Type (`deliveryType`)](#delivery-type-deliverytype)
-3. [Examples](#examples)
-4. [Keep Reading](#keep-reading)
+The string `automated`.
+
+This is the sub-type of basal event representing intervals of basal insulin delivery triggered by the pump itself (rather than manual user entry) according to a closed loop algorithm.
+
+{% partial file="/_partials/basal_duration.md" /%}
+
+{% partial file="/_partials/basal_rate.md" /%}
 
 ---
 
@@ -18,12 +20,6 @@
     "$ref": "../../../../reference/data/models/basal/automated.v1.yaml"
   }
 /%}
-
----
-
-## Delivery Type (`deliveryType`)
-
-This is the sub-type of basal event representing intervals of basal insulin delivery triggered by the pump itself (rather than manual user entry) according to a closed loop algorithm.
 
 ---
 

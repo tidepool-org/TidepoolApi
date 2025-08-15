@@ -1,8 +1,8 @@
 title: Device Pump Settings Override Event
-description: An insulin pump settings override event.
 allOf:
   - $ref: ./event.v1.yaml
   - type: object
+    description: An insulin pump settings override event.
     properties:
       subType:
         type: string
