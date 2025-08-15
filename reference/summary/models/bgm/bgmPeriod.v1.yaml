@@ -2,6 +2,22 @@ type: object
 title: bgmperiod.v1
 description: 'Summary of a specific BGM time period (currently: 1d, 7d, 14d, 30d)'
 properties:
+  min:
+    type: number
+    example: 3
+    x-go-type: float64
+  minDelta:
+    type: number
+    example: 3
+    x-go-type: float64
+  max:
+    type: number
+    example: 8
+    x-go-type: float64
+  maxDelta:
+    type: number
+    example: 8
+    x-go-type: float64
   hasAverageGlucoseMmol:
     type: boolean
   averageGlucoseMmol:
@@ -14,7 +30,6 @@ properties:
     type: number
     example: 2.5
     x-go-type: float64
-
   hasTimeInTargetPercent:
     type: boolean
   timeInTargetPercent:
@@ -27,7 +42,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInTargetRecords:
     type: boolean
   timeInTargetRecords:
@@ -40,7 +54,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
   hasTimeInHighPercent:
     type: boolean
   timeInHighPercent:
@@ -53,7 +66,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInHighRecords:
     type: boolean
   timeInHighRecords:
@@ -66,7 +78,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
   hasTimeInVeryHighPercent:
     type: boolean
   timeInVeryHighPercent:
@@ -79,7 +90,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInVeryHighRecords:
     type: boolean
   timeInVeryHighRecords:
@@ -92,7 +102,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
   hasTimeInExtremeHighPercent:
     type: boolean
   timeInExtremeHighPercent:
@@ -105,7 +114,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInExtremeHighRecords:
     type: boolean
   timeInExtremeHighRecords:
@@ -118,7 +126,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
   hasTimeInAnyHighPercent:
     type: boolean
   timeInAnyHighPercent:
@@ -131,7 +138,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInAnyHighRecords:
     type: boolean
   timeInAnyHighRecords:
@@ -144,7 +150,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
   hasTimeInLowPercent:
     type: boolean
   timeInLowPercent:
@@ -157,7 +162,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInLowRecords:
     type: boolean
   timeInLowRecords:
@@ -170,7 +174,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
   hasTimeInVeryLowPercent:
     type: boolean
   timeInVeryLowPercent:
@@ -183,7 +186,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInVeryLowRecords:
     type: boolean
   timeInVeryLowRecords:
@@ -196,7 +198,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-  
   hasTimeInAnyLowPercent:
     type: boolean
   timeInAnyLowPercent:
@@ -209,7 +210,6 @@ properties:
     type: number
     example: 0.2
     x-go-type: float64
-
   hasTimeInAnyLowRecords:
     type: boolean
   timeInAnyLowRecords:
@@ -222,7 +222,6 @@ properties:
     type: number
     example: 5
     x-go-type: int
-
   hasTotalRecords:
     type: boolean
   totalRecords:
@@ -235,7 +234,6 @@ properties:
     type: number
     example: 10
     x-go-type: int
-
   hasAverageDailyRecords:
     type: boolean
   averageDailyRecords:
@@ -248,8 +246,35 @@ properties:
     type: number
     example: 2.5
     x-go-type: float64
-
+  standardDeviation:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  standardDeviationDelta:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  coefficientOfVariation:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  coefficientOfVariationDelta:
+    type: number
+    example: 2.5
+    x-go-type: float64
+  daysWithData:
+    type: number
+    example: 2
+    x-go-type: int
+  daysWithDataDelta:
+    type: number
+    example: 2
+    x-go-type: int
 required:
+  - min
+  - minDelta
+  - max
+  - maxDelta
   - hasAverageGlucoseMmol
   - hasTimeInTargetPercent
   - hasTimeInTargetRecords
@@ -259,13 +284,15 @@ required:
   - hasTimeInVeryHighRecords
   - hasTimeInExtremeHighPercent
   - hasTimeInExtremeHighRecords
+  - hasTimeInAnyHighPercent
+  - hasTimeInAnyHighRecords
   - hasTimeInLowPercent
   - hasTimeInLowRecords
   - hasTimeInVeryLowPercent
   - hasTimeInVeryLowRecords
   - hasTimeInAnyLowPercent
   - hasTimeInAnyLowRecords
-  - hasTimeInAnyHighPercent
-  - hasTimeInAnyHighRecords
   - hasTotalRecords
   - hasAverageDailyRecords
+  - daysWithData
+  - daysWithDataDelta
