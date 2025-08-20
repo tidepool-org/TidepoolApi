@@ -767,7 +767,7 @@ paths:
       summary: Create User Consent Record
       operationId: CreateUserConsentRecord
       responses:
-        '201':
+        '200':
           description: Created
           content:
             application/json:
@@ -812,10 +812,10 @@ paths:
             schema:
               $ref: ./auth/models/consent/recordupdate.v1.yaml
     delete:
-      summary: ''
+      summary: 'Revoke User Consent Record'
       operationId: RevokeConsent
       responses:
-        '200':
+        '204':
           description: OK
       description: Revokes a consent record
 components:
