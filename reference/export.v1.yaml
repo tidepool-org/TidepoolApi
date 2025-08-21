@@ -66,20 +66,89 @@ paths:
               schema:
                 $ref: './export/models/excel.v1.yaml'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          $ref: './common/responses/badrequest.v1.yaml'
         '401':
-          $ref: '#/components/responses/Unauthorized'
+          $ref: './common/responses/unauthorized.v1.yaml'
         '403':
-          $ref: '#/components/responses/Forbidden'
+          $ref: './common/responses/forbidden.v1.yaml'
         '500':
-          $ref: '#/components/responses/ServerError'
+          $ref: './common/responses/servererror.v1.yaml'
+
       security:
         - sessionToken: []
         - restrictedToken: []
       tags:
         - Export
         - Internal
-
+  '/export/report/{userId}':
+    parameters:
+      - $ref: './common/parameters/tidepooluserid.yaml'
+    get:
+      operationId: WebExportUserReport
+      summary: Export user report from webapp
+      description: >-
+        User report exported in with the requested options.
+        Either a Tidepool session token, or a restricted token must be supplied.
+      parameters:
+        - $ref: './export/parameters/reports.v1.yaml'
+        - $ref: './export/parameters/birthday.v1.yaml'
+        - $ref: './export/parameters/fullname.v1.yaml'
+        - $ref: './export/parameters/timezonename.v1.yaml'
+        - $ref: './export/parameters/glucoseunits.v1.yaml'
+      responses:
+        '200':
+          description: A PDF report for the given user
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '500':
+          $ref: './common/responses/servererror.v1.yaml'
+      security:
+        - sessionToken: []
+        - restrictedToken: []
+      tags:
+        - Export
+        - Internal
+    post:
+      operationId: ExportUserReport
+      summary: Export user report
+      description: >-
+        Export user report called from 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./export/models/reportrequest.v1.yaml
+      responses:
+        '200':
+          description: A PDF report for the given user
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '500':
+          $ref: './common/responses/servererror.v1.yaml'
+      security:
+        - sessionToken: []
+        - restrictedToken: []
+      tags:
+        - Export
+        - Internal 
 components:
   securitySchemes:
     sessionToken:
@@ -87,16 +156,3 @@ components:
 
     restrictedToken:
       $ref: './common/security/tidepoolrestrictedtoken.v1.yaml'
-
-  responses:
-    BadRequest:
-      description: 'Bad Request'
-
-    Unauthorized:
-      description: 'Unauthorized'
-
-    Forbidden:
-      description: 'Forbidden'
-
-    ServerError:
-      description: 'Server Error'
