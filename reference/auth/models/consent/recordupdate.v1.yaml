@@ -1,0 +1,11 @@
+title: recordupdate.v1
+x-stoplight:
+  id: c8oq1dn4m4uak
+type: object
+properties:
+  metadata:
+    $ref: ./metadata.v1.yaml
+    x-stoplight:
+      id: 2hnhmpwbyck12
+required:
+  - metadata
