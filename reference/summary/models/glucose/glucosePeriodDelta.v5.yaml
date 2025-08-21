@@ -3,6 +3,7 @@ title: glucoseperiod.v5
 description: 'Summary of a specific CGM time period (currently: 1d, 7d, 14d, 30d)'
 allOf:
   - $ref: './glucoseRanges.v5.yaml'
+  - $ref: './glucoseMinMax.v5.yaml'
   - type: object
     properties:
       hoursWithData:
