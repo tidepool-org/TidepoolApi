@@ -6,6 +6,9 @@ properties:
     $ref: './tideConfig.v1.yaml'
   results:
     $ref: './tideResults.v1.yaml'
+  metadata:
+    $ref: './tideMetadata.v1.yaml'
 required:
   - config
   - results
+  - metadata
