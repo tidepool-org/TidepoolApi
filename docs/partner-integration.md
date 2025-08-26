@@ -1,22 +1,4 @@
-<!-- omit in toc -->
 # Partner Integration Guide
-
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Device Data Model](#device-data-model)
-   1. [Common Fields](#common-fields)
-   2. [CGM Devices](#cgm-devices)
-   3. [Insulin Delivery Devices (Pumps, Pens)](#insulin-delivery-devices-pumps-pens)
-      1. [Basal Insulin](#basal-insulin)
-      2. [Bolus Insulin](#bolus-insulin)
-3. [Setup](#setup)
-4. [Authentication and Authorization](#authentication-and-authorization)
-5. [Data Transfer](#data-transfer)
-6. [Revocation](#revocation)
-
----
 
 ## Overview
 
@@ -105,7 +87,7 @@ In addition to the insulin delivery events described above, the Tidepool Data Pl
   * Bolus calculator or dosing decision records
   * Activity modes from AID systems such as [Tandem Control-IQ](https://www.tandemdiabetes.com/products/t-slim-x2-insulin-pump/control-iq)
 
-A more comprehensive description of these can be found in our [API and data model documentation](https://tidepool.stoplight.io). Tidepool expects to receive and visualize all insulin delivery events and device settings that may be helpful to the healthcare provider and person with diabetes.
+A more comprehensive description of these can be found in our [API and data model documentation](https://tidepool.redocly.app/tidepool-apis). Tidepool expects to receive and visualize all insulin delivery events and device settings that may be helpful to the healthcare provider and person with diabetes.
 
 ## Setup
 
