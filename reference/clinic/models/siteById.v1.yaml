@@ -1,0 +1,8 @@
+type: object
+title: SiteById
+description: "A clinic's physical or logical location—id only."
+properties:
+  id:
+    $ref: ../../../reference/common/models/objectid.v1.yaml
+required:
+  - id
