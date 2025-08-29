@@ -1165,6 +1165,25 @@ paths:
       description: Removes a patient tag from a clinic and tagged patients
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/patient_tags/{patientTagId}/site':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    post:
+      summary: Convert Patient Tag to Site
+      operationId: ConvertPatientTagToSite
+      responses:
+        '200':
+          description: The newly converted site.
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/site.v1.yaml
+        '409':
+          description: Cannot convert the tag to a site. This could occur for example when the maximum number of sites has already been reached.
+      description: Convert a patient tag to a site.
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/invites/clinicians':
     parameters:
       - $ref: '#/components/parameters/clinicId'
