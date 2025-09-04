@@ -1,17 +1,6 @@
 <!-- omit in toc -->
 # Self-Monitored Blood Glucose (`smbg`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Type (`type`)](#type-type)
-3. [Sub-Type (`subType`)](#sub-type-subtype)
-4. [Examples](#examples)
-5. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

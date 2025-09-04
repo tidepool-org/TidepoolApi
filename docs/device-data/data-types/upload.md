@@ -1,25 +1,7 @@
 <!-- omit in toc -->
 # Upload Metadata (`upload`)
 
-<!-- omit in toc -->
-## Table of Contents
 
-1. [Quick Summary](#quick-summary)
-2. [Type (`type`)](#type-type)
-3. [By User (`byUser`)](#by-user-byuser)
-4. [Computer Time (`computerTime`)](#computer-time-computertime)
-5. [Device Manufacturers (`deviceManufacturers`)](#device-manufacturers-devicemanufacturers)
-6. [Device Model (`deviceModel`)](#device-model-devicemodel)
-7. [Device Serial Number (`deviceSerialNumber`)](#device-serial-number-deviceserialnumber)
-8. [Device Tags (`deviceTags`)](#device-tags-devicetags)
-9. [Time Processing (`timeProcessing`)](#time-processing-timeprocessing)
-10. [Timezone (`timezone`)](#timezone-timezone)
-11. [Upload ID (`uploadId`)](#upload-id-uploadid)
-12. [Version (`version`)](#version-version)
-13. [Examples](#examples)
-14. [Keep Reading](#keep-reading)
-
----
 
 ## Quick Summary
 

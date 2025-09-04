@@ -1,16 +1,6 @@
 <!-- omit in toc -->
 # Extended Bolus (`extended`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Sub-Type (`subType`)](#sub-type-subtype)
-3. [Examples](#examples)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

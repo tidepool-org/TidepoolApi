@@ -1,19 +1,6 @@
 <!-- omit in toc -->
 # Usage
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-   1. [Import The Utility](#import-the-utility)
-   2. [Initialize The Utility](#initialize-the-utility)
-   3. [Employ The Utility'S Fill-In UTC Information](#employ-the-utilitys-fill-in-utc-information)
-2. [Tracking The Time Generation Method](#tracking-the-time-generation-method)
-3. [Expectations For Time Change Events](#expectations-for-time-change-events)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 Each device driver in the Tidepool Uploader — including for devices without date & time settings changes information — should integrate Timezone Offset Utility as the common way of generating the time, timezone offset, conversion offset, and clock drift offset fields on each datum.

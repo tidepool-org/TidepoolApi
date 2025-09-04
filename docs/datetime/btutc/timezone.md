@@ -1,18 +1,6 @@
 <!-- omit in toc -->
 # Timezone Offset (`timezoneOffset`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Time Field Relationships](#time-field-relationships)
-3. [Finding A Timezone Offset](#finding-a-timezone-offset)
-4. [Upper Threshold For Timezone Offset Changes](#upper-threshold-for-timezone-offset-changes)
-5. [Timezone Offset Abbreviations](#timezone-offset-abbreviations)
-6. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 A [timezone offset](../glossary.md#timezone-offset) is a positive or negative integer representing an offset from [UTC](../glossary.md#utc) in minutes. For example, San Francisco is –480 minutes (eight hours) behind UTC, reflecting that you must *subtract* eight hours from UTC to get [the local time]( https://www.timeanddate.com/worldclock/difference.html?p1=3875).

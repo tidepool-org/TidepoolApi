@@ -1,31 +1,6 @@
 <!-- omit in toc -->
 # Pump Settings (`pumpSettings`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-1. [Type (`type`)](#type-type)
-1. [Active Schedule (`activeSchedule`)](#active-schedule-activeschedule)
-1. [Basal Schedules (`basalSchedules`)](#basal-schedules-basalschedules)
-1. [Blood Glucose Target (`bgTarget`)](#blood-glucose-target-bgtarget)
-1. [Carb Ratio (`carbRatio`)](#carb-ratio-carbratio)
-1. [Firmware Version (`firmwareVersion`)](#firmware-version-firmwareversion)
-1. [Hardware Version (`hardwareVersion`)](#hardware-version-hardwareversion)
-1. [Insulin Sensitivity (`insulinSensitivity`)](#insulin-sensitivity-insulinsensitivity)
-1. [Manufacturers (`manufacturers`)](#manufacturers-manufacturers)
-1. [Model (`model`)](#model-model)
-1. [Name (`name`)](#name-name)
-1. [Override Presets (`overridePresets`)](#override-presets-overridepresets)
-1. [Serial Number (`serialNumber`)](#serial-number-serialnumber)
-1. [Sleep Schedules (`sleepSchedules`)](#sleep-schedules-sleepschedules)
-1. [Software Version (`softwareVersion`)](#software-version-softwareversion)
-1. [Units (`units`)](#units-units)
-1. [Examples](#examples)
-1. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

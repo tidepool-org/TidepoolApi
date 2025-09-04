@@ -1,16 +1,6 @@
 <!-- omit in toc -->
 # Continuous Blood Glucose (`cbg`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Type (`type`)](#type-type)
-3. [Examples](#examples)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

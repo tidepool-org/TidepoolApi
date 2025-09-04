@@ -1,25 +1,6 @@
 <!-- omit in toc -->
 # Glossary
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [BtUTC](#btutc)
-2. [Calendar Date](#calendar-date)
-3. [Clock Time](#clock-time)
-4. [Datetime](#datetime)
-5. [Display Time](#display-time)
-6. [DST](#dst)
-7. [Hammertime](#hammertime)
-8. [ISO 8601](#iso-8601)
-9. [PwD](#pwd)
-10. [Timezone](#timezone)
-11. [Timezone Offset](#timezone-offset)
-12. [Unix Time](#unix-time)
-13. [UTC](#utc)
-
----
-
 ## BtUTC
 
 [Bootstrapping to UTC](./btutc.md) (BtUTC) is the algorithm Tidepool uses to translate local device time to [UTC](#utc) datetimes.

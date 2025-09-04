@@ -1,14 +1,6 @@
 <!-- omit in toc -->
 # Conversion Offset (`conversionOffset`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 The conversion offset covers changes resulting from incorrect set up of a device. This includes:

@@ -1,16 +1,6 @@
 <!-- omit in toc -->
 # Annotations
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Syntax And Annotation Conventions](#syntax-and-annotation-conventions)
-3. [Annotation Duplications And Storage](#annotation-duplications-and-storage)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 Tidepool strives for complete accuracy in the data uploaded to Platform. In some cases, where the data coming from diabetes devices falls just shy of the data model requirements, it is possible to implement logic that gives us high — but not 100% — confidence in the result. In such cases, Tidepool has chosen to implement this logic but also to annotate the resulting data to expose the small amount of uncertainty remaining. We have done this so we can provide the same user experience to those using various diabetes devices in their treatment.
