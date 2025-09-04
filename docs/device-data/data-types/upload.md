@@ -1,8 +1,6 @@
 <!-- omit in toc -->
 # Upload Metadata (`upload`)
 
-
-
 ## Quick Summary
 
 {% json-schema
