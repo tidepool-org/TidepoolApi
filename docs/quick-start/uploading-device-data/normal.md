@@ -3,7 +3,7 @@
 
 <!-- theme: success -->
 
-> ### Are You Authenticated?
+> ## Are You Authenticated?
 >
 > Make sure that you have a [Tidepool session token](../../quick-start.md#authentication) before trying to fetch data.
 
