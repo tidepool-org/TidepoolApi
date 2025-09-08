@@ -1,0 +1,13 @@
+type: object
+properties:
+  value:
+    type: number
+    format: float
+  units:
+    type: string
+    enum:
+      - mg/dL
+      - mmol/L
+required:
+  - value
+  - units
