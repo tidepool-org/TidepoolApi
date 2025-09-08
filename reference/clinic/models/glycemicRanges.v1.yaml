@@ -1,10 +1,24 @@
-title: Glycemic Ranges
-description: >-
-  An identifier for a pre-defined set of thresholds and times in range.
-type: string
-enum:
-  - ADA standard
-  - ADA pregnancy type 1
-  - ADA pregnancy GDM or type 2
-  - ADA older or high-risk
-example: ADA standard
+properties:
+  type:
+    type: string
+    enum:
+      - preset
+      - custom
+    default: preset
+  custom:
+    $ref: ./glycemicRangesCustom.v1.yaml
+  preset:
+    type: string
+    minLength: 1
+    enum:
+      - ADA standard
+      - ADA pregnancy type 1
+      - ADA pregnancy GDM or type 2
+      - ADA older or high-risk
+    default: ADA standard
+    x-go-type-skip-optional-pointer: true
+    x-omitzero: true
+required:
+  - type
+minimumProperties: 2
+maximumProperties: 2
