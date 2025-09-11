@@ -1,17 +1,6 @@
 <!-- omit in toc -->
 # Controller Status (`controllerStatus`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Overview](#overview)
-3. [Type (`type`)](#type-type)
-4. [Battery (`battery`)](#battery-battery)
-5. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

@@ -1,16 +1,6 @@
 <!-- omit in toc -->
 # Clock Drift Offset (`clockDriftOffset`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Adjustments For Clock Drift](#adjustments-for-clock-drift)
-3. [Clock Drift Offset Starts At Zero](#clock-drift-offset-starts-at-zero)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 The clock drift offset was introduced to handle:

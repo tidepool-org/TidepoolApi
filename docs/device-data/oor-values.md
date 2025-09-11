@@ -1,16 +1,6 @@
 <!-- omit in toc -->
 # Out of Range Values
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Out Of Range Annotation: Units](#out-of-range-annotation-units)
-3. [Range Threshold Levels](#range-threshold-levels)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 Blood glucose meters, ketone meters and continuous glucose monitors have a range within which they can measure levels. When a reading falls outside of this range, we need a mechanism to show that we have received an out of range reading. This is done by creating a CBG, SMBG or blood ketone reading with a value that is 1 unit over or below the range threshold, and then annotating the reading.

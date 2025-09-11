@@ -1,18 +1,6 @@
 <!-- omit in toc -->
 # Alarm (`alarm`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Sub-Type (`subType`)](#sub-type-subtype)
-3. [Alarm Types (`alarmType`)](#alarm-types-alarmtype)
-4. [Status (`status`)](#status-status)
-5. [Examples](#examples)
-6. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

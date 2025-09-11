@@ -1,20 +1,6 @@
 <!-- omit in toc -->
 # Bolus Insulin (`bolus`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Duration (`duration`)](#duration-duration)
-3. [Expected Duration (`expectedDuration`)](#expected-duration-expectedduration)
-4. [Expected Extended (`expectedExtended`)](#expected-extended-expectedextended)
-5. [Expected Normal (`expectedNormal`)](#expected-normal-expectednormal)
-6. [Extended (`extended`)](#extended-extended)
-7. [Normal (`normal`)](#normal-normal)
-8. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 This is the Tidepool data type for one-time doses of fast-acting insulin programmed on an insulin pump to "cover" meals or correct high blood glucose (hyperglycemia). A bolus event can be interrupted or canceled, so the Tidepool data model includes fields to represent programmed vs. delivered bolus amounts and durations. This is very important for behavioral auditing and statistical analysis of a PwD's data to know exactly how much insulin was delivered.

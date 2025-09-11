@@ -1,18 +1,6 @@
 <!-- omit in toc -->
 # Prime (`prime`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Sub-Type (`subType`)](#sub-type-subtype)
-3. [Prime Target (`primeTarget`)](#prime-target-primetarget)
-4. [Volume (`volume`)](#volume-volume)
-5. [Examples](#examples)
-6. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

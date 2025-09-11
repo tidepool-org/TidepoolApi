@@ -1,19 +1,9 @@
 <!-- omit in toc -->
 # Uploading Data in a Continuous Session (`continuous`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Open A New Continuous Session](#open-a-new-continuous-session)
-2. [Find An Existing Continuous Session](#find-an-existing-continuous-session)
-3. [Upload Device Data To The Open Session](#upload-device-data-to-the-open-session)
-4. [Keep Reading](#keep-reading)
-
----
-
 <!-- theme: success -->
 
-> ### Are You Authenticated?
+> ## Are You Authenticated?
 >
 > Make sure that you have a [Tidepool session token](../../quick-start.md#authentication) before trying to fetch data.
 

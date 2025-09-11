@@ -1,18 +1,6 @@
 <!-- omit in toc -->
 # Controller Settings (`controllerSettings`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Overview](#overview)
-3. [Type (`type`)](#type-type)
-4. [Device (`device`)](#device-device)
-5. [Notifications (`notifications`)](#notifications-notifications)
-6. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema
