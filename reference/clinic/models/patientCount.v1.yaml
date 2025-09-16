@@ -2,8 +2,29 @@ title: Patient Count
 type: object
 properties:
   patientCount:
-    description: The patient count for a clinic
+    description: The count of patients classified as applying towards the plan patient limit (DEPRECATED use plan property instead)
     type: integer
     minimum: 0
+    deprecated: true
+  total:
+    description: The count of all patients, regardless of classification
+    type: integer
+    minimum: 0
+  demo:
+    description: The count of patients classified as demo
+    type: integer
+    minimum: 0
+  plan:
+    description: The count of patients classified as applying towards the plan patient limit
+    type: integer
+    minimum: 0
+  providers:
+    type: object
+    description: The count of patients by provider
+    additionalProperties:
+      $ref: './patientProviderCount.v1.yaml'
 required:
   - patientCount
+  - total
+  - demo
+  - plan

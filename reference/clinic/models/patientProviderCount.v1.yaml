@@ -1,0 +1,16 @@
+title: Patient Provider Count
+type: object
+properties:
+  total:
+    description: The count of patients that have a provider as a data source
+    type: integer
+    minimum: 0
+  states:
+    description: The count of patients for the provider by data source state
+    type: object
+    additionalProperties:
+      type: integer
+      minimum: 0
+required:
+  - total
+  - states

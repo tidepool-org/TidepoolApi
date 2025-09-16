@@ -358,6 +358,32 @@ paths:
       security:
         - sessionToken: []
 
+  '/v1/partners/twiist/data/{dataSetId}':
+    parameters:
+      - $ref: './data/parameters/datasetid.v1.yaml'
+    post:
+      operationId: UploadTwiistData
+      summary: Upload twiist Data
+      description: >-
+        Uploads data to a user's data set for twiist.
+      requestBody:
+        $ref: '#/components/requestBodies/UploadDataList'
+      responses:
+        '200':
+          $ref: '#/components/responses/DataList'
+        '400':
+          $ref: './common/responses/badrequest.v1.yaml'
+        '401':
+          $ref: './common/responses/unauthorized.v1.yaml'
+        '403':
+          $ref: './common/responses/forbidden.v1.yaml'
+        '404':
+          $ref: './common/responses/notfound.v1.yaml'
+      tags:
+        - Data
+      security:
+        - sessionToken: []
+
   '/data/{userId}':
     parameters:
       - $ref: './common/parameters/tidepooluserid.yaml'

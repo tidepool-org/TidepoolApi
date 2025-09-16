@@ -1923,6 +1923,23 @@ paths:
             application/json:
               schema:
                 $ref: ./clinic/models/patientCount.v1.yaml
+  '/v1/clinics/{clinicId}/patient_count/refresh':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      operationId: RefreshPatientCount
+      summary: Refresh Patient Count
+      responses:
+        '202':
+          description: Accepted
+      description: |-
+        An internal endpoint to refresh the patient count for this clinic. This request may or may not be processed asynchronously.
+        A successful response means the patient count will be refreshed shortly.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      parameters: []
   '/v1/clinics/{clinicId}/ehr/sync':
     parameters:
       - $ref: '#/components/parameters/clinicId'

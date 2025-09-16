@@ -680,6 +680,32 @@ paths:
         - sessionToken: []
       tags:
         - Internal
+  '/v1/users/{userId}/oauth/{providerName}/authorize':
+    parameters:
+      - $ref: ./common/parameters/tidepooluserid.yaml
+      - name: providerName
+        in: path
+        required: true
+        schema:
+          $ref: './auth/models/providers/providerName.v1.yaml'
+    delete:
+      operationId: DeleteUserOauthAuthorization
+      summary: Delete User OAuth Authorization
+      description: Deletes the authorization for the OAuth provider `provider` for the user `userId`.
+      responses:
+        '200':
+          description: Success
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Authentication
+        - Internal
+      security:
+        - serverToken: []
 components:
   securitySchemes:
     basicAuth:
