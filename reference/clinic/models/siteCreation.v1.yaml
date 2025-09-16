@@ -3,11 +3,6 @@ title: Site
 description: "A clinic's physical or logical location."
 properties:
   name:
-    type: string
-    x-go-type-skip-optional-pointer: true
-    description: The site description.
-    minLength: 1
-    maxLength: 200
-    pattern: '^[[:graph:]\p{L}\p{N}][[:graph:]\p{L}\p{N} ]*$'
+    $ref: ./siteName.v1.yaml
 required:
   - name

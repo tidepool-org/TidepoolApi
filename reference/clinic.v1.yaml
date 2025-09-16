@@ -2664,8 +2664,7 @@ components:
       in: path
       required: true
       schema:
-        type: string
-        pattern: '^[a-f0-9]{24}$'
+        $ref: ./clinic/models/siteId.v1.yaml
     userId:
       name: userId
       in: path
