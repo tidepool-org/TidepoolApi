@@ -1,9 +1,6 @@
-title: Site ID
-description: >-
-  Site identifier.
-type: string
-minLength: 24
-maxLength: 24
-pattern: '^[a-f0-9]{24}$'
-readOnly: true
-example: 2fe2488217ee43e1b2e83c2f
+# Site id is a mongodb objectid, but not a pointer (like objectid.v1.yaml).
+allOf:
+  - $ref: ../../common/models/objectid.v1.yaml
+  - x-go-type-skip-optional-pointer: true
+    x-go-type: string # otherwise oapi-codegen will generate interface{}
+    readOnly: true # can't merge with objectid without this matching
