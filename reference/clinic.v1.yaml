@@ -2664,7 +2664,7 @@ components:
       in: path
       required: true
       schema:
-        $ref: ./clinic/models/siteId.v1.yaml
+        $ref: ./common/parameters/objectId.v1.yaml
     userId:
       name: userId
       in: path
