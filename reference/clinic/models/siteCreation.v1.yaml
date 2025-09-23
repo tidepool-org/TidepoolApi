@@ -1,0 +1,8 @@
+type: object
+title: Site
+description: "A clinic's physical or logical location."
+properties:
+  name:
+    $ref: ./siteName.v1.yaml
+required:
+  - name

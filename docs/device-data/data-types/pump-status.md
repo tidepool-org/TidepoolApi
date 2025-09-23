@@ -1,20 +1,6 @@
 <!-- omit in toc -->
 # Pump Status (`pumpStatus`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Overview](#overview)
-3. [Type (`type`)](#type-type)
-4. [Basal Delivery (`basalDelivery`)](#basal-delivery-basaldelivery)
-5. [Battery (`battery`)](#battery-battery)
-6. [Bolus Delivery (`bolusDelivery`)](#bolus-delivery-bolusdelivery)
-7. [Reservoir (`reservoir`)](#reservoir-reservoir)
-8. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

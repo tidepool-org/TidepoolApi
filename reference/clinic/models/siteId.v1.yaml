@@ -1,0 +1,6 @@
+# Site id is a mongodb objectid, but not a pointer (like objectid.v1.yaml).
+allOf:
+  - $ref: ../../common/models/objectid.v1.yaml
+  - x-go-type-skip-optional-pointer: true
+    x-go-type: string # otherwise oapi-codegen will generate interface{}
+    readOnly: true # can't merge with objectid without this matching

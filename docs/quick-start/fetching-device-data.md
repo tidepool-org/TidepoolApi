@@ -1,16 +1,6 @@
 <!-- omit in toc -->
 # Fetching Device Data
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Fetch Device Data](#fetch-device-data)
-2. [Query Parameters](#query-parameters)
-3. [Fetch Dexcom CGM Data](#fetch-dexcom-cgm-data)
-4. [Keep Reading](#keep-reading)
-
----
-
 {% admonition type="success" name="Are You Authenticated?" %}
 Make sure that you have a [Tidepool session token](../quick-start.md#authentication) before trying to fetch data.
 {% /admonition %}

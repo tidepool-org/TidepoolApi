@@ -1,18 +1,6 @@
 <!-- omit in toc -->
 # Uploading Device Data
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Choosing A Client Name](#choosing-a-client-name)
-2. [Data Upload Session Types](#data-upload-session-types)
-   1. [Normal Upload Sessions (`normal`)](#normal-upload-sessions-normal)
-   2. [Continuous Upload Sessions (`continuous`)](#continuous-upload-sessions-continuous)
-3. [Upload Deduplicators](#upload-deduplicators)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Choosing A Client Name
 
 You will need to choose a "client name" for your app. A "client name" is used to identify data in the Tidepool Platform that your app has created.

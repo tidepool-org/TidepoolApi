@@ -1,20 +1,6 @@
 <!-- omit in toc -->
 # Device Delivery Status (`status`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Sub-Type (`subType`)](#sub-type-subtype)
-3. [Duration (`duration`)](#duration-duration)
-4. [Expected duration (`expectedDuration`)](#expected-duration-expectedduration)
-5. [Reason (`reason`)](#reason-reason)
-6. [Status (`status`)](#status-status)
-7. [Examples](#examples)
-8. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

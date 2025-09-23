@@ -1,13 +1,6 @@
 <!-- omit in toc -->
 # Data Sharing
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-
----
-
 ## Overview
 
 Tidepool supports sharing the diabetes data stored in a user account with either other users, or with clinics.

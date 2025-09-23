@@ -1,30 +1,6 @@
 <!-- omit in toc -->
 # Continuous Glucose Monitor (CGM) Settings (`cgmSettings`): Dexcom (`dexcom`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Overview](#overview)
-3. [Type (`type`)](#type-type)
-4. [Firmware Version (`firmwareVersion`)](#firmware-version-firmwareversion)
-5. [Hardware Version (`hardwareVersion`)](#hardware-version-hardwareversion)
-6. [High Alerts (`highAlerts`)](#high-alerts-highalerts)
-7. [Low Alerts (`lowAlerts`)](#low-alerts-lowalerts)
-8. [Manufacturers (`manufacturers`)](#manufacturers-manufacturers)
-9. [Model (`model`)](#model-model)
-10. [Name (`name`)](#name-name)
-11. [Out Of Range Alerts (`outOfRangeAlerts`)](#out-of-range-alerts-outofrangealerts)
-12. [Rate Of Change Alerts (`rateOfChangeAlerts`)](#rate-of-change-alerts-rateofchangealerts)
-13. [Serial Number (`serialNumber`)](#serial-number-serialnumber)
-14. [Software Version (`softwareVersion`)](#software-version-softwareversion)
-15. [Transmitter ID (`transmitterId`)](#transmitter-id-transmitterid)
-16. [Units (`units`)](#units-units)
-17. [Examples](#examples)
-18. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

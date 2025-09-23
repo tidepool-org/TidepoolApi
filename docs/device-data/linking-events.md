@@ -1,16 +1,6 @@
 <!-- omit in toc -->
 # Linking Events
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Potentially Linked Events](#potentially-linked-events)
-3. [How To Link Events](#how-to-link-events)
-4. [Keep Reading](#keep-reading)
-
----
-
 ## Overview
 
 Not all events from diabetes management devices are independent. Some events are logically related — perhaps in a rough cause-and-effect relationship. In cases where there is a logical connection between events, Tidepool endeavors to preserve that connection in the standardized form of data stored in the Tidepool cloud.

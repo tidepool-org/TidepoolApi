@@ -1,19 +1,9 @@
 <!-- omit in toc -->
 # Uploading Data in a Normal Session (`normal`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Open A Normal Session](#open-a-normal-session)
-2. [Upload Device Data To The Open Session](#upload-device-data-to-the-open-session)
-3. [Close The Upload Session](#close-the-upload-session)
-4. [Keep Reading](#keep-reading)
-
----
-
 <!-- theme: success -->
 
-> ### Are You Authenticated?
+> ## Are You Authenticated?
 >
 > Make sure that you have a [Tidepool session token](../../quick-start.md#authentication) before trying to fetch data.
 

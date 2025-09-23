@@ -1,0 +1,6 @@
+type: string
+x-go-type-skip-optional-pointer: true
+description: The site's name.
+minLength: 1
+maxLength: 200
+pattern: '^[[:graph:]\p{L}\p{N}][[:graph:]\p{L}\p{N} ]*$'

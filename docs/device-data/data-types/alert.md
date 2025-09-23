@@ -1,25 +1,6 @@
 <!-- omit in toc -->
 # Alert (`alert`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Overview](#overview)
-3. [Type (`type`)](#type-type)
-4. [Name (`name`)](#name-name)
-5. [Priority (`priority`)](#priority-priority)
-6. [Trigger (`trigger`)](#trigger-trigger)
-7. [Trigger Delay (`triggerDelay`)](#trigger-delay-triggerdelay)
-8. [Sound (`sound`)](#sound-sound)
-9. [Sound Name (`soundName`)](#sound-name-soundname)
-10. [Issued Time (`issuedTime`)](#issued-time-issuedtime)
-11. [Acknowledged Time (`acknowledgedTime`)](#acknowledged-time-acknowledgedtime)
-12. [Retracted Time (`retractedTime`)](#retracted-time-retractedtime)
-13. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

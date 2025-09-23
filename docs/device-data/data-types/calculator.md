@@ -1,22 +1,6 @@
 <!-- omit in toc -->
 # Bolus Calculator Records (`wizard`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Type (`type`)](#type-type)
-3. [Blood Glucose Input (`bgInput`)](#blood-glucose-input-bginput)
-4. [Bolus (`bolus`)](#bolus-bolus)
-5. [Carb Input (`carbInput`)](#carb-input-carbinput)
-6. [Insulin-To-Carb Ratio (`insulinCarbRatio`)](#insulin-to-carb-ratio-insulincarbratio)
-7. [Insulin On Board (`insulinOnBoard`)](#insulin-on-board-insulinonboard)
-8. [Recommended (`recommended`)](#recommended-recommended)
-9. [Examples](#examples)
-10. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

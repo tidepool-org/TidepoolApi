@@ -1,32 +1,6 @@
 <!-- omit in toc -->
 # Dosing Decision (`dosingDecision`)
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick Summary](#quick-summary)
-2. [Overview](#overview)
-3. [Type (`type`)](#type-type)
-4. [Reason (`reason`)](#reason-reason)
-5. [Original Food (`originalFood`)](#original-food-originalfood)
-6. [Food (`food`)](#food-food)
-7. [Self Monitored Blood Glucose (`smbg`)](#self-monitored-blood-glucose-smbg)
-8. [Carbohydrates On Board (`carbsOnBoard`)](#carbohydrates-on-board-carbsonboard)
-9. [Insulin On Board (`insulinOnBoard`)](#insulin-on-board-insulinonboard)
-10. [Blood Glucose Target Schedule (`bgTargetSchedule`)](#blood-glucose-target-schedule-bgtargetschedule)
-11. [Blood Glucose Historical (`bgHistorical`)](#blood-glucose-historical-bghistorical)
-12. [Blood Glucose Forecast (`bgForecast`)](#blood-glucose-forecast-bgforecast)
-13. [Recommended Basal (`recommendedBasal`)](#recommended-basal-recommendedbasal)
-14. [Recommended Bolus (`recommendedBolus`)](#recommended-bolus-recommendedbolus)
-15. [Requested Bolus (`requestedBolus`)](#requested-bolus-requestedbolus)
-16. [Warnings (`warnings`)](#warnings-warnings)
-17. [Errors (`errors`)](#errors-errors)
-18. [Schedule Time Zone Offset (`scheduleTimeZoneOffset`)](#schedule-time-zone-offset-scheduletimezoneoffset)
-19. [Units (`units`)](#units-units)
-20. [Keep Reading](#keep-reading)
-
----
-
 ## Quick Summary
 
 {% json-schema

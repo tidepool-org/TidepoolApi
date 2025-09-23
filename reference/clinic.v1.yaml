@@ -908,6 +908,16 @@ paths:
           description: Comma-separated list of patient tag IDs
           style: form
           explode: false
+        - name: sites
+          schema:
+            type: array
+            items:
+              type: string
+              format: '^[a-f0-9]{24}$'
+          in: query
+          description: Comma-separated list of clinic site IDs
+          style: form
+          explode: false
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -935,13 +945,91 @@ paths:
       operationId: CreatePatientTag
       responses:
         '200':
-          description: OK
+          description: The newly-created patient tag
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patientTag.v1.yaml
       description: Create a new patient tag
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/patientTag.v1'
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/sites':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    post:
+      summary: Create a Site
+      operationId: CreateSite
+      responses:
+        '200':
+          description: The newly-created clinic site
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/site.v1.yaml
+      description: Create a Site
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/siteCreation.v1'
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/sites/{siteId}':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/siteId'
+    put:
+      summary: Update a Site
+      operationId: UpdateSite
+      responses:
+        '200':
+          description: The updated clinic site
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/site.v1.yaml
+      description: Update a Site
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/site.v1'
+      tags:
+        - Clinics
+    delete:
+      summary: Delete a Site
+      operationId: DeleteSite
+      responses:
+        '204':
+          description: No content
+      description: 'Delete a Site'
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/sites/{siteId}/merge':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/siteId'
+    post:
+      summary: Merge two sites
+      operationId: MergeSite
+      responses:
+        '200':
+          description: The merged clinic site
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/site.v1.yaml
+      description: Merge a site, identified in the request body, into the site identified in the URL.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/siteById.v1.yaml
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/clinicians/{clinicianId}':
@@ -1055,7 +1143,11 @@ paths:
       operationId: UpdatePatientTag
       responses:
         '200':
-          description: OK
+          description: The updated patient tag
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patientTag.v1.yaml
       description: Update existing patient tag
       tags:
         - Clinics
@@ -1068,9 +1160,28 @@ paths:
       summary: Delete Patient Tag
       operationId: DeletePatientTag
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No content
       description: Removes a patient tag from a clinic and tagged patients
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/patient_tags/{patientTagId}/site':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientTagId'
+    post:
+      summary: Convert Patient Tag to Site
+      operationId: ConvertPatientTagToSite
+      responses:
+        '200':
+          description: The newly converted site.
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/site.v1.yaml
+        '409':
+          description: Cannot convert the tag to a site. This could occur for example when the maximum number of sites has already been reached.
+      description: Convert a patient tag to a site.
       tags:
         - Clinics
   '/v1/clinics/{clinicId}/invites/clinicians':
@@ -2184,6 +2295,10 @@ components:
       type: array
       items:
         $ref: ./clinic/models/dataSource.v1.yaml
+    site.v1:
+      $ref: ./clinic/models/site.v1.yaml
+    siteCreation.v1:
+      $ref: ./clinic/models/siteCreation.v1.yaml
     tidepoolUserIds.v1:
       type: array
       nullable: true
@@ -2235,6 +2350,13 @@ components:
           minLength: 1
         tags:
           $ref: ./clinic/models/patientTagIds.v1.yaml
+        sites:
+          type: array
+          x-go-type-skip-optional-pointer: true
+          x-omitempty: false
+          x-omitzero: true
+          items:
+            $ref: ./clinic/models/site.v1.yaml
     associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
@@ -2426,6 +2548,13 @@ components:
           minLength: 1
         tags:
           $ref: ./clinic/models/patientTagIds.v1.yaml
+        sites:
+          type: array
+          x-go-type-skip-optional-pointer: true
+          x-omitempty: false
+          x-omitzero: true
+          items:
+            $ref: ./clinic/models/site.v1.yaml
     addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
@@ -2547,6 +2676,12 @@ components:
       schema:
         type: string
         pattern: '^[a-f0-9]{24}$'
+    siteId:
+      name: siteId
+      in: path
+      required: true
+      schema:
+        $ref: ./common/parameters/objectId.v1.yaml
     userId:
       name: userId
       in: path

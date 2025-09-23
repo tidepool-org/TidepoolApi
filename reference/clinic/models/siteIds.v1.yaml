@@ -1,0 +1,6 @@
+type: array
+title: Site ID List
+uniqueItems: true
+nullable: true
+items:
+  $ref: ./siteId.v1.yaml

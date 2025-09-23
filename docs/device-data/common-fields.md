@@ -1,23 +1,6 @@
 <!-- omit in toc -->
 # Common Fields
 
-<!-- omit in toc -->
-## Table of Contents
-
-1. [Quick summary](#quick-summary)
-2. [Clock Drift Offset (`clockDriftOffset`)](#clock-drift-offset-clockdriftoffset)
-3. [Conversion Offset (`conversionOffset`)](#conversion-offset-conversionoffset)
-4. [Created Time (`createdTime`)](#created-time-createdtime)
-5. [Device ID (`deviceId`)](#device-id-deviceid)
-6. [Device Time (`deviceTime`)](#device-time-devicetime)
-7. [GUID (`guid`)](#guid-guid)
-8. [ID (`id`)](#id-id)
-9. [Time (`time`)](#time-time)
-10. [Timezone Offset (`timezoneOffset`)](#timezone-offset-timezoneoffset)
-11. [Upload ID (`uploadId`)](#upload-id-uploadid)
-
----
-
 ## Quick summary
 
 {% json-schema
