@@ -23,6 +23,10 @@ properties:
     description: Threshold used for determining if a value is very high
     type: number
     x-go-type: float64
+  extremeHighGlucoseThreshold:
+    description: Threshold used for determining if a value is extremely high
+    type: number
+    x-go-type: float64
   lowGlucoseThreshold:
     description: Threshold used for determining if a value is low
     type: number
