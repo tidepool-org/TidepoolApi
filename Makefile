@@ -56,7 +56,7 @@ GO_TOOLS = \
 	$(TOOLS_BIN)/oapi-codegen
 
 $(TOOLS_BIN)/oapi-codegen: $(TOOLS_BIN)
-	GOBIN=$(shell pwd)/$(TOOLS_BIN) go install github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v2.4.1
+	GOBIN=$(shell pwd)/$(TOOLS_BIN) go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@v2.4.1
 
 $(NPM_BIN)/%:
 	$(MAKE) install_npm_pkgs

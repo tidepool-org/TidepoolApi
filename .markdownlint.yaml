@@ -6,7 +6,7 @@ MD013: false
 
 # MD033/no-inline-html - Inline HTML
 MD033:
-  allowed_elements: [table, colgroup, col, thead, tbody, tr, th, td]
+  allowed_elements: [table, colgroup, col, thead, tbody, tr, th, td, math, mi, mn, mo, mtable, mrow, mtd, mtr, mspace, mtext, msup, mfrac, msqrt]
 
 # MD059/Link text should be descriptive
 MD059: false

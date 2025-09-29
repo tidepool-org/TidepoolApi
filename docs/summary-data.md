@@ -176,37 +176,37 @@ Unit
 </th>
 <th colspan="2" style="background-image: linear-gradient(to right, #E9695E, #F19181)">
 
-_AnyLow_
+AnyLow
 </th>
 <th rowspan="2">
 
-_Target_
+Target
 </th>
 <th colspan="3" style="background-image: linear-gradient(to right, #B69CE2, #856ACF, #5438A3)">
 
-_AnyHigh_
+AnyHigh
 </th>
 </tr>
 <tr>
 <th>
 
-_VeryLow_
+VeryLow
 </th>
 <th>
 
-_Low_
+Low
 </th>
 <th>
 
-_High_
+High
 </th>
 <th>
 
-_VeryHigh_
+VeryHigh
 </th>
 <th>
 
-_ExtremeHigh_
+ExtremeHigh
 </th>
 </tr>
 </thead>
@@ -218,27 +218,27 @@ mmol/L
 </td>
 <td>
 
-_v < 3.0_
+v < 3.0
 </td>
 <td>
 
-_3.0 ≤ v < 3.9_
+3.0 ≤ v < 3.9
 </td>
 <td>
 
-_3.9 ≤ v ≤ 10.0_
+3.9 ≤ v ≤ 10.0
 </td>
 <td>
 
-_10.0 < v ≤ 13.9_
+10.0 < v ≤ 13.9
 </td>
 <td>
 
-_v > 13.9_
+v > 13.9
 </td>
 <td>
 
-_v ≥ 19.4_
+v ≥ 19.4
 </td>
 </tr>
 <tr>
@@ -248,27 +248,27 @@ mg/dL
 </td>
 <td>
 
-_v < 54_
+v < 54
 </td>
 <td>
 
-_54 ≤ v < 70_
+54 ≤ v < 70
 </td>
 <td>
 
-_70 ≤ v ≤ 180_
+70 ≤ v ≤ 180
 </td>
 <td>
 
-_180 < v ≤ 250_
+180 < v ≤ 250
 </td>
 <td>
 
-_v > 250_
+v > 250
 </td>
 <td>
 
-_v ≥ 350_
+v ≥ 350
 </td>
 </tr>
 </tbody>
@@ -379,8 +379,7 @@ Each bucket has a set of common fields, as well as a set of fields repeated for 
 |   ✅   |       | _Minutes_  | _int_   | _min_                | Sum of minutes covered by each sample in the period                                                      |
 |   ✅   |   ✅   | _Records_  | _int_   |                      | Count of samples in the period                                                                           |
 |   ✅   |   ✅   | _Percent_  | _float_ | %                    | if <math><mrow><mi>Total</mi><mo>.</mo><mi>Minutes</mi><mo>≠</mo><mn>0</mn></mrow></math>: <math><mfrac><mrow><mi mathvariant="bold">Xxx</mi><mo>.</mo><mi>Minutes</mi></mrow><mrow><mi>Total</mi><mo>.</mo><mi>Minutes</mi></mrow></mfrac></math> or if <math><mrow><mi>Total</mi><mo>.</mo><mi>Records</mi><mo>≠</mo><mn>0</mn></mrow></math>: <math><mfrac><mrow><mi mathvariant="bold">Xxx</mi><mo>.</mo><mi>Records</mi></mrow><mrow><mi>Total</mi><mo>.</mo><mi>Records</mi></mrow></mfrac></math> |
-|   ✅   |       | _Variance_ | _float_ | <math><msup><mrow><mo>(</mo><mfrac><mi>mmol</mi><mi>L</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup></math>
- | Calculated using [weighted incremental algorithm][variance].
+|   ✅   |       | _Variance_ | _float_ | <math><msup><mrow><mo>(</mo><mfrac><mi>mmol</mi><mi>L</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup></math> | Calculated using [weighted incremental algorithm][variance]. |
 
 ## Handling Multiple Data Sources
 
