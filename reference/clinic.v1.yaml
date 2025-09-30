@@ -282,7 +282,7 @@ paths:
             x-omitzero: true
             items:
               type: string
-              enum: ['timeInVeryLowPercent', 'timeInAnyLowPercent', 'timeInExtremeHighPercent', 'timeInVeryHighPercent', 'timeInHighPercent', 'dropInTimeInTargetPercent', 'timeInTargetPercent', 'timeCGMUsePercent', 'meetingTargets', 'noData']
+              enum: ['timeInVeryLowPercent', 'timeInAnyLowPercent', 'timeInExtremeHighPercent', 'timeInVeryHighPercent', 'timeInHighPercent', 'dropInTimeInTargetPercent', 'timeInTargetPercent', 'timeCGMUsePercent', 'meetingTargets']
           in: query
           style: form
           explode: false
