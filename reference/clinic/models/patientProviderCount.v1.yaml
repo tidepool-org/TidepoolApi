@@ -1,12 +1,18 @@
 title: Patient Provider Count
+description: |-
+  The count of patients associated with the clinic for a specific provider. As each patient may be 
+  associated with multiple providers, the sum of all provider counts may exceed the total patient count.
 type: object
 properties:
   total:
-    description: The count of patients that have a provider as a data source
+    description: |-
+      The count of patients that have a specific provider as a data source.
     type: integer
     minimum: 0
   states:
-    description: The count of patients for the provider by data source state
+    description: |-
+      The count of patients for the provider segmented by data source state. The possible
+      states are connected, disconnected, error, pending, and pendingReconnect.
     type: object
     additionalProperties:
       type: integer

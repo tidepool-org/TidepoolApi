@@ -1,8 +1,8 @@
 title: Patient Count Limit
 type: object
 properties:
-  patientCount:
-    description: The patient count limit
+  plan:
+    description: The plan-based patient count limit
     type: integer
     minimum: 0
   startDate:
@@ -12,4 +12,4 @@ properties:
     description: The end date when the patient count limit should no longer be applied
     $ref: '../../common/models/datetime.v1.yaml'
 required:
-  - patientCount
+  - plan
