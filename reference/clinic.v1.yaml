@@ -274,7 +274,14 @@ paths:
           in: query
           required: true
         - name: categories
-          description: Comma-separated list of TIDE report categories. If omitted or empty, the default TIDE categories will be returned.
+          description: |
+            Comma-separated list of TIDE report categories to return in queried order. If omitted or empty, the default TIDE categories will be returned, which are:
+              timeInVeryLowPercent
+              timeInAnyLowPercent
+              dropInTimeInTargetPercent
+              timeInTargetPercent
+              timeInTargetPercent
+              meetingTargets
           schema:
             type: array
             x-go-type-skip-optional-pointer: true
@@ -282,7 +289,16 @@ paths:
             x-omitzero: true
             items:
               type: string
-              enum: ['timeInVeryLowPercent', 'timeInAnyLowPercent', 'timeInExtremeHighPercent', 'timeInVeryHighPercent', 'timeInHighPercent', 'dropInTimeInTargetPercent', 'timeInTargetPercent', 'timeCGMUsePercent', 'meetingTargets']
+              enum:
+                - timeInVeryLowPercent
+                - timeInAnyLowPercent
+                - timeInExtremeHighPercent
+                - timeInVeryHighPercent
+                - timeInHighPercent
+                - dropInTimeInTargetPercent
+                - timeInTargetPercent
+                - timeCGMUsePercent
+                - meetingTargets
           in: query
           style: form
           explode: false
