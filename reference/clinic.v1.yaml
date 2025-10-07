@@ -259,8 +259,7 @@ paths:
           schema:
             type: array
             items:
-              type: string
-              pattern: '^[a-f0-9]{24}$'
+              $ref: ./common/parameters/objectId.v1.yaml
             minItems: 1
           in: query
           style: form
