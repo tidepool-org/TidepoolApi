@@ -301,7 +301,7 @@ paths:
           in: query
           style: form
           explode: false
-        - name: excludeNoDataPatients
+        - name: excludeNoData
           description: If true, then exclude / omit patients with no data in the TIDE report.
           schema:
             type: boolean
