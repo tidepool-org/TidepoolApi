@@ -274,13 +274,7 @@ paths:
           required: true
         - name: categories
           description: |
-            Comma-separated list of TIDE report categories to return in queried order. If omitted or empty, the default TIDE categories will be returned, which are:
-              timeInVeryLowPercent
-              timeInAnyLowPercent
-              dropInTimeInTargetPercent
-              timeInTargetPercent
-              timeInTargetPercent
-              meetingTargets
+            Comma-separated list of TIDE report categories to return in queried order. If omitted or empty, the default TIDE categories will be returned.
           schema:
             type: array
             x-go-type-skip-optional-pointer: true
@@ -293,14 +287,21 @@ paths:
                 - timeInAnyLowPercent
                 - timeInExtremeHighPercent
                 - timeInVeryHighPercent
-                - timeInHighPercent
+                - timeInAnyHighPercent
                 - dropInTimeInTargetPercent
-                - timeInTargetPercent
                 - timeCGMUsePercent
                 - meetingTargets
           in: query
           style: form
           explode: false
+          example:
+            - timeInVeryLowPercent
+            - timeInAnyLowPercent
+            - timeInVeryHighPercent
+            - timeInAnyHighPercent
+            - dropInTimeInTargetPercent
+            - timeCGMUsePercent
+            - meetingTargets
         - name: excludeNoData
           description: If true, then exclude / omit patients with no data in the TIDE report.
           schema:
