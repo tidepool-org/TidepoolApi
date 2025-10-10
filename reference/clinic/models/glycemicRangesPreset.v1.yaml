@@ -1,0 +1,15 @@
+type: string
+minLength: 1
+enum:
+  - adaStandard
+  - adaPregnancyType1
+  - adaPregnancyType2
+  - adaHighRisk
+x-enum-varnames:
+  - ADAStandard
+  - ADAPregnancyType1
+  - ADAPregnancyType2
+  - ADAHighRisk
+default: adaStandard
+x-go-type-skip-optional-pointer: true
+x-omitzero: true
