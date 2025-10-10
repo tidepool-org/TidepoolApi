@@ -8,16 +8,7 @@ properties:
   custom:
     $ref: ./glycemicRangesCustom.v1.yaml
   preset:
-    type: string
-    minLength: 1
-    enum:
-      - ADA standard
-      - ADA pregnancy type 1
-      - ADA pregnancy GDM or type 2
-      - ADA older or high-risk
-    default: ADA standard
-    x-go-type-skip-optional-pointer: true
-    x-omitzero: true
+    $ref: ./glycemicRangesPreset.v1.yaml
 required:
   - type
 minimumProperties: 2
