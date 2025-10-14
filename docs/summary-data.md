@@ -379,8 +379,7 @@ Each bucket has a set of common fields, as well as a set of fields repeated for 
 |   ✅   |       | _Minutes_  | _int_   | _min_                | Sum of minutes covered by each sample in the period                                                      |
 |   ✅   |   ✅   | _Records_  | _int_   |                      | Count of samples in the period                                                                           |
 |   ✅   |   ✅   | _Percent_  | _float_ | %                    | if <math><mrow><mi>Total</mi><mo>.</mo><mi>Minutes</mi><mo>≠</mo><mn>0</mn></mrow></math>: <math><mfrac><mrow><mi mathvariant="bold">Xxx</mi><mo>.</mo><mi>Minutes</mi></mrow><mrow><mi>Total</mi><mo>.</mo><mi>Minutes</mi></mrow></mfrac></math> or if <math><mrow><mi>Total</mi><mo>.</mo><mi>Records</mi><mo>≠</mo><mn>0</mn></mrow></math>: <math><mfrac><mrow><mi mathvariant="bold">Xxx</mi><mo>.</mo><mi>Records</mi></mrow><mrow><mi>Total</mi><mo>.</mo><mi>Records</mi></mrow></mfrac></math> |
-|   ✅   |       | _Variance_ | _float_ | <math><msup><mrow><mo>(</mo><mfrac><mi>mmol</mi><mi>L</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup></math>
- | Calculated using [weighted incremental algorithm][variance].
+|   ✅   |       | _Variance_ | _float_ | <math><msup><mrow><mo>(</mo><mfrac><mi>mmol</mi><mi>L</mi></mfrac><mo>)</mo></mrow><mn>2</mn></msup></math> | Calculated using [weighted incremental algorithm][variance]. |
 
 ## Handling Multiple Data Sources
 
