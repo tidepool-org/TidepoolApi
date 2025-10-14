@@ -1,20 +1,8 @@
 type: object
 title: tidefilters.v1
-description: ''
+description: 'Visual representation of filtered categories selected'
 properties:
-  timeInVeryLowPercent:
-    type: string
-    pattern: ^(>=|>|<=|<)\d\.\d\d?$
-    example: '>0.5'
-  timeInAnyLowPercent:
-    type: string
-    pattern: ^(>=|>|<=|<)\d\.\d\d?$
-    example: '>0.5'
   dropInTimeInTargetPercent:
-    type: string
-    pattern: ^(>=|>|<=|<)\d\.\d\d?$
-    example: '>0.5'
-  timeInTargetPercent:
     type: string
     pattern: ^(>=|>|<=|<)\d\.\d\d?$
     example: '>0.5'
@@ -22,10 +10,28 @@ properties:
     type: string
     pattern: ^(>=|>|<=|<)\d\.\d\d?$
     example: '>0.5'
+  timeInAnyLowPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeInExtremeHighPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeInHighPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeInTargetPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeInVeryHighPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
+  timeInVeryLowPercent:
+    type: string
+    pattern: ^(>=|>|<=|<)\d\.\d\d?$
+    example: '>0.5'
 
-required:
-  - timeInVeryLowPercent
-  - timeInAnyLowPercent
-  - dropInTimeInTargetPercent
-  - timeInTargetPercent
-  - timeCGMUsePercent

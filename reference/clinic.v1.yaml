@@ -253,22 +253,63 @@ paths:
           in: query
           name: period
           description: Time Period to display
-        - schema:
+          required: true
+        - name: tags
+          description: Comma-separated list of patient tag IDs
+          schema:
             type: array
             items:
-              type: string
-              format: '^[a-f0-9]{24}$'
+              $ref: ./common/parameters/objectId.v1.yaml
+            minItems: 1
           in: query
-          name: tags
-          description: Comma-separated list of patient tag IDs
           style: form
           explode: false
-        - schema:
+          required: true
+        - name: lastDataCutoff
+          description: Inclusive minimum of date of last data from a patient.
+          schema:
             type: string
             format: date-time
           in: query
-          name: lastDataCutoff
-          description: Inclusive
+          required: true
+        - name: categories
+          description: |
+            Comma-separated list of TIDE report categories to return in queried order. If omitted or empty, the default TIDE categories will be returned - see example.
+          schema:
+            type: array
+            x-go-type-skip-optional-pointer: true
+            x-omitempty: true
+            x-omitzero: true
+            items:
+              type: string
+              enum:
+                - timeInVeryLowPercent
+                - timeInAnyLowPercent
+                - timeInExtremeHighPercent
+                - timeInVeryHighPercent
+                - timeInAnyHighPercent
+                - dropInTimeInTargetPercent
+                - timeInTargetPercent
+                - timeCGMUsePercent
+                - meetingTargets
+          in: query
+          style: form
+          explode: false
+          example:
+            - timeInVeryLowPercent
+            - timeInAnyLowPercent
+            - timeInVeryHighPercent
+            - timeInAnyHighPercent
+            - dropInTimeInTargetPercent
+            - timeCGMUsePercent
+            - meetingTargets
+        - name: excludeNoData
+          description: If true, then exclude / omit patients with no data in the TIDE report.
+          schema:
+            type: boolean
+            x-go-type-skip-optional-pointer: true
+            x-omitempty: true
+          in: query
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'

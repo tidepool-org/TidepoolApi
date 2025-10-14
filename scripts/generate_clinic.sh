@@ -3,8 +3,13 @@
 set -eou pipefail
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-TOOLS_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
-NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
+if [[ $OSTYPE =~ darwin ]] && command -v grealpath &> /dev/null; then
+  TOOLS_BIN=$(grealpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
+  NPM_BIN=$(grealpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
+else
+  TOOLS_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
+  NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
+fi
 PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {

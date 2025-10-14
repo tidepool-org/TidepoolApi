@@ -16,19 +16,23 @@ properties:
     type: string
     format: date-time
   highGlucoseThreshold:
-    description: Threshold used for determining if a value is high
+    description: Minimum exclusive threshold in mmol/L for categorizing if a glucose value is high as established by the AACE.
     type: number
     x-go-type: float64
   veryHighGlucoseThreshold:
-    description: Threshold used for determining if a value is very high
+    description: Minimum exclusive threshold in mmol/L for categorizing if a glucose value is very high as established by the AACE.
+    type: number
+    x-go-type: float64
+  extremeHighGlucoseThreshold:
+    description: Minimum inclusive threshold in mmol/L for categorizing if a glucose value is extremely high. Not defined by the AACE.
     type: number
     x-go-type: float64
   lowGlucoseThreshold:
-    description: Threshold used for determining if a value is low
+    description: Maximum exclusive threshold in mmol/L for categorizing if a glucose value is low as established by the AACE.
     type: number
     x-go-type: float64
   veryLowGlucoseThreshold:
-    description: Threshold used for determining if a value is very low
+    description: Maximum exclusive threshold in mmol/L for categorizing if a glucose value is very low as established by the AACE.
     type: number
     x-go-type: float64
   tags:
