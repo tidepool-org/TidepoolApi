@@ -11,5 +11,3 @@ properties:
     $ref: ./glycemicRangesPreset.v1.yaml
 required:
   - type
-minimumProperties: 2
-maximumProperties: 2
