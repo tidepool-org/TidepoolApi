@@ -9,6 +9,7 @@ MD033:
   allowed_elements:
     - col
     - colgroup
+    - em
     - table
     - tbody
     - td
