@@ -2583,6 +2583,10 @@ components:
           x-omitzero: true
           items:
             $ref: ./clinic/models/site.v1.yaml
+        glycemicRanges:
+          $ref: ./clinic/models/glycemicRanges.v1.yaml
+        diagnosisType:
+          $ref: ./metadata/models/diagnosisType.v1.yaml
     addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
