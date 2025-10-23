@@ -176,37 +176,37 @@ Unit
 </th>
 <th colspan="2" style="background-image: linear-gradient(to right, #E9695E, #F19181)">
 
-AnyLow
+<em>AnyLow</em>
 </th>
 <th rowspan="2">
 
-Target
+<em>Target</em>
 </th>
 <th colspan="3" style="background-image: linear-gradient(to right, #B69CE2, #856ACF, #5438A3)">
 
-AnyHigh
+<em>AnyHigh</em>
 </th>
 </tr>
 <tr>
 <th>
 
-VeryLow
+<em>VeryLow</em>
 </th>
 <th>
 
-Low
+<em>Low</em>
 </th>
 <th>
 
-High
+<em>High</em>
 </th>
 <th>
 
-VeryHigh
+<em>VeryHigh</em>
 </th>
 <th>
 
-ExtremeHigh
+<em>ExtremeHigh</em>
 </th>
 </tr>
 </thead>
@@ -218,27 +218,27 @@ mmol/L
 </td>
 <td>
 
-v < 3.0
+<em>v < 3.0</em>
 </td>
 <td>
 
-3.0 ≤ v < 3.9
+<em>3.0 ≤ v < 3.9</em>
 </td>
 <td>
 
-3.9 ≤ v ≤ 10.0
+<em>3.9 ≤ v ≤ 10.0</em>
 </td>
 <td>
 
-10.0 < v ≤ 13.9
+<em>10.0 < v ≤ 13.9</em>
 </td>
 <td>
 
-v > 13.9
+<em>v > 13.9</em>
 </td>
 <td>
 
-v ≥ 19.4
+<em>v ≥ 19.4</em>
 </td>
 </tr>
 <tr>
@@ -248,27 +248,27 @@ mg/dL
 </td>
 <td>
 
-v < 54
+<em>v < 54</em>
 </td>
 <td>
 
-54 ≤ v < 70
+<em>54 ≤ v < 70</em>
 </td>
 <td>
 
-70 ≤ v ≤ 180
+<em>70 ≤ v ≤ 180</em>
 </td>
 <td>
 
-180 < v ≤ 250
+<em>180 < v ≤ 250</em>
 </td>
 <td>
 
-v > 250
+<em>v > 250</em>
 </td>
 <td>
 
-v ≥ 350
+<em>v ≥ 350</em>
 </td>
 </tr>
 </tbody>

@@ -42,6 +42,11 @@ properties:
     type: number
     example: 0.35
     x-go-type: float64
+  timeInExtremeHighPercent:
+    description: Percentage of time spent in extreme high glucose range
+    type: number
+    example: 0.35
+    x-go-type: float64
   timeInAnyHighPercent:
     description: Percentage of time spent in any high glucose range
     type: number
