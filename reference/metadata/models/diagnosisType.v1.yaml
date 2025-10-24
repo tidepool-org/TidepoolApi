@@ -10,4 +10,5 @@ enum:
   - mody
   - other
   - notApplicable
+  - "" # used to clear out an existing value
 example: 'type1'
