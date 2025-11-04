@@ -3,9 +3,12 @@ type: string
 enum:
   - type1
   - type2
+  - type3c
   - gestational
   - prediabetes
   - lada
   - mody
   - other
+  - notApplicable
+  - "" # used to clear out an existing value
 example: 'type1'

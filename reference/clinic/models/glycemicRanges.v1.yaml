@@ -1,0 +1,13 @@
+properties:
+  type:
+    type: string
+    enum:
+      - preset
+      - custom
+    default: preset
+  custom:
+    $ref: ./glycemicRangesCustom.v1.yaml
+  preset:
+    $ref: ./glycemicRangesPreset.v1.yaml
+required:
+  - type

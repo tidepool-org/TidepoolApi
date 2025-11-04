@@ -959,6 +959,17 @@ paths:
           description: Comma-separated list of clinic site IDs
           style: form
           explode: false
+        - name: omitNonStandardRanges
+          description: |
+            Whether patients whose glycemic ranges selection is *not*
+            the ADA standard ranges (e.g. as used by the TIDE report)
+            should be omitted.
+          schema:
+            type: boolean
+          in: query
+          # Skipping the pointer here ran afoul of https://github.com/oapi-codegen/oapi-codegen/issues/1263
+          # x-go-type-skip-optional-pointer: true
+
       description: Retrieve a list of patients of a clinic
     post:
       summary: Create Patient Account
@@ -2398,6 +2409,10 @@ components:
           x-omitzero: true
           items:
             $ref: ./clinic/models/site.v1.yaml
+        glycemicRanges:
+          $ref: ./clinic/models/glycemicRanges.v1.yaml
+        diagnosisType:
+          $ref: ./metadata/models/diagnosisType.v1.yaml
     associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
@@ -2596,6 +2611,10 @@ components:
           x-omitzero: true
           items:
             $ref: ./clinic/models/site.v1.yaml
+        glycemicRanges:
+          $ref: ./clinic/models/glycemicRanges.v1.yaml
+        diagnosisType:
+          $ref: ./metadata/models/diagnosisType.v1.yaml
     addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
