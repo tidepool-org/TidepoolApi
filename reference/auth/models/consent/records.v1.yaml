@@ -1,0 +1,21 @@
+title: records.v1
+x-stoplight:
+  id: 0tuzybru8eee5
+type: object
+properties:
+  data:
+    type: array
+    x-stoplight:
+      id: whbezmg3q7pxh
+    uniqueItems: true
+    items:
+      $ref: ./record.v1.yaml
+      x-stoplight:
+        id: u1b4u8fpl1ed6
+  count:
+    type: integer
+    x-stoplight:
+      id: leqbw9m8u2lku
+required:
+  - data
+  - count

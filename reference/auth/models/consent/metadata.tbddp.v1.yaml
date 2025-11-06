@@ -1,0 +1,24 @@
+title: metadata.tbddp.v1
+x-stoplight:
+  id: 95q0hhj045suc
+type: object
+properties:
+  supportedOrganizations:
+    type: array
+    uniqueItems: true
+    description: >-
+      The list of supported organizations when the consent grant is for the
+      Tidepool Big Data Donation Project
+    items:
+      x-stoplight:
+        id: whfmccxwfj7zx
+      type: string
+      enum:
+        - ADCES Foundation
+        - Beyond Type 1
+        - Children With Diabetes
+        - The Diabetes Link
+        - Diabetes Youth Families (DYF)
+        - DiabetesSisters
+        - The diaTribe Foundation
+        - Breakthrough T1D

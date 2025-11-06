@@ -1,0 +1,29 @@
+title: Consent
+description: Consent
+type: object
+properties:
+  type:
+    $ref: ./type.v1.yaml
+  version:
+    type: integer
+    example: 1
+    x-stoplight:
+      id: 13aoxi0q1a5dq
+    minimum: 1
+    readOnly: true
+  content:
+    type: string
+  contentType:
+    type: string
+    enum:
+      - markdown
+  createdTime:
+    type: string
+    format: date-time
+    readOnly: true
+required:
+  - type
+  - version
+  - content
+  - contentType
+  - createdTime

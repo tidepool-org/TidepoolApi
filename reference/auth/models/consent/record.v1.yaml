@@ -1,0 +1,87 @@
+title: record.v1
+x-stoplight:
+  id: nvtrxa89tps30
+type: object
+properties:
+  id:
+    $ref: ./recordId.v1.yaml
+  status:
+    type: string
+    x-stoplight:
+      id: m5tc1errbouci
+    enum:
+      - active
+      - revoked
+    readOnly: true
+  ageGroup:
+    type: string
+    x-stoplight:
+      id: u5whtndrytunl
+    enum:
+      - <12
+      - 13-17
+      - 18+
+  ownerName:
+    type: string
+    x-stoplight:
+      id: 2cw4335ateapa
+    description: The name of the account owner
+  parentGuardianName:
+    type: string
+    x-stoplight:
+      id: 94pqubqvzwigs
+    description: The name of the parent or legal guardian granting the consent. Required if ageGroup is '<12' or '13-17'.
+  grantorType:
+    type: string
+    x-stoplight:
+      id: zc8e4q8t37yig
+    enum:
+      - owner
+      - parent/guardian
+  type:
+    $ref: ./type.v1.yaml
+    x-stoplight:
+      id: jub0w6n4sx03g
+  version:
+    type: integer
+    x-stoplight:
+      id: s4pt6ptt7ez4n
+  metadata:
+    $ref: ./metadata.v1.yaml
+    x-stoplight:
+      id: u4fzjwa9iivzp
+  grantTime:
+    type: string
+    x-stoplight:
+      id: z984vbbyzt0n5
+    format: date-time
+    readOnly: true
+  revocationTime:
+    type: string
+    x-stoplight:
+      id: 9hx9eo1oucsak
+    format: date-time
+    readOnly: true
+  createdTime:
+    type: string
+    x-stoplight:
+      id: r7ypd0pfkbhkv
+    format: date-time
+    readOnly: true
+  updatedTime:
+    type: string
+    x-stoplight:
+      id: ohlc8mndn74ov
+    format: date-time
+    readOnly: true
+required:
+  - id
+  - status
+  - ageGroup
+  - ownerName
+  - grantorType
+  - type
+  - version
+  - grantTime
+  - createdTime
+  - updatedTime

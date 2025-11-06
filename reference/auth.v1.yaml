@@ -405,7 +405,7 @@ paths:
     get:
       operationId: VerifyDeviceToken
       summary: Verify Device Token
-      description: "Checks the validity of Apple's DeviceCheck token by calling Apple's server to verify it. For more details, see Apple's [developer documentation](https://developer.apple.com/documentation/devicecheck)."
+      description: 'Checks the validity of Apple''s DeviceCheck token by calling Apple''s server to verify it. For more details, see Apple''s [developer documentation](https://developer.apple.com/documentation/devicecheck).'
       requestBody:
         $ref: '#/components/requestBodies/VerifyDeviceToken'
       responses:
@@ -680,6 +680,144 @@ paths:
         - sessionToken: []
       tags:
         - Internal
+  /v1/consents:
+    get:
+      summary: List Consents
+      tags:
+        - Internal
+        - Consent
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./auth/models/consent/consents.v1.yaml
+      operationId: ListConsents
+      description: 'Retrieves the list of all different consent types and their content. '
+      requestBody:
+        content: {}
+      parameters: []
+      x-internal: true
+    parameters: []
+  '/v1/consents/{consentType}':
+    parameters:
+      - $ref: '#/components/parameters/consentType'
+    get:
+      summary: Get Latest Consent By Type
+      tags:
+        - Consent
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./auth/models/consent/consent.v1.yaml
+      operationId: GetLatestConsentByType
+      description: Returns the latest consent version for the given type
+  '/v1/consents/{consentType}/versions':
+    parameters:
+      - $ref: '#/components/parameters/consentType'
+    get:
+      summary: Get Consent Versions
+      tags:
+        - Consent
+        - Internal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./auth/models/consent/consents.v1.yaml
+      operationId: GetConsentVersions
+      description: Returns a list of all consent versions for a given type
+      x-internal: true
+  '/v1/users/{userId}/consents':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    get:
+      summary: Get User Consent Records
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./auth/models/consent/records.v1.yaml
+      operationId: GetUserConsentRecords
+      description: Returns a list of all user consent records. By default only the most recent consent record for a given consent type will be returned. This can be overriden by setting the `latest` query parameter to `false`.
+      parameters:
+        - schema:
+            type: boolean
+            enum:
+              - 'true'
+              - 'false'
+            default: 'true'
+          in: query
+          name: latest
+          description: Whether to return all versions or only the most recent one.
+        - schema:
+            type: string
+          in: query
+          name: type
+    post:
+      summary: Create User Consent Record
+      operationId: CreateUserConsentRecord
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ./auth/models/consent/record.v1.yaml
+      description: Creates a user consent record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./auth/models/consent/recordcreate.v1.yaml
+  '/v1/users/{userId}/consents/{recordId}':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+      - $ref: '#/components/parameters/recordId'
+    get:
+      summary: Get User Consent Record
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./auth/models/consent/record.v1.yaml
+      operationId: GetUserConsentRecord
+      description: Retrieves a consent record by ID for a given user.
+    patch:
+      summary: Update User Consent Record
+      operationId: UpdateUserConsentRecord
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./auth/models/consent/record.v1.yaml
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./auth/models/consent/recordupdate.v1.yaml
+    delete:
+      summary: 'Revoke User Consent Record'
+      operationId: RevokeConsent
+      responses:
+        '204':
+          description: OK
+      description: Revokes a consent record
 components:
   securitySchemes:
     basicAuth:
@@ -941,3 +1079,22 @@ components:
                 required:
                   - code
                   - reason
+  parameters:
+    consentType:
+      name: consentType
+      in: path
+      required: true
+      schema:
+        $ref: ./auth/models/consent/type.v1.yaml
+    userId:
+      name: userId
+      in: path
+      required: true
+      schema:
+        $ref: ./common/models/tidepooluserid.yaml
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      schema:
+        $ref: ./auth/models/consent/recordId.v1.yaml
