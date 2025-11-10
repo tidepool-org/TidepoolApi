@@ -6,6 +6,10 @@ properties:
     $ref: ./siteId.v1.yaml
   name:
     $ref: ./siteName.v1.yaml
+  patients:
+    type: integer
+    description: The number of patients associated with the site.
+    x-go-type-skip-optional-pointer: true
 required:
   - id
   - name

@@ -149,7 +149,17 @@ paths:
         - TIDEPOOL_ADMIN
         - CLINIC_ADMIN
         - CLINIC_CLINICIAN
-      parameters: []
+      parameters:
+        - name: includeCounts
+          in: query
+          description: |
+            Include counts of patients in tags and sites.
+
+            This will add the optional "patients" field to the
+            clinic's sites and patient_tags fields which will indicate
+            the number of patients associated with each.
+          schema:
+            type: boolean
     put:
       summary: Update Clinic
       operationId: UpdateClinic
