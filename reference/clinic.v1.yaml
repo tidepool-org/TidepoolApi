@@ -992,6 +992,20 @@ paths:
   '/v1/clinics/{clinicId}/patient_tags':
     parameters:
       - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: List Patient Tags
+      operationId: ListClinicPatientTags
+      responses:
+        '200':
+          description: The clinic's patient tags.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/patientTagDetail.v1.yaml
+      tags:
+        - Clinics
     post:
       summary: Create Patient Tag
       operationId: CreatePatientTag
@@ -1013,6 +1027,20 @@ paths:
   '/v1/clinics/{clinicId}/sites':
     parameters:
       - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: List Clinic Sites
+      operationId: ListClinicSites
+      responses:
+        '200':
+          description: The clinic's sites.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/siteDetail.v1.yaml
+      tags:
+        - Clinics
     post:
       summary: Create a Site
       operationId: CreateSite
