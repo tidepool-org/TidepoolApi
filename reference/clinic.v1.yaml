@@ -989,23 +989,45 @@ paths:
               $ref: ./clinic/models/patient.v1.yaml
       tags:
         - Clinics
-  '/v1/clinics/{clinicId}/patient_tags':
+  '/v1/clinics/{clinicId}/patient_counts/patient_tags':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     get:
-      summary: List Patient Tags
-      operationId: ListClinicPatientTags
+      summary: List A Clinic's Patient Tags With Patient Counts
+      operationId: ListClinicPatientTagsWithPatientCounts
       responses:
         '200':
-          description: The clinic's patient tags.
+          description: |
+            A summary of the clinic's patient tags with patient counts.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: ./clinic/models/patientTagDetail.v1.yaml
+                  $ref: ./clinic/models/patientTagWithPatientCount.v1.yaml
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/patient_counts/sites':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: List A Clinic's Sites With Patient Counts
+      operationId: ListClinicSitesWithPatientCounts
+      responses:
+        '200':
+          description: |
+            A summary of the clinic's sites with patient counts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/siteWithPatientCount.v1.yaml
+      tags:
+        - Clinics
+  '/v1/clinics/{clinicId}/patient_tags':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
     post:
       summary: Create Patient Tag
       operationId: CreatePatientTag
@@ -1027,20 +1049,6 @@ paths:
   '/v1/clinics/{clinicId}/sites':
     parameters:
       - $ref: '#/components/parameters/clinicId'
-    get:
-      summary: List Clinic Sites
-      operationId: ListClinicSites
-      responses:
-        '200':
-          description: The clinic's sites.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: ./clinic/models/siteDetail.v1.yaml
-      tags:
-        - Clinics
     post:
       summary: Create a Site
       operationId: CreateSite
@@ -1095,7 +1103,7 @@ paths:
       - $ref: '#/components/parameters/clinicId'
       - $ref: '#/components/parameters/siteId'
     post:
-      summary: Merge two sites
+      summary: Merge Two Sites
       operationId: MergeSite
       responses:
         '200':

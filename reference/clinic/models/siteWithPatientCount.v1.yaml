@@ -1,7 +1,9 @@
 allOf:
-  - $ref: ./patientTag.v1.yaml
+  - $ref: ./site.v1.yaml
   - type: object
     properties:
       patients:
         type: integer
         x-go-type-skip-optional-pointer: true
+    required:
+      - patients
