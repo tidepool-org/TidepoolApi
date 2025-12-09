@@ -1,9 +1,34 @@
 title: Patient Count
 type: object
 properties:
-  patientCount:
-    description: The patient count for a clinic
+  total:
+    description: |-
+      The count of all patients associated with the clinic, regardless of classification.
     type: integer
     minimum: 0
+  demo:
+    description: |-
+      The count of patients associated with the clinic that are classified as demo and do not 
+      apply towards the plan-based patient count limit. Currently this is limited to 0 or 1,
+      but allows for future expansion with multiple demo patients if needed.
+    type: integer
+    minimum: 0
+  plan:
+    description: |-
+      The count of patients associated with the clinic classified as applying towards the 
+      plan-based patient count limit. This excludes patients classified as demo as well as any 
+      other classifications that do not apply towards the plan-based patient count limit 
+      for various business reasons.
+    type: integer
+    minimum: 0
+  providers:
+    type: object
+    description: |-
+      The count of patients associated with the clinic by provider. As each patient may be associated 
+      with multiple providers, the sum of all provider counts may exceed the total patient count.
+    additionalProperties:
+      $ref: './patientProviderCount.v1.yaml'
 required:
-  - patientCount
+  - total
+  - demo
+  - plan
