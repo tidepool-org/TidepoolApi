@@ -23,8 +23,10 @@ This documents the diabetes device data types that Platform reads and stores. Al
 * [Pump Settings](./data-types/pump-settings.md)
 * [Pump Status](./data-types/pump-status.md)
 * [Food](./data-types/food.md)
+* [Insulin](./data-types/insulin.md)
 * [Water](./data-types/water.md)
 * [Physical Activity](./data-types/activity-physical.md)
+* [Reported State](./data-types/reported-state.md)
 * [Upload Metadata](./data-types/upload.md)
 
 <!-- theme: info -->
