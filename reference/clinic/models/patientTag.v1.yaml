@@ -10,7 +10,7 @@ properties:
     minLength: 1
     maxLength: 20
     pattern: '^[\p{L}\p{N}_+><-]{1}[\p{L}\p{N}\s_+><-]*$'
-  patients:
+  numPatients:
     type: integer
     x-go-type-skip-optional-pointer: true
     x-omitzero: true

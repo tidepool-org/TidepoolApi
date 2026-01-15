@@ -6,7 +6,7 @@ properties:
     $ref: ./siteId.v1.yaml
   name:
     $ref: ./siteName.v1.yaml
-  patients:
+  numPatients:
     type: integer
     x-go-type-skip-optional-pointer: true
     x-omitzero: true
