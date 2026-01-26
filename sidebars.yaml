@@ -70,8 +70,6 @@
       items:
         - page: docs/device-data.md
           label: Overview
-        - page: docs/device-data/annotations.md
-          label: Annotations
         - page: docs/device-data/common-fields.md
           label: Common Fields
         - group: Diabetes Data Types
@@ -156,8 +154,14 @@
               label: Water Consumption (`water`)
             - page: docs/device-data/data-types/activity-physical.md
               label: Physical Activity (`physicalActivity`)
+            - page: docs/device-data/data-types/insulin.md
+              label: Insulin (`insulin`)
+            - page: docs/device-data/data-types/reported-state.md
+              label: Reported State (`reportedState`)  
             - page: docs/device-data/data-types/upload.md
               label: Upload Metadata (`upload`)
+        - page: docs/device-data/annotations.md
+          label: Annotations
         - page: docs/device-data/event-history.md
           label: Event History
         - page: docs/device-data/linking-events.md
