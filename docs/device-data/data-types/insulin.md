@@ -14,7 +14,7 @@ The actual dose of insulin, consisting of:
 
 ## Formulation (`formulation`)
 
-A formulation consist of a name (e.g. "My custom mix") and either an array of `compounds` objects with amounts, or a `simple` formulation:
+A formulation consists of a name (e.g. "My custom mix") and either an array of `compounds` (objects with amounts), or a `simple` formulation:
 
 - `actingType` - can be rapid, short, intermediate or long
 - `brand` - optional text field with the brand, e.g. "Humalog"

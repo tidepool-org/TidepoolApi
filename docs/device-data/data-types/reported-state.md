@@ -6,7 +6,7 @@ Reported states that can have an impact on blood glucose. A reported state consi
 - `cycle`, 
 - `hyperglycemiaSymptoms`, 
 - `hypoglycemiaSymptoms`, 
-- `stres`, 
+- `stress`, 
 - `illness` or 
 - `other`
   
