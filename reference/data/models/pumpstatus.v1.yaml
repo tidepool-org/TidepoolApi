@@ -1,8 +1,8 @@
 title: Pump Status
+description: Insulin pump status
 allOf:
   - $ref: './base.v1.yaml'
   - type: object
-    description: Insulin pump status
     properties:
       type:
         type: string

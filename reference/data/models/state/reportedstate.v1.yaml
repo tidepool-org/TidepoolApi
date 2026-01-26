@@ -1,8 +1,8 @@
 title: Reported State
+description: Reported states that can have an impact on blood glucose
 allOf:
   - $ref: '../base.v1.yaml'
   - type: object
-    description: Reported states that can have an impact on blood glucose
     properties:
       type:
         type: string
