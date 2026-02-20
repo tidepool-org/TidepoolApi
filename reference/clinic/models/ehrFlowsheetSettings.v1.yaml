@@ -4,5 +4,10 @@ properties:
   icode:
     type: boolean
     description: "Determine if values should be sent in accorance with ICode2 rounding standards, or if we should send the values at higher precision."
+  sendSeparateGMINote:
+    type: boolean
+    description: "If true, include GMI in the notes."
+    default: false
+    x-go-type-skip-optional-pointer: true
 required:
   - icode
