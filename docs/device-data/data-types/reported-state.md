@@ -2,15 +2,15 @@
 
 Reported states that can have an impact on blood glucose. A reported state consists of an array of one or more states, where each reported state consists of a named `state`:
 
-- `alcohol`, 
-- `cycle`, 
-- `hyperglycemiaSymptoms`, 
-- `hypoglycemiaSymptoms`, 
-- `stress`, 
-- `illness` or 
+- `alcohol`,
+- `cycle`,
+- `hyperglycemiaSymptoms`,
+- `hypoglycemiaSymptoms`,
+- `stress`,
+- `illness` or
 - `other`
-  
-  and a `severity` from 0 to 10. In the case of state `other`, a text field `stateOther` (0-100 characters) describes the state. 
+
+  and a `severity` from 0 to 10. In the case of state `other`, a text field `stateOther` (0-100 characters) describes the state.
 
 ## Quick Summary
 
