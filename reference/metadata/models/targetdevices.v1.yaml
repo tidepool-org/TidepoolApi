@@ -1,4 +1,12 @@
 title: Target Devices
+description: |
+  When uploading data, the user selects a target device (typically
+  make and model) of their data source (i.e. meter or pump) from a
+  list. This selection is used by the Tidepool Uploader to select the
+  correct drivers for communicating with the data source.
+
+  These values are stored in the user's profile so that they can be
+  pre-selected on next use, thereby streamlining the process.
 type: array
 items:
   type: string
