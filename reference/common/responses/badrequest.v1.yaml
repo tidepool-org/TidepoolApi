@@ -3,3 +3,6 @@ content:
   'application/json':
     schema:
       $ref: '../models/error.v1.yaml'
+    example:
+      code: 400
+      message: 'Bad request'

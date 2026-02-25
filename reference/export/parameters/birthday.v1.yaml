@@ -1,0 +1,6 @@
+description: >-
+  Date of birth
+name: dob
+in: query
+schema:
+  $ref: '../../common/models/birthday.v1.yaml'

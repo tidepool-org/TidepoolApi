@@ -1,7 +1,0 @@
-title: Export Glucose Units
-type: string
-enum:
-  - mmol/L
-  - mg/dL
-default: mmol/L
-example: mmol/L

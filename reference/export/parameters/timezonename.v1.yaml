@@ -1,0 +1,8 @@
+description: >-
+  Timezone name
+name: tzName
+in: query
+required: false
+schema:
+  $ref: ../../data/models/timezonename.v1.yaml
+  default: UTC

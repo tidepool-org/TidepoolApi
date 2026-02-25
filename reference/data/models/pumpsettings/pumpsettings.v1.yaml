@@ -103,10 +103,7 @@ allOf:
             type: object
             properties:
               units:
-                type: string
-                enum:
-                  - mg/dL
-                  - mmol/L
+                $ref: '../blood/units.v1.yaml'
             required:
               - units
       firmwareVersion:
@@ -202,12 +199,7 @@ allOf:
         type: object
         properties:
           bg:
-            type: string
-            enum:
-              - mmol/L
-              - mmol/l
-              - mg/dL
-              - mg/dl
+            $ref: '../blood/units.v1.yaml'
             description: A string value encoding the blood glucose units exposed in the user interface on this insulin pump.
           carb:
             type: string
