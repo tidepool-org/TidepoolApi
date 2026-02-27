@@ -35,6 +35,8 @@ properties:
       id: hp97ilzsssprv
   flowsheets:
     $ref: ./ehrFlowsheetSettings.v1.yaml
+  notes:
+    $ref: ./ehrNoteSettings.v1.yaml
 required:
   - enabled
   - sourceId
@@ -44,3 +46,4 @@ required:
   - scheduledReports
   - tags
   - flowsheets
+  - notes
