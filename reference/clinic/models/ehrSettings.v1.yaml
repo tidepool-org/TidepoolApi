@@ -37,6 +37,8 @@ properties:
     $ref: ./ehrFlowsheetSettings.v1.yaml
   notes:
     x-go-type-skip-optional-pointer: true
+    x-omitempty: false
+    x-omitzero: true
     # Using allOf so that an optional $ref can be a non-pointer.
     allOf:
       - $ref: ./ehrNoteSettings.v1.yaml
