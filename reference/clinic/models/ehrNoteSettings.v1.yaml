@@ -1,0 +1,11 @@
+title: Note Settings
+type: object
+properties:
+  includeGMI:
+    type: boolean
+    description: "If true, include GMI in the notes."
+    default: false
+    x-go-type-skip-optional-pointer: true
+    x-omitempty: false
+    x-omitzero: true
+
