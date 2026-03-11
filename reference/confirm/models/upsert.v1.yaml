@@ -5,3 +5,5 @@ properties:
     $ref: '../../clinic/models/clinicId.v1.yaml'
   invitedBy:
     $ref: '../../common/models/tidepooluserid.yaml'
+  restrictedTokenId:
+    $ref: '../../auth/models/restricted/restricted-token-id.v1.yaml'
