@@ -25,6 +25,9 @@ properties:
     $ref: ../../common/models/datetime.v1.yaml
   expirationTime:
     $ref: ../../common/models/datetime.v1.yaml
+  latestDataTime:
+    $ref: ../../common/models/datetime.v1.yaml
+    title: Time of the latest data point from this source
 required:
   - state
   - providerName
