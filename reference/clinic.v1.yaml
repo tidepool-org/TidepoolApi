@@ -969,6 +969,27 @@ paths:
           in: query
           # Skipping the pointer here ran afoul of https://github.com/oapi-codegen/oapi-codegen/issues/1263
           # x-go-type-skip-optional-pointer: true
+        - name: deviceIssues
+          description: |
+            Includes patients experiencing one or more of the device issues specified.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - disconnected
+                - erroring
+                - expiredConnectionInvitation
+                - staleConnectionInvitation
+                - staleData
+          in: query
+          style: form
+          explode: false
+        - name: omitHiddenDeviceIssues
+          description: Exclude any devices issues marked as hidden.
+          schema:
+            type: boolean
+          in: query
 
       description: Retrieve a list of patients of a clinic
     post:
@@ -2326,6 +2347,17 @@ paths:
         - Clinics
         - Internal
       description: Send a new request to the patient to connect a data provider
+  '/v1/device_issues':
+    post:
+      summary: Update device issues
+      description: Endpoint used to trigger an update of each patients' device issues.
+      operationId: UpdateDeviceIssues
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Clinics
+        - Internal
 components:
   schemas:
     clinics.v1:

@@ -1,0 +1,12 @@
+type: object
+properties:
+  disconnected:
+    $ref: ./deviceIssue.v1.yaml
+  erroring:
+    $ref: ./deviceIssue.v1.yaml
+  expiredConnectionInvitation:
+    $ref: ./deviceIssue.v1.yaml
+  staleConnectionInvitation:
+    $ref: ./deviceIssue.v1.yaml
+  staleData:
+    $ref: ./deviceIssue.v1.yaml
