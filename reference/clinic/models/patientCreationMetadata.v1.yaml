@@ -1,0 +1,8 @@
+type: object
+title: PatientCreationMetadata
+properties:
+  integration:
+    type: string
+    enum:
+      - redox
+      - xealth
