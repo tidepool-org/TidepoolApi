@@ -22,9 +22,7 @@ properties:
   tags:
     $ref: ./patientTagIds.v1.yaml
   targetDevices:
-    type: array
-    items:
-      type: string
+    $ref: ../../metadata/models/targetdevices.v1.yaml
   permissions:
     $ref: ./patientPermissions.v1.yaml
   createdTime:
