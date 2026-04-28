@@ -12,6 +12,8 @@ properties:
     $ref: ./providerId.v1.yaml
     x-stoplight:
       id: ej94kmuykpg1k
+  expirationTime:
+    $ref: ../../common/models/datetime.v1.yaml
 required:
   - createdTime
   - providerName
