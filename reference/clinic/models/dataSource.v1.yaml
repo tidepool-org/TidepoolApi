@@ -5,8 +5,6 @@ properties:
     type: string
     title: Data source connection state
     enum:
-      - pending
-      - pendingReconnect
       - connected
       - disconnected
       - error
@@ -22,8 +20,6 @@ properties:
     pattern: '^[a-f0-9]{24}$'
     readOnly: true
   modifiedTime:
-    $ref: ../../common/models/datetime.v1.yaml
-  expirationTime:
     $ref: ../../common/models/datetime.v1.yaml
   latestDataTime:
     $ref: ../../common/models/datetime.v1.yaml
