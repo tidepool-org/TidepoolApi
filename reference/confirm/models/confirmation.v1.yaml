@@ -18,7 +18,9 @@ properties:
   creator:
     $ref: ./creator.v1.yaml
   context:
-    type: string
+    type: object
+    additionalProperties: true
+    description: Generic object for storing context-specific data related to the confirmation.
   restrictions:
     $ref: ./restrictions.v1.yaml
   expiresAt:

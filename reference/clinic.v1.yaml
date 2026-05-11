@@ -2411,6 +2411,8 @@ components:
           $ref: ./clinic/models/glycemicRanges.v1.yaml
         diagnosisType:
           $ref: ./metadata/models/diagnosisType.v1.yaml
+        creationMetadata:
+          $ref: ./clinic/models/patientCreationMetadata.v1.yaml
     associateClinicianToUser.v1:
       title: Associate Clinician
       type: object
