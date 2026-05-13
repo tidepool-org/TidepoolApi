@@ -1,6 +1,7 @@
 description: >-
-  Glucose units of the exported data
+  Glucose units
 name: bgUnits
 in: query
 schema:
-  $ref: '../models/glucoseunits.v1.yaml'
+  $ref: '../../data/models/blood/units.v1.yaml'
+  default: mmol/L
