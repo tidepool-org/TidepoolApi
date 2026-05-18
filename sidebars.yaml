@@ -66,6 +66,40 @@
     - page: docs/summary-data.md
       label: Summary Statistics
 
+    - group: Uploader Docs
+      items:
+        - group: Checklist Templates
+          items:
+            - page: docs/uploader/checklisttemplates/BGMChecklist.md
+              label: BGM Checklist
+            - page: docs/uploader/checklisttemplates/CGMChecklist.md
+              label: CGM Checklist
+            - page: docs/uploader/checklisttemplates/PumpChecklist.md
+              label: Pump Checklist
+        - group: Checklists
+          items:
+            - directory: docs/uploader/checklists/
+        - group: Application state via Redux
+          items:
+            - page: docs/uploader/state/ExampleStateTree.md
+              label: Example state tree
+            - page: docs/uploader/state/StateTreeGlossary.md
+              label: Glossary of state tree terms
+            - page: docs/uploader/state/CustomMiddleware.md
+              label: Custom middleware
+        - group: Miscellaneous
+          items:
+            - page: docs/uploader/BootstrappingToUTC.md
+              label: UTC Bootstrapping
+            - page: docs/uploader/misc/CSSModules.md
+              label: Use of CSS Modules
+            - page: docs/uploader/misc/PWDSimulators.md
+              label: Use of "simulators"
+            - page: docs/uploader/misc/FlatRateBasals.md
+              label: Challenges of flat basal profiles
+            
+
+
     - group: Diabetes Device Data Model
       items:
         - page: docs/device-data.md
