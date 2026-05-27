@@ -39,7 +39,7 @@ You can narrow the fetch query by specifying a type, sub-type and/or date query 
 | Latest data | Boolean | Returns only the most recent results for each type matching the results filtered by the other query parameters. | All types: `?latest=true` or single type: `?latest=true&type=cbg`
 | Start date | String (in ISO-8601 date/time format) | Only objects with time field equal to or greater than start date will be returned. | E.g. `?startDate=2015-10-10T15:00:00.000Z`
 | Sub-type | String | Only objects with a subtype field matching the specified subtype param will be returned. | Single type: `/data/userid?subtype=physicalactivity` Comma-separated list: `/data/userid?subtype=physicalactivity,steps`
-| Type | String (data model type) |  Only objects with a type field matching the specified type param will be returned. | Single type: `/data/<userid>?type=smbg` Comma-separated list: `data/<userid>?type=smgb,cbg`
+| Type | String (data model type) | Only objects with a type field matching the specified type param will be returned. | Single type: `/data/<userid>?type=smbg` Comma-separated list: `data/<userid>?type=smgb,cbg`
 | Upload ID | String | Only objects with an upload ID field matching the specified upload ID param will be returned. If upload ID is specified, ignore the “special” filters below. | E.g. `/data/userid?uploadId=0123456789abcdef`
 
 In addition, there are several “special” parameters that have an effect on the data that is returned depending on more detailed internal business logic.
@@ -91,7 +91,7 @@ So, you have three time ranges that apply here:
 | Start Time | End Time | CGM Data Returned
 | --- | --- | ---
 | Beginning of Time | Dexcom API Earliest Data Time | All CGM Data
-| Dexcom API Earliest Data Time | Dexcom API Latest Data Time |   Only Dexcom API CGM Data
+| Dexcom API Earliest Data Time | Dexcom API Latest Data Time | Only Dexcom API CGM Data
 | Dexcom API Latest Data Time | End of Time | All CGM data
 
 However, if you use the standard GET data Tidepool API, but add the dexcom true (`"?dexcom=true"`) request flag, then it will return all CGM data from all sources, regardless of the Dexcom API state.

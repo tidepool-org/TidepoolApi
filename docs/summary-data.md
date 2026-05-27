@@ -1,3 +1,5 @@
+<!-- markdownlint-disable-file MD060 -->
+
 # Summary Statistics
 
 ## Overview

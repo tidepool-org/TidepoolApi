@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-next-line MD041 -->
 ## Basal Rate (`rate`)
 
 A floating point number >= 0 representing the amount of insulin delivered in units per hour.

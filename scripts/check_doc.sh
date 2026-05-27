@@ -8,8 +8,12 @@ NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
 PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo "${PS4}$*"
-    "$@"
+	if [ "${QUIET:-}" = "true" ]; then
+		output=$(echo "${PS4}$*" && "$@" 2>&1) || ( echo "${output}" && exit 1 )
+	else
+		echo "${PS4}$*"
+		"$@"
+	fi
 }
 
 case $1 in
@@ -24,8 +28,10 @@ case $1 in
 	;;
 
     *)
+	markdown_link_check_flags=""
+	[ "${QUIET:-}" = "true" ] || markdown_link_check_flags+="--quiet"
 	doc="${1?:doc-filename is required}"
 	trace markdownlint "$doc"
-	trace markdown-link-check "${doc}" --config .markdown-link-check.json
+	trace markdown-link-check "${doc}" ${markdown_link_check_flags} --config .markdown-link-check.json
 	trace "$(dirname "$0")/check_ref_links.sh" "$doc"
 esac

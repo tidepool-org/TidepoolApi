@@ -13,8 +13,12 @@ fi
 PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo "${PS4}$*"
-    "$@"
+	if [ "${QUIET:-}" = "true" ]; then
+		output=$(echo "${PS4}$*" && "$@" 2>&1) || ( echo "${output}" && exit 1 )
+	else
+		echo "${PS4}$*"
+		"$@"
+	fi
 }
 
 case $1 in
@@ -33,7 +37,7 @@ case $1 in
 	server="$(dirname "$bundled")/server"
 	client="$(dirname "$bundled")/client"
 	common=( --old-config-style --exclude-tags=Confirmations --package=api )
-	trace redocly bundle "$source" -o "$bundled"
+	REDOCLY_SUPPRESS_UPDATE_NOTICE="true" trace redocly bundle "$source" -o "$bundled"
 	trace mkdir -p "$server" "$client"
 	trace oapi-codegen "${common[@]}" --generate=server -o "$server/gen_server.go" "$bundled"
 	trace oapi-codegen "${common[@]}" --generate=spec -o "$server/gen_spec.go" "$bundled"

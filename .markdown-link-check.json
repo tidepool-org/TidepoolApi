@@ -9,8 +9,14 @@
     {
       "pattern": "^https://diabetesjournals.org/care/issue/46/Supplement_1"
     },
-     {
+    {
       "pattern": "https://github.com"
+    },
+    {
+      "pattern": "http://public-chat.tidepool.org"
+    },
+    {
+      "pattern": "https://www.timeanddate.com"
     }
   ],
   "retryOn429": true,
