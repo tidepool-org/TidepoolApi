@@ -142,10 +142,7 @@ allOf:
         enum:
           - cgmSettings
       units:
-        type: string
-        enum:
-          - mg/dL
-          - mmol/L
+        $ref: './blood/units.v1.yaml'
 required:
   - type
 x-tags:

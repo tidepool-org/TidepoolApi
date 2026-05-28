@@ -1,1 +1,8 @@
 description: 204 No Content
+content:
+  'application/json':
+    schema:
+      $ref: '../models/error.v1.yaml'
+    example:
+      code: 204
+      message: 'No Content'

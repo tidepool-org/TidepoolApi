@@ -1,0 +1,16 @@
+title: Report user
+description: >-
+  Report user
+type: object
+required: [fullName, mrn, dob]
+properties:
+  fullName:
+    $ref: ../../metadata/models/fullname.v1.yaml
+  mrn:
+    $ref: ../../metadata/models/mrn.v1.yaml
+  dob:
+    $ref: ../../common/models/birthday.v1.yaml
+example:
+  fullName: User Name'
+  mrn: 'mrn123'
+  dob: '1999-04-01'

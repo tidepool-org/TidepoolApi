@@ -3,10 +3,8 @@ type: object
 properties:
   code:
     type: integer
-    example: 404
   message:
     type: string
-    example: 'Requested resources was not found'
 required:
   - code
   - message
