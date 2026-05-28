@@ -1,5 +1,3 @@
-# README.md
-
 Miscellaneous technical documents.
 
 - guidance documentation for ["simulator" modules](PWDSimulators.md) accompanying our insulin pump drivers
