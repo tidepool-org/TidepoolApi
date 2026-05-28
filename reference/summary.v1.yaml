@@ -73,8 +73,6 @@ components:
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
-    serverToken:
-      $ref: './common/security/tidepoolservertoken.v1.yaml'
   parameters:
     summaryType.v5:
       name: summaryType

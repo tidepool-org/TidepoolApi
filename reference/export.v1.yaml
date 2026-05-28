@@ -75,7 +75,6 @@ paths:
           $ref: '#/components/responses/ServerError'
       security:
         - sessionToken: []
-        - restrictedToken: []
       tags:
         - Export
         - Internal
@@ -84,9 +83,6 @@ components:
   securitySchemes:
     sessionToken:
       $ref: './common/security/tidepoolsessiontoken.v1.yaml'
-
-    restrictedToken:
-      $ref: './common/security/tidepoolrestrictedtoken.v1.yaml'
 
   responses:
     BadRequest:

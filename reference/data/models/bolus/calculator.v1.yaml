@@ -46,7 +46,7 @@ allOf:
       units:
         type: string
       carbUnits:
-        $ref: '../carbs/units.v1.yaml'
+        $ref: '../carbs/carb-units.v1.yaml'
 required:
   - type
 x-tags:

@@ -16,13 +16,13 @@ properties:
   expirationTime:
     $ref: '../../common/models/datetime.v1.yaml'
   state:
-    $ref: './state.v1.yaml'
+    $ref: './task-state.v1.yaml'
   error:
-    $ref: './error.v1.yaml'
+    $ref: './task-error.v1.yaml'
   runTime:
     $ref: '../../common/models/datetime.v1.yaml'
   duration:
-    $ref: './duration.v1.yaml'
+    $ref: './task-duration.v1.yaml'
   createdTime:
     $ref: '../../common/models/datetime.v1.yaml'
   modifiedTime:

@@ -3,14 +3,14 @@ description: >-
   This is a composite data type that represents all possible Tidepool diabetes data objects.
 oneOf:
   - $ref: './alert.v1.yaml'
-  - $ref: './basal/automated.v1.yaml'
+  - $ref: './basal/basal-automated.v1.yaml'
   - $ref: './basal/scheduled.v1.yaml'
   - $ref: './basal/suspend.v1.yaml'
   - $ref: './basal/temporary.v1.yaml'
   - $ref: './blood/continuousglucose.v1.yaml'
   - $ref: './blood/selfmonitoredglucose.v1.yaml'
   - $ref: './blood/ketone.v1.yaml'
-  - $ref: './bolus/automated.v1.yaml'
+  - $ref: './bolus/bolus-automated.v1.yaml'
   - $ref: './bolus/combination.v1.yaml'
   - $ref: './bolus/extended.v1.yaml'
   - $ref: './bolus/normal.v1.yaml'

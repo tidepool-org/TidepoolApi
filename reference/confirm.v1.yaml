@@ -464,4 +464,4 @@ components:
       content:
         'application/json':
           schema:
-            $ref: './confirm/models/error.v1.yaml'
+            $ref: './confirm/models/confirm-error.v1.yaml'

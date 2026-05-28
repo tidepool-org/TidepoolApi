@@ -70,11 +70,11 @@ NPM_TOOLS = \
 	$(NPM_BIN)/spectral
 
 NPM_PKG_SPECS = \
-	@openapi-contrib/json-schema-to-openapi-schema@4.0.2 \
-	@redocly/cli@2.0.2 \
-	@stoplight/spectral-cli@6.5.0 \
-	markdown-link-check@3.13.7 \
-	markdownlint-cli@0.45.0
+	@openapi-contrib/json-schema-to-openapi-schema@4.3.2 \
+	@redocly/cli@2.31.5 \
+	@stoplight/spectral-cli@6.16.0 \
+	markdown-link-check@3.14.2 \
+	markdownlint-cli@0.48.0
 
 .PHONY: install_npm_pkgs
 install_npm_pkgs:

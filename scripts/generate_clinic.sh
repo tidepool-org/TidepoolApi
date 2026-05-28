@@ -38,7 +38,7 @@ case $1 in
 	client="$(dirname "$bundled")/client"
 	common=( --old-config-style --exclude-tags=Confirmations --package=api )
 	REDOCLY_SUPPRESS_UPDATE_NOTICE="true" trace redocly bundle "$source" -o "$bundled"
-	trace mkdir -p "$server" "$client"
+	mkdir -p "$server" "$client"
 	trace oapi-codegen "${common[@]}" --generate=server -o "$server/gen_server.go" "$bundled"
 	trace oapi-codegen "${common[@]}" --generate=spec -o "$server/gen_spec.go" "$bundled"
 	trace oapi-codegen "${common[@]}" --generate=types -o "$server/gen_types.go" "$bundled"

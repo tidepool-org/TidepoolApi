@@ -10,7 +10,7 @@ allOf:
         enum:
           - deviceEvent
       subType:
-        $ref: './subtype.v1.yaml'
+        $ref: './deviceevent-subtype.v1.yaml'
 required:
   - subType
   - type

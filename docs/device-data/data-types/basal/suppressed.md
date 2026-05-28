@@ -306,7 +306,7 @@ A suspend basal can embed a scheduled, automatic or temporary suppressed basal, 
 
 {% json-schema
   schema={
-    "$ref": "../../../../reference/data/models/basal/suppressed/scheduled.v1.yaml"
+    "$ref": "../../../../reference/data/models/basal/suppressed/suppressed-scheduled.v1.yaml"
   }
 /%}
 
@@ -316,7 +316,7 @@ A suspend basal can embed a scheduled, automatic or temporary suppressed basal, 
 
 {% json-schema
   schema={
-    "$ref": "../../../../reference/data/models/basal/suppressed/automated.v1.yaml"
+    "$ref": "../../../../reference/data/models/basal/suppressed/suppressed-automated.v1.yaml"
   }
 /%}
 
@@ -326,7 +326,7 @@ A suspend basal can embed a scheduled, automatic or temporary suppressed basal, 
 
 {% json-schema
   schema={
-    "$ref": "../../../../reference/data/models/basal/suppressed/temporary.v1.yaml"
+    "$ref": "../../../../reference/data/models/basal/suppressed/suppressed-temporary.v1.yaml"
   }
 /%}
 

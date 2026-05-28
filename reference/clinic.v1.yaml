@@ -2180,6 +2180,7 @@ paths:
       responses:
         '200':
           description: OK
+      description: Get programs
       tags:
         - Clinics
         - Internal
@@ -2191,7 +2192,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: ''
+      description: Get program URL
       tags:
         - Clinics
         - Internal
@@ -2203,7 +2204,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: ''
+      description: Notification webhook
       tags:
         - Clinics
         - Internal

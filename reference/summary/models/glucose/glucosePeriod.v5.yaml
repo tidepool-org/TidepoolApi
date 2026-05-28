@@ -50,7 +50,6 @@ allOf:
     required:
       - hoursWithData
       - daysWithData
-      - averageGlucose
       - glucoseManagementIndicator
       - coefficientOfVariation
       - standardDeviation

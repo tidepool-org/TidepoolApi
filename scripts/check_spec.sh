@@ -33,6 +33,6 @@ case $1 in
 
     *)
 	spec=${1?:spec-filename is required}
-	trace spectral lint --quiet "$spec"
+	trace spectral lint --quiet --fail-severity=warn "$spec"
 	REDOCLY_SUPPRESS_UPDATE_NOTICE="true" trace redocly lint --format=codeframe "$spec"
 esac
