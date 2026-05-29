@@ -1,0 +1,33 @@
+title: Clinician Security Profile
+description: Security-related metadata for a clinician account, including multi-factor authentication status, linked identity providers, and last login time.
+type: object
+properties:
+  mfaEnabled:
+    type: boolean
+    description: Whether multi-factor (two-factor) authentication is enabled for the clinician.
+    example: true
+    readOnly: true
+  identityProviders:
+    type: array
+    description: The external identity providers linked to the clinician account.
+    readOnly: true
+    items:
+      type: object
+      title: Linked Identity Provider
+      properties:
+        alias:
+          type: string
+          description: The unique alias identifying the identity provider configuration.
+          minLength: 1
+          example: 'google-oidc'
+        name:
+          type: string
+          description: The display name of the identity provider.
+          minLength: 1
+          example: 'Google'
+      required:
+        - alias
+        - name
+  lastLoginTime:
+    $ref: ../../common/models/datetime.v1.yaml
+    description: The time of the clinician's most recent successful login.

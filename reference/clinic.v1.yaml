@@ -2342,6 +2342,8 @@ components:
         $ref: ./clinic/models/patient.v1.yaml
     patientTag.v1:
       $ref: ./clinic/models/patientTag.v1.yaml
+    clinicianSecurityProfile.v1:
+      $ref: ./clinic/models/clinicianSecurityProfile.v1.yaml
     dataSources.v1:
       type: array
       items:
