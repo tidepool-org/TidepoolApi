@@ -5,7 +5,7 @@
 
 {% json-schema
   schema={
-    "$ref": "../../../../reference/data/models/bolus/combination.v1.yaml"
+    "$ref": "../../../../reference/data/models/bolus/bolus-combination.v1.yaml"
   }
 /%}
 

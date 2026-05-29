@@ -21,7 +21,7 @@ An object representing another `basal` event - namely, the event that is current
 
 {% json-schema
   schema={
-    "$ref": "../../../../reference/data/models/basal/suspend.v1.yaml"
+    "$ref": "../../../../reference/data/models/basal/basal-suspend.v1.yaml"
   }
 /%}
 
