@@ -9,7 +9,3 @@ anyOf:
   - $ref: './permissions/note.v1.yaml'
   - $ref: './permissions/upload.v1.yaml'
 minProperties: 1
-example:
-  note: { }
-  upload: { }
-  view: { }

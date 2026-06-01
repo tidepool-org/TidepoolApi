@@ -27,7 +27,7 @@ properties:
     type: integer
     format: int32
   state:
-    $ref: './state.v1.yaml'
+    $ref: './sources-state.v1.yaml'
   userId:
     $ref: '../../../common/models/tidepooluserid.yaml'
 required:

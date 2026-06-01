@@ -8,8 +8,12 @@ NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
 PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo "${PS4}$*"
-    "$@"
+	if [ "${QUIET:-}" = "true" ]; then
+		output=$(echo "${PS4}$*" && "$@" 2>&1) || ( echo "${output}" && exit 1 )
+	else
+		echo "${PS4}$*"
+		"$@"
+	fi
 }
 
 case "$1" in
@@ -25,7 +29,7 @@ case "$1" in
 	    dst=${file%".json"}.yaml
 	    dst="$DESTINATION"${dst#"$SOURCE"}
 	    mkdir -p "$(dirname "$dst")"
-	    echo "converting $file"
+	    [ "${QUIET:-}" = "true" ] || echo "converting $file"
 	    json-schema-to-openapi-schema convert "$file" | yq -P > "$dst"
 	done
 esac

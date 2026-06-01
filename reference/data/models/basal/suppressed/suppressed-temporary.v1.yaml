@@ -11,8 +11,8 @@ properties:
       - temporary
   suppressed:
     oneOf:
-      - $ref: './automated.v1.yaml'
-      - $ref: './scheduled.v1.yaml'
+      - $ref: './suppressed-automated.v1.yaml'
+      - $ref: './suppressed-scheduled.v1.yaml'
   rate:
     $ref: '../deliveryrate.v1.yaml'
   percent:

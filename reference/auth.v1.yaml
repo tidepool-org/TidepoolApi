@@ -27,6 +27,8 @@ servers:
   - url: 'https://qa2.development.tidepool.org'
     description: qa2
 tags:
+  - name: Authentication
+    description: APIs for user authentication and session management.
   - name: Internal
     description: APIs intended for internal use by Tidepool.
   - name: Users
@@ -706,10 +708,33 @@ paths:
         - Internal
       security:
         - serverToken: []
+  '/v1/oauth/{providerName}/authorize':
+    parameters:
+      - name: providerName
+        in: path
+        required: true
+        schema:
+          $ref: './auth/models/providers/providerName.v1.yaml'
+    get:
+      operationId: RedirectOAuthAuthorization
+      summary: Redirect OAuth Authorization
+      description: Redirects to the provider OAuth authorization workflow.
+      responses:
+        '307':
+          description: Temporary Redirect
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      tags:
+        - Authentication
+        - Internal
+      security:
+        - restrictedToken: []
 components:
   securitySchemes:
     basicAuth:
       $ref: ./common/security/basicauth.v1.yaml
+    restrictedToken:
+      $ref: ./common/security/tidepoolrestrictedtoken.v1.yaml
     sessionToken:
       $ref: ./common/security/tidepoolsessiontoken.v1.yaml
     serverToken:
@@ -843,7 +868,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: ./auth/models/error.v1.yaml
+              - $ref: ./auth/models/auth-error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -867,7 +892,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: ./auth/models/error.v1.yaml
+              - $ref: ./auth/models/auth-error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -890,7 +915,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: ./auth/models/error.v1.yaml
+              - $ref: ./auth/models/auth-error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -910,7 +935,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: ./auth/models/error.v1.yaml
+              - $ref: ./auth/models/auth-error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -930,7 +955,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: ./auth/models/error.v1.yaml
+              - $ref: ./auth/models/auth-error.v1.yaml
               - type: object
                 properties:
                   code:
@@ -950,7 +975,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: ./auth/models/error.v1.yaml
+              - $ref: ./auth/models/auth-error.v1.yaml
               - type: object
                 properties:
                   code:

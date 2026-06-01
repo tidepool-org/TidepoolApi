@@ -33,7 +33,7 @@ required:
   - deviceManufacturers
   - deviceModel
   - deviceSerialNumber
-  - deviceTgs
+  - deviceTags
   - time
   - timeProcessing
   - timezone

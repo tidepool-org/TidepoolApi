@@ -10,7 +10,7 @@ properties:
     enum:
       - automated
   suppressed:
-    $ref: './scheduled.v1.yaml'
+    $ref: './suppressed-scheduled.v1.yaml'
   scheduleName:
     $ref: '../schedulename.v1.yaml'
   rate:

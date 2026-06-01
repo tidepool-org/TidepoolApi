@@ -8,8 +8,12 @@ NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
 PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo "${PS4}$*"
-    "$@"
+	if [ "${QUIET:-}" = "true" ]; then
+		output=$(echo "${PS4}$*" && "$@" 2>&1) || ( echo "${output}" && exit 1 )
+	else
+		echo "${PS4}$*"
+		"$@"
+	fi
 }
 
 case $1 in
@@ -24,5 +28,5 @@ case $1 in
     *)
 	source=${1?:source-spec is required}
 	bundle=${2?:bundle-spec is required}
-	trace redocly bundle "$source" -o "$bundle"
+	REDOCLY_SUPPRESS_UPDATE_NOTICE="true" trace redocly bundle "$source" -o "$bundle"
 esac

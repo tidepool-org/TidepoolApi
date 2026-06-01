@@ -50,7 +50,7 @@ paths:
       parameters:
         - $ref: './task/parameters/name.v1.yaml'
         - $ref: './task/parameters/task-type.v1.yaml'
-        - $ref: './task/parameters/state.v1.yaml'
+        - $ref: './task/parameters/task-state.v1.yaml'
         - $ref: './common/parameters/paginationpage.v1.yaml'
         - $ref: './common/parameters/paginationsize.v1.yaml'
       responses:

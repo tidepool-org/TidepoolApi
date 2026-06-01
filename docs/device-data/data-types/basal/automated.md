@@ -17,7 +17,7 @@ This is the sub-type of basal event representing intervals of basal insulin deli
 
 {% json-schema
   schema={
-    "$ref": "../../../../reference/data/models/basal/automated.v1.yaml"
+    "$ref": "../../../../reference/data/models/basal/basal-automated.v1.yaml"
   }
 /%}
 

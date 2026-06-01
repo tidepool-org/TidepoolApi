@@ -10,7 +10,7 @@ properties:
   providerType:
     $ref: '../../../auth/models/providers/provider-type.v1.yaml'
   state:
-    $ref: './state.v1.yaml'
+    $ref: './sources-state.v1.yaml'
 required:
   - providerName
   - providerSessionId

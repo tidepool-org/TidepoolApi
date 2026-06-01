@@ -28,7 +28,7 @@ allOf:
       scheduleName:
         $ref: './schedulename.v1.yaml'
       suppressed:
-        $ref: './suppressed/scheduled.v1.yaml'
+        $ref: './suppressed/suppressed-scheduled.v1.yaml'
     required:
       - deliveryType
       - duration

@@ -25,7 +25,7 @@ Schedule name is an optional field and should only be added to basal data when d
 
 {% json-schema
   schema={
-    "$ref": "../../../../reference/data/models/basal/scheduled.v1.yaml"
+    "$ref": "../../../../reference/data/models/basal/basal-scheduled.v1.yaml"
   }
 /%}
 

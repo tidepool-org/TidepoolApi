@@ -13,8 +13,12 @@ fi
 PATH=$TOOLS_BIN:$NPM_BIN:$PATH
 
 trace() {
-    echo "${PS4}$*"
-    "$@"
+	if [ "${QUIET:-}" = "true" ]; then
+        output=$(echo "${PS4}$*" && "$@" 2>&1) || ( echo "${output}" && exit 1 )
+	else
+		echo "${PS4}$*"
+		"$@"
+	fi
 }
 
 case $1 in
@@ -29,6 +33,6 @@ case $1 in
 
     *)
 	spec=${1?:spec-filename is required}
-	trace spectral lint --quiet "$spec"
-	trace redocly lint --format=codeframe "$spec"
+	trace spectral lint --quiet --fail-severity=warn "$spec"
+	REDOCLY_SUPPRESS_UPDATE_NOTICE="true" trace redocly lint --format=codeframe "$spec"
 esac

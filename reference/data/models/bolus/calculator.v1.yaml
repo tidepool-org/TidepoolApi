@@ -14,9 +14,9 @@ allOf:
         # This does not appear to match the code in platform/data/types/calculator/calculator.go
         # The code seems to show this as the bolus ID rather than the actual bolus, but the validator refers to a `bolusId` field
         #oneOf:
-        #  - $ref: './combination.v1.yaml'
-        #  - $ref: './extended.v1.yaml'
-        #  - $ref: './normal.v1.yaml'
+        #  - $ref: './bolus-combination.v1.yaml'
+        #  - $ref: './bolus-extended.v1.yaml'
+        #  - $ref: './bolus-normal.v1.yaml'
       carbInput:
         type: integer
         format: int32
@@ -46,7 +46,7 @@ allOf:
       units:
         type: string
       carbUnits:
-        $ref: '../carbs/units.v1.yaml'
+        $ref: '../carbs/carb-units.v1.yaml'
 required:
   - type
 x-tags:

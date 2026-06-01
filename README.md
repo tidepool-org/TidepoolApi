@@ -2,7 +2,7 @@
 
 ![Tidepool Logo](./assets/images/Tidepool_Logo_Dark_Large.png)
 
-[![publish](https://github.com/tidepool-org/TidepoolApi/actions/workflows/check-and-publish.yml/badge.svg?branch=master)](https://github.com/tidepool-org/TidepoolApi/actions/workflows/check-and-publish.yml)
+[![publish](https://github.com/tidepool-org/TidepoolApi/actions/workflows/check.yml/badge.svg?branch=master)](https://github.com/tidepool-org/TidepoolApi/actions/workflows/check.yml)
 
 This repository contains Tidepool Platform API documentation in [OpenAPI v3](https://www.openapis.org/) format with additional narrative content in [Markdoc](https://redocly.com/learn/markdoc/write-with-markdoc) format which in turn extends on [Markdown](https://www.markdownguide.org/).
 These API definitions can be used to generate stub code for either server or client side. Currently, we only do this with the `clinic` service (see below for special note on that).
@@ -38,7 +38,6 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
 
     ```shell
     make check
-    make prepare
     ```
 
 5. Commit your changes to the work branch and push to GitHub. This will automatically kick off a [GitHub Action](.github/workflows/) that checks & publishes the new (draft) documentation into a branch in Redocly.
@@ -64,7 +63,7 @@ The preferred workflow is to edit these files offline, then commit them to GitHu
 
 ## Other Tools
 
-The [Makefile](./Makefile) makes use of several CLI tools to check, prepare, and publish the documentation and specifications.
+The [Makefile](./Makefile) makes use of several CLI tools to check and publish the documentation and specifications.
 You can install the tools by executing the following command:
 
 ```shell
@@ -82,7 +81,6 @@ make check_tools
 | [markdownlint](https://www.npmjs.com/package/markdownlint) | Validates Markdown files. |
 | [markdown-link-check](https://www.npmjs.com/package/markdown-link-check) | Validates hyperlinks in Markdown files. |
 | [spectral](https://www.npmjs.com/package/@stoplight/spectral) | Validates OpenAPI 3.0 specification files. |
-| [swagger-cli](https://www.npmjs.com/package/swagger-cli) | Validates OpenAPI 3.0 specification files. Also bundles multiple OAS3 files into a single file, that is required by some downstream use-cases. |
 | [redocly](https://github.com/Redocly/redocly-cli) | Validates OpenAPI 3.0 specification files. Also bundles multiple OAS3 files into a single file, that is required by some downstream use-cases. |
 | [openapi-merge-cli](https://www.npmjs.com/package/openapi-merge-cli) | Merges OpenAPI 3.0 specification files into single file. |
 | [oapi-codegen](https://github.com/deepmap/oapi-codegen) | Generates server and client stub code from OpenAPI 3.0 specifications. Used currently to generate the [`clinic`](https://github.com/tidepool-org/clinic) service code. |

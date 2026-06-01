@@ -9,7 +9,7 @@ allOf:
         enum:
           - bolus
       subType:
-        $ref: ./subtype.v1.yaml
+        $ref: ./bolus-subtype.v1.yaml
       insulinFormulation:
         $ref: ../insulin/formulation.v1.yaml
       deliveryContext:
