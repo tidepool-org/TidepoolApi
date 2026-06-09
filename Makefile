@@ -171,3 +171,15 @@ generate_clinic_service: $(CODEGEN_FOLDER)/clinic/clinic.v1.yaml
 $(CODEGEN_FOLDER)/clinic/clinic.v1.yaml: $(SPEC_FOLDER)/clinic.v1.yaml | $(CODEGEN_FOLDER)
 	@[ "$${QUIET:-}" = "true" ] || echo "./scripts/generate_clinic.sh $< $@"
 	@./scripts/generate_clinic.sh $< $@
+
+##############################################################################################
+# integration tests
+##############################################################################################
+
+.PHONY: test_integration
+test_integration:
+	cd tests/integration && npx vitest run
+
+.PHONY: test_integration_suite
+test_integration_suite:
+	cd tests/integration && npx vitest run suites/$(SUITE).test.ts

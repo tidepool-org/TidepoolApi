@@ -7,3 +7,6 @@ build
 .env
 .envrc
 .nvmrc
+tests/integration/.env
+tests/integration/.fixtures.json
+tests/integration/node_modules/
