@@ -18,6 +18,8 @@ make check_specs                # Validate all OpenAPI specs (spectral + redocly
 make check_toc                  # Verify sidebars.yaml matches docs/ contents
 make check_todo                 # List remaining TODOs
 make generate_clinic_service    # Generate Go code from clinic.v1.yaml via oapi-codegen
+make test_integration           # Run full integration test suite (requires tests/integration/.env; see Integration Tests below)
+make test_integration_suite SUITE=07-clinic  # Run a single integration suite by filename stem
 make clean                      # Remove build/, tools/, node_modules/
 make list_targets               # Show all Make targets
 ```
@@ -47,7 +49,7 @@ Three specs are excluded from the build (listed in `.exclude_specs`): redox, xea
 
 ### Documentation (`docs/`)
 
-~60 Markdoc-enhanced markdown files covering integration guides, device data types, authentication, etc. Navigation structure defined in `sidebars.yaml` - every doc must appear there (enforced by `make check_toc`).
+~115 Markdoc-enhanced markdown files covering integration guides, device data types, authentication, etc. Navigation structure defined in `sidebars.yaml` - every doc must appear there (enforced by `make check_toc`). The `docs/uploader/` subtree is mirrored from the Uploader repo; its `checklists/` files are excluded from TOC enforcement.
 
 ### Code Generation
 
@@ -65,17 +67,21 @@ Doc checks run **markdownlint** then **markdown-link-check** then a custom ref-l
 
 ## Integration Tests
 
-Located in `tests/integration/`. TypeScript + Vitest test suite that exercises all API endpoints against a live environment.
+Located in `tests/integration/`. TypeScript + Vitest test suite that exercises all API endpoints against a live environment. Introduced in commit 739a3b3e as a proof-of-concept for Claude-generated tests; not yet wired into CI.
 
 ```bash
 cd tests/integration && npm install   # Install test dependencies (first time)
-make test_integration                 # Run full suite sequentially
+make test_integration                 # Run full suite sequentially (file parallelism disabled)
 make test_integration_suite SUITE=07-clinic  # Run a single suite
 ```
 
-Configuration: copy `tests/integration/.env.example` to `.env` and fill in credentials. Tests create their own users/data with unique prefixes per run so they don't interfere with each other or require DB cleanup.
+Configuration: copy `tests/integration/.env.example` to `.env` and fill in `TIDEPOOL_BASE_URL`, `TIDEPOOL_AUTH_URL`, `TIDEPOOL_REALM`, OIDC client credentials (`TIDEPOOL_CLIENT_ID`/`TIDEPOOL_CLIENT_SECRET`), and optionally `TIDEPOOL_SERVER_SECRET` (server-token tests are skipped if unset). Tests create their own users/data with unique prefixes per run so they don't interfere with each other or require DB cleanup.
 
-Test files in `tests/integration/suites/` are numbered 00-18 and run sequentially. Shared state (user IDs, clinic IDs) flows between suites via `.fixtures.json`.
+Test files in `tests/integration/suites/` are numbered 00-18 and run sequentially (vitest config in `vitest.config.ts` enforces alphabetical order with `fileParallelism: false`). Shared state (user IDs, clinic IDs, tokens) flows between suites via `.fixtures.json`, loaded lazily via the `fixtures` Proxy in `lib/fixtures.ts`. Supporting code:
+- `lib/http-client.ts`, `lib/auth.ts`, `lib/config.ts`, `lib/unique.ts` - HTTP/auth/config helpers
+- `lib/factories/` - test-data factories (user, clinic, patient, dataset, message)
+- `lib/schemas/` - Zod response schemas for runtime validation
+- `setup/global-setup.ts`, `setup/global-teardown.ts` - vitest global hooks
 
 ## Conventions
 
