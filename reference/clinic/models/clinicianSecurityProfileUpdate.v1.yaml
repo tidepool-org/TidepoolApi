@@ -1,5 +1,10 @@
-title: Clinician Security Profile
-description: Security-related metadata for a clinician account, including multi-factor authentication status, linked identity providers, and last login time.
+title: Clinician Security Profile Update
+description: >-
+  A partial update to a clinician's security profile, applied by an event-based
+  external system. Only the fields present in the request are modified; omitted
+  fields are left unchanged. Typically a single event updates one group of
+  fields, e.g. multi-factor authentication status, last login time, or linked
+  identity providers.
 type: object
 properties:
   mfaEnabled:
@@ -17,5 +22,3 @@ properties:
   lastLoginTime:
     $ref: ../../common/models/datetime.v1.yaml
     description: The time of the clinician's most recent successful login.
-required:
-  - mfaEnabled
