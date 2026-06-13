@@ -1,0 +1,9 @@
+title: Time Range
+description: >-
+  Time range.
+type: object
+properties:
+  from:
+    $ref: '../../../common/models/datetime.v1.yaml'
+  to:
+    $ref: '../../../common/models/datetime.v1.yaml'
