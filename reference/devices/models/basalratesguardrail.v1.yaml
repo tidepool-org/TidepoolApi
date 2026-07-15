@@ -1,0 +1,22 @@
+title: Basal Rates Guard Rail
+description: >-
+  Guard rail for the basal rate schedule setting
+type: object
+properties:
+  units:
+    $ref: './basalrateunits.v1.yaml'
+  defaultValue:
+    description: >-
+      Default value. May be `null` if the device has no default value for the setting.
+    type: object
+    nullable: true
+    allOf:
+      - $ref: './fixeddecimal.v1.yaml'
+  absoluteBounds:
+    description: >-
+      Device specific absolute bounds. Some pumps might have different increments for different ranges.
+    type: array
+    items:
+      $ref: './absolutebounds.v1.yaml'
+  maxSegments:
+    $ref: './maxsegments.v1.yaml'

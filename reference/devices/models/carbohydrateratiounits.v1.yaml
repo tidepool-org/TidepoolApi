@@ -1,0 +1,7 @@
+title: Carbohydrate Ratio Units
+description: >-
+  Carbohydrate ratio units
+type: string
+enum:
+  - GramsPerUnit
+default: GramsPerUnit

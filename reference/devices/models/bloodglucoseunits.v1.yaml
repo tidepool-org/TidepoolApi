@@ -1,0 +1,7 @@
+title: Blood Glucose Units
+description: >-
+  Blood glucose units
+type: string
+enum:
+  - MilligramsPerDeciliter
+default: MilligramsPerDeciliter

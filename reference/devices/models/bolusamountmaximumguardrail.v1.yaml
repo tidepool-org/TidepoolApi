@@ -1,0 +1,11 @@
+title: Bolus Amount Maximum Guard Rail
+description: >-
+  Guard rail for the maximum bolus amount setting
+type: object
+properties:
+  units:
+    $ref: './bolusunits.v1.yaml'
+  recommendedBounds:
+    $ref: './recommendedbounds.v1.yaml'
+  absoluteBounds:
+    $ref: './absolutebounds.v1.yaml'

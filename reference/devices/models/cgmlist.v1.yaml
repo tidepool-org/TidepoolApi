@@ -1,0 +1,9 @@
+title: List CGMs Response
+description: >-
+  List of Tidepool supported continuous glucose monitors
+type: object
+properties:
+  cgms:
+    type: array
+    items:
+      $ref: './cgm.v1.yaml'

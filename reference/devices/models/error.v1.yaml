@@ -1,0 +1,25 @@
+title: Devices Error
+description: >-
+  Error returned by the Devices API, in the gRPC-Gateway error format.
+type: object
+properties:
+  code:
+    description: >-
+      [gRPC status code](https://grpc.io/docs/guides/status-codes/) (e.g. `5` for `NOT_FOUND`)
+    type: integer
+    format: int32
+    example: 5
+  message:
+    description: >-
+      Human readable error message
+    type: string
+    example: pump not found
+  details:
+    description: >-
+      Additional error details
+    type: array
+    items:
+      type: object
+required:
+  - code
+  - message

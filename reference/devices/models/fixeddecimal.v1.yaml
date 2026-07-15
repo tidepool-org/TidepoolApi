@@ -1,0 +1,18 @@
+title: Fixed Decimal
+description: >-
+  A fixed precision decimal number, expressed as whole units and nano (10^-9) units.
+  For example, the value 5.75 is represented as `units` = 5 and `nanos` = 750000000.
+type: object
+properties:
+  units:
+    description: >-
+      The whole units of the amount
+    type: integer
+    format: int32
+    example: 5
+  nanos:
+    description: >-
+      Number of nano (10^-9) units of the amount
+    type: integer
+    format: int32
+    example: 750000000

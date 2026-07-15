@@ -1,0 +1,7 @@
+description: >-
+  Device ID
+name: id
+in: path
+required: true
+schema:
+  $ref: '../../common/models/guid.v1.yaml'

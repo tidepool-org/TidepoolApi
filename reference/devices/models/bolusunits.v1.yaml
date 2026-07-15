@@ -1,0 +1,7 @@
+title: Bolus Units
+description: >-
+  Bolus amount units
+type: string
+enum:
+  - Units
+default: Units

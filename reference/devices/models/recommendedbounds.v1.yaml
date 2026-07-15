@@ -1,0 +1,11 @@
+title: Recommended Bounds
+description: >-
+  Tidepool recommended closed range of values.
+  May be `null` if there are no recommended bounds for the setting.
+type: object
+nullable: true
+properties:
+  minimum:
+    $ref: './fixeddecimal.v1.yaml'
+  maximum:
+    $ref: './fixeddecimal.v1.yaml'
