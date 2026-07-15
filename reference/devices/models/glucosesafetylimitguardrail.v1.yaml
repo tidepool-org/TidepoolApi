@@ -1,0 +1,11 @@
+title: Glucose Safety Limit Guard Rail
+description: >-
+  Guard rail for the glucose safety limit setting
+type: object
+properties:
+  units:
+    $ref: './bloodglucoseunits.v1.yaml'
+  recommendedBounds:
+    $ref: './recommendedbounds.v1.yaml'
+  absoluteBounds:
+    $ref: './absolutebounds.v1.yaml'

@@ -1,0 +1,11 @@
+title: Absolute Bounds
+description: >-
+  Device specific closed range of allowed values
+type: object
+properties:
+  minimum:
+    $ref: './fixeddecimal.v1.yaml'
+  maximum:
+    $ref: './fixeddecimal.v1.yaml'
+  increment:
+    $ref: './fixeddecimal.v1.yaml'

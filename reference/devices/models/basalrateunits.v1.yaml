@@ -1,0 +1,7 @@
+title: Basal Rate Units
+description: >-
+  Basal rate units
+type: string
+enum:
+  - UnitsPerHour
+default: UnitsPerHour

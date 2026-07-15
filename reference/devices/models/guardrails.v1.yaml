@@ -1,0 +1,23 @@
+title: Guard Rails
+description: >-
+  Guard rails used to validate therapy settings for the device
+type: object
+properties:
+  glucoseSafetyLimit:
+    $ref: './glucosesafetylimitguardrail.v1.yaml'
+  insulinSensitivity:
+    $ref: './insulinsensitivityguardrail.v1.yaml'
+  basalRates:
+    $ref: './basalratesguardrail.v1.yaml'
+  carbohydrateRatio:
+    $ref: './carbohydrateratioguardrail.v1.yaml'
+  basalRateMaximum:
+    $ref: './basalratemaximumguardrail.v1.yaml'
+  bolusAmountMaximum:
+    $ref: './bolusamountmaximumguardrail.v1.yaml'
+  correctionRange:
+    $ref: './correctionrangeguardrail.v1.yaml'
+  preprandialCorrectionRange:
+    $ref: './correctionrangeguardrail.v1.yaml'
+  workoutCorrectionRange:
+    $ref: './correctionrangeguardrail.v1.yaml'

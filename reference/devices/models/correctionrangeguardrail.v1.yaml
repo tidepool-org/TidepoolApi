@@ -1,0 +1,13 @@
+title: Correction Range Guard Rail
+description: >-
+  Guard rail for a correction range setting
+type: object
+properties:
+  units:
+    $ref: './bloodglucoseunits.v1.yaml'
+  recommendedBounds:
+    $ref: './recommendedbounds.v1.yaml'
+  absoluteBounds:
+    $ref: './absolutebounds.v1.yaml'
+  maxSegments:
+    $ref: './maxsegments.v1.yaml'

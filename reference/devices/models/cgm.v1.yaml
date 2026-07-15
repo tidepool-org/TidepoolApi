@@ -1,0 +1,25 @@
+title: CGM
+description: >-
+  A Tidepool supported continuous glucose monitor
+type: object
+properties:
+  id:
+    $ref: '../../common/models/guid.v1.yaml'
+  displayName:
+    description: >-
+      Device display name
+    type: string
+    example: Dexcom G6
+  manufacturers:
+    description: >-
+      Device manufacturers
+    type: array
+    items:
+      type: string
+    example:
+      - Dexcom
+  model:
+    description: >-
+      Device model
+    type: string
+    example: G6

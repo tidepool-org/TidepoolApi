@@ -1,0 +1,6 @@
+title: Maximum Segments
+description: >-
+  Maximum number of time segments
+type: integer
+format: int32
+example: 48

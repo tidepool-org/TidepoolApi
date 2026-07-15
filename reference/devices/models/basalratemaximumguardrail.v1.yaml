@@ -1,0 +1,16 @@
+title: Basal Rate Maximum Guard Rail
+description: >-
+  Guard rail for the maximum basal rate setting
+type: object
+properties:
+  units:
+    $ref: './basalrateunits.v1.yaml'
+  defaultValue:
+    description: >-
+      Default value. May be `null` if the device has no default value for the setting.
+    type: object
+    nullable: true
+    allOf:
+      - $ref: './fixeddecimal.v1.yaml'
+  absoluteBounds:
+    $ref: './absolutebounds.v1.yaml'

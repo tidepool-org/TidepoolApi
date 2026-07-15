@@ -1,0 +1,9 @@
+title: List Pumps Response
+description: >-
+  List of Tidepool supported insulin pumps
+type: object
+properties:
+  pumps:
+    type: array
+    items:
+      $ref: './pump.v1.yaml'

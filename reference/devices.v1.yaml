@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: Devices API
+  version: '1.0'
+  description: |-
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
+  termsOfService: https://developer.tidepool.org/terms-of-use
+  contact:
+    name: Tidepool
+    url: 'https://www.tidepool.org/'
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: 'https://github.com/tidepool-org/devices/blob/master/LICENSE'
+  x-tidepool-service: https://github.com/tidepool-org/devices
+
+servers:
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+
+# No authentication is required to access the Devices API
+security: []
+
+tags:
+  - name: Devices
+    description: >-
+      List and retrieve information about Tidepool supported devices,
+      such as insulin pumps and continuous glucose monitors (CGMs),
+      including the guard rails used to validate device settings.
+
+paths:
+  '/v1/devices/pumps':
+    get:
+      operationId: ListPumps
+      summary: List Pumps
+      description: >-
+        List all Tidepool supported insulin pumps.
+      responses:
+        '200':
+          $ref: '#/components/responses/PumpList'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Devices
+
+  '/v1/devices/pumps/{id}':
+    parameters:
+      - $ref: './devices/parameters/deviceid.v1.yaml'
+    get:
+      operationId: GetPumpById
+      summary: Get Pump by ID
+      description: >-
+        Get a Tidepool supported insulin pump by its unique device identifier.
+      responses:
+        '200':
+          $ref: '#/components/responses/Pump'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Devices
+
+  '/v1/devices/cgms':
+    get:
+      operationId: ListCgms
+      summary: List CGMs
+      description: >-
+        List all Tidepool supported continuous glucose monitors (CGMs).
+      responses:
+        '200':
+          $ref: '#/components/responses/CgmList'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Devices
+
+  '/v1/devices/cgms/{id}':
+    parameters:
+      - $ref: './devices/parameters/deviceid.v1.yaml'
+    get:
+      operationId: GetCgmById
+      summary: Get CGM by ID
+      description: >-
+        Get a Tidepool supported continuous glucose monitor (CGM) by its unique device identifier.
+      responses:
+        '200':
+          $ref: '#/components/responses/Cgm'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+        - Devices
+
+components:
+  responses:
+    NotFound:
+      description: Not Found
+      content:
+        'application/json':
+          schema:
+            $ref: './devices/models/error.v1.yaml'
+    ServerError:
+      description: Internal Server Error
+      content:
+        'application/json':
+          schema:
+            $ref: './devices/models/error.v1.yaml'
+    Pump:
+      description: Insulin pump
+      content:
+        'application/json':
+          schema:
+            title: Get Pump by ID Response
+            type: object
+            properties:
+              pump:
+                $ref: './devices/models/pump.v1.yaml'
+    PumpList:
+      description: List of insulin pumps
+      content:
+        'application/json':
+          schema:
+            $ref: './devices/models/pumplist.v1.yaml'
+    Cgm:
+      description: Continuous glucose monitor
+      content:
+        'application/json':
+          schema:
+            title: Get CGM by ID Response
+            type: object
+            properties:
+              cgm:
+                $ref: './devices/models/cgm.v1.yaml'
+    CgmList:
+      description: List of continuous glucose monitors
+      content:
+        'application/json':
+          schema:
+            $ref: './devices/models/cgmlist.v1.yaml'

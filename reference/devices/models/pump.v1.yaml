@@ -1,0 +1,27 @@
+title: Pump
+description: >-
+  A Tidepool supported insulin pump
+type: object
+properties:
+  id:
+    $ref: '../../common/models/guid.v1.yaml'
+  displayName:
+    description: >-
+      Device display name
+    type: string
+    example: Omnipod 5
+  manufacturers:
+    description: >-
+      Device manufacturers
+    type: array
+    items:
+      type: string
+    example:
+      - Insulet
+  model:
+    description: >-
+      Device model
+    type: string
+    example: Omnipod 5
+  guardRails:
+    $ref: './guardrails.v1.yaml'
