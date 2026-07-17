@@ -28,6 +28,18 @@ SOURCE_ASSETS = ${shell find $(ASSET_FOLDER) -type f -iname '*.png' | sort}
 TOOLS_BIN = tools/bin
 NPM_BIN = node_modules/.bin
 
+OS = $(shell uname)
+ifeq ($(OS),Linux)
+  NPROC ?= $(shell nproc)
+else ifeq ($(OS),Darwin)
+  NPROC ?= $(shell sysctl -n hw.logicalcpu)
+else
+  NPROC ?= 1
+endif
+ifneq ($(NPROC),1)
+  NPROC ?= $(shell echo $(NPROC) / 2)
+endif
+
 # output folders
 BUILD_FOLDER = build
 CODEGEN_FOLDER = $(BUILD_FOLDER)/generated
@@ -106,7 +118,8 @@ check_todo:
 	@[ "$${QUIET:-}" = "true" ] || ( echo "grep -nR TODO docs/* reference/*"; grep -nR TODO docs/* reference/* || true )
 
 .PHONY: check_docs
-check_docs: $(SOURCE_DOCS)
+check_docs:
+	$(MAKE) -j $(NPROC) $(SOURCE_DOCS)
 
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_DOCS)
@@ -116,7 +129,9 @@ $(SOURCE_DOCS):
 
 # check spec files, plus try to generate code from them
 .PHONY: check_specs
-check_specs: $(SOURCE_SPECS_TOP_LEVEL) generate_clinic_service
+check_specs:
+	$(MAKE) -j $(NPROC) $(SOURCE_SPECS_TOP_LEVEL)
+	$(MAKE) generate_clinic_service
 
 # these are not really phony, just designating them as such to force Make to run the check tool
 .PHONY: $(SOURCE_SPECS)
@@ -125,7 +140,8 @@ $(SOURCE_SPECS):
 	@./scripts/check_spec.sh $@
 
 .PHONY: check_toc
-check_toc: $(SOURCE_TOC)
+check_toc:
+	$(MAKE) -j $(NPROC) $(SOURCE_TOC)
 	@[ "$${QUIET:-}" = "true" ] || ( \
 		echo "==============================================================="; \
 		echo "Check that all ${words $(SOURCE_TOC_DOCS)} files listed in '$(SOURCE_TOC)' exist"; \
