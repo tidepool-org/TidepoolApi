@@ -37,6 +37,8 @@ properties:
     x-go-type: float64
   tags:
     $ref: ../patientTagIds.v1.yaml
+  sites:
+    $ref: ../siteIds.v1.yaml
   filters:
     $ref: ./tideFilters.v1.yaml
 
