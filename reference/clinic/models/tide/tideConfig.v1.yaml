@@ -51,5 +51,4 @@ required:
   - veryHighGlucoseThreshold
   - lowGlucoseThreshold
   - veryLowGlucoseThreshold
-  - tags
   - filters
