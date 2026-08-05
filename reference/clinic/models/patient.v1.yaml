@@ -40,6 +40,7 @@ properties:
     nullable: true
     items:
       $ref: ./dataSource.v1.yaml
+    readOnly: true
   lastUploadReminderTime:
     type: string
     format: date-time
