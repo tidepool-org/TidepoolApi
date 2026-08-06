@@ -2258,6 +2258,49 @@ paths:
           required: true
       x-internal: true
     parameters: []
+  '/v1/clinics/{clinicId}/patients/bulk':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: List patients that would be bulk created from input CSV.
+      operationId: ListBulkCreatePatients
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+      description: From an input CSV of patient parameters, return an output CSV of patients that would be created as well as any issues for that patient.
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          text/csv:
+            schema:
+              type: string
+              format: binary
+    post:
+      summary: Create multiple patients in one request from input CSV.
+      operationId: BulkCreatePatients
+      responses:
+        '201':
+          description: Created
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+      description: From an input CSV of patient parameters, create a patient for each valid row and return an output CSV of all patients.
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          text/csv:
+            schema:
+              type: string
+              format: binary
   '/v1/clinics/{clinicId}/service_accounts':
     parameters:
       - $ref: '#/components/parameters/clinicId'
