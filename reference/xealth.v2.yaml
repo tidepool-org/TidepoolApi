@@ -5972,7 +5972,7 @@ components:
                     description: Procedure coding method (PR1-2)
                     example: C4
                   procedureCode:
-                    type: string
+                    type: object
                     description: Procedure code (PR1-3)
                     properties:
                       identifier:
@@ -6007,7 +6007,7 @@ components:
                     description: Procedure date/time (PR1-5)
                     example: '2021-07-29T19:06:49Z'
                   associatedDiagnosisCode:
-                    type: string
+                    type: object
                     description: Associated diagnosis code (PR1-15)
                     properties:
                       identifier:
@@ -11512,7 +11512,7 @@ components:
                     description: Procedure coding method (PR1-2)
                     example: C4
                   procedureCode:
-                    type: string
+                    type: object
                     description: Procedure code (PR1-3)
                     properties:
                       identifier:
@@ -11547,7 +11547,7 @@ components:
                     description: Procedure date/time (PR1-5)
                     example: '2021-07-29T19:06:49Z'
                   associatedDiagnosisCode:
-                    type: string
+                    type: object
                     description: Associated diagnosis code (PR1-15)
                     properties:
                       identifier:
@@ -16998,7 +16998,7 @@ components:
                         description: Procedure coding method (PR1-2)
                         example: C4
                       procedureCode:
-                        type: string
+                        type: object
                         description: Procedure code (PR1-3)
                         properties:
                           identifier:
@@ -17033,7 +17033,7 @@ components:
                         description: Procedure date/time (PR1-5)
                         example: '2021-07-29T19:06:49Z'
                       associatedDiagnosisCode:
-                        type: string
+                        type: object
                         description: Associated diagnosis code (PR1-15)
                         properties:
                           identifier:
