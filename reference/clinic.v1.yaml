@@ -310,19 +310,6 @@ paths:
             x-go-type-skip-optional-pointer: true
             x-omitempty: true
           in: query
-        - name: sites
-          description: |
-            Comma-separated list of clinic site IDs. If provided, only patients assigned to at least one of the given sites are included in the report. An empty value is ignored, as if the parameter were omitted.
-          allowEmptyValue: true
-          schema:
-            type: array
-            x-omitempty: true
-            x-omitzero: true
-            items:
-              $ref: ./common/parameters/objectId.v1.yaml
-          in: query
-          style: form
-          explode: false
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -955,21 +942,21 @@ paths:
         - schema:
             type: array
             items:
-              $ref: ./common/parameters/objectIdOrZero.v1.yaml
+              type: string
+              format: '^[a-f0-9]{24}$'
           in: query
           name: tags
-          description: |
-            Comma-separated list of patient tag IDs. The single value `_` filters for patients without any tags assigned; combining `_` with tag IDs is rejected.
+          description: Comma-separated list of patient tag IDs
           style: form
           explode: false
         - name: sites
           schema:
             type: array
             items:
-              $ref: ./common/parameters/objectIdOrZero.v1.yaml
+              type: string
+              format: '^[a-f0-9]{24}$'
           in: query
-          description: |
-            Comma-separated list of clinic site IDs. The single value `_` filters for patients without any sites assigned; combining `_` with site IDs is rejected.
+          description: Comma-separated list of clinic site IDs
           style: form
           explode: false
         - name: omitNonStandardRanges
