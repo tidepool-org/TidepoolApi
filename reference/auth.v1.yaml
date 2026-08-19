@@ -867,6 +867,32 @@ paths:
         '204':
           description: OK
       description: Revokes a consent record
+  '/v1/partners/twiist/links/{tidepoolLinkId}':
+    parameters:
+      - name: tidepoolLinkId
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      operationId: UnlinkTwiistAccount
+      summary: Unlink twiist Account
+      description: >-
+        Unlinks a twiist account given a Tidepool Link ID.
+        The endpoint must be called with an access token issued for the Sequel service account.
+      responses:
+        '200':
+          description: Success
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - Authentication
+      security:
+        - sessionToken: []
 components:
   securitySchemes:
     basicAuth:
