@@ -1,0 +1,6 @@
+title: recordId.v1
+x-stoplight:
+  id: 5aevzr0n4qx6k
+type: string
+minLength: 1
+readOnly: true
