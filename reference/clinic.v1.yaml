@@ -2326,6 +2326,27 @@ paths:
         - Clinics
         - Internal
       description: Send a new request to the patient to connect a data provider
+  '/v1/clinics/{clinicId}/export/patients':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: Export Patient List CSV
+      operationId: ExportPatientList
+      description: Generates a CSV of all patients in a clinic with various computed statuses.
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - schema:
+            type: string
+            pattern: ^(1d|7d|14d|30d)$
+            example: 7d
+          in: query
+          name: period
+          description: Time Period to display
+          required: true
 components:
   schemas:
     clinics.v1:
