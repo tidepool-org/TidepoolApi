@@ -21,6 +21,8 @@ properties:
     maxLength: 24
     pattern: '^[a-f0-9]{24}$'
     readOnly: true
+  createdTime:
+    $ref: ../../common/models/datetime.v1.yaml
   modifiedTime:
     $ref: ../../common/models/datetime.v1.yaml
   expirationTime:
