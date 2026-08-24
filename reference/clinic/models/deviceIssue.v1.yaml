@@ -1,0 +1,17 @@
+type: object
+properties:
+  effectiveTime:
+    $ref: ../../common/models/datetime.v1.yaml
+  providerId:
+    $ref: ./providerId.v1.yaml
+  hidden:
+    $ref: '../../common/models/datetime.v1.yaml'
+    description: |
+      Set this value to indicate that clinicians no longer wish to see
+      this issue in their device issues dashboard.
+required:
+  - effectiveTime
+  - providerId
+x-go-type-skip-optional-pointer: true
+x-omitzero: true
+x-omitempty: true

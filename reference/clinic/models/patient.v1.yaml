@@ -71,6 +71,14 @@ properties:
     $ref: ./glycemicRanges.v1.yaml
   diagnosisType:
     $ref: ../../metadata/models/diagnosisType.v1.yaml
+  deviceIssues:
+    $ref: ./deviceIssues.v1.yaml
+  primaryDeviceProviderName:
+    $ref: ./providerId.v1.yaml
+    description: The device used in various dashboards, e.g. TIDE or Device Issues Dashboard.
+    nullable: true
+    x-go-type-skip-optional-pointer: true
+    readOnly: true
 required:
   - id
   - fullName
