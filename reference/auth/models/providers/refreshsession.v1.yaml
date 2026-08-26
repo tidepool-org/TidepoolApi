@@ -1,0 +1,7 @@
+title: Refresh Provider Session
+description: >-
+  Refresh provider session.
+type: object
+properties:
+  timeRange:
+    $ref: './timeRange.v1.yaml'
