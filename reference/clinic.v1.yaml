@@ -255,16 +255,19 @@ paths:
           description: Time Period to display
           required: true
         - name: tags
-          description: Comma-separated list of patient tag IDs
+          description: |
+            Comma-separated list of patient tag IDs. If provided, only patients tagged with all of the given tags are included in the report. An empty value is ignored, as if the parameter were omitted, and patients are included regardless of their tags.
+          allowEmptyValue: true
           schema:
             type: array
+            x-go-type-skip-optional-pointer: true
+            x-omitempty: true
+            x-omitzero: true
             items:
               $ref: ./common/parameters/objectId.v1.yaml
-            minItems: 1
           in: query
           style: form
           explode: false
-          required: true
         - name: lastDataCutoff
           description: Inclusive minimum of date of last data from a patient.
           schema:
@@ -310,6 +313,20 @@ paths:
             x-go-type-skip-optional-pointer: true
             x-omitempty: true
           in: query
+        - name: sites
+          description: |
+            Comma-separated list of clinic site IDs. If provided, only patients assigned to at least one of the given sites are included in the report. An empty value is ignored, as if the parameter were omitted.
+          allowEmptyValue: true
+          schema:
+            type: array
+            x-omitempty: true
+            x-omitzero: true
+            x-go-type-skip-optional-pointer: true
+            items:
+              $ref: ./common/parameters/objectId.v1.yaml
+          in: query
+          style: form
+          explode: false
   '/v1/clinics/{clinicId}/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -942,21 +959,21 @@ paths:
         - schema:
             type: array
             items:
-              type: string
-              format: '^[a-f0-9]{24}$'
+              $ref: ./common/parameters/objectIdOrZero.v1.yaml
           in: query
           name: tags
-          description: Comma-separated list of patient tag IDs
+          description: |
+            Comma-separated list of patient tag IDs. The single value `_` filters for patients without any tags assigned; combining `_` with tag IDs is rejected.
           style: form
           explode: false
         - name: sites
           schema:
             type: array
             items:
-              type: string
-              format: '^[a-f0-9]{24}$'
+              $ref: ./common/parameters/objectIdOrZero.v1.yaml
           in: query
-          description: Comma-separated list of clinic site IDs
+          description: |
+            Comma-separated list of clinic site IDs. The single value `_` filters for patients without any sites assigned; combining `_` with site IDs is rejected.
           style: form
           explode: false
         - name: omitNonStandardRanges
@@ -2513,7 +2530,7 @@ components:
         $ref: ./clinic/models/patientReview.v1.yaml
     FloatFilter:
       type: string
-      pattern: '^(>=|>|<=|<)[+-]?((\d+(\.\d*)?)|(\.\d+))$'
+      pattern: '^(>=|>|<=|<)[+-]?((\d{1,10}(\.\d{0,10})?)|(\.\d{1,10}))$'
       example: '>=5.5'
     IntFilter:
       type: string

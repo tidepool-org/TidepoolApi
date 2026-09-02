@@ -1,0 +1,6 @@
+title: Object Id or Zero Sentinel
+type: string
+description: A resource id, or the underscore sentinel `_` meaning "records with none assigned".
+minLength: 1
+maxLength: 24
+pattern: '^([a-f0-9]{24}|_)$'

@@ -2,6 +2,8 @@ type: array
 title: Patient Tag ID List
 uniqueItems: true
 nullable: true
+x-omitzero: true
+x-omitempty: true
 items:
   title: Patient Tag ID
   description: >-
