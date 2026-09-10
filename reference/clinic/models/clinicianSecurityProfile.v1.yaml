@@ -13,7 +13,7 @@ properties:
     type: array
     description: The external identity providers linked to the clinician account.
     items:
-      $ref: ./clinicianIdentityProvider.v1.yaml
+      $ref: ../../auth/models/identityprovider.v1.yaml
   lastLoginTime:
     $ref: ../../common/models/datetime.v1.yaml
     description: The time of the clinician's most recent successful login.
