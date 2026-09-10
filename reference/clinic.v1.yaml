@@ -1541,6 +1541,26 @@ paths:
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+  '/v1/clinicians/{userId}/securityProfile':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    patch:
+      summary: Update Clinician Security Profile
+      operationId: UpdateClinicianSecurityProfile
+      responses:
+        '204':
+          description: No content
+      description: >-
+        Partially update the security profile of a clinician. Only the fields
+        present in the request body are modified; omitted fields are left
+        unchanged. Intended to be called by an event-based external system.
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/clinicianSecurityProfileUpdate.v1'
   '/v1/clinics/{clinicId}/migrations':
     parameters:
       - schema:
@@ -2342,6 +2362,8 @@ components:
         $ref: ./clinic/models/patient.v1.yaml
     patientTag.v1:
       $ref: ./clinic/models/patientTag.v1.yaml
+    clinicianSecurityProfileUpdate.v1:
+      $ref: ./clinic/models/clinicianSecurityProfileUpdate.v1.yaml
     dataSources.v1:
       type: array
       items:

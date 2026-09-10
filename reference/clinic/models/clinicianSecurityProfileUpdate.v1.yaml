@@ -1,0 +1,24 @@
+title: Clinician Security Profile Update
+description: >-
+  A partial update to a clinician's security profile, applied by an event-based
+  external system. Only the fields present in the request are modified; omitted
+  fields are left unchanged. Typically a single event updates one group of
+  fields, e.g. multi-factor authentication status, last login time, or linked
+  identity providers.
+type: object
+properties:
+  mfaEnabled:
+    type: boolean
+    description: Whether multi-factor (two-factor) authentication is enabled for the clinician.
+    example: true
+  mfaEnabledTime:
+    $ref: ../../common/models/datetime.v1.yaml
+    description: The time at which multi-factor (two-factor) authentication was enabled for the clinician.
+  identityProviders:
+    type: array
+    description: The external identity providers linked to the clinician account.
+    items:
+      $ref: ../../auth/models/identityprovider.v1.yaml
+  lastLoginTime:
+    $ref: ../../common/models/datetime.v1.yaml
+    description: The time of the clinician's most recent successful login.

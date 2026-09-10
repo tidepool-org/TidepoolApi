@@ -25,6 +25,8 @@ properties:
     $ref: '../../common/models/datetime.v1.yaml'
   deletedUserId:
     $ref: '../../common/models/tidepooluserid.yaml'
+  securityProfile:
+    $ref: './usersecurityprofile.v1.yaml'
 required:
   - userid
   - emailVerified
