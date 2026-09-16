@@ -2258,7 +2258,7 @@ paths:
           required: true
       x-internal: true
     parameters: []
-  '/v1/clinics/{clinicId}/patients/bulk':
+  '/v1/clinics/{clinicId}/bulk/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     get:
@@ -2276,11 +2276,11 @@ paths:
       tags:
         - Clinics
       requestBody:
+        required: true
         content:
-          text/csv:
+          text/plain:
             schema:
               type: string
-              format: binary
     post:
       summary: Create multiple patients in one request from input CSV.
       operationId: BulkCreatePatients
@@ -2296,11 +2296,11 @@ paths:
       tags:
         - Clinics
       requestBody:
+        required: true
         content:
-          text/csv:
+          text/plain:
             schema:
               type: string
-              format: binary
   '/v1/clinics/{clinicId}/service_accounts':
     parameters:
       - $ref: '#/components/parameters/clinicId'
