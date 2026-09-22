@@ -60,6 +60,9 @@ properties:
       id: 502rliv0l2tyy
     description: Requests for each provider are listed in reverse chronological order
     readOnly: true
+  connectionIssueSource:
+    $ref: ./connectionIssueSource.v1.yaml
+    readOnly: true
   sites:
     type: array
     x-go-type-skip-optional-pointer: true
