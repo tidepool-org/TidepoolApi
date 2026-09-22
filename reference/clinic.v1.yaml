@@ -2261,9 +2261,14 @@ paths:
   '/v1/clinics/{clinicId}/bulk/patients':
     parameters:
       - $ref: '#/components/parameters/clinicId'
-    get:
-      summary: List patients that would be bulk created from input CSV.
-      operationId: ListBulkCreatePatients
+      - name: dryRun
+        in: query
+        schema:
+          type: boolean
+          default: true
+    post:
+      summary: Return a list of potential patients that would be created from the request body CSV. Actually creates the patients if the query string parameter "dryRun" is false.
+      operationId: BulkCreatePatients
       responses:
         '200':
           description: OK
@@ -2278,36 +2283,22 @@ paths:
         - Clinics
       requestBody:
         required: true
+        description: |-
+          The input CSV body of patients to be created, one per row. Note that the CSV is expected to be HEADERLESS and the following non-empty mandatory patient fields are expected:
+            Column 1. Patient name
+            Column 2. Birthdate in YYYY-mm-dd format.
+            Column 3. MRN.
+          Optionally, there may be 4 optional columns after the required 3 for the following optional fields, which may be left blank.
+            Column 4. Email
+            Column 5. Diagnosis Type - one of type1, type2, type3c, gestational, prediabetes, lada, mody, other.
+            Column 6. Glycemic Preset - One of adaStandard, adaPregnancyType1, adaPregnancyType2, adaHighRisk. Defaults to "adaStandard" if left blank.
         content:
           text/csv:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/bulkPatientInputRow.v1'
-    post:
-      summary: Create multiple patients in one request from input CSV.
-      operationId: BulkCreatePatients
-      responses:
-        '201':
-          description: Created
-          content:
-            text/csv:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/bulkPatientOutputRow.v1'
-      description: |
-        From an input CSV of patient parameters, create a patient for each valid row and return an output CSV of all patients.
-      tags:
-        - Clinics
-      requestBody:
-        required: true
-        content:
-          text/csv:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/bulkPatientInputRow.v1'
+              type: string
+              example: |-
+                John Doe,1999-11-20,11112222,john+doe@tidepool.org,type1,adaStandard
+                Jane Doe,1999-11-10,11112223,,,adaHighRisk
   '/v1/clinics/{clinicId}/service_accounts':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2707,35 +2698,6 @@ components:
           $ref: ./clinic/models/glycemicRanges.v1.yaml
         diagnosisType:
           $ref: ./metadata/models/diagnosisType.v1.yaml
-    bulkPatientInputRow.v1:
-      title: BulkPatientInputRow
-      type: object
-      properties:
-        fullName:
-          type: string
-          description: The name of the patient.
-          minLength: 1
-        birthDate:
-          type: string
-          format: date
-          description: The patient's date of birth.
-          example: '2012-08-30'
-        mrn:
-          type: string
-          description: The medical record number of the patient
-          minLength: 1
-        email:
-          type: string
-          description: The patient's optional email.
-          format: email
-        diagnosisType:
-          $ref: ./metadata/models/diagnosisType.v1.yaml
-        glycemicTarget:
-          $ref: ./clinic/models/glycemicRangesPreset.v1.yaml
-      required:
-        - fullName
-        - birthDate
-        - mrn
     bulkPatientOutputRow.v1:
       title: BulkPatientOutputRow
       type: object
