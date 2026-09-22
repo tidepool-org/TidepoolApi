@@ -2270,17 +2270,20 @@ paths:
           content:
             text/csv:
               schema:
-                type: string
-                format: binary
+                type: array
+                items:
+                  $ref: '#/components/schemas/bulkPatientOutputRow.v1'
       description: From an input CSV of patient parameters, return an output CSV of patients that would be created as well as any issues for that patient.
       tags:
         - Clinics
       requestBody:
         required: true
         content:
-          text/plain:
+          text/csv:
             schema:
-              type: string
+              type: array
+              items:
+                $ref: '#/components/schemas/bulkPatientInputRow.v1'
     post:
       summary: Create multiple patients in one request from input CSV.
       operationId: BulkCreatePatients
@@ -2290,17 +2293,21 @@ paths:
           content:
             text/csv:
               schema:
-                type: string
-                format: binary
-      description: From an input CSV of patient parameters, create a patient for each valid row and return an output CSV of all patients.
+                type: array
+                items:
+                  $ref: '#/components/schemas/bulkPatientOutputRow.v1'
+      description: |
+        From an input CSV of patient parameters, create a patient for each valid row and return an output CSV of all patients.
       tags:
         - Clinics
       requestBody:
         required: true
         content:
-          text/plain:
+          text/csv:
             schema:
-              type: string
+              type: array
+              items:
+                $ref: '#/components/schemas/bulkPatientInputRow.v1'
   '/v1/clinics/{clinicId}/service_accounts':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2700,6 +2707,71 @@ components:
           $ref: ./clinic/models/glycemicRanges.v1.yaml
         diagnosisType:
           $ref: ./metadata/models/diagnosisType.v1.yaml
+    bulkPatientInputRow.v1:
+      title: BulkPatientInputRow
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: The name of the patient.
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          description: The patient's date of birth.
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        email:
+          type: string
+          description: The patient's optional email.
+          format: email
+        diagnosisType:
+          $ref: ./metadata/models/diagnosisType.v1.yaml
+        glycemicTarget:
+          $ref: ./clinic/models/glycemicRangesPreset.v1.yaml
+      required:
+        - fullName
+        - birthDate
+        - mrn
+    bulkPatientOutputRow.v1:
+      title: BulkPatientOutputRow
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: The name of the patient.
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          description: The patient's date of birth.
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        email:
+          type: string
+          description: The patient's optional email.
+          format: email
+        diagnosisType:
+          $ref: ./metadata/models/diagnosisType.v1.yaml
+        glycemicTarget:
+          $ref: ./clinic/models/glycemicRangesPreset.v1.yaml
+        reason:
+          type: string
+          description: If an error was encountered, the non-empty error reason string .
+          example: 'duplicate MRN'
+        emailed:
+          type: string
+          description: A description of whether the patient was emailed.
+          enum:
+            - Y
+            - N
+            - N (invalid email)
     addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
