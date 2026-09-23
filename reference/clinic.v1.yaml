@@ -959,6 +959,27 @@ paths:
           description: Comma-separated list of clinic site IDs
           style: form
           explode: false
+        - name: connectionIssueCauses
+          in: query
+          description: |
+            Comma-separated list of connection issue causes. When given, only patients
+            whose connection issue has one of these causes and is not hidden are
+            returned. Valid causes are error, disconnected, staleData, staleInvite and
+            expiredInvite.
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - name: onlyHiddenConnectionIssues
+          in: query
+          description: |
+            When true, only patients whose connection issue is hidden are returned,
+            instead of excluding them. Combine with connectionIssueCauses to list the
+            hidden issues of specific causes.
+          schema:
+            type: boolean
         - name: omitNonStandardRanges
           description: |
             Whether patients whose glycemic ranges selection is *not*
