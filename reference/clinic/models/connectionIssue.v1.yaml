@@ -16,5 +16,8 @@ properties:
       - ConnectionIssueCauseStaleData
       - ConnectionIssueCauseStaleInvite
       - ConnectionIssueCauseExpiredInvite
+  hidden:
+    type: boolean
+    description: Set by a clinician to hide the issue. Cleared when the connection issue source or the cause changes.
 required:
   - cause

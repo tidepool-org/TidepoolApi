@@ -1850,6 +1850,33 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateSuppressedNotifications'
+  '/v1/clinics/{clinicId}/patients/{patientId}/connection_issue/hidden':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    put:
+      summary: Set Connection Issue Hidden
+      operationId: SetConnectionIssueHidden
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patient.v1.yaml
+        '404':
+          description: The patient does not exist or has no connection issue
+      description: |-
+        Hide or unhide the patient's connection issue. Patients with
+        hidden connection issues aren't show when listing patients
+        that specify connection issue causes.
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/connectionIssueHidden.v1.yaml
   '/v1/clinics/{clinicId}/patients/{patientId}/upload_reminder':
     parameters:
       - $ref: '#/components/parameters/clinicId'
