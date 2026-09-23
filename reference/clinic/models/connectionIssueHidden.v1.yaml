@@ -1,0 +1,8 @@
+title: Connection Issue Hidden
+type: object
+properties:
+  hidden:
+    type: boolean
+    description: Whether the clinician wants the connection issue hidden.
+required:
+  - hidden
