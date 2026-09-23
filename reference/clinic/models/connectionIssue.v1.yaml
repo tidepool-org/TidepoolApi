@@ -1,0 +1,20 @@
+title: Connection Issue
+type: object
+description: The highest priority connection problem detected for the patient.
+properties:
+  cause:
+    type: string
+    enum:
+      - error
+      - disconnected
+      - staleData
+      - staleInvite
+      - expiredInvite
+    x-enum-varnames:
+      - ConnectionIssueCauseError
+      - ConnectionIssueCauseDisconnected
+      - ConnectionIssueCauseStaleData
+      - ConnectionIssueCauseStaleInvite
+      - ConnectionIssueCauseExpiredInvite
+required:
+  - cause
