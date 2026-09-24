@@ -1541,6 +1541,26 @@ paths:
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
+  '/v1/clinicians/{userId}/securityProfile':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    patch:
+      summary: Update Clinician Security Profile
+      operationId: UpdateClinicianSecurityProfile
+      responses:
+        '204':
+          description: No content
+      description: >-
+        Partially update the security profile of a clinician. Only the fields
+        present in the request body are modified; omitted fields are left
+        unchanged. Intended to be called by an event-based external system.
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/clinicianSecurityProfileUpdate.v1'
   '/v1/clinics/{clinicId}/migrations':
     parameters:
       - schema:
@@ -2326,6 +2346,27 @@ paths:
         - Clinics
         - Internal
       description: Send a new request to the patient to connect a data provider
+  '/v1/clinics/{clinicId}/export/patients':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: Export Patient List CSV
+      operationId: ExportPatientList
+      description: Generates a CSV of all patients in a clinic with various computed statuses.
+      tags:
+        - Clinics
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - schema:
+            type: string
+            pattern: ^(1d|7d|14d|30d)$
+            example: 7d
+          in: query
+          name: period
+          description: Time Period to display
+          required: true
 components:
   schemas:
     clinics.v1:
@@ -2342,6 +2383,8 @@ components:
         $ref: ./clinic/models/patient.v1.yaml
     patientTag.v1:
       $ref: ./clinic/models/patientTag.v1.yaml
+    clinicianSecurityProfileUpdate.v1:
+      $ref: ./clinic/models/clinicianSecurityProfileUpdate.v1.yaml
     dataSources.v1:
       type: array
       items:

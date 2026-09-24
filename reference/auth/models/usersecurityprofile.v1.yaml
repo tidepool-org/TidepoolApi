@@ -1,0 +1,19 @@
+title: User Security Profile
+description: >-
+  The user's current security posture: whether multi-factor authentication is enabled, the external
+  identity providers linked to the account, and the time of the last login.
+type: object
+properties:
+  mfaEnabled:
+    type: boolean
+    description: Whether multi-factor (two-factor) authentication is enabled for the user.
+  identityProviders:
+    type: array
+    description: The external identity providers linked to the user account.
+    items:
+      $ref: './identityprovider.v1.yaml'
+  lastLoginTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+required:
+  - mfaEnabled
+  - identityProviders

@@ -17,6 +17,10 @@ properties:
     minLength: 1
   roles:
     $ref: ./clinicianRoles.v1.yaml
+  securityProfile:
+    allOf:
+      - $ref: ./clinicianSecurityProfile.v1.yaml
+    readOnly: true
   createdTime:
     type: string
     format: date-time

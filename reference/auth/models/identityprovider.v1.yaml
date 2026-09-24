@@ -1,0 +1,17 @@
+title: Identity Provider
+description: An external identity provider linked to the user account.
+type: object
+properties:
+  alias:
+    type: string
+    description: The unique alias identifying the identity provider configuration.
+    minLength: 1
+    example: 'google'
+  name:
+    type: string
+    description: The display name of the identity provider.
+    minLength: 1
+    example: 'Google'
+required:
+  - alias
+  - name
