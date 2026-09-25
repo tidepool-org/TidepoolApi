@@ -2258,6 +2258,59 @@ paths:
           required: true
       x-internal: true
     parameters: []
+  '/v1/clinics/{clinicId}/bulk/patients':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - name: dryRun
+        in: query
+        schema:
+          type: boolean
+          default: true
+    post:
+      summary: Return a list of potential patients that would be created from the request body CSV. Actually creates the patients if the query string parameter "dryRun" is false.
+      operationId: BulkCreatePatients
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/bulkPatientOutputRow.v1'
+      description: From an input CSV of patient parameters, return an output CSV of patients that would be created as well as any issues for that patient.
+      tags:
+        - Clinics
+      requestBody:
+        required: true
+        description: |-
+          The input CSV body of patients to be created, one per row. Note that the CSV is expected to be HEADERLESS and the following non-empty mandatory patient fields are expected:
+            Column 1. Patient name
+            Column 2. Birthdate in YYYY-mm-dd format.
+            Column 3. MRN.
+          Optionally, there may be 4 optional columns after the required 3 for the following optional fields, which may be left blank.
+            Column 4. Email
+            Column 5. Diagnosis Type - one of type1, type2, type3c, gestational, prediabetes, lada, mody, other.
+            Column 6. Glycemic Preset - One of adaStandard, adaPregnancyType1, adaPregnancyType2, adaHighRisk. Defaults to "adaStandard" if left blank.
+        content:
+          text/csv:
+            schema:
+              type: string
+              # Arbritrary limit on CSV length to limit DDOS attackes
+              maxLength: 2000000
+            examples:
+              withMinimumRequiredFields:
+                summary: Minimum required columns CSV
+                description: CSV with the minimum required columns to create patients.
+                value: |-
+                  John Doe,1999-11-20,11112222
+                  Jane Doe,1975-05-10,44332211
+              withOptionalFields:
+                summary: Optional columns CSV
+                description: CSV with optional columns/fields in addition to the minimum required columns.
+                value: |-
+                  John Doe,1999-11-20,11112222,john+doe@tidepool.org,type1,adaStandard
+                  Jane Doe,1975-05-10,44332211,,,adaHighRisk
   '/v1/clinics/{clinicId}/service_accounts':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2657,6 +2710,42 @@ components:
           $ref: ./clinic/models/glycemicRanges.v1.yaml
         diagnosisType:
           $ref: ./metadata/models/diagnosisType.v1.yaml
+    bulkPatientOutputRow.v1:
+      title: BulkPatientOutputRow
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: The name of the patient.
+          minLength: 1
+        birthDate:
+          type: string
+          format: date
+          description: The patient's date of birth.
+          example: '2012-08-30'
+        mrn:
+          type: string
+          description: The medical record number of the patient
+          minLength: 1
+        email:
+          type: string
+          description: The patient's optional email.
+          format: email
+        diagnosisType:
+          $ref: ./metadata/models/diagnosisType.v1.yaml
+        glycemicTarget:
+          $ref: ./clinic/models/glycemicRangesPreset.v1.yaml
+        reason:
+          type: string
+          description: If an error was encountered, the non-empty error reason string .
+          example: 'duplicate MRN'
+        emailed:
+          type: string
+          description: A description of whether the patient was emailed.
+          enum:
+            - Y
+            - N
+            - N (invalid email)
     addServiceAccount.v1:
       title: AddServiceAccount
       x-stoplight:
