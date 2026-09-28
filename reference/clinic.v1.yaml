@@ -959,6 +959,27 @@ paths:
           description: Comma-separated list of clinic site IDs
           style: form
           explode: false
+        - name: connectionIssueCauses
+          in: query
+          description: |
+            Comma-separated list of connection issue causes. When given, only patients
+            whose connection issue has one of these causes and is not hidden are
+            returned. Valid causes are error, disconnected, staleData, staleInvite and
+            expiredInvite.
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+        - name: onlyHiddenConnectionIssues
+          in: query
+          description: |
+            When true, only patients whose connection issue is hidden are returned,
+            instead of excluding them. Combine with connectionIssueCauses to list the
+            hidden issues of specific causes.
+          schema:
+            type: boolean
         - name: omitNonStandardRanges
           description: |
             Whether patients whose glycemic ranges selection is *not*
@@ -1746,6 +1767,19 @@ paths:
         - $ref: '#/components/parameters/createdTimeStart'
         - $ref: '#/components/parameters/createdTimeEnd'
       description: Returns list of all clinician/clinic relationships in the system. Internal endpoint used for reporting purposes.
+  /v1/patients/connection_issues:
+    post:
+      summary: Update Connection Issues
+      operationId: UpdateConnectionIssues
+      responses:
+        '204':
+          description: No Content
+      description: |-
+        An internal endpoint called by other backend services. Updates the connection issues of every patient.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
   '/v1/patients/{patientId}/summary':
     parameters:
       - $ref: '#/components/parameters/patientId'
@@ -1837,6 +1871,33 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateSuppressedNotifications'
+  '/v1/clinics/{clinicId}/patients/{patientId}/connection_issue/hidden':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    put:
+      summary: Set Connection Issue Hidden
+      operationId: SetConnectionIssueHidden
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patient.v1.yaml
+        '404':
+          description: The patient does not exist or has no connection issue
+      description: |-
+        Hide or unhide the patient's connection issue. Patients with
+        hidden connection issues aren't show when listing patients
+        that specify connection issue causes.
+      tags:
+        - Clinics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./clinic/models/connectionIssueHidden.v1.yaml
   '/v1/clinics/{clinicId}/patients/{patientId}/upload_reminder':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -1850,6 +1911,22 @@ paths:
       description: Sends upload reminder to the patient
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/patients/{patientId}/invitation_resent':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Record Invitation Resent
+      operationId: RecordInvitationResent
+      responses:
+        '204':
+          description: No Content
+      description: |-
+        An internal endpoint called by other backend services after an invitation is resent to the patient. Sets the patient's last invitation sent time to the current server time.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
   '/v1/clinics/{clinicId}/patients/assign_tag/{patientTagId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'

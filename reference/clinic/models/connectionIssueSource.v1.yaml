@@ -1,0 +1,13 @@
+title: Connection Issue Source
+type: string
+description: The most recent flow that put the patient into a pending connection state.
+enum:
+  - dexcom
+  - abbott
+  - twiist
+  - deviceNonSpecificInvitation
+x-enum-varnames:
+  - ConnectionIssueSourceDexcom
+  - ConnectionIssueSourceAbbott
+  - ConnectionIssueSourceTwiist
+  - ConnectionIssueSourceDeviceNonSpecificInvitation
