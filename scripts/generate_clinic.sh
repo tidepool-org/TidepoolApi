@@ -3,14 +3,24 @@
 set -eou pipefail
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
-if [[ $OSTYPE =~ darwin ]] && command -v grealpath &>/dev/null; then
-    TOOLS_BIN=$(grealpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
-    NPM_BIN=$(grealpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
-else
-    TOOLS_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../tools/bin")
-    NPM_BIN=$(realpath --canonicalize-existing "$SCRIPT_DIR/../node_modules/.bin")
+REALPATH=realpath
+if command -v grealpath &>/dev/null; then
+    REALPATH=grealpath
 fi
-PATH=$TOOLS_BIN:$NPM_BIN:$PATH
+TOOLS_BIN=$($REALPATH --canonicalize-missing "$SCRIPT_DIR/../tools/bin")
+NPM_BIN=$($REALPATH --canonicalize-missing "$SCRIPT_DIR/../node_modules/.bin")
+
+# Use the oapi-codegen and redocly installed by the Makefile, never
+# one from the global $PATH.
+OAPI_CODEGEN=$TOOLS_BIN/oapi-codegen
+REDOCLY=$NPM_BIN/redocly
+
+# Install the Makefile-pinned versions of the tools. A no-op when they
+# are already installed and up to date.
+ensure_tools() {
+    make --silent --directory "$SCRIPT_DIR/.." \
+        tools/bin/oapi-codegen node_modules/.bin/redocly
+}
 
 trace() {
     if [ "${QUIET:-}" = "true" ]; then
@@ -27,8 +37,9 @@ case $1 in
     ;;
 
 -c | --self-check)
-    trace redocly --version
-    trace oapi-codegen --version
+    ensure_tools
+    trace "$REDOCLY" --version
+    trace "$OAPI_CODEGEN" --version
     ;;
 
 *)
@@ -37,12 +48,13 @@ case $1 in
     server="$(dirname "$bundled")/server"
     client="$(dirname "$bundled")/client"
     common=(--old-config-style --exclude-tags=Confirmations --package=api)
-    REDOCLY_SUPPRESS_UPDATE_NOTICE="true" trace redocly bundle "$source" -o "$bundled"
+    ensure_tools
+    REDOCLY_SUPPRESS_UPDATE_NOTICE="true" trace "$REDOCLY" bundle "$source" -o "$bundled"
     mkdir -p "$server" "$client"
-    trace oapi-codegen "${common[@]}" --generate=server -o "$server/gen_server.go" "$bundled"
-    trace oapi-codegen "${common[@]}" --generate=spec -o "$server/gen_spec.go" "$bundled"
-    trace oapi-codegen "${common[@]}" --generate=types -o "$server/gen_types.go" "$bundled"
-    trace oapi-codegen "${common[@]}" --generate=types -o "$client/types.go" "$bundled"
-    trace oapi-codegen "${common[@]}" --generate=client -o "$client/client.go" "$bundled"
+    trace "$OAPI_CODEGEN" "${common[@]}" --generate=server -o "$server/gen_server.go" "$bundled"
+    trace "$OAPI_CODEGEN" "${common[@]}" --generate=spec -o "$server/gen_spec.go" "$bundled"
+    trace "$OAPI_CODEGEN" "${common[@]}" --generate=types -o "$server/gen_types.go" "$bundled"
+    trace "$OAPI_CODEGEN" "${common[@]}" --generate=types -o "$client/types.go" "$bundled"
+    trace "$OAPI_CODEGEN" "${common[@]}" --generate=client -o "$client/client.go" "$bundled"
     ;;
 esac
