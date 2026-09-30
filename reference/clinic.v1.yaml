@@ -1889,7 +1889,7 @@ paths:
           description: The patient does not exist or has no connection issue
       description: |-
         Hide or unhide the patient's connection issue. Patients with
-        hidden connection issues aren't show when listing patients
+        hidden connection issues aren't shown when listing patients
         that specify connection issue causes.
       tags:
         - Clinics
