@@ -1186,6 +1186,34 @@ paths:
       description: Deletes patient from a clinic. Requires the request to be made by a clinic admin or the currently authenticated user id to match the patient id.
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/patients/{patientId}/flowsheet':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    get:
+      summary: Get Patient Flowsheet
+      operationId: GetPatientFlowsheet
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      description: >-
+        Returns the patient's summary statistics as an ordered list of
+        fully-formatted, Redox-ready flowsheet observations. Used internally to
+        populate EHR flowsheets without duplicating the metric computation,
+        unit conversion and formatting logic. Order is significant and must be
+        preserved by consumers; not-available metrics are omitted.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./clinic/models/flowsheetObservation.v1.yaml
+        '404':
+          description: Not Found
   '/v1/clinics/{clinicId}/patient_tags/{patientTagId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'

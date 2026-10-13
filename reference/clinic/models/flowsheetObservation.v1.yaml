@@ -1,0 +1,35 @@
+title: Flowsheet Observation
+type: object
+description: >-
+  A single, fully-formatted summary-statistic observation ready to be written to
+  an EHR flowsheet. The clinic service performs all value computation,
+  unit conversion and formatting; consumers map these entries onto a flowsheet
+  with no further formatting. Order is significant and must be preserved.
+properties:
+  code:
+    type: string
+    description: Internal metric code (e.g. TIME_IN_RANGE_CGM).
+  value:
+    type: string
+    description: The formatted observation value.
+  valueType:
+    type: string
+    enum:
+      - Numeric
+      - DateTime
+    description: The type of the value.
+  units:
+    type: string
+    description: The unit of the value, when applicable.
+  description:
+    type: string
+    description: Human-readable description of the metric.
+  dateTime:
+    type: string
+    description: The reporting time of the observation, in RFC3339 format.
+required:
+  - code
+  - value
+  - valueType
+  - description
+  - dateTime
