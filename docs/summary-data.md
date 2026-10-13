@@ -319,6 +319,18 @@ mg/dL
   </mrow>
 </math>
 
+The converted value is rounded to 5 decimal places. Because samples are classified only after normalization, and a whole mg/dL value rarely converts to a round mmol/L value, the summary calculation doesn't compare samples directly to the limits in the table above. Instead, each range boundary is a cut point placed in the gap between the nearest whole mg/dL value and the nearest one-decimal mmol/L value on either side of it. A sample at a cut point or above it falls into the higher range. These are the cut points that each summary reports in its `config` fields:
+
+| Boundary            | Cut point (mmol/L) | Summary `config` field     | Below the cut point         | At or above the cut point   |
+| :------------------ | :----------------: | :------------------------- | :-------------------------- | :-------------------------- |
+| VeryLow / Low       |        2.97        | `veryLowGlucoseThreshold`  | 2.9 mmol/L, 53 mg/dL        | 3.0 mmol/L, 54 mg/dL        |
+| Low / Target        |        3.87        | `lowGlucoseThreshold`      | 3.8 mmol/L, 69 mg/dL        | 3.9 mmol/L, 70 mg/dL        |
+| Target / High       |       10.02        | `highGlucoseThreshold`     | 10.0 mmol/L, 180 mg/dL      | 10.1 mmol/L, 181 mg/dL      |
+| High / VeryHigh     |       13.91        | `veryHighGlucoseThreshold` | 13.9 mmol/L, 250 mg/dL      | 14.0 mmol/L, 251 mg/dL      |
+| ExtremeHigh         |        19.4        |                            | 19.3 mmol/L, 349 mg/dL      | 19.4 mmol/L, 350 mg/dL      |
+
+As a result, samples reported in whole mg/dL or in mmol/L with one decimal place are classified exactly as the table above states. Samples reported with greater precision may not be. For example, a sample of 10.01 mmol/L is classified as _Target_ rather than _High_.
+
 ## Hourly Bucket Data Fields
 
 Each bucket has a set of common fields, as well as a set of fields repeated for each of the 7 named summary ranges: _InLow_, _InTarget_, _InHigh_, _InVeryHigh_, _InExtremeHigh_, _InAnyLow_, and _InAnyHigh_. For brevity, in the following table the placeholder **Xxx** corresponds to those names rather than repeating each set of fields.
