@@ -1,0 +1,76 @@
+title: Work
+type: object
+properties:
+  id:
+    $ref: './work-id.v1.yaml'
+  type:
+    $ref: '../../common/models/reversedomainname.v1.yaml'
+  groupId:
+    type: string
+  deduplicationId:
+    type: string
+  serialId:
+    type: string
+  processingAvailableTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  processingPriority:
+    type: integer
+  processingTimeout:
+    type: integer
+    description: Seconds the processor has to finish the item.
+  metadata:
+    type: object
+    additionalProperties: true
+  state:
+    $ref: './work-state.v1.yaml'
+  pendingTime:
+    description: When the item last became pending.
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  processingTime:
+    description: When processing last started.
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  processingTimeoutTime:
+    description: When the current processing times out.
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  processingDuration:
+    type: number
+    description: Seconds the last processing took.
+  failingTime:
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  failingError:
+    $ref: './work-error.v1.yaml'
+  failingRetryCount:
+    type: integer
+    description: How many times the item has failed and been retried.
+  failingRetryTime:
+    description: When a failing item is retried.
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  failedTime:
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  failedError:
+    $ref: './work-error.v1.yaml'
+  successTime:
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  createdTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  modifiedTime:
+    $ref: '../../common/models/datetime.v1.yaml'
+  revision:
+    type: integer
+    description: Incremented on every change of the item.
+required:
+  - id
+  - type
+  - state
+  - processingAvailableTime
+  - processingTimeout
+  - pendingTime
+  - createdTime
+  - revision
