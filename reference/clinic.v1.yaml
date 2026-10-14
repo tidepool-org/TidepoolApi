@@ -1755,9 +1755,17 @@ paths:
       responses:
         '200':
           description: OK
-        '404':
-          description: Not Found
-      description: Internal endpoint which updates the summary in all patient records which match the user id.
+        '204':
+          description: No Change. The user is not a patient of any clinic.
+      description: |-
+        Internal endpoint which updates the summary in all patient records which match the user id. Called by the
+        platform data service from the upload postprocess work that recalculated the summaries of the user.
+
+        Each of `cgmStats` and `bgmStats` present in the body replaces the stored one only if its
+        `dates.lastUpdatedDate` is not older than the stored one, so a report delayed past a newer calculation
+        does not regress the stored statistics; such a report is answered `200` without changing anything. The
+        `updatedTime` of a patient record moves only when newer statistics arrive, so neither a stale report nor
+        a redelivery of the same one moves it.
       tags:
         - Clinics
         - Internal
@@ -1778,7 +1786,10 @@ paths:
           description: OK
         '204':
           description: No Change
-      description: Internal endpoint which deletes the summary in all patient records which match the summary id.
+      description: |-
+        Internal endpoint which deletes the summary in all patient records which match the summary id. Called by
+        the platform data service from the upload postprocess work when a recalculation deleted the summary of a
+        user who no longer has usable data of its type.
       tags:
         - Clinics
         - Internal
@@ -2290,6 +2301,8 @@ paths:
         An internal endpoint which will push the latest patient summary statistics and PDF reports to all EHR enabled clinics for which the patient has an active subscription. The actual data is pushed asynchronously. A successful response means that an asynchronous task has been scheduled.
 
         A 404 response will be returned if no active subscriptions can be found for given patient.
+
+        The platform data service calls this from the upload postprocess work once the summaries of the user are recalculated and reported, when the work was created for a completed upload (the reasons `UPLOAD_COMPLETED` and `LEGACY_DATA_ADDED`). Data added by a continuous source (`DATA_ADDED`) does not trigger it.
       tags:
         - Clinics
         - Internal

@@ -1,0 +1,16 @@
+title: Work State
+description: |-
+  State of the work item.
+
+  - `pending`: waiting to be processed, from its `processingAvailableTime`
+  - `processing`: being processed, until its `processingTimeoutTime` at the latest
+  - `failing`: the processor could not finish it; it is retried at its `failingRetryTime`
+  - `failed`: the processor gave it up
+  - `success`: processed
+type: string
+enum:
+  - pending
+  - processing
+  - failing
+  - failed
+  - success

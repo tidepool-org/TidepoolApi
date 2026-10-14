@@ -1,0 +1,61 @@
+title: New Work
+type: object
+properties:
+  type:
+    $ref: '../../common/models/reversedomainname.v1.yaml'
+  groupId:
+    type: string
+    description: >-
+      Identifies a group of work items a processor can list the pending items of.
+    minLength: 1
+    maxLength: 1000
+  deduplicationId:
+    type: string
+    description: >-
+      Scoped to the type: a pending item with the same type and deduplication id absorbs this request, which
+      creates nothing and is answered `204`.
+    minLength: 1
+    maxLength: 1000
+  serialId:
+    type: string
+    description: >-
+      Items sharing a serial id are processed one at a time, in order of availability.
+    minLength: 1
+    maxLength: 1000
+  processingAvailableTime:
+    description: >-
+      The earliest time the item is processed. Omitted, the item is available at once.
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
+  processingPriority:
+    type: integer
+    description: >-
+      Items available at the same time are processed in descending priority.
+  processingTimeout:
+    type: integer
+    description: >-
+      Seconds the processor has to finish the item, at most 24 hours. An item still processing past it is
+      returned to the queue and retried.
+    minimum: 1
+    maximum: 86400
+  metadata:
+    description: >-
+      Input of the processor, specific to the type and at most 4 KiB encoded.
+    anyOf:
+      - $ref: './uploadpostprocessmetadata.v1.yaml'
+      - title: Other Work Metadata
+        type: object
+        additionalProperties: true
+required:
+  - type
+  - processingTimeout
+example:
+  type: org.tidepool.data.upload.postprocess
+  groupId: 'org.tidepool.data.upload.postprocess:1a2b3c4d5e'
+  serialId: 'org.tidepool.data.upload.postprocess:1a2b3c4d5e'
+  processingAvailableTime: '2026-10-14T10:01:30Z'
+  processingTimeout: 300
+  metadata:
+    userId: 1a2b3c4d5e
+    reasons:
+      - LEGACY_DATA_ADDED
