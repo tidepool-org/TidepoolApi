@@ -45,6 +45,11 @@ properties:
     type: string
     format: date-time
     readOnly: true
+  lastStaleDataFollowUpTime:
+    type: string
+    format: date-time
+    description: The time a clinician last sent the patient a stale data follow-up email
+    readOnly: true
   summary:
     $ref: ./summaries/patientSummary.v1.yaml
     readOnly: true

@@ -1911,6 +1911,28 @@ paths:
       description: Sends upload reminder to the patient
       tags:
         - Clinics
+  '/v1/clinics/{clinicId}/patients/{patientId}/stale_data_follow_up':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+      - $ref: '#/components/parameters/patientId'
+    post:
+      summary: Send Stale Data Follow-Up
+      operationId: SendStaleDataFollowUp
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./clinic/models/patient.v1.yaml
+        '404':
+          description: Not Found
+        '409':
+          description: The patient does not have a stale data connection issue for a device provider
+      description: |-
+        Sends an email to a patient whose device is connected to Tidepool, but from which no new data has been received recently, asking them to contact their clinic. The patient must have a stale data connection issue for a device provider. Sets the patient's last stale data follow-up time to the current server time.
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/patients/{patientId}/invitation_resent':
     parameters:
       - $ref: '#/components/parameters/clinicId'
