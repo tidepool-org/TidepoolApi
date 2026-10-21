@@ -50,6 +50,11 @@ properties:
     format: date-time
     description: The time a clinician last sent the patient a stale data follow-up email
     readOnly: true
+  lastInvitationSent:
+    type: string
+    format: date-time
+    description: The time a device non-specific invitation was last sent to the patient, either when the patient was created or when it was later resent
+    readOnly: true
   summary:
     $ref: ./summaries/patientSummary.v1.yaml
     readOnly: true
