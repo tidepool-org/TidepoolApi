@@ -1943,12 +1943,12 @@ paths:
       responses:
         '204':
           description: No Content
+        '404':
+          description: Not Found
       description: |-
-        An internal endpoint called by other backend services after an invitation is resent to the patient. Sets the patient's last invitation sent time to the current server time.
+        Records that a device non-specific invitation was resent to the patient. Called by a clinician after requesting that the invitation be resent, and by backend services after sending an automated invitation reminder. Sets the patient's last invitation sent time to the current server time.
       tags:
         - Clinics
-        - Internal
-      x-internal: true
   '/v1/clinics/{clinicId}/patients/assign_tag/{patientTagId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
