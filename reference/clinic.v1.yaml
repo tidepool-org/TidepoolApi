@@ -2300,37 +2300,69 @@ paths:
     post:
       summary: Generate Clinic Merge Report
       operationId: GenerateMergeReport
+      description: |-
+        Generate a read-only report. With an empty body, reports duplicate patients in the clinic.
+        With sourceId, previews merging the source clinic into this one. Nothing is persisted.
+
+        Users must be clinic admins of every clinic involved. Returns an XLSX spreadsheet by
+        default, or the report as JSON when Accept is application/json.
       responses:
         '200':
-          description: OK
-      description: Generates a spreadsheet report for merging two clinics
+          description: XLSX attachment by default, or the report plan when Accept is application/json.
+          headers:
+            Content-Disposition:
+              description: Attachment with a generated .xlsx filename for spreadsheet responses.
+              schema:
+                type: string
+          content:
+            application/vnd.ms-excel:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: Invalid body, identical source and target, or assignment options in single-clinic mode.
+        '403':
+          description: User is not a clinic admin in every requested clinic.
       tags:
         - Clinics
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/generateMergeReport.v1'
-        description: ''
   '/v1/clinics/{clinicId}/merge':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     post:
       summary: Merge Clinic
       operationId: MergeClinic
+      description: |-
+        Merge the source clinic's tags, sites, patients, clinicians, invites and share codes into
+        this clinic, then delete the source. The merge is all-or-nothing and matches the plan shown
+        by the merge report.
+
+        Users must be clinic admins of both clinics and send confirmed: true; their confirmation is
+        recorded with the merge.
       responses:
         '200':
-          description: OK
+          description: Merge completed successfully. No response body.
+        '400':
+          description: Invalid body, identical source and target, missing or false clinician confirmation, or a blocked merge plan.
+        '403':
+          description: User is not a clinic admin in both source and target clinics.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/mergeClinic.v1'
       tags:
         - Clinics
-        - Internal
-      x-internal: true
-      description: 'Merges tags, patients, clinicians, invites and share codes of the source clinic'
   '/v1/clinics/{clinicId}/patients/{patientId}/connect/{providerId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2687,19 +2719,49 @@ components:
       x-stoplight:
         id: 3oq18sasrzo0o
       type: object
+      description: Omit sourceId for a single-clinic report; assignment names require a source clinic.
       properties:
         sourceId:
-          $ref: ./clinic/models/clinicId.v1.yaml
-      required:
-        - sourceId
+          type: string
+          minLength: 24
+          maxLength: 24
+          pattern: '^[a-f0-9]{24}$'
+          x-go-type: ClinicIdV1
+          description: Source clinic, distinct from the path clinic; omit for a single-clinic report.
+        sourcePatientTag:
+          type: string
+          minLength: 1
+          description: One target tag name to preview for every patient originating in the source.
+        sourcePatientSite:
+          type: string
+          minLength: 1
+          description: One target site name to preview for every patient originating in the source.
     mergeClinic.v1:
       title: MergeClinics
       x-stoplight:
         id: 6hn01uuhln0wx
       type: object
+      required:
+        - sourceId
       properties:
         sourceId:
-          $ref: ./clinic/models/clinicId.v1.yaml
+          type: string
+          minLength: 24
+          maxLength: 24
+          pattern: '^[a-f0-9]{24}$'
+          x-go-type: '*ClinicIdV1'
+          description: Required source clinic, distinct from the path clinic.
+        sourcePatientTag:
+          type: string
+          minLength: 1
+          description: One target tag name to reuse or create and apply to source-originating patients.
+        sourcePatientSite:
+          type: string
+          minLength: 1
+          description: One target site name to reuse or create and apply to source-originating patients.
+        confirmed:
+          type: boolean
+          description: Must be true for user sessions.
     ehrMatchRequestPatientsOptions.v1:
       title: Patient Matching Options
       x-stoplight:
