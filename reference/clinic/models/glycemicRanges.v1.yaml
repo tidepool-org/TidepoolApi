@@ -12,5 +12,17 @@ properties:
     $ref: ./glycemicRangesCustom.v1.yaml
   preset:
     $ref: ./glycemicRangesPreset.v1.yaml
+  key:
+    type: string
+    readOnly: true
+    x-go-type-skip-optional-pointer: true
+    description: >-
+      Identifies the range set, for example to match a summary to the ranges it was
+      computed with. Derived from the preset, or from the custom units and thresholds, so
+      two definitions that classify readings identically have the same key, and changing
+      a threshold changes it; changing only a custom range's name does not. Presets are
+      `preset:<preset>` (e.g. `preset:adaHighRisk`), and custom ranges are
+      `custom:<units>:<veryLow>,<low>,<high>,<veryHigh>` with unset thresholds left
+      empty (e.g. `custom:mmol/L:,3.9,10,`).
 required:
   - type
