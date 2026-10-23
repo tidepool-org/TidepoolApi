@@ -19,3 +19,9 @@ properties:
       id: ic7t703igp2rn
     description: 'If set to a non-empty string, the tag values will be split using this separator'
     minLength: 1
+  append:
+    type: boolean
+    description: If true, tags will be appended to a patient's existing tags as opposed to replacing all existing tags of a patient.
+    default: false
+    x-go-type-skip-optional-pointer: true
+    x-omitempty: true
