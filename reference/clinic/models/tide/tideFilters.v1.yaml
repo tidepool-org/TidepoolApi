@@ -14,10 +14,6 @@ properties:
     type: string
     pattern: ^(>=|>|<=|<)\d\.\d\d?$
     example: '>0.5'
-  timeInExtremeHighPercent:
-    type: string
-    pattern: ^(>=|>|<=|<)\d\.\d\d?$
-    example: '>0.5'
   timeInHighPercent:
     type: string
     pattern: ^(>=|>|<=|<)\d\.\d\d?$

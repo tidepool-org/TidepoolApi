@@ -159,7 +159,7 @@ All of the summary period data is stored within each user account to enable quic
 
 ## Threshold Values
 
-The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges _AnyLow_ and _AnyHigh_. Note also that the _VeryHigh_ range is inclusive of the _ExtremeHigh_ range.
+The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges _AnyLow_ and _AnyHigh_.
 
 <!-- unfortunately GitHub Markdown renderer strips all styles from HTML tables... -->
 <!-- so these styles are only useful if rendering with some other Markdown renderer -->
@@ -172,7 +172,6 @@ The summary calculation uses the glycemic targets established by [ADA][ada] [sta
 <col style="background-color: #8DD0A9"/>
 <col style="background-color: #B69CE2"/>
 <col style="background-color: #856ACF"/>
-<col style="background-color: #5438A3"/>
 </colgroup>
 <thead>
 <tr>
@@ -187,7 +186,7 @@ Unit
 
 <em>Target</em>
 </th>
-<th colspan="3" style="background-image: linear-gradient(to right, #B69CE2, #856ACF, #5438A3)">
+<th colspan="2" style="background-image: linear-gradient(to right, #B69CE2, #856ACF)">
 
 <em>AnyHigh</em>
 </th>
@@ -208,10 +207,6 @@ Unit
 <th>
 
 <em>VeryHigh</em>
-</th>
-<th>
-
-<em>ExtremeHigh</em>
 </th>
 </tr>
 </thead>
@@ -241,10 +236,6 @@ mmol/L
 
 <em>v > 13.9</em>
 </td>
-<td>
-
-<em>v ≥ 19.4</em>
-</td>
 </tr>
 <tr>
 <td>
@@ -271,19 +262,15 @@ mg/dL
 
 <em>v > 250</em>
 </td>
-<td>
-
-<em>v ≥ 350</em>
-</td>
 </tr>
 </tbody>
 </table>
 
 <!-- unfortunately stock GFM doesn't support 2-row colum headers >
-|       Unit       | $VeryLow$ |      $Low$      |     $Target$     |      $High$       | $VeryHigh$ | $ExtremeHigh$ |
-| :--------------: | :-------: | :-------------: | :--------------: | :---------------: | :--------: | :-----------: |
-| $\frac{mmol}{L}$ | $v < 3.0$ | $3.0 ≤ v < 3.9$ | $3.9 ≤ v ≤ 10.0$ | $10.0 < v ≤ 13.9$ | $v > 13.9$ |  $v ≥ 19.4$   |
-| $\frac{mg}{dL}$  | $v < 54$  |  $54 ≤ v < 70$  |  $70 ≤ v ≤ 180$  |  $180 < v ≤ 250$  | $v > 250$  |   $v ≥ 350$   |
+|       Unit       | $VeryLow$ |      $Low$      |     $Target$     |      $High$       | $VeryHigh$ |
+| :--------------: | :-------: | :-------------: | :--------------: | :---------------: | :--------: |
+| $\frac{mmol}{L}$ | $v < 3.0$ | $3.0 ≤ v < 3.9$ | $3.9 ≤ v ≤ 10.0$ | $10.0 < v ≤ 13.9$ | $v > 13.9$ |
+| $\frac{mg}{dL}$  | $v < 54$  |  $54 ≤ v < 70$  |  $70 ≤ v ≤ 180$  |  $180 < v ≤ 250$  | $v > 250$  |
 -->
 
 **NOTE:** Tidepool normalizes glucose samples to mmol/L units. If the original sample was in mg/dL units, it is converted using a conversion factor of 18.01559 derived from the molecular weight of glucose (C₆H₁₂O₆):
@@ -324,7 +311,7 @@ mg/dL
 
 ## Hourly Bucket Data Fields
 
-Each bucket has a set of common fields, as well as a set of fields repeated for each of the 7 named summary ranges: _InLow_, _InTarget_, _InHigh_, _InVeryHigh_, _InExtremeHigh_, _InAnyLow_, and _InAnyHigh_. For brevity, in the following table the placeholder **Xxx** corresponds to those names rather than repeating each set of fields.
+Each bucket has a set of common fields, as well as a set of fields repeated for each of the 7 named summary ranges: _InVeryLow_, _InLow_, _InTarget_, _InHigh_, _InVeryHigh_, _InAnyLow_, and _InAnyHigh_. For brevity, in the following table the placeholder **Xxx** corresponds to those names rather than repeating each set of fields.
 
 ### GlucoseBucket
 
@@ -366,9 +353,8 @@ Each bucket has a set of common fields, as well as a set of fields repeated for 
 |   ✅   |   ✅   | _InTarget_                   | _GlucoseRange_  |                  |                                                                  |
 |   ✅   |   ✅   | _InHigh_                     | _GlucoseRange_  |                  |                                                                  |
 |   ✅   |   ✅   | _InVeryHigh_                 | _GlucoseRange_  |                  |                                                                  |
-|   ✅   |   ✅   | _InExtremeHigh_              | _GlucoseRange_  |                  |                                                                  |
 |   ✅   |   ✅   | _InAnyLow_                   | _GlucoseRange_  |                  | _InVeryLow + InLow_                                              |
-|   ✅   |   ✅   | _InAnyHigh_                  | _GlucoseRange_  |                  | _InHigh + InVeryHigh_ (this includes _InExtremeHigh_)            |
+|   ✅   |   ✅   | _InAnyHigh_                  | _GlucoseRange_  |                  | _InHigh + InVeryHigh_                                            |
 |   ✅   |   ✅   | _AverageDailyRecords_        | _float_         |                  | <math><mfrac><mi>Total.Records</mi><mi>DaysInPeriod</mi></mfrac></math>                             |
 |   ✅   |   ✅   | _AverageGlucoseMmol_         | _float_         | mmol/L | <math><mfrac><mi>Total.Glucose</mi><mi>Total.Records</mi></mfrac></math>                            |
 |   ✅   |       | _GlucoseManagementIndicator_ | _float_         | % HbA1c          | <math><mo>(</mo><mn>12.71</mn><mo>+</mo><mn>4.70587</mn><mo>×</mo><mi>AverageGlucose</mi><mo>)</mo><mo>×</mo><mn>0.09148</mn><mo>+</mo><mn>2.152</mn></math> |

@@ -285,7 +285,6 @@ paths:
               enum:
                 - timeInVeryLowPercent
                 - timeInAnyLowPercent
-                - timeInExtremeHighPercent
                 - timeInVeryHighPercent
                 - timeInAnyHighPercent
                 - dropInTimeInTargetPercent
@@ -409,11 +408,6 @@ paths:
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: cgm.timeInExtremeHighPercent
-          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
-        - schema:
-            $ref: '#/components/schemas/FloatFilter'
-          in: query
           name: cgm.timeInAnyHighPercent
           description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
         - schema:
@@ -451,11 +445,6 @@ paths:
           in: query
           name: cgm.timeInVeryHighMinutes
           description: Minutes above 250 mg/dL
-        - schema:
-            $ref: '#/components/schemas/IntFilter'
-          in: query
-          name: cgm.timeInExtremeHighMinutes
-          description: Minutes above 350 mg/dL
         - schema:
             $ref: '#/components/schemas/IntFilter'
           in: query
@@ -580,11 +569,6 @@ paths:
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: bgm.timeInExtremeHighPercent
-          description: 'Percentage of time [0.0-1.0]  above 350 mg/dL'
-        - schema:
-            $ref: '#/components/schemas/FloatFilter'
-          in: query
           name: bgm.timeInAnyHighPercent
           description: 'Percentage of time [0.0-1.0]  above 180 mg/dL'
         - schema:
@@ -691,11 +675,6 @@ paths:
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query
-          name: cgm.timeInExtremeHighPercentDelta
-          description: Delta of time above 350 mg/dL
-        - schema:
-            $ref: '#/components/schemas/FloatFilter'
-          in: query
           name: cgm.timeInAnyHighPercentDelta
           description: Delta of time above 180 mg/dL
         - schema:
@@ -733,11 +712,6 @@ paths:
           in: query
           name: cgm.timeInVeryHighMinutesDelta
           description: Delta of minutes above 250 mg/dL
-        - schema:
-            $ref: '#/components/schemas/IntFilter'
-          in: query
-          name: cgm.timeInExtremeHighMinutesDelta
-          description: Delta of minutes above 350 mg/dL
         - schema:
             $ref: '#/components/schemas/IntFilter'
           in: query
@@ -871,11 +845,6 @@ paths:
           in: query
           name: bgm.timeInVeryHighPercentDelta
           description: Delta of time above 250 mg/dL
-        - schema:
-            $ref: '#/components/schemas/FloatFilter'
-          in: query
-          name: bgm.timeInExtremeHighPercentDelta
-          description: Delta of time above 350 mg/dL
         - schema:
             $ref: '#/components/schemas/FloatFilter'
           in: query

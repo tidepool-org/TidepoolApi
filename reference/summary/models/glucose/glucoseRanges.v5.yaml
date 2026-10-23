@@ -14,8 +14,6 @@ properties:
     $ref: './glucoseRange.v5.yaml'
   inVeryHigh:
     $ref: './glucoseRange.v5.yaml'
-  inExtremeHigh:
-    $ref: './glucoseRange.v5.yaml'
   inAnyLow:
     $ref: './glucoseRange.v5.yaml'
   inAnyHigh:
