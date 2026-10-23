@@ -23,10 +23,6 @@ properties:
     description: Minimum exclusive threshold in mmol/L for categorizing if a glucose value is very high as established by the AACE.
     type: number
     x-go-type: float64
-  extremeHighGlucoseThreshold:
-    description: Minimum inclusive threshold in mmol/L for categorizing if a glucose value is extremely high. Not defined by the AACE.
-    type: number
-    x-go-type: float64
   lowGlucoseThreshold:
     description: Maximum exclusive threshold in mmol/L for categorizing if a glucose value is low as established by the AACE.
     type: number
