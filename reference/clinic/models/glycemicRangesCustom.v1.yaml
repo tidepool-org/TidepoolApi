@@ -1,16 +1,27 @@
 type: object
+description: >-
+  User-defined glycemic ranges. Used when the glycemic ranges type is custom.
 properties:
   name:
     type: string
     minLength: 1
+    maxLength: 32
+    pattern: "^[A-Za-z0-9][A-Za-z0-9.,()/' -]{0,31}$"
+    description: >-
+      Display name of the custom glycemic ranges. Up to 32 characters: letters, digits,
+      spaces, and the punctuation . , - ( ) / ' — the first character must be a letter
+      or digit.
+  units:
+    type: string
+    description: Blood glucose units in which all threshold values are expressed.
+    enum:
+      - mg/dL
+      - mmol/L
   thresholds:
-    type: array
-    items:
-      $ref: ./glycemicRangesThreshold.v1.yaml
-    minLength: 4
-    maxLength: 5
+    $ref: ./glycemicRangesThresholds.v1.yaml
 required:
   - name
+  - units
   - thresholds
 x-go-type-skip-optional-pointer: true
 x-omitzero: true

@@ -1,4 +1,7 @@
 type: string
+description: >-
+  Predefined glycemic ranges based on ADA guidelines. Used when the glycemic ranges type
+  is preset.
 minLength: 1
 enum:
   - adaStandard
@@ -10,6 +13,11 @@ x-enum-varnames:
   - ADAPregnancyType1
   - ADAPregnancyType2
   - ADAHighRisk
+x-enumDescriptions:
+  adaStandard: ADA standard ranges for most adults with type 1 or type 2 diabetes.
+  adaPregnancyType1: ADA ranges for pregnancy with type 1 diabetes.
+  adaPregnancyType2: ADA ranges for pregnancy with type 2 or gestational diabetes.
+  adaHighRisk: ADA ranges for older or high-risk individuals.
 default: adaStandard
 x-go-type-skip-optional-pointer: true
 x-omitzero: true

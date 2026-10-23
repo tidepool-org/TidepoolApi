@@ -1,0 +1,33 @@
+type: object
+description: >-
+  Named thresholds dividing glucose readings into ranges, expressed in the parent's units.
+  Values must not be negative. veryLow and veryHigh are optional. A reading exactly at a
+  threshold belongs to the range nearer the target range: at veryLow it is low, at low or
+  high it is in range, and at veryHigh it is high. Values must be whole numbers in mg/dL,
+  or have at most one decimal place in mmol/L, and must be in ascending order (veryLow <
+  low < high < veryHigh, for those that are set); otherwise the request is rejected as a
+  bad request.
+properties:
+  veryLow:
+    type: number
+    format: double
+    minimum: 0
+    description: Readings below this value are very low.
+  low:
+    type: number
+    format: double
+    minimum: 0
+    description: Readings below this value are low (or very low, if below veryLow).
+  high:
+    type: number
+    format: double
+    minimum: 0
+    description: Readings above this value are high (or very high, if above veryHigh).
+  veryHigh:
+    type: number
+    format: double
+    minimum: 0
+    description: Readings above this value are very high.
+required:
+  - low
+  - high
