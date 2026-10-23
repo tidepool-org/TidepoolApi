@@ -1,6 +1,9 @@
 properties:
   type:
     type: string
+    description: >-
+      Which kind of glycemic ranges is in use: preset selects one of the predefined
+      ranges named by preset; custom uses the ranges defined in custom.
     enum:
       - preset
       - custom
