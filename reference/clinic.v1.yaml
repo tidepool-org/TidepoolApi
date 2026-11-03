@@ -2324,7 +2324,7 @@ paths:
                 type: object
                 additionalProperties: true
         '400':
-          description: Invalid body, identical source and target, or assignment options in single-clinic mode.
+          description: Invalid body or identical source and target.
         '403':
           description: User is not a clinic admin in every requested clinic.
       tags:
@@ -2719,7 +2719,7 @@ components:
       x-stoplight:
         id: 3oq18sasrzo0o
       type: object
-      description: Omit sourceId for a single-clinic report; assignment names require a source clinic.
+      description: Omit sourceId for a single-clinic report.
       properties:
         sourceId:
           type: string
@@ -2728,14 +2728,6 @@ components:
           pattern: '^[a-f0-9]{24}$'
           x-go-type: ClinicIdV1
           description: Source clinic, distinct from the path clinic; omit for a single-clinic report.
-        sourcePatientTag:
-          type: string
-          minLength: 1
-          description: One target tag name to preview for every patient originating in the source.
-        sourcePatientSite:
-          type: string
-          minLength: 1
-          description: One target site name to preview for every patient originating in the source.
     mergeClinic.v1:
       title: MergeClinics
       x-stoplight:
@@ -2761,7 +2753,7 @@ components:
           description: One target site name to reuse or create and apply to source-originating patients.
         confirmed:
           type: boolean
-          description: Must be true for user sessions.
+          description: The clinician's confirmation checkbox state. Must be true for user sessions.
     ehrMatchRequestPatientsOptions.v1:
       title: Patient Matching Options
       x-stoplight:
