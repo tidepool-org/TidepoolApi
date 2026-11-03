@@ -986,6 +986,24 @@ paths:
           in: query
           # Skipping the pointer here ran afoul of https://github.com/oapi-codegen/oapi-codegen/issues/1263
           # x-go-type-skip-optional-pointer: true
+        - name: includeNullDeltas
+          description: |
+            Comma-separated list of delta filter parameter names, such as
+            `cgm.timeInTargetPercentDelta`. Each listed delta filter also
+            matches patients whose delta is null, provided the corresponding
+            current-period value is present. A delta is null in that case when
+            the previous period lacks sufficient data for comparison. Delta
+            filters that aren't listed exclude patients whose delta is null.
+            Names that aren't delta filter parameters of this endpoint are
+            rejected.
+          schema:
+            type: array
+            items:
+              type: string
+              pattern: '^(cgm|bgm)\.[A-Za-z]+Delta$'
+          in: query
+          style: form
+          explode: false
 
       description: Retrieve a list of patients of a clinic
     post:
