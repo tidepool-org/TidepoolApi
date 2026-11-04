@@ -12,6 +12,12 @@ properties:
     $ref: ./providerId.v1.yaml
     x-stoplight:
       id: ej94kmuykpg1k
+  expirationTime:
+    type: string
+    format: date-time
+    x-go-type-skip-optional-pointer: true
+    x-omitzero: true
+    readOnly: true
 required:
   - createdTime
   - providerName
