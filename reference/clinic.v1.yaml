@@ -988,14 +988,22 @@ paths:
           # x-go-type-skip-optional-pointer: true
         - name: includeNullDeltas
           description: |
-            Whether delta filters (parameters ending in `Delta`) should also
-            match patients whose delta is null, provided the corresponding
+            Comma-separated list of delta filter parameter names, such as
+            `cgm.timeInTargetPercentDelta`. Each listed delta filter also
+            matches patients whose delta is null, provided the corresponding
             current-period value is present. A delta is null in that case when
-            the previous period lacks sufficient data for comparison. Has no
-            effect on filters that aren't delta filters.
+            the previous period lacks sufficient data for comparison. Delta
+            filters that aren't listed exclude patients whose delta is null.
+            Names that aren't delta filter parameters of this endpoint are
+            rejected.
           schema:
-            type: boolean
+            type: array
+            items:
+              type: string
+              pattern: '^(cgm|bgm)\.[A-Za-z]+Delta$'
           in: query
+          style: form
+          explode: false
 
       description: Retrieve a list of patients of a clinic
     post:
