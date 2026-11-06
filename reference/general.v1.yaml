@@ -54,7 +54,53 @@ paths:
         - Internal
       x-tidepool-service: https://github.com/tidepool-org/jellyfish
 
+  /v1/udi:
+    post:
+      operationId: CreateUDI
+      summary: Create Unique Device Identifier
+      description: >-
+        Returns the product name, manufacturer, release date, release identifier and Unique Device Identifier (UDI)
+        of the Tidepool Data Platform release in service. The UDI is formatted with GS1 application identifiers,
+        so the client can display it verbatim.
+        The client supplies its own version, as it may be a cached build rather than the latest one deployed.
+        The release identifier and date come from the cluster configuration repository commit applied to the cluster,
+        so the UDI identifies the state of the web, backend and configuration at the time it is returned.
+        Responds with `503` when the release in service cannot be identified.
+      requestBody:
+        $ref: '#/components/requestBodies/UDI'
+      responses:
+        '200':
+          $ref: '#/components/responses/UDI'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      security:
+        - sessionToken: []
+        - serverToken: []
+      tags:
+        - General
+        - Internal
+      x-tidepool-service: https://github.com/tidepool-org/platform
+
 components:
+  securitySchemes:
+    sessionToken:
+      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
+    serverToken:
+      $ref: './common/security/tidepoolservertoken.v1.yaml'
+
+  requestBodies:
+    UDI:
+      description: 'Unique Device Identifier Request'
+      required: true
+      content:
+        'application/json':
+          schema:
+            $ref: './common/models/udirequest.v1.yaml'
+
   responses:
     ClientVersions:
       description: 'Tidepool Minimum Client Versions'
@@ -62,3 +108,39 @@ components:
         'application/json':
           schema:
             $ref: './common/models/minimumclientversions.v1.yaml'
+    UDI:
+      description: 'Unique Device Identifier'
+      content:
+        'application/json':
+          schema:
+            $ref: './common/models/udi.v1.yaml'
+    BadRequest:
+      description: 'Bad Request: the client version is missing or invalid'
+      content:
+        'application/json':
+          schema:
+            $ref: './common/models/error.v2.yaml'
+          example:
+            code: 'length-out-of-range'
+            title: 'length is out of range'
+            detail: 'length 13 is not between 1 and 12'
+    Unauthorized:
+      description: 'Unauthorized: no valid session'
+      content:
+        'application/json':
+          schema:
+            $ref: './common/models/error.v2.yaml'
+          example:
+            code: 'unauthenticated'
+            title: 'authentication token is invalid'
+            detail: 'authentication token is invalid'
+    ServiceUnavailable:
+      description: 'Service Unavailable: the release in service cannot be identified'
+      content:
+        'application/json':
+          schema:
+            $ref: './common/models/error.v2.yaml'
+          example:
+            code: 'udi-unavailable'
+            title: 'udi unavailable'
+            detail: 'unable to identify the release in service'

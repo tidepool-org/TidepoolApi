@@ -1,0 +1,56 @@
+title: Unique Device Identifier
+description: >-
+  Identification of the Tidepool Data Platform release in service, including its Unique Device Identifier (UDI)
+  formatted with GS1 application identifiers, so a client can display it verbatim.
+  The release is the cluster configuration repository commit applied to the cluster, which identifies the state of the
+  web, backend and configuration at the time the UDI is returned.
+type: object
+properties:
+  productName:
+    type: string
+    example: 'Tidepool Data Platform'
+  manufacturerName:
+    type: string
+    description: Approved legal manufacturer name.
+    example: 'Tidepool Project'
+  manufacturerAddress:
+    type: string
+    description: Approved legal manufacturer address.
+    example: '555 Bryant St., #429, Palo Alto, CA 94301'
+  releaseDate:
+    type: string
+    format: date
+    description: >-
+      Date, in UTC, the release took effect: when its configuration was first applied, or, after a revert to an
+      earlier configuration, when the revert was applied.
+    example: '2026-11-03'
+  releaseIdentifier:
+    type: string
+    description: First 7 characters of the cluster configuration repository commit in service.
+    pattern: '^[0-9a-f]{7}$'
+    example: '868bd7b'
+  softwareVersion:
+    type: string
+    description: The client version and the release identifier, joined by a hyphen.
+    maxLength: 20
+    example: '1.103.2-868bd7b'
+  deviceIdentifier:
+    type: string
+    description: GS1 UDI device identifier (GTIN-14). It is a string so the leading zeros are kept.
+    pattern: '^[0-9]{14}$'
+    example: '00884400418012'
+  udi:
+    type: string
+    description: >-
+      The UDI with GS1 application identifiers: `(01)` the device identifier, `(11)` the release date as `YYMMDD`,
+      and `(8012)` the software version.
+    example: '(01)00884400418012(11)261103(8012)1.103.2-868bd7b'
+required:
+  - productName
+  - manufacturerName
+  - manufacturerAddress
+  - releaseDate
+  - releaseIdentifier
+  - softwareVersion
+  - deviceIdentifier
+  - udi
