@@ -9,6 +9,6 @@ This value is expected to be >= 0 and <= 432000000 (the number of milliseconds i
 
 ## Expected Duration (`expectedDuration`)
 
-An integer value representing an original programmed duration of time in milliseconds, copied from the `duration` field on ingestion when a following event has resulted in truncation of the original programmed duration.
+An integer value representing the original programmed duration of time in milliseconds, i.e. the duration the schedule or program called for. It may differ from the actual `duration` in either direction, for example when a following event truncated the original programmed duration or when delivery continued past it.
 
-Many insulin pumps provide information on the expected duration of basals in addition to the *actual* duration of basals. (These values may differ in the case of a basal being suspended or canceled.) Where this is true, Platform will provide the same information. If you do not know what the expected duration is, do not include this information as it is an optional field.
+Many insulin pumps provide information on the expected duration of basals in addition to the *actual* duration of basals. (These values may differ in the case of a basal being suspended, canceled, or extended.) Where this is true, Platform will provide the same information. If you do not know what the expected duration is, do not include this information as it is an optional field.
