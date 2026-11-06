@@ -3,7 +3,7 @@ description: >-
   Identifies the client asking for the Unique Device Identifier (UDI) of the Tidepool Data Platform.
 type: object
 properties:
-  frontendVersion:
+  clientVersion:
     type: string
     description: >-
       Version of the client making the request, which may be a cached build rather than the latest one deployed.
@@ -14,4 +14,4 @@ properties:
     pattern: '^[0-9A-Za-z.+-]+$'
     example: '1.103.2'
 required:
-  - frontendVersion
+  - clientVersion

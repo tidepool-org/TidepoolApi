@@ -31,7 +31,7 @@ properties:
     example: '868bd7b'
   softwareVersion:
     type: string
-    description: The frontend version and the release identifier, joined by a hyphen.
+    description: The client version and the release identifier, joined by a hyphen.
     maxLength: 20
     example: '1.103.2-868bd7b'
   deviceIdentifier:

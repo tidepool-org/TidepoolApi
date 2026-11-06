@@ -115,7 +115,7 @@ components:
           schema:
             $ref: './common/models/udi.v1.yaml'
     BadRequest:
-      description: 'Bad Request: the frontend version is missing or invalid'
+      description: 'Bad Request: the client version is missing or invalid'
       content:
         'application/json':
           schema:
