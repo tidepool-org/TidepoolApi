@@ -23,23 +23,26 @@ sequenceDiagram
    activate Uploader
    Uploader->>Platform: Upload diabetes data
    activate Platform
-   note right of Platform: If CGM or BGM data
-   Platform->>Platform: Mark account summary as out-of-date
    Platform->>Uploader: OK
+   Platform->>Platform: Create upload postprocess work for the account
    deactivate Platform
    Uploader->>PWD: OK
    deactivate Uploader
 
-   loop Every 30 seconds
-      Platform->>Platform: Re-calculate summary data
-      Platform->>Platform: Store summary data
-   end
+   Platform->>Platform: Process the work: re-calculate and store summary data
+   Platform->>Clinic: Push summary to the patient records of the account
    Platform->>Clinic: Summary available via patient list
 ```
 
+## Triggering
+
+Every upload creates one `org.tidepool.data.upload.postprocess` work item for the account, with a reason saying what happened: data was added (`DATA_ADDED`), a data set was closed or a legacy upload ended (`UPLOAD_COMPLETED`), or the legacy ingestion API received a full batch with more to follow (`LEGACY_DATA_ADDED`). The work items of an account are processed one at a time: the item being processed absorbs the reasons of any other item waiting for the account, so an account that uploads repeatedly is recalculated once per round, not once per upload. Work created for a full legacy batch alone is deferred for 90 seconds, and each following batch defers it again, so a multi-batch upload is processed once it falls quiet; a partial batch, which ends the upload, is processed without waiting.
+
+The data service picks work up within about 5 seconds of it becoming available, and each instance recalculates up to 15 accounts at a time. A recalculation that fails, for instance because a dependent service is unavailable, is retried with an exponentially growing delay of 1 minute to 1 hour until it succeeds. A recalculation can also be requested without uploading, with `POST /v1/summaries/{userId}`.
+
 ## Calculation
 
-The summary calculation is done in batches of up to 250 most out-of-date user accounts, up to 4 batches in one iteration, where each iteration may begin every 30 seconds. Thus, each calculation iteration may update up to 1,000 accounts. The calculation for each user proceeds as shown in the diagram below:
+Processing an item recalculates the CGM, BGM and continuous summaries of the account, pushes the CGM and BGM summaries that changed to every clinic the account is a patient of (and deletes the clinics' copies of a summary that was deleted for lack of data), and, if the work was created for a completed upload, requests that the clinics' electronic health records are synchronized. No summary is kept for a data type the account has no usable data of: it is not created, or deleted if it existed. The calculation for each user proceeds as shown in the diagram below:
 
 ```mermaid
 sequenceDiagram

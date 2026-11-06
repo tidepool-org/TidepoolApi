@@ -20,6 +20,12 @@
     },
     {
       "pattern": "https://www.timeanddate.com"
+    },
+    {
+      "pattern": "^https://infiniteundo.com"
+    },
+    {
+      "pattern": "^https://www.jaeb.org"
     }
   ],
   "retryOn429": true,

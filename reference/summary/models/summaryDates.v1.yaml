@@ -1,7 +1,11 @@
 type: object
 title: dates.v1
 x-go-type-skip-optional-pointer: true
-description: 'dates tracked for summary calculation'
+description: |-
+  dates tracked for summary calculation
+
+  Summaries are no longer marked outdated: they are recalculated by upload postprocess work, so the fields
+  marked deprecated are no longer set. A summary stored before the change keeps them until it is recalculated.
 properties:
   lastUpdatedDate:
     description: Date of the last calculation
@@ -9,7 +13,8 @@ properties:
     format: date-time
 
   lastUpdatedReason:
-    description: List of reasons the summary was updated for
+    description: No longer set; reported empty. Formerly the list of reasons the summary was updated for.
+    deprecated: true
     type: array
     items:
       type: string
@@ -36,19 +41,24 @@ properties:
     format: date-time
 
   hasOutdatedSince:
+    description: No longer set; reported false.
+    deprecated: true
     type: boolean
   outdatedSince:
-    description: Date of the first user upload after lastData, removed when calculated
+    description: No longer set. Formerly the date of the first user upload after lastData, removed when calculated.
+    deprecated: true
     type: string
     format: date-time
 
   outdatedSinceLimit:
-      description: Upper limit of the OutdatedSince value to prevent infinite queue duration
-      type: string
-      format: date-time
+    description: No longer set. Formerly the upper limit of the OutdatedSince value to prevent infinite queue duration.
+    deprecated: true
+    type: string
+    format: date-time
 
   outdatedReason:
-    description: List of reasons the summary was marked outdated for
+    description: No longer set; reported empty. Formerly the list of reasons the summary was marked outdated for.
+    deprecated: true
     type: array
     items:
       type: string

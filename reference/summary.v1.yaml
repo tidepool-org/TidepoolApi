@@ -40,9 +40,36 @@ tags:
       Summary Data
 
       This API is for a component within the `data` service that calculates summary statistics for user accounts.
-      These routes are mostly executed by the `task` and `clinic-worker` services.
+      Summaries are recalculated by `org.tidepool.data.upload.postprocess` work, which the data service creates
+      after an upload and processes itself; see [Summary Statistics](../docs/summary-data.md) and the Work API.
 
 paths:
+  '/v1/summaries/{userId}':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    post:
+      summary: Update User Summaries
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: UpdateSummaries
+      description: |-
+        Request the recalculation of every summary of the user. The recalculation is not done within the request:
+        it creates `org.tidepool.data.upload.postprocess` work for the user with the reason `DATA_ADDED`, which the
+        data service processes within seconds, after any work pending for the user. The reason does
+        not trigger an EHR synchronization.
+
+        Allowed for the user, a user with read access to the user, and services.
+      x-internal: true
+      tags:
+        - Summary
+        - Internal
   '/v1/summaries/{summaryType}/{userId}':
     parameters:
       - $ref: '#/components/parameters/summaryType.v5'

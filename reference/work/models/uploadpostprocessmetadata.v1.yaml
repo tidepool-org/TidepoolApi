@@ -1,0 +1,51 @@
+title: Upload Postprocess Metadata
+description: |-
+  Metadata of `org.tidepool.data.upload.postprocess` work, which the data service processes after data of a user
+  changed. Processing recalculates the CGM, BGM and continuous summaries of the user, reports the CGM and BGM
+  summaries that changed, or were deleted for lack of data, to the clinic service for every clinic the user is a
+  patient of, and then, for the reasons listed below, requests a synchronization of the electronic health records
+  of those clinics. The item is deleted once processed.
+
+  The work of a user is created with both `groupId` and `serialId` set to
+  `org.tidepool.data.upload.postprocess:{userId}`, so that it is processed one item at a time: the item being
+  processed absorbs the reasons of every item pending for the user and deletes them, so reporting the same change
+  repeatedly has it processed once. A `processingTimeout` of 300 seconds matches the work the platform creates
+  itself.
+
+  The reasons:
+
+  - `DATA_ADDED`: data was added through the data API or imported from a partner.
+  - `UPLOAD_COMPLETED`: a data set was closed, or the legacy ingestion API received a batch smaller than its
+    batch size, which ends an upload.
+  - `LEGACY_DATA_ADDED`: the legacy ingestion API received a full batch, so more batches are expected. Work
+    created with this reason alone is deferred until its `processingAvailableTime`, and each later batch
+    reporting a later time defers it further, so that an upload is processed once it falls quiet. Any other
+    reason arriving for the user ends the deferral: a partial batch, which ends the upload, is processed
+    without waiting.
+  - `SCHEMA_MIGRATION`: the summaries are recalculated with a new schema.
+
+  `UPLOAD_COMPLETED` and `LEGACY_DATA_ADDED` request the synchronization of the electronic health records;
+  `DATA_ADDED` does not, so that continuous data sources do not trigger it constantly.
+type: object
+properties:
+  userId:
+    $ref: '../../common/models/tidepooluserid.yaml'
+  reasons:
+    type: array
+    description: Why the summaries are recalculated. At least one, each unique.
+    minItems: 1
+    uniqueItems: true
+    items:
+      type: string
+      enum:
+        - DATA_ADDED
+        - UPLOAD_COMPLETED
+        - LEGACY_DATA_ADDED
+        - SCHEMA_MIGRATION
+required:
+  - userId
+  - reasons
+example:
+  userId: 1a2b3c4d5e
+  reasons:
+    - UPLOAD_COMPLETED

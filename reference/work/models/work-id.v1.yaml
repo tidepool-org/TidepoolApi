@@ -1,0 +1,6 @@
+title: Work ID
+type: string
+pattern: '^[0-9a-fA-F]{24}$'
+minLength: 24
+maxLength: 24
+example: '68ec5a4f2b1c9d3e4f5a6b7c'

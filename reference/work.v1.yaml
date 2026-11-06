@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Work API
+  version: '1.0'
+  description: |-
+    The Tidepool API is an HTTP REST API used by Tidepool clients use to communicate with the Tidepool Platform.
+
+    For more information, see the [Getting Started](../docs/quick-start.md) section.
+  contact:
+    name: API Support
+    url: https://support.tidepool.org/
+    email: support@tidepool.org
+  license:
+    name: BSD-2-Clause
+    url: https://github.com/tidepool-org/platform/blob/master/LICENSE
+  x-tidepool-service: https://github.com/tidepool-org/platform/work
+
+servers:
+  - url: 'https://external.integration.tidepool.org'
+    description: integration
+  - url: 'https://api.tidepool.org'
+    description: production
+  - url: 'https://dev1.dev.tidepool.org'
+    description: dev1
+  - url: 'https://qa1.development.tidepool.org'
+    description: qa1
+  - url: 'https://qa2.development.tidepool.org'
+    description: qa2
+
+security:
+  - serverToken: []
+
+tags:
+  - name: Internal
+    description: >-
+      APIs intended for internal use by Tidepool.
+  - name: Work
+    description: |-
+      Create and inspect work items.
+
+      Work items are background jobs processed by the platform services. Each item has a `type`, and a service
+      that registers a processor for that type polls for items of it. An item waits in the `pending` state until
+      its `processingAvailableTime`, is `processing` while a processor handles it, and ends in `success` or `failed`.
+      An item the processor could not finish is `failing` until its retry time, then pending again. Processing is
+      bounded by `processingTimeout`: an item still processing past it is returned to the queue and retried.
+
+      Three optional identifiers shape how items relate to each other:
+
+      - `deduplicationId`, scoped to the type: creating an item while a pending item with the same type and
+        deduplication id exists creates nothing and answers `204`.
+      - `serialId`: items sharing a serial id are processed one at a time, in order of availability.
+      - `groupId`: a processor can list the pending items of its group, for instance to absorb them into the
+        item it is processing.
+
+      The one type external callers create is `org.tidepool.data.upload.postprocess`, which the data service
+      processes after an upload to recalculate the summaries of a user and synchronize the electronic health
+      records of the clinics the user is a patient of. See [Summary Statistics](../docs/summary-data.md) and the
+      upload postprocess metadata schema of the request body.
+
+paths:
+  '/v1/work':
+    post:
+      operationId: CreateWork
+      summary: Create Work
+      description: |-
+        Creates a work item. The item is created in the `pending` state and processed by the service that
+        registers a processor for its type once its `processingAvailableTime` is reached.
+
+        Answers `204` without creating anything when a pending item with the same `type` and `deduplicationId`
+        exists already.
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: './work/models/newwork.v1.yaml'
+      responses:
+        '201':
+          $ref: '#/components/responses/Work'
+        '204':
+          description: >-
+            No Content. A pending item with the same `type` and `deduplicationId` exists already, which the
+            request is deduplicated into.
+        '400':
+          $ref: ./common/responses/badrequest.v1.yaml
+        '401':
+          $ref: ./common/responses/unauthorized.v1.yaml
+        '500':
+          $ref: ./common/responses/servererror.v1.yaml
+      tags:
+        - Work
+        - Internal
+      x-internal: true
+
+  '/v1/work/{workId}':
+    parameters:
+      - $ref: '#/components/parameters/workId'
+    get:
+      operationId: GetWork
+      summary: Get Work
+      description: >-
+        Returns the work item identified by `workId`.
+      responses:
+        '200':
+          $ref: '#/components/responses/Work'
+        '400':
+          $ref: ./common/responses/badrequest.v1.yaml
+        '401':
+          $ref: ./common/responses/unauthorized.v1.yaml
+        '404':
+          $ref: ./common/responses/notfound.v1.yaml
+        '500':
+          $ref: ./common/responses/servererror.v1.yaml
+      tags:
+        - Work
+        - Internal
+      x-internal: true
+
+components:
+  securitySchemes:
+    serverToken:
+      $ref: './common/security/tidepoolservertoken.v1.yaml'
+
+  parameters:
+    workId:
+      name: workId
+      in: path
+      required: true
+      schema:
+        $ref: './work/models/work-id.v1.yaml'
+
+  responses:
+    Work:
+      description: 'Work'
+      content:
+        'application/json':
+          schema:
+            $ref: './work/models/work.v1.yaml'

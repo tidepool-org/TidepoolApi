@@ -1,0 +1,14 @@
+title: Work Error
+description: >-
+  The error a processor reported.
+type: object
+properties:
+  code:
+    type: string
+  title:
+    type: string
+  detail:
+    type: string
+  cause:
+    type: object
+    description: The underlying error, in the same form.
