@@ -66,6 +66,7 @@ paths:
         The release identifier and date come from the cluster configuration repository commit applied to the cluster,
         so the UDI identifies the state of the web, backend and configuration at the time it is returned.
         Responds with `503` when the release in service cannot be identified.
+        This API requires no authentication or authorization.
       requestBody:
         $ref: '#/components/requestBodies/UDI'
       responses:
@@ -73,25 +74,15 @@ paths:
           $ref: '#/components/responses/UDI'
         '400':
           $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-      security:
-        - sessionToken: []
-        - serverToken: []
+      security: []
       tags:
         - General
         - Internal
       x-tidepool-service: https://github.com/tidepool-org/platform
 
 components:
-  securitySchemes:
-    sessionToken:
-      $ref: './common/security/tidepoolsessiontoken.v1.yaml'
-    serverToken:
-      $ref: './common/security/tidepoolservertoken.v1.yaml'
-
   requestBodies:
     UDI:
       description: 'Unique Device Identifier Request'
@@ -124,16 +115,6 @@ components:
             code: 'length-out-of-range'
             title: 'length is out of range'
             detail: 'length 13 is not between 1 and 12'
-    Unauthorized:
-      description: 'Unauthorized: no valid session'
-      content:
-        'application/json':
-          schema:
-            $ref: './common/models/error.v2.yaml'
-          example:
-            code: 'unauthenticated'
-            title: 'authentication token is invalid'
-            detail: 'authentication token is invalid'
     ServiceUnavailable:
       description: 'Service Unavailable: the release in service cannot be identified'
       content:
