@@ -1,0 +1,17 @@
+title: Unique Device Identifier Request
+description: >-
+  Identifies the client asking for the Unique Device Identifier (UDI) of the Tidepool Data Platform.
+type: object
+properties:
+  clientVersion:
+    type: string
+    description: >-
+      Version of the client making the request, which may be a cached build rather than the latest one deployed.
+      It becomes the first part of the GS1 software version, which may not exceed 20 characters,
+      so it is limited to 12 characters and may not contain GS1 application identifier parentheses.
+    minLength: 1
+    maxLength: 12
+    pattern: '^[0-9A-Za-z.+-]+$'
+    example: '1.103.2'
+required:
+  - clientVersion
