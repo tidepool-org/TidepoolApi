@@ -27,6 +27,8 @@ properties:
   releaseIdentifier:
     type: string
     description: First 7 characters of the cluster configuration repository commit in service.
+    minLength: 7
+    maxLength: 7
     pattern: '^[0-9a-f]{7}$'
     example: '868bd7b'
   softwareVersion:
@@ -37,6 +39,8 @@ properties:
   deviceIdentifier:
     type: string
     description: GS1 UDI device identifier (GTIN-14). It is a string so the leading zeros are kept.
+    minLength: 14
+    maxLength: 14
     pattern: '^[0-9]{14}$'
     example: '00884400418012'
   udi:
