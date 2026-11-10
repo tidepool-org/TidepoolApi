@@ -1721,12 +1721,30 @@ paths:
     post:
       summary: UpdatePatientSummary
       operationId: UpdatePatientSummary
+      parameters:
+        - schema:
+            type: string
+            maxLength: 64
+            example: preset:adaStandard
+          in: query
+          name: glycemicRangesKey
+          description: >-
+            Key of the glycemic range set the summary was computed with (see
+            `glycemicRanges.key`). When given, the summary is stored only in the user's
+            patient records whose glycemic ranges have that key; when omitted, in all of
+            them.
       responses:
         '200':
           description: OK
+        '204':
+          description: No Change
         '404':
           description: Not Found
-      description: Internal endpoint which updates the summary in all patient records which match the user id.
+      description: >-
+        Internal endpoint which updates the summary in the patient records which match
+        the user id, and the glycemic ranges key if one is given. Stats are replaced only
+        when calculated no earlier than those stored. Responds with no change only when
+        the user has no patient records.
       tags:
         - Clinics
         - Internal
@@ -1736,18 +1754,49 @@ paths:
             schema:
               $ref: ./clinic/models/summaries/patientSummary.v1.yaml
         description: ''
+  '/v1/patients/{patientId}/summary/{summaryType}':
+    parameters:
+      - $ref: '#/components/parameters/patientId'
+      - schema:
+          type: string
+          pattern: ^(cgm|bgm)$
+          example: cgm
+        in: path
+        name: summaryType
+        required: true
+        description: Summary type
+    delete:
+      summary: DeletePatientSummaryOfType
+      operationId: DeletePatientSummaryOfType
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Change
+      description: >-
+        Internal endpoint which deletes the stats of the given summary type from all
+        patient records which match the user id, whatever their glycemic ranges. Responds
+        with OK even when no record stored such stats, and with no change only when the
+        user has no patient records.
+      tags:
+        - Clinics
+        - Internal
   '/v1/summaries/{summaryId}/clinics':
     parameters:
       - $ref: '#/components/parameters/summaryId'
     delete:
       summary: DeletePatientSummary
       operationId: DeletePatientSummary
+      deprecated: true
       responses:
         '200':
           description: OK
         '204':
           description: No Change
-      description: Internal endpoint which deletes the summary in all patient records which match the summary id.
+      description: >-
+        Internal endpoint which deletes the summary in all patient records which match
+        the summary id. Deprecated: summaries computed for a glycemic range set have no
+        id, so use DeletePatientSummaryOfType instead.
       tags:
         - Clinics
         - Internal

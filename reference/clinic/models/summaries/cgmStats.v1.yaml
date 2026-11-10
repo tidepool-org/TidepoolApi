@@ -3,7 +3,11 @@ title: cgmstats.v1
 description: 'A summary of a users recent CGM glucose values'
 properties:
   id:
-    $ref: '../../../summary/models/summaryId.v1.yaml'
+    allOf:
+      - $ref: '../../../summary/models/summaryId.v1.yaml'
+    description: >-
+      Identifier of the stored summary. Absent from a summary computed for a glycemic
+      range set other than the standard one, which is never stored.
   config:
     $ref: '../../../summary/models/summaryConfig.v1.yaml'
   dates:

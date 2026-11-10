@@ -1,12 +1,24 @@
 type: object
 title: config.v1
 x-go-type-skip-optional-pointer: true
-description: 'Summary schema version and calculation configuration'
+description: >-
+  Summary schema version and calculation configuration. The very low and very high
+  thresholds are omitted when the glycemic range set the summary was computed with has no
+  such boundary, so no reading falls outside it.
 properties:
   schemaVersion:
     description: Summary schema version
     type: number
     x-go-type: int
+  glycemicRangesKey:
+    description: >-
+      Key of the glycemic range set the summary was computed with (see
+      `glycemicRanges.key` in the clinic API), e.g. `preset:adaStandard`. Absent from
+      summaries stored before this field existed, which were all computed with the
+      standard ranges.
+    type: string
+    example: preset:adaStandard
+    x-go-type-skip-optional-pointer: true
   highGlucoseThreshold:
     description: Threshold used for determining if a value is high
     type: number
@@ -26,7 +38,5 @@ properties:
 
 required:
   - schemaVersion
-  - highGlucoseThreshold
-  - veryHighGlucoseThreshold
   - lowGlucoseThreshold
-  - veryLowGlucoseThreshold
+  - highGlucoseThreshold
