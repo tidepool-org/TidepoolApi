@@ -68,6 +68,30 @@ paths:
       tags:
         - Summary
         - Internal
+  '/v1/summaries/{userId}/sync':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    post:
+      summary: Sync User Summaries
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: SyncSummaries
+      description: >-
+        Sends the summaries of the user to the clinic service again, without recalculating
+        them: one for the standard glycemic ranges, and one for every other glycemic range
+        set the user's patient records use. For use when a patient record's glycemic ranges
+        change. Internal endpoint for backend services only.
+      x-internal: true
+      tags:
+        - Summary
+        - Internal
 
 components:
   securitySchemes:
