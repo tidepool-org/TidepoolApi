@@ -2597,6 +2597,9 @@ components:
           type: string
           format: email
           minLength: 1
+        name:
+          type: string
+          minLength: 1
     triggerMigration.v1:
       title: TriggerMigration
       type: object
