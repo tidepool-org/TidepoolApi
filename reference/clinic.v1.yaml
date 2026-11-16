@@ -2347,6 +2347,43 @@ paths:
         - Clinics
         - Internal
       x-internal: true
+  '/v1/clinics/{clinicId}/reports/duplicates':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: Generate Clinic Duplicates Report
+      operationId: GenerateDuplicatesReport
+      description: |-
+        Generate a read-only report of the clinic's patients and their likely duplicates. Nothing
+        is persisted.
+
+        Callers must be clinic admins of the clinic, or backend services using a server token.
+        Returns an XLSX spreadsheet by default, or the report as JSON when Accept is
+        application/json.
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+      responses:
+        '200':
+          description: XLSX attachment by default, or the report when Accept is application/json.
+          headers:
+            Content-Disposition:
+              description: Attachment with a generated .xlsx filename for spreadsheet responses.
+              schema:
+                type: string
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '403':
+          description: User is not a clinic admin of the clinic.
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/reports/merge':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2354,12 +2391,11 @@ paths:
       summary: Generate Clinic Merge Report
       operationId: GenerateMergeReport
       description: |-
-        Generate a read-only report. With `{}` (no sourceId), reports duplicate patients in the
-        clinic. With sourceId, previews merging the source clinic into this one. Nothing is
-        persisted.
+        Generate a read-only report previewing a merge of the source clinic into this one. Nothing
+        is persisted. For one clinic's duplicate patients, use the duplicates report.
 
-        Callers must be clinic admins of every clinic involved, or backend services using a server
-        token. Returns an XLSX spreadsheet by default, or the report as JSON when Accept is
+        Callers must be clinic admins of both clinics, or backend services using a server token.
+        Returns an XLSX spreadsheet by default, or the report as JSON when Accept is
         application/json.
       x-roles:
         - TIDEPOOL_ADMIN
@@ -2384,7 +2420,7 @@ paths:
         '400':
           description: Invalid body or identical source and target.
         '403':
-          description: User is not a clinic admin in every requested clinic.
+          description: User is not a clinic admin in both source and target clinics.
       tags:
         - Clinics
       requestBody:
@@ -2401,8 +2437,8 @@ paths:
       operationId: MergeClinic
       description: |-
         Merge the source clinic's tags, sites, patients, clinicians, invites and share codes into
-        this clinic, then delete the source. The merge is all-or-nothing and matches the plan shown
-        by the merge report.
+        this clinic, then delete the source. The merge is all-or-nothing. The merge report previews
+        it, except for sourcePatientTag and sourcePatientSite, which only the merge applies.
 
         Users must be clinic admins of both clinics and send confirmed: true; their confirmation is
         recorded with the merge. Backend services using a server token may call it without
@@ -2817,13 +2853,14 @@ components:
       x-stoplight:
         id: 3oq18sasrzo0o
       type: object
-      description: Omit sourceId for a single-clinic report.
+      required:
+        - sourceId
       properties:
         sourceId:
           allOf:
             - $ref: ./clinic/models/clinicId.v1.yaml
           readOnly: false # clinicId.v1 is readOnly, which hides it from request docs
-          description: Source clinic, distinct from the path clinic; omit for a single-clinic report.
+          description: Required source clinic, distinct from the path clinic.
     mergeClinic.v1:
       title: MergeClinics
       x-stoplight:
