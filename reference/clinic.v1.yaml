@@ -2347,43 +2347,120 @@ paths:
         - Clinics
         - Internal
       x-internal: true
+  '/v1/clinics/{clinicId}/reports/duplicates':
+    parameters:
+      - $ref: '#/components/parameters/clinicId'
+    get:
+      summary: Generate Clinic Duplicates Report
+      operationId: GenerateDuplicatesReport
+      description: |-
+        Generate a read-only report of the clinic's patients and their likely duplicates. Nothing
+        is persisted.
+
+        Callers must be clinic admins of the clinic, or backend services using a server token.
+        Returns an XLSX spreadsheet by default, or the report as JSON when Accept is
+        application/json.
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
+      responses:
+        '200':
+          description: XLSX attachment by default, or the report when Accept is application/json.
+          headers:
+            Content-Disposition:
+              description: Attachment with a generated .xlsx filename for spreadsheet responses.
+              schema:
+                type: string
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '403':
+          description: User is not a clinic admin of the clinic.
+      tags:
+        - Clinics
   '/v1/clinics/{clinicId}/reports/merge':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     post:
       summary: Generate Clinic Merge Report
       operationId: GenerateMergeReport
+      description: |-
+        Generate a read-only report previewing a merge of the source clinic into this one. Nothing
+        is persisted. For one clinic's duplicate patients, use the duplicates report.
+
+        Callers must be clinic admins of both clinics, or backend services using a server token.
+        Returns an XLSX spreadsheet by default, or the report as JSON when Accept is
+        application/json.
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
       responses:
         '200':
-          description: OK
-      description: Generates a spreadsheet report for merging two clinics
+          description: XLSX attachment by default, or the report plan when Accept is application/json.
+          headers:
+            Content-Disposition:
+              description: Attachment with a generated .xlsx filename for spreadsheet responses.
+              schema:
+                type: string
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '400':
+          description: Invalid body or identical source and target.
+        '403':
+          description: User is not a clinic admin in both source and target clinics.
       tags:
         - Clinics
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/generateMergeReport.v1'
-        description: ''
   '/v1/clinics/{clinicId}/merge':
     parameters:
       - $ref: '#/components/parameters/clinicId'
     post:
       summary: Merge Clinic
       operationId: MergeClinic
+      description: |-
+        Merge the source clinic's tags, sites, patients, clinicians, invites and share codes into
+        this clinic, then delete the source. The merge is all-or-nothing. The merge report previews
+        it, except for sourcePatientTag and sourcePatientSite, which only the merge applies.
+
+        Users must be clinic admins of both clinics and send confirmed: true; their confirmation is
+        recorded with the merge. Backend services using a server token may call it without
+        confirmed.
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
       responses:
         '200':
-          description: OK
+          description: Merge completed successfully. No response body.
+        '400':
+          description: Invalid body, identical source and target, missing or false clinician confirmation, or a blocked merge plan.
+        '403':
+          description: User is not a clinic admin in both source and target clinics.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/mergeClinic.v1'
       tags:
         - Clinics
-        - Internal
-      x-internal: true
-      description: 'Merges tags, patients, clinicians, invites and share codes of the source clinic'
   '/v1/clinics/{clinicId}/patients/{patientId}/connect/{providerId}':
     parameters:
       - $ref: '#/components/parameters/clinicId'
@@ -2776,19 +2853,38 @@ components:
       x-stoplight:
         id: 3oq18sasrzo0o
       type: object
-      properties:
-        sourceId:
-          $ref: ./clinic/models/clinicId.v1.yaml
       required:
         - sourceId
+      properties:
+        sourceId:
+          allOf:
+            - $ref: ./clinic/models/clinicId.v1.yaml
+          readOnly: false # clinicId.v1 is readOnly, which hides it from request docs
+          description: Required source clinic, distinct from the path clinic.
     mergeClinic.v1:
       title: MergeClinics
       x-stoplight:
         id: 6hn01uuhln0wx
       type: object
+      required:
+        - sourceId
       properties:
         sourceId:
-          $ref: ./clinic/models/clinicId.v1.yaml
+          allOf:
+            - $ref: ./clinic/models/clinicId.v1.yaml
+          readOnly: false # clinicId.v1 is readOnly, which hides it from request docs
+          description: Required source clinic, distinct from the path clinic.
+        sourcePatientTag:
+          allOf:
+            - $ref: ./clinic/models/patientTagName.v1.yaml
+          description: One target tag name to reuse or create and apply to source-originating patients.
+        sourcePatientSite:
+          allOf:
+            - $ref: ./clinic/models/siteName.v1.yaml
+          description: One target site name to reuse or create and apply to source-originating patients.
+        confirmed:
+          type: boolean
+          description: The clinician's confirmation checkbox state. Must be true for user sessions; server-token calls may omit it.
     ehrMatchRequestPatientsOptions.v1:
       title: Patient Matching Options
       x-stoplight:
