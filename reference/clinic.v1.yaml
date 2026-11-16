@@ -2354,11 +2354,16 @@ paths:
       summary: Generate Clinic Merge Report
       operationId: GenerateMergeReport
       description: |-
-        Generate a read-only report. With an empty body, reports duplicate patients in the clinic.
-        With sourceId, previews merging the source clinic into this one. Nothing is persisted.
+        Generate a read-only report. With `{}` (no sourceId), reports duplicate patients in the
+        clinic. With sourceId, previews merging the source clinic into this one. Nothing is
+        persisted.
 
-        Users must be clinic admins of every clinic involved. Returns an XLSX spreadsheet by
-        default, or the report as JSON when Accept is application/json.
+        Callers must be clinic admins of every clinic involved, or backend services using a server
+        token. Returns an XLSX spreadsheet by default, or the report as JSON when Accept is
+        application/json.
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
       responses:
         '200':
           description: XLSX attachment by default, or the report plan when Accept is application/json.
@@ -2368,7 +2373,7 @@ paths:
               schema:
                 type: string
           content:
-            application/vnd.ms-excel:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
               schema:
                 type: string
                 format: binary
@@ -2400,7 +2405,11 @@ paths:
         by the merge report.
 
         Users must be clinic admins of both clinics and send confirmed: true; their confirmation is
-        recorded with the merge.
+        recorded with the merge. Backend services using a server token may call it without
+        confirmed.
+      x-roles:
+        - TIDEPOOL_ADMIN
+        - CLINIC_ADMIN
       responses:
         '200':
           description: Merge completed successfully. No response body.
@@ -2811,11 +2820,9 @@ components:
       description: Omit sourceId for a single-clinic report.
       properties:
         sourceId:
-          type: string
-          minLength: 24
-          maxLength: 24
-          pattern: '^[a-f0-9]{24}$'
-          x-go-type: ClinicIdV1
+          allOf:
+            - $ref: ./clinic/models/clinicId.v1.yaml
+          readOnly: false # clinicId.v1 is readOnly, which hides it from request docs
           description: Source clinic, distinct from the path clinic; omit for a single-clinic report.
     mergeClinic.v1:
       title: MergeClinics
@@ -2826,23 +2833,21 @@ components:
         - sourceId
       properties:
         sourceId:
-          type: string
-          minLength: 24
-          maxLength: 24
-          pattern: '^[a-f0-9]{24}$'
-          x-go-type: '*ClinicIdV1'
+          allOf:
+            - $ref: ./clinic/models/clinicId.v1.yaml
+          readOnly: false # clinicId.v1 is readOnly, which hides it from request docs
           description: Required source clinic, distinct from the path clinic.
         sourcePatientTag:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: ./clinic/models/patientTagName.v1.yaml
           description: One target tag name to reuse or create and apply to source-originating patients.
         sourcePatientSite:
-          type: string
-          minLength: 1
+          allOf:
+            - $ref: ./clinic/models/siteName.v1.yaml
           description: One target site name to reuse or create and apply to source-originating patients.
         confirmed:
           type: boolean
-          description: The clinician's confirmation checkbox state. Must be true for user sessions.
+          description: The clinician's confirmation checkbox state. Must be true for user sessions; server-token calls may omit it.
     ehrMatchRequestPatientsOptions.v1:
       title: Patient Matching Options
       x-stoplight:
