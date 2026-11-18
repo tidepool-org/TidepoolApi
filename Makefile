@@ -67,7 +67,7 @@ $(BUILD_FOLDER) $(CODEGEN_FOLDER) $(TOOLS_BIN):
 
 GO_TOOLS = $(TOOLS_BIN)/oapi-codegen
 
-OAPI_CODEGEN_VERSION = v2.5.0
+OAPI_CODEGEN_VERSION = v2.8.0
 
 $(TOOLS_BIN)/oapi-codegen: $(TOOLS_BIN)/.oapi-codegen.$(OAPI_CODEGEN_VERSION)
 	@GOBIN=$(CURDIR)/$(TOOLS_BIN) go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@$(OAPI_CODEGEN_VERSION)
