@@ -65,15 +65,18 @@ clobber: clean
 $(BUILD_FOLDER) $(CODEGEN_FOLDER) $(TOOLS_BIN):
 	@mkdir -p $@
 
-GO_TOOLS = \
-	$(TOOLS_BIN)/oapi-codegen
+GO_TOOLS = $(TOOLS_BIN)/oapi-codegen
 
-$(TOOLS_BIN)/oapi-codegen: $(TOOLS_BIN)
-	@GOBIN=$(shell pwd)/$(TOOLS_BIN) go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@v2.5.0
+OAPI_CODEGEN_VERSION = v2.5.0
 
+$(TOOLS_BIN)/oapi-codegen: $(TOOLS_BIN)/.oapi-codegen.$(OAPI_CODEGEN_VERSION)
+	@GOBIN=$(CURDIR)/$(TOOLS_BIN) go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@$(OAPI_CODEGEN_VERSION)
+	@touch $@
 
-$(NPM_BIN)/%:
-	@$(MAKE) install_npm_pkgs
+$(TOOLS_BIN)/.oapi-codegen.$(OAPI_CODEGEN_VERSION): | $(TOOLS_BIN)
+	@rm -f $(TOOLS_BIN)/.oapi-codegen.*
+	@touch $@
+
 
 NPM_TOOLS = \
 	$(NPM_BIN)/markdown-link-check \
@@ -88,11 +91,26 @@ NPM_PKG_SPECS = \
 	markdown-link-check@3.14.2 \
 	markdownlint-cli@0.48.0
 
+# The stamp file name encodes a checksum of the pinned package specs,
+# so changing any version in NPM_PKG_SPECS forces a reinstall.
+NPM_PKGS_STAMP = $(NPM_BIN)/.npm-pkgs.$(firstword $(shell echo $(NPM_PKG_SPECS) | cksum))
+
+# npm i doesn't refresh the mtime of unchanged bin symlinks, so touch
+# all of the tools to keep each one from re-triggering the install.
+$(NPM_BIN)/%: $(NPM_PKGS_STAMP)
+	@$(MAKE) install_npm_pkgs
+	@touch $@ $(NPM_TOOLS)
+
+$(NPM_PKGS_STAMP):
+	@mkdir -p $(NPM_BIN)
+	@rm -f $(NPM_BIN)/.npm-pkgs.*
+	@touch $@
+
 .PHONY: install_npm_pkgs
 install_npm_pkgs:
-# When using --no-save, any dependencies not included will be deleted, so one
-# has to install all the packages all at the same time. But it saves us from
-# having to muck with packages.json.
+# When using --no-save, any dependencies not included will be deleted,
+# so one has to install all the packages all at the same time. But it
+# saves us from having to muck with packages.json.
 	npm i --prefix $(CURDIR) --no-save --local $(NPM_PKG_SPECS)
 
 .PHONY: install_tools
@@ -102,7 +120,7 @@ install_tools: $(GO_TOOLS) $(NPM_TOOLS)
 check: check_tools check_files check_toc
 
 .PHONY: check_tools
-check_tools:
+check_tools: $(GO_TOOLS) $(NPM_TOOLS)
 	@[ "$${QUIET:-}" = "true" ] || echo "./scripts/check_doc.sh --self-check"
 	@./scripts/check_doc.sh --self-check
 	@[ "$${QUIET:-}" = "true" ] || echo "./scripts/check_spec.sh --self-check"
@@ -184,6 +202,6 @@ list_assets:
 .PHONY: generate_clinic_service
 generate_clinic_service: $(CODEGEN_FOLDER)/clinic/clinic.v1.yaml
 
-$(CODEGEN_FOLDER)/clinic/clinic.v1.yaml: $(SPEC_FOLDER)/clinic.v1.yaml | $(CODEGEN_FOLDER)
+$(CODEGEN_FOLDER)/clinic/clinic.v1.yaml: $(SPEC_FOLDER)/clinic.v1.yaml $(GO_TOOLS) $(NPM_BIN)/redocly | $(CODEGEN_FOLDER)
 	@[ "$${QUIET:-}" = "true" ] || echo "./scripts/generate_clinic.sh $< $@"
 	@./scripts/generate_clinic.sh $< $@
