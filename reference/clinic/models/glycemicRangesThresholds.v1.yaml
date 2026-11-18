@@ -5,8 +5,12 @@ description: >-
   threshold belongs to the range nearer the target range: at veryLow it is low, at low or
   high it is in range, and at veryHigh it is high. Values must be whole numbers in mg/dL,
   or have at most one decimal place in mmol/L, and must be in ascending order (veryLow <
-  low < high < veryHigh, for those that are set); otherwise the request is rejected as a
-  bad request.
+  low < high < veryHigh, for those that are set). Values in mg/dL must also be at least 2
+  apart, so that they remain distinct when converted to mmol/L. Otherwise the request is
+  rejected as a bad request. A reading recorded in the other unit is compared with the
+  threshold converted to that unit at its resolution: a threshold in mg/dL becomes the
+  nearest tenth of a mmol/L (180 mg/dL is 10.0 mmol/L), and a threshold in mmol/L becomes
+  the smallest whole mg/dL that converts back to it (7.8 mmol/L is 140 mg/dL).
 properties:
   veryLow:
     type: number

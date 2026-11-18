@@ -234,7 +234,11 @@ paths:
       - $ref: '#/components/parameters/clinicId'
     get:
       summary: View TIDE Report
-      description: Retrieve a report of patients with tags by TIDE categories
+      description: >-
+        Retrieve a report of a clinic's patients, grouped by TIDE categories. The
+        categories and the thresholds in the report's config are those of the ADA standard
+        glycemic ranges, so patients whose glycemic ranges are not the standard ones are
+        left out of the report, as their summaries are computed for their own ranges.
       tags:
         - Clinics
       responses:
@@ -931,8 +935,9 @@ paths:
         - name: omitNonStandardRanges
           description: |
             Whether patients whose glycemic ranges selection is *not*
-            the ADA standard ranges (e.g. as used by the TIDE report)
-            should be omitted.
+            the ADA standard ranges should be omitted. Patients without
+            a selection use the standard ranges and are kept. The TIDE
+            report always omits these patients.
           schema:
             type: boolean
           in: query

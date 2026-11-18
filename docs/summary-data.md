@@ -152,11 +152,11 @@ Thus, a user who has both CGM and BGM data may have up to the following number o
   </mtable>
 </math>
 
-All of the summary period data is stored within each user account to enable quick sorting and filtering in each clinic's patient list. If a user is a patient of multiple clinics, all clinics share the same summary data.
+All of the summary period data is stored within each user account to enable quick sorting and filtering in each clinic's patient list. This stored summary is calculated with the standard glycemic ranges described below. A clinic can select different glycemic ranges for one of its patients, either another ADA preset or custom ranges. That clinic's record of the patient then receives a summary calculated from the same data with those ranges, which is held only in that clinic's patient record. If a user is a patient of multiple clinics, the clinics whose records use the same glycemic ranges see the same summary data. Each summary's `config.glycemicRangesKey` identifies the ranges it was calculated with.
 
 ## Threshold Values
 
-The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. The same target ranges are _currently_ used for all users, and not personalized based on the user's diagnosis type or either the user's or the clinic's preferences. The glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges _AnyLow_ and _AnyHigh_.
+The summary calculation uses the glycemic targets established by [ADA][ada] [standards of care][ada_care] and [AACE][aace] ([paper][aace_paper], [table][aace_table]) to characterize each CGM or BGM glucose sample. These standard target ranges are used for the stored summary of every user, and for every clinic patient record whose clinic has not selected other glycemic ranges for the patient. The standard glycemic target ranges are listed in the table below. In addition to the discrete ranges, we also define two additional composite ranges _AnyLow_ and _AnyHigh_.
 
 <!-- unfortunately GitHub Markdown renderer strips all styles from HTML tables... -->
 <!-- so these styles are only useful if rendering with some other Markdown renderer -->
