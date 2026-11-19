@@ -323,13 +323,13 @@ The converted value is rounded to 5 decimal places. Because samples are classifi
 
 | Boundary            | Cut point (mmol/L) | Summary `config` field     | Below the cut point         | At or above the cut point   |
 | :------------------ | :----------------: | :------------------------- | :-------------------------- | :-------------------------- |
-| VeryLow / Low       |        2.97        | `veryLowGlucoseThreshold`  | 2.9 mmol/L, 53 mg/dL        | 3.0 mmol/L, 54 mg/dL        |
-| Low / Target        |        3.87        | `lowGlucoseThreshold`      | 3.8 mmol/L, 69 mg/dL        | 3.9 mmol/L, 70 mg/dL        |
-| Target / High       |       10.02        | `highGlucoseThreshold`     | 10.0 mmol/L, 180 mg/dL      | 10.1 mmol/L, 181 mg/dL      |
-| High / VeryHigh     |       13.91        | `veryHighGlucoseThreshold` | 13.9 mmol/L, 250 mg/dL      | 14.0 mmol/L, 251 mg/dL      |
+| VeryLow / Low       |        2.96        | `veryLowGlucoseThreshold`  | 2.9 mmol/L, 53 mg/dL        | 3.0 mmol/L, 54 mg/dL        |
+| Low / Target        |        3.85        | `lowGlucoseThreshold`      | 3.8 mmol/L, 69 mg/dL        | 3.9 mmol/L, 70 mg/dL        |
+| Target / High       |       10.03        | `highGlucoseThreshold`     | 10.0 mmol/L, 180 mg/dL      | 10.1 mmol/L, 181 mg/dL      |
+| High / VeryHigh     |       13.93        | `veryHighGlucoseThreshold` | 13.9 mmol/L, 250 mg/dL      | 14.0 mmol/L, 251 mg/dL      |
 | ExtremeHigh         |        19.4        |                            | 19.3 mmol/L, 349 mg/dL      | 19.4 mmol/L, 350 mg/dL      |
 
-As a result, samples reported in whole mg/dL or in mmol/L with one decimal place are classified exactly as the table above states. Samples reported with greater precision may not be. For example, a sample of 10.01 mmol/L is classified as _Target_ rather than _High_.
+As a result, samples reported in whole mg/dL or in mmol/L with one decimal place are classified exactly as the table above states. Samples reported with greater precision may not be. For example, a sample of 10.02 mmol/L is classified as _Target_ rather than _High_, and a sample of 3.88 mmol/L as _Target_ rather than _Low_.
 
 ## Hourly Bucket Data Fields
 
