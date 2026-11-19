@@ -310,11 +310,11 @@ The resulting patient list may be quite large due to the inclusion of summary da
             "summary": {
                 "bgmStats": {
                     "config": {
-                        "highGlucoseThreshold": 10,
-                        "lowGlucoseThreshold": 3.9,
-                        "schemaVersion": 4,
-                        "veryHighGlucoseThreshold": 13.9,
-                        "veryLowGlucoseThreshold": 3
+                        "highGlucoseThreshold": 10.03,
+                        "lowGlucoseThreshold": 3.85,
+                        "schemaVersion": 7,
+                        "veryHighGlucoseThreshold": 13.93,
+                        "veryLowGlucoseThreshold": 2.96
                     },
                     "dates": {
                         "firstData": "2024-12-11T15:00:00Z",
@@ -417,11 +417,11 @@ The resulting patient list may be quite large due to the inclusion of summary da
                 },
                 "cgmStats": {
                     "config": {
-                        "highGlucoseThreshold": 10,
-                        "lowGlucoseThreshold": 3.9,
-                        "schemaVersion": 4,
-                        "veryHighGlucoseThreshold": 13.9,
-                        "veryLowGlucoseThreshold": 3
+                        "highGlucoseThreshold": 10.03,
+                        "lowGlucoseThreshold": 3.85,
+                        "schemaVersion": 7,
+                        "veryHighGlucoseThreshold": 13.93,
+                        "veryLowGlucoseThreshold": 2.96
                     },
                     "dates": {
                         "firstData": "2024-12-13T18:00:00Z",
@@ -493,11 +493,11 @@ The resulting patient list may be quite large due to the inclusion of summary da
             "summary": {
                 "bgmStats": {
                     "config": {
-                        "highGlucoseThreshold": 10,
-                        "lowGlucoseThreshold": 3.9,
-                        "schemaVersion": 4,
-                        "veryHighGlucoseThreshold": 13.9,
-                        "veryLowGlucoseThreshold": 3
+                        "highGlucoseThreshold": 10.03,
+                        "lowGlucoseThreshold": 3.85,
+                        "schemaVersion": 7,
+                        "veryHighGlucoseThreshold": 13.93,
+                        "veryLowGlucoseThreshold": 2.96
                     },
                     "dates": {
                         "firstData": "2023-08-21T20:00:00Z",
