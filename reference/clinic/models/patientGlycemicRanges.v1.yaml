@@ -1,0 +1,12 @@
+title: Patient Glycemic Ranges
+description: >-
+  The glycemic ranges one patient record of a user is configured with, and the clinic the
+  record belongs to.
+type: object
+properties:
+  clinicId:
+    $ref: ./clinicId.v1.yaml
+  glycemicRanges:
+    $ref: ./glycemicRanges.v1.yaml
+required:
+  - clinicId

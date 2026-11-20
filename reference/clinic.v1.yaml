@@ -1720,6 +1720,33 @@ paths:
         - $ref: '#/components/parameters/createdTimeStart'
         - $ref: '#/components/parameters/createdTimeEnd'
       description: Returns list of all clinician/clinic relationships in the system. Internal endpoint used for reporting purposes.
+  '/v1/patients/{patientId}/glycemic_ranges':
+    parameters:
+      - $ref: '#/components/parameters/patientId'
+    get:
+      summary: List Glycemic Ranges for Patient
+      operationId: ListGlycemicRangesForPatient
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patientGlycemicRangesList.v1'
+      description: >-
+        Internal endpoint which lists the glycemic ranges of every patient record which
+        matches the user id, one item per record, in a stable order. Records using the
+        standard ranges are included, and records configured alike are not merged. As in
+        a patient, `glycemicRanges` is absent from a record which has none set, which
+        then uses the standard ranges. Responds with an empty list when the user has no
+        patient records.
+      tags:
+        - Clinics
+        - Internal
+      x-internal: true
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
   '/v1/patients/{patientId}/summary':
     parameters:
       - $ref: '#/components/parameters/patientId'
@@ -2494,6 +2521,11 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/patientClinicRelationship.v1'
+    patientGlycemicRangesList.v1:
+      title: PatientGlycemicRangesList
+      type: array
+      items:
+        $ref: ./clinic/models/patientGlycemicRanges.v1.yaml
     createPatient.v1:
       title: Create Patient
       type: object
