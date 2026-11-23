@@ -20,6 +20,9 @@
     },
     {
       "pattern": "https://www.timeanddate.com"
+    },
+    {
+      "pattern": "^https://infiniteundo.com"
     }
   ],
   "retryOn429": true,

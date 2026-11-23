@@ -17,5 +17,8 @@ properties:
     $ref: '../schedulename.v1.yaml'
   annotations:
     $ref: '../../../../common/models/annotationarray.v1.yaml'
+required:
+  - type
+  - deliveryType
 x-tags:
   - Data

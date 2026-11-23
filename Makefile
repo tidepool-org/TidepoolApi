@@ -83,7 +83,7 @@ NPM_TOOLS = \
 
 NPM_PKG_SPECS = \
 	@openapi-contrib/json-schema-to-openapi-schema@4.3.2 \
-	@redocly/cli@2.31.5 \
+	@redocly/cli@2.82.0 \
 	@stoplight/spectral-cli@6.16.0 \
 	markdown-link-check@3.14.2 \
 	markdownlint-cli@0.48.0

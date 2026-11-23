@@ -29,64 +29,12 @@ allOf:
       bgTargets:
         type: object
       bolus:
+        $ref: bolus.v1.yaml
+      boluses:
         type: object
-        properties:
-          amountMaximum:
-            type: object
-          calculator:
-            type: object
-            properties:
-              enabled:
-                type: boolean
-              insulin:
-                oneOf:
-                  - description: Duration in `hours`
-                    properties:
-                      duration:
-                        type: number
-                        format: float
-                        minimum: 0
-                        maximum: 10
-                      units:
-                        type: string
-                        enum:
-                          - hours
-                    required:
-                      - duration
-                      - units
-                  - description: Duration in `minutes`
-                    properties:
-                      duration:
-                        type: number
-                        format: float
-                        minimum: 0
-                        maximum: 600
-                      units:
-                        type: string
-                        enum:
-                          - minutes
-                    required:
-                      - duration
-                      - units
-                  - description: Duration in `seconds`
-                    properties:
-                      duration:
-                        type: number
-                        format: float
-                        minimum: 0
-                        maximum: 36000
-                      units:
-                        type: string
-                        enum:
-                          - seconds
-                    required:
-                      - duration
-                      - units
-                type: object
-            required:
-              - enabled
-          extended:
-            type: object
+        description: 'A set of key-value pairs encoding the PWD''s bolus settings per schedule, where each key is a schedule name and each value is a bolus settings object. Either `bolus` or `boluses` (but not both) may be present.'
+        additionalProperties:
+          $ref: bolus.v1.yaml
       carbRatio:
         type: number
         format: double
@@ -167,10 +115,12 @@ allOf:
                 days:
                   $ref: '../days.v1.yaml'
                 start:
-                  $ref: '../midnightoffset.v1.yaml'
+                  allOf:
+                    - $ref: '../midnightoffset.v1.yaml'
                   description: Start time in seconds, offset from midnight (e.g. 11pm is 82800)
                 end:
-                  $ref: '../midnightoffset.v1.yaml'
+                  allOf:
+                    - $ref: '../midnightoffset.v1.yaml'
                   description: end time in seconds, offset from midnight (e.g. 7am is 25200)
               required:
                 - enabled
@@ -185,10 +135,12 @@ allOf:
                 days:
                   $ref: '../days.v1.yaml'
                 start:
-                  $ref: '../midnightoffset.v1.yaml'
+                  allOf:
+                    - $ref: '../midnightoffset.v1.yaml'
                   description: Start time in seconds, offset from midnight (e.g. 11pm is 82800)
                 end:
-                  $ref: '../midnightoffset.v1.yaml'
+                  allOf:
+                    - $ref: '../midnightoffset.v1.yaml'
                   description: end time in seconds, offset from midnight (e.g. 7am is 25200)
               required:
                 - enabled

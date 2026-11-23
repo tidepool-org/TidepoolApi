@@ -2,13 +2,14 @@ title: Association (image)
 type: object
 properties:
   type:
-    $ref: './association-type.v1.yaml'
+    type: string
+    description: The type of the association.
+    enum:
+      - image
   reason:
     $ref: './reason.v1.yaml'
   id:
     $ref: './association-id.v1.yaml'
-  url:
-    $ref: '../url.v1.yaml'
 required:
   - type
   - id

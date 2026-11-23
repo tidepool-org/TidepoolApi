@@ -19,7 +19,7 @@ When ingesting data from Medtronic insulin pumps through the CareLink cloud serv
 
 The functionality available across various insulin pumps on the market is generally similar, making the task of standardization to a common data model very simple. The major difference between pumps is how many alternative settings the pump stores.
 
-For example, most pumps allow storage of multiple basal schedules but only allow the storage of one schedule for BG target, carb ratio, and insulin sensitivity. Tidepool worked on integrating data from devices of this type first, so our data model assumed a single schedule for each of these settings. So when Tidepool started integrating data from Tandem and automatic insulin delivery systems — pumps that allow the storage of several schedules — we added alternate pluralized fields (e.g. BG targets, carb ratios, and insulin sensitivities) structured as a set of key-value pairs, with the schedule names as the keys and the schedules as the values.
+For example, most pumps allow storage of multiple basal schedules but only allow the storage of one schedule for BG target, carb ratio, and insulin sensitivity. Tidepool worked on integrating data from devices of this type first, so our data model assumed a single schedule for each of these settings. So when Tidepool started integrating data from Tandem and automatic insulin delivery systems — pumps that allow the storage of several schedules — we added alternate pluralized fields (e.g. BG targets, boluses, carb ratios, and insulin sensitivities) structured as a set of key-value pairs, with the schedule names as the keys and the schedules as the values.
 
 Either the singular or plural version of the field must be present for a pump settings event to be valid. All pump settings objects should have all singular versions of these fields, or all plural versions. There are no devices currently on the market (that Tidepool knows of) that would be best modeled with plural BG targets but singular carb ratio and insulin sensitivity, for example.
 
@@ -66,9 +66,9 @@ Each BG target segment object in the array contains a subset of the following pr
 * Start
 * Target
 
-<!-- theme: info -->
-
-> Either BG target or BG targets (but not both) must be present for a pump settings object to be valid.
+{% admonition type="info" %}
+Either BG target or BG targets (but not both) must be present for a pump settings object to be valid.
+{% /admonition %}
 
 A BG target value is used — in combination with an insulin sensitivity factor in a pump's bolus calculator — to calculate a recommended dose of insulin to bring the person with diabetes to the target.
 
@@ -87,6 +87,46 @@ Tidepool has decided to use a common range for all blood glucose-related fields 
 
 ---
 
+## Bolus (`bolus`)
+
+Each bolus settings object contains a subset of the following properties:
+
+* [Amount Maximum](#amount-maximum-amountmaximum)
+* [Calculator](#calculator-calculator)
+* [Extended](#extended-extended)
+
+{% admonition type="info" %}
+Either `bolus` or `boluses` (but not both) may be present on a pump settings object.
+{% /admonition %}
+
+Bolus settings control how the pump delivers and calculates boluses. All of the properties are optional, but each one that is present must be complete.
+
+The `bolus` object on a pump settings event represents a single set of bolus settings. Some pumps, such as Tandem pumps, let the user set bolus settings separately for each personal profile. For these pumps, the settings are stored in `boluses` instead: a set of key-value pairs where each key is a schedule name, matching the names used in [basal schedules](#basal-schedules-basalschedules) and [active schedule](#active-schedule-activeschedule), and each value is a bolus settings object.
+
+### Amount Maximum (`amountMaximum`)
+
+The largest single bolus the pump will let the user program, also known as the maximum bolus. It is an object with two required properties:
+
+* `units` — the units of the maximum. Currently the only allowed value is `Units` (units of insulin).
+* `value` — the maximum bolus amount, from 0 to 100 units.
+
+### Calculator (`calculator`)
+
+The settings for the pump's bolus calculator (also known as a bolus wizard), which recommends a bolus amount based on the carbohydrates entered, the current blood glucose, and insulin on board. It has the following properties:
+
+* `enabled` (required) — whether the bolus calculator is turned on.
+* `insulin` (optional) — the duration of insulin action that the bolus calculator uses to work out how much previously delivered insulin is still active (insulin on board). This is an object with a `duration` and its `units`, which must be one of `hours` (0 to 10), `minutes` (0 to 600) or `seconds` (0 to 36000).
+
+The carb ratio, insulin sensitivity and BG target values that the bolus calculator uses are not part of this object. They are stored in the [carb ratio](#carb-ratio-carbratio), [insulin sensitivity](#insulin-sensitivity-insulinsensitivity) and [BG target](#blood-glucose-target-bgtarget) fields (or their plural versions) on the pump settings object.
+
+### Extended (`extended`)
+
+Settings for extended boluses (also called square wave boluses), where insulin is delivered over a period of time rather than all at once. A dual wave (or combination) bolus has both an immediate and an extended portion. It has one required property:
+
+* `enabled` — whether the user can program extended boluses on the pump.
+
+---
+
 ## Carb Ratio (`carbRatio`)
 
 Each carb ratio segment object in the array contains the following properties:
@@ -94,9 +134,9 @@ Each carb ratio segment object in the array contains the following properties:
 * Amount
 * Start
 
-<!-- theme: info -->
-
-> Either carb ratio or carb ratios (but not both) must be present for a pump settings object to be valid.
+{% admonition type="info" %}
+Either carb ratio or carb ratios (but not both) must be present for a pump settings object to be valid.
+{% /admonition %}
 
 An insulin-to-carb ratio value is used in an insulin pump's bolus calculator — in combination with a carbohydrate value input by the user — to calculate a recommended dose of insulin to "cover" the carbohydrates to be consumed by the PwD.
 
@@ -125,9 +165,9 @@ Each insulin sensitivity segment object in the array contains the following prop
 * Amount
 * Start
 
-<!-- theme: info -->
-
-> Either insulin sensitivity or insulin sensitivities (but not both) must be present for a pump settings object to be valid.
+{% admonition type="info" %}
+Either insulin sensitivity or insulin sensitivities (but not both) must be present for a pump settings object to be valid.
+{% /admonition %}
 
 An insulin sensitivity factor is used — in combination with a blood glucose target in an insulin pump's bolus calculator — to calculate a recommended dose of insulin to bring the PwD to the target.
 
@@ -291,6 +331,22 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             "high": 8.3261219865683
         }
     ],
+    "bolus": {
+        "amountMaximum": {
+            "units": "Units",
+            "value": 10
+        },
+        "calculator": {
+            "enabled": true,
+            "insulin": {
+                "duration": 4,
+                "units": "hours"
+            }
+        },
+        "extended": {
+            "enabled": true
+        }
+    },
     "carbRatio": [
         {
             "amount": 21,
@@ -419,6 +475,34 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
                 "target": 90
             }
         ]
+    },
+    "boluses": {
+        "Normal": {
+            "amountMaximum": {
+                "units": "Units",
+                "value": 25
+            },
+            "calculator": {
+                "enabled": true,
+                "insulin": {
+                    "duration": 300,
+                    "units": "minutes"
+                }
+            }
+        },
+        "Sick": {
+            "amountMaximum": {
+                "units": "Units",
+                "value": 25
+            },
+            "calculator": {
+                "enabled": false,
+                "insulin": {
+                    "duration": 240,
+                    "units": "minutes"
+                }
+            }
+        }
     },
     "carbRatios": {
         "Normal": [
