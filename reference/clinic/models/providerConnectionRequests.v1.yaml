@@ -28,7 +28,12 @@ properties:
       $ref: ./providerConnectionRequest.v1.yaml
       x-stoplight:
         id: 47ez7wiccxdut
+  tandem:
+    type: array
+    items:
+      $ref: ./providerConnectionRequest.v1.yaml
 required:
   - twiist
   - dexcom
   - abbott
+  - tandem
