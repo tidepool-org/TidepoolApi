@@ -10,8 +10,6 @@ properties:
     format: date-time
   providerName:
     $ref: ./providerId.v1.yaml
-    x-stoplight:
-      id: ej94kmuykpg1k
 required:
   - createdTime
   - providerName

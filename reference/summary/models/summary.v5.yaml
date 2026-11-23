@@ -3,10 +3,37 @@ title: summary.v5
 description: 'A summary of a users recent data'
 allOf:
   - $ref: './summaryBase.v5.yaml'
-  - type: object
-    properties:
-      periods:
-        oneOf:
-          - $ref: './cgm/cgmPeriods.v5.yaml'
-          - $ref: './bgm/bgmPeriods.v5.yaml'
-          - $ref: './continuous/continuousPeriods.v5.yaml'
+  - oneOf:
+      - type: object
+        title: CGM summary
+        properties:
+          type:
+            type: string
+            enum:
+              - cgm
+          periods:
+            $ref: './cgm/cgmPeriods.v5.yaml'
+        required:
+          - type
+      - type: object
+        title: BGM summary
+        properties:
+          type:
+            type: string
+            enum:
+              - bgm
+          periods:
+            $ref: './bgm/bgmPeriods.v5.yaml'
+        required:
+          - type
+      - type: object
+        title: Continuous summary
+        properties:
+          type:
+            type: string
+            enum:
+              - con
+          periods:
+            $ref: './continuous/continuousPeriods.v5.yaml'
+        required:
+          - type

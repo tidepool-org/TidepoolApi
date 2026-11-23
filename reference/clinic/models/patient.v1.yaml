@@ -45,7 +45,8 @@ properties:
     format: date-time
     readOnly: true
   summary:
-    $ref: ./summaries/patientSummary.v1.yaml
+    allOf:
+      - $ref: ./summaries/patientSummary.v1.yaml
     readOnly: true
   reviews:
     type: array
@@ -54,9 +55,8 @@ properties:
     items:
       $ref: ./patientReview.v1.yaml
   connectionRequests:
-    $ref: ./providerConnectionRequests.v1.yaml
-    x-stoplight:
-      id: 502rliv0l2tyy
+    allOf:
+      - $ref: ./providerConnectionRequests.v1.yaml
     description: Requests for each provider are listed in reverse chronological order
     readOnly: true
   sites:

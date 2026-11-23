@@ -15,7 +15,8 @@ allOf:
         maximum: 604800000
         example: 7200
       bgTarget:
-        $ref: ../blood/glucose/target.v1.yaml
+        allOf:
+          - $ref: ../blood/glucose/target.v1.yaml
         example:
           high: 160
           low: 150

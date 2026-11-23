@@ -25,14 +25,11 @@ properties:
       - xealth
       - redox
   scheduledReports:
-    $ref: ./scheduledReports.v1.yaml
-    x-stoplight:
-      id: lgfrpsps4x37a
+    allOf:
+      - $ref: ./scheduledReports.v1.yaml
     description: Scheduled Report Settings
   tags:
     $ref: ./ehrTagsSettings.v1.yaml
-    x-stoplight:
-      id: hp97ilzsssprv
   flowsheets:
     $ref: ./ehrFlowsheetSettings.v1.yaml
   notes:

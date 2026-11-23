@@ -51,5 +51,6 @@ allOf:
               - type: object
         required:
           - subType
+          - change
 x-tags:
   - Data

@@ -7,9 +7,11 @@ properties:
     minimum: 0
   startDate:
     description: The start date when the patient count limit should be applied
-    $ref: '../../common/models/datetime.v1.yaml'
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
   endDate:
     description: The end date when the patient count limit should no longer be applied
-    $ref: '../../common/models/datetime.v1.yaml'
+    allOf:
+      - $ref: '../../common/models/datetime.v1.yaml'
 required:
   - plan
