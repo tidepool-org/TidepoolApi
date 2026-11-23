@@ -19,7 +19,7 @@ When ingesting data from Medtronic insulin pumps through the CareLink cloud serv
 
 The functionality available across various insulin pumps on the market is generally similar, making the task of standardization to a common data model very simple. The major difference between pumps is how many alternative settings the pump stores.
 
-For example, most pumps allow storage of multiple basal schedules but only allow the storage of one schedule for BG target, carb ratio, and insulin sensitivity. Tidepool worked on integrating data from devices of this type first, so our data model assumed a single schedule for each of these settings. So when Tidepool started integrating data from Tandem and automatic insulin delivery systems — pumps that allow the storage of several schedules — we added alternate pluralized fields (e.g. BG targets, carb ratios, and insulin sensitivities) structured as a set of key-value pairs, with the schedule names as the keys and the schedules as the values.
+For example, most pumps allow storage of multiple basal schedules but only allow the storage of one schedule for BG target, carb ratio, and insulin sensitivity. Tidepool worked on integrating data from devices of this type first, so our data model assumed a single schedule for each of these settings. So when Tidepool started integrating data from Tandem and automatic insulin delivery systems — pumps that allow the storage of several schedules — we added alternate pluralized fields (e.g. BG targets, boluses, carb ratios, and insulin sensitivities) structured as a set of key-value pairs, with the schedule names as the keys and the schedules as the values.
 
 Either the singular or plural version of the field must be present for a pump settings event to be valid. All pump settings objects should have all singular versions of these fields, or all plural versions. There are no devices currently on the market (that Tidepool knows of) that would be best modeled with plural BG targets but singular carb ratio and insulin sensitivity, for example.
 
@@ -84,6 +84,63 @@ The representation of BG target varies across insulin delivery device manufactur
 * Tandem represents the BG target as a single target blood glucose value. For example, if the BG target is 6.0, a correction bolus will be calculated above or below this target.
 
 Tidepool has decided to use a common range for all blood glucose-related fields to reflect the range offered by diabetes devices. Some of these values are somewhat illogical (e.g. programming a value of 0), so it is the burden on uploading clients to ensure that the uploaded values are correct.
+
+---
+
+## Bolus (`bolus`)
+
+The bolus object contains the pump's bolus-related settings. All of its properties are optional, but each one that is present must be complete:
+
+* [Amount Maximum](#amount-maximum-amountmaximum)
+* [Calculator](#calculator-calculator)
+* [Extended](#extended-extended)
+
+<!-- theme: info -->
+
+> Either bolus or boluses (but not both) may be present on a pump settings object.
+
+Use bolus for pumps that have a single set of bolus settings. Use [boluses](#boluses-boluses) for pumps where bolus settings are part of each named schedule or profile.
+
+<!-- omit in toc -->
+### Amount Maximum (`amountMaximum`)
+
+The largest single bolus the pump will let the user program, also known as the maximum bolus. It is an object with two required properties:
+
+* `units` — the units of the maximum. Currently the only allowed value is `Units` (units of insulin).
+* `value` — the maximum bolus amount, from 0 to 100 units.
+
+<!-- omit in toc -->
+### Calculator (`calculator`)
+
+The settings for the pump's bolus calculator (also known as a bolus wizard), which recommends a bolus amount based on the carbohydrates entered, the current blood glucose, and insulin on board. It has the following properties:
+
+* `enabled` (required) — whether the bolus calculator is turned on.
+* `insulin` (optional) — the duration of insulin action that the bolus calculator uses to work out how much previously delivered insulin is still active (insulin on board). This is an object with a `duration` and its `units`, which must be one of `hours` (0 to 10), `minutes` (0 to 600) or `seconds` (0 to 36000).
+
+The carb ratio, insulin sensitivity and BG target values that the bolus calculator uses are not part of this object. They are stored in the [carb ratio](#carb-ratio-carbratio), [insulin sensitivity](#insulin-sensitivity-insulinsensitivity) and [BG target](#blood-glucose-target-bgtarget) fields (or their plural versions) on the pump settings object.
+
+<!-- omit in toc -->
+### Extended (`extended`)
+
+Settings for extended boluses (also called square wave boluses), where insulin is delivered over a period of time rather than all at once. A dual wave (or combination) bolus has both an immediate and an extended portion. It has one required property:
+
+* `enabled` — whether the user can program extended boluses on the pump.
+
+---
+
+## Boluses (`boluses`)
+
+<!-- theme: info -->
+
+> Either bolus or boluses (but not both) may be present on a pump settings object.
+
+Some pumps, such as Tandem pumps, let the user set bolus settings, like insulin duration and whether carbohydrate entry is on, separately for each personal profile. As with BG targets, carb ratios and insulin sensitivities, Tidepool represents these as a set of key-value pairs. Each key is a schedule name, matching the names used in [basal schedules](#basal-schedules-basalschedules) and [active schedule](#active-schedule-activeschedule). Each value is a [bolus](#bolus-bolus) object.
+
+For Tandem pumps:
+
+* `calculator.enabled` shows whether carbohydrate entry is turned on for that profile.
+* `calculator.insulin` holds the profile's insulin duration in minutes.
+* On pump software versions that have a single global maximum bolus setting, that global value is reported as `amountMaximum` in every profile.
 
 ---
 
@@ -291,6 +348,22 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
             "high": 8.3261219865683
         }
     ],
+    "bolus": {
+        "amountMaximum": {
+            "units": "Units",
+            "value": 10
+        },
+        "calculator": {
+            "enabled": true,
+            "insulin": {
+                "duration": 4,
+                "units": "hours"
+            }
+        },
+        "extended": {
+            "enabled": true
+        }
+    },
     "carbRatio": [
         {
             "amount": 21,
@@ -419,6 +492,34 @@ The blood glucose value may be mg/dL or mmol/L, but Platform will convert all bl
                 "target": 90
             }
         ]
+    },
+    "boluses": {
+        "Normal": {
+            "amountMaximum": {
+                "units": "Units",
+                "value": 25
+            },
+            "calculator": {
+                "enabled": true,
+                "insulin": {
+                    "duration": 300,
+                    "units": "minutes"
+                }
+            }
+        },
+        "Sick": {
+            "amountMaximum": {
+                "units": "Units",
+                "value": 25
+            },
+            "calculator": {
+                "enabled": false,
+                "insulin": {
+                    "duration": 240,
+                    "units": "minutes"
+                }
+            }
+        }
     },
     "carbRatios": {
         "Normal": [

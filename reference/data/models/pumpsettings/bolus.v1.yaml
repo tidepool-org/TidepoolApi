@@ -1,0 +1,85 @@
+title: Bolus Settings
+description: Bolus-related settings programmed on the insulin pump.
+type: object
+properties:
+  amountMaximum:
+    type: object
+    description: The largest single bolus the pump will allow the user to program.
+    properties:
+      units:
+        type: string
+        enum:
+          - Units
+      value:
+        type: number
+        format: double
+        minimum: 0
+        maximum: 100
+        example: 10
+    required:
+      - units
+      - value
+  calculator:
+    type: object
+    description: Bolus calculator (wizard) settings.
+    properties:
+      enabled:
+        type: boolean
+        description: Whether the bolus calculator is enabled.
+      insulin:
+        description: The duration of insulin action used by the bolus calculator to determine insulin on board.
+        oneOf:
+          - description: Duration in `hours`
+            properties:
+              duration:
+                type: number
+                format: float
+                minimum: 0
+                maximum: 10
+              units:
+                type: string
+                enum:
+                  - hours
+            required:
+              - duration
+              - units
+          - description: Duration in `minutes`
+            properties:
+              duration:
+                type: number
+                format: float
+                minimum: 0
+                maximum: 600
+              units:
+                type: string
+                enum:
+                  - minutes
+            required:
+              - duration
+              - units
+          - description: Duration in `seconds`
+            properties:
+              duration:
+                type: number
+                format: float
+                minimum: 0
+                maximum: 36000
+              units:
+                type: string
+                enum:
+                  - seconds
+            required:
+              - duration
+              - units
+        type: object
+    required:
+      - enabled
+  extended:
+    type: object
+    description: Extended (square wave or dual wave) bolus settings.
+    properties:
+      enabled:
+        type: boolean
+        description: Whether extended boluses are enabled.
+    required:
+      - enabled
