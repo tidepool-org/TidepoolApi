@@ -96,18 +96,13 @@ Each bolus settings object contains a subset of the following properties:
 * [Extended](#extended-extended)
 
 {% admonition type="info" %}
-Either bolus or boluses (but not both) may be present on a pump settings object.
+Either `bolus` or `boluses` (but not both) may be present on a pump settings object.
 {% /admonition %}
 
 Bolus settings control how the pump delivers and calculates boluses. All of the properties are optional, but each one that is present must be complete.
 
-The bolus object on a pump settings event represents a single set of bolus settings, for pumps where these settings apply regardless of which schedule is active. Some pumps, such as Tandem pumps, let the user set bolus settings separately for each personal profile. For these pumps, the settings are stored in boluses instead: a set of key-value pairs where each key is a schedule name, matching the names used in [basal schedules](#basal-schedules-basalschedules) and [active schedule](#active-schedule-activeschedule), and each value is a bolus settings object.
+The `bolus` object on a pump settings event represents a single set of bolus settings. Some pumps, such as Tandem pumps, let the user set bolus settings separately for each personal profile. For these pumps, the settings are stored in `boluses` instead: a set of key-value pairs where each key is a schedule name, matching the names used in [basal schedules](#basal-schedules-basalschedules) and [active schedule](#active-schedule-activeschedule), and each value is a bolus settings object.
 
-The representation of bolus settings varies across insulin delivery device manufacturers as follows:
-
-* Tandem stores bolus settings per personal profile, so they are uploaded as boluses. `calculator.enabled` shows whether carbohydrate entry is turned on for that profile, and `calculator.insulin` holds the profile's insulin duration in minutes. On pump software versions that have a single global maximum bolus setting, that global value is reported as `amountMaximum` in every profile.
-
-<!-- omit in toc -->
 ### Amount Maximum (`amountMaximum`)
 
 The largest single bolus the pump will let the user program, also known as the maximum bolus. It is an object with two required properties:
@@ -115,7 +110,6 @@ The largest single bolus the pump will let the user program, also known as the m
 * `units` — the units of the maximum. Currently the only allowed value is `Units` (units of insulin).
 * `value` — the maximum bolus amount, from 0 to 100 units.
 
-<!-- omit in toc -->
 ### Calculator (`calculator`)
 
 The settings for the pump's bolus calculator (also known as a bolus wizard), which recommends a bolus amount based on the carbohydrates entered, the current blood glucose, and insulin on board. It has the following properties:
@@ -125,7 +119,6 @@ The settings for the pump's bolus calculator (also known as a bolus wizard), whi
 
 The carb ratio, insulin sensitivity and BG target values that the bolus calculator uses are not part of this object. They are stored in the [carb ratio](#carb-ratio-carbratio), [insulin sensitivity](#insulin-sensitivity-insulinsensitivity) and [BG target](#blood-glucose-target-bgtarget) fields (or their plural versions) on the pump settings object.
 
-<!-- omit in toc -->
 ### Extended (`extended`)
 
 Settings for extended boluses (also called square wave boluses), where insulin is delivered over a period of time rather than all at once. A dual wave (or combination) bolus has both an immediate and an extended portion. It has one required property:
