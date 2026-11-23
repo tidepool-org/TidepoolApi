@@ -66,9 +66,9 @@ Each BG target segment object in the array contains a subset of the following pr
 * Start
 * Target
 
-<!-- theme: info -->
-
-> Either BG target or BG targets (but not both) must be present for a pump settings object to be valid.
+{% admonition type="info" %}
+Either BG target or BG targets (but not both) must be present for a pump settings object to be valid.
+{% /admonition %}
 
 A BG target value is used — in combination with an insulin sensitivity factor in a pump's bolus calculator — to calculate a recommended dose of insulin to bring the person with diabetes to the target.
 
@@ -89,17 +89,23 @@ Tidepool has decided to use a common range for all blood glucose-related fields 
 
 ## Bolus (`bolus`)
 
-The bolus object contains the pump's bolus-related settings. All of its properties are optional, but each one that is present must be complete:
+Each bolus settings object contains a subset of the following properties:
 
 * [Amount Maximum](#amount-maximum-amountmaximum)
 * [Calculator](#calculator-calculator)
 * [Extended](#extended-extended)
 
-<!-- theme: info -->
+{% admonition type="info" %}
+Either bolus or boluses (but not both) may be present on a pump settings object.
+{% /admonition %}
 
-> Either bolus or boluses (but not both) may be present on a pump settings object.
+Bolus settings control how the pump delivers and calculates boluses. All of the properties are optional, but each one that is present must be complete.
 
-Use bolus for pumps that have a single set of bolus settings. Use [boluses](#boluses-boluses) for pumps where bolus settings are part of each named schedule or profile.
+The bolus object on a pump settings event represents a single set of bolus settings, for pumps where these settings apply regardless of which schedule is active. Some pumps, such as Tandem pumps, let the user set bolus settings separately for each personal profile. For these pumps, the settings are stored in boluses instead: a set of key-value pairs where each key is a schedule name, matching the names used in [basal schedules](#basal-schedules-basalschedules) and [active schedule](#active-schedule-activeschedule), and each value is a bolus settings object.
+
+The representation of bolus settings varies across insulin delivery device manufacturers as follows:
+
+* Tandem stores bolus settings per personal profile, so they are uploaded as boluses. `calculator.enabled` shows whether carbohydrate entry is turned on for that profile, and `calculator.insulin` holds the profile's insulin duration in minutes. On pump software versions that have a single global maximum bolus setting, that global value is reported as `amountMaximum` in every profile.
 
 <!-- omit in toc -->
 ### Amount Maximum (`amountMaximum`)
@@ -128,22 +134,6 @@ Settings for extended boluses (also called square wave boluses), where insulin i
 
 ---
 
-## Boluses (`boluses`)
-
-<!-- theme: info -->
-
-> Either bolus or boluses (but not both) may be present on a pump settings object.
-
-Some pumps, such as Tandem pumps, let the user set bolus settings, like insulin duration and whether carbohydrate entry is on, separately for each personal profile. As with BG targets, carb ratios and insulin sensitivities, Tidepool represents these as a set of key-value pairs. Each key is a schedule name, matching the names used in [basal schedules](#basal-schedules-basalschedules) and [active schedule](#active-schedule-activeschedule). Each value is a [bolus](#bolus-bolus) object.
-
-For Tandem pumps:
-
-* `calculator.enabled` shows whether carbohydrate entry is turned on for that profile.
-* `calculator.insulin` holds the profile's insulin duration in minutes.
-* On pump software versions that have a single global maximum bolus setting, that global value is reported as `amountMaximum` in every profile.
-
----
-
 ## Carb Ratio (`carbRatio`)
 
 Each carb ratio segment object in the array contains the following properties:
@@ -151,9 +141,9 @@ Each carb ratio segment object in the array contains the following properties:
 * Amount
 * Start
 
-<!-- theme: info -->
-
-> Either carb ratio or carb ratios (but not both) must be present for a pump settings object to be valid.
+{% admonition type="info" %}
+Either carb ratio or carb ratios (but not both) must be present for a pump settings object to be valid.
+{% /admonition %}
 
 An insulin-to-carb ratio value is used in an insulin pump's bolus calculator — in combination with a carbohydrate value input by the user — to calculate a recommended dose of insulin to "cover" the carbohydrates to be consumed by the PwD.
 
@@ -182,9 +172,9 @@ Each insulin sensitivity segment object in the array contains the following prop
 * Amount
 * Start
 
-<!-- theme: info -->
-
-> Either insulin sensitivity or insulin sensitivities (but not both) must be present for a pump settings object to be valid.
+{% admonition type="info" %}
+Either insulin sensitivity or insulin sensitivities (but not both) must be present for a pump settings object to be valid.
+{% /admonition %}
 
 An insulin sensitivity factor is used — in combination with a blood glucose target in an insulin pump's bolus calculator — to calculate a recommended dose of insulin to bring the PwD to the target.
 
